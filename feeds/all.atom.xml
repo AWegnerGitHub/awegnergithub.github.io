@@ -1,0 +1,1139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-05-20T00:00:00-05:00</updated><entry><title>Why I moved from Wordpress to Pelican</title><link href="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html" rel="alternate"></link><updated>2015-05-03T22:41:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-05-03:why-i-moved-from-wordpress-to-pelican.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For years, I maintained a Wordpress blog covering various things I've done or created. Most of these revolved around
+things I created to make administering Team Vipers easier for me and for the rest of the admin team. It was my way
+of documenting what I'd done (in case I ever needed to do it again) and providing a way to update the Team Vipers community
+about new plugins or applications that would be deployed to the community. &lt;/p&gt;
+&lt;h2 id="my-issues-with-wordpress"&gt;My Issues with Wordpress&lt;a class="headerlink" href="#my-issues-with-wordpress" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The problem I had with Wordpress was that it was just to bulky for the simple posts I was making. I needed a database, a full web
+server (or a hosting provider), and either time to hunt for the "perfect" plugin(s) or PHP knowledge to do it myself. Early in my
+development career, I used PHP a lot. That was part of the reason I chose Wordpress. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Oh! I know that language. If I ever need something, I can just whip it up myself. &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;-Me, before the real world ambushed me and beat me with a stick&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="spam"&gt;Spam&lt;a class="headerlink" href="#spam" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I spent time setting up Wordpress. I picked out a theme, plugins, and started saving future me with documentation. Then life happened. For whatever
+reason, I stopped updating Wordpress. My blog sat out there for weeks or months unvisited by anyone. Then, one morning, my phone vibrated
+and told me that I had a new comment on my site. Woo! &lt;/p&gt;
+&lt;p&gt;Except it was spam. Boo!&lt;/p&gt;
+&lt;p&gt;I marked it spam and moved on with my day. Later that morning, I glanced at my phone again. 32 emails. I am just not that popular. Something
+was wrong. Turns out, a spam bot found me. I sighed and then removed all the comments and checked the box indicating that users had to
+be registered to post. That solved my problem for a few months.&lt;/p&gt;
+&lt;p&gt;Then the bots got smarter. They started registering. They started posting legitimate looking messages, except for that associated URL their name
+would link to in the comments. They pulled keywords out of the post and formulated a somewhat passable English question using those words. The spam
+prevention plugins I installed would slow the tide for a few weeks. The bots would adapt and then I'd be awash with spam posts again. Eventually,
+the solution was to completely disable comments. I'd spent way to much time dealing with spam on a blog that received very little legitimate traffic.&lt;/p&gt;
+&lt;p&gt;Since I don't utilize the comments, Pelican provides a nice simple page that I can post my thoughts and not worry about getting hit by a spam bot. It also
+provides plugins so that I &lt;em&gt;can&lt;/em&gt; include comments should I ever choose to do so in the future. For the time being, though, I have a nice simple page 
+with no comments. That's exactly what I was looking for.&lt;/p&gt;
+&lt;h3 id="security"&gt;Security&lt;a class="headerlink" href="#security" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you watch any technology web sites, you'll notice that there are vulnerabilities found in Wordpress frequently. These require patches,
+which requires me to do something. It may be as simple as logging in and clicking a button to update, but it is still something I need to 
+remember to do for a relatively minor site. When I'd log in to clear the spam backlog, I'd frequently also install updates for 10-20 plugins, themes or
+Wordpress itself. It was mostly painless, but I didn't like the idea of the site sitting there vulnerable for weeks at a time because I didn't
+visit and login.&lt;/p&gt;
+&lt;p&gt;The dynamic nature of Wordpress and the underlying database exposed a fairly sizable target for a web page so small. Pelican generates static
+HTML pages. I don't have to worry about SQL injections, unauthorized logins, or anything else. I host a basic set of HTML, CSS and JavaScript files. 
+That's it.&lt;/p&gt;
+&lt;h2 id="php-vs-python"&gt;PHP vs Python&lt;a class="headerlink" href="#php-vs-python" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As I mentioned before, I used to use PHP frequently. It was my go to language. I picked Wordpress with the idea that I'd be able to hack together features I needed.
+The reality, it turns out, was that I wasn't actually interested in doing that. Instead, I picked out plugins that were close enough to the
+exact functionality I wanted. &lt;/p&gt;
+&lt;p&gt;I transferred to a job where I used Python. Instead of having a language I used on the side (PHP) and a job where I was a glorified project manager, without the 
+actual title of "Project Manager", I now had a job where I used a language (Python) for 8 hours a day. My usage of PHP plummeted. I found I could get what I wanted
+done in my side projects faster and easier with Python. At work I used Python to build tools for engineering problems. At home, I started using it for every day
+tasks. &lt;/p&gt;
+&lt;p&gt;Soon, I realized I hadn't used PHP for several versions of the language. My knowledge of the language was outdated. The biggest reason I'd chosen Wordpress was no longer
+relevant, because I couldn't write anything complicated in PHP without glancing at documentation to do even simple things. It's sad that I lost the intimate knowledge of
+a language, but I feel that I've been more productive with Python anyway.&lt;/p&gt;
+&lt;p&gt;Pelican is written in Python. Even more importantly though, it generates HTML files which are hosted. I don't need to run a Python environment on a server. I just
+need to host HTML files. &lt;/p&gt;
+&lt;h2 id="markdown"&gt;Markdown&lt;a class="headerlink" href="#markdown" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Finally, I've fought with Wordpress's text editor countless times. This happened most often when attempting to add code blocks. It was a pain to do. It was a pain
+to fix when the blocks broke. Pelican supports Markdown. Markdown is supported by large organizations like GitHub, reddit and Stack Exchange. I use all three of those.
+I know how to utilize Markdown to create code blocks, headers, insert images, create bulleted lists. All without needing to fight how the text editor is going to actually
+save the data.&lt;/p&gt;</summary><category term="Meta"></category><category term="Pelican"></category></entry><entry><title>I'm running to be a moderator of Stack Overflow</title><link href="http://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html" rel="alternate"></link><updated>2015-04-21T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-04-06:i'm-running-to-be-a-moderator-of-stack-overflow.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://stackexchange.com/sites#"&gt;Stack Exchange&lt;/a&gt; has over 130 sites in its network. Each of those sites has at least 3 moderators that are glorified &lt;a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/"&gt;janitors&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A lot of the moderation work is extremely mundane, almost janitorial. It’s deleting obvious spam, closing blatantly off-topic questions, and culling some of the worst rated posts in various dimensions.&lt;/p&gt;
+&lt;p&gt;The ideal moderator does as little as possible. But those little actions may be powerful and highly concentrated. Judiciously limiting your use of moderator powers to selectively prune and guide the community — now that’s the true art of moderation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This works so well in the Stack Exchange network because the users are able to handle most moderation tasks. As users gain reputation, they gain privileges. With these privileges, they are better able to maintain and cultivate the content on the site.&lt;/p&gt;
+&lt;p&gt;Not all activity can be performed by users though. This is where moderators come in.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://communitybuilding.stackexchange.com/users/78/andy?tab=profile"&gt;&lt;img alt="Andy on Community Building" src="http://andrewwegner.com/images/community_building_andy_flair.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I already have a diamond (♦) on the &lt;a href="http://communitybuilding.stackexchange.com/"&gt;Community Building&lt;/a&gt; site. I was &lt;a href="http://meta.communitybuilding.stackexchange.com/q/138/78"&gt;appointed&lt;/a&gt; one of the Pro Tempore moderators during the beta phase of the site. This is my first experience moderating on Stack Exchange, beyond what my reputation on Stack Overflow
+gets me. &lt;a href="http://meta.communitybuilding.stackexchange.com/a/77/78"&gt;It is not, however, my first time moderating&lt;/a&gt;. &lt;em&gt;Community Building&lt;/em&gt; is focused on various aspects of building communities - both online and off. It caters to users from all aspects of a site (owners, moderators, users, advertisers and any thing else).
+My experience here led me to pursuing a moderator position on Stack Overflow. This site is orders of magnitude larger than &lt;em&gt;Community Building&lt;/em&gt;. It has millions of users and millions of questions. With all this traffic, there are still only 18 diamond moderators. The
+idea of community moderation shows that it scales well.&lt;/p&gt;
+&lt;h2 id="nomination-phase"&gt;Nomination Phase&lt;a class="headerlink" href="#nomination-phase" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The election cycle begins with the nomination phase. Users nominate themselves for the position. In 1200 characters or less, you lay out your platform. In this phase, nearly anyone can nominate themselves. However, there are only 30 positions available. If more than 30 people
+nominate themselves, then the users with the lowest reputation get bumped. With only 11K reputation, I am at the lower end of the spectrum of other nominees, but I am well above the lowest. I have the 8th lowest reputation. I've looked at previous election cycles. It seems unlikely
+that there will be 39 or more nominees. I think that I am safe.&lt;/p&gt;
+&lt;h3 id="my-platform"&gt;My Platform&lt;a class="headerlink" href="#my-platform" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I posted my &lt;a href="http://stackoverflow.com/election/6#post-29480018"&gt;platform&lt;/a&gt; shortly after the nomination phase opened. I stressed the work that I've already done on Stack Overflow and previous moderation experience on another Stack Exchange site (Community Building).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I'm Andy and I want to be one of your moderators.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why vote for me?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I've built an automated script to handle &lt;a href="http://meta.stackoverflow.com/questions/280546/can-a-machine-be-taught-to-flag-comments-automatically"&gt;noisy comments&lt;/a&gt;. It runs daily, probably to the chagrin of the current moderators, but it helps keep the comments noise down and it is incredibly accurate.&lt;/li&gt;
+&lt;li&gt;In addition to the automated flagging, I participate in the review queues, provide edits and post &lt;a href="http://stackoverflow.com/users/189134/andy?tab=answers"&gt;answers&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;As a moderator of &lt;a href="http://communitybuilding.stackexchange.com/"&gt;"Community Building"&lt;/a&gt;, I know the tools used by the Stack Exchange sites. I've used this position to interact with the existing moderators for advise and questions. This interaction will not only continue but be helpful as a new moderator to SO.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have the flagging history and experience to make the appropriate judgement calls. I feel that is a positive attribute that will help me in helping you to have the best experience you can on Stack Overflow.&lt;/p&gt;
+&lt;p&gt;I'll continue to help improve the site regardless of whether I am elected or not. I will be able to do a much better job at that, though, as one of your moderators.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;With this, I received my "candidate score". It was 29/40. Not the highest, but not the lowest either. I expect, if any one is concerned about this score, it will be mentioned it in the comments.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Candidate Score" src="http://andrewwegner.com/images/april_2015_candidate_score.png"/&gt;&lt;/p&gt;
+&lt;h3 id="nomination-phase-comments"&gt;Nomination Phase Comments&lt;a class="headerlink" href="#nomination-phase-comments" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Updated April 11, 2014&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The comments on my nomination post have focused mostly on the pros and cons of the automated script I built to flag comments. I was expecting this discussion. I'd classify most of the comments about the script as
+"cautious". Users seem concerned about something completely automated used to moderate or that I focus on low priority content. My response to this concern was:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[...] by automating the removal of this lower priority content it is easier to focus on the actively harmful stuff.&lt;/p&gt;
+&lt;p&gt;I'd like to point out that I have done more than "build a script". I've actively participated in review queues on Stack Overflow for years. I've flagged appropriate content
+(with a high percentage marked as accepted). I have also been moderator on Community Building. All of this, in combination with the automation, makes up my "platform".
+I have the experience of moderation, the knowledge of how the system works and the drive to improve the community.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It was also mentioned a few times that I'd be unlikely to utilize such an automated tool as a moderator. I promised to bring this concern up when I moved further into the election process.&lt;/p&gt;
+&lt;p&gt;Finally, I received a few comments supporting either me or the work that I've done.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The automation is very impressive - thanks for that, it's a real contribution to the quality of the site. That said - as a privileged user I suspect you won't be able to run these sort of scripts on your account for obvious reasons.  –  Benjamin Gruenbaum Apr 6 at 21:34&lt;/p&gt;
+&lt;p&gt;I can vouch for Andy's track record as a pro tem mod on Community Building. I want to note as well for the record that many of the main site questions and answers on Community Building are explicitly about moderation, and his contributions there also provide insight into his approach to the job. –  Air Apr 7 at 16:54&lt;/p&gt;
+&lt;p&gt;Huh. I have to say I'm impressed. Putting you on my list of candidates to watch. –  Qix Apr 7 at 19:23&lt;/p&gt;
+&lt;p&gt;I'd just like to point out that your response to my concerns is fair and reasonable, as well as polite, even if it isn't quite exactly how I see things. It certainly alleviates my concerns of misusing moderator power. I will be seriously considering voting for you. –  jpmc26 Apr 8 at 6:41&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Overall, I'm pleased with how the discussion has gone. It has been a few days since there were comments left though. Hopefully a little interest picks up during the primary phase.&lt;/p&gt;
+&lt;p&gt;I am also very impressed by the other candidates. There are many very good candidates that I'd be happy to work with (or be unashamed to lose to).&lt;/p&gt;
+&lt;h2 id="primary-phase"&gt;Primary Phase&lt;a class="headerlink" href="#primary-phase" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated April 17, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The nomination phases has ended. I have advanced to the primary phase. The purpose of this phase is to narrow the list of 30 candidates to 10. Those 10 will be the ones that can be voted on to be the next moderators. In the primary phase, users can vote nominees up or down.&lt;/p&gt;
+&lt;p&gt;As part of the election process, one of the other &lt;a href="http://stackoverflow.com/users/616460/jason-c"&gt;candidates&lt;/a&gt; created several tools to help users see nominee activity. He also created a &lt;a href="http://meta.stackoverflow.com/questions/290346/2015-election-live-vote-monitor"&gt;live vote monitor&lt;/a&gt;. It was exciting to hang out in the Election Chat room and watch votes roll in. The position of 10th was highly contested
+toward the end of the primary. I was very pleased to see that everyone remained civil in the chat room too.&lt;/p&gt;
+&lt;p&gt;I ended this phase with &lt;strong&gt;1492&lt;/strong&gt; positive votes. This put me in 15th. Sadly, not enough to advance to the election phase. However, there are several excellent candidates that did advance. Good luck to them.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Live Vote Counter at the end of the Primary" src="http://andrewwegner.com/images/april_2015_primary_live_vote.png"/&gt;&lt;/p&gt;
+&lt;h3 id="other-primary-data"&gt;Other Primary Data&lt;a class="headerlink" href="#other-primary-data" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Part of the primary phase involves answering questions that users have posed during the nomination phase. These questions were voted upon and the highest were included in the questionnaire. My &lt;a href="http://meta.stackoverflow.com/questions/290096/2015-moderator-election-qa-questionnaire/290122#290122"&gt;response&lt;/a&gt; was removed at the end of this phase because I did not advance. I was
+prepared with answers about my moderation style and my expectations for the position.&lt;/p&gt;
+&lt;p&gt;One of the other tools that was created during this cycle showed &lt;a href="http://meta.stackoverflow.com/questions/289995/2015-moderator-candidate-activity-profiles"&gt;nominee activity&lt;/a&gt; on the site over time. This was a quick way to compare nominees based on the number of activities they have performed on undeleted posts (because data related to deleted posts is removed from public view). It
+provided, at a glance, a way to see who is and is not active.&lt;/p&gt;
+&lt;p&gt;Below are the charts of my activity that the tool created. The green vertical bar is account creation date. The orange/brown vertical bars are previous election windows.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Stack Overflow Activity Chart" src="http://andrewwegner.com/images/april_2015_so_activity_chart.png"/&gt;
+This is my activity chart for Stack Overflow itself. It shows that I've had an account since 2009, but didn't really start utilizing the site, more than occassionally, until 2013. Since then, it shows that a large majority of my
+activity onsite is in the review queues. There are posts, revisions, comments and more along the bottom, but most of my activity is in the review queues.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Meta Stack Overflow Activity Chart" src="http://andrewwegner.com/images/april_2015_mso_activity_chart.png"/&gt;
+&lt;img alt="Meta Stack Exchange Activity Chart" src="http://andrewwegner.com/images/april_2015_mse_activity_chart.png"/&gt;
+My Meta Stack Overflow and Meta Stack Exchange charts show a fairly low activity level. Unfortunately, I think this is obscuring the posts that I do make simply because of the large scale on the y-axis.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Combined Activity Chart" src="http://andrewwegner.com/images/april_2015_combined_activity_chart.png"/&gt;
+Finally, the last chart shows the combined activity across all three areas (SO, MSO, and MSE). It looks very similar to the Stack Overflow one because of the lower activity levels on the two Meta sites.&lt;/p&gt;
+&lt;h2 id="election-phase"&gt;Election Phase&lt;a class="headerlink" href="#election-phase" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated April 21, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The election is over. Three great candidates were elected. One thing I am like about Stack Exchange's elections is their &lt;a href="http://meta.stackexchange.com/a/77560/186281"&gt;usage of OpenSTV and the Meek STV method&lt;/a&gt;. The results of each round of the
+election cycle are available at &lt;a href="http://www.opavote.org/results/4962933813542912/0"&gt;opavote.org&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Like most elections, there are known and unknown winners before the election even begins. The response that &lt;a href="http://stackoverflow.com/users/100297/martijn-pieters"&gt;Martijn Pieters&lt;/a&gt; received from the time he nominated through the final moments of the election all but guarenteed a victory for him. It is a
+well deserved victory. I hope that he is able to keep up his frequent, high quality, answers in the &lt;a href="http://stackoverflow.com/questions/tagged/python"&gt;python&lt;/a&gt; tag. If not, his drop in activity will be felt. The surprise, to me, was &lt;a href="http://stackoverflow.com/users/1114/jeremy-banks"&gt;Jeremy Banks&lt;/a&gt;. He ended in 9th place in the primaries. That doesn't mean he can't do the job.&lt;/p&gt;
+&lt;p&gt;I've interacted with all three moderators on site and in chat prior to their victory. I've been very happy with those interactions. With their promotion, I look forward to working with them as a moderator on the Stack Exchange network in the future.&lt;/p&gt;
+&lt;p&gt;Congratulations to the winners!&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>Zephyr - The bot that watches for low quality vote requests</title><link href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" rel="alternate"></link><updated>2015-05-08T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-03-12:zephyr-the-bot-that-watches-for-low-quality-vote-requests.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stack Exchange receives thousands of questions per day across all of their sites. Not all of these are high quality
+posts. Fortunately, users of the Stack Exchange network are given &lt;a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/"&gt;tools&lt;/a&gt; to help keep that low quality stuff to a 
+minimum. One of these tools is the chat network that spans the Stack Exchange sites. &lt;/p&gt;
+&lt;p&gt;In the chat rooms, a convention has arisen to tag a message as &lt;kbd class="light"&gt;cv-pls&lt;/kbd&gt; for questions that need to be closed for one reason 
+or another. Over time, this evolved to include other tags such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;kbd class="light"&gt;del-pls&lt;/kbd&gt; for a deletion request&lt;/li&gt;
+&lt;li&gt;&lt;kbd class="light"&gt;spam&lt;/kbd&gt; for notification that spam made it through the already &lt;a href="http://meta.stackexchange.com/questions/228043/"&gt;impressive&lt;/a&gt; spam &lt;a href="http://meta.stackexchange.com/a/237882/186281"&gt;filters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;kbd class="light"&gt;reopen&lt;/kbd&gt; for a reopen request&lt;/li&gt;
+&lt;li&gt;a few others to cover specific flag types (eg. Not an answer, Very Low Quality or Offensive)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="introducing-zephyr"&gt;Introducing Zephyr&lt;a class="headerlink" href="#introducing-zephyr" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The problem with these is that the requests are only seen by users active in the specific room where it was posted. 
+Other users across the network miss the request. &lt;strong&gt;&lt;a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot"&gt;Zephyr&lt;/a&gt;&lt;/strong&gt; was built to resolve this problem. Zephyr monitors
+several rooms where these types of requests are frequent. These requests all all posted into a single &lt;a href="http://chat.meta.stackexchange.com/rooms/773/low-quality-posts-hq"&gt;chat room&lt;/a&gt;. 
+This provides users with a single room to monitor to see requests for multiple questions and sites across the network.&lt;/p&gt;
+&lt;p&gt;Here is an example of what Zephyr's chat activity looks like during a spam wave:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zephyr's chat activity during a spam wave" src="http://andrewwegner.com/images/zephyr-spam-wave.png"/&gt;&lt;/p&gt;
+&lt;h3 id="how-it-works"&gt;How it works&lt;a class="headerlink" href="#how-it-works" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Zephyr utilizes the &lt;a href="https://github.com/Manishearth/ChatExchange"&gt;ChatExchange&lt;/a&gt; package to join and read the chat rooms. To do this, Zephyr required a dedicated
+account. I decided to run Zephyr with a dedicated account to completely separate the bot that would sit and watch multiple chat
+rooms 24/7 from my account. Zephyr maintains a small SQLite database of all the posts that it records. The idea behind this, 
+is that eventually this data will be utilized to train other systems on unwanted content. This information is pulled via
+the &lt;a href="http://api.stackexchange.com/"&gt;API&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Zephyr watches the chat rooms for specific string &lt;a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot/blob/master/create_config_files.py"&gt;patterns&lt;/a&gt;. If these patterns are matched, a message is posted if &lt;code&gt;should_post&lt;/code&gt; 
+is &lt;code&gt;True&lt;/code&gt; for the matched pattern. &lt;/p&gt;
+&lt;p&gt;Overall, a nice simple application. It performs some pattern matching and a couple API calls. &lt;/p&gt;
+&lt;h3 id="other-bots"&gt;Other bots&lt;a class="headerlink" href="#other-bots" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In addition to watching user activity, Zephyr also watches two other quality bots that patrol Stack Exchange for low
+quality content: &lt;a href="https://github.com/Charcoal-SE/SmokeDetector"&gt;SmokeDetector&lt;/a&gt; and &lt;a href="https://github.com/ArcticEcho/Phamhilator/wiki"&gt;Phamhilator&lt;/a&gt;. If either of these bots detect spam, Zephyr takes note of the information by
+recording it to the database, but not reposting. Since both of those bots post their reports, it didn't make sense for Zephyr
+to add a second (or third, if both of the others detected spam) message to the chat room. The information is recorded, though,
+to help future training for other systems.&lt;/p&gt;
+&lt;h2 id="updates"&gt;Updates&lt;a class="headerlink" href="#updates" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated May 8, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Over time Zephyr has been updated to include new rooms to monitor or new patterns to match. Those changes are small (and simple).
+There are, however, a few larger changes that I'd like to note below.&lt;/p&gt;
+&lt;h3 id="commands"&gt;Commands&lt;a class="headerlink" href="#commands" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The other bots that Zephyr monitors respond to user input. Zephyr has very little that requires user interaction since all of it's
+posts are generated &lt;em&gt;by&lt;/em&gt; user input. However, there have been times where I, as the bot owner, would like to be able to issue
+certain commands to it. My most common desire is to see a report of how many spam posts Zephyr has seen. Thus, Zephyr now responds
+to the command &lt;code&gt;spamreport&lt;/code&gt; from me. It then prints out a nice summary of information. This information has been utilized in 
+SmokeDetector to watch for commonly spammed domains.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zephyr spam report for April 2015" src="http://andrewwegner.com/images/zephyr-spam-report.png"/&gt;&lt;/p&gt;
+&lt;h3 id="upgrade-from-sqlite-to-mariadb"&gt;Upgrade from SQLite to MariaDB&lt;a class="headerlink" href="#upgrade-from-sqlite-to-mariadb" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Zephyr was originally built against an SQLite database. This worked, but was getting slower as more data was being added. This slow down
+was beginning to affect performance. I started seeing this error more and more frequently:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;Traceback (most recent call last):
+  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py", line 255, in _close_connection
+    self._dialect.do_close(connection)
+  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py", line 418, in do_close
+    dbapi_connection.close()
+ProgrammingError: SQLite objects created in a thread can only be used in that same thread.The object was created in thread id 4824 and this is thread id 4660
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After spending a lot of time troubleshooting and not resolving it to my satisfaction, I decided to upgrade to a more robust database. I'd used
+MySQL/MariaDB before and I happened to have another application utilizing MariaDB at the moment so that is the solution I picked. &lt;/p&gt;
+&lt;p&gt;The first step was transferring data. I learned that there isn't a decent utility to do a straight migration. So, I took these steps to transfer the data:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Export table structures and data from SQLite&lt;/li&gt;
+&lt;li&gt;Convert the SQLite dump to MySQL format. Though both systems use SQL, there are slight differences in dialect. I utilized
+ &lt;a href="http://stackoverflow.com/a/1067365/189134"&gt;this Python script&lt;/a&gt; as a starting point. It got me most of the way there, but not completely.&lt;/li&gt;
+&lt;li&gt;Data clean up. Ugh. The dreaded part of the job for anyone who handles data. Fortunately, the script above did most of the work.
+ I ended up fixing a couple stray back ticks that didn't convert properly, escaping a very extra quotation marks, and replacing
+ a few "smart quotes" (of both the &lt;a href="http://www.fileformat.info/info/unicode/char/201c/index.htm"&gt;left&lt;/a&gt; and &lt;a href="http://www.fileformat.info/info/unicode/char/201d/index.htm"&gt;right&lt;/a&gt; variety). I wish data at the office job was this easy to clean...&lt;/li&gt;
+&lt;li&gt;Import into MariaDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since the transfer to MariaDB, I've noticed no performance degradation. The error about threads has been eliminated as well.&lt;/p&gt;
+&lt;h3 id="upgrade-to-utilize-web-sockets"&gt;Upgrade to utilize web sockets&lt;a class="headerlink" href="#upgrade-to-utilize-web-sockets" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Originally, Zephyr used the &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L68"&gt;&lt;code&gt;watch&lt;/code&gt;&lt;/a&gt; method when monitoring a room. This method would long poll the room. It turns out that this is 
+pretty unreliable. I'd get multiple errors through out the week, ranging from &lt;code&gt;Connection Aborted&lt;/code&gt; errors to random &lt;code&gt;404&lt;/code&gt; messages. The 
+solution has been to switch to &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"&gt;&lt;code&gt;watch_socket&lt;/code&gt;&lt;/a&gt;. The only time I've had problems since this switch is when the Stack Exchange 
+web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Thanks for all the fish</title><link href="http://andrewwegner.com/thanks-for-all-the-fish.html" rel="alternate"></link><updated>2015-04-28T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-08:thanks-for-all-the-fish.html</id><summary type="html">
+&lt;h2 id="goodbye-team-vipers"&gt;Goodbye Team Vipers&lt;a class="headerlink" href="#goodbye-team-vipers" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A few days ago Team Vipers shut down. Exactly 6 years after I join the community and 5 years after taking 
+over as owner, I decided to step aside. I announced my decision to my admin team in November and asked if anyone wanted to 
+take over. A week later I made the announcement public. I copied that below. My hope was that someone would be willing to 
+take over day to day operations and management. &lt;/p&gt;
+&lt;p&gt;Unfortunately, no one was able to take on the responsibilities. I had to make the hard choice of shutting down the community. 
+I am unable to provide the time or monetary commitment this community requires any longer. Team Vipers was a home and 
+community for 6 years. I've met a lot of people playing games with members of the community. Several other sites were 
+created by members of Team Vipers. They have indicated they'd be willing to absorb and welcome members from Vipers. &lt;/p&gt;
+&lt;p&gt;It's been a great run. So long Vipers, and thanks for all the fish.&lt;/p&gt;
+&lt;iframe allowfullscreen="" frameborder="0" height="270" src="https://www.youtube.com/embed/BL-5OdZc3zw?feature=oembed" width="480"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;img alt="Thanks for the fish" src="http://andrewwegner.com/images/thanks-for-the-fish.jpg"/&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="original-announcement"&gt;Original Announcement&lt;a class="headerlink" href="#original-announcement" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On January 5th, 2015, I am stepping away from Vipers as the owner and administrator. Unfortunately, I no longer have time 
+to maintain the servers in a way that benefits the community. I announced this to the admin team earlier this week.&lt;/p&gt;
+&lt;h3 id="what-do-we-do-before-january-5th"&gt;What do we do before January 5th?&lt;a class="headerlink" href="#what-do-we-do-before-january-5th" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I am giving you this heads up to discuss the future of Vipers. If someone wants to step up and take everything on, I'll 
+gladly offer help during the transition. If you have questions about what happens behind the scenes, I'll answer those 
+as well. In fact, I'll start with a few questions that I think may help lead this discussion.&lt;/p&gt;
+&lt;h3 id="do-we-need-multiple-game-servers"&gt;Do we need multiple game servers?&lt;a class="headerlink" href="#do-we-need-multiple-game-servers" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Short answer - No. If the community wants to focus on a specific server mode, then a single server is all that is needed. 
+When I joined Vipers there were two servers: An Orange server and a vanilla server. For the first year-ish, the 
+servers base grew and contracted around different mods. Orange turned to Crit Orange, a Randomizer appeared and then 
+splintered into it's own community, the Nest grew and then shrank. Zombie popped up. Prophunt and Dodgeball came around 
+multiple times. In all of this, there has been between one or two popular servers, with the rest being very niche. Those 
+are for fun. Those are also frustrating to fix when updates break them.&lt;/p&gt;
+&lt;h3 id="do-we-need-a-dedicated-server"&gt;Do we need a dedicated server?&lt;a class="headerlink" href="#do-we-need-a-dedicated-server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Again, no. The benefit the dedicated server provided is IP address stability. Before the dedicated server, the game servers 
+jumped around IPs every few months. With each move players were lost. Some found us months or years later when they
+randomly stumbled upon us. Others are just gone. More importantly though, is dealing with performance. If there is a 
+hosting company that can provide high quality, low ping, servers at a cheap price - that is worth it. A word of advice, 
+avoid EscapedTurkey. It is a one man operation and that person doesn't know what they are doing. If an issue crops up, 
+it takes hours to days to resolve it. It is because of them that we purchased a dedicated server.&lt;/p&gt;
+&lt;p&gt;One other note. I can not transfer the dedicated server to anyone. It's rented in my name and the hosting company doesn't 
+allow transfers. So, no matter what happens, the IP addresses would have to change anyway. The upside of this long 
+transition period is that you have plenty of time to advertise and set up the new servers. We could have in game announcements 
+AND we can lock the existing servers with the new IP in the titles. It won't be an immediate cut over. It provides 
+notification to the players.&lt;/p&gt;
+&lt;h3 id="do-we-need-the-forums"&gt;Do we need the forums?&lt;a class="headerlink" href="#do-we-need-the-forums" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Yes. The forums are what kept me in Vipers before I ended up in the position I'm in now. Without the forums, there is no 
+community. There are people that you see frequently on the servers, but rarely any meaningful interaction. With the forums 
+we get stories of our members' lives. If, however, you are going to stick to playing Valve games, I highly recommend a 
+change in forum software. Find something that supports integration with Steam (either natively or via plugin) and start 
+over. With that integration, you can do so many more (and non-hackish) things. You can pull information from Steam or 
+any other TF2 community that exposes an API. Banning a player on the servers and the forums is easy as both are based 
+on the same thing. Additionally, requiring the Steam login should eliminate the spam (no random Chinese, Russian, 
+Californian spam bots). In any case, I will provide a full database dump for you. If you stick with PHPBB, I think a 
+fresh install of PHPBB would be a good thing, but you'll have all of the data and should be able to simply import it 
+into the database. If you go with something else, you'll have the database and can attempt to use that software's 
+conversion script. Results will vary on how that works.&lt;/p&gt;
+&lt;h3 id="does-this-community-make-enough-money-on-donations"&gt;Does this community make enough money on donations?&lt;a class="headerlink" href="#does-this-community-make-enough-money-on-donations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;No. Since July of [2014 to November 2014], the community has donated $20. Total. It has been 14 months since we reached our monthly 
+goal. In the last year, we have broken $50 only 4 times. To prevent someone from misconstruing this as a plea for 
+money, I've disabled donations. I don't want someone to start a misguided "Save the Vipers" campaign that you believe 
+can succeed with donations. The way to "save the vipers" is to come together as a team and discuss your options.&lt;/p&gt;
+&lt;h3 id="what-happens-if-no-one-steps-up-to-take-over"&gt;What happens if no one steps up to take over?&lt;a class="headerlink" href="#what-happens-if-no-one-steps-up-to-take-over" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Someone in the community may step up, but if no one steps up by January, then Vipers has one last New Years hoo-rah 
+and fades to the internet. If someone does step up, I am still available to help with initial set up. I'm still available 
+to play games and to talk to. I'm not dropping off the face of the earth and I'm not rage quitting. This is very 
+much a case of real life happens.&lt;/p&gt;
+&lt;p&gt;I think that is going to cover your initial questions. If you have more, post them here and I'll answer them.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;It has been a great 6 years with everyone here. While I may be stepping down as owner, if someone keeps Vipers around, 
+you'll keep me around as a regular. I've had fun talking to all of you and playing with (and against) all of you.&lt;/em&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="updated-steam-group-ownership"&gt;Updated Steam Group Ownership&lt;a class="headerlink" href="#updated-steam-group-ownership" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated April 28, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Ownership of the Steam Group for Team Vipers has been transferred back to Russell, the original founder of Vipers. The 
+&lt;a href="http://steamcommunity.com/groups/viperservers#announcements/detail/205255298394906049"&gt;announcement&lt;/a&gt; was posted to the group earlier today.&lt;/p&gt;
+&lt;p&gt;I've also transfered data from the Vipers blog to my personal one here and removed links to Vipers from most posts 
+since they will all fail to resolve correctly. Unfortunately, it's not worth it to preserve small bits of history in 
+this case and was just easier to remove the links. The best I can do it transfer the blog posts and copy snippets or
+screenshots here. Direct links to the forum discussions has been intentionally removed.&lt;/p&gt;</summary><category term="team vipers"></category></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"></link><updated>2015-05-03T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post was originally &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;published&lt;/a&gt; by &lt;a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile"&gt;me&lt;/a&gt; on Meta Stack Overflow on December 14, 2014. I've republished it here
+so that I can easily update information related to recent developments. If you have questions or comments, I highly
+encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;question&lt;/a&gt; on Meta Stack Overflow and post there.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;TL;DR: Yes it can.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="background"&gt;Background&lt;a class="headerlink" href="#background" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On June 27, 2014 Skynet awoke. It looked at Stack Overflow and thought "Why are all these people being so chatty and talking about obsolete things? I should nuke them all!" Fortunately, Skynet was a baby and only had access to my 100 comment flags a day.&lt;/p&gt;
+&lt;p&gt;Prior to this activation date, the system was fed with 10,000 "Good Comments", "Obsolete" comments and "Too Chatty" comments. These comments were taken from the &lt;a href="http://data.stackexchange.com/"&gt;Stack Exchange Data Explorer&lt;/a&gt;. The "Obsolete" and "Too Chatty" comment types had to meet the following criteria:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Total comment length of less than 100 characters&lt;/li&gt;
+&lt;li&gt;Comment has a 0 score&lt;/li&gt;
+&lt;li&gt;Had variations of the following phrases:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Phrases&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;'%mark%answer%'
+'%mark%accept%'
+'%accept%answer%'
+'%lease%accept%'
+'%mark%answer%'
+'%thank%you%'
+'%thx%you%'
+'%.....'
+'+1%'
+'-1%'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;"Good Comments" were assumed, initially, to be anything that didn't fall into the above criteria&lt;/p&gt;
+&lt;p&gt;This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.&lt;/p&gt;
+&lt;p&gt;My next step was to train a classifier. I had initially assumed that I'd start with a Naive Bayes to get a baseline and then work to something more complicated from there. Perhaps, extract text features, user information, etc. and build a fancy classifier. My initial tests showed that the Naive Bayes was accurate 80-90% of the time with test data.&lt;/p&gt;
+&lt;p&gt;I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these threshold took a few weeks but eventually I determined the following thresholds were appropriate for my use:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="gh"&gt;Type            | Threshold     | Flagging Enabled&lt;/span&gt;
+&lt;span class="gh"&gt;--------------------------------------------------&lt;/span&gt;
+too chatty      | 0.9997        | True
+obsolete        | 0.99          | True
+good comment    | 0.9999        | False
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When a comment is classified, if it exceeds the threshold for one of the above, it is recorded into my database for future retraining. If flagging is enabled, the API is &lt;a href="http://api.stackexchange.com/docs/comment-flag-options"&gt;utilized&lt;/a&gt; to issue an &lt;a href="http://api.stackexchange.com/docs/create-comment-flag"&gt;appropriate&lt;/a&gt; flag. Obviously, I don't want to flag good comments, but I do want to record them so that I can reuse the data in a later training step.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;What have the results of this experiment been? From my point of view, I'd venture that it's been successful. I have automatically flagged over 17,000 comments. As of December 17, 2014, the process has been running for 173 days. My comment flagging stats are currently:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;26885   comments flagged
+26714   deemed helpful
+171     declined
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Started at (approximately):&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;9885    comments flagged
+9847    deemed helpful
+38      declined
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This gives me an overall accuracy of 99.36%. Down from 99.61% when no automated process was involved.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;There are pictures that help tell this story too. In this first one, we see that the rolling 10 day average for the number of declined flags has stayed below two flags a day. In October, there was a two week period where the rolling average was 0 and nearly a month long period where the system did not make any mistakes.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="http://andrewwegner.com/images/flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the &lt;a href="http://winterbash2014.stackexchange.com/resolution"&gt;Resolution hat&lt;/a&gt;. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to day light saving time. My process starts 10 minutes after UTC. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they &lt;a href="http://meta.stackexchange.com/a/215397/186281"&gt;lost their keys&lt;/a&gt; that day.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Total flagged vs Total Declined" src="http://andrewwegner.com/images/total_flags_vs_total_declined.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Except for 3 days, since June 27th, the process has flagged 100 comments a day. In this chart, you can see the number of declined comment flags along the bottom.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Number of comments saved per day" src="http://andrewwegner.com/images/comments_saved_per_day.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Finally, this chart shows the number of comments that the system wanted to act on (and a rolling 5 day average). When the system was brought online, it was acting on 700-800 comments a day (saving to my local database). Many of these were being classified as "Good Comments". You can see the day that I adjusted the threshold for "Good Comments" to be acted upon (saved). The drop in the number of comments the system saved is dramatic. Instead of saving 700-800 comments daily, the system now averages about 150 comments to save. Since I don't flag "Good Comments", I feel this is the appropriate action to take.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h3 id="comments-that-were-flagged-but-declined"&gt;Comments that were flagged but declined&lt;a class="headerlink" href="#comments-that-were-flagged-but-declined" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;As shown above, I've had comments flags declined. Some of these obviously should have been and required a retraining or threshold adjustment on my part. Others, in my opinion, should have been removed as noise. Below is a small sampling of both types of comments.&lt;/p&gt;
+&lt;p&gt;Recent comments that I feel are noise:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27420526/i-want-to-play-from-frame-2-and-then-stop-at-frame-3/27425983#comment43388489_27425983"&gt;yes thank you so much for you help it works sorry for the late reply&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27476522/how-to-call-a-function-by-a-pointer/27476639#comment43387801_27476639"&gt;Wow it works. Thank you very much!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27284958/why-thread-id-creates-not-in-order/27285031#comment43038003_27285031"&gt;wow that works!Thanks so much for your advice!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27375504/remove-legends-for-each-point-and-keep-only-those-which-are-outliers-for-ggplot/27380631#comment43387125_27380631"&gt;Ok, the works great, thank you so much!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/14907518/modal-view-controllers-how-to-display-and-dismiss/14910469#comment43386201_14910469"&gt;Thank you very much for your explanation, you rock dude !!!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are some comments that were incorrectly flagged:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/18545905/meteor-without-mongo#comment42850716_18545905"&gt;@Spina: yes. Check my answer. You can simply point MONGO_URL to an invalid URL.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27007685/how-can-i-position-divs-at-the-bottom-of-container-div-and-inline/27007772#comment42544238_27007772"&gt;Sorry, my error. I was: "position", not "display". Check it: jsfiddle.net/hvfku99c&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/26745185/multiple-spacebar-conditional-operators/26745790#comment42078870_26745790"&gt;I believe UI.registerHelper is, being deprecated. Please check my updated answer.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Other comments are flagged but then edited prior to a moderator seeing the comment. The edit adds information to the post, thus the declination is justified:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27406267/neo4j-very-slowly-using-shortestpath#comment43271781_27406267"&gt;Yes, I have indexes. Let me show my schema&lt;/a&gt; was edited to the much more useful: &lt;code&gt;Yes, I have indexes for UUID and Permission. In fact rlationship is a variable length here (e)-[rp:Has_Pocket|Has_Document*0..]-&amp;gt;d&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/26535662/how-to-read-files-in-sequence-from-a-directory-in-opencv/26536198#comment41709286_26536198"&gt;Here is the question i had posted first using FIleStorage issue&lt;/a&gt; was edited to include the link to the referenced post.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's also worth noting that despite getting flags declined, some comments do eventually disappear. This is due to either flags raised by other community members putting the comment back in front of a moderator or by simply accumulating enough community flags for the system to act automatically. In either case, the desired result of removing noise has been accomplished.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27006363/node-js-parse-filename-from-url/27006555#comment42544432_27006555"&gt;Oh, derr. good point. Edited.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27073761/redefining-the-hitbox-of-objects/27073838#comment42659999_27073838"&gt;You're right! Hopefully you see my point anyways.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h2 id="lessons-and-observations"&gt;Lessons and Observations&lt;a class="headerlink" href="#lessons-and-observations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Replication to other sites would depend on site culture&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As a (fairly) non-subjective site, Stack Overflow made a good test case for this. On a site like &lt;a href="http://communitybuilding.stackexchange.com/"&gt;Community Building&lt;/a&gt;, &lt;a href="http://pets.stackexchange.com/"&gt;Pets&lt;/a&gt;, &lt;a href="http://parenting.stackexchange.com/"&gt;Parenting&lt;/a&gt; or other site that accepts subjective answers, "too chatty" would be much harder to classify.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://meta.stackoverflow.com/q/277314/189134"&gt;+/-1 has been discouraged&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The observation I made on my own that comments with this type of content were distracting has been noticed by others as well. This was actually a very nice validation of my own process and some of the &lt;a href="https://stackedit.io/viewer#!provider=gist&amp;amp;gistId=af9d8186690cb658aafe&amp;amp;filename=commentblacklistresults.md"&gt;results&lt;/a&gt; posted on that thread show many such comments continue to be noise. Of course, this change did also force users to modify their content and may have added new patterns that can be utilized in future training.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ability to &lt;a href="http://meta.stackexchange.com/q/245416/186281"&gt;automatically check flags&lt;/a&gt; would be great so that automated runs could be paused if it goes crazy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The process of checking that my flagging history remains accurate is time consuming. The status of a flag can't be acquired via the API. I've submitted a feature request for this information to be added to the API. With this information, flagging can be paused or stopped if X number of flags are declined.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Stack Overflow's volume of comments is a crutch.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Due to the &lt;a href="http://data.stackexchange.com/stackoverflow/query/200435#graph"&gt;high volume of comments&lt;/a&gt; and limited number of comment flags my account has available, I can afford to be picky on which comments I want to act on. The classifier itself is about 85% accurate in determining the type of comment. However, I artificially increase my accuracy by only acting on comments that have a very high classifier certainty by forcing this certainty level to meet or surpass my threshold values from above. Smaller sites, with a lower volume, don't have the benefit of having enough comments to be this picky. It is on these sites that a more feature based classifier would be important.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The human element is still unpredictable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My classifier was trained utilizing my idea of how comments should be flagged. Prior to automating this, I was not 100% accurate. Additionally, moderators are not 100% accurate in their processing of flags. &lt;a href="http://meta.stackoverflow.com/q/278813/189134"&gt;Users&lt;/a&gt; &lt;a href="http://meta.stackoverflow.com/q/280426/189134"&gt;disagree&lt;/a&gt; on how these rules should be implemented, but are willing to &lt;a href="http://meta.stackoverflow.com/q/278927/189134"&gt;assist&lt;/a&gt; in keeping the site clean. With more than 175K comments a week, every little bit helps.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="discussion"&gt;Discussion&lt;a class="headerlink" href="#discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As my title states, my original question was whether or not I can teach a machine how to flag comments as I would. The answer to that is yes. The next question is whether this type of system would be helpful in cleaning up comments across Stack Overflow. My system works only on new comments created around each new UTC. Once my 100 flags are hit (or the API tells me to stop), it shuts down for the day. Having something automated go through historical comments or that can run all day would be beneficial.&lt;/p&gt;
+&lt;p&gt;Finally, now that I've admitted that I've been automatically flagging comments, can I continue to do so?&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="update"&gt;Update&lt;a class="headerlink" href="#update" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This section has been updated multiple times since the original post. Most recently, it was updated May 3, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As I mentioned in the introduction, this was originally published in December 2014. How is the system behaving now? It is performing very well.&lt;/p&gt;
+&lt;h3 id="process-changes"&gt;Process Changes&lt;a class="headerlink" href="#process-changes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In January 2015, &lt;a href="http://meta.stackoverflow.com/q/283030/189134"&gt;another user&lt;/a&gt; was using a basic query to look for invalid comments. This caused a high number of moderator flags, many of which were declined. My process was caught in this mass decline. This resulted in 49 declined flags for a single day.
+This is, by far, the largest number of declined flags the process has generated in a day. It did, however, prompt a process change after consultation with the Stack Overflow moderators.&lt;/p&gt;
+&lt;p&gt;The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.&lt;/p&gt;
+&lt;h3 id="updated-results"&gt;Updated Results&lt;a class="headerlink" href="#updated-results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After nearly a year of running, these are my flagging statistics:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;39938   comments flagged
+39659   deemed helpful
+279     declined
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This provides a helpful rate of 99.3%. This is down &lt;em&gt;just&lt;/em&gt; slightly from 99.36% in December. I attribute a large part of the dip to the issue mentioned above.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Here is an updated chart showing the rolling 10 day average for number of declined flags. I've had several stretches of multi-week time frames with no declined flags.&lt;/p&gt;
+&lt;p&gt;This is a busy chart, so I've narrowed it down to show just the last 90 days. From here you can see that in the past 90 days there have been only 10 declined flags.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 90 day window" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/&gt;&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Moderation postion on Moderators</title><link href="http://andrewwegner.com/moderation-postion-on-moderators.html" rel="alternate"></link><updated>2014-12-04T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-07-02:moderation-postion-on-moderators.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been the owner of Vipers for almost 5 years. In that time I've help the community grown and get stronger. I've helped
+members begin their own communities and I've maintained the game servers the players utilize 24 hours a day. I've been 
+concerned about low activity, excited about new events and updates, and watched the community ebb and flow through out
+the years. I've dealt with trolls, spammers, and new community members. I think I've gained valuable experience in 
+managing a community.&lt;/p&gt;
+&lt;p&gt;I'm also a member on &lt;a href="http://stackoverflow.com/users/189134/andy"&gt;Stack Overflow&lt;/a&gt; and over the years gotten to know others that enjoy the "Meta" aspect of 
+Stack Exchange. That's the "behind the scenes", "how does this site work?" discussions and activities. &lt;/p&gt;
+&lt;h2 id="moderators"&gt;Moderators&lt;a class="headerlink" href="#moderators" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A few days ago, I found a way to merge my experience with Vipers and the knowledge of the Stack Exchange platform. A new 
+community started recently: &lt;a href="http://moderators.stackexchange.com"&gt;Moderators&lt;/a&gt;. The idea behind this site is for people building, administering, managing or
+cultivating digital communities to have a place to ask others with similar experiences questions. I love it!&lt;/p&gt;
+&lt;p&gt;One of the things a new site needs on the Stack Exchange network is a set of pro tempore moderators. While Stack Exchange 
+believe in &lt;a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/"&gt;community moderation&lt;/a&gt;, there are still some things that require more access. These pro tempore moderators
+are those people. I &lt;a href="http://meta.communitybuilding.stackexchange.com/a/80/78"&gt;nominated&lt;/a&gt; myself for one such position.&lt;/p&gt;
+&lt;h3 id="the-nomination"&gt;The Nomination&lt;a class="headerlink" href="#the-nomination" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This is the nomination I presented to the community. In it, I discuss my experience with Vipers and some of our challenges.
+One in particular that I mention is the &lt;a href="http://andrewwegner.com/monitoring-language-on-the-game-servers.html"&gt;automated language filter&lt;/a&gt; we have on the game servers.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I am an administrator/site owner of a medium sized gaming community that runs on a PHPBB3 board. We host multiple game 
+servers as well. I've got a team of moderators that help keep the forum and game servers clean. I've run this site for 
+5 years, after taking it over from the original creator of the community who wanted to move on. In my time as admin, 
+we've seen the number of participants on the forum increase. We've seen our game server population increase as well. 
+I attribute this to getting the community involved in change discussions.&lt;/p&gt;
+&lt;p&gt;One of our biggest changes occurred several years ago. Community members complained that our game servers would be over 
+run with trolls at hours when moderators weren't available and spewing filth. The community wanted a cleaner game 
+server experience. Users wanted these players gone immediately. Previous community leaders felt that trolling of this 
+kind was part of the game and did nothing. After some discussions regarding what was and wasn't appropriate, we decided 
+to be (for lack of a better term) "family friendlier". Certain 'extreme' phrases were no longer tolerated at all. A 
+technical solution was built to automatically remove players that violated these rules. This solution allowed users to 
+swear, but once it became excessive (again, defined by the community) they, too, were removed.&lt;/p&gt;
+&lt;p&gt;The tool we have (PHPBB3) may not have the reputation, badges, or increasing privileges used here on Stack Exchange but 
+for my community that has not been a negative. Engaging with the community in discussions and letting the members provide 
+input that me and my team utilize has been extremely beneficial.&lt;/p&gt;
+&lt;p&gt;I have no experience moderating a Stack Exchange site. I don't feel that's a down side though. I can provide the 
+"outside" perspective in a Stack Exchange heavy group. That does mean, though, that I'd depend on and expect the 
+community to provide feedback on how moderation in being handled. Much like my existing gaming community, input from the 
+community to the moderation team is important and the moderation team should be listening to that input. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="appointment"&gt;Appointment&lt;a class="headerlink" href="#appointment" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Updated on August 12, 2014&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I have been &lt;a href="http://meta.communitybuilding.stackexchange.com/q/138/78"&gt;appointed&lt;/a&gt; to a moderator position on Moderators. I now "moderator the moderators", as the running joke 
+has been on meta and the chatroom. I am looking forward to helping this community grow and to providing my experience 
+of community management outside of Stack Exchange to this position.&lt;/p&gt;
+&lt;h2 id="renaming-to-community-building"&gt;Renaming to Community Building&lt;a class="headerlink" href="#renaming-to-community-building" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated on December 4, 2014&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Almost since the beginning of Moderators, there have been conversations about whether the name is limiting our scope. We aren't
+a community for &lt;em&gt;only&lt;/em&gt; moderation questions. We are a community about how to build communities and moderation happens to
+be a part of community building. (How many times can you say "community" before it sounds weird?)&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://meta.communitybuilding.stackexchange.com/q/140/78"&gt;Discussions&lt;/a&gt; began in August about possible name changes. These &lt;a href="http://meta.communitybuilding.stackexchange.com/q/175/78"&gt;discussions&lt;/a&gt; continued into October as we worked on
+the &lt;a href="http://meta.communitybuilding.stackexchange.com/q/172/78"&gt;scope&lt;/a&gt; of our site. Finally, on December 2, we received our new name: &lt;a href="http://meta.communitybuilding.stackexchange.com/q/193/78"&gt;Community Building&lt;/a&gt;. It's the same great site
+but with a much more relevant name. &lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>How to appeal a ban effectively</title><link href="http://andrewwegner.com/how-to-appeal-a-ban-effectively.html" rel="alternate"></link><updated>2014-04-22T22:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-04-22:how-to-appeal-a-ban-effectively.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In &lt;a href="http://andrewwegner.com/how-not-to-appeal-a-ban.html"&gt;last week's post&lt;/a&gt;, I showed three ways that appealing bans on the Vipers forums would fail. Everyone makes mistakes
+and we try to recognize that when someone comes to the forums and makes a good appeal. We usually offer an unadvertised 
+"last chance". This is the chance to prove you've changed. If you fail, you are gone for good. If, however, you have changed
+behaviors, this allows you to play on the Vipers servers again. To get this chance though, you have to make an appeal.&lt;/p&gt;
+&lt;h2 id="super-secret-formula-for-getting-unbanned"&gt;Super secret formula for getting unbanned&lt;a class="headerlink" href="#super-secret-formula-for-getting-unbanned" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The secret to a successful appeal is to do all of the following in your appeal thread:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Post in complete sentences, using mostly correct english. I'm not going to mark you off for simple spelling mistakes, but
+ I'm not going to read your post if it looks like you typed it from your phone to your teenage buddy. &lt;/li&gt;
+&lt;li&gt;Stay polite. If you lose your cool, it's much less likely we are going to want to work with you. Remember, this is a game.
+ You not being able to play on one server is not the end of the world. &lt;/li&gt;
+&lt;li&gt;Explain why you think your ban was inappropriate. Make this short and to the point. &lt;/li&gt;
+&lt;li&gt;Don't lie. I have logs. I know how to read logs. I even have ways of quickly searching through the logs for specific
+ times, if you provide that information. If your story doesn't match what I see in the logs, I'm not going to engage with you.&lt;/li&gt;
+&lt;li&gt;Answer questions from the admins. It's entirely possible you didn't provide a crucial bit of information or we need to 
+ wait for input from the banning admin. In either case, if an administrator asks you a question, you should probably answer
+ it. When you do so, follow the first two bullet points above. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The sad thing is most of the appeals fail at step 1. These posts are to facilitate communication between the admin team
+and the player that wants to return to the server. In these appeals I try to educate a player on &lt;em&gt;why&lt;/em&gt; they were banned 
+in the first place. If it's difficult to understand what is being said, it's very hard to have this conversation.&lt;/p&gt;</summary><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>How NOT to appeal a ban</title><link href="http://andrewwegner.com/how-not-to-appeal-a-ban.html" rel="alternate"></link><updated>2014-04-14T22:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-04-14:how-not-to-appeal-a-ban.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been running Vipers for about four and a half years. In that time I've seen my share of players get banned. The "good"
+ones realize they screwed up and come back when the ban has expired and never have an issue again. These types of players
+are common if they are first time offenders. The minute someone gets a second ban, the likelihood of them getting another
+ban shoots way up.&lt;/p&gt;
+&lt;h2 id="our-rules"&gt;Our Rules&lt;a class="headerlink" href="#our-rules" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Vipers has five very simple rules. These are presented every time someone joins any of our game servers. They have to 
+click "Continue" to move past them. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Vipers Rules" src="http://andrewwegner.com/images/vipers-rules.png"/&gt;&lt;/p&gt;
+&lt;p&gt;We have a very simple structure for how bans work. Unless you are incredibly egregious in your behavior, or are out right
+cheating by using hacks of some kind, you get a 4 strike policy. The ban length for the first three increases for each, but you
+are allowed back. On the forth, we show you the door. Most of our bans are &lt;a href="http://andrewwegner.com/monitoring-language-on-the-game-servers.html"&gt;automated&lt;/a&gt;, thus are violating the very first rule.&lt;/p&gt;
+&lt;h2 id="bad-appeals"&gt;Bad appeals&lt;a class="headerlink" href="#bad-appeals" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Playing on our servers is not a right. It is not a guarantee. We are not obligated to provide a gaming environment for you
+to spew your filth. If you can't meet our simple rules, you can leave. If you want to get back into the servers after your
+forth offense, you have to come to us and ask. You should think about how you get someone to do what you want in "the
+ real world". &lt;/p&gt;
+&lt;h3 id="appeal-method-1-freedom-of-speech"&gt;Appeal method 1: Freedom of Speech&lt;a class="headerlink" href="#appeal-method-1-freedom-of-speech" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I think this one is my favorite. Last I checked, I'm not the government of the United States. I'm a private citizen providing
+a private server for others to play on. My server, my rules (technically, the community's rules, but you understand...) 
+I am not bound by the First Amendment to allow you to say whatever you want.&lt;/p&gt;
+&lt;p&gt;An example:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Freedom of speech appeal" src="http://andrewwegner.com/images/vipers-speech-appeal-1.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Let's break down some of the flaws:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First, and most importantly, we do not have a member named "DarkWolf", let alone an admin&lt;/li&gt;
+&lt;li&gt;DarkWolf was banned, automatically, 2 minutes prior to the person making this appeal. &lt;/li&gt;
+&lt;li&gt;The chat logs show that the person appealing even noticed the ban and made a comment. It was this comment that
+ triggered the ban.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Not seen in this image is the response when this was pointed out and the appeal denied. The response managed to hit all
+of the trigger words we ban for on the servers. Just in case we were reconsidering the denial, at this point we're not.&lt;/p&gt;
+&lt;h3 id="appeal-method-2-admin-abuse"&gt;Appeal method 2: Admin Abuse&lt;a class="headerlink" href="#appeal-method-2-admin-abuse" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Admins are evil and are holding a grudge! They hate me and ban for inappropriate language. Honest, I never said anything bad.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It's amazing how quickly that tune changes when I can produce exact, timestamped, logs with their Steam ID attached to it. It's even 
+more amusing when the admin being accused is "Zephyr", the automated process that watches for such language. &lt;/p&gt;
+&lt;p&gt;An example:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Admin abuse appeal" src="http://andrewwegner.com/images/vipers-abuse-appeal-1.png"/&gt; &lt;/p&gt;
+&lt;p&gt;Let's break down this one too:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Zephyr is a bot. It is not holding a grudge and it is not stalking you&lt;/li&gt;
+&lt;li&gt;Swearing, unless very very excessive, isn't going to trigger a ban&lt;/li&gt;
+&lt;li&gt;Chat logs show this is the 4th automated ban. In each ban, the user has managed to slip in multiple offensive phrases
+ befor being automatically kicked&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="appeal-method-3-ranting"&gt;Appeal method 3: Ranting&lt;a class="headerlink" href="#appeal-method-3-ranting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A rant isn't helpful to anyone. It doesn't endear the poster to the community. The administrators don't want to read through
+a rambling, unformated, exposition. &lt;/p&gt;
+&lt;p&gt;An example:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Rant appeal" src="http://andrewwegner.com/images/vipers-ddos-appeal-1.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Our break down:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Several logic errors and contradictions to their own arguments&lt;/li&gt;
+&lt;li&gt;Doesn't actually mention they are looking to be unbanned, just that they want to complain about the rules. (It's mentioned
+ in a later post that they'd like to be unbanned)&lt;/li&gt;
+&lt;li&gt;Chat logs clearly indicate the player was fond of certain slurs. This is the reason for the bans&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="appeal-method-4-threats-against-the-server"&gt;Appeal method 4: Threats against the server&lt;a class="headerlink" href="#appeal-method-4-threats-against-the-server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Threats to attack the server in some way are not going to get you unbanned. There are only two possible outcomes to this
+appeal type. Either you are successful and the server is off line (now how are you going to play even if unbanned) or we
+ignore your tantrum and leave you banned. &lt;/p&gt;
+&lt;p&gt;![DDOS appeal][6]&lt;/p&gt;
+&lt;p&gt;Break down:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I have no reason to unban you. You've threatened the servers and made an ultimatum that effectively holds us hostage: 
+ "Either I get to play with you, or I'll take down your servers". &lt;/li&gt;
+&lt;li&gt;You offer no proof of your claims (unsurprisingly, none existed)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Above I've posted three of the most common methods people use to appeal their ban on the Viper servers. Every time one of
+these types of appeals is posted, it is rejected and the player is told they aren't welcome. All I (and the community) ask
+is a little bit of respect. You've already proven that you can't follow our rules if we reach this point. If you have truly 
+changed, why don't you demonstrate some of that change while requesting the ban be removed.&lt;/p&gt;</summary><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>Mann Vs Vipers Beaten!</title><link href="http://andrewwegner.com/mann-vs-vipers-beaten.html" rel="alternate"></link><updated>2013-12-05T09:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-12-05:mann-vs-vipers-beaten.html</id><summary type="html">&lt;p&gt;The Team Vipers' Mann Vs Machine modification - Mann Vs Vipers - that was completed in August has finally been beaten. 
+Last night a starving group of players finally put down Wave 9. &lt;/p&gt;
+&lt;p&gt;The players were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MooMooCow&lt;/li&gt;
+&lt;li&gt;CutieVamp&lt;/li&gt;
+&lt;li&gt;Batman&lt;/li&gt;
+&lt;li&gt;Starfox&lt;/li&gt;
+&lt;li&gt;Healthy Cyanide&lt;/li&gt;
+&lt;li&gt;Zhiv&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The team struggled against the Admin bots - InsaneMosquito, Venom and SchooledYa. I've been told we are terrifying to play
+against and making us MvM bots with even higher stats made it even more terrifying. (I approve.)&lt;/p&gt;
+&lt;p&gt;Here's a video of Wave 9 from the victory. The winning strategy appears to be the one that works against us most of the time. 
+Separate the medic (me), from the Heavy (Venom) and the Soldier (SchooledYa). Together, we're hard to stop, but apart we
+can each be picked on for a while until there is no health left. The bots must have learned that weakness as well (I don't approve.)&lt;/p&gt;
+&lt;p&gt;Congratulations to the winners!&lt;/p&gt;
+&lt;iframe width="612" height="344" src="https://www.youtube.com/embed/PIpd2SInvYM?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</summary><category term="team vipers"></category><category term="community"></category></entry><entry><title>I had a secret addiction to the TF2 idling economy but I'm better now (honest)</title><link href="http://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html" rel="alternate"></link><updated>2013-08-13T00:01:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-08-13:i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On July 11, 2013, Valve released a &lt;a href="http://www.teamfortress.com/post.php?id=11105"&gt;patch&lt;/a&gt; to Team Fortress 2 to limit idling. Idling is the process of launching
+Team Fortress and then letting it run for a few hours and collecting item drops. It used to be simple to do by utilizing
+the &lt;code&gt;-textmode&lt;/code&gt; &lt;a href="https://developer.valvesoftware.com/wiki/Command_Line_Options#Command-line_parameters_2"&gt;game parameter&lt;/a&gt;. This would "launch" the game without graphics. From there, you just let it run and 
+come back in a few hours with 8-10 new items (your weekly limit). &lt;/p&gt;
+&lt;p&gt;The idea behind this was to then trade or craft these into metal. The metal could be used to trade for keys, hats, etc. and
+all you to be "rich". The quotes are there because I do realize that being rich in a virtual game does not make one rich in
+the real world. But, since the &lt;a href="https://wiki.teamfortress.com/wiki/Mann-Conomy_Update"&gt;Mann-Conomy Update&lt;/a&gt; introduced this massive meta game to Team Fortress, I've tried to stay
+out of it. &lt;/p&gt;
+&lt;p&gt;I failed. I didn't just idle one account. I idled 17 accounts. That is between 136 and 170 items a week. That's between 68 to 85
+scrap metal a week. That's between 7.55 and 9.44 refined metal a week. That is between 3 and 4 keys a week (depending on 
+who I trade with). Keys are the backbone of the economy. Get enough of those and you can trade for anything else. &lt;/p&gt;
+&lt;p&gt;I honestly don't know what my goal was. I wasn't interested in the fancy hats (ooooh...shiny pixels). I didn't open crates
+with the keys. I did utilize the keys to get &lt;a href="https://wiki.teamfortress.com/wiki/Tour_of_Duty_Ticket"&gt;Tour of Duty&lt;/a&gt; tickets for me and some friends. That's honorable, right?&lt;/p&gt;
+&lt;h2 id="how-did-this-happen"&gt;How did this happen?&lt;a class="headerlink" href="#how-did-this-happen" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This all started with &lt;a href="http://andrewwegner.com/give-some-refined-win-some-prizes.html"&gt;the bot I built for Vipers to handle the raffles&lt;/a&gt;. I realized that I could automate much more
+than trading with players. I could automate trading between bots. I could automate &lt;em&gt;crafting&lt;/em&gt; - which is relatively time
+consuming, especially when you have 136 items to go through. I could automate trading with established scrap bank bots. These
+bots will take any two weapon drops and give you one scrap, even if the two items can't be crafted together. The idea is
+that they get enough weapons that eventually they'll be able to craft it down to metal.&lt;/p&gt;
+&lt;h3 id="the-set-up"&gt;The set up&lt;a class="headerlink" href="#the-set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To idle 17 accounts I needed to figure out what my computer could handle. I had to figure out how to run multiple instances
+of Steam and Team Fortress at a time. Enter an application I'd utilized before: &lt;a href="http://www.sandboxie.com/"&gt;Sandboxie&lt;/a&gt;. This application provides 
+isolated sandboxes for applications to run in. Normally Steam won't run more than once on a machine. But, if you launch
+it via Sandboxie, the host OS (and other Sandboxie environments) can't see that Steam is running in another instance. &lt;/p&gt;
+&lt;p&gt;A bit of experiementation showed that I could handle 6 accounts idling at a time and have the computer remain just barely 
+usable. I created new accounts and split them into which day of the week they'd be run. I had three days out of the week 
+designated for idling. &lt;/p&gt;
+&lt;p&gt;A batch script was built to launch the Sandboxie environments of the day that was to idle. Then it'd launch Team Fortress
+in each of those environments. Then I'd go to bed. When I woke up the next morning, I'd shut down the environments. I'd 
+repeat this for two more nights. At the end of the third night, I had all the items I could get for the week.&lt;/p&gt;
+&lt;p&gt;Accounts could not be free accounts. This meant that I needed to either buy an item for each account, or trade for an 
+&lt;a href="https://wiki.teamfortress.com/wiki/Upgrade_to_Premium_Gift"&gt;"Upgrade to Premium Gift"&lt;/a&gt;. &lt;/p&gt;
+&lt;h3 id="getting-items-to-a-single-account"&gt;Getting items to a single account&lt;a class="headerlink" href="#getting-items-to-a-single-account" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next step in the process was to convert all the items to metal. Normally, this would take place by either logging into
+each account and crafting there and then trading everything to a master account, or trading everything first then crafting. 
+In either case, 17 accounts is a lot to handle and trading/crafting is rather boring.&lt;/p&gt;
+&lt;p&gt;My solution was to modify the raffle bot. I'd designate one account as a master account. This would be the account that
+received items. All others would dump items to it. I'd log into the account that was receiving items and initiate a trade
+with each other bot in turn. I'd issue a command &lt;code&gt;add all&lt;/code&gt; and that bot would dump it's inventory into trade. Making it
+through all the bots would take 5 minutes. Previously it would take me an hour or more to log into each account and
+manually add items to the trade windows and then confirm the trade on both sides. &lt;em&gt;yawn&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id="crafting"&gt;Crafting&lt;a class="headerlink" href="#crafting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next step was crafting items to metal. The rule was that any two weapons utilized by the same class could be
+crafted to scrap metal. That sounds simple enough.&lt;/p&gt;
+&lt;p&gt;After lots of trial and error, I'd built a set of commands that would select compatable weapons and craft them together. This
+particular aspect wasn't documented by Steam (or the revese engineered SteamKit2 library I was utilizing). Crafting would 
+take about 15 seconds to get all compatible items to scrap and then combining 9 scrap to get a refined metal. This saved 
+inventory space.&lt;/p&gt;
+&lt;p&gt;With the simple command &lt;code&gt;craftall&lt;/code&gt;, all those new weapons would be crafted into metal and then combined into refined metal. This 
+would be done in less than a minute. Previously, I'd have to initiate each crafting session, add all items per craft, wait for the
+craft to complete and then repeat. This was another 15-30 minutes saved.&lt;/p&gt;
+&lt;h3 id="left-overs"&gt;Left overs&lt;a class="headerlink" href="#left-overs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After crafting, there would still be left over weapons. There were weapons that had run out of same class items to craft
+with. The solution was to trade these away in groups of two to &lt;a href="http://scrapbank.me/"&gt;ScrapBank.me&lt;/a&gt; and get scrap metal back. This could be
+further combined to refined metal again wasting space. &lt;/p&gt;
+&lt;h3 id="metal-to-keys"&gt;Metal to Keys&lt;a class="headerlink" href="#metal-to-keys" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;At this point, human intervention was required again. I had to convert my metal to keys. I did this via trading. The easy
+way to do this was to find someone running a keybot, that would take metal for a key. Many exist, but all of them overcharge.
+The other option was to look for a trader that was getting rid of a bulk set of keys and then trade them. In either case,
+I'd end the week with 3-4 keys. I'd trade these for Tour of Duty tickets and go play a game with friends.&lt;/p&gt;
+&lt;p&gt;The actual work required on my part was starting the idling for the night, shutting down idling in the morning, starting
+the automated trade, crafting and trade left overs processes and finally trading metal for keys. What used to take me hours 
+to do each week, I could not do in less than an hour (the bulk of which ended up being trading metal for keys).&lt;/p&gt;
+&lt;h2 id="what-changed"&gt;What changed?&lt;a class="headerlink" href="#what-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Valve released a patch to limit how effective idling was. Their "Mann-Conomy" was seeing rapid inflation. The price of 
+keys (which they sold for physical money) in metal was rapidly increasing. From the time I started this to the time I ended
+it, it jumped from 2-3 refined per key to 9-10 per key, with no sign of stopping. Casual players were complaining they couldn't
+get enough items to trade for this stuff. The patch also required that you click to confirm each new received item.&lt;/p&gt;
+&lt;h2 id="im-ok-honest"&gt;I'm ok. Honest.&lt;a class="headerlink" href="#im-ok-honest" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I tried for a few days to find an effective work around. I didn't. When I wasn't able to find one, I transfered all items 
+to the master account and went through the process of converting to keys. With that, I purchased the final set of 
+Tour of Duty tickets. The idle bots were shut down. &lt;/p&gt;
+&lt;p&gt;It's been a month now. The bots are still down. I'm still around. Looking back on this, I'm happy Valve broke this. It wasn't
+doing anything for me other than providing me with something to do: "Need to idle tonight", "Need to craft and trade today", etc. 
+Now I have that time back.&lt;/p&gt;
+&lt;p&gt;I am pleased with the technical challeges I over came to get this done though. Crafting was the biggest, but I think I'm
+most proud of the automated transfer of items to the master. Since the bots had to communicate via Steam and not via
+a local application, working out how I was going to do that took some time.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;That, my friends, was my addiction to the meta game of a hat similator in a first person shooter. I'm over it now and 
+looking forward to some other project.&lt;/p&gt;</summary><category term="automation"></category><category term="programming"></category><category term="gaming"></category></entry><entry><title>Give some refined, Win some prizes</title><link href="http://andrewwegner.com/give-some-refined-win-some-prizes.html" rel="alternate"></link><updated>2013-04-03T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-02-25:give-some-refined-win-some-prizes.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Financially, Vipers is supported by donations from the community. When the community doesn't cover the cost, I end up
+covering the difference. This isn't my favorite thing to do in the world, but we've been pretty successful in the past. 
+In recent months, though, we've been coming up short more frequently. This has motivated me (and the rest of the admin
+team to find ways to cover costs). Now we have one.&lt;/p&gt;
+&lt;h2 id="welcome-to-the-new-raffle-bot-in-the-community"&gt;Welcome to the new raffle bot in the community&lt;a class="headerlink" href="#welcome-to-the-new-raffle-bot-in-the-community" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've built a Raffle bot based on &lt;a href="https://github.com/Jessecar96/SteamBot"&gt;SteamBot&lt;/a&gt;, which is the base of &lt;a href="https://scrap.tf/"&gt;scrap.tf&lt;/a&gt;. Entries to raffles will be one entry 
+per refined metal. You can have an unlimited number of entries. I will convert the refined metal to various prizes 
+(with the goal being keys most of the time).&lt;/p&gt;
+&lt;p&gt;Then we'll have the system select a set of winners from the entries. A user can only win once per raffle, so even if you you
+have a gigantic number of entries, your odds of winning more than one position are zero. Only one win per steam id.&lt;/p&gt;
+&lt;p&gt;Using the prices from &lt;a href="http://backpack.tf/"&gt;backpack.tf&lt;/a&gt;, the bot will determine the "value" of the items within the trade.&lt;/p&gt;
+&lt;h2 id="how-does-this-off-set-costs"&gt;How does this off set costs?&lt;a class="headerlink" href="#how-does-this-off-set-costs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Items that are received that are of high value or any additional keys we can get based on raffle entries will be sold on 
+various TF2 trading markets. The profits from these trades will be used to cover some community costs.&lt;/p&gt;
+&lt;h2 id="can-we-keep-some-of-the-high-value-items-for-future-raffles"&gt;Can we keep some of the high value items for future raffles?&lt;a class="headerlink" href="#can-we-keep-some-of-the-high-value-items-for-future-raffles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This question was added based on feed back from the community. It was added on March 20, 2013&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The original plan was to sell any such items. However, due to community feedback, I've changed my mind. We will utilize 
+"high value" items as prizes for future raffles. These future raffles will not be announced until any running raffles are 
+complete. It is also possible that such a raffle will run separately from the planned monthly ones.&lt;/p&gt;
+&lt;h2 id="our-first-winners"&gt;Our first winners&lt;a class="headerlink" href="#our-first-winners" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated on April 3, 2013&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Our first raffle completed at Midnight on April 1st. I was surprised by the number of entries we received. I'm even more 
+surprised that the second one has begun and is already three quarters of the way to the number of entries it took a month
+to receive. People want those keys, and I saw mention of those Bill's Hats too.&lt;/p&gt;
+&lt;p&gt;The number of entries we received allowed us to completely cover the community costs that donations didn't cover. Thank
+you to all our players that entered!&lt;/p&gt;
+&lt;p&gt;Our first winners are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cashprizes: Winner of 10 keys&lt;/li&gt;
+&lt;li&gt;Popinfresh: Winner of 7 keys&lt;/li&gt;
+&lt;li&gt;Iamthebaron: Winner of 4 refined metal&lt;/li&gt;
+&lt;li&gt;That Guy From That Thing: Winner of 1 refined metal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="First Raffle Bot Entries and Winners" src="http://andrewwegner.com/images/rafflebot-entries.png"/&gt; &lt;/p&gt;</summary><category term="team vipers"></category><category term="automation"></category><category term="community"></category><category term="programming"></category></entry><entry><title>Homing projectiles are awesome!</title><link href="http://andrewwegner.com/homing-projectiles-are-awesome!.html" rel="alternate"></link><updated>2015-05-20T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-06-30:homing-projectiles-are-awesome!.html</id><summary type="html">
+&lt;h2 id="stupid-soldier-spam"&gt;Stupid soldier spam&lt;a class="headerlink" href="#stupid-soldier-spam" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The appeal of the crit server is fast game play, overpowered shots, and nearly instant death if you aren't paying attention.
+The down side is the soldier spam. Lots of it. It's not unusual to have a team of soldiers spamming rockets. This is part
+of the reason we stuck a class limit on Soldiers. &lt;/p&gt;
+&lt;p&gt;Pyro is a common way to counter a soldier firing at long range. The problem with pyro is that it has limited long range weapons 
+in return. Unless you can sneak up on an enemy (not easy with spam and some of the maps), the pyro is stuck taking pot shots
+with either the Flare gun or the shotgun. &lt;/p&gt;
+&lt;p&gt;Two weeks ago, I added a plugin to the server that made Pyro much more effective at helping the team without needing to advance 
+to the front line constantly.&lt;/p&gt;
+&lt;h2 id="reflectiles"&gt;Reflectiles&lt;a class="headerlink" href="#reflectiles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Reflected Projectiles - Reflectiles, if you will - becoming homing projectiles when a Pyro air blasts them away. These
+newly tracking projectiles will track an opposing team member and hunt them down. If the player being tracked dies before
+the projectile hits them, the projectile will select a new target. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Well, that seems unfair. How do you defend against a homing projectile as a soldier?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It is called &lt;strong&gt;Team&lt;/strong&gt; Fortress 2. You have team mates. Utilize them. That homing projectile can be reflected again by a Pyro
+on your team. Each time a projectile is reflected it gets just a bit faster. &lt;/p&gt;
+&lt;h2 id="source-code"&gt;Source Code&lt;a class="headerlink" href="#source-code" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated May 20, 2015 with link to GitHub instead of the old SVN, my apologies for missing that link when migrating to this blog
+It is important to note that this version hasn't been updated in a LONG time but was still functioning when Vipers shut
+down. If it doesn't work, the first thing to try is updating SourceMod's gamedata. This was the fix every other time
+it didn't work&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The source code is released on Github. &lt;/p&gt;
+&lt;p&gt;The repository is: &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;https://github.com/AWegnerGitHub/Vipers-Server-Plugins&lt;/a&gt;&lt;/p&gt;</summary><category term="team vipers"></category><category term="programming"></category></entry><entry><title>Monitoring Language on the game servers</title><link href="http://andrewwegner.com/monitoring-language-on-the-game-servers.html" rel="alternate"></link><updated>2015-01-08T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-04-22:monitoring-language-on-the-game-servers.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;My admin tool of choice for the TF2 servers is &lt;a href="http://www.hlsw.org/"&gt;HLSW&lt;/a&gt;. It's decent at allowing me to manage a server without ever 
+needing to log to the server. My biggest complaint about it is that I can only watch the game chat of one server at a time. 
+Sometimes, it's helpful to see an ongoing conversation to resolve minor problems before they become big ones. For example, 
+claims of "hacking" usually turn out to be completely baseless. But, if multiple users (and more importantly, multiple 
+&lt;em&gt;trusted&lt;/em&gt; users) suddenly start mentioning a hacker, I can step in and resolve the problem without entering the server. 
+HLSW is good for this. A hacker is confined to one server.&lt;/p&gt;
+&lt;p&gt;The biggest problem is when there are reports of lag across all of the game servers. Vipers has a dedicated machine that 
+runs 5 game servers. If all five suddenly report lag, there is a problem somewhere. With HLSW, though, I can't see all of 
+the servers at once. Thus, I've built a tool...&lt;/p&gt;
+&lt;h2 id="chat-monitor"&gt;Chat Monitor&lt;a class="headerlink" href="#chat-monitor" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;All chat that occurs on the servers is logged. I've used this to resolve complaints of unfair bans and reports of hackers. 
+I built in a hook to these logs from the application template to quickly pull known aliases of users. It's been invaluable 
+in solving problems of "what happened" on the servers.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Multiserver Chat monitor" src="http://andrewwegner.com/images/vipers-chat-monitor.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I've expanded it's usefulness. Now I can load a single page and see all chat activity occurring on all active game servers 
+on a single screen. It provides, at a glance, a quick way to see if there are problems on the servers. It also allows me 
+to step back from picking which server I think will be "bad" and monitor that. Now I can monitor all of them at once. &lt;/p&gt;
+&lt;h2 id="inappropriate-words"&gt;Inappropriate words&lt;a class="headerlink" href="#inappropriate-words" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As a community, we've chosen to set a higher standard for our players. As such, we have a restriction on a total of 3 
+words and a few derivatives of those words. This system is in place because the community stepped forward and wanted to 
+clean up the experience on the servers a bit. The problem with these higher standards is that we don't have admins on the 
+game servers (or watch chat logs) 24 hours a day. Thus, while admins sleep, a troll can wander through and spew garbage. 
+Unless a user reports this behavior, we will never be aware of it.&lt;/p&gt;
+&lt;p&gt;I've built a system to handle this automatically. The system will monitor chat logs across all servers. If a user hits the 
+threshold for banning, they will be removed from the server and banned for a day. The logic to the system is this:&lt;/p&gt;
+&lt;h3 id="automated-removal-logic"&gt;Automated removal logic&lt;a class="headerlink" href="#automated-removal-logic" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Inappropriate terms are configured with a "weight". This "weight" will be used to calculate whether or not a user 
+ surpasses a threshold set for being banned.&lt;/li&gt;
+&lt;li&gt;System monitors chat logs for configured terms.&lt;/li&gt;
+&lt;li&gt;If a term is found, the offending message is saved. The term weight is added to the user's current threshold value. 
+ If this is the user's first time saying one of these terms, they start at 0 and this weight is added.&lt;/li&gt;
+&lt;li&gt;If user exceeds the threshold, the system issues a ban to Sourcebans. The user is then kicked from the game server. 
+ The ban length will be 1 day.&lt;/li&gt;
+&lt;li&gt;The system keeps messages for a total of 5 minutes. If a message is older than that, the system forgets it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Currently, the three inappropriate terms all have a threshold of &lt;code&gt;1&lt;/code&gt;. This means they saying the words results in a ban. 
+Homophobic, racist remarks aren't welcome on the Viper servers. We can't prevent it, but we can deal with offences swiftly. 
+The 5 minute window is added because the community requested that excessive swearing also be limited. We don't want to 
+outright ban it, but they don't want a swear filled rant to occur after every match. &lt;/p&gt;
+&lt;p&gt;Thus, I built in the 5 minute window and the thresholds. The system is configured to catch common swear words, but the words 
+have a low weight. It'd take repeated spamming of the words in a 5 minute window to reach the threshold and be removed from 
+the server.&lt;/p&gt;
+&lt;h3 id="updated-removal-logic"&gt;Updated removal logic&lt;a class="headerlink" href="#updated-removal-logic" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Updated May 17, 2012&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The automated system has been active for almost a month. I'm finding that the system has been removing the same set of 
+players every other day. They aren't learning. This is despite the message they are shown when removed from the server. 
+I've made a change to the logic in how long a ban will last. It provides a 4 strike system:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First offence: Weight of term(s) said times 1. This means, for most cases, they are issued a single day ban.&lt;/li&gt;
+&lt;li&gt;Second offence: Weight of term(s) said times 3. This means, for most cases, they are issued a three day ban.&lt;/li&gt;
+&lt;li&gt;Third offence: Weight of terms said times 21. This means, for most cases, they are issued a three week ban.&lt;/li&gt;
+&lt;li&gt;Forth offence: Permanent removal from the game servers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The community has been very enthusiastic about how quickly users of inappropriate terms are removed. I've seen a few minor 
+complaints about the permanent removal of users on the forth offence. I've told the community that &lt;em&gt;if&lt;/em&gt; a user protests the 
+ban and &lt;em&gt;if&lt;/em&gt; they can show they've learned our rules, I will provide one additional chance after the user has waited a minimum 
+of a month from from last time they were banned. If they return to their previous activities, they will be re-banned and 
+they will not be able to return in the future. &lt;/p&gt;
+&lt;h2 id="update-at-shutdown"&gt;Update at shutdown&lt;a class="headerlink" href="#update-at-shutdown" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated January 20, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In January 2015, Team Vipers &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;shut down&lt;/a&gt;. With that shutdown, all chat monitoring also shut down. The system was active 
+from April 23, 2012 to January 4, 2015, for a total of 987 days. In that time, 4457 bans were issued for inappropriate 
+language. That is over 4 users a day being removed from our player base because they couldn't maintain a respectful 
+attitude. I consider that a success. I believe Viper community members did too.&lt;/p&gt;</summary><category term="team vipers"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Connect Python to OSI Soft PI</title><link href="http://andrewwegner.com/connect-python-to-osi-soft-pi.html" rel="alternate"></link><updated>2012-04-16T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-02-07:connect-python-to-osi-soft-pi.html</id><summary type="html">&lt;p&gt;OSI PI is a historian database. I had a task to connect a python application to this database. I asked a question on 
+&lt;a href="http://stackoverflow.com/questions/8898114/how-can-i-connect-python-2-6-to-osi-pi"&gt;Stack Overflow&lt;/a&gt; about whether this was a simple problem to solve. After two weeks I still hadn't gotten a viable response,
+so I had to build by own solution.&lt;/p&gt;
+&lt;p&gt;I did reach out to the vendor first for help. Their response back was not helpful. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Looks like pyodbc is written against ODBC 3.x.  The OSI PI ODBC driver is using ODBC 2.0.  The python ODBC driver manager 
+will convert most ODBC 3 calls on the fly to ODBC 2 ones. Anything added to 3, however, will obviously fail. You would 
+need to find some way to make sure that your only using 2.0 compliant ODBC calls.  Currently their is not a PI ODBC 
+driver that is compliant with ODBC 3.0.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So, it looks like the vendor doesn't support Python (odd, they are named "PI", but I digress). Additionally, the drivers provided 
+by the company initially didn't work. &lt;/p&gt;
+&lt;p&gt;The code below shows how I was able to finally connect python to OSI PI. It may not be the most elegant, but it 
+functions for the purposes of my application. Initially I was attempting to connect using the &lt;a href="https://github.com/mkleehammer/pyodbc"&gt;pyodbc&lt;/a&gt; module. Unfortunately, 
+OSI PI would return a message like this:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="n"&gt;pyodbc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nl"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;IM002&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[IM002] [OSI][PI ODBC][PI]PI-API Error &amp;lt;pilg_getdefserverinfo&amp;gt; 0 (0) (SQLDriverConnectW); [01000] [Microsoft][ODBC Driver Manager] The driver doesn&amp;#39;t support the version of ODBC behavior that the application requested (see SQLSetEnvAttr). (0)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;They vendor mentioned that using OLEDB instead may prove more fruitful. Thus, the code below is how I got connected using 
+the vendor provided OLDEB driver. The downside is that I also had to do this all through COM objects using &lt;a href="http://python.net/crew/skippy/win32/Downloads.html"&gt;win32com&lt;/a&gt;. 
+I'm not knocking the module, because it is extremely useful and I've done some great things with it.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;win32com.client&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Dispatch&lt;/span&gt;
+
+&lt;span class="n"&gt;oConn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Dispatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ADODB.Connection&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;oRS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Dispatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ADODB.RecordSet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ConnectionString&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Provider=PIOLEDB;Data Source=&amp;lt;server&amp;gt;;User ID=&amp;lt;username&amp;gt;;database=&amp;lt;database&amp;gt;;Password=&amp;lt;password&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Open&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;State&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;We&amp;#39;ve connected to the database.&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;db_cmd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&amp;quot;SELECT tag FROM pipoint WHERE tag LIKE &amp;#39;TAG0001%&amp;#39;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ActiveConnection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;oConn&lt;/span&gt;
+    &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db_cmd&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;EOF&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c"&gt;#print oRS.Fields.Item(&amp;quot;tag&amp;quot;).Value   # Ability to print by a field name&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Value&lt;/span&gt;        &lt;span class="c"&gt;# Ability to print by a field location&lt;/span&gt;
+        &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MoveNext&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;oRS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Not connected&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;State&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;oConn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I followed up on my Stack Overflow post about 2 months after posting my solution with the following note:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Just following up on this after using it for a couple months. This is still the only way I've found to do this with 
+python, but it seems to be very slow when I need to run a large number of queries. I suspect it is because I have to 
+open/close the database connection for each query, but OSI PI/ADODB complains if I do not. Performance has not reached a 
+point where I am forced to rewrite this yet. If/when I do I will follow up again. In the meantime others using this 
+solution should be aware that it is slow when running many queries.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="technical"></category></entry><entry><title>A new, more fair, RTD</title><link href="http://andrewwegner.com/a-new-more-fair-rtd.html" rel="alternate"></link><updated>2015-05-20T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2011-02-04:a-new-more-fair-rtd.html</id><summary type="html">
+&lt;h2 id="the-old-rtd"&gt;The old RTD&lt;a class="headerlink" href="#the-old-rtd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Viper's own LinuxLover, aka &lt;a href="https://forums.alliedmods.net/member.php?u=38829"&gt;pheadxdll&lt;/a&gt; on the &lt;a href="https://forums.alliedmods.net/index.php"&gt;SourceMod forums&lt;/a&gt;, wrote the &lt;a href="https://forums.alliedmods.net/showthread.php?p=666222"&gt;original version&lt;/a&gt; of the Roll the Dice
+plugin. It has provided countless hours of fun for players. After all, who doesn't love getting Toxic while standing near an enemy 
+spawn and hearing the rage as they die immediately. It's usually worth the instant death that follows when the effect
+wears off ten seconds later.&lt;/p&gt;
+&lt;p&gt;There were problems though. The biggest was that the chances of getting a Good vs Bad roll were not equal. Instead, you 
+had a roughly equal chance of getting any roll. There were 14 possible rolls. You had a 1 out of 14 chance of getting a specific
+effect. However, 9 of those effects were negative. Thus, you had a much higher chance of getting a negative effect vs a 
+positive one. The other major problem was that it was very difficult to add new effects. Finally, with the released mod
+not being updated, and LinuxLover departing Vipers to handle his own community on the Randomizer server, it was next to
+impossible to get changes made.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;NOTE&lt;/em&gt;: LinuxLover released a new version of RTD (the 0.4 branch) sometime after we had forked the version we had. The new
+version on SourceMod contains many of the same features we have. It does not, however, contain all of them.&lt;/p&gt;
+&lt;h2 id="the-new-rtd"&gt;The new RTD&lt;a class="headerlink" href="#the-new-rtd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The logic for how rolls are determined has been changed. There is now a list of Good Effects and a list of Bad Effects. When
+someone rolls, the first thing that is done is determine whether or not we are going to have a Good or Bad effect. That is a 
+50/50 chance. Then it randomly selects one of the effects that are active and appropriate for the player's current class
+that falls under the winning category. This should even out the Good vs Bad complaints.&lt;/p&gt;
+&lt;p&gt;Another change that I've added is that we can now more easily add effects. Some new effects have been added:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Powerplay: When Uber isn't enough...you need Kritz and Uber. &lt;/li&gt;
+&lt;li&gt;Freeze Bullets: You've been shot! You should run away, but you can't. You're frozen in place for the next ten seconds, if 
+ you're lucky.&lt;/li&gt;
+&lt;li&gt;Fire Bullets: A bullet wound isn't enough. You need to be on fire too.&lt;/li&gt;
+&lt;li&gt;No crits: Haha! You are on an all crits server and you just lost your crits. Go sit at the little kid table.&lt;/li&gt;
+&lt;li&gt;Valve Rockets: We've included something that may be slightly overkill. You tell me:&lt;/li&gt;
+&lt;li&gt;+9900% damage&lt;/li&gt;
+&lt;li&gt;+9000% clip size&lt;/li&gt;
+&lt;li&gt;+75% firing speed&lt;/li&gt;
+&lt;li&gt;+500 health on kill&lt;/li&gt;
+&lt;li&gt;10 seconds of crits on kill&lt;/li&gt;
+&lt;li&gt;+200% speed&lt;/li&gt;
+&lt;li&gt;+60% reload time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Because sometimes overkill is needed. &lt;/p&gt;
+&lt;p&gt;We've been testing performance of this over the last few months. Today is the day that everyone can get it without
+   an admin being around.&lt;/p&gt;
+&lt;p&gt;For those that haven't seen it, here is one of our first tests back in November&lt;/p&gt;
+&lt;iframe allowfullscreen="" frameborder="0" height="344" src="https://www.youtube.com/embed/OzHNr1Bz5QQ?feature=oembed" width="612"&gt;&lt;/iframe&gt;
+&lt;ul&gt;
+&lt;li&gt;The Headless Horseless Headmann: That's right, you can be the Halloween nightmare.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Update:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Homing Projectiles: Is that soldier aimbotting?! Nope. His rockets are just following you where ever you go. Boom! Oh, 
+ sniper arrows and pyro flares are probably something to avoid too.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Finally, I added in the ability to log rolls to a database so that we can find fancy stats and ensure it's rolling fairly. I'll
+update this post in a few months with some of our gathered stats.&lt;/p&gt;
+&lt;h2 id="source-code"&gt;Source Code&lt;a class="headerlink" href="#source-code" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated May 20, 2015 with link to GitHub instead of the old SVN, my apologies for missing that link when migrating to this blog
+It is important to note that this version hasn't been updated in a LONG time and all effects may not work any more. Specifically,
+homing probably doesn't work because the Sidewinder extension had been broken by a Valve update in mid-2014. Other effects
+should continue to work&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The source code is released on Github. It requires several common modules which are all available on the SourceMod forums.&lt;/p&gt;
+&lt;p&gt;The repository is: &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;https://github.com/AWegnerGitHub/Vipers-Server-Plugins&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="statistics"&gt;Statistics&lt;a class="headerlink" href="#statistics" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This section was updated in January 2015 after the shutdown&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id="good-vs-bad"&gt;Good vs Bad&lt;a class="headerlink" href="#good-vs-bad" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I don't have exact stats on Good vs Bad rolls before the rewrite, but we started logging all rolls with the rewrite. This is the 
+split of Good vs Bad. I am very happy with an almost exactly 50/50 split over nearly a million RTDs.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="RTD Split" src="http://andrewwegner.com/images/rtd-split.png"/&gt;&lt;/p&gt;
+&lt;h3 id="class-with-the-most-rtds"&gt;Class with the most RTDs&lt;a class="headerlink" href="#class-with-the-most-rtds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Solider was the most popular class on the crit server. The images below show number of times our soldiers got certain rolls. Note that God Mode is 
+low because the community decided having both God Mode and Powerplay was redundant. They decided to keep Power play. God Mode was
+disabled about a year after this version was released. Homing is low because it wasn't implemented until about 18 months after
+the initial release.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="RTD Soldier" src="http://andrewwegner.com/images/rtd-soldier.png"/&gt;&lt;/p&gt;
+&lt;h3 id="class-with-the-least-rtds"&gt;Class with the least RTDs&lt;a class="headerlink" href="#class-with-the-least-rtds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Medics rolled RTD the least number of times. This means sense for two reasons. First, they were not a common class on the crit server. When 
+nearly everything is one hit, one kill, it's very hard to build uber. Second, when you &lt;em&gt;do&lt;/em&gt; try to build Uber, ruining it with a 50/50
+shot at getting a bad roll isn't good for the team. The low God Mode and Homing results are the same here as they were for the soldier.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="RTD Medic" src="http://andrewwegner.com/images/rtd-medic.png"/&gt; &lt;/p&gt;</summary><category term="team vipers"></category><category term="programming"></category></entry><entry><title>A special kind of troll</title><link href="http://andrewwegner.com/a-special-kind-of-troll.html" rel="alternate"></link><updated>2011-07-07T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-12-28:a-special-kind-of-troll.html</id><summary type="html">
+&lt;h2 id="what-happened"&gt;What happened?&lt;a class="headerlink" href="#what-happened" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Over the Christmas holiday, the Team Vipers forums were hit by "multiple" users who decided it was a good idea to use our community 
+as a battle ground. A Viper member stepped in to "help" resolve the problem by attempting to play mediator. (Notice the
+air quotes. These are important later) The battling users turned on this member and escalated the matter to threats of violence. 
+When the member stopped responding, the users got bored and began spamming the board. &lt;/p&gt;
+&lt;p&gt;Due to a combination of it being Christmas and the admins doing Christmas-y things with their families, this went on for
+hours. There were several rounds of clean ups, but the battle continued over nearly a 48 hour period. &lt;/p&gt;
+&lt;h2 id="why-is-this-troll-different"&gt;Why is this troll different?&lt;a class="headerlink" href="#why-is-this-troll-different" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After Christmas festivities had ended and I had time to sit down in front of a computer to investigate what happened, I began
+piecing together a time line of events. It turns out that all of these "users" were coming from the same IP address.
+On top of that, they shared the same IP address as the member that attempted to "help". Odd...&lt;/p&gt;
+&lt;h3 id="a-little-more-background"&gt;A little more background&lt;a class="headerlink" href="#a-little-more-background" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The member that was "helping" had recently been approached by the admin team in an effort to clarify some questions about
+their age. One of the admins had been presented evidence that the user was under the age of 16, which we all know if the 
+minimum age to be a Vipers member. &lt;/p&gt;
+&lt;p&gt;The user took this as a threat that we were going to remove them from the community entirely via bans on the servers and 
+forums. They posted a rant on their "sub-community". To mean this seems much more like a place where people that didn't
+like our rules go to complain about us in an unproductive manner. I'm still not sure why they set up this community in
+the first place, because they have always expressed a very keen interest in Vipers. &lt;/p&gt;
+&lt;h3 id="follow-up-with-the-member"&gt;Follow up with the member&lt;a class="headerlink" href="#follow-up-with-the-member" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When I started seeing a pattern between the battling users and the member, I sent a Steam message to the member asking
+if they were around so that we could chat. The conversation began with me asking about the rant they posted and whether
+or not they were aware that we allowed players under 16 to play on the servers, but not be members. They said they were
+not aware of this and seemed pleased they'd still be around.&lt;/p&gt;
+&lt;p&gt;I thanked them for their attempt to help over the holiday. Then I mentioned that it was odd that all of the users were 
+coming from the same IP address. It was agreed that was odd. When I said that there was another user that used that IP in 
+the past, they stopped responding. A few hours later I got a message saying they were back and around to talk again but
+they'd closed the Steam chat window and lost the conversation.&lt;/p&gt;
+&lt;p&gt;A few minutes later they began complaining that their own forum had been spammed. I'll admit I was curious, so I went to
+take a look. There were multiple "users" having a very similar battle across the other forum. The member had posted messages
+as the voice of the community that it had to stop or they'd issue bans.&lt;/p&gt;
+&lt;p&gt;I was sick of the game at this point. I mentioned that I knew they were all of the users involved. I'd issued bans to the 
+user accounts on the forum. I revoked their Viper membership and banned their main account. I also made a note that they 
+could appeal the ban in 6 months time. I figured they'd forget about us.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It takes a special kind of troll to spam their own site to try and convince someone you aren't a spammer.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="after-effect-of-the-bans"&gt;After effect of the bans&lt;a class="headerlink" href="#after-effect-of-the-bans" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At this point the member was less than pleased. There were vague threats made against me, the server, and anything they
+could think of that would offend me. I simply ignored the user on Steam. &lt;/p&gt;
+&lt;p&gt;This didn't sit well, apparently. The user attempted a denial of service attack on the game servers, which our hosting 
+provider mitigated. Part of this mitigation involves sending me a list of IP addresses that were attempting to connect 
+to the server at the time of the attack, and part of the traffic that automatically triggered their counter measures.&lt;/p&gt;
+&lt;p&gt;Unsurprisingly, there were only a few IP addresses. Geolocation says they are all in the same city. One of those IP addresses
+is the IP of the user. &lt;/p&gt;
+&lt;h2 id="what-is-going-to-change"&gt;What is going to change?&lt;a class="headerlink" href="#what-is-going-to-change" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The biggest problem I see out of all of this is that we didn't have active admins during the initial wave of spam. I can't fault
+the admin team, after all it was Christmas. However, there have been a few requests recently for a couple more game server admins.
+I feel this incident just confirms that we need a couple more. In the coming days, we'll announce who our new admins will be.&lt;/p&gt;
+&lt;p&gt;The member that has been removed has been banned from the servers and the forums. We've also destroyed two new user accounts
+they created since the spam wave. This is business as usual. I did offer them the chance to appear at the end of June. 
+I suspect they will not.&lt;/p&gt;
+&lt;h2 id="the-appeal"&gt;The appeal&lt;a class="headerlink" href="#the-appeal" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This section was added on July 7th, 2011 after the user appealed their ban&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;It seems I was wrong. They filed an appeal to their ban. Of course it took place over another holiday (4th of July). Fortunately,
+our two European admins were still around while the rest of us were out enjoying some fireworks. &lt;/p&gt;
+&lt;p&gt;The appeal was filed on the forums, as is usual. Community members stepped in to experess their unhappiness that the user
+would consider returning after what they did over Christmas. One of the admins that were around put a message in the admin
+area and asked for feedback from other admins. &lt;/p&gt;
+&lt;p&gt;When I returned home after some amazing fireworks, I found I had an email from our hosting provider. They'd blocked another
+attempted denial of service attack. I logged into the forums to see what was going on and noticed that the appeal thread
+was not going well. The user were getting more and more upset at the community members who were rallying against their
+return. It eventually ended with a note saying that they hope Vipers never recovers from the DDOS. At this point one of the
+other admins locked the thread. &lt;/p&gt;
+&lt;p&gt;A check of the IP address the user was utilizing to post the messages and the list of IPs involved in the attempted DDOS
+showed that the IP was on the list, and again they were all in the same city (and the same city as in December). &lt;/p&gt;
+&lt;p&gt;Their appeal was rejected. They were informed they would not be welcome back.&lt;/p&gt;
+&lt;p&gt;After this appeal, I don't believe anything will need to change on our side. The appeal process concluded faster than normal.
+Attempts to DDOS the community server makes the decision rather easy for the admins. &lt;/p&gt;</summary><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>Multiple IP addresses on the same physical network card</title><link href="http://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" rel="alternate"></link><updated>2010-11-17T12:54:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-11-17:multiple-ip-addresses-on-the-same-physical-network-card.html</id><summary type="html">&lt;p&gt;There are times when a server can be allocated more than one IP Address even though it contains only one physical 
+network card. To associate these IP addresses with the server some manipulation of networking settings will need to be 
+performed. The steps outlined in this walk-through are for RedHat based systems. This tutorial is for statically assigned 
+IP Addresses (as a server generally will have).
+For this walk through we are going to add one additional IP address to &lt;code&gt;eth0&lt;/code&gt;. Navigate to&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;cd /etc/sysconfig/network-scripts
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Copy &lt;code&gt;ifcfg-eth0&lt;/code&gt; to &lt;code&gt;ifcfg-eth0:0&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;cp ifcfg-eth0 ifcfg-eth0:0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we need to modify the new file slightly so that it gets it's own IP address. Open &lt;code&gt;ifcfg-eth0:0&lt;/code&gt; in your favorite editor&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;DEVICE=eth0:0           &amp;lt;-- Change this to match the new eth0:0 file we just created
+BOOTPROTO=none
+BROADCAST=x.x.x.x       &amp;lt;-- This is the broad cast address for the subnet the new IP is on
+DNS1=x.x.x.x            &amp;lt;-- This is the main DNS server you are using (example: 64.120.14.26)
+GATEWAY=x.x.x.x         &amp;lt;-- This is the gateway address for the subnet the new IP is on
+HWADDR=&amp;lt;DO NOT CHANGE&amp;gt;  &amp;lt;-- Don&amp;#39;t change this from what is existing. The Hardware address is the same as the physical one
+IPADDR=x.x.x.x          &amp;lt;-- This is your new IP address
+NETMASK=x.x.x.x         &amp;lt;-- This is the netmask for the subnet the new IP is on
+ONBOOT=yes              &amp;lt;-- Leave to yes
+OPTIONS=layer2=1
+TYPE=Ethernet
+PREFIX=29
+DEFROUTE=yes
+NAME=&amp;quot;System eth0:0&amp;quot;    &amp;lt;-- Change to reflect new name of device
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Save your file with the new settings. Now we need to restart the networking service:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;service network restart
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When the network components come back up you should see your new device in the &lt;code&gt;ifconfig&lt;/code&gt; command. To add more IPs, 
+copy and replace values as specified above.&lt;/p&gt;</summary><category term="technical"></category></entry><entry><title>Fixing MYISAM Crashed Tables</title><link href="http://andrewwegner.com/fixing-myisam-crashed-tables.html" rel="alternate"></link><updated>2010-05-14T10:08:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-05-14:fixing-myisam-crashed-tables.html</id><summary type="html">&lt;p&gt;For various reasons, MyISAM tables are known to crash. When this happens, the following message will be displayed:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;INVALID SQL: 145 : Table &amp;#39;{something}&amp;#39; is marked as crashed and should be repaired
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I've found this error occurs when MySQL is unexpectedly shut down - whether from a power failure to the entire server or 
+if MySQL itself has issues and you use the &lt;code&gt;kill&lt;/code&gt; command to stop it. Unexpected shut downs, especially while these tables 
+are being used, do not make MyISAM tables happy.&lt;/p&gt;
+&lt;p&gt;To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files 
+are stored.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;locate *.MYI
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will return where all the MYI files are stored. In this example, I am using&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;/var/lib/mysql/mysql/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Go to the directory of the crashed table using the &lt;code&gt;cd&lt;/code&gt; command. Next, stop MySQL. This is to ensure the tables are not 
+accessed while we perform our repair functions. If you don't perform this step, the repair may not succeed.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;service mysqld stop
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next we are going to perform two repair functions. The first one may take a while depending on the size of your tables.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;myisamchk -r --force --safe-recover *.MYI
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It 
+is likely that this step is not needed after performing the previous step, but it should only take a few seconds now.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;myisamchk --force --fast --update-state *.MYI
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally, restart MySQL&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;service mysqld start
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="technical"></category></entry><entry><title>Automated template for membership applications</title><link href="http://andrewwegner.com/automated-template-for-membership-applications.html" rel="alternate"></link><updated>2009-10-30T22:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2009-10-30:automated-template-for-membership-applications.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Not to long ago, applications for new membership in Team Vipers consisted of someone wandering onto the site, posting a 
+few words and an administrator saying they were accepted as a member. This worked when we were a small community. We 
+aren't small any more. We have 5 servers and hundreds of players a day. Each server has their own sub-community. There 
+are players joining the forums than entire groups of people have never met because they play exclusively on one game server. &lt;/p&gt;
+&lt;p&gt;Admins were also inconsistent in how (or if) they voted. Some admins didn't realize they could have a say, thinking it 
+was a privilege granted to only the senior administrators. We've built a system to resolve many of these problems and to 
+make the administration side easier.&lt;/p&gt;
+&lt;h2 id="whats-new"&gt;What's new?&lt;a class="headerlink" href="#whats-new" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The new system presents all users with an application template. They fill out the form and the system handles the rest. 
+The New Users and Applications subforum has been modified so that no one, except the bot, can create topics. They 
+topics will only be created when the form is submitted. When a user applies to join Vipers, we will automatically 
+include relevant information about the user as we know them:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HLStats information: This helps us get a sense of where they play and how often they play. It will help admins identify 
+ users they &lt;em&gt;should&lt;/em&gt; recognize based on the servers they frequent (because we all know certains servers are better than 
+ others ;) &lt;em&gt;cough&lt;/em&gt; Vanilla Nest vs Crits &lt;em&gt;cough&lt;/em&gt; )&lt;/li&gt;
+&lt;li&gt;Ban information: This will check if the user has any recorded bans in &lt;a href="http://www.sourcebans.net/"&gt;Sourcebans&lt;/a&gt;. It's important to know if the 
+ user has been banned previously. &lt;/li&gt;
+&lt;li&gt;Known aliases: Pulling information from our chat logs and Valve's profile page, we can build a list of known aliases. 
+ This helps identify users that frequently change names but have been around a while. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There may be other features we add in the future as well. &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Updated January 2012&lt;/em&gt; I've removed HLStats from the servers and removed it from new application information. We have 
+added a check of a user's &lt;a href="http://steamrep.com/api.php"&gt;Steam Reputation&lt;/a&gt; instead.&lt;/p&gt;
+&lt;p&gt;After a user applies, they are put into a two week hold. During this week it is expected they will stick around the forums 
+and learn about the community they just applied to. Even better would be that they had done this before applying. While 
+this two week hold is in place, the administration team will be able to cast they votes in a separate sub-forum. They can 
+hold administration specific discussions - usually details that are important for admins to know, but don't &lt;em&gt;need&lt;/em&gt; to be 
+public. Once voting is complete, if they become a member, the system automatically grants appropriate forum and server 
+related permissions.&lt;/p&gt;
+&lt;h3 id="voting-rules"&gt;Voting rules&lt;a class="headerlink" href="#voting-rules" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Three admin "Yes" votes and zero "No" votes grants the user membership immediately after the two week window has expired&lt;/li&gt;
+&lt;li&gt;One or two "No" votes places a message on the user's application that the administrators are still considering the application&lt;/li&gt;
+&lt;li&gt;Three or more "No" votes rejects the application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="possible-responses"&gt;Possible Responses&lt;a class="headerlink" href="#possible-responses" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="accepted-by-admin-team"&gt;Accepted by admin team&lt;a class="headerlink" href="#accepted-by-admin-team" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you reach a total of three or more admin "Yes" votes, and do not get three or more admin "No" votes, you will be accepted 
+as a member of Vipers and automatically have your forum access modified. You will receive a message similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Accepted" src="http://andrewwegner.com/images/application-accepted.png"/&gt;&lt;/p&gt;
+&lt;h3 id="denied-by-admin-team"&gt;Denied by admin team&lt;a class="headerlink" href="#denied-by-admin-team" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you reach three or more "No" votes your application will be denied. This will occur even if you receive more "Yes" votes
+than "No" votes. Vipers is not a majority rule community. The decision has been made that if three admins do not feel comfortable
+accepting your application, you will not be granted membership. You will receive a message similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Denied by Admins" src="http://andrewwegner.com/images/application-denied.png"/&gt;&lt;/p&gt;
+&lt;h3 id="denied-due-to-lack-of-votes"&gt;Denied due to lack of votes&lt;a class="headerlink" href="#denied-due-to-lack-of-votes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To be accepted, your application requires a minimum of three "Yes" votes. If this can not be reached (and you also can't reach
+ three "No" votes), your application will be rejected due to lack of votes from the admin team. This means that the admin team
+ does not feel strongly either way about your application. Post on the forums. Play in the servers. Get to know our players
+ and the community at large and then try again in a month. You will receive a message similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Denied with not enough votes" src="http://andrewwegner.com/images/application-denied-not-enough-votes.png"/&gt;&lt;/p&gt;
+&lt;h3 id="denied-because-of-age"&gt;Denied because of age&lt;a class="headerlink" href="#denied-because-of-age" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Repeat after me: "Age does not equal maturity." However, it has a very strong correlation. Over time we have learned that younger
+ players tend to bring a lower maturity level that most of the community does not care for. As such, we've decided to set a minimium
+ age requirement of 16. If a user indicates they are less than that, the system will reject their application with a message similar to
+ this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Denied because of age" src="http://andrewwegner.com/images/application-denied-underage.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Updated January 2010&lt;/em&gt; This process has been in place for a few months now. It has gone very well. We've reduced the clutter 
+in the applications forum. We've also seen the number of "forgotten" applications drop dramatically. &lt;/p&gt;
+&lt;h2 id="original-announcement"&gt;Original Announcement&lt;a class="headerlink" href="#original-announcement" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The original announcement is posted here for future reference.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Zephyr is an automated robot designed to improve our new member application process. The current process, which involves copying a template to a new thread and the potential for applications to become misplaced, is cumbersome and inefficient. The goal of Zephyr is to remove as much of the manual process as possible.&lt;/p&gt;
+&lt;p&gt;Now, our new applicants will fill out an actual application online. The same information will be requested, but it will be in a more reliable format and will not require an applicant copy and paste anything between threads. This new application will be posted in the same forum as you're used to, and members will be freely able to comment and discuss the applicant via that thread. It will also display which date admin voting will be open, which is two full weeks after the original application post. This will hopefully cut down on any confusion related to the delay between application and voting.&lt;/p&gt;
+&lt;p&gt;As another note, from now on Zephyr will be the only user capable of creating new threads in the New Member Application forum. As previously stated, members will be able to post comments on existing threads, but the only new threads will come from the application process. This will keep the forum cleaner and help prevent applications from becoming lost or forgotten about.&lt;/p&gt;
+&lt;p&gt;Once again, Zephyr is an automated robot. It is not programmed to respond to comments or questions. Doing so will not get your question answered. As always, if you have questions or comments about the application process, Zephyr, or anything else, you're welcome to send them to any admin. We'll be more than happy to help.&lt;/p&gt;
+&lt;p&gt;You may all bow to your Robotic Overlord now.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="team vipers"></category><category term="automation"></category><category term="community"></category><category term="programming"></category></entry></feed>

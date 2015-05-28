@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+        <meta name="copyright" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="Fixing MYISAM Crashed Tables "/>
+<meta property="og:url" content="http://andrewwegner.com/fixing-myisam-crashed-tables.html" />
+<meta property="og:description" content="How to fix MyISAM tables that are marked as crashed" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2010-05-14T10:08:00-05:00" />
+<meta name="twitter:title" content="Fixing MYISAM Crashed Tables ">
+<meta name="twitter:description" content="How to fix MyISAM tables that are marked as crashed">
+
+        <title>Fixing MYISAM Crashed Tables  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="http://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://andrewwegner.com">Home</a></li>
+                            <li ><a href="http://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="http://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="http://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://andrewwegner.com/fixing-myisam-crashed-tables.html"> Fixing MYISAM Crashed Tables  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p>For various reasons, MyISAM tables are known to crash. When this happens, the following message will be displayed:</p>
+<div class="codehilite code"><pre>INVALID SQL: 145 : Table &#39;{something}&#39; is marked as crashed and should be repaired
+</pre></div>
+
+
+<p>I've found this error occurs when MySQL is unexpectedly shut down - whether from a power failure to the entire server or 
+if MySQL itself has issues and you use the <code>kill</code> command to stop it. Unexpected shut downs, especially while these tables 
+are being used, do not make MyISAM tables happy.</p>
+<p>To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files 
+are stored.</p>
+<div class="codehilite code"><pre>locate *.MYI
+</pre></div>
+
+
+<p>This will return where all the MYI files are stored. In this example, I am using</p>
+<div class="codehilite code"><pre>/var/lib/mysql/mysql/
+</pre></div>
+
+
+<p>Go to the directory of the crashed table using the <code>cd</code> command. Next, stop MySQL. This is to ensure the tables are not 
+accessed while we perform our repair functions. If you don't perform this step, the repair may not succeed.</p>
+<div class="codehilite code"><pre>service mysqld stop
+</pre></div>
+
+
+<p>Next we are going to perform two repair functions. The first one may take a while depending on the size of your tables.</p>
+<div class="codehilite code"><pre>myisamchk -r --force --safe-recover *.MYI
+</pre></div>
+
+
+<p>The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It 
+is likely that this step is not needed after performing the previous step, but it should only take a few seconds now.</p>
+<div class="codehilite code"><pre>myisamchk --force --fast --update-state *.MYI
+</pre></div>
+
+
+<p>Finally, restart MySQL</p>
+<div class="codehilite code"><pre>service mysqld start
+</pre></div>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://andrewwegner.com/automated-template-for-membership-applications.html" title="Previous: Automated template for membership applications">Automated template for membership applications</a></li>
+                <li class="next-article"><a href="http://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" title="Next: Multiple IP addresses on the same physical network card">Multiple IP addresses on the same physical network card</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2010-05-14T10:08:00-05:00">May 14, 2010</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>3</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam sidebar-social-links"></i></a>
+    <a href="http://careers.stackoverflow.com/andrewwegner" title="My Stack Overflow Careers Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow careers sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="http://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

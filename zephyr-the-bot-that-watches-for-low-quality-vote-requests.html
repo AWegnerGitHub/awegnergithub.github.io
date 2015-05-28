@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+        <meta name="copyright" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Stack Exchange, automation, programming, Programming Projects, " />
+
+<meta property="og:title" content="Zephyr - The bot that watches for low quality vote requests "/>
+<meta property="og:url" content="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" />
+<meta property="og:description" content="Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2015-03-12T23:34:00-05:00" />
+<meta property="" content="2015-05-08T00:00:00-05:00" />
+<meta name="twitter:title" content="Zephyr - The bot that watches for low quality vote requests ">
+<meta name="twitter:description" content="Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content">
+
+        <title>Zephyr - The bot that watches for low quality vote requests  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="http://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://andrewwegner.com">Home</a></li>
+                            <li ><a href="http://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="http://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="http://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html"> Zephyr - The bot that watches for low quality vote requests  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#introducing-zephyr">Introducing Zephyr</a><ul>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#other-bots">Other bots</a></li>
+</ul>
+</li>
+<li><a href="#updates">Updates</a><ul>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#upgrade-from-sqlite-to-mariadb">Upgrade from SQLite to MariaDB</a></li>
+<li><a href="#upgrade-to-utilize-web-sockets">Upgrade to utilize web sockets</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>Stack Exchange receives thousands of questions per day across all of their sites. Not all of these are high quality
+posts. Fortunately, users of the Stack Exchange network are given <a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/">tools</a> to help keep that low quality stuff to a 
+minimum. One of these tools is the chat network that spans the Stack Exchange sites. </p>
+<p>In the chat rooms, a convention has arisen to tag a message as <kbd class="light">cv-pls</kbd> for questions that need to be closed for one reason 
+or another. Over time, this evolved to include other tags such as:</p>
+<ul>
+<li><kbd class="light">del-pls</kbd> for a deletion request</li>
+<li><kbd class="light">spam</kbd> for notification that spam made it through the already <a href="http://meta.stackexchange.com/questions/228043/">impressive</a> spam <a href="http://meta.stackexchange.com/a/237882/186281">filters</a></li>
+<li><kbd class="light">reopen</kbd> for a reopen request</li>
+<li>a few others to cover specific flag types (eg. Not an answer, Very Low Quality or Offensive)</li>
+</ul>
+<h2 id="introducing-zephyr">Introducing Zephyr<a class="headerlink" href="#introducing-zephyr" title="Permanent link">¶</a></h2>
+<p>The problem with these is that the requests are only seen by users active in the specific room where it was posted. 
+Other users across the network miss the request. <strong><a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot">Zephyr</a></strong> was built to resolve this problem. Zephyr monitors
+several rooms where these types of requests are frequent. These requests all all posted into a single <a href="http://chat.meta.stackexchange.com/rooms/773/low-quality-posts-hq">chat room</a>. 
+This provides users with a single room to monitor to see requests for multiple questions and sites across the network.</p>
+<p>Here is an example of what Zephyr's chat activity looks like during a spam wave:</p>
+<p><img alt="Zephyr's chat activity during a spam wave" src="http://andrewwegner.com/images/zephyr-spam-wave.png"/></p>
+<h3 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">¶</a></h3>
+<p>Zephyr utilizes the <a href="https://github.com/Manishearth/ChatExchange">ChatExchange</a> package to join and read the chat rooms. To do this, Zephyr required a dedicated
+account. I decided to run Zephyr with a dedicated account to completely separate the bot that would sit and watch multiple chat
+rooms 24/7 from my account. Zephyr maintains a small SQLite database of all the posts that it records. The idea behind this, 
+is that eventually this data will be utilized to train other systems on unwanted content. This information is pulled via
+the <a href="http://api.stackexchange.com/">API</a>. </p>
+<p>Zephyr watches the chat rooms for specific string <a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot/blob/master/create_config_files.py">patterns</a>. If these patterns are matched, a message is posted if <code>should_post</code> 
+is <code>True</code> for the matched pattern. </p>
+<p>Overall, a nice simple application. It performs some pattern matching and a couple API calls. </p>
+<h3 id="other-bots">Other bots<a class="headerlink" href="#other-bots" title="Permanent link">¶</a></h3>
+<p>In addition to watching user activity, Zephyr also watches two other quality bots that patrol Stack Exchange for low
+quality content: <a href="https://github.com/Charcoal-SE/SmokeDetector">SmokeDetector</a> and <a href="https://github.com/ArcticEcho/Phamhilator/wiki">Phamhilator</a>. If either of these bots detect spam, Zephyr takes note of the information by
+recording it to the database, but not reposting. Since both of those bots post their reports, it didn't make sense for Zephyr
+to add a second (or third, if both of the others detected spam) message to the chat room. The information is recorded, though,
+to help future training for other systems.</p>
+<h2 id="updates">Updates<a class="headerlink" href="#updates" title="Permanent link">¶</a></h2>
+<p><em>Updated May 8, 2015</em></p>
+<p>Over time Zephyr has been updated to include new rooms to monitor or new patterns to match. Those changes are small (and simple).
+There are, however, a few larger changes that I'd like to note below.</p>
+<h3 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">¶</a></h3>
+<p>The other bots that Zephyr monitors respond to user input. Zephyr has very little that requires user interaction since all of it's
+posts are generated <em>by</em> user input. However, there have been times where I, as the bot owner, would like to be able to issue
+certain commands to it. My most common desire is to see a report of how many spam posts Zephyr has seen. Thus, Zephyr now responds
+to the command <code>spamreport</code> from me. It then prints out a nice summary of information. This information has been utilized in 
+SmokeDetector to watch for commonly spammed domains.</p>
+<p><img alt="Zephyr spam report for April 2015" src="http://andrewwegner.com/images/zephyr-spam-report.png"/></p>
+<h3 id="upgrade-from-sqlite-to-mariadb">Upgrade from SQLite to MariaDB<a class="headerlink" href="#upgrade-from-sqlite-to-mariadb" title="Permanent link">¶</a></h3>
+<p>Zephyr was originally built against an SQLite database. This worked, but was getting slower as more data was being added. This slow down
+was beginning to affect performance. I started seeing this error more and more frequently:</p>
+<div class="codehilite code"><pre>Traceback (most recent call last):
+  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py", line 255, in _close_connection
+    self._dialect.do_close(connection)
+  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py", line 418, in do_close
+    dbapi_connection.close()
+ProgrammingError: SQLite objects created in a thread can only be used in that same thread.The object was created in thread id 4824 and this is thread id 4660
+</pre></div>
+<p>After spending a lot of time troubleshooting and not resolving it to my satisfaction, I decided to upgrade to a more robust database. I'd used
+MySQL/MariaDB before and I happened to have another application utilizing MariaDB at the moment so that is the solution I picked. </p>
+<p>The first step was transferring data. I learned that there isn't a decent utility to do a straight migration. So, I took these steps to transfer the data:</p>
+<ul>
+<li>Export table structures and data from SQLite</li>
+<li>Convert the SQLite dump to MySQL format. Though both systems use SQL, there are slight differences in dialect. I utilized
+ <a href="http://stackoverflow.com/a/1067365/189134">this Python script</a> as a starting point. It got me most of the way there, but not completely.</li>
+<li>Data clean up. Ugh. The dreaded part of the job for anyone who handles data. Fortunately, the script above did most of the work.
+ I ended up fixing a couple stray back ticks that didn't convert properly, escaping a very extra quotation marks, and replacing
+ a few "smart quotes" (of both the <a href="http://www.fileformat.info/info/unicode/char/201c/index.htm">left</a> and <a href="http://www.fileformat.info/info/unicode/char/201d/index.htm">right</a> variety). I wish data at the office job was this easy to clean...</li>
+<li>Import into MariaDB</li>
+</ul>
+<p>Since the transfer to MariaDB, I've noticed no performance degradation. The error about threads has been eliminated as well.</p>
+<h3 id="upgrade-to-utilize-web-sockets">Upgrade to utilize web sockets<a class="headerlink" href="#upgrade-to-utilize-web-sockets" title="Permanent link">¶</a></h3>
+<p>Originally, Zephyr used the <a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L68"><code>watch</code></a> method when monitoring a room. This method would long poll the room. It turns out that this is 
+pretty unreliable. I'd get multiple errors through out the week, ranging from <code>Connection Aborted</code> errors to random <code>404</code> messages. The 
+solution has been to switch to <a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"><code>watch_socket</code></a>. The only time I've had problems since this switch is when the Stack Exchange 
+web sockets go down. This saves a lot of restarts to get everything up and running again.</p>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://andrewwegner.com/thanks-for-all-the-fish.html" title="Previous: Thanks for all the fish">Thanks for all the fish</a></li>
+                <li class="next-article"><a href="http://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html" title="Next: I&#39;m running to be a moderator of Stack Overflow">I'm running to be a moderator of Stack Overflow</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2015-03-12T23:34:00-05:00">Mar 12, 2015</time>
+
+<h4>Last Updated</h4>
+<time datetime="2015-05-08T00:00:00-05:00">May 8, 2015</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#programming-projects-ref">Programming Projects</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#automation-ref">automation
+                    <span>6</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#programming-ref">programming
+                    <span>8</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#stack-exchange-ref">Stack Exchange
+                    <span>4</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam sidebar-social-links"></i></a>
+    <a href="http://careers.stackoverflow.com/andrewwegner" title="My Stack Overflow Careers Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow careers sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="http://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

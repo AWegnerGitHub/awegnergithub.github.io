@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+        <meta name="copyright" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="team vipers, automation, programming, Vipers, " />
+
+<meta property="og:title" content="Monitoring Language on the game servers "/>
+<meta property="og:url" content="http://andrewwegner.com/monitoring-language-on-the-game-servers.html" />
+<meta property="og:description" content="Team Vipers is proud of it&#39;s friendly atmosphere. This post describes how I automated a large part of the process" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2012-04-22T12:13:00-05:00" />
+<meta property="" content="2015-01-08T00:00:00-06:00" />
+<meta name="twitter:title" content="Monitoring Language on the game servers ">
+<meta name="twitter:description" content="Team Vipers is proud of it&#39;s friendly atmosphere. This post describes how I automated a large part of the process">
+
+        <title>Monitoring Language on the game servers  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="http://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://andrewwegner.com">Home</a></li>
+                            <li ><a href="http://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="http://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="http://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://andrewwegner.com/monitoring-language-on-the-game-servers.html"> Monitoring Language on the game servers  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#chat-monitor">Chat Monitor</a></li>
+<li><a href="#inappropriate-words">Inappropriate words</a><ul>
+<li><a href="#automated-removal-logic">Automated removal logic</a></li>
+<li><a href="#updated-removal-logic">Updated removal logic</a></li>
+</ul>
+</li>
+<li><a href="#update-at-shutdown">Update at shutdown</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>My admin tool of choice for the TF2 servers is <a href="http://www.hlsw.org/">HLSW</a>. It's decent at allowing me to manage a server without ever 
+needing to log to the server. My biggest complaint about it is that I can only watch the game chat of one server at a time. 
+Sometimes, it's helpful to see an ongoing conversation to resolve minor problems before they become big ones. For example, 
+claims of "hacking" usually turn out to be completely baseless. But, if multiple users (and more importantly, multiple 
+<em>trusted</em> users) suddenly start mentioning a hacker, I can step in and resolve the problem without entering the server. 
+HLSW is good for this. A hacker is confined to one server.</p>
+<p>The biggest problem is when there are reports of lag across all of the game servers. Vipers has a dedicated machine that 
+runs 5 game servers. If all five suddenly report lag, there is a problem somewhere. With HLSW, though, I can't see all of 
+the servers at once. Thus, I've built a tool...</p>
+<h2 id="chat-monitor">Chat Monitor<a class="headerlink" href="#chat-monitor" title="Permanent link">¶</a></h2>
+<p>All chat that occurs on the servers is logged. I've used this to resolve complaints of unfair bans and reports of hackers. 
+I built in a hook to these logs from the application template to quickly pull known aliases of users. It's been invaluable 
+in solving problems of "what happened" on the servers.</p>
+<p><img alt="Multiserver Chat monitor" src="http://andrewwegner.com/images/vipers-chat-monitor.png"/></p>
+<p>I've expanded it's usefulness. Now I can load a single page and see all chat activity occurring on all active game servers 
+on a single screen. It provides, at a glance, a quick way to see if there are problems on the servers. It also allows me 
+to step back from picking which server I think will be "bad" and monitor that. Now I can monitor all of them at once. </p>
+<h2 id="inappropriate-words">Inappropriate words<a class="headerlink" href="#inappropriate-words" title="Permanent link">¶</a></h2>
+<p>As a community, we've chosen to set a higher standard for our players. As such, we have a restriction on a total of 3 
+words and a few derivatives of those words. This system is in place because the community stepped forward and wanted to 
+clean up the experience on the servers a bit. The problem with these higher standards is that we don't have admins on the 
+game servers (or watch chat logs) 24 hours a day. Thus, while admins sleep, a troll can wander through and spew garbage. 
+Unless a user reports this behavior, we will never be aware of it.</p>
+<p>I've built a system to handle this automatically. The system will monitor chat logs across all servers. If a user hits the 
+threshold for banning, they will be removed from the server and banned for a day. The logic to the system is this:</p>
+<h3 id="automated-removal-logic">Automated removal logic<a class="headerlink" href="#automated-removal-logic" title="Permanent link">¶</a></h3>
+<ul>
+<li>Inappropriate terms are configured with a "weight". This "weight" will be used to calculate whether or not a user 
+ surpasses a threshold set for being banned.</li>
+<li>System monitors chat logs for configured terms.</li>
+<li>If a term is found, the offending message is saved. The term weight is added to the user's current threshold value. 
+ If this is the user's first time saying one of these terms, they start at 0 and this weight is added.</li>
+<li>If user exceeds the threshold, the system issues a ban to Sourcebans. The user is then kicked from the game server. 
+ The ban length will be 1 day.</li>
+<li>The system keeps messages for a total of 5 minutes. If a message is older than that, the system forgets it.</li>
+</ul>
+<p>Currently, the three inappropriate terms all have a threshold of <code>1</code>. This means they saying the words results in a ban. 
+Homophobic, racist remarks aren't welcome on the Viper servers. We can't prevent it, but we can deal with offences swiftly. 
+The 5 minute window is added because the community requested that excessive swearing also be limited. We don't want to 
+outright ban it, but they don't want a swear filled rant to occur after every match. </p>
+<p>Thus, I built in the 5 minute window and the thresholds. The system is configured to catch common swear words, but the words 
+have a low weight. It'd take repeated spamming of the words in a 5 minute window to reach the threshold and be removed from 
+the server.</p>
+<h3 id="updated-removal-logic">Updated removal logic<a class="headerlink" href="#updated-removal-logic" title="Permanent link">¶</a></h3>
+<p><em>Updated May 17, 2012</em></p>
+<p>The automated system has been active for almost a month. I'm finding that the system has been removing the same set of 
+players every other day. They aren't learning. This is despite the message they are shown when removed from the server. 
+I've made a change to the logic in how long a ban will last. It provides a 4 strike system:</p>
+<ul>
+<li>First offence: Weight of term(s) said times 1. This means, for most cases, they are issued a single day ban.</li>
+<li>Second offence: Weight of term(s) said times 3. This means, for most cases, they are issued a three day ban.</li>
+<li>Third offence: Weight of terms said times 21. This means, for most cases, they are issued a three week ban.</li>
+<li>Forth offence: Permanent removal from the game servers.</li>
+</ul>
+<p>The community has been very enthusiastic about how quickly users of inappropriate terms are removed. I've seen a few minor 
+complaints about the permanent removal of users on the forth offence. I've told the community that <em>if</em> a user protests the 
+ban and <em>if</em> they can show they've learned our rules, I will provide one additional chance after the user has waited a minimum 
+of a month from from last time they were banned. If they return to their previous activities, they will be re-banned and 
+they will not be able to return in the future. </p>
+<h2 id="update-at-shutdown">Update at shutdown<a class="headerlink" href="#update-at-shutdown" title="Permanent link">¶</a></h2>
+<p><em>Updated January 20, 2015</em></p>
+<p>In January 2015, Team Vipers <a href="http://andrewwegner.com/thanks-for-all-the-fish.html">shut down</a>. With that shutdown, all chat monitoring also shut down. The system was active 
+from April 23, 2012 to January 4, 2015, for a total of 987 days. In that time, 4457 bans were issued for inappropriate 
+language. That is over 4 users a day being removed from our player base because they couldn't maintain a respectful 
+attitude. I consider that a success. I believe Viper community members did too.</p>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://andrewwegner.com/connect-python-to-osi-soft-pi.html" title="Previous: Connect Python to OSI Soft PI">Connect Python to OSI Soft PI</a></li>
+                <li class="next-article"><a href="http://andrewwegner.com/homing-projectiles-are-awesome!.html" title="Next: Homing projectiles are awesome!">Homing projectiles are awesome!</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2012-04-22T12:13:00-05:00">Apr 22, 2012</time>
+
+<h4>Last Updated</h4>
+<time datetime="2015-01-08T00:00:00-06:00">Jan 8, 2015</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#vipers-ref">Vipers</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#automation-ref">automation
+                    <span>6</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#programming-ref">programming
+                    <span>8</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#team-vipers-ref">team vipers
+                    <span>10</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam sidebar-social-links"></i></a>
+    <a href="http://careers.stackoverflow.com/andrewwegner" title="My Stack Overflow Careers Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow careers sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="http://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

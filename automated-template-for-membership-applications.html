@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+        <meta name="copyright" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="team vipers, automation, community, programming, Vipers, " />
+
+<meta property="og:title" content="Automated template for membership applications "/>
+<meta property="og:url" content="http://andrewwegner.com/automated-template-for-membership-applications.html" />
+<meta property="og:description" content="How Team Vipers improved user applications and admin partipation in the process" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2009-10-30T22:30:00-05:00" />
+<meta name="twitter:title" content="Automated template for membership applications ">
+<meta name="twitter:description" content="How Team Vipers improved user applications and admin partipation in the process">
+
+        <title>Automated template for membership applications  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="http://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://andrewwegner.com">Home</a></li>
+                            <li ><a href="http://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="http://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="http://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://andrewwegner.com/automated-template-for-membership-applications.html"> Automated template for membership applications  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#whats-new">What's new?</a><ul>
+<li><a href="#voting-rules">Voting rules</a></li>
+</ul>
+</li>
+<li><a href="#possible-responses">Possible Responses</a><ul>
+<li><a href="#accepted-by-admin-team">Accepted by admin team</a></li>
+<li><a href="#denied-by-admin-team">Denied by admin team</a></li>
+<li><a href="#denied-due-to-lack-of-votes">Denied due to lack of votes</a></li>
+<li><a href="#denied-because-of-age">Denied because of age</a></li>
+</ul>
+</li>
+<li><a href="#original-announcement">Original Announcement</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>Not to long ago, applications for new membership in Team Vipers consisted of someone wandering onto the site, posting a 
+few words and an administrator saying they were accepted as a member. This worked when we were a small community. We 
+aren't small any more. We have 5 servers and hundreds of players a day. Each server has their own sub-community. There 
+are players joining the forums than entire groups of people have never met because they play exclusively on one game server. </p>
+<p>Admins were also inconsistent in how (or if) they voted. Some admins didn't realize they could have a say, thinking it 
+was a privilege granted to only the senior administrators. We've built a system to resolve many of these problems and to 
+make the administration side easier.</p>
+<h2 id="whats-new">What's new?<a class="headerlink" href="#whats-new" title="Permanent link">¶</a></h2>
+<p>The new system presents all users with an application template. They fill out the form and the system handles the rest. 
+The New Users and Applications subforum has been modified so that no one, except the bot, can create topics. They 
+topics will only be created when the form is submitted. When a user applies to join Vipers, we will automatically 
+include relevant information about the user as we know them:</p>
+<ul>
+<li>HLStats information: This helps us get a sense of where they play and how often they play. It will help admins identify 
+ users they <em>should</em> recognize based on the servers they frequent (because we all know certains servers are better than 
+ others ;) <em>cough</em> Vanilla Nest vs Crits <em>cough</em> )</li>
+<li>Ban information: This will check if the user has any recorded bans in <a href="http://www.sourcebans.net/">Sourcebans</a>. It's important to know if the 
+ user has been banned previously. </li>
+<li>Known aliases: Pulling information from our chat logs and Valve's profile page, we can build a list of known aliases. 
+ This helps identify users that frequently change names but have been around a while. </li>
+</ul>
+<p>There may be other features we add in the future as well. </p>
+<p><em>Updated January 2012</em> I've removed HLStats from the servers and removed it from new application information. We have 
+added a check of a user's <a href="http://steamrep.com/api.php">Steam Reputation</a> instead.</p>
+<p>After a user applies, they are put into a two week hold. During this week it is expected they will stick around the forums 
+and learn about the community they just applied to. Even better would be that they had done this before applying. While 
+this two week hold is in place, the administration team will be able to cast they votes in a separate sub-forum. They can 
+hold administration specific discussions - usually details that are important for admins to know, but don't <em>need</em> to be 
+public. Once voting is complete, if they become a member, the system automatically grants appropriate forum and server 
+related permissions.</p>
+<h3 id="voting-rules">Voting rules<a class="headerlink" href="#voting-rules" title="Permanent link">¶</a></h3>
+<ul>
+<li>Three admin "Yes" votes and zero "No" votes grants the user membership immediately after the two week window has expired</li>
+<li>One or two "No" votes places a message on the user's application that the administrators are still considering the application</li>
+<li>Three or more "No" votes rejects the application</li>
+</ul>
+<h2 id="possible-responses">Possible Responses<a class="headerlink" href="#possible-responses" title="Permanent link">¶</a></h2>
+<h3 id="accepted-by-admin-team">Accepted by admin team<a class="headerlink" href="#accepted-by-admin-team" title="Permanent link">¶</a></h3>
+<p>If you reach a total of three or more admin "Yes" votes, and do not get three or more admin "No" votes, you will be accepted 
+as a member of Vipers and automatically have your forum access modified. You will receive a message similar to this:</p>
+<p><img alt="Application Accepted" src="http://andrewwegner.com/images/application-accepted.png"/></p>
+<h3 id="denied-by-admin-team">Denied by admin team<a class="headerlink" href="#denied-by-admin-team" title="Permanent link">¶</a></h3>
+<p>If you reach three or more "No" votes your application will be denied. This will occur even if you receive more "Yes" votes
+than "No" votes. Vipers is not a majority rule community. The decision has been made that if three admins do not feel comfortable
+accepting your application, you will not be granted membership. You will receive a message similar to this:</p>
+<p><img alt="Application Denied by Admins" src="http://andrewwegner.com/images/application-denied.png"/></p>
+<h3 id="denied-due-to-lack-of-votes">Denied due to lack of votes<a class="headerlink" href="#denied-due-to-lack-of-votes" title="Permanent link">¶</a></h3>
+<p>To be accepted, your application requires a minimum of three "Yes" votes. If this can not be reached (and you also can't reach
+ three "No" votes), your application will be rejected due to lack of votes from the admin team. This means that the admin team
+ does not feel strongly either way about your application. Post on the forums. Play in the servers. Get to know our players
+ and the community at large and then try again in a month. You will receive a message similar to this:</p>
+<p><img alt="Application Denied with not enough votes" src="http://andrewwegner.com/images/application-denied-not-enough-votes.png"/></p>
+<h3 id="denied-because-of-age">Denied because of age<a class="headerlink" href="#denied-because-of-age" title="Permanent link">¶</a></h3>
+<p>Repeat after me: "Age does not equal maturity." However, it has a very strong correlation. Over time we have learned that younger
+ players tend to bring a lower maturity level that most of the community does not care for. As such, we've decided to set a minimium
+ age requirement of 16. If a user indicates they are less than that, the system will reject their application with a message similar to
+ this:</p>
+<p><img alt="Application Denied because of age" src="http://andrewwegner.com/images/application-denied-underage.png"/></p>
+<p><em>Updated January 2010</em> This process has been in place for a few months now. It has gone very well. We've reduced the clutter 
+in the applications forum. We've also seen the number of "forgotten" applications drop dramatically. </p>
+<h2 id="original-announcement">Original Announcement<a class="headerlink" href="#original-announcement" title="Permanent link">¶</a></h2>
+<p>The original announcement is posted here for future reference.</p>
+<blockquote>
+<p>Zephyr is an automated robot designed to improve our new member application process. The current process, which involves copying a template to a new thread and the potential for applications to become misplaced, is cumbersome and inefficient. The goal of Zephyr is to remove as much of the manual process as possible.</p>
+<p>Now, our new applicants will fill out an actual application online. The same information will be requested, but it will be in a more reliable format and will not require an applicant copy and paste anything between threads. This new application will be posted in the same forum as you're used to, and members will be freely able to comment and discuss the applicant via that thread. It will also display which date admin voting will be open, which is two full weeks after the original application post. This will hopefully cut down on any confusion related to the delay between application and voting.</p>
+<p>As another note, from now on Zephyr will be the only user capable of creating new threads in the New Member Application forum. As previously stated, members will be able to post comments on existing threads, but the only new threads will come from the application process. This will keep the forum cleaner and help prevent applications from becoming lost or forgotten about.</p>
+<p>Once again, Zephyr is an automated robot. It is not programmed to respond to comments or questions. Doing so will not get your question answered. As always, if you have questions or comments about the application process, Zephyr, or anything else, you're welcome to send them to any admin. We'll be more than happy to help.</p>
+<p>You may all bow to your Robotic Overlord now.</p>
+</blockquote>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="next-article"><a href="http://andrewwegner.com/fixing-myisam-crashed-tables.html" title="Next: Fixing MYISAM Crashed Tables">Fixing MYISAM Crashed Tables</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2009-10-30T22:30:00-05:00">Oct 30, 2009</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#vipers-ref">Vipers</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#automation-ref">automation
+                    <span>6</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#community-ref">community
+                    <span>3</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#programming-ref">programming
+                    <span>8</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#team-vipers-ref">team vipers
+                    <span>10</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam sidebar-social-links"></i></a>
+    <a href="http://careers.stackoverflow.com/andrewwegner" title="My Stack Overflow Careers Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow careers sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="http://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

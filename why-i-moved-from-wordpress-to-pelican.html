@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+        <meta name="copyright" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Meta, Pelican, Side Activities, " />
+
+<meta property="og:title" content="Why I moved from Wordpress to Pelican "/>
+<meta property="og:url" content="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html" />
+<meta property="og:description" content="A brief summary of why I dropped Wordpress and moved to Pelican" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2015-05-03T22:41:00-05:00" />
+<meta name="twitter:title" content="Why I moved from Wordpress to Pelican ">
+<meta name="twitter:description" content="A brief summary of why I dropped Wordpress and moved to Pelican">
+
+        <title>Why I moved from Wordpress to Pelican  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="http://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://andrewwegner.com">Home</a></li>
+                            <li ><a href="http://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="http://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="http://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html"> Why I moved from Wordpress to Pelican  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#my-issues-with-wordpress">My Issues with Wordpress</a><ul>
+<li><a href="#spam">Spam</a></li>
+<li><a href="#security">Security</a></li>
+</ul>
+</li>
+<li><a href="#php-vs-python">PHP vs Python</a></li>
+<li><a href="#markdown">Markdown</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>For years, I maintained a Wordpress blog covering various things I've done or created. Most of these revolved around
+things I created to make administering Team Vipers easier for me and for the rest of the admin team. It was my way
+of documenting what I'd done (in case I ever needed to do it again) and providing a way to update the Team Vipers community
+about new plugins or applications that would be deployed to the community. </p>
+<h2 id="my-issues-with-wordpress">My Issues with Wordpress<a class="headerlink" href="#my-issues-with-wordpress" title="Permanent link">¶</a></h2>
+<p>The problem I had with Wordpress was that it was just to bulky for the simple posts I was making. I needed a database, a full web
+server (or a hosting provider), and either time to hunt for the "perfect" plugin(s) or PHP knowledge to do it myself. Early in my
+development career, I used PHP a lot. That was part of the reason I chose Wordpress. </p>
+<blockquote>
+<p>Oh! I know that language. If I ever need something, I can just whip it up myself. </p>
+<p><em>-Me, before the real world ambushed me and beat me with a stick</em></p>
+</blockquote>
+<h3 id="spam">Spam<a class="headerlink" href="#spam" title="Permanent link">¶</a></h3>
+<p>I spent time setting up Wordpress. I picked out a theme, plugins, and started saving future me with documentation. Then life happened. For whatever
+reason, I stopped updating Wordpress. My blog sat out there for weeks or months unvisited by anyone. Then, one morning, my phone vibrated
+and told me that I had a new comment on my site. Woo! </p>
+<p>Except it was spam. Boo!</p>
+<p>I marked it spam and moved on with my day. Later that morning, I glanced at my phone again. 32 emails. I am just not that popular. Something
+was wrong. Turns out, a spam bot found me. I sighed and then removed all the comments and checked the box indicating that users had to
+be registered to post. That solved my problem for a few months.</p>
+<p>Then the bots got smarter. They started registering. They started posting legitimate looking messages, except for that associated URL their name
+would link to in the comments. They pulled keywords out of the post and formulated a somewhat passable English question using those words. The spam
+prevention plugins I installed would slow the tide for a few weeks. The bots would adapt and then I'd be awash with spam posts again. Eventually,
+the solution was to completely disable comments. I'd spent way to much time dealing with spam on a blog that received very little legitimate traffic.</p>
+<p>Since I don't utilize the comments, Pelican provides a nice simple page that I can post my thoughts and not worry about getting hit by a spam bot. It also
+provides plugins so that I <em>can</em> include comments should I ever choose to do so in the future. For the time being, though, I have a nice simple page 
+with no comments. That's exactly what I was looking for.</p>
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">¶</a></h3>
+<p>If you watch any technology web sites, you'll notice that there are vulnerabilities found in Wordpress frequently. These require patches,
+which requires me to do something. It may be as simple as logging in and clicking a button to update, but it is still something I need to 
+remember to do for a relatively minor site. When I'd log in to clear the spam backlog, I'd frequently also install updates for 10-20 plugins, themes or
+Wordpress itself. It was mostly painless, but I didn't like the idea of the site sitting there vulnerable for weeks at a time because I didn't
+visit and login.</p>
+<p>The dynamic nature of Wordpress and the underlying database exposed a fairly sizable target for a web page so small. Pelican generates static
+HTML pages. I don't have to worry about SQL injections, unauthorized logins, or anything else. I host a basic set of HTML, CSS and JavaScript files. 
+That's it.</p>
+<h2 id="php-vs-python">PHP vs Python<a class="headerlink" href="#php-vs-python" title="Permanent link">¶</a></h2>
+<p>As I mentioned before, I used to use PHP frequently. It was my go to language. I picked Wordpress with the idea that I'd be able to hack together features I needed.
+The reality, it turns out, was that I wasn't actually interested in doing that. Instead, I picked out plugins that were close enough to the
+exact functionality I wanted. </p>
+<p>I transferred to a job where I used Python. Instead of having a language I used on the side (PHP) and a job where I was a glorified project manager, without the 
+actual title of "Project Manager", I now had a job where I used a language (Python) for 8 hours a day. My usage of PHP plummeted. I found I could get what I wanted
+done in my side projects faster and easier with Python. At work I used Python to build tools for engineering problems. At home, I started using it for every day
+tasks. </p>
+<p>Soon, I realized I hadn't used PHP for several versions of the language. My knowledge of the language was outdated. The biggest reason I'd chosen Wordpress was no longer
+relevant, because I couldn't write anything complicated in PHP without glancing at documentation to do even simple things. It's sad that I lost the intimate knowledge of
+a language, but I feel that I've been more productive with Python anyway.</p>
+<p>Pelican is written in Python. Even more importantly though, it generates HTML files which are hosted. I don't need to run a Python environment on a server. I just
+need to host HTML files. </p>
+<h2 id="markdown">Markdown<a class="headerlink" href="#markdown" title="Permanent link">¶</a></h2>
+<p>Finally, I've fought with Wordpress's text editor countless times. This happened most often when attempting to add code blocks. It was a pain to do. It was a pain
+to fix when the blocks broke. Pelican supports Markdown. Markdown is supported by large organizations like GitHub, reddit and Stack Exchange. I use all three of those.
+I know how to utilize Markdown to create code blocks, headers, insert images, create bulleted lists. All without needing to fight how the text editor is going to actually
+save the data.</p>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html" title="Previous: I&#39;m running to be a moderator of Stack Overflow">I'm running to be a moderator of Stack Overflow</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2015-05-03T22:41:00-05:00">May 3, 2015</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#side-activities-ref">Side Activities</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#meta-ref">Meta
+                    <span>1</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#pelican-ref">Pelican
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam sidebar-social-links"></i></a>
+    <a href="http://careers.stackoverflow.com/andrewwegner" title="My Stack Overflow Careers Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow careers sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="http://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

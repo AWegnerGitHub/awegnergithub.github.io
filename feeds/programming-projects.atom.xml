@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/programming-projects.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-05-08T00:00:00-05:00</updated><entry><title>Zephyr - The bot that watches for low quality vote requests</title><link href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" rel="alternate"></link><updated>2015-05-08T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-03-12:zephyr-the-bot-that-watches-for-low-quality-vote-requests.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stack Exchange receives thousands of questions per day across all of their sites. Not all of these are high quality
+posts. Fortunately, users of the Stack Exchange network are given &lt;a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/"&gt;tools&lt;/a&gt; to help keep that low quality stuff to a 
+minimum. One of these tools is the chat network that spans the Stack Exchange sites. &lt;/p&gt;
+&lt;p&gt;In the chat rooms, a convention has arisen to tag a message as &lt;kbd class="light"&gt;cv-pls&lt;/kbd&gt; for questions that need to be closed for one reason 
+or another. Over time, this evolved to include other tags such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;kbd class="light"&gt;del-pls&lt;/kbd&gt; for a deletion request&lt;/li&gt;
+&lt;li&gt;&lt;kbd class="light"&gt;spam&lt;/kbd&gt; for notification that spam made it through the already &lt;a href="http://meta.stackexchange.com/questions/228043/"&gt;impressive&lt;/a&gt; spam &lt;a href="http://meta.stackexchange.com/a/237882/186281"&gt;filters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;kbd class="light"&gt;reopen&lt;/kbd&gt; for a reopen request&lt;/li&gt;
+&lt;li&gt;a few others to cover specific flag types (eg. Not an answer, Very Low Quality or Offensive)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="introducing-zephyr"&gt;Introducing Zephyr&lt;a class="headerlink" href="#introducing-zephyr" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The problem with these is that the requests are only seen by users active in the specific room where it was posted. 
+Other users across the network miss the request. &lt;strong&gt;&lt;a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot"&gt;Zephyr&lt;/a&gt;&lt;/strong&gt; was built to resolve this problem. Zephyr monitors
+several rooms where these types of requests are frequent. These requests all all posted into a single &lt;a href="http://chat.meta.stackexchange.com/rooms/773/low-quality-posts-hq"&gt;chat room&lt;/a&gt;. 
+This provides users with a single room to monitor to see requests for multiple questions and sites across the network.&lt;/p&gt;
+&lt;p&gt;Here is an example of what Zephyr's chat activity looks like during a spam wave:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zephyr's chat activity during a spam wave" src="http://andrewwegner.com/images/zephyr-spam-wave.png"/&gt;&lt;/p&gt;
+&lt;h3 id="how-it-works"&gt;How it works&lt;a class="headerlink" href="#how-it-works" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Zephyr utilizes the &lt;a href="https://github.com/Manishearth/ChatExchange"&gt;ChatExchange&lt;/a&gt; package to join and read the chat rooms. To do this, Zephyr required a dedicated
+account. I decided to run Zephyr with a dedicated account to completely separate the bot that would sit and watch multiple chat
+rooms 24/7 from my account. Zephyr maintains a small SQLite database of all the posts that it records. The idea behind this, 
+is that eventually this data will be utilized to train other systems on unwanted content. This information is pulled via
+the &lt;a href="http://api.stackexchange.com/"&gt;API&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Zephyr watches the chat rooms for specific string &lt;a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot/blob/master/create_config_files.py"&gt;patterns&lt;/a&gt;. If these patterns are matched, a message is posted if &lt;code&gt;should_post&lt;/code&gt; 
+is &lt;code&gt;True&lt;/code&gt; for the matched pattern. &lt;/p&gt;
+&lt;p&gt;Overall, a nice simple application. It performs some pattern matching and a couple API calls. &lt;/p&gt;
+&lt;h3 id="other-bots"&gt;Other bots&lt;a class="headerlink" href="#other-bots" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In addition to watching user activity, Zephyr also watches two other quality bots that patrol Stack Exchange for low
+quality content: &lt;a href="https://github.com/Charcoal-SE/SmokeDetector"&gt;SmokeDetector&lt;/a&gt; and &lt;a href="https://github.com/ArcticEcho/Phamhilator/wiki"&gt;Phamhilator&lt;/a&gt;. If either of these bots detect spam, Zephyr takes note of the information by
+recording it to the database, but not reposting. Since both of those bots post their reports, it didn't make sense for Zephyr
+to add a second (or third, if both of the others detected spam) message to the chat room. The information is recorded, though,
+to help future training for other systems.&lt;/p&gt;
+&lt;h2 id="updates"&gt;Updates&lt;a class="headerlink" href="#updates" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated May 8, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Over time Zephyr has been updated to include new rooms to monitor or new patterns to match. Those changes are small (and simple).
+There are, however, a few larger changes that I'd like to note below.&lt;/p&gt;
+&lt;h3 id="commands"&gt;Commands&lt;a class="headerlink" href="#commands" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The other bots that Zephyr monitors respond to user input. Zephyr has very little that requires user interaction since all of it's
+posts are generated &lt;em&gt;by&lt;/em&gt; user input. However, there have been times where I, as the bot owner, would like to be able to issue
+certain commands to it. My most common desire is to see a report of how many spam posts Zephyr has seen. Thus, Zephyr now responds
+to the command &lt;code&gt;spamreport&lt;/code&gt; from me. It then prints out a nice summary of information. This information has been utilized in 
+SmokeDetector to watch for commonly spammed domains.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zephyr spam report for April 2015" src="http://andrewwegner.com/images/zephyr-spam-report.png"/&gt;&lt;/p&gt;
+&lt;h3 id="upgrade-from-sqlite-to-mariadb"&gt;Upgrade from SQLite to MariaDB&lt;a class="headerlink" href="#upgrade-from-sqlite-to-mariadb" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Zephyr was originally built against an SQLite database. This worked, but was getting slower as more data was being added. This slow down
+was beginning to affect performance. I started seeing this error more and more frequently:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;Traceback (most recent call last):
+  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py", line 255, in _close_connection
+    self._dialect.do_close(connection)
+  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py", line 418, in do_close
+    dbapi_connection.close()
+ProgrammingError: SQLite objects created in a thread can only be used in that same thread.The object was created in thread id 4824 and this is thread id 4660
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After spending a lot of time troubleshooting and not resolving it to my satisfaction, I decided to upgrade to a more robust database. I'd used
+MySQL/MariaDB before and I happened to have another application utilizing MariaDB at the moment so that is the solution I picked. &lt;/p&gt;
+&lt;p&gt;The first step was transferring data. I learned that there isn't a decent utility to do a straight migration. So, I took these steps to transfer the data:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Export table structures and data from SQLite&lt;/li&gt;
+&lt;li&gt;Convert the SQLite dump to MySQL format. Though both systems use SQL, there are slight differences in dialect. I utilized
+ &lt;a href="http://stackoverflow.com/a/1067365/189134"&gt;this Python script&lt;/a&gt; as a starting point. It got me most of the way there, but not completely.&lt;/li&gt;
+&lt;li&gt;Data clean up. Ugh. The dreaded part of the job for anyone who handles data. Fortunately, the script above did most of the work.
+ I ended up fixing a couple stray back ticks that didn't convert properly, escaping a very extra quotation marks, and replacing
+ a few "smart quotes" (of both the &lt;a href="http://www.fileformat.info/info/unicode/char/201c/index.htm"&gt;left&lt;/a&gt; and &lt;a href="http://www.fileformat.info/info/unicode/char/201d/index.htm"&gt;right&lt;/a&gt; variety). I wish data at the office job was this easy to clean...&lt;/li&gt;
+&lt;li&gt;Import into MariaDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since the transfer to MariaDB, I've noticed no performance degradation. The error about threads has been eliminated as well.&lt;/p&gt;
+&lt;h3 id="upgrade-to-utilize-web-sockets"&gt;Upgrade to utilize web sockets&lt;a class="headerlink" href="#upgrade-to-utilize-web-sockets" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Originally, Zephyr used the &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L68"&gt;&lt;code&gt;watch&lt;/code&gt;&lt;/a&gt; method when monitoring a room. This method would long poll the room. It turns out that this is 
+pretty unreliable. I'd get multiple errors through out the week, ranging from &lt;code&gt;Connection Aborted&lt;/code&gt; errors to random &lt;code&gt;404&lt;/code&gt; messages. The 
+solution has been to switch to &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"&gt;&lt;code&gt;watch_socket&lt;/code&gt;&lt;/a&gt;. The only time I've had problems since this switch is when the Stack Exchange 
+web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"></link><updated>2015-05-03T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post was originally &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;published&lt;/a&gt; by &lt;a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile"&gt;me&lt;/a&gt; on Meta Stack Overflow on December 14, 2014. I've republished it here
+so that I can easily update information related to recent developments. If you have questions or comments, I highly
+encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;question&lt;/a&gt; on Meta Stack Overflow and post there.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;TL;DR: Yes it can.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="background"&gt;Background&lt;a class="headerlink" href="#background" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On June 27, 2014 Skynet awoke. It looked at Stack Overflow and thought "Why are all these people being so chatty and talking about obsolete things? I should nuke them all!" Fortunately, Skynet was a baby and only had access to my 100 comment flags a day.&lt;/p&gt;
+&lt;p&gt;Prior to this activation date, the system was fed with 10,000 "Good Comments", "Obsolete" comments and "Too Chatty" comments. These comments were taken from the &lt;a href="http://data.stackexchange.com/"&gt;Stack Exchange Data Explorer&lt;/a&gt;. The "Obsolete" and "Too Chatty" comment types had to meet the following criteria:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Total comment length of less than 100 characters&lt;/li&gt;
+&lt;li&gt;Comment has a 0 score&lt;/li&gt;
+&lt;li&gt;Had variations of the following phrases:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Phrases&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;'%mark%answer%'
+'%mark%accept%'
+'%accept%answer%'
+'%lease%accept%'
+'%mark%answer%'
+'%thank%you%'
+'%thx%you%'
+'%.....'
+'+1%'
+'-1%'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;"Good Comments" were assumed, initially, to be anything that didn't fall into the above criteria&lt;/p&gt;
+&lt;p&gt;This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.&lt;/p&gt;
+&lt;p&gt;My next step was to train a classifier. I had initially assumed that I'd start with a Naive Bayes to get a baseline and then work to something more complicated from there. Perhaps, extract text features, user information, etc. and build a fancy classifier. My initial tests showed that the Naive Bayes was accurate 80-90% of the time with test data.&lt;/p&gt;
+&lt;p&gt;I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these threshold took a few weeks but eventually I determined the following thresholds were appropriate for my use:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="gh"&gt;Type            | Threshold     | Flagging Enabled&lt;/span&gt;
+&lt;span class="gh"&gt;--------------------------------------------------&lt;/span&gt;
+too chatty      | 0.9997        | True
+obsolete        | 0.99          | True
+good comment    | 0.9999        | False
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When a comment is classified, if it exceeds the threshold for one of the above, it is recorded into my database for future retraining. If flagging is enabled, the API is &lt;a href="http://api.stackexchange.com/docs/comment-flag-options"&gt;utilized&lt;/a&gt; to issue an &lt;a href="http://api.stackexchange.com/docs/create-comment-flag"&gt;appropriate&lt;/a&gt; flag. Obviously, I don't want to flag good comments, but I do want to record them so that I can reuse the data in a later training step.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;What have the results of this experiment been? From my point of view, I'd venture that it's been successful. I have automatically flagged over 17,000 comments. As of December 17, 2014, the process has been running for 173 days. My comment flagging stats are currently:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;26885   comments flagged
+26714   deemed helpful
+171     declined
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Started at (approximately):&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;9885    comments flagged
+9847    deemed helpful
+38      declined
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This gives me an overall accuracy of 99.36%. Down from 99.61% when no automated process was involved.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;There are pictures that help tell this story too. In this first one, we see that the rolling 10 day average for the number of declined flags has stayed below two flags a day. In October, there was a two week period where the rolling average was 0 and nearly a month long period where the system did not make any mistakes.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="http://andrewwegner.com/images/flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the &lt;a href="http://winterbash2014.stackexchange.com/resolution"&gt;Resolution hat&lt;/a&gt;. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to day light saving time. My process starts 10 minutes after UTC. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they &lt;a href="http://meta.stackexchange.com/a/215397/186281"&gt;lost their keys&lt;/a&gt; that day.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Total flagged vs Total Declined" src="http://andrewwegner.com/images/total_flags_vs_total_declined.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Except for 3 days, since June 27th, the process has flagged 100 comments a day. In this chart, you can see the number of declined comment flags along the bottom.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Number of comments saved per day" src="http://andrewwegner.com/images/comments_saved_per_day.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Finally, this chart shows the number of comments that the system wanted to act on (and a rolling 5 day average). When the system was brought online, it was acting on 700-800 comments a day (saving to my local database). Many of these were being classified as "Good Comments". You can see the day that I adjusted the threshold for "Good Comments" to be acted upon (saved). The drop in the number of comments the system saved is dramatic. Instead of saving 700-800 comments daily, the system now averages about 150 comments to save. Since I don't flag "Good Comments", I feel this is the appropriate action to take.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h3 id="comments-that-were-flagged-but-declined"&gt;Comments that were flagged but declined&lt;a class="headerlink" href="#comments-that-were-flagged-but-declined" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;As shown above, I've had comments flags declined. Some of these obviously should have been and required a retraining or threshold adjustment on my part. Others, in my opinion, should have been removed as noise. Below is a small sampling of both types of comments.&lt;/p&gt;
+&lt;p&gt;Recent comments that I feel are noise:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27420526/i-want-to-play-from-frame-2-and-then-stop-at-frame-3/27425983#comment43388489_27425983"&gt;yes thank you so much for you help it works sorry for the late reply&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27476522/how-to-call-a-function-by-a-pointer/27476639#comment43387801_27476639"&gt;Wow it works. Thank you very much!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27284958/why-thread-id-creates-not-in-order/27285031#comment43038003_27285031"&gt;wow that works!Thanks so much for your advice!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27375504/remove-legends-for-each-point-and-keep-only-those-which-are-outliers-for-ggplot/27380631#comment43387125_27380631"&gt;Ok, the works great, thank you so much!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/14907518/modal-view-controllers-how-to-display-and-dismiss/14910469#comment43386201_14910469"&gt;Thank you very much for your explanation, you rock dude !!!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are some comments that were incorrectly flagged:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/18545905/meteor-without-mongo#comment42850716_18545905"&gt;@Spina: yes. Check my answer. You can simply point MONGO_URL to an invalid URL.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27007685/how-can-i-position-divs-at-the-bottom-of-container-div-and-inline/27007772#comment42544238_27007772"&gt;Sorry, my error. I was: "position", not "display". Check it: jsfiddle.net/hvfku99c&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/26745185/multiple-spacebar-conditional-operators/26745790#comment42078870_26745790"&gt;I believe UI.registerHelper is, being deprecated. Please check my updated answer.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Other comments are flagged but then edited prior to a moderator seeing the comment. The edit adds information to the post, thus the declination is justified:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27406267/neo4j-very-slowly-using-shortestpath#comment43271781_27406267"&gt;Yes, I have indexes. Let me show my schema&lt;/a&gt; was edited to the much more useful: &lt;code&gt;Yes, I have indexes for UUID and Permission. In fact rlationship is a variable length here (e)-[rp:Has_Pocket|Has_Document*0..]-&amp;gt;d&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/26535662/how-to-read-files-in-sequence-from-a-directory-in-opencv/26536198#comment41709286_26536198"&gt;Here is the question i had posted first using FIleStorage issue&lt;/a&gt; was edited to include the link to the referenced post.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's also worth noting that despite getting flags declined, some comments do eventually disappear. This is due to either flags raised by other community members putting the comment back in front of a moderator or by simply accumulating enough community flags for the system to act automatically. In either case, the desired result of removing noise has been accomplished.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27006363/node-js-parse-filename-from-url/27006555#comment42544432_27006555"&gt;Oh, derr. good point. Edited.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27073761/redefining-the-hitbox-of-objects/27073838#comment42659999_27073838"&gt;You're right! Hopefully you see my point anyways.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h2 id="lessons-and-observations"&gt;Lessons and Observations&lt;a class="headerlink" href="#lessons-and-observations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Replication to other sites would depend on site culture&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As a (fairly) non-subjective site, Stack Overflow made a good test case for this. On a site like &lt;a href="http://communitybuilding.stackexchange.com/"&gt;Community Building&lt;/a&gt;, &lt;a href="http://pets.stackexchange.com/"&gt;Pets&lt;/a&gt;, &lt;a href="http://parenting.stackexchange.com/"&gt;Parenting&lt;/a&gt; or other site that accepts subjective answers, "too chatty" would be much harder to classify.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://meta.stackoverflow.com/q/277314/189134"&gt;+/-1 has been discouraged&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The observation I made on my own that comments with this type of content were distracting has been noticed by others as well. This was actually a very nice validation of my own process and some of the &lt;a href="https://stackedit.io/viewer#!provider=gist&amp;amp;gistId=af9d8186690cb658aafe&amp;amp;filename=commentblacklistresults.md"&gt;results&lt;/a&gt; posted on that thread show many such comments continue to be noise. Of course, this change did also force users to modify their content and may have added new patterns that can be utilized in future training.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ability to &lt;a href="http://meta.stackexchange.com/q/245416/186281"&gt;automatically check flags&lt;/a&gt; would be great so that automated runs could be paused if it goes crazy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The process of checking that my flagging history remains accurate is time consuming. The status of a flag can't be acquired via the API. I've submitted a feature request for this information to be added to the API. With this information, flagging can be paused or stopped if X number of flags are declined.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Stack Overflow's volume of comments is a crutch.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Due to the &lt;a href="http://data.stackexchange.com/stackoverflow/query/200435#graph"&gt;high volume of comments&lt;/a&gt; and limited number of comment flags my account has available, I can afford to be picky on which comments I want to act on. The classifier itself is about 85% accurate in determining the type of comment. However, I artificially increase my accuracy by only acting on comments that have a very high classifier certainty by forcing this certainty level to meet or surpass my threshold values from above. Smaller sites, with a lower volume, don't have the benefit of having enough comments to be this picky. It is on these sites that a more feature based classifier would be important.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The human element is still unpredictable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My classifier was trained utilizing my idea of how comments should be flagged. Prior to automating this, I was not 100% accurate. Additionally, moderators are not 100% accurate in their processing of flags. &lt;a href="http://meta.stackoverflow.com/q/278813/189134"&gt;Users&lt;/a&gt; &lt;a href="http://meta.stackoverflow.com/q/280426/189134"&gt;disagree&lt;/a&gt; on how these rules should be implemented, but are willing to &lt;a href="http://meta.stackoverflow.com/q/278927/189134"&gt;assist&lt;/a&gt; in keeping the site clean. With more than 175K comments a week, every little bit helps.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="discussion"&gt;Discussion&lt;a class="headerlink" href="#discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As my title states, my original question was whether or not I can teach a machine how to flag comments as I would. The answer to that is yes. The next question is whether this type of system would be helpful in cleaning up comments across Stack Overflow. My system works only on new comments created around each new UTC. Once my 100 flags are hit (or the API tells me to stop), it shuts down for the day. Having something automated go through historical comments or that can run all day would be beneficial.&lt;/p&gt;
+&lt;p&gt;Finally, now that I've admitted that I've been automatically flagging comments, can I continue to do so?&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="update"&gt;Update&lt;a class="headerlink" href="#update" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This section has been updated multiple times since the original post. Most recently, it was updated May 3, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As I mentioned in the introduction, this was originally published in December 2014. How is the system behaving now? It is performing very well.&lt;/p&gt;
+&lt;h3 id="process-changes"&gt;Process Changes&lt;a class="headerlink" href="#process-changes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In January 2015, &lt;a href="http://meta.stackoverflow.com/q/283030/189134"&gt;another user&lt;/a&gt; was using a basic query to look for invalid comments. This caused a high number of moderator flags, many of which were declined. My process was caught in this mass decline. This resulted in 49 declined flags for a single day.
+This is, by far, the largest number of declined flags the process has generated in a day. It did, however, prompt a process change after consultation with the Stack Overflow moderators.&lt;/p&gt;
+&lt;p&gt;The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.&lt;/p&gt;
+&lt;h3 id="updated-results"&gt;Updated Results&lt;a class="headerlink" href="#updated-results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After nearly a year of running, these are my flagging statistics:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;39938   comments flagged
+39659   deemed helpful
+279     declined
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This provides a helpful rate of 99.3%. This is down &lt;em&gt;just&lt;/em&gt; slightly from 99.36% in December. I attribute a large part of the dip to the issue mentioned above.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Here is an updated chart showing the rolling 10 day average for number of declined flags. I've had several stretches of multi-week time frames with no declined flags.&lt;/p&gt;
+&lt;p&gt;This is a busy chart, so I've narrowed it down to show just the last 90 days. From here you can see that in the past 90 days there have been only 10 declined flags.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 90 day window" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/&gt;&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry></feed>

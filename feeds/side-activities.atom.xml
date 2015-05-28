@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-05-03T22:41:00-05:00</updated><entry><title>Why I moved from Wordpress to Pelican</title><link href="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html" rel="alternate"></link><updated>2015-05-03T22:41:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-05-03:why-i-moved-from-wordpress-to-pelican.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For years, I maintained a Wordpress blog covering various things I've done or created. Most of these revolved around
+things I created to make administering Team Vipers easier for me and for the rest of the admin team. It was my way
+of documenting what I'd done (in case I ever needed to do it again) and providing a way to update the Team Vipers community
+about new plugins or applications that would be deployed to the community. &lt;/p&gt;
+&lt;h2 id="my-issues-with-wordpress"&gt;My Issues with Wordpress&lt;a class="headerlink" href="#my-issues-with-wordpress" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The problem I had with Wordpress was that it was just to bulky for the simple posts I was making. I needed a database, a full web
+server (or a hosting provider), and either time to hunt for the "perfect" plugin(s) or PHP knowledge to do it myself. Early in my
+development career, I used PHP a lot. That was part of the reason I chose Wordpress. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Oh! I know that language. If I ever need something, I can just whip it up myself. &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;-Me, before the real world ambushed me and beat me with a stick&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="spam"&gt;Spam&lt;a class="headerlink" href="#spam" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I spent time setting up Wordpress. I picked out a theme, plugins, and started saving future me with documentation. Then life happened. For whatever
+reason, I stopped updating Wordpress. My blog sat out there for weeks or months unvisited by anyone. Then, one morning, my phone vibrated
+and told me that I had a new comment on my site. Woo! &lt;/p&gt;
+&lt;p&gt;Except it was spam. Boo!&lt;/p&gt;
+&lt;p&gt;I marked it spam and moved on with my day. Later that morning, I glanced at my phone again. 32 emails. I am just not that popular. Something
+was wrong. Turns out, a spam bot found me. I sighed and then removed all the comments and checked the box indicating that users had to
+be registered to post. That solved my problem for a few months.&lt;/p&gt;
+&lt;p&gt;Then the bots got smarter. They started registering. They started posting legitimate looking messages, except for that associated URL their name
+would link to in the comments. They pulled keywords out of the post and formulated a somewhat passable English question using those words. The spam
+prevention plugins I installed would slow the tide for a few weeks. The bots would adapt and then I'd be awash with spam posts again. Eventually,
+the solution was to completely disable comments. I'd spent way to much time dealing with spam on a blog that received very little legitimate traffic.&lt;/p&gt;
+&lt;p&gt;Since I don't utilize the comments, Pelican provides a nice simple page that I can post my thoughts and not worry about getting hit by a spam bot. It also
+provides plugins so that I &lt;em&gt;can&lt;/em&gt; include comments should I ever choose to do so in the future. For the time being, though, I have a nice simple page 
+with no comments. That's exactly what I was looking for.&lt;/p&gt;
+&lt;h3 id="security"&gt;Security&lt;a class="headerlink" href="#security" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you watch any technology web sites, you'll notice that there are vulnerabilities found in Wordpress frequently. These require patches,
+which requires me to do something. It may be as simple as logging in and clicking a button to update, but it is still something I need to 
+remember to do for a relatively minor site. When I'd log in to clear the spam backlog, I'd frequently also install updates for 10-20 plugins, themes or
+Wordpress itself. It was mostly painless, but I didn't like the idea of the site sitting there vulnerable for weeks at a time because I didn't
+visit and login.&lt;/p&gt;
+&lt;p&gt;The dynamic nature of Wordpress and the underlying database exposed a fairly sizable target for a web page so small. Pelican generates static
+HTML pages. I don't have to worry about SQL injections, unauthorized logins, or anything else. I host a basic set of HTML, CSS and JavaScript files. 
+That's it.&lt;/p&gt;
+&lt;h2 id="php-vs-python"&gt;PHP vs Python&lt;a class="headerlink" href="#php-vs-python" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As I mentioned before, I used to use PHP frequently. It was my go to language. I picked Wordpress with the idea that I'd be able to hack together features I needed.
+The reality, it turns out, was that I wasn't actually interested in doing that. Instead, I picked out plugins that were close enough to the
+exact functionality I wanted. &lt;/p&gt;
+&lt;p&gt;I transferred to a job where I used Python. Instead of having a language I used on the side (PHP) and a job where I was a glorified project manager, without the 
+actual title of "Project Manager", I now had a job where I used a language (Python) for 8 hours a day. My usage of PHP plummeted. I found I could get what I wanted
+done in my side projects faster and easier with Python. At work I used Python to build tools for engineering problems. At home, I started using it for every day
+tasks. &lt;/p&gt;
+&lt;p&gt;Soon, I realized I hadn't used PHP for several versions of the language. My knowledge of the language was outdated. The biggest reason I'd chosen Wordpress was no longer
+relevant, because I couldn't write anything complicated in PHP without glancing at documentation to do even simple things. It's sad that I lost the intimate knowledge of
+a language, but I feel that I've been more productive with Python anyway.&lt;/p&gt;
+&lt;p&gt;Pelican is written in Python. Even more importantly though, it generates HTML files which are hosted. I don't need to run a Python environment on a server. I just
+need to host HTML files. &lt;/p&gt;
+&lt;h2 id="markdown"&gt;Markdown&lt;a class="headerlink" href="#markdown" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Finally, I've fought with Wordpress's text editor countless times. This happened most often when attempting to add code blocks. It was a pain to do. It was a pain
+to fix when the blocks broke. Pelican supports Markdown. Markdown is supported by large organizations like GitHub, reddit and Stack Exchange. I use all three of those.
+I know how to utilize Markdown to create code blocks, headers, insert images, create bulleted lists. All without needing to fight how the text editor is going to actually
+save the data.&lt;/p&gt;</summary><category term="Meta"></category><category term="Pelican"></category></entry><entry><title>I'm running to be a moderator of Stack Overflow</title><link href="http://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html" rel="alternate"></link><updated>2015-04-21T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-04-06:i'm-running-to-be-a-moderator-of-stack-overflow.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://stackexchange.com/sites#"&gt;Stack Exchange&lt;/a&gt; has over 130 sites in its network. Each of those sites has at least 3 moderators that are glorified &lt;a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/"&gt;janitors&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A lot of the moderation work is extremely mundane, almost janitorial. It’s deleting obvious spam, closing blatantly off-topic questions, and culling some of the worst rated posts in various dimensions.&lt;/p&gt;
+&lt;p&gt;The ideal moderator does as little as possible. But those little actions may be powerful and highly concentrated. Judiciously limiting your use of moderator powers to selectively prune and guide the community — now that’s the true art of moderation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This works so well in the Stack Exchange network because the users are able to handle most moderation tasks. As users gain reputation, they gain privileges. With these privileges, they are better able to maintain and cultivate the content on the site.&lt;/p&gt;
+&lt;p&gt;Not all activity can be performed by users though. This is where moderators come in.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://communitybuilding.stackexchange.com/users/78/andy?tab=profile"&gt;&lt;img alt="Andy on Community Building" src="http://andrewwegner.com/images/community_building_andy_flair.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I already have a diamond (♦) on the &lt;a href="http://communitybuilding.stackexchange.com/"&gt;Community Building&lt;/a&gt; site. I was &lt;a href="http://meta.communitybuilding.stackexchange.com/q/138/78"&gt;appointed&lt;/a&gt; one of the Pro Tempore moderators during the beta phase of the site. This is my first experience moderating on Stack Exchange, beyond what my reputation on Stack Overflow
+gets me. &lt;a href="http://meta.communitybuilding.stackexchange.com/a/77/78"&gt;It is not, however, my first time moderating&lt;/a&gt;. &lt;em&gt;Community Building&lt;/em&gt; is focused on various aspects of building communities - both online and off. It caters to users from all aspects of a site (owners, moderators, users, advertisers and any thing else).
+My experience here led me to pursuing a moderator position on Stack Overflow. This site is orders of magnitude larger than &lt;em&gt;Community Building&lt;/em&gt;. It has millions of users and millions of questions. With all this traffic, there are still only 18 diamond moderators. The
+idea of community moderation shows that it scales well.&lt;/p&gt;
+&lt;h2 id="nomination-phase"&gt;Nomination Phase&lt;a class="headerlink" href="#nomination-phase" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The election cycle begins with the nomination phase. Users nominate themselves for the position. In 1200 characters or less, you lay out your platform. In this phase, nearly anyone can nominate themselves. However, there are only 30 positions available. If more than 30 people
+nominate themselves, then the users with the lowest reputation get bumped. With only 11K reputation, I am at the lower end of the spectrum of other nominees, but I am well above the lowest. I have the 8th lowest reputation. I've looked at previous election cycles. It seems unlikely
+that there will be 39 or more nominees. I think that I am safe.&lt;/p&gt;
+&lt;h3 id="my-platform"&gt;My Platform&lt;a class="headerlink" href="#my-platform" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I posted my &lt;a href="http://stackoverflow.com/election/6#post-29480018"&gt;platform&lt;/a&gt; shortly after the nomination phase opened. I stressed the work that I've already done on Stack Overflow and previous moderation experience on another Stack Exchange site (Community Building).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I'm Andy and I want to be one of your moderators.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why vote for me?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I've built an automated script to handle &lt;a href="http://meta.stackoverflow.com/questions/280546/can-a-machine-be-taught-to-flag-comments-automatically"&gt;noisy comments&lt;/a&gt;. It runs daily, probably to the chagrin of the current moderators, but it helps keep the comments noise down and it is incredibly accurate.&lt;/li&gt;
+&lt;li&gt;In addition to the automated flagging, I participate in the review queues, provide edits and post &lt;a href="http://stackoverflow.com/users/189134/andy?tab=answers"&gt;answers&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;As a moderator of &lt;a href="http://communitybuilding.stackexchange.com/"&gt;"Community Building"&lt;/a&gt;, I know the tools used by the Stack Exchange sites. I've used this position to interact with the existing moderators for advise and questions. This interaction will not only continue but be helpful as a new moderator to SO.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have the flagging history and experience to make the appropriate judgement calls. I feel that is a positive attribute that will help me in helping you to have the best experience you can on Stack Overflow.&lt;/p&gt;
+&lt;p&gt;I'll continue to help improve the site regardless of whether I am elected or not. I will be able to do a much better job at that, though, as one of your moderators.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;With this, I received my "candidate score". It was 29/40. Not the highest, but not the lowest either. I expect, if any one is concerned about this score, it will be mentioned it in the comments.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Candidate Score" src="http://andrewwegner.com/images/april_2015_candidate_score.png"/&gt;&lt;/p&gt;
+&lt;h3 id="nomination-phase-comments"&gt;Nomination Phase Comments&lt;a class="headerlink" href="#nomination-phase-comments" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Updated April 11, 2014&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The comments on my nomination post have focused mostly on the pros and cons of the automated script I built to flag comments. I was expecting this discussion. I'd classify most of the comments about the script as
+"cautious". Users seem concerned about something completely automated used to moderate or that I focus on low priority content. My response to this concern was:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[...] by automating the removal of this lower priority content it is easier to focus on the actively harmful stuff.&lt;/p&gt;
+&lt;p&gt;I'd like to point out that I have done more than "build a script". I've actively participated in review queues on Stack Overflow for years. I've flagged appropriate content
+(with a high percentage marked as accepted). I have also been moderator on Community Building. All of this, in combination with the automation, makes up my "platform".
+I have the experience of moderation, the knowledge of how the system works and the drive to improve the community.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It was also mentioned a few times that I'd be unlikely to utilize such an automated tool as a moderator. I promised to bring this concern up when I moved further into the election process.&lt;/p&gt;
+&lt;p&gt;Finally, I received a few comments supporting either me or the work that I've done.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The automation is very impressive - thanks for that, it's a real contribution to the quality of the site. That said - as a privileged user I suspect you won't be able to run these sort of scripts on your account for obvious reasons.  –  Benjamin Gruenbaum Apr 6 at 21:34&lt;/p&gt;
+&lt;p&gt;I can vouch for Andy's track record as a pro tem mod on Community Building. I want to note as well for the record that many of the main site questions and answers on Community Building are explicitly about moderation, and his contributions there also provide insight into his approach to the job. –  Air Apr 7 at 16:54&lt;/p&gt;
+&lt;p&gt;Huh. I have to say I'm impressed. Putting you on my list of candidates to watch. –  Qix Apr 7 at 19:23&lt;/p&gt;
+&lt;p&gt;I'd just like to point out that your response to my concerns is fair and reasonable, as well as polite, even if it isn't quite exactly how I see things. It certainly alleviates my concerns of misusing moderator power. I will be seriously considering voting for you. –  jpmc26 Apr 8 at 6:41&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Overall, I'm pleased with how the discussion has gone. It has been a few days since there were comments left though. Hopefully a little interest picks up during the primary phase.&lt;/p&gt;
+&lt;p&gt;I am also very impressed by the other candidates. There are many very good candidates that I'd be happy to work with (or be unashamed to lose to).&lt;/p&gt;
+&lt;h2 id="primary-phase"&gt;Primary Phase&lt;a class="headerlink" href="#primary-phase" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated April 17, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The nomination phases has ended. I have advanced to the primary phase. The purpose of this phase is to narrow the list of 30 candidates to 10. Those 10 will be the ones that can be voted on to be the next moderators. In the primary phase, users can vote nominees up or down.&lt;/p&gt;
+&lt;p&gt;As part of the election process, one of the other &lt;a href="http://stackoverflow.com/users/616460/jason-c"&gt;candidates&lt;/a&gt; created several tools to help users see nominee activity. He also created a &lt;a href="http://meta.stackoverflow.com/questions/290346/2015-election-live-vote-monitor"&gt;live vote monitor&lt;/a&gt;. It was exciting to hang out in the Election Chat room and watch votes roll in. The position of 10th was highly contested
+toward the end of the primary. I was very pleased to see that everyone remained civil in the chat room too.&lt;/p&gt;
+&lt;p&gt;I ended this phase with &lt;strong&gt;1492&lt;/strong&gt; positive votes. This put me in 15th. Sadly, not enough to advance to the election phase. However, there are several excellent candidates that did advance. Good luck to them.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Live Vote Counter at the end of the Primary" src="http://andrewwegner.com/images/april_2015_primary_live_vote.png"/&gt;&lt;/p&gt;
+&lt;h3 id="other-primary-data"&gt;Other Primary Data&lt;a class="headerlink" href="#other-primary-data" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Part of the primary phase involves answering questions that users have posed during the nomination phase. These questions were voted upon and the highest were included in the questionnaire. My &lt;a href="http://meta.stackoverflow.com/questions/290096/2015-moderator-election-qa-questionnaire/290122#290122"&gt;response&lt;/a&gt; was removed at the end of this phase because I did not advance. I was
+prepared with answers about my moderation style and my expectations for the position.&lt;/p&gt;
+&lt;p&gt;One of the other tools that was created during this cycle showed &lt;a href="http://meta.stackoverflow.com/questions/289995/2015-moderator-candidate-activity-profiles"&gt;nominee activity&lt;/a&gt; on the site over time. This was a quick way to compare nominees based on the number of activities they have performed on undeleted posts (because data related to deleted posts is removed from public view). It
+provided, at a glance, a way to see who is and is not active.&lt;/p&gt;
+&lt;p&gt;Below are the charts of my activity that the tool created. The green vertical bar is account creation date. The orange/brown vertical bars are previous election windows.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Stack Overflow Activity Chart" src="http://andrewwegner.com/images/april_2015_so_activity_chart.png"/&gt;
+This is my activity chart for Stack Overflow itself. It shows that I've had an account since 2009, but didn't really start utilizing the site, more than occassionally, until 2013. Since then, it shows that a large majority of my
+activity onsite is in the review queues. There are posts, revisions, comments and more along the bottom, but most of my activity is in the review queues.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Meta Stack Overflow Activity Chart" src="http://andrewwegner.com/images/april_2015_mso_activity_chart.png"/&gt;
+&lt;img alt="Meta Stack Exchange Activity Chart" src="http://andrewwegner.com/images/april_2015_mse_activity_chart.png"/&gt;
+My Meta Stack Overflow and Meta Stack Exchange charts show a fairly low activity level. Unfortunately, I think this is obscuring the posts that I do make simply because of the large scale on the y-axis.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Combined Activity Chart" src="http://andrewwegner.com/images/april_2015_combined_activity_chart.png"/&gt;
+Finally, the last chart shows the combined activity across all three areas (SO, MSO, and MSE). It looks very similar to the Stack Overflow one because of the lower activity levels on the two Meta sites.&lt;/p&gt;
+&lt;h2 id="election-phase"&gt;Election Phase&lt;a class="headerlink" href="#election-phase" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated April 21, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The election is over. Three great candidates were elected. One thing I am like about Stack Exchange's elections is their &lt;a href="http://meta.stackexchange.com/a/77560/186281"&gt;usage of OpenSTV and the Meek STV method&lt;/a&gt;. The results of each round of the
+election cycle are available at &lt;a href="http://www.opavote.org/results/4962933813542912/0"&gt;opavote.org&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Like most elections, there are known and unknown winners before the election even begins. The response that &lt;a href="http://stackoverflow.com/users/100297/martijn-pieters"&gt;Martijn Pieters&lt;/a&gt; received from the time he nominated through the final moments of the election all but guarenteed a victory for him. It is a
+well deserved victory. I hope that he is able to keep up his frequent, high quality, answers in the &lt;a href="http://stackoverflow.com/questions/tagged/python"&gt;python&lt;/a&gt; tag. If not, his drop in activity will be felt. The surprise, to me, was &lt;a href="http://stackoverflow.com/users/1114/jeremy-banks"&gt;Jeremy Banks&lt;/a&gt;. He ended in 9th place in the primaries. That doesn't mean he can't do the job.&lt;/p&gt;
+&lt;p&gt;I've interacted with all three moderators on site and in chat prior to their victory. I've been very happy with those interactions. With their promotion, I look forward to working with them as a moderator on the Stack Exchange network in the future.&lt;/p&gt;
+&lt;p&gt;Congratulations to the winners!&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>Moderation postion on Moderators</title><link href="http://andrewwegner.com/moderation-postion-on-moderators.html" rel="alternate"></link><updated>2014-12-04T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-07-02:moderation-postion-on-moderators.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been the owner of Vipers for almost 5 years. In that time I've help the community grown and get stronger. I've helped
+members begin their own communities and I've maintained the game servers the players utilize 24 hours a day. I've been 
+concerned about low activity, excited about new events and updates, and watched the community ebb and flow through out
+the years. I've dealt with trolls, spammers, and new community members. I think I've gained valuable experience in 
+managing a community.&lt;/p&gt;
+&lt;p&gt;I'm also a member on &lt;a href="http://stackoverflow.com/users/189134/andy"&gt;Stack Overflow&lt;/a&gt; and over the years gotten to know others that enjoy the "Meta" aspect of 
+Stack Exchange. That's the "behind the scenes", "how does this site work?" discussions and activities. &lt;/p&gt;
+&lt;h2 id="moderators"&gt;Moderators&lt;a class="headerlink" href="#moderators" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A few days ago, I found a way to merge my experience with Vipers and the knowledge of the Stack Exchange platform. A new 
+community started recently: &lt;a href="http://moderators.stackexchange.com"&gt;Moderators&lt;/a&gt;. The idea behind this site is for people building, administering, managing or
+cultivating digital communities to have a place to ask others with similar experiences questions. I love it!&lt;/p&gt;
+&lt;p&gt;One of the things a new site needs on the Stack Exchange network is a set of pro tempore moderators. While Stack Exchange 
+believe in &lt;a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/"&gt;community moderation&lt;/a&gt;, there are still some things that require more access. These pro tempore moderators
+are those people. I &lt;a href="http://meta.communitybuilding.stackexchange.com/a/80/78"&gt;nominated&lt;/a&gt; myself for one such position.&lt;/p&gt;
+&lt;h3 id="the-nomination"&gt;The Nomination&lt;a class="headerlink" href="#the-nomination" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This is the nomination I presented to the community. In it, I discuss my experience with Vipers and some of our challenges.
+One in particular that I mention is the &lt;a href="http://andrewwegner.com/monitoring-language-on-the-game-servers.html"&gt;automated language filter&lt;/a&gt; we have on the game servers.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I am an administrator/site owner of a medium sized gaming community that runs on a PHPBB3 board. We host multiple game 
+servers as well. I've got a team of moderators that help keep the forum and game servers clean. I've run this site for 
+5 years, after taking it over from the original creator of the community who wanted to move on. In my time as admin, 
+we've seen the number of participants on the forum increase. We've seen our game server population increase as well. 
+I attribute this to getting the community involved in change discussions.&lt;/p&gt;
+&lt;p&gt;One of our biggest changes occurred several years ago. Community members complained that our game servers would be over 
+run with trolls at hours when moderators weren't available and spewing filth. The community wanted a cleaner game 
+server experience. Users wanted these players gone immediately. Previous community leaders felt that trolling of this 
+kind was part of the game and did nothing. After some discussions regarding what was and wasn't appropriate, we decided 
+to be (for lack of a better term) "family friendlier". Certain 'extreme' phrases were no longer tolerated at all. A 
+technical solution was built to automatically remove players that violated these rules. This solution allowed users to 
+swear, but once it became excessive (again, defined by the community) they, too, were removed.&lt;/p&gt;
+&lt;p&gt;The tool we have (PHPBB3) may not have the reputation, badges, or increasing privileges used here on Stack Exchange but 
+for my community that has not been a negative. Engaging with the community in discussions and letting the members provide 
+input that me and my team utilize has been extremely beneficial.&lt;/p&gt;
+&lt;p&gt;I have no experience moderating a Stack Exchange site. I don't feel that's a down side though. I can provide the 
+"outside" perspective in a Stack Exchange heavy group. That does mean, though, that I'd depend on and expect the 
+community to provide feedback on how moderation in being handled. Much like my existing gaming community, input from the 
+community to the moderation team is important and the moderation team should be listening to that input. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="appointment"&gt;Appointment&lt;a class="headerlink" href="#appointment" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Updated on August 12, 2014&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I have been &lt;a href="http://meta.communitybuilding.stackexchange.com/q/138/78"&gt;appointed&lt;/a&gt; to a moderator position on Moderators. I now "moderator the moderators", as the running joke 
+has been on meta and the chatroom. I am looking forward to helping this community grow and to providing my experience 
+of community management outside of Stack Exchange to this position.&lt;/p&gt;
+&lt;h2 id="renaming-to-community-building"&gt;Renaming to Community Building&lt;a class="headerlink" href="#renaming-to-community-building" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated on December 4, 2014&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Almost since the beginning of Moderators, there have been conversations about whether the name is limiting our scope. We aren't
+a community for &lt;em&gt;only&lt;/em&gt; moderation questions. We are a community about how to build communities and moderation happens to
+be a part of community building. (How many times can you say "community" before it sounds weird?)&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://meta.communitybuilding.stackexchange.com/q/140/78"&gt;Discussions&lt;/a&gt; began in August about possible name changes. These &lt;a href="http://meta.communitybuilding.stackexchange.com/q/175/78"&gt;discussions&lt;/a&gt; continued into October as we worked on
+the &lt;a href="http://meta.communitybuilding.stackexchange.com/q/172/78"&gt;scope&lt;/a&gt; of our site. Finally, on December 2, we received our new name: &lt;a href="http://meta.communitybuilding.stackexchange.com/q/193/78"&gt;Community Building&lt;/a&gt;. It's the same great site
+but with a much more relevant name. &lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>I had a secret addiction to the TF2 idling economy but I'm better now (honest)</title><link href="http://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html" rel="alternate"></link><updated>2013-08-13T00:01:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-08-13:i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On July 11, 2013, Valve released a &lt;a href="http://www.teamfortress.com/post.php?id=11105"&gt;patch&lt;/a&gt; to Team Fortress 2 to limit idling. Idling is the process of launching
+Team Fortress and then letting it run for a few hours and collecting item drops. It used to be simple to do by utilizing
+the &lt;code&gt;-textmode&lt;/code&gt; &lt;a href="https://developer.valvesoftware.com/wiki/Command_Line_Options#Command-line_parameters_2"&gt;game parameter&lt;/a&gt;. This would "launch" the game without graphics. From there, you just let it run and 
+come back in a few hours with 8-10 new items (your weekly limit). &lt;/p&gt;
+&lt;p&gt;The idea behind this was to then trade or craft these into metal. The metal could be used to trade for keys, hats, etc. and
+all you to be "rich". The quotes are there because I do realize that being rich in a virtual game does not make one rich in
+the real world. But, since the &lt;a href="https://wiki.teamfortress.com/wiki/Mann-Conomy_Update"&gt;Mann-Conomy Update&lt;/a&gt; introduced this massive meta game to Team Fortress, I've tried to stay
+out of it. &lt;/p&gt;
+&lt;p&gt;I failed. I didn't just idle one account. I idled 17 accounts. That is between 136 and 170 items a week. That's between 68 to 85
+scrap metal a week. That's between 7.55 and 9.44 refined metal a week. That is between 3 and 4 keys a week (depending on 
+who I trade with). Keys are the backbone of the economy. Get enough of those and you can trade for anything else. &lt;/p&gt;
+&lt;p&gt;I honestly don't know what my goal was. I wasn't interested in the fancy hats (ooooh...shiny pixels). I didn't open crates
+with the keys. I did utilize the keys to get &lt;a href="https://wiki.teamfortress.com/wiki/Tour_of_Duty_Ticket"&gt;Tour of Duty&lt;/a&gt; tickets for me and some friends. That's honorable, right?&lt;/p&gt;
+&lt;h2 id="how-did-this-happen"&gt;How did this happen?&lt;a class="headerlink" href="#how-did-this-happen" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This all started with &lt;a href="http://andrewwegner.com/give-some-refined-win-some-prizes.html"&gt;the bot I built for Vipers to handle the raffles&lt;/a&gt;. I realized that I could automate much more
+than trading with players. I could automate trading between bots. I could automate &lt;em&gt;crafting&lt;/em&gt; - which is relatively time
+consuming, especially when you have 136 items to go through. I could automate trading with established scrap bank bots. These
+bots will take any two weapon drops and give you one scrap, even if the two items can't be crafted together. The idea is
+that they get enough weapons that eventually they'll be able to craft it down to metal.&lt;/p&gt;
+&lt;h3 id="the-set-up"&gt;The set up&lt;a class="headerlink" href="#the-set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To idle 17 accounts I needed to figure out what my computer could handle. I had to figure out how to run multiple instances
+of Steam and Team Fortress at a time. Enter an application I'd utilized before: &lt;a href="http://www.sandboxie.com/"&gt;Sandboxie&lt;/a&gt;. This application provides 
+isolated sandboxes for applications to run in. Normally Steam won't run more than once on a machine. But, if you launch
+it via Sandboxie, the host OS (and other Sandboxie environments) can't see that Steam is running in another instance. &lt;/p&gt;
+&lt;p&gt;A bit of experiementation showed that I could handle 6 accounts idling at a time and have the computer remain just barely 
+usable. I created new accounts and split them into which day of the week they'd be run. I had three days out of the week 
+designated for idling. &lt;/p&gt;
+&lt;p&gt;A batch script was built to launch the Sandboxie environments of the day that was to idle. Then it'd launch Team Fortress
+in each of those environments. Then I'd go to bed. When I woke up the next morning, I'd shut down the environments. I'd 
+repeat this for two more nights. At the end of the third night, I had all the items I could get for the week.&lt;/p&gt;
+&lt;p&gt;Accounts could not be free accounts. This meant that I needed to either buy an item for each account, or trade for an 
+&lt;a href="https://wiki.teamfortress.com/wiki/Upgrade_to_Premium_Gift"&gt;"Upgrade to Premium Gift"&lt;/a&gt;. &lt;/p&gt;
+&lt;h3 id="getting-items-to-a-single-account"&gt;Getting items to a single account&lt;a class="headerlink" href="#getting-items-to-a-single-account" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next step in the process was to convert all the items to metal. Normally, this would take place by either logging into
+each account and crafting there and then trading everything to a master account, or trading everything first then crafting. 
+In either case, 17 accounts is a lot to handle and trading/crafting is rather boring.&lt;/p&gt;
+&lt;p&gt;My solution was to modify the raffle bot. I'd designate one account as a master account. This would be the account that
+received items. All others would dump items to it. I'd log into the account that was receiving items and initiate a trade
+with each other bot in turn. I'd issue a command &lt;code&gt;add all&lt;/code&gt; and that bot would dump it's inventory into trade. Making it
+through all the bots would take 5 minutes. Previously it would take me an hour or more to log into each account and
+manually add items to the trade windows and then confirm the trade on both sides. &lt;em&gt;yawn&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id="crafting"&gt;Crafting&lt;a class="headerlink" href="#crafting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next step was crafting items to metal. The rule was that any two weapons utilized by the same class could be
+crafted to scrap metal. That sounds simple enough.&lt;/p&gt;
+&lt;p&gt;After lots of trial and error, I'd built a set of commands that would select compatable weapons and craft them together. This
+particular aspect wasn't documented by Steam (or the revese engineered SteamKit2 library I was utilizing). Crafting would 
+take about 15 seconds to get all compatible items to scrap and then combining 9 scrap to get a refined metal. This saved 
+inventory space.&lt;/p&gt;
+&lt;p&gt;With the simple command &lt;code&gt;craftall&lt;/code&gt;, all those new weapons would be crafted into metal and then combined into refined metal. This 
+would be done in less than a minute. Previously, I'd have to initiate each crafting session, add all items per craft, wait for the
+craft to complete and then repeat. This was another 15-30 minutes saved.&lt;/p&gt;
+&lt;h3 id="left-overs"&gt;Left overs&lt;a class="headerlink" href="#left-overs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After crafting, there would still be left over weapons. There were weapons that had run out of same class items to craft
+with. The solution was to trade these away in groups of two to &lt;a href="http://scrapbank.me/"&gt;ScrapBank.me&lt;/a&gt; and get scrap metal back. This could be
+further combined to refined metal again wasting space. &lt;/p&gt;
+&lt;h3 id="metal-to-keys"&gt;Metal to Keys&lt;a class="headerlink" href="#metal-to-keys" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;At this point, human intervention was required again. I had to convert my metal to keys. I did this via trading. The easy
+way to do this was to find someone running a keybot, that would take metal for a key. Many exist, but all of them overcharge.
+The other option was to look for a trader that was getting rid of a bulk set of keys and then trade them. In either case,
+I'd end the week with 3-4 keys. I'd trade these for Tour of Duty tickets and go play a game with friends.&lt;/p&gt;
+&lt;p&gt;The actual work required on my part was starting the idling for the night, shutting down idling in the morning, starting
+the automated trade, crafting and trade left overs processes and finally trading metal for keys. What used to take me hours 
+to do each week, I could not do in less than an hour (the bulk of which ended up being trading metal for keys).&lt;/p&gt;
+&lt;h2 id="what-changed"&gt;What changed?&lt;a class="headerlink" href="#what-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Valve released a patch to limit how effective idling was. Their "Mann-Conomy" was seeing rapid inflation. The price of 
+keys (which they sold for physical money) in metal was rapidly increasing. From the time I started this to the time I ended
+it, it jumped from 2-3 refined per key to 9-10 per key, with no sign of stopping. Casual players were complaining they couldn't
+get enough items to trade for this stuff. The patch also required that you click to confirm each new received item.&lt;/p&gt;
+&lt;h2 id="im-ok-honest"&gt;I'm ok. Honest.&lt;a class="headerlink" href="#im-ok-honest" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I tried for a few days to find an effective work around. I didn't. When I wasn't able to find one, I transfered all items 
+to the master account and went through the process of converting to keys. With that, I purchased the final set of 
+Tour of Duty tickets. The idle bots were shut down. &lt;/p&gt;
+&lt;p&gt;It's been a month now. The bots are still down. I'm still around. Looking back on this, I'm happy Valve broke this. It wasn't
+doing anything for me other than providing me with something to do: "Need to idle tonight", "Need to craft and trade today", etc. 
+Now I have that time back.&lt;/p&gt;
+&lt;p&gt;I am pleased with the technical challeges I over came to get this done though. Crafting was the biggest, but I think I'm
+most proud of the automated transfer of items to the master. Since the bots had to communicate via Steam and not via
+a local application, working out how I was going to do that took some time.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;That, my friends, was my addiction to the meta game of a hat similator in a first person shooter. I'm over it now and 
+looking forward to some other project.&lt;/p&gt;</summary><category term="automation"></category><category term="programming"></category><category term="gaming"></category></entry></feed>

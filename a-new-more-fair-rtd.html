@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+        <meta name="copyright" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="team vipers, programming, Vipers, " />
+
+<meta property="og:title" content="A new, more fair, RTD "/>
+<meta property="og:url" content="http://andrewwegner.com/a-new-more-fair-rtd.html" />
+<meta property="og:description" content="A description of how the Roll The Dice plugin has been updated" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2011-02-04T20:01:00-06:00" />
+<meta property="" content="2015-05-20T00:00:00-05:00" />
+<meta name="twitter:title" content="A new, more fair, RTD ">
+<meta name="twitter:description" content="A description of how the Roll The Dice plugin has been updated">
+
+        <title>A new, more fair, RTD  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="http://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://andrewwegner.com">Home</a></li>
+                            <li ><a href="http://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="http://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="http://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://andrewwegner.com/a-new-more-fair-rtd.html"> A new, more fair, RTD  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#the-old-rtd">The old RTD</a></li>
+<li><a href="#the-new-rtd">The new RTD</a></li>
+<li><a href="#source-code">Source Code</a></li>
+<li><a href="#statistics">Statistics</a><ul>
+<li><a href="#good-vs-bad">Good vs Bad</a></li>
+<li><a href="#class-with-the-most-rtds">Class with the most RTDs</a></li>
+<li><a href="#class-with-the-least-rtds">Class with the least RTDs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h2 id="the-old-rtd">The old RTD<a class="headerlink" href="#the-old-rtd" title="Permanent link">¶</a></h2>
+<p>Viper's own LinuxLover, aka <a href="https://forums.alliedmods.net/member.php?u=38829">pheadxdll</a> on the <a href="https://forums.alliedmods.net/index.php">SourceMod forums</a>, wrote the <a href="https://forums.alliedmods.net/showthread.php?p=666222">original version</a> of the Roll the Dice
+plugin. It has provided countless hours of fun for players. After all, who doesn't love getting Toxic while standing near an enemy 
+spawn and hearing the rage as they die immediately. It's usually worth the instant death that follows when the effect
+wears off ten seconds later.</p>
+<p>There were problems though. The biggest was that the chances of getting a Good vs Bad roll were not equal. Instead, you 
+had a roughly equal chance of getting any roll. There were 14 possible rolls. You had a 1 out of 14 chance of getting a specific
+effect. However, 9 of those effects were negative. Thus, you had a much higher chance of getting a negative effect vs a 
+positive one. The other major problem was that it was very difficult to add new effects. Finally, with the released mod
+not being updated, and LinuxLover departing Vipers to handle his own community on the Randomizer server, it was next to
+impossible to get changes made.</p>
+<p><em>NOTE</em>: LinuxLover released a new version of RTD (the 0.4 branch) sometime after we had forked the version we had. The new
+version on SourceMod contains many of the same features we have. It does not, however, contain all of them.</p>
+<h2 id="the-new-rtd">The new RTD<a class="headerlink" href="#the-new-rtd" title="Permanent link">¶</a></h2>
+<p>The logic for how rolls are determined has been changed. There is now a list of Good Effects and a list of Bad Effects. When
+someone rolls, the first thing that is done is determine whether or not we are going to have a Good or Bad effect. That is a 
+50/50 chance. Then it randomly selects one of the effects that are active and appropriate for the player's current class
+that falls under the winning category. This should even out the Good vs Bad complaints.</p>
+<p>Another change that I've added is that we can now more easily add effects. Some new effects have been added:</p>
+<ul>
+<li>Powerplay: When Uber isn't enough...you need Kritz and Uber. </li>
+<li>Freeze Bullets: You've been shot! You should run away, but you can't. You're frozen in place for the next ten seconds, if 
+ you're lucky.</li>
+<li>Fire Bullets: A bullet wound isn't enough. You need to be on fire too.</li>
+<li>No crits: Haha! You are on an all crits server and you just lost your crits. Go sit at the little kid table.</li>
+<li>Valve Rockets: We've included something that may be slightly overkill. You tell me:</li>
+<li>+9900% damage</li>
+<li>+9000% clip size</li>
+<li>+75% firing speed</li>
+<li>+500 health on kill</li>
+<li>10 seconds of crits on kill</li>
+<li>+200% speed</li>
+<li>+60% reload time</li>
+</ul>
+<p>Because sometimes overkill is needed. </p>
+<p>We've been testing performance of this over the last few months. Today is the day that everyone can get it without
+   an admin being around.</p>
+<p>For those that haven't seen it, here is one of our first tests back in November</p>
+<iframe allowfullscreen="" frameborder="0" height="344" src="https://www.youtube.com/embed/OzHNr1Bz5QQ?feature=oembed" width="612"></iframe>
+<ul>
+<li>The Headless Horseless Headmann: That's right, you can be the Halloween nightmare.</li>
+</ul>
+<p><em>Update:</em></p>
+<ul>
+<li>Homing Projectiles: Is that soldier aimbotting?! Nope. His rockets are just following you where ever you go. Boom! Oh, 
+ sniper arrows and pyro flares are probably something to avoid too.</li>
+</ul>
+<p>Finally, I added in the ability to log rolls to a database so that we can find fancy stats and ensure it's rolling fairly. I'll
+update this post in a few months with some of our gathered stats.</p>
+<h2 id="source-code">Source Code<a class="headerlink" href="#source-code" title="Permanent link">¶</a></h2>
+<p><em>Updated May 20, 2015 with link to GitHub instead of the old SVN, my apologies for missing that link when migrating to this blog
+It is important to note that this version hasn't been updated in a LONG time and all effects may not work any more. Specifically,
+homing probably doesn't work because the Sidewinder extension had been broken by a Valve update in mid-2014. Other effects
+should continue to work</em></p>
+<p>The source code is released on Github. It requires several common modules which are all available on the SourceMod forums.</p>
+<p>The repository is: <a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins">https://github.com/AWegnerGitHub/Vipers-Server-Plugins</a></p>
+<h2 id="statistics">Statistics<a class="headerlink" href="#statistics" title="Permanent link">¶</a></h2>
+<p><em>This section was updated in January 2015 after the shutdown</em></p>
+<h3 id="good-vs-bad">Good vs Bad<a class="headerlink" href="#good-vs-bad" title="Permanent link">¶</a></h3>
+<p>I don't have exact stats on Good vs Bad rolls before the rewrite, but we started logging all rolls with the rewrite. This is the 
+split of Good vs Bad. I am very happy with an almost exactly 50/50 split over nearly a million RTDs.</p>
+<p><img alt="RTD Split" src="http://andrewwegner.com/images/rtd-split.png"/></p>
+<h3 id="class-with-the-most-rtds">Class with the most RTDs<a class="headerlink" href="#class-with-the-most-rtds" title="Permanent link">¶</a></h3>
+<p>Solider was the most popular class on the crit server. The images below show number of times our soldiers got certain rolls. Note that God Mode is 
+low because the community decided having both God Mode and Powerplay was redundant. They decided to keep Power play. God Mode was
+disabled about a year after this version was released. Homing is low because it wasn't implemented until about 18 months after
+the initial release.</p>
+<p><img alt="RTD Soldier" src="http://andrewwegner.com/images/rtd-soldier.png"/></p>
+<h3 id="class-with-the-least-rtds">Class with the least RTDs<a class="headerlink" href="#class-with-the-least-rtds" title="Permanent link">¶</a></h3>
+<p>Medics rolled RTD the least number of times. This means sense for two reasons. First, they were not a common class on the crit server. When 
+nearly everything is one hit, one kill, it's very hard to build uber. Second, when you <em>do</em> try to build Uber, ruining it with a 50/50
+shot at getting a bad roll isn't good for the team. The low God Mode and Homing results are the same here as they were for the soldier.</p>
+<p><img alt="RTD Medic" src="http://andrewwegner.com/images/rtd-medic.png"/> </p>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://andrewwegner.com/a-special-kind-of-troll.html" title="Previous: A special kind of troll">A special kind of troll</a></li>
+                <li class="next-article"><a href="http://andrewwegner.com/connect-python-to-osi-soft-pi.html" title="Next: Connect Python to OSI Soft PI">Connect Python to OSI Soft PI</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2011-02-04T20:01:00-06:00">Feb 4, 2011</time>
+
+<h4>Last Updated</h4>
+<time datetime="2015-05-20T00:00:00-05:00">May 20, 2015</time>
+
+            <h4>Category</h4>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#vipers-ref">Vipers</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#programming-ref">programming
+                    <span>8</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#team-vipers-ref">team vipers
+                    <span>10</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam sidebar-social-links"></i></a>
+    <a href="http://careers.stackoverflow.com/andrewwegner" title="My Stack Overflow Careers Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow careers sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="http://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

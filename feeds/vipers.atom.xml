@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/vipers.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-05-20T00:00:00-05:00</updated><entry><title>Thanks for all the fish</title><link href="http://andrewwegner.com/thanks-for-all-the-fish.html" rel="alternate"></link><updated>2015-04-28T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-08:thanks-for-all-the-fish.html</id><summary type="html">
+&lt;h2 id="goodbye-team-vipers"&gt;Goodbye Team Vipers&lt;a class="headerlink" href="#goodbye-team-vipers" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A few days ago Team Vipers shut down. Exactly 6 years after I join the community and 5 years after taking 
+over as owner, I decided to step aside. I announced my decision to my admin team in November and asked if anyone wanted to 
+take over. A week later I made the announcement public. I copied that below. My hope was that someone would be willing to 
+take over day to day operations and management. &lt;/p&gt;
+&lt;p&gt;Unfortunately, no one was able to take on the responsibilities. I had to make the hard choice of shutting down the community. 
+I am unable to provide the time or monetary commitment this community requires any longer. Team Vipers was a home and 
+community for 6 years. I've met a lot of people playing games with members of the community. Several other sites were 
+created by members of Team Vipers. They have indicated they'd be willing to absorb and welcome members from Vipers. &lt;/p&gt;
+&lt;p&gt;It's been a great run. So long Vipers, and thanks for all the fish.&lt;/p&gt;
+&lt;iframe allowfullscreen="" frameborder="0" height="270" src="https://www.youtube.com/embed/BL-5OdZc3zw?feature=oembed" width="480"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;img alt="Thanks for the fish" src="http://andrewwegner.com/images/thanks-for-the-fish.jpg"/&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="original-announcement"&gt;Original Announcement&lt;a class="headerlink" href="#original-announcement" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On January 5th, 2015, I am stepping away from Vipers as the owner and administrator. Unfortunately, I no longer have time 
+to maintain the servers in a way that benefits the community. I announced this to the admin team earlier this week.&lt;/p&gt;
+&lt;h3 id="what-do-we-do-before-january-5th"&gt;What do we do before January 5th?&lt;a class="headerlink" href="#what-do-we-do-before-january-5th" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I am giving you this heads up to discuss the future of Vipers. If someone wants to step up and take everything on, I'll 
+gladly offer help during the transition. If you have questions about what happens behind the scenes, I'll answer those 
+as well. In fact, I'll start with a few questions that I think may help lead this discussion.&lt;/p&gt;
+&lt;h3 id="do-we-need-multiple-game-servers"&gt;Do we need multiple game servers?&lt;a class="headerlink" href="#do-we-need-multiple-game-servers" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Short answer - No. If the community wants to focus on a specific server mode, then a single server is all that is needed. 
+When I joined Vipers there were two servers: An Orange server and a vanilla server. For the first year-ish, the 
+servers base grew and contracted around different mods. Orange turned to Crit Orange, a Randomizer appeared and then 
+splintered into it's own community, the Nest grew and then shrank. Zombie popped up. Prophunt and Dodgeball came around 
+multiple times. In all of this, there has been between one or two popular servers, with the rest being very niche. Those 
+are for fun. Those are also frustrating to fix when updates break them.&lt;/p&gt;
+&lt;h3 id="do-we-need-a-dedicated-server"&gt;Do we need a dedicated server?&lt;a class="headerlink" href="#do-we-need-a-dedicated-server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Again, no. The benefit the dedicated server provided is IP address stability. Before the dedicated server, the game servers 
+jumped around IPs every few months. With each move players were lost. Some found us months or years later when they
+randomly stumbled upon us. Others are just gone. More importantly though, is dealing with performance. If there is a 
+hosting company that can provide high quality, low ping, servers at a cheap price - that is worth it. A word of advice, 
+avoid EscapedTurkey. It is a one man operation and that person doesn't know what they are doing. If an issue crops up, 
+it takes hours to days to resolve it. It is because of them that we purchased a dedicated server.&lt;/p&gt;
+&lt;p&gt;One other note. I can not transfer the dedicated server to anyone. It's rented in my name and the hosting company doesn't 
+allow transfers. So, no matter what happens, the IP addresses would have to change anyway. The upside of this long 
+transition period is that you have plenty of time to advertise and set up the new servers. We could have in game announcements 
+AND we can lock the existing servers with the new IP in the titles. It won't be an immediate cut over. It provides 
+notification to the players.&lt;/p&gt;
+&lt;h3 id="do-we-need-the-forums"&gt;Do we need the forums?&lt;a class="headerlink" href="#do-we-need-the-forums" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Yes. The forums are what kept me in Vipers before I ended up in the position I'm in now. Without the forums, there is no 
+community. There are people that you see frequently on the servers, but rarely any meaningful interaction. With the forums 
+we get stories of our members' lives. If, however, you are going to stick to playing Valve games, I highly recommend a 
+change in forum software. Find something that supports integration with Steam (either natively or via plugin) and start 
+over. With that integration, you can do so many more (and non-hackish) things. You can pull information from Steam or 
+any other TF2 community that exposes an API. Banning a player on the servers and the forums is easy as both are based 
+on the same thing. Additionally, requiring the Steam login should eliminate the spam (no random Chinese, Russian, 
+Californian spam bots). In any case, I will provide a full database dump for you. If you stick with PHPBB, I think a 
+fresh install of PHPBB would be a good thing, but you'll have all of the data and should be able to simply import it 
+into the database. If you go with something else, you'll have the database and can attempt to use that software's 
+conversion script. Results will vary on how that works.&lt;/p&gt;
+&lt;h3 id="does-this-community-make-enough-money-on-donations"&gt;Does this community make enough money on donations?&lt;a class="headerlink" href="#does-this-community-make-enough-money-on-donations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;No. Since July of [2014 to November 2014], the community has donated $20. Total. It has been 14 months since we reached our monthly 
+goal. In the last year, we have broken $50 only 4 times. To prevent someone from misconstruing this as a plea for 
+money, I've disabled donations. I don't want someone to start a misguided "Save the Vipers" campaign that you believe 
+can succeed with donations. The way to "save the vipers" is to come together as a team and discuss your options.&lt;/p&gt;
+&lt;h3 id="what-happens-if-no-one-steps-up-to-take-over"&gt;What happens if no one steps up to take over?&lt;a class="headerlink" href="#what-happens-if-no-one-steps-up-to-take-over" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Someone in the community may step up, but if no one steps up by January, then Vipers has one last New Years hoo-rah 
+and fades to the internet. If someone does step up, I am still available to help with initial set up. I'm still available 
+to play games and to talk to. I'm not dropping off the face of the earth and I'm not rage quitting. This is very 
+much a case of real life happens.&lt;/p&gt;
+&lt;p&gt;I think that is going to cover your initial questions. If you have more, post them here and I'll answer them.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;It has been a great 6 years with everyone here. While I may be stepping down as owner, if someone keeps Vipers around, 
+you'll keep me around as a regular. I've had fun talking to all of you and playing with (and against) all of you.&lt;/em&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="updated-steam-group-ownership"&gt;Updated Steam Group Ownership&lt;a class="headerlink" href="#updated-steam-group-ownership" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated April 28, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Ownership of the Steam Group for Team Vipers has been transferred back to Russell, the original founder of Vipers. The 
+&lt;a href="http://steamcommunity.com/groups/viperservers#announcements/detail/205255298394906049"&gt;announcement&lt;/a&gt; was posted to the group earlier today.&lt;/p&gt;
+&lt;p&gt;I've also transfered data from the Vipers blog to my personal one here and removed links to Vipers from most posts 
+since they will all fail to resolve correctly. Unfortunately, it's not worth it to preserve small bits of history in 
+this case and was just easier to remove the links. The best I can do it transfer the blog posts and copy snippets or
+screenshots here. Direct links to the forum discussions has been intentionally removed.&lt;/p&gt;</summary><category term="team vipers"></category></entry><entry><title>How to appeal a ban effectively</title><link href="http://andrewwegner.com/how-to-appeal-a-ban-effectively.html" rel="alternate"></link><updated>2014-04-22T22:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-04-22:how-to-appeal-a-ban-effectively.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In &lt;a href="http://andrewwegner.com/how-not-to-appeal-a-ban.html"&gt;last week's post&lt;/a&gt;, I showed three ways that appealing bans on the Vipers forums would fail. Everyone makes mistakes
+and we try to recognize that when someone comes to the forums and makes a good appeal. We usually offer an unadvertised 
+"last chance". This is the chance to prove you've changed. If you fail, you are gone for good. If, however, you have changed
+behaviors, this allows you to play on the Vipers servers again. To get this chance though, you have to make an appeal.&lt;/p&gt;
+&lt;h2 id="super-secret-formula-for-getting-unbanned"&gt;Super secret formula for getting unbanned&lt;a class="headerlink" href="#super-secret-formula-for-getting-unbanned" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The secret to a successful appeal is to do all of the following in your appeal thread:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Post in complete sentences, using mostly correct english. I'm not going to mark you off for simple spelling mistakes, but
+ I'm not going to read your post if it looks like you typed it from your phone to your teenage buddy. &lt;/li&gt;
+&lt;li&gt;Stay polite. If you lose your cool, it's much less likely we are going to want to work with you. Remember, this is a game.
+ You not being able to play on one server is not the end of the world. &lt;/li&gt;
+&lt;li&gt;Explain why you think your ban was inappropriate. Make this short and to the point. &lt;/li&gt;
+&lt;li&gt;Don't lie. I have logs. I know how to read logs. I even have ways of quickly searching through the logs for specific
+ times, if you provide that information. If your story doesn't match what I see in the logs, I'm not going to engage with you.&lt;/li&gt;
+&lt;li&gt;Answer questions from the admins. It's entirely possible you didn't provide a crucial bit of information or we need to 
+ wait for input from the banning admin. In either case, if an administrator asks you a question, you should probably answer
+ it. When you do so, follow the first two bullet points above. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The sad thing is most of the appeals fail at step 1. These posts are to facilitate communication between the admin team
+and the player that wants to return to the server. In these appeals I try to educate a player on &lt;em&gt;why&lt;/em&gt; they were banned 
+in the first place. If it's difficult to understand what is being said, it's very hard to have this conversation.&lt;/p&gt;</summary><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>How NOT to appeal a ban</title><link href="http://andrewwegner.com/how-not-to-appeal-a-ban.html" rel="alternate"></link><updated>2014-04-14T22:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-04-14:how-not-to-appeal-a-ban.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been running Vipers for about four and a half years. In that time I've seen my share of players get banned. The "good"
+ones realize they screwed up and come back when the ban has expired and never have an issue again. These types of players
+are common if they are first time offenders. The minute someone gets a second ban, the likelihood of them getting another
+ban shoots way up.&lt;/p&gt;
+&lt;h2 id="our-rules"&gt;Our Rules&lt;a class="headerlink" href="#our-rules" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Vipers has five very simple rules. These are presented every time someone joins any of our game servers. They have to 
+click "Continue" to move past them. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Vipers Rules" src="http://andrewwegner.com/images/vipers-rules.png"/&gt;&lt;/p&gt;
+&lt;p&gt;We have a very simple structure for how bans work. Unless you are incredibly egregious in your behavior, or are out right
+cheating by using hacks of some kind, you get a 4 strike policy. The ban length for the first three increases for each, but you
+are allowed back. On the forth, we show you the door. Most of our bans are &lt;a href="http://andrewwegner.com/monitoring-language-on-the-game-servers.html"&gt;automated&lt;/a&gt;, thus are violating the very first rule.&lt;/p&gt;
+&lt;h2 id="bad-appeals"&gt;Bad appeals&lt;a class="headerlink" href="#bad-appeals" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Playing on our servers is not a right. It is not a guarantee. We are not obligated to provide a gaming environment for you
+to spew your filth. If you can't meet our simple rules, you can leave. If you want to get back into the servers after your
+forth offense, you have to come to us and ask. You should think about how you get someone to do what you want in "the
+ real world". &lt;/p&gt;
+&lt;h3 id="appeal-method-1-freedom-of-speech"&gt;Appeal method 1: Freedom of Speech&lt;a class="headerlink" href="#appeal-method-1-freedom-of-speech" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I think this one is my favorite. Last I checked, I'm not the government of the United States. I'm a private citizen providing
+a private server for others to play on. My server, my rules (technically, the community's rules, but you understand...) 
+I am not bound by the First Amendment to allow you to say whatever you want.&lt;/p&gt;
+&lt;p&gt;An example:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Freedom of speech appeal" src="http://andrewwegner.com/images/vipers-speech-appeal-1.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Let's break down some of the flaws:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First, and most importantly, we do not have a member named "DarkWolf", let alone an admin&lt;/li&gt;
+&lt;li&gt;DarkWolf was banned, automatically, 2 minutes prior to the person making this appeal. &lt;/li&gt;
+&lt;li&gt;The chat logs show that the person appealing even noticed the ban and made a comment. It was this comment that
+ triggered the ban.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Not seen in this image is the response when this was pointed out and the appeal denied. The response managed to hit all
+of the trigger words we ban for on the servers. Just in case we were reconsidering the denial, at this point we're not.&lt;/p&gt;
+&lt;h3 id="appeal-method-2-admin-abuse"&gt;Appeal method 2: Admin Abuse&lt;a class="headerlink" href="#appeal-method-2-admin-abuse" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Admins are evil and are holding a grudge! They hate me and ban for inappropriate language. Honest, I never said anything bad.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It's amazing how quickly that tune changes when I can produce exact, timestamped, logs with their Steam ID attached to it. It's even 
+more amusing when the admin being accused is "Zephyr", the automated process that watches for such language. &lt;/p&gt;
+&lt;p&gt;An example:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Admin abuse appeal" src="http://andrewwegner.com/images/vipers-abuse-appeal-1.png"/&gt; &lt;/p&gt;
+&lt;p&gt;Let's break down this one too:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Zephyr is a bot. It is not holding a grudge and it is not stalking you&lt;/li&gt;
+&lt;li&gt;Swearing, unless very very excessive, isn't going to trigger a ban&lt;/li&gt;
+&lt;li&gt;Chat logs show this is the 4th automated ban. In each ban, the user has managed to slip in multiple offensive phrases
+ befor being automatically kicked&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="appeal-method-3-ranting"&gt;Appeal method 3: Ranting&lt;a class="headerlink" href="#appeal-method-3-ranting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A rant isn't helpful to anyone. It doesn't endear the poster to the community. The administrators don't want to read through
+a rambling, unformated, exposition. &lt;/p&gt;
+&lt;p&gt;An example:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Rant appeal" src="http://andrewwegner.com/images/vipers-ddos-appeal-1.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Our break down:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Several logic errors and contradictions to their own arguments&lt;/li&gt;
+&lt;li&gt;Doesn't actually mention they are looking to be unbanned, just that they want to complain about the rules. (It's mentioned
+ in a later post that they'd like to be unbanned)&lt;/li&gt;
+&lt;li&gt;Chat logs clearly indicate the player was fond of certain slurs. This is the reason for the bans&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="appeal-method-4-threats-against-the-server"&gt;Appeal method 4: Threats against the server&lt;a class="headerlink" href="#appeal-method-4-threats-against-the-server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Threats to attack the server in some way are not going to get you unbanned. There are only two possible outcomes to this
+appeal type. Either you are successful and the server is off line (now how are you going to play even if unbanned) or we
+ignore your tantrum and leave you banned. &lt;/p&gt;
+&lt;p&gt;![DDOS appeal][6]&lt;/p&gt;
+&lt;p&gt;Break down:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I have no reason to unban you. You've threatened the servers and made an ultimatum that effectively holds us hostage: 
+ "Either I get to play with you, or I'll take down your servers". &lt;/li&gt;
+&lt;li&gt;You offer no proof of your claims (unsurprisingly, none existed)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Above I've posted three of the most common methods people use to appeal their ban on the Viper servers. Every time one of
+these types of appeals is posted, it is rejected and the player is told they aren't welcome. All I (and the community) ask
+is a little bit of respect. You've already proven that you can't follow our rules if we reach this point. If you have truly 
+changed, why don't you demonstrate some of that change while requesting the ban be removed.&lt;/p&gt;</summary><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>Mann Vs Vipers Beaten!</title><link href="http://andrewwegner.com/mann-vs-vipers-beaten.html" rel="alternate"></link><updated>2013-12-05T09:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-12-05:mann-vs-vipers-beaten.html</id><summary type="html">&lt;p&gt;The Team Vipers' Mann Vs Machine modification - Mann Vs Vipers - that was completed in August has finally been beaten. 
+Last night a starving group of players finally put down Wave 9. &lt;/p&gt;
+&lt;p&gt;The players were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MooMooCow&lt;/li&gt;
+&lt;li&gt;CutieVamp&lt;/li&gt;
+&lt;li&gt;Batman&lt;/li&gt;
+&lt;li&gt;Starfox&lt;/li&gt;
+&lt;li&gt;Healthy Cyanide&lt;/li&gt;
+&lt;li&gt;Zhiv&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The team struggled against the Admin bots - InsaneMosquito, Venom and SchooledYa. I've been told we are terrifying to play
+against and making us MvM bots with even higher stats made it even more terrifying. (I approve.)&lt;/p&gt;
+&lt;p&gt;Here's a video of Wave 9 from the victory. The winning strategy appears to be the one that works against us most of the time. 
+Separate the medic (me), from the Heavy (Venom) and the Soldier (SchooledYa). Together, we're hard to stop, but apart we
+can each be picked on for a while until there is no health left. The bots must have learned that weakness as well (I don't approve.)&lt;/p&gt;
+&lt;p&gt;Congratulations to the winners!&lt;/p&gt;
+&lt;iframe width="612" height="344" src="https://www.youtube.com/embed/PIpd2SInvYM?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</summary><category term="team vipers"></category><category term="community"></category></entry><entry><title>Give some refined, Win some prizes</title><link href="http://andrewwegner.com/give-some-refined-win-some-prizes.html" rel="alternate"></link><updated>2013-04-03T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-02-25:give-some-refined-win-some-prizes.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Financially, Vipers is supported by donations from the community. When the community doesn't cover the cost, I end up
+covering the difference. This isn't my favorite thing to do in the world, but we've been pretty successful in the past. 
+In recent months, though, we've been coming up short more frequently. This has motivated me (and the rest of the admin
+team to find ways to cover costs). Now we have one.&lt;/p&gt;
+&lt;h2 id="welcome-to-the-new-raffle-bot-in-the-community"&gt;Welcome to the new raffle bot in the community&lt;a class="headerlink" href="#welcome-to-the-new-raffle-bot-in-the-community" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've built a Raffle bot based on &lt;a href="https://github.com/Jessecar96/SteamBot"&gt;SteamBot&lt;/a&gt;, which is the base of &lt;a href="https://scrap.tf/"&gt;scrap.tf&lt;/a&gt;. Entries to raffles will be one entry 
+per refined metal. You can have an unlimited number of entries. I will convert the refined metal to various prizes 
+(with the goal being keys most of the time).&lt;/p&gt;
+&lt;p&gt;Then we'll have the system select a set of winners from the entries. A user can only win once per raffle, so even if you you
+have a gigantic number of entries, your odds of winning more than one position are zero. Only one win per steam id.&lt;/p&gt;
+&lt;p&gt;Using the prices from &lt;a href="http://backpack.tf/"&gt;backpack.tf&lt;/a&gt;, the bot will determine the "value" of the items within the trade.&lt;/p&gt;
+&lt;h2 id="how-does-this-off-set-costs"&gt;How does this off set costs?&lt;a class="headerlink" href="#how-does-this-off-set-costs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Items that are received that are of high value or any additional keys we can get based on raffle entries will be sold on 
+various TF2 trading markets. The profits from these trades will be used to cover some community costs.&lt;/p&gt;
+&lt;h2 id="can-we-keep-some-of-the-high-value-items-for-future-raffles"&gt;Can we keep some of the high value items for future raffles?&lt;a class="headerlink" href="#can-we-keep-some-of-the-high-value-items-for-future-raffles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This question was added based on feed back from the community. It was added on March 20, 2013&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The original plan was to sell any such items. However, due to community feedback, I've changed my mind. We will utilize 
+"high value" items as prizes for future raffles. These future raffles will not be announced until any running raffles are 
+complete. It is also possible that such a raffle will run separately from the planned monthly ones.&lt;/p&gt;
+&lt;h2 id="our-first-winners"&gt;Our first winners&lt;a class="headerlink" href="#our-first-winners" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated on April 3, 2013&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Our first raffle completed at Midnight on April 1st. I was surprised by the number of entries we received. I'm even more 
+surprised that the second one has begun and is already three quarters of the way to the number of entries it took a month
+to receive. People want those keys, and I saw mention of those Bill's Hats too.&lt;/p&gt;
+&lt;p&gt;The number of entries we received allowed us to completely cover the community costs that donations didn't cover. Thank
+you to all our players that entered!&lt;/p&gt;
+&lt;p&gt;Our first winners are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cashprizes: Winner of 10 keys&lt;/li&gt;
+&lt;li&gt;Popinfresh: Winner of 7 keys&lt;/li&gt;
+&lt;li&gt;Iamthebaron: Winner of 4 refined metal&lt;/li&gt;
+&lt;li&gt;That Guy From That Thing: Winner of 1 refined metal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="First Raffle Bot Entries and Winners" src="http://andrewwegner.com/images/rafflebot-entries.png"/&gt; &lt;/p&gt;</summary><category term="team vipers"></category><category term="automation"></category><category term="community"></category><category term="programming"></category></entry><entry><title>Homing projectiles are awesome!</title><link href="http://andrewwegner.com/homing-projectiles-are-awesome!.html" rel="alternate"></link><updated>2015-05-20T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-06-30:homing-projectiles-are-awesome!.html</id><summary type="html">
+&lt;h2 id="stupid-soldier-spam"&gt;Stupid soldier spam&lt;a class="headerlink" href="#stupid-soldier-spam" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The appeal of the crit server is fast game play, overpowered shots, and nearly instant death if you aren't paying attention.
+The down side is the soldier spam. Lots of it. It's not unusual to have a team of soldiers spamming rockets. This is part
+of the reason we stuck a class limit on Soldiers. &lt;/p&gt;
+&lt;p&gt;Pyro is a common way to counter a soldier firing at long range. The problem with pyro is that it has limited long range weapons 
+in return. Unless you can sneak up on an enemy (not easy with spam and some of the maps), the pyro is stuck taking pot shots
+with either the Flare gun or the shotgun. &lt;/p&gt;
+&lt;p&gt;Two weeks ago, I added a plugin to the server that made Pyro much more effective at helping the team without needing to advance 
+to the front line constantly.&lt;/p&gt;
+&lt;h2 id="reflectiles"&gt;Reflectiles&lt;a class="headerlink" href="#reflectiles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Reflected Projectiles - Reflectiles, if you will - becoming homing projectiles when a Pyro air blasts them away. These
+newly tracking projectiles will track an opposing team member and hunt them down. If the player being tracked dies before
+the projectile hits them, the projectile will select a new target. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Well, that seems unfair. How do you defend against a homing projectile as a soldier?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It is called &lt;strong&gt;Team&lt;/strong&gt; Fortress 2. You have team mates. Utilize them. That homing projectile can be reflected again by a Pyro
+on your team. Each time a projectile is reflected it gets just a bit faster. &lt;/p&gt;
+&lt;h2 id="source-code"&gt;Source Code&lt;a class="headerlink" href="#source-code" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated May 20, 2015 with link to GitHub instead of the old SVN, my apologies for missing that link when migrating to this blog
+It is important to note that this version hasn't been updated in a LONG time but was still functioning when Vipers shut
+down. If it doesn't work, the first thing to try is updating SourceMod's gamedata. This was the fix every other time
+it didn't work&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The source code is released on Github. &lt;/p&gt;
+&lt;p&gt;The repository is: &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;https://github.com/AWegnerGitHub/Vipers-Server-Plugins&lt;/a&gt;&lt;/p&gt;</summary><category term="team vipers"></category><category term="programming"></category></entry><entry><title>Monitoring Language on the game servers</title><link href="http://andrewwegner.com/monitoring-language-on-the-game-servers.html" rel="alternate"></link><updated>2015-01-08T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-04-22:monitoring-language-on-the-game-servers.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;My admin tool of choice for the TF2 servers is &lt;a href="http://www.hlsw.org/"&gt;HLSW&lt;/a&gt;. It's decent at allowing me to manage a server without ever 
+needing to log to the server. My biggest complaint about it is that I can only watch the game chat of one server at a time. 
+Sometimes, it's helpful to see an ongoing conversation to resolve minor problems before they become big ones. For example, 
+claims of "hacking" usually turn out to be completely baseless. But, if multiple users (and more importantly, multiple 
+&lt;em&gt;trusted&lt;/em&gt; users) suddenly start mentioning a hacker, I can step in and resolve the problem without entering the server. 
+HLSW is good for this. A hacker is confined to one server.&lt;/p&gt;
+&lt;p&gt;The biggest problem is when there are reports of lag across all of the game servers. Vipers has a dedicated machine that 
+runs 5 game servers. If all five suddenly report lag, there is a problem somewhere. With HLSW, though, I can't see all of 
+the servers at once. Thus, I've built a tool...&lt;/p&gt;
+&lt;h2 id="chat-monitor"&gt;Chat Monitor&lt;a class="headerlink" href="#chat-monitor" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;All chat that occurs on the servers is logged. I've used this to resolve complaints of unfair bans and reports of hackers. 
+I built in a hook to these logs from the application template to quickly pull known aliases of users. It's been invaluable 
+in solving problems of "what happened" on the servers.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Multiserver Chat monitor" src="http://andrewwegner.com/images/vipers-chat-monitor.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I've expanded it's usefulness. Now I can load a single page and see all chat activity occurring on all active game servers 
+on a single screen. It provides, at a glance, a quick way to see if there are problems on the servers. It also allows me 
+to step back from picking which server I think will be "bad" and monitor that. Now I can monitor all of them at once. &lt;/p&gt;
+&lt;h2 id="inappropriate-words"&gt;Inappropriate words&lt;a class="headerlink" href="#inappropriate-words" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As a community, we've chosen to set a higher standard for our players. As such, we have a restriction on a total of 3 
+words and a few derivatives of those words. This system is in place because the community stepped forward and wanted to 
+clean up the experience on the servers a bit. The problem with these higher standards is that we don't have admins on the 
+game servers (or watch chat logs) 24 hours a day. Thus, while admins sleep, a troll can wander through and spew garbage. 
+Unless a user reports this behavior, we will never be aware of it.&lt;/p&gt;
+&lt;p&gt;I've built a system to handle this automatically. The system will monitor chat logs across all servers. If a user hits the 
+threshold for banning, they will be removed from the server and banned for a day. The logic to the system is this:&lt;/p&gt;
+&lt;h3 id="automated-removal-logic"&gt;Automated removal logic&lt;a class="headerlink" href="#automated-removal-logic" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Inappropriate terms are configured with a "weight". This "weight" will be used to calculate whether or not a user 
+ surpasses a threshold set for being banned.&lt;/li&gt;
+&lt;li&gt;System monitors chat logs for configured terms.&lt;/li&gt;
+&lt;li&gt;If a term is found, the offending message is saved. The term weight is added to the user's current threshold value. 
+ If this is the user's first time saying one of these terms, they start at 0 and this weight is added.&lt;/li&gt;
+&lt;li&gt;If user exceeds the threshold, the system issues a ban to Sourcebans. The user is then kicked from the game server. 
+ The ban length will be 1 day.&lt;/li&gt;
+&lt;li&gt;The system keeps messages for a total of 5 minutes. If a message is older than that, the system forgets it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Currently, the three inappropriate terms all have a threshold of &lt;code&gt;1&lt;/code&gt;. This means they saying the words results in a ban. 
+Homophobic, racist remarks aren't welcome on the Viper servers. We can't prevent it, but we can deal with offences swiftly. 
+The 5 minute window is added because the community requested that excessive swearing also be limited. We don't want to 
+outright ban it, but they don't want a swear filled rant to occur after every match. &lt;/p&gt;
+&lt;p&gt;Thus, I built in the 5 minute window and the thresholds. The system is configured to catch common swear words, but the words 
+have a low weight. It'd take repeated spamming of the words in a 5 minute window to reach the threshold and be removed from 
+the server.&lt;/p&gt;
+&lt;h3 id="updated-removal-logic"&gt;Updated removal logic&lt;a class="headerlink" href="#updated-removal-logic" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Updated May 17, 2012&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The automated system has been active for almost a month. I'm finding that the system has been removing the same set of 
+players every other day. They aren't learning. This is despite the message they are shown when removed from the server. 
+I've made a change to the logic in how long a ban will last. It provides a 4 strike system:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First offence: Weight of term(s) said times 1. This means, for most cases, they are issued a single day ban.&lt;/li&gt;
+&lt;li&gt;Second offence: Weight of term(s) said times 3. This means, for most cases, they are issued a three day ban.&lt;/li&gt;
+&lt;li&gt;Third offence: Weight of terms said times 21. This means, for most cases, they are issued a three week ban.&lt;/li&gt;
+&lt;li&gt;Forth offence: Permanent removal from the game servers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The community has been very enthusiastic about how quickly users of inappropriate terms are removed. I've seen a few minor 
+complaints about the permanent removal of users on the forth offence. I've told the community that &lt;em&gt;if&lt;/em&gt; a user protests the 
+ban and &lt;em&gt;if&lt;/em&gt; they can show they've learned our rules, I will provide one additional chance after the user has waited a minimum 
+of a month from from last time they were banned. If they return to their previous activities, they will be re-banned and 
+they will not be able to return in the future. &lt;/p&gt;
+&lt;h2 id="update-at-shutdown"&gt;Update at shutdown&lt;a class="headerlink" href="#update-at-shutdown" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated January 20, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In January 2015, Team Vipers &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;shut down&lt;/a&gt;. With that shutdown, all chat monitoring also shut down. The system was active 
+from April 23, 2012 to January 4, 2015, for a total of 987 days. In that time, 4457 bans were issued for inappropriate 
+language. That is over 4 users a day being removed from our player base because they couldn't maintain a respectful 
+attitude. I consider that a success. I believe Viper community members did too.&lt;/p&gt;</summary><category term="team vipers"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>A new, more fair, RTD</title><link href="http://andrewwegner.com/a-new-more-fair-rtd.html" rel="alternate"></link><updated>2015-05-20T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2011-02-04:a-new-more-fair-rtd.html</id><summary type="html">
+&lt;h2 id="the-old-rtd"&gt;The old RTD&lt;a class="headerlink" href="#the-old-rtd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Viper's own LinuxLover, aka &lt;a href="https://forums.alliedmods.net/member.php?u=38829"&gt;pheadxdll&lt;/a&gt; on the &lt;a href="https://forums.alliedmods.net/index.php"&gt;SourceMod forums&lt;/a&gt;, wrote the &lt;a href="https://forums.alliedmods.net/showthread.php?p=666222"&gt;original version&lt;/a&gt; of the Roll the Dice
+plugin. It has provided countless hours of fun for players. After all, who doesn't love getting Toxic while standing near an enemy 
+spawn and hearing the rage as they die immediately. It's usually worth the instant death that follows when the effect
+wears off ten seconds later.&lt;/p&gt;
+&lt;p&gt;There were problems though. The biggest was that the chances of getting a Good vs Bad roll were not equal. Instead, you 
+had a roughly equal chance of getting any roll. There were 14 possible rolls. You had a 1 out of 14 chance of getting a specific
+effect. However, 9 of those effects were negative. Thus, you had a much higher chance of getting a negative effect vs a 
+positive one. The other major problem was that it was very difficult to add new effects. Finally, with the released mod
+not being updated, and LinuxLover departing Vipers to handle his own community on the Randomizer server, it was next to
+impossible to get changes made.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;NOTE&lt;/em&gt;: LinuxLover released a new version of RTD (the 0.4 branch) sometime after we had forked the version we had. The new
+version on SourceMod contains many of the same features we have. It does not, however, contain all of them.&lt;/p&gt;
+&lt;h2 id="the-new-rtd"&gt;The new RTD&lt;a class="headerlink" href="#the-new-rtd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The logic for how rolls are determined has been changed. There is now a list of Good Effects and a list of Bad Effects. When
+someone rolls, the first thing that is done is determine whether or not we are going to have a Good or Bad effect. That is a 
+50/50 chance. Then it randomly selects one of the effects that are active and appropriate for the player's current class
+that falls under the winning category. This should even out the Good vs Bad complaints.&lt;/p&gt;
+&lt;p&gt;Another change that I've added is that we can now more easily add effects. Some new effects have been added:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Powerplay: When Uber isn't enough...you need Kritz and Uber. &lt;/li&gt;
+&lt;li&gt;Freeze Bullets: You've been shot! You should run away, but you can't. You're frozen in place for the next ten seconds, if 
+ you're lucky.&lt;/li&gt;
+&lt;li&gt;Fire Bullets: A bullet wound isn't enough. You need to be on fire too.&lt;/li&gt;
+&lt;li&gt;No crits: Haha! You are on an all crits server and you just lost your crits. Go sit at the little kid table.&lt;/li&gt;
+&lt;li&gt;Valve Rockets: We've included something that may be slightly overkill. You tell me:&lt;/li&gt;
+&lt;li&gt;+9900% damage&lt;/li&gt;
+&lt;li&gt;+9000% clip size&lt;/li&gt;
+&lt;li&gt;+75% firing speed&lt;/li&gt;
+&lt;li&gt;+500 health on kill&lt;/li&gt;
+&lt;li&gt;10 seconds of crits on kill&lt;/li&gt;
+&lt;li&gt;+200% speed&lt;/li&gt;
+&lt;li&gt;+60% reload time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Because sometimes overkill is needed. &lt;/p&gt;
+&lt;p&gt;We've been testing performance of this over the last few months. Today is the day that everyone can get it without
+   an admin being around.&lt;/p&gt;
+&lt;p&gt;For those that haven't seen it, here is one of our first tests back in November&lt;/p&gt;
+&lt;iframe allowfullscreen="" frameborder="0" height="344" src="https://www.youtube.com/embed/OzHNr1Bz5QQ?feature=oembed" width="612"&gt;&lt;/iframe&gt;
+&lt;ul&gt;
+&lt;li&gt;The Headless Horseless Headmann: That's right, you can be the Halloween nightmare.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Update:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Homing Projectiles: Is that soldier aimbotting?! Nope. His rockets are just following you where ever you go. Boom! Oh, 
+ sniper arrows and pyro flares are probably something to avoid too.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Finally, I added in the ability to log rolls to a database so that we can find fancy stats and ensure it's rolling fairly. I'll
+update this post in a few months with some of our gathered stats.&lt;/p&gt;
+&lt;h2 id="source-code"&gt;Source Code&lt;a class="headerlink" href="#source-code" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated May 20, 2015 with link to GitHub instead of the old SVN, my apologies for missing that link when migrating to this blog
+It is important to note that this version hasn't been updated in a LONG time and all effects may not work any more. Specifically,
+homing probably doesn't work because the Sidewinder extension had been broken by a Valve update in mid-2014. Other effects
+should continue to work&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The source code is released on Github. It requires several common modules which are all available on the SourceMod forums.&lt;/p&gt;
+&lt;p&gt;The repository is: &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;https://github.com/AWegnerGitHub/Vipers-Server-Plugins&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="statistics"&gt;Statistics&lt;a class="headerlink" href="#statistics" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This section was updated in January 2015 after the shutdown&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id="good-vs-bad"&gt;Good vs Bad&lt;a class="headerlink" href="#good-vs-bad" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I don't have exact stats on Good vs Bad rolls before the rewrite, but we started logging all rolls with the rewrite. This is the 
+split of Good vs Bad. I am very happy with an almost exactly 50/50 split over nearly a million RTDs.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="RTD Split" src="http://andrewwegner.com/images/rtd-split.png"/&gt;&lt;/p&gt;
+&lt;h3 id="class-with-the-most-rtds"&gt;Class with the most RTDs&lt;a class="headerlink" href="#class-with-the-most-rtds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Solider was the most popular class on the crit server. The images below show number of times our soldiers got certain rolls. Note that God Mode is 
+low because the community decided having both God Mode and Powerplay was redundant. They decided to keep Power play. God Mode was
+disabled about a year after this version was released. Homing is low because it wasn't implemented until about 18 months after
+the initial release.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="RTD Soldier" src="http://andrewwegner.com/images/rtd-soldier.png"/&gt;&lt;/p&gt;
+&lt;h3 id="class-with-the-least-rtds"&gt;Class with the least RTDs&lt;a class="headerlink" href="#class-with-the-least-rtds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Medics rolled RTD the least number of times. This means sense for two reasons. First, they were not a common class on the crit server. When 
+nearly everything is one hit, one kill, it's very hard to build uber. Second, when you &lt;em&gt;do&lt;/em&gt; try to build Uber, ruining it with a 50/50
+shot at getting a bad roll isn't good for the team. The low God Mode and Homing results are the same here as they were for the soldier.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="RTD Medic" src="http://andrewwegner.com/images/rtd-medic.png"/&gt; &lt;/p&gt;</summary><category term="team vipers"></category><category term="programming"></category></entry><entry><title>A special kind of troll</title><link href="http://andrewwegner.com/a-special-kind-of-troll.html" rel="alternate"></link><updated>2011-07-07T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-12-28:a-special-kind-of-troll.html</id><summary type="html">
+&lt;h2 id="what-happened"&gt;What happened?&lt;a class="headerlink" href="#what-happened" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Over the Christmas holiday, the Team Vipers forums were hit by "multiple" users who decided it was a good idea to use our community 
+as a battle ground. A Viper member stepped in to "help" resolve the problem by attempting to play mediator. (Notice the
+air quotes. These are important later) The battling users turned on this member and escalated the matter to threats of violence. 
+When the member stopped responding, the users got bored and began spamming the board. &lt;/p&gt;
+&lt;p&gt;Due to a combination of it being Christmas and the admins doing Christmas-y things with their families, this went on for
+hours. There were several rounds of clean ups, but the battle continued over nearly a 48 hour period. &lt;/p&gt;
+&lt;h2 id="why-is-this-troll-different"&gt;Why is this troll different?&lt;a class="headerlink" href="#why-is-this-troll-different" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After Christmas festivities had ended and I had time to sit down in front of a computer to investigate what happened, I began
+piecing together a time line of events. It turns out that all of these "users" were coming from the same IP address.
+On top of that, they shared the same IP address as the member that attempted to "help". Odd...&lt;/p&gt;
+&lt;h3 id="a-little-more-background"&gt;A little more background&lt;a class="headerlink" href="#a-little-more-background" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The member that was "helping" had recently been approached by the admin team in an effort to clarify some questions about
+their age. One of the admins had been presented evidence that the user was under the age of 16, which we all know if the 
+minimum age to be a Vipers member. &lt;/p&gt;
+&lt;p&gt;The user took this as a threat that we were going to remove them from the community entirely via bans on the servers and 
+forums. They posted a rant on their "sub-community". To mean this seems much more like a place where people that didn't
+like our rules go to complain about us in an unproductive manner. I'm still not sure why they set up this community in
+the first place, because they have always expressed a very keen interest in Vipers. &lt;/p&gt;
+&lt;h3 id="follow-up-with-the-member"&gt;Follow up with the member&lt;a class="headerlink" href="#follow-up-with-the-member" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When I started seeing a pattern between the battling users and the member, I sent a Steam message to the member asking
+if they were around so that we could chat. The conversation began with me asking about the rant they posted and whether
+or not they were aware that we allowed players under 16 to play on the servers, but not be members. They said they were
+not aware of this and seemed pleased they'd still be around.&lt;/p&gt;
+&lt;p&gt;I thanked them for their attempt to help over the holiday. Then I mentioned that it was odd that all of the users were 
+coming from the same IP address. It was agreed that was odd. When I said that there was another user that used that IP in 
+the past, they stopped responding. A few hours later I got a message saying they were back and around to talk again but
+they'd closed the Steam chat window and lost the conversation.&lt;/p&gt;
+&lt;p&gt;A few minutes later they began complaining that their own forum had been spammed. I'll admit I was curious, so I went to
+take a look. There were multiple "users" having a very similar battle across the other forum. The member had posted messages
+as the voice of the community that it had to stop or they'd issue bans.&lt;/p&gt;
+&lt;p&gt;I was sick of the game at this point. I mentioned that I knew they were all of the users involved. I'd issued bans to the 
+user accounts on the forum. I revoked their Viper membership and banned their main account. I also made a note that they 
+could appeal the ban in 6 months time. I figured they'd forget about us.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It takes a special kind of troll to spam their own site to try and convince someone you aren't a spammer.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="after-effect-of-the-bans"&gt;After effect of the bans&lt;a class="headerlink" href="#after-effect-of-the-bans" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At this point the member was less than pleased. There were vague threats made against me, the server, and anything they
+could think of that would offend me. I simply ignored the user on Steam. &lt;/p&gt;
+&lt;p&gt;This didn't sit well, apparently. The user attempted a denial of service attack on the game servers, which our hosting 
+provider mitigated. Part of this mitigation involves sending me a list of IP addresses that were attempting to connect 
+to the server at the time of the attack, and part of the traffic that automatically triggered their counter measures.&lt;/p&gt;
+&lt;p&gt;Unsurprisingly, there were only a few IP addresses. Geolocation says they are all in the same city. One of those IP addresses
+is the IP of the user. &lt;/p&gt;
+&lt;h2 id="what-is-going-to-change"&gt;What is going to change?&lt;a class="headerlink" href="#what-is-going-to-change" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The biggest problem I see out of all of this is that we didn't have active admins during the initial wave of spam. I can't fault
+the admin team, after all it was Christmas. However, there have been a few requests recently for a couple more game server admins.
+I feel this incident just confirms that we need a couple more. In the coming days, we'll announce who our new admins will be.&lt;/p&gt;
+&lt;p&gt;The member that has been removed has been banned from the servers and the forums. We've also destroyed two new user accounts
+they created since the spam wave. This is business as usual. I did offer them the chance to appear at the end of June. 
+I suspect they will not.&lt;/p&gt;
+&lt;h2 id="the-appeal"&gt;The appeal&lt;a class="headerlink" href="#the-appeal" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This section was added on July 7th, 2011 after the user appealed their ban&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;It seems I was wrong. They filed an appeal to their ban. Of course it took place over another holiday (4th of July). Fortunately,
+our two European admins were still around while the rest of us were out enjoying some fireworks. &lt;/p&gt;
+&lt;p&gt;The appeal was filed on the forums, as is usual. Community members stepped in to experess their unhappiness that the user
+would consider returning after what they did over Christmas. One of the admins that were around put a message in the admin
+area and asked for feedback from other admins. &lt;/p&gt;
+&lt;p&gt;When I returned home after some amazing fireworks, I found I had an email from our hosting provider. They'd blocked another
+attempted denial of service attack. I logged into the forums to see what was going on and noticed that the appeal thread
+was not going well. The user were getting more and more upset at the community members who were rallying against their
+return. It eventually ended with a note saying that they hope Vipers never recovers from the DDOS. At this point one of the
+other admins locked the thread. &lt;/p&gt;
+&lt;p&gt;A check of the IP address the user was utilizing to post the messages and the list of IPs involved in the attempted DDOS
+showed that the IP was on the list, and again they were all in the same city (and the same city as in December). &lt;/p&gt;
+&lt;p&gt;Their appeal was rejected. They were informed they would not be welcome back.&lt;/p&gt;
+&lt;p&gt;After this appeal, I don't believe anything will need to change on our side. The appeal process concluded faster than normal.
+Attempts to DDOS the community server makes the decision rather easy for the admins. &lt;/p&gt;</summary><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>Automated template for membership applications</title><link href="http://andrewwegner.com/automated-template-for-membership-applications.html" rel="alternate"></link><updated>2009-10-30T22:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2009-10-30:automated-template-for-membership-applications.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Not to long ago, applications for new membership in Team Vipers consisted of someone wandering onto the site, posting a 
+few words and an administrator saying they were accepted as a member. This worked when we were a small community. We 
+aren't small any more. We have 5 servers and hundreds of players a day. Each server has their own sub-community. There 
+are players joining the forums than entire groups of people have never met because they play exclusively on one game server. &lt;/p&gt;
+&lt;p&gt;Admins were also inconsistent in how (or if) they voted. Some admins didn't realize they could have a say, thinking it 
+was a privilege granted to only the senior administrators. We've built a system to resolve many of these problems and to 
+make the administration side easier.&lt;/p&gt;
+&lt;h2 id="whats-new"&gt;What's new?&lt;a class="headerlink" href="#whats-new" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The new system presents all users with an application template. They fill out the form and the system handles the rest. 
+The New Users and Applications subforum has been modified so that no one, except the bot, can create topics. They 
+topics will only be created when the form is submitted. When a user applies to join Vipers, we will automatically 
+include relevant information about the user as we know them:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HLStats information: This helps us get a sense of where they play and how often they play. It will help admins identify 
+ users they &lt;em&gt;should&lt;/em&gt; recognize based on the servers they frequent (because we all know certains servers are better than 
+ others ;) &lt;em&gt;cough&lt;/em&gt; Vanilla Nest vs Crits &lt;em&gt;cough&lt;/em&gt; )&lt;/li&gt;
+&lt;li&gt;Ban information: This will check if the user has any recorded bans in &lt;a href="http://www.sourcebans.net/"&gt;Sourcebans&lt;/a&gt;. It's important to know if the 
+ user has been banned previously. &lt;/li&gt;
+&lt;li&gt;Known aliases: Pulling information from our chat logs and Valve's profile page, we can build a list of known aliases. 
+ This helps identify users that frequently change names but have been around a while. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There may be other features we add in the future as well. &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Updated January 2012&lt;/em&gt; I've removed HLStats from the servers and removed it from new application information. We have 
+added a check of a user's &lt;a href="http://steamrep.com/api.php"&gt;Steam Reputation&lt;/a&gt; instead.&lt;/p&gt;
+&lt;p&gt;After a user applies, they are put into a two week hold. During this week it is expected they will stick around the forums 
+and learn about the community they just applied to. Even better would be that they had done this before applying. While 
+this two week hold is in place, the administration team will be able to cast they votes in a separate sub-forum. They can 
+hold administration specific discussions - usually details that are important for admins to know, but don't &lt;em&gt;need&lt;/em&gt; to be 
+public. Once voting is complete, if they become a member, the system automatically grants appropriate forum and server 
+related permissions.&lt;/p&gt;
+&lt;h3 id="voting-rules"&gt;Voting rules&lt;a class="headerlink" href="#voting-rules" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Three admin "Yes" votes and zero "No" votes grants the user membership immediately after the two week window has expired&lt;/li&gt;
+&lt;li&gt;One or two "No" votes places a message on the user's application that the administrators are still considering the application&lt;/li&gt;
+&lt;li&gt;Three or more "No" votes rejects the application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="possible-responses"&gt;Possible Responses&lt;a class="headerlink" href="#possible-responses" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="accepted-by-admin-team"&gt;Accepted by admin team&lt;a class="headerlink" href="#accepted-by-admin-team" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you reach a total of three or more admin "Yes" votes, and do not get three or more admin "No" votes, you will be accepted 
+as a member of Vipers and automatically have your forum access modified. You will receive a message similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Accepted" src="http://andrewwegner.com/images/application-accepted.png"/&gt;&lt;/p&gt;
+&lt;h3 id="denied-by-admin-team"&gt;Denied by admin team&lt;a class="headerlink" href="#denied-by-admin-team" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you reach three or more "No" votes your application will be denied. This will occur even if you receive more "Yes" votes
+than "No" votes. Vipers is not a majority rule community. The decision has been made that if three admins do not feel comfortable
+accepting your application, you will not be granted membership. You will receive a message similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Denied by Admins" src="http://andrewwegner.com/images/application-denied.png"/&gt;&lt;/p&gt;
+&lt;h3 id="denied-due-to-lack-of-votes"&gt;Denied due to lack of votes&lt;a class="headerlink" href="#denied-due-to-lack-of-votes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To be accepted, your application requires a minimum of three "Yes" votes. If this can not be reached (and you also can't reach
+ three "No" votes), your application will be rejected due to lack of votes from the admin team. This means that the admin team
+ does not feel strongly either way about your application. Post on the forums. Play in the servers. Get to know our players
+ and the community at large and then try again in a month. You will receive a message similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Denied with not enough votes" src="http://andrewwegner.com/images/application-denied-not-enough-votes.png"/&gt;&lt;/p&gt;
+&lt;h3 id="denied-because-of-age"&gt;Denied because of age&lt;a class="headerlink" href="#denied-because-of-age" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Repeat after me: "Age does not equal maturity." However, it has a very strong correlation. Over time we have learned that younger
+ players tend to bring a lower maturity level that most of the community does not care for. As such, we've decided to set a minimium
+ age requirement of 16. If a user indicates they are less than that, the system will reject their application with a message similar to
+ this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Denied because of age" src="http://andrewwegner.com/images/application-denied-underage.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Updated January 2010&lt;/em&gt; This process has been in place for a few months now. It has gone very well. We've reduced the clutter 
+in the applications forum. We've also seen the number of "forgotten" applications drop dramatically. &lt;/p&gt;
+&lt;h2 id="original-announcement"&gt;Original Announcement&lt;a class="headerlink" href="#original-announcement" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The original announcement is posted here for future reference.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Zephyr is an automated robot designed to improve our new member application process. The current process, which involves copying a template to a new thread and the potential for applications to become misplaced, is cumbersome and inefficient. The goal of Zephyr is to remove as much of the manual process as possible.&lt;/p&gt;
+&lt;p&gt;Now, our new applicants will fill out an actual application online. The same information will be requested, but it will be in a more reliable format and will not require an applicant copy and paste anything between threads. This new application will be posted in the same forum as you're used to, and members will be freely able to comment and discuss the applicant via that thread. It will also display which date admin voting will be open, which is two full weeks after the original application post. This will hopefully cut down on any confusion related to the delay between application and voting.&lt;/p&gt;
+&lt;p&gt;As another note, from now on Zephyr will be the only user capable of creating new threads in the New Member Application forum. As previously stated, members will be able to post comments on existing threads, but the only new threads will come from the application process. This will keep the forum cleaner and help prevent applications from becoming lost or forgotten about.&lt;/p&gt;
+&lt;p&gt;Once again, Zephyr is an automated robot. It is not programmed to respond to comments or questions. Doing so will not get your question answered. As always, if you have questions or comments about the application process, Zephyr, or anything else, you're welcome to send them to any admin. We'll be more than happy to help.&lt;/p&gt;
+&lt;p&gt;You may all bow to your Robotic Overlord now.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="team vipers"></category><category term="automation"></category><category term="community"></category><category term="programming"></category></entry></feed>
