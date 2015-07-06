@@ -135,7 +135,7 @@ good comment    | 0.9999        | False
 &lt;p&gt;&lt;img alt="Number of comments saved per day" src="http://andrewwegner.com/images/comments_saved_per_day.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Finally, this chart shows the number of comments that the system wanted to act on (and a rolling 5 day average). When the system was brought online, it was acting on 700-800 comments a day (saving to my local database). Many of these were being classified as "Good Comments". You can see the day that I adjusted the threshold for "Good Comments" to be acted upon (saved). The drop in the number of comments the system saved is dramatic. Instead of saving 700-800 comments daily, the system now averages about 150 comments to save. Since I don't flag "Good Comments", I feel this is the appropriate action to take.&lt;/p&gt;
 &lt;hr/&gt;
-&lt;h3 id="comments-that-were-flagged-but-declined"&gt;Comments that were flagged but declined&lt;a class="headerlink" href="#comments-that-were-flagged-but-declined" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="flagged-but-declined"&gt;Flagged but declined&lt;a class="headerlink" href="#flagged-but-declined" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;As shown above, I've had comments flags declined. Some of these obviously should have been and required a retraining or threshold adjustment on my part. Others, in my opinion, should have been removed as noise. Below is a small sampling of both types of comments.&lt;/p&gt;
 &lt;p&gt;Recent comments that I feel are noise:&lt;/p&gt;
 &lt;ul&gt;

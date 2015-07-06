@@ -261,12 +261,12 @@ Californian spam bots). In any case, I will provide a full database dump for you
 fresh install of PHPBB would be a good thing, but you'll have all of the data and should be able to simply import it 
 into the database. If you go with something else, you'll have the database and can attempt to use that software's 
 conversion script. Results will vary on how that works.&lt;/p&gt;
-&lt;h3 id="does-this-community-make-enough-money-on-donations"&gt;Does this community make enough money on donations?&lt;a class="headerlink" href="#does-this-community-make-enough-money-on-donations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="does-we-make-money-on-donations"&gt;Does we make money on donations?&lt;a class="headerlink" href="#does-we-make-money-on-donations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;No. Since July of [2014 to November 2014], the community has donated $20. Total. It has been 14 months since we reached our monthly 
 goal. In the last year, we have broken $50 only 4 times. To prevent someone from misconstruing this as a plea for 
 money, I've disabled donations. I don't want someone to start a misguided "Save the Vipers" campaign that you believe 
 can succeed with donations. The way to "save the vipers" is to come together as a team and discuss your options.&lt;/p&gt;
-&lt;h3 id="what-happens-if-no-one-steps-up-to-take-over"&gt;What happens if no one steps up to take over?&lt;a class="headerlink" href="#what-happens-if-no-one-steps-up-to-take-over" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="what-happens-if-no-one-steps-up"&gt;What happens if no one steps up?&lt;a class="headerlink" href="#what-happens-if-no-one-steps-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Someone in the community may step up, but if no one steps up by January, then Vipers has one last New Years hoo-rah 
 and fades to the internet. If someone does step up, I am still available to help with initial set up. I'm still available 
 to play games and to talk to. I'm not dropping off the face of the earth and I'm not rage quitting. This is very 
@@ -345,7 +345,7 @@ good comment    | 0.9999        | False
 &lt;p&gt;&lt;img alt="Number of comments saved per day" src="http://andrewwegner.com/images/comments_saved_per_day.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Finally, this chart shows the number of comments that the system wanted to act on (and a rolling 5 day average). When the system was brought online, it was acting on 700-800 comments a day (saving to my local database). Many of these were being classified as "Good Comments". You can see the day that I adjusted the threshold for "Good Comments" to be acted upon (saved). The drop in the number of comments the system saved is dramatic. Instead of saving 700-800 comments daily, the system now averages about 150 comments to save. Since I don't flag "Good Comments", I feel this is the appropriate action to take.&lt;/p&gt;
 &lt;hr/&gt;
-&lt;h3 id="comments-that-were-flagged-but-declined"&gt;Comments that were flagged but declined&lt;a class="headerlink" href="#comments-that-were-flagged-but-declined" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="flagged-but-declined"&gt;Flagged but declined&lt;a class="headerlink" href="#flagged-but-declined" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;As shown above, I've had comments flags declined. Some of these obviously should have been and required a retraining or threshold adjustment on my part. Others, in my opinion, should have been removed as noise. Below is a small sampling of both types of comments.&lt;/p&gt;
 &lt;p&gt;Recent comments that I feel are noise:&lt;/p&gt;
 &lt;ul&gt;
@@ -510,7 +510,7 @@ are allowed back. On the forth, we show you the door. Most of our bans are &lt;a
 to spew your filth. If you can't meet our simple rules, you can leave. If you want to get back into the servers after your
 forth offense, you have to come to us and ask. You should think about how you get someone to do what you want in "the
  real world". &lt;/p&gt;
-&lt;h3 id="appeal-method-1-freedom-of-speech"&gt;Appeal method 1: Freedom of Speech&lt;a class="headerlink" href="#appeal-method-1-freedom-of-speech" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="method-1-freedom-of-speech"&gt;Method 1: Freedom of Speech&lt;a class="headerlink" href="#method-1-freedom-of-speech" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;I think this one is my favorite. Last I checked, I'm not the government of the United States. I'm a private citizen providing
 a private server for others to play on. My server, my rules (technically, the community's rules, but you understand...) 
 I am not bound by the First Amendment to allow you to say whatever you want.&lt;/p&gt;
@@ -525,7 +525,7 @@ I am not bound by the First Amendment to allow you to say whatever you want.&lt;
 &lt;/ul&gt;
 &lt;p&gt;Not seen in this image is the response when this was pointed out and the appeal denied. The response managed to hit all
 of the trigger words we ban for on the servers. Just in case we were reconsidering the denial, at this point we're not.&lt;/p&gt;
-&lt;h3 id="appeal-method-2-admin-abuse"&gt;Appeal method 2: Admin Abuse&lt;a class="headerlink" href="#appeal-method-2-admin-abuse" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="method-2-admin-abuse"&gt;Method 2: Admin Abuse&lt;a class="headerlink" href="#method-2-admin-abuse" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Admins are evil and are holding a grudge! They hate me and ban for inappropriate language. Honest, I never said anything bad.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -540,7 +540,7 @@ more amusing when the admin being accused is "Zephyr", the automated process tha
 &lt;li&gt;Chat logs show this is the 4th automated ban. In each ban, the user has managed to slip in multiple offensive phrases
  befor being automatically kicked&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="appeal-method-3-ranting"&gt;Appeal method 3: Ranting&lt;a class="headerlink" href="#appeal-method-3-ranting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="method-3-ranting"&gt;Method 3: Ranting&lt;a class="headerlink" href="#method-3-ranting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;A rant isn't helpful to anyone. It doesn't endear the poster to the community. The administrators don't want to read through
 a rambling, unformated, exposition. &lt;/p&gt;
 &lt;p&gt;An example:&lt;/p&gt;
@@ -552,7 +552,7 @@ a rambling, unformated, exposition. &lt;/p&gt;
  in a later post that they'd like to be unbanned)&lt;/li&gt;
 &lt;li&gt;Chat logs clearly indicate the player was fond of certain slurs. This is the reason for the bans&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="appeal-method-4-threats-against-the-server"&gt;Appeal method 4: Threats against the server&lt;a class="headerlink" href="#appeal-method-4-threats-against-the-server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="method-4-threats-to-the-server"&gt;Method 4: Threats to the server&lt;a class="headerlink" href="#method-4-threats-to-the-server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Threats to attack the server in some way are not going to get you unbanned. There are only two possible outcomes to this
 appeal type. Either you are successful and the server is off line (now how are you going to play even if unbanned) or we
 ignore your tantrum and leave you banned. &lt;/p&gt;
@@ -673,7 +673,7 @@ looking forward to some other project.&lt;/p&gt;</summary><category term="automa
 covering the difference. This isn't my favorite thing to do in the world, but we've been pretty successful in the past. 
 In recent months, though, we've been coming up short more frequently. This has motivated me (and the rest of the admin
 team to find ways to cover costs). Now we have one.&lt;/p&gt;
-&lt;h2 id="welcome-to-the-new-raffle-bot-in-the-community"&gt;Welcome to the new raffle bot in the community&lt;a class="headerlink" href="#welcome-to-the-new-raffle-bot-in-the-community" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="welcome-to-the-new-raffle-bot"&gt;Welcome to the new raffle bot&lt;a class="headerlink" href="#welcome-to-the-new-raffle-bot" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've built a Raffle bot based on &lt;a href="https://github.com/Jessecar96/SteamBot"&gt;SteamBot&lt;/a&gt;, which is the base of &lt;a href="https://scrap.tf/"&gt;scrap.tf&lt;/a&gt;. Entries to raffles will be one entry 
 per refined metal. You can have an unlimited number of entries. I will convert the refined metal to various prizes 
 (with the goal being keys most of the time).&lt;/p&gt;
@@ -683,7 +683,7 @@ have a gigantic number of entries, your odds of winning more than one position a
 &lt;h2 id="how-does-this-off-set-costs"&gt;How does this off set costs?&lt;a class="headerlink" href="#how-does-this-off-set-costs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Items that are received that are of high value or any additional keys we can get based on raffle entries will be sold on 
 various TF2 trading markets. The profits from these trades will be used to cover some community costs.&lt;/p&gt;
-&lt;h2 id="can-we-keep-some-of-the-high-value-items-for-future-raffles"&gt;Can we keep some of the high value items for future raffles?&lt;a class="headerlink" href="#can-we-keep-some-of-the-high-value-items-for-future-raffles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="keep-high-value-items-for-future-raffles"&gt;Keep high value items for future raffles?&lt;a class="headerlink" href="#keep-high-value-items-for-future-raffles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;This question was added based on feed back from the community. It was added on March 20, 2013&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The original plan was to sell any such items. However, due to community feedback, I've changed my mind. We will utilize 
 "high value" items as prizes for future raffles. These future raffles will not be announced until any running raffles are 
