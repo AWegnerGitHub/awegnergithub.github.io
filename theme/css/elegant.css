@@ -343,6 +343,12 @@ ul.multi-parts-list li.active-part {
 	position:fixed;
     font-size: .7em;
 }
+@media screen and (max-width: 800px){
+	.table-of-content .toc {
+		visibility: hidden;
+		font-size: .7em;
+	}
+}
 .last-updated a {
     color: #333;
 }
