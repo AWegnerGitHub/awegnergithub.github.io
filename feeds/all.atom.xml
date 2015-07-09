@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-05-20T00:00:00-05:00</updated><entry><title>Why I moved from Wordpress to Pelican</title><link href="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html" rel="alternate"></link><updated>2015-05-03T22:41:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-05-03:why-i-moved-from-wordpress-to-pelican.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-07-09T11:26:00-05:00</updated><entry><title>How I set up this site with GitHub Pages and CloudFlare</title><link href="http://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html" rel="alternate"></link><updated>2015-07-09T11:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-07-09:how-i-set-up-this-site-with-github-pages-and-cloudflare.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In a &lt;a href="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html"&gt;previous post&lt;/a&gt;, I described why I moved from Wordpress to Pelican for my blog. This one goes a step further and describes how I eliminated the 
+need for the dedicated server I'd been utilizing as a part of &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;Team Vipers&lt;/a&gt;. By eliminating that server, I reduced my costs to zero but kept control 
+over the DNS of my domain (thanks to &lt;a href="https://www.cloudflare.com/"&gt;CloudFlare&lt;/a&gt;) and had an easier method of updating the site using &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="github-pages-setup"&gt;GitHub Pages Setup&lt;a class="headerlink" href="#github-pages-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To utilize GitHub Pages, I needed to create a new &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io"&gt;repository&lt;/a&gt; that followed the format &lt;code&gt;GitHubUsername.github.io&lt;/code&gt;. This repository would house the 
+content that is this site. I also set up a second &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source"&gt;repository&lt;/a&gt; which contains the source for the blog. This repository includes the templates, plugins
+and markdown version of the pages. The first repository was set up as submodule.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;git submodule add https://github.com/AWegnerGitHub/awegnergithub.github.io.git output
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I ignored the &lt;code&gt;output&lt;/code&gt; directory in &lt;code&gt;.gitignore&lt;/code&gt; on the source repository. Finally, I had to adjust &lt;code&gt;publishconf.py&lt;/code&gt; slightly to  &lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;DELETE_OUTPUT_DIRECTORY = False
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Without this, I was constantly destroying the output repository and had to reinitialize it. This prevents that from occuring. &lt;/p&gt;
+&lt;p&gt;Now, a new post consists of writing up the &lt;a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-source/master/content/2015_07_09_how-i-set-up-this-site-with-github-pages-and-cloudflare.md"&gt;Markdown page&lt;/a&gt;, generating the page with the command below (or the &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/generate_content_production.bat"&gt;batch script&lt;/a&gt;) and then committing and
+pushing the changes to the submodule to GitHub.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;# Generates HTML files without debugging information
+pelican content --output output --settings publishconf.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The new content is available immediately.&lt;/p&gt;
+&lt;h3 id="custom-domain"&gt;Custom Domain&lt;a class="headerlink" href="#custom-domain" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You may notice that the URL for this site isn't &lt;code&gt;awegnergithub.github.io&lt;/code&gt;, but instead &lt;code&gt;andrewwegner.com&lt;/code&gt;. To accomplish this, I added a directory to the &lt;code&gt;content&lt;/code&gt;
+named &lt;code&gt;extra&lt;/code&gt;. In this directory is a single file named &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/content/extra/CNAME"&gt;&lt;code&gt;CNAME&lt;/code&gt;&lt;/a&gt; (no extension). In the file is my domain name. &lt;/p&gt;
+&lt;p&gt;Next, I had to modify &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/pelicanconf.py"&gt;&lt;code&gt;pelicanconf.py&lt;/code&gt;&lt;/a&gt; to add the &lt;code&gt;extra/CNAME&lt;/code&gt; to the static path and then on generation move the &lt;code&gt;CNAME&lt;/code&gt; file from this subdirectory to the root.
+I could have put it in the root of &lt;code&gt;content&lt;/code&gt; by default, but Pelican provides a way to do this and it keeps &lt;code&gt;content&lt;/code&gt; clean. &lt;strong&gt;One very important note&lt;/strong&gt;, the &lt;code&gt;EXTRA_PATH_METADATA&lt;/code&gt; is
+operating system sensitive. Since I am generating the content on a Windows machine, I had to use a backslash instead of the forward slash the documentation shows. I found this
+after posing a &lt;a href="http://stackoverflow.com/a/30512242/189134"&gt;question&lt;/a&gt; on Stack Overflow on why it wasn't working as the documentation suggested.&lt;/p&gt;
+&lt;p&gt;The two important fields to add or edit are:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;...
+STATIC_PATHS = ['images', 'extra/CNAME']
+...
+EXTRA_PATH_METADATA = {'extra\CNAME': {'path': 'CNAME'},}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="cloudflare-setup"&gt;Cloudflare Setup&lt;a class="headerlink" href="#cloudflare-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The final thing I needed in order to get rid of my server was control over DNS. I could revert back to GoDaddy, but after a little research found that CloudFlare's additional CDN and 
+security was a "good thing" (because, you know, I'm such a highly traffic'd blog these days). Step one was signing up to CloudFlare. This was a 3-5 minute thing. &lt;/p&gt;
+&lt;p&gt;Once signed up and signed in, I went to set up DNS. This was as simple as adding my domain name and waiting for CloudFlare to import my existing DNS records. With this, I kept by Google Apps
+email intact (which is what I was most concerned with). Next, I went and removed the &lt;code&gt;A&lt;/code&gt; records. I replaced these with &lt;code&gt;CNAME&lt;/code&gt; records pointing to my GitHub Pages URL. I also added a &lt;code&gt;www&lt;/code&gt; CNAME 
+pointing to the same location. Since I have Pelican configured to strip it with the setting below, it doesn't matter other than people expect to enter &lt;code&gt;www dot domain dot com&lt;/code&gt; in their URL bar.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;SITEURL = 'http://andrewwegner.com'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Last, I had to point by name servers to CloudFlare instead of my dedicated server. They provide a list of registratars to choose from. Select your registrar and follow the instructions. My biggest
+issue here was remembering my GoDaddy password. After I made it into my account, the steps to change name servers were very simple. Once those are saved, you wait for the changes to propagate and
+enjoy your new GitHub Pages / CloudFlare web page for free. &lt;/p&gt;</summary><category term="Meta"></category><category term="technical"></category></entry><entry><title>Why I moved from Wordpress to Pelican</title><link href="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html" rel="alternate"></link><updated>2015-05-03T22:41:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-05-03:why-i-moved-from-wordpress-to-pelican.html</id><summary type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For years, I maintained a Wordpress blog covering various things I've done or created. Most of these revolved around
 things I created to make administering Team Vipers easier for me and for the rest of the admin team. It was my way

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+        <meta name="copyright" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Meta, technical, Side Activities, " />
+
+<meta property="og:title" content="How I set up this site with GitHub Pages and CloudFlare "/>
+<meta property="og:url" content="http://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html" />
+<meta property="og:description" content="This post provides a brief description of how I set up the web site to utilize GitHub Pages and CloudFlare and eliminated my self hosting" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2015-07-09T11:26:00-05:00" />
+<meta name="twitter:title" content="How I set up this site with GitHub Pages and CloudFlare ">
+<meta name="twitter:description" content="This post provides a brief description of how I set up the web site to utilize GitHub Pages and CloudFlare and eliminated my self hosting">
+
+        <title>How I set up this site with GitHub Pages and CloudFlare  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="http://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://andrewwegner.com">Home</a></li>
+                            <li ><a href="http://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="http://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="http://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html"> How I set up this site with GitHub Pages and CloudFlare  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#github-pages-setup">GitHub Pages Setup</a><ul>
+<li><a href="#custom-domain">Custom Domain</a></li>
+</ul>
+</li>
+<li><a href="#cloudflare-setup">Cloudflare Setup</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>In a <a href="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html">previous post</a>, I described why I moved from Wordpress to Pelican for my blog. This one goes a step further and describes how I eliminated the 
+need for the dedicated server I'd been utilizing as a part of <a href="http://andrewwegner.com/thanks-for-all-the-fish.html">Team Vipers</a>. By eliminating that server, I reduced my costs to zero but kept control 
+over the DNS of my domain (thanks to <a href="https://www.cloudflare.com/">CloudFlare</a>) and had an easier method of updating the site using <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+<h2 id="github-pages-setup">GitHub Pages Setup<a class="headerlink" href="#github-pages-setup" title="Permanent link">¶</a></h2>
+<p>To utilize GitHub Pages, I needed to create a new <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io">repository</a> that followed the format <code>GitHubUsername.github.io</code>. This repository would house the 
+content that is this site. I also set up a second <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source">repository</a> which contains the source for the blog. This repository includes the templates, plugins
+and markdown version of the pages. The first repository was set up as submodule.</p>
+<div class="codehilite code"><pre>git submodule add https://github.com/AWegnerGitHub/awegnergithub.github.io.git output
+</pre></div>
+<p>I ignored the <code>output</code> directory in <code>.gitignore</code> on the source repository. Finally, I had to adjust <code>publishconf.py</code> slightly to  </p>
+<div class="codehilite code"><pre>DELETE_OUTPUT_DIRECTORY = False
+</pre></div>
+<p>Without this, I was constantly destroying the output repository and had to reinitialize it. This prevents that from occuring. </p>
+<p>Now, a new post consists of writing up the <a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-source/master/content/2015_07_09_how-i-set-up-this-site-with-github-pages-and-cloudflare.md">Markdown page</a>, generating the page with the command below (or the <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/generate_content_production.bat">batch script</a>) and then committing and
+pushing the changes to the submodule to GitHub.</p>
+<div class="codehilite code"><pre># Generates HTML files without debugging information
+pelican content --output output --settings publishconf.py
+</pre></div>
+<p>The new content is available immediately.</p>
+<h3 id="custom-domain">Custom Domain<a class="headerlink" href="#custom-domain" title="Permanent link">¶</a></h3>
+<p>You may notice that the URL for this site isn't <code>awegnergithub.github.io</code>, but instead <code>andrewwegner.com</code>. To accomplish this, I added a directory to the <code>content</code>
+named <code>extra</code>. In this directory is a single file named <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/content/extra/CNAME"><code>CNAME</code></a> (no extension). In the file is my domain name. </p>
+<p>Next, I had to modify <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/pelicanconf.py"><code>pelicanconf.py</code></a> to add the <code>extra/CNAME</code> to the static path and then on generation move the <code>CNAME</code> file from this subdirectory to the root.
+I could have put it in the root of <code>content</code> by default, but Pelican provides a way to do this and it keeps <code>content</code> clean. <strong>One very important note</strong>, the <code>EXTRA_PATH_METADATA</code> is
+operating system sensitive. Since I am generating the content on a Windows machine, I had to use a backslash instead of the forward slash the documentation shows. I found this
+after posing a <a href="http://stackoverflow.com/a/30512242/189134">question</a> on Stack Overflow on why it wasn't working as the documentation suggested.</p>
+<p>The two important fields to add or edit are:</p>
+<div class="codehilite code"><pre>...
+STATIC_PATHS = ['images', 'extra/CNAME']
+...
+EXTRA_PATH_METADATA = {'extra\CNAME': {'path': 'CNAME'},}
+</pre></div>
+<h2 id="cloudflare-setup">Cloudflare Setup<a class="headerlink" href="#cloudflare-setup" title="Permanent link">¶</a></h2>
+<p>The final thing I needed in order to get rid of my server was control over DNS. I could revert back to GoDaddy, but after a little research found that CloudFlare's additional CDN and 
+security was a "good thing" (because, you know, I'm such a highly traffic'd blog these days). Step one was signing up to CloudFlare. This was a 3-5 minute thing. </p>
+<p>Once signed up and signed in, I went to set up DNS. This was as simple as adding my domain name and waiting for CloudFlare to import my existing DNS records. With this, I kept by Google Apps
+email intact (which is what I was most concerned with). Next, I went and removed the <code>A</code> records. I replaced these with <code>CNAME</code> records pointing to my GitHub Pages URL. I also added a <code>www</code> CNAME 
+pointing to the same location. Since I have Pelican configured to strip it with the setting below, it doesn't matter other than people expect to enter <code>www dot domain dot com</code> in their URL bar.</p>
+<div class="codehilite code"><pre>SITEURL = 'http://andrewwegner.com'
+</pre></div>
+<p>Last, I had to point by name servers to CloudFlare instead of my dedicated server. They provide a list of registratars to choose from. Select your registrar and follow the instructions. My biggest
+issue here was remembering my GoDaddy password. After I made it into my account, the steps to change name servers were very simple. Once those are saved, you wait for the changes to propagate and
+enjoy your new GitHub Pages / CloudFlare web page for free. </p>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html" title="Previous: Why I moved from Wordpress to Pelican">Why I moved from Wordpress to Pelican</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2015-07-09T11:26:00-05:00">Jul 9, 2015</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#side-activities-ref">Side Activities</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#meta-ref">Meta
+                    <span>2</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>4</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam sidebar-social-links"></i></a>
+    <a href="http://careers.stackoverflow.com/andrewwegner" title="My Stack Overflow Careers Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow careers sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="http://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
