@@ -1,5 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-07-09T11:26:00-05:00</updated><entry><title>How I set up this site with GitHub Pages and CloudFlare</title><link href="http://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html" rel="alternate"></link><updated>2015-07-09T11:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-07-09:how-i-set-up-this-site-with-github-pages-and-cloudflare.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-08-06T07:35:00-05:00</updated><entry><title>Analysis of links posted to Stack Overflow</title><link href="http://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html" rel="alternate"></link><updated>2015-08-06T07:35:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-08-06:analysis-of-links-posted-to-stack-overflow.html</id><summary type="html">
+&lt;p&gt;TL;DR: Approximately 10% of 1.5M randomly selected unique links in the March 2015 &lt;a href="https://archive.org/details/stackexchange"&gt;data dump&lt;/a&gt; are unavailable. To be more precise, that is approximately 150K dead links.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="motivation"&gt;Motivation&lt;a class="headerlink" href="#motivation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been running into more and more links that are dead on Stack Overflow and it's bothering me. In some cases, I've spent the time hunting down a replacement, in others I've notified the owner of the post that a link is dead, and (more shamefully), in others I've simply ignored it and left just a &lt;a href="http://meta.stackoverflow.com/a/262040/189134"&gt;down vote&lt;/a&gt;. Obviously that's not good.&lt;/p&gt;
+&lt;p&gt;Before making sweeping generalizations that there are dead links everywhere, though, I wanted to make sure I wasn't just finding bad posts because I was wandering through the review queues. Utilizing the March 2015 data dump, I randomly selected about 25% of the posts (both questions and answers) and then parsed out the links. This works out to 5.6M posts out of 21.7M total.&lt;/p&gt;
+&lt;p&gt;Of these 5.6M posts, 2.3M contained links and 1.5M of these were unique links. I sent each unique URL a &lt;a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods"&gt;&lt;code&gt;HEAD&lt;/code&gt;&lt;/a&gt; request, with a user agent mimicking Firefox&lt;sup&gt;1&lt;/sup&gt;. I then retested everything that didn't return a successful response a week later. Finally, anything that failed from &lt;em&gt;that&lt;/em&gt; batch, I resent a final test a week later. If a site was down in all three tests, I considered it down for this test.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="results2"&gt;Results&lt;sup&gt;2&lt;/sup&gt;&lt;a class="headerlink" href="#results2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Good news/Bad News: A majority of the links returned a valid response, but there are still roughly 10% that failed.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://andrewwegner.com/images/status_codes.svg"&gt;&lt;img alt="PIE CHART IMAGE" src="http://andrewwegner.com/images/status_codes.svg"/&gt;&lt;/a&gt;
+&lt;em&gt;(This image is showing the top status codes returned)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The three largest slices of the pie are the status 200s (site working!), status 404 (page not found, but server responded saying the page isn't found) and Connection Errors. Connection errors are sites that had no proper server response. The request to access the page timed out. I was generous in the time out and allowed a request to live for 20 seconds before failing a link with this status. The &lt;code&gt;4xx&lt;/code&gt; and &lt;code&gt;5xx&lt;/code&gt; errors are status codes that fall in the 400 and 500 range of HTTP responses. These are client and server error ranges, thus counted as a failure. &lt;code&gt;2xx&lt;/code&gt; errors (of which was are in the low triple) are pages that responded with a success message in the 200 range, but it wasn't a &lt;code&gt;200&lt;/code&gt; code. Finally, there were just over a hundred sites that hit a redirect loop that didn't seem to end. These are the &lt;code&gt;3xx&lt;/code&gt; errors. I failed a site with this range if it redirected more than 30 times. There are a negligible number of sites that returned status codes in the 600 and &lt;a href="https://github.com/joho/7XX-rfc"&gt;700&lt;/a&gt; range&lt;sup&gt;4&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;There are, expectedly, many URLs that failed that appeared frequently in the sample set. Below is a list of the top 50&lt;sup&gt;3&lt;/sup&gt; URLs that are in posts most often, but failed three times over the course of three weeks.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;http://docs.jquery.com/Plugins/validation
+http://www.eclipse.org/eclipselink/moxy.php
+http://jackson.codehaus.org/
+http://xstream.codehaus.org/
+http://opencv.willowgarage.com/wiki/
+http://developer.android.com/resources/articles/painless-threading.html
+http://valums.com/ajax-upload/
+http://sqlite.phxsoftware.com/
+http://qt.nokia.com/
+http://www.oracle.com/technetwork/java/codeconv-138413.html
+http://download.java.net/jdk8/docs/api/java/time/package-summary.html
+http://docs.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
+http://watin.sourceforge.net/
+http://leandrovieira.com/projects/jquery/lightbox/
+https://graph.facebook.com/
+https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
+http://www.postsharp.org/
+http://www.erichynds.com/jquery/jquery-ui-multiselect-widget/
+http://ha.ckers.org/xss.html
+http://jetty.codehaus.org/jetty/
+http://cpp-next.com/archive/2009/08/want-speed-pass-by-value/
+http://codespeak.net/lxml/
+http://www.hpl.hp.com/personal/Hans_Boehm/gc/
+http://jquery.com/demo/thickbox/
+http://book.git-scm.com/5_submodules.html
+http://monotouch.net/
+http://developer.android.com/resources/articles/timed-ui-updates.html
+http://jquery.bassistance.de/validate/demo/
+http://codeigniter.com/user_guide/database/active_record.html
+http://www.phantomjs.org/
+http://watin.org/
+http://www.db4o.com/
+http://qt.nokia.com/products/
+http://referencesource.microsoft.com/netframework.aspx
+https://github.com/facebook/php-sdk/
+http://java.decompiler.free.fr/
+http://pivotal.github.com/jasmine/
+http://api.jquery.com/category/plugins/templates/
+http://code.google.com/closure/library
+http://www.w3schools.com/tags/ref_entities.asp
+http://xstream.codehaus.org/tutorial.html
+https://github.com/facebook/php-sdk
+http://download.java.net/maven/1/jstl/jars/jstl-1.2.jar
+https://developers.facebook.com/docs/offline-access-deprecation/
+http://www.parashift.com/c++-faq-lite/pointers-to-members.html
+https://developers.facebook.com/docs/mobile/ios/build/
+http://downloads.php.net/pierre/
+http://fluentnhibernate.org/
+http://net.tutsplus.com/tutorials/javascript-ajax/5-ways-to-make-ajax-calls-with-jquery/
+http://dev.iceburg.net/jquery/jqModal/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;hr/&gt;
+&lt;h2 id="discussion"&gt;Discussion&lt;a class="headerlink" href="#discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;What can we do with all of this? How do we, as a community, solve the issue of 10% of our posts pointing to places on the internet that no longer exist? Assuming that my sample was indicative of the entire data dump, there are close to 600K (150K broken unique links x 4, because I took 1/4 of the data dump as a sample) broken links posted in questions and answers on Stack Overflow. I assume a large number of links posted in comments would be broken as well, but that's an activity for another month.&lt;/p&gt;
+&lt;p&gt;We encourage posters to provide snippets from their links just in case a link dies. That definitely helps, but the resources behind the links and the (presumably) expanded explanation behind the links are still gone. How can we properly deal with this? &lt;/p&gt;
+&lt;p&gt;It looks like there have been a few previous discussions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://meta.stackexchange.com/a/198357/186281"&gt;Utilize the Wayback API to automatically fix broken links.&lt;/a&gt; Development appeared to stall on this due to the large number of edits the Community user would be making. This would also hide posts that depended on said link from being surfaced for the community to fix it.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://meta.stackexchange.com/questions/224895/what-happened-to-the-broken-link-review-queue"&gt;Link review queue&lt;/a&gt;. It was in &lt;a href="http://meta.stackexchange.com/questions/212023/where-can-i-access-the-link-validation-review-queue"&gt;alpha&lt;/a&gt;, but disappeared in early 2014. &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://meta.stackexchange.com/questions/174347/badge-request-for-fixing-dead-links-pipefitter"&gt;Badge proposal for fixing broken links&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h2 id="footnotes"&gt;Footnotes&lt;a class="headerlink" href="#footnotes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;This is how it ultimately played out. Originally I sent &lt;code&gt;HEAD&lt;/code&gt; requests, in an effort to save bandwidth. This turned out to waste a whole bunch of time because there are a whole bunch of sites around the internet that return a &lt;a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error"&gt;&lt;code&gt;405 Method Not Allowed&lt;/code&gt;&lt;/a&gt; when sending a &lt;code&gt;HEAD&lt;/code&gt; request. The next step was to sent &lt;code&gt;GET&lt;/code&gt; requests, but utilize the default Python &lt;a href="http://docs.python-requests.org/en/latest/"&gt;requests&lt;/a&gt; user-agent. A lot of sites were returning &lt;code&gt;401&lt;/code&gt; or &lt;code&gt;404&lt;/code&gt; responses to this user agent. &lt;/li&gt;
+&lt;li&gt;Links to Stack Exchange sites were not counted in the above results. The failures seen are almost 100% due to a question/answer/comment being deleted. The process ran as an anonymous user, thus didn't have any reputation and was served a 404. A user with appropriate permissions &lt;em&gt;can&lt;/em&gt; still visit the link. I verified a number of 404'd links to Stack Overflow posts and this was the case.&lt;/li&gt;
+&lt;li&gt;The 4th most common failure was to &lt;code&gt;localhost&lt;/code&gt;. The 16th and 17th most common were &lt;code&gt;localhost&lt;/code&gt; on ports other than 80. I removed these from the result table with the knowledge that these shouldn't be accessible from the internet.&lt;/li&gt;
+&lt;li&gt;There where 7 total URLs that returned status codes in the &lt;code&gt;600&lt;/code&gt; and &lt;a href="https://github.com/joho/7XX-rfc"&gt;&lt;code&gt;700&lt;/code&gt;&lt;/a&gt; range. One such site was &lt;a href="http://learn.code.org/hoc/1"&gt;code.org&lt;/a&gt; with a status code of 752. Sadly, this is not even defined the joke RFC. &lt;/li&gt;
+&lt;/ol&gt;</summary><category term="Stack Exchange"></category><category term="programming"></category></entry><entry><title>How I set up this site with GitHub Pages and CloudFlare</title><link href="http://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html" rel="alternate"></link><updated>2015-07-09T11:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-07-09:how-i-set-up-this-site-with-github-pages-and-cloudflare.html</id><summary type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In a &lt;a href="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html"&gt;previous post&lt;/a&gt;, I described why I moved from Wordpress to Pelican for my blog. This one goes a step further and describes how I eliminated the 
 need for the dedicated server I'd been utilizing as a part of &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;Team Vipers&lt;/a&gt;. By eliminating that server, I reduced my costs to zero but kept control 
