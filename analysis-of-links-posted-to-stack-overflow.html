@@ -73,7 +73,14 @@
         <div class="toc">
 <ul>
 <li><a href="#motivation">Motivation</a></li>
-<li><a href="#results2">Results<sup>2</sup></a></li>
+<li><a href="#results2">Results<sup>2</sup></a><ul>
+<li><a href="#by-status-code">By status code</a></li>
+<li><a href="#by-most-common">By most common</a></li>
+<li><a href="#by-post-score">By post score</a></li>
+<li><a href="#by-number-of-views">By number of views</a></li>
+<li><a href="#by-days-since-post-created">By days since post created</a></li>
+</ul>
+</li>
 <li><a href="#discussion">Discussion</a></li>
 <li><a href="#footnotes">Footnotes</a></li>
 </ul>
@@ -92,10 +99,12 @@
 <p>Of these 5.6M posts, 2.3M contained links and 1.5M of these were unique links. I sent each unique URL a <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods"><code>HEAD</code></a> request, with a user agent mimicking Firefox<sup>1</sup>. I then retested everything that didn't return a successful response a week later. Finally, anything that failed from <em>that</em> batch, I resent a final test a week later. If a site was down in all three tests, I considered it down for this test.</p>
 <hr/>
 <h2 id="results2">Results<sup>2</sup><a class="headerlink" href="#results2" title="Permanent link">¶</a></h2>
+<h3 id="by-status-code">By status code<a class="headerlink" href="#by-status-code" title="Permanent link">¶</a></h3>
 <p>Good news/Bad News: A majority of the links returned a valid response, but there are still roughly 10% that failed.</p>
 <p><a href="http://andrewwegner.com/images/status_codes.svg"><img alt="PIE CHART IMAGE" src="http://andrewwegner.com/images/status_codes.svg"/></a>
 <em>(This image is showing the top status codes returned)</em></p>
 <p>The three largest slices of the pie are the status 200s (site working!), status 404 (page not found, but server responded saying the page isn't found) and Connection Errors. Connection errors are sites that had no proper server response. The request to access the page timed out. I was generous in the time out and allowed a request to live for 20 seconds before failing a link with this status. The <code>4xx</code> and <code>5xx</code> errors are status codes that fall in the 400 and 500 range of HTTP responses. These are client and server error ranges, thus counted as a failure. <code>2xx</code> errors (of which was are in the low triple) are pages that responded with a success message in the 200 range, but it wasn't a <code>200</code> code. Finally, there were just over a hundred sites that hit a redirect loop that didn't seem to end. These are the <code>3xx</code> errors. I failed a site with this range if it redirected more than 30 times. There are a negligible number of sites that returned status codes in the 600 and <a href="https://github.com/joho/7XX-rfc">700</a> range<sup>4</sup></p>
+<h3 id="by-most-common">By most common<a class="headerlink" href="#by-most-common" title="Permanent link">¶</a></h3>
 <p>There are, expectedly, many URLs that failed that appeared frequently in the sample set. Below is a list of the top 50<sup>3</sup> URLs that are in posts most often, but failed three times over the course of three weeks.</p>
 <div class="codehilite code"><pre>http://docs.jquery.com/Plugins/validation
 http://www.eclipse.org/eclipselink/moxy.php
@@ -147,6 +156,53 @@ http://downloads.php.net/pierre/
 http://fluentnhibernate.org/
 http://net.tutsplus.com/tutorials/javascript-ajax/5-ways-to-make-ajax-calls-with-jquery/
 http://dev.iceburg.net/jquery/jqModal/
+</pre></div>
+<h3 id="by-post-score">By post score<a class="headerlink" href="#by-post-score" title="Permanent link">¶</a></h3>
+<p>Count of posts by score (top 10)  (Covers 94% of all broken links):</p>
+<div class="codehilite code"><pre>| Score | Percentage of Total Broken |
+|-------|----------------------------|
+| 0     | 36.4087%                   |
+| 1     | 25.1674%                   |
+| 2     | 13.4089%                   |
+| 3     | 7.2806%                    | 
+| 4     | 4.2971%                    |
+| 5     | 2.7065%                    |
+| 6     | 1.8068%                    |
+| 7     | 1.2854%                    |
+| -1    | 1.1935%                    |
+| 8     | 0.9415%                    |
+</pre></div>
+<h3 id="by-number-of-views">By number of views<a class="headerlink" href="#by-number-of-views" title="Permanent link">¶</a></h3>
+<p><em>Note, this is number of views at the time the data dump was created, not as of today</em></p>
+<p>Count of posts by number of views (top 10):</p>
+<div class="codehilite code"><pre>| Views        | Total Views |
+|--------------|-------------|
+| (0, 200]     | 24.4709%    |
+| (200, 400]   | 14.2186%    |
+| (400, 600]   | 9.5045%     |
+| (600, 800]   | 6.9793%     | 
+| (800, 1000]  | 5.2574%     |
+| (1000, 1200] | 4.1864%     |
+| (1200, 1400] | 3.3699%     |
+| (1400, 1600] | 2.7766%     |
+| (1600, 1800] | 2.3477%     |
+| (1800, 2000] | 1.9550%     |
+</pre></div>
+<h3 id="by-days-since-post-created">By days since post created<a class="headerlink" href="#by-days-since-post-created" title="Permanent link">¶</a></h3>
+<p><em>Note: This is number of days since creation at the time the data dump was created, not from today</em></p>
+<p>Count of posts by days since creation (top 10) (Covers 64% of broken links):</p>
+<div class="codehilite code"><pre>| Days since Creation | Percentage of Total Broken |
+|---------------------|----------------------------|
+| (1110, 1140]        | 7.2938%                    |
+| (1140, 1170]        | 6.7648%                    |
+| (1470, 1500]        | 6.6579%                    |
+| (1080, 1110]        | 6.6535%                    | 
+| (750, 780]          | 6.5535%                    |
+| (720, 750]          | 6.5516%                    |
+| (1500, 1530]        | 6.3978%                    |
+| (390, 420]          | 5.8508%                    |
+| (360, 390]          | 5.8258%                    |
+| (780, 810]          | 5.5175%                    |
 </pre></div>
 <hr/>
 <h2 id="discussion">Discussion<a class="headerlink" href="#discussion" title="Permanent link">¶</a></h2>
