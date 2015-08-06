@@ -113,9 +113,34 @@ http://dev.iceburg.net/jquery/jqModal/
 | (360, 390]          | 5.8258%                    |
 | (780, 810]          | 5.5175%                    |
 &lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="by-ratio-of-viewsdays"&gt;By Ratio of Views:Days&lt;a class="headerlink" href="#by-ratio-of-viewsdays" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ratio Views:Days (top 20) (Covers 90% of broken links):&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;| Views:Days Ratio | Percentage of Total Broken |
+|------------------|-------------|
+| (0, 0.25]        | 27.2369%    |
+| (0.25, 0.5]      | 18.8496%    |
+| (0.5, 0.75]      | 11.4321%    |
+| (0.75, 1]        | 7.2481%     | 
+| (1, 1.25]        | 5.1668%     |
+| (1.25, 1.5]      | 3.7907%     |
+| (1.5, 1.75]      | 2.9310%     |
+| (1.75, 2]        | 2.4033%     |
+| (2, 2.25]        | 1.9788%     |
+| (2.25, 2.5]      | 1.6850%     |
+| (2.5, 2.75]      | 1.4080%     |
+| (2.75, 3]        | 1.1879%     |
+| (3, 3.25]        | 1.0654%     |
+| (3.25, 3.5]      | 0.9391%     |
+| (3.5, 3.75]      | 0.8334%     |
+| (3.75, 4]        | 0.7165%     |
+| (4, 4.25]        | 0.6634%     |
+| (4.25, 4.5]      | 0.5789%     |
+| (4.5, 4.75]      | 0.5508%     |
+| (4.75, 5]        | 0.4833%     |
+&lt;/pre&gt;&lt;/div&gt;
 &lt;hr/&gt;
 &lt;h2 id="discussion"&gt;Discussion&lt;a class="headerlink" href="#discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;What can we do with all of this? How do we, as a community, solve the issue of 10% of our posts pointing to places on the internet that no longer exist? Assuming that my sample was indicative of the entire data dump, there are close to 600K (150K broken unique links x 4, because I took 1/4 of the data dump as a sample) broken links posted in questions and answers on Stack Overflow. I assume a large number of links posted in comments would be broken as well, but that's an activity for another month.&lt;/p&gt;
+&lt;p&gt;What can we do with all of this? How do we, as a community, solve the issue of 10% of our outbound links pointing to places on the internet that no longer exist? Assuming that my sample was indicative of the entire data dump, there are close to 600K (150K broken unique links x 4, because I took 1/4 of the data dump as a sample) broken links posted in questions and answers on Stack Overflow. I assume a large number of links posted in comments would be broken as well, but that's an activity for another month.&lt;/p&gt;
 &lt;p&gt;We encourage posters to provide snippets from their links just in case a link dies. That definitely helps, but the resources behind the links and the (presumably) expanded explanation behind the links are still gone. How can we properly deal with this? &lt;/p&gt;
 &lt;p&gt;It looks like there have been a few previous discussions:&lt;/p&gt;
 &lt;ul&gt;
