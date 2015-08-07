@@ -5,35 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/</loc>
-<lastmod>2015-08-06T12:56:40-00:00</lastmod>
+<lastmod>2015-08-07T07:51:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/archives.html</loc>
-<lastmod>2015-08-06T12:56:40-00:00</lastmod>
+<lastmod>2015-08-07T07:51:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/tags.html</loc>
-<lastmod>2015-08-06T12:56:40-00:00</lastmod>
+<lastmod>2015-08-07T07:51:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/categories.html</loc>
-<lastmod>2015-08-06T12:56:40-00:00</lastmod>
+<lastmod>2015-08-07T07:51:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
+<loc>http://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html</loc>
+<lastmod>2015-08-07T07:34:00-05:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html</loc>
-<lastmod>2015-08-06T07:35:00-05:00</lastmod>
+<lastmod>2015-08-07T00:00:00-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -187,7 +194,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/category/side-activities.html</loc>
-<lastmod>2015-08-06T07:35:00-05:51</lastmod>
+<lastmod>2015-08-07T07:34:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -236,7 +243,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/tag/programming.html</loc>
-<lastmod>2015-08-06T07:35:00-05:51</lastmod>
+<lastmod>2015-08-07T07:34:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -278,14 +285,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/tag/stack-exchange.html</loc>
-<lastmod>2015-08-06T07:35:00-05:51</lastmod>
+<lastmod>2015-08-07T07:34:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/author/andy-wegner.html</loc>
-<lastmod>2015-08-06T07:35:00-05:51</lastmod>
+<lastmod>2015-08-07T07:34:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
