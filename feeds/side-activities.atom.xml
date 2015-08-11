@@ -1,5 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-08-07T07:34:00-05:00</updated><entry><title>A proposal to fix broken links on Stack Overflow</title><link href="http://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html" rel="alternate"></link><updated>2015-08-07T07:34:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-08-07:a-proposal-to-fix-broken-links-on-stack-overflow.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-08-10T23:41:00-05:00</updated><entry><title>Link Analysis - Technical Explanation</title><link href="http://andrewwegner.com/link-analysis---technical-explanation.html" rel="alternate"></link><updated>2015-08-10T23:41:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-08-10:link-analysis---technical-explanation.html</id><summary type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In my last two posts, I've discussed the number of &lt;a href="http://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html"&gt;rotten links&lt;/a&gt; on Stack Overflow and a &lt;a href="http://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html"&gt;proposal to fix said links&lt;/a&gt;. In this post, I'm going to discuss how I performed this analysis. &lt;/p&gt;
+&lt;h2 id="set-up"&gt;Set up&lt;a class="headerlink" href="#set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="the-database"&gt;The database&lt;a class="headerlink" href="#the-database" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The process began by downloading the March 2013 &lt;a href="https://archive.org/details/stackexchange"&gt;data dump&lt;/a&gt;. I loaded the &lt;code&gt;posts&lt;/code&gt; into a [MariaDB] instance on my local machine. This was accomplished with a very simple script and patience, as the script took a while to run.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;load xml local infile '/path/to/posts.xml'
+into table posts
+rows identified by '&amp;lt;row&amp;gt;';
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="the-data"&gt;The data&lt;a class="headerlink" href="#the-data" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once this was done, the next step was selecting my random sample of data. I did this by randomly selecting 25% of the days in a year and then pulling all posts for those days across all years of Stack Overflow's existence. The Python script I used to do this was fairly simple:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;timedelta&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;randint&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ceil&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;random_date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;timedelta&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;seconds&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;total_seconds&lt;/span&gt;&lt;span class="p"&gt;())))&lt;/span&gt;
+
+&lt;span class="n"&gt;percentage&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.25&lt;/span&gt;
+&lt;span class="n"&gt;days&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;366&lt;/span&gt;
+
+&lt;span class="n"&gt;dayslist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ceil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;days&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;percentage&lt;/span&gt;&lt;span class="p"&gt;))):&lt;/span&gt;
+    &lt;span class="n"&gt;dayslist&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;random_date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2008&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2008&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;31&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;At the end of this run, the days that I cared about are in the &lt;code&gt;dayslist&lt;/code&gt; variable. I used that to pull questions and answers from the database that were created on that month/day combination. In the end, this resulted in just over 25% of the total posts being selected. To ensure that I could replicate the results, I also saved the dates that were selected.&lt;/p&gt;
+&lt;h2 id="parsing-the-data"&gt;Parsing the data&lt;a class="headerlink" href="#parsing-the-data" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The next step was to parse out links from the data. I used the following script to extract anchor text and links from a post. &lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;def links_in_post(post):
+    """
+    Returns a list of all links found
+    :param posts: A list of dictionaries with a 'body' key containing HTML strings
+     [
+        {
+            'body': "&lt;span class="nt"&gt;&amp;lt;b&amp;gt;&lt;/span&gt;This is HTML&lt;span class="nt"&gt;&amp;lt;/b&amp;gt;&lt;/span&gt;"
+        },
+    ]
+    :return: A list of tuples containing anchor text and URL
+        [
+            ('Display Text', 'http://example.com')
+        ]
+    """
+    logging.debug("Extracting links...")
+    links = []
+    images = []
+    regexp = "&lt;span class="ni"&gt;&amp;amp;.+?;&lt;/span&gt;"
+    list_of_html = re.findall(regexp, post)
+    for e in list_of_html:
+        if e in invalid_entities:
+            h = HTMLParser.HTMLParser()
+            unescaped = h.unescape(e) 
+            post = post.replace(e, unescaped)
+
+    doc = html.fromstring(post)
+    for link in doc.xpath('//a'):
+        links.append(Link(text=link.text_content(), link=link.get('href')))
+    for image in doc.xpath('//img'):
+        images.append(Link(text=image.get('alt'), link=image.get('src')))
+    all_items = links + images
+    seen = set()
+    unique_items = [item for item in all_items if item[1] not in seen and not seen.add(item[1])]
+    return unique_items
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The regular expression being utilized, is to strip out HTML entities. This was needed due to weird parsing issues with non-ASCII characters. Fortunately, I wasn't the &lt;a href="http://stackoverflow.com/a/13939198/189134"&gt;first to encounter oddities like this&lt;/a&gt;. The list comprehension at the end of the function is returning only unique tuples of anchor text/link. I was surprised how often I'd end up with tuples such as &lt;code&gt;('this', 'http://google.com')&lt;/code&gt; in the same post. This uniqueness saved a lot of processing time later.&lt;/p&gt;
+&lt;p&gt;After all links in a post had been extracted, this information and information about the post itself, was saved to the database. If a post had no links, it was not saved. The database consisted of three tables. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Links - This table contains the base URLs seen in all posts. URLs are distinct. It also contains an ID that will be utilized for linking to the other tables.&lt;/li&gt;
+&lt;li&gt;Post Links - This table contains information about links in a post. This includes the specific anchor text/link combinations&lt;/li&gt;
+&lt;li&gt;Link Results - This table contains the results of link status checks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Processing the posts was fairly time consuming, but was able to be parallelized easily. That significantly cut down on processing time.&lt;/p&gt;
+&lt;h2 id="checking-the-links"&gt;Checking the links&lt;a class="headerlink" href="#checking-the-links" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The most time consuming portion of this entire project was actually checking link status. Each link that appeared in the &lt;code&gt;Links&lt;/code&gt; table was checked. As I mentioned in my first post, the original idea was to simply send a &lt;code&gt;HEAD&lt;/code&gt; request to each URL. The idea was to save myself and the end point a tiny amount of bandwidth. I had over a million links to process. I figured a little saved bandwidth wouldn't hurt.&lt;/p&gt;
+&lt;p&gt;I turns out this isn't a good idea. When I started seeing larger sites as not being accessible, I go suspicious that something was wrong. These sites were returning status 405 errors. This indicates that the method is not allowed. So, I switched to &lt;code&gt;GET&lt;/code&gt; for every link. The next problem I ran into was that many sites didn't like the default user agent of the spider. They rejected requests with 404 and 401 errors. In the end, I got around this by mimicking Firefox on every request. &lt;/p&gt;
+&lt;p&gt;With those kinks worked out, every link was sent a &lt;code&gt;GET&lt;/code&gt; request that looked to be from a Firefox browser. The process would allow 20 seconds per link. If the link didn't respond in that time limit, it was declared inaccessible. &lt;/p&gt;
+&lt;p&gt;A week later, I repeated the process with anything that hadn't returned a status code less than 400. Once more, on the third week, I repeated this with the failed links. At the end of three weeks, I had a list of sites that were inaccessible to me - on a residential connection - three times over a period of three weeks.&lt;/p&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="http://andrewwegner.com/images/status_codes.svg"&gt;SVG image&lt;/a&gt; that I created for the write up was generated with Pygal. The tables were the result of various break downs of the data via queries to the status results. &lt;/p&gt;
+&lt;h2 id="wrap-up"&gt;Wrap up&lt;a class="headerlink" href="#wrap-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I am rather proud of how the results turned out for this project. I went into it expecting about 15% of links to be broken, but I didn't really realize what the meant. Fifteen percent of 21 million total posts is over 3 million. That's a large number. BUT, it also ignored that a large percentage of posts don't contain links. I failed to consider that in my original hypothesis. &lt;/p&gt;
+&lt;p&gt;Less than half of my sample had links (2.3M out of 5.6M). Of the 2.3M with links, only 1.5M were unique links. The final result of 10% failed links makes much more sense in this context. Ten percent of 1.5M links means that there are 150K links that are bad. &lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="programming"></category></entry><entry><title>A proposal to fix broken links on Stack Overflow</title><link href="http://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html" rel="alternate"></link><updated>2015-08-07T07:34:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-08-07:a-proposal-to-fix-broken-links-on-stack-overflow.html</id><summary type="html">
 &lt;p&gt;This post was &lt;a href="http://meta.stackoverflow.com/q/300916/189134"&gt;published&lt;/a&gt; by &lt;a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile"&gt;me&lt;/a&gt; on Meta Stack Overflow on August 7th, 2015. I've republished it here
 so that I can easily update information related to recent developments. If you have questions or comments, I highly
 encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/300916/189134"&gt;question&lt;/a&gt; on Meta Stack Overflow and post there. &lt;/p&gt;
