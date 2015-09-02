@@ -732,7 +732,7 @@ good comment    | 0.9999        | False
 &lt;p&gt;In January 2015, &lt;a href="http://meta.stackoverflow.com/q/283030/189134"&gt;another user&lt;/a&gt; was using a basic query to look for invalid comments. This caused a high number of moderator flags, many of which were declined. My process was caught in this mass decline. This resulted in 49 declined flags for a single day.
 This is, by far, the largest number of declined flags the process has generated in a day. It did, however, prompt a process change after consultation with the Stack Overflow moderators.&lt;/p&gt;
 &lt;p&gt;The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.&lt;/p&gt;
-&lt;h3 id="updated-results"&gt;Updated Results&lt;a class="headerlink" href="#updated-results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="updated-results-may-2015-11-months"&gt;Updated Results - May 2015 (11 Months)&lt;a class="headerlink" href="#updated-results-may-2015-11-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;After nearly a year of running, these are my flagging statistics:&lt;/p&gt;
 &lt;div class="codehilite code"&gt;&lt;pre&gt;39938   comments flagged
 39659   deemed helpful
@@ -743,7 +743,15 @@ This is, by far, the largest number of declined flags the process has generated 
 &lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Here is an updated chart showing the rolling 10 day average for number of declined flags. I've had several stretches of multi-week time frames with no declined flags.&lt;/p&gt;
 &lt;p&gt;This is a busy chart, so I've narrowed it down to show just the last 90 days. From here you can see that in the past 90 days there have been only 10 declined flags.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 90 day window" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/&gt;&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Moderation postion on Moderators</title><link href="http://andrewwegner.com/moderation-postion-on-moderators.html" rel="alternate"></link><updated>2014-12-04T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-07-02:moderation-postion-on-moderators.html</id><summary type="html">
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 90 day window" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/&gt;&lt;/p&gt;
+&lt;h3 id="updated-results-sept-2015-15-months"&gt;Updated Results - Sept 2015 (15 Months)&lt;a class="headerlink" href="#updated-results-sept-2015-15-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;It has been almost 15 months since the process started. In that time, the model has gotten more accurate. Since the last update in May, I've had only 3 declined comment flags:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;52351   comments flagged
+52069   deemed helpful
+282     declined
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This provides a helpful rate of 99.46%. Here is an updated chart showing the rolling 10 day average for number of declined flags. The 90 day window is not even worth showing. It has three days where a single flag was declined.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 15 Months of data training" src="http://andrewwegner.com/images/declined_per_day_15_months.png"/&gt;&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Moderation postion on Moderators</title><link href="http://andrewwegner.com/moderation-postion-on-moderators.html" rel="alternate"></link><updated>2014-12-04T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-07-02:moderation-postion-on-moderators.html</id><summary type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've been the owner of Vipers for almost 5 years. In that time I've help the community grown and get stronger. I've helped
 members begin their own communities and I've maintained the game servers the players utilize 24 hours a day. I've been 
