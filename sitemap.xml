@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/</loc>
-<lastmod>2015-11-18T09:36:00-00:00</lastmod>
+<lastmod>2015-11-18T10:11:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/archives.html</loc>
-<lastmod>2015-11-18T09:36:00-00:00</lastmod>
+<lastmod>2015-11-18T10:11:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/tags.html</loc>
-<lastmod>2015-11-18T09:36:00-00:00</lastmod>
+<lastmod>2015-11-18T10:11:10-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/categories.html</loc>
-<lastmod>2015-11-18T09:36:00-00:00</lastmod>
+<lastmod>2015-11-18T10:11:10-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html</loc>
+<lastmod>2015-11-18T00:00:00-06:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -215,7 +222,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/category/side-activities.html</loc>
-<lastmod>2015-08-10T23:41:00-05:51</lastmod>
+<lastmod>2015-11-18T09:38:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -270,8 +277,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://andrewwegner.com/tag/moderation.html</loc>
-<lastmod>2015-04-21T00:00:00-05:51</lastmod>
+<loc>http://andrewwegner.com/tag/job.html</loc>
+<lastmod>2015-10-10T14:20:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -291,8 +298,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://andrewwegner.com/tag/job.html</loc>
-<lastmod>2015-10-10T14:20:00-05:51</lastmod>
+<loc>http://andrewwegner.com/tag/moderation.html</loc>
+<lastmod>2015-11-18T09:38:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -313,14 +320,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/tag/stack-exchange.html</loc>
-<lastmod>2015-08-10T23:41:00-05:51</lastmod>
+<lastmod>2015-11-18T09:38:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/author/andy-wegner.html</loc>
-<lastmod>2015-10-10T14:20:00-05:51</lastmod>
+<lastmod>2015-11-18T09:38:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
