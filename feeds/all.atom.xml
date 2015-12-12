@@ -1,5 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-12-08T00:00:00-06:00</updated><entry><title>I'm running for moderator on Stack Overflow again</title><link href="http://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html" rel="alternate"></link><updated>2015-12-08T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-11-18:i'm-running-for-moderator-on-stack-overflow-again.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-12-11T09:15:00-06:00</updated><entry><title>How I built a Flask application that integrates with Travis CI and OpenShift</title><link href="http://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" rel="alternate"></link><updated>2015-12-11T09:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-12-11:how-i-set-up-openshift-travisci-and-flask.html</id><summary type="html">
+&lt;h2 id="motivation"&gt;Motivation&lt;a class="headerlink" href="#motivation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Since I &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;shut down&lt;/a&gt; Vipers early this year, I've been itching to do &lt;em&gt;something&lt;/em&gt; web related. Web technologies aren't my best technical skill, but I like trying out new things and learning something in the process. I use Python at work. I like Python a lot. With Christmas and New Years coming up, I want to have a project during my down time. My goal is to get a &lt;a href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; application built and then deployed to &lt;a href="https://www.openshift.com/"&gt;OpenShift&lt;/a&gt;. Part of this deployment is to utilize &lt;a href="https://travis-ci.org/"&gt;TravisCI&lt;/a&gt;. I'm planning on using &lt;a href="http://pytest.org/latest/"&gt;pytest&lt;/a&gt; and &lt;a href="https://hypothesis.readthedocs.org/en/latest/"&gt;hypothesis&lt;/a&gt; for my test suite.&lt;/p&gt;
+&lt;p&gt;Of these three technologies, I've used only Flask before. The &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;comment flagging bot&lt;/a&gt; I built has a dashboard built in Flask. I've never used OpenShift or TravisCI. I selected OpenShift because it has a couple &lt;a href="http://www.paasify.it/compare/heroku-vs-openshift%20online"&gt;features&lt;/a&gt; I want that Heroku doesn't. The biggest one, according to the previous link, was that OpenShift has support for MySQL and Heroku doesn't (surprisingly). I want to use TravisCI and automated testing, because one of my goals for next year at work is to introduce automated tested to our development. (I work with Engineers, not coders...that's my excuse and it's a bad excuse, so I'm going to try and fix it.) To get ready for that goal, I want to test out a system that does continuous integration/automated testing. Both OpenShift and Travis CI provide me with free services. Hypothesis and py.test provide me with a way to generate comprehensive test conditions. &lt;/p&gt;
+&lt;h2 id="openshift-set-up"&gt;OpenShift set up&lt;a class="headerlink" href="#openshift-set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Signing up for OpenShift was easy. Fill out the form, provide an email address - though they don't like email addresses with &lt;code&gt;+&lt;/code&gt; signs, which is disappointing - and then click the link they email back to you. &lt;/p&gt;
+&lt;p&gt;Next, the &lt;code&gt;rhc&lt;/code&gt; OpenShift client tools are needed. This is a Ruby package. I have no experience with Ruby, so I needed to install Ruby as well. I ran into a problem almost immediately. The &lt;a href="https://developers.openshift.com/en/managing-client-tools.html"&gt;page&lt;/a&gt; for installing these tools says:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;OpenShift rhc can be run on any operating system with Ruby 1.8.7 or higher assuming you have the requisite user permissions to install programs. Instructions for specific operating systems are provided below. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Based on that, I figured I'd install the latest version of &lt;a href="http://rubyinstaller.org/downloads/"&gt;Ruby&lt;/a&gt;. At the time I tested this, that was 2.2.3. Unfortunately, when I ran the command to install the &lt;code&gt;rhc&lt;/code&gt; tools, I received an error. After a bit of Googling, I found that it doesn't like 2.2x. So, I installed 2.1.7 instead. Next, I ran:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;gem install rhc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This installs several gems and took a few minutes to complete. Next,&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;rhc setup
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This started the OpenShift setup wizard. It consisted of filling out the few prompts and letting it generate an SSH key and then connecting to my account. Remember the Namespace you select. Again, this took a few minutes.&lt;/p&gt;
+&lt;h2 id="flask-setup"&gt;Flask setup&lt;a class="headerlink" href="#flask-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The next step was to set up my first "Gear". This would be the Flask application. I'll work on the database next. First, I just want Python and Flask to function properly. Fortunately, this is very easy, as OpenShift has a Flask template.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;rhc app create testapp python-2.7 --from-code=https://github.com/openshift-quickstart/flask-base.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A few notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I am utilizing Python 2.7, because that is the recommendation from the Flask team.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;testapp&lt;/code&gt; can be any alphanumeric string. This is the name that will appear in the Web Console. A specific note, &lt;code&gt;_&lt;/code&gt; is not alphanumeric. I'm getting the feeling that OpenShift doesn't like "special" characters.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;--from-code&lt;/code&gt; parameter will download that repository and use it as the base of your application. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At this point, Flask can be run locally using:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;python app.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The application can be pushed back to OpenShift at this point and there should be a functional page on your OpenShift domain. In your command line, from the directory of your project:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;git add --all
+git commit -m "Adding Flask application"
+git push
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will take a moment. At the end, you should see these lines in your command prompt:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Git&lt;/span&gt; &lt;span class="n"&gt;Post&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Receive&lt;/span&gt; &lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;success&lt;/span&gt;
+&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Activation&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;success&lt;/span&gt;
+&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Deployment&lt;/span&gt; &lt;span class="n"&gt;completed&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;success&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If all three are a success, then you should be able to visit your URL. Your URL is a combination of your selected Namespace and the application name you created.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;http://&amp;lt;namespace&amp;gt;-&amp;lt;testapp&amp;gt;.rhcloud.com/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This should show a "Welcome to Flask on OpenShift" page. If you append &lt;code&gt;/test&lt;/code&gt; to your URL, you'll get a message that says "It's Alive!"&lt;/p&gt;
+&lt;p&gt;If it doesn't, you can check your error logs by running:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;rhc tail -a &amp;lt;testapp&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="mysql-setup"&gt;MySQL setup&lt;a class="headerlink" href="#mysql-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Next, I set up my application to utilize MySQL. It's the database I have the most experience with, so I decided to keep that aspect of this project simple for myself. The first step was to add a MySQL 5.5 cartridge to my test gear (OpenShift terminology). I did this in the OpenShift web console. The UI provided me with the option to install various databases and one of those was MySQL. Clicking the link caused a few second delay as it was set up, and then I was presented with login credentials to my database. Step one...done.&lt;/p&gt;
+&lt;p&gt;The next step is installing the correct Python modules to utilize MySQL. I selected &lt;a href="http://www.pymysql.org/"&gt;PyMySQL&lt;/a&gt; (again, experience) and &lt;a href="http://www.sqlalchemy.org/"&gt;SQLAlchemy&lt;/a&gt;. I added these to both &lt;code&gt;requirements.txt&lt;/code&gt; and &lt;code&gt;setup.py&lt;/code&gt;. The idea behind doing it in both places is to make life easy for myself in the future. Additionally, the quick tutorials I've looked at for TravisCI encourage the usage of &lt;code&gt;requirements.txt&lt;/code&gt;, while it seems OpenShift uses the &lt;code&gt;setup.py&lt;/code&gt;. I'll fix that eventually, but getting it set up initially, this will be fastest.&lt;/p&gt;
+&lt;p&gt;Add these to &lt;code&gt;requirements.txt&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;sqlalchemy==1.0.9
+pymysql==0.6.7
+Flask-SQLAlchemy==2.1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Add this to the &lt;code&gt;install_requires&lt;/code&gt; list in &lt;code&gt;setup.py&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;'sqlalchemy==1.0.9','pymysql==0.6.7','Flask-SQLAlchemy==2.1'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The nice thing about OpenShift is that the credentials to the database are placed in &lt;a href="https://developers.openshift.com/en/managing-environment-variables.html#database-variables"&gt;environment variables&lt;/a&gt;, so I don't need to embed the passwords, connections strings, or anything potentially sensitive in my code. For MySQL these are available as:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;Variable Name               |   Purpose
+------------------------------------------------
+OPENSHIFT_MYSQL_DB_HOST     |   The host name or IP address used to connect to the database.
+OPENSHIFT_MYSQL_DB_PORT     |   The port the database server is listening on.
+OPENSHIFT_MYSQL_DB_USERNAME |   The database administrative user name.
+OPENSHIFT_MYSQL_DB_PASSWORD |   The database administrative user’s password.
+OPENSHIFT_MYSQL_DB_SOCKET   |   An AF socket for connecting to the database (for non-scaled apps only).
+OPENSHIFT_MYSQL_DB_URL      |   Database connection URL.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="utilizing-the-database"&gt;Utilizing the database&lt;a class="headerlink" href="#utilizing-the-database" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Setting up SQLAlchemy and MySQL is fairly easy. I tested this with a simple table and ensured that it appeared in the database as expected.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;User&lt;/span&gt;(&lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Model&lt;/span&gt;):
+    &lt;span class="n"&gt;__tablename__&lt;/span&gt; = &lt;span class="s"&gt;'users'&lt;/span&gt;
+    &lt;span class="n"&gt;id&lt;/span&gt; = &lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Column&lt;/span&gt;(&lt;span class="s"&gt;'user_id'&lt;/span&gt;, &lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Integer&lt;/span&gt;, &lt;span class="n"&gt;primary_key&lt;/span&gt;=&lt;span class="nb"&gt;True&lt;/span&gt;)
+    &lt;span class="nb"&gt;name&lt;/span&gt; = &lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Column&lt;/span&gt;(&lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;String&lt;/span&gt;(&lt;span class="mi"&gt;60&lt;/span&gt;))
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A few adjustments were made to the import statements of the Flask application:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask_sqlalchemy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SQLAlchemy&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A couple variables were created and loaded:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;app.config.from_pyfile('flaskapp.cfg')
+db = SQLAlchemy(app)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, the &lt;code&gt;flaskapp.cfg&lt;/code&gt; file was modified to include these two lines:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_MYSQL_DB_URL'] + os.environ['OPENSHIFT_APP_NAME]
+SQLALCHEMY_ECHO = False
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="remote-mysql-access"&gt;Remote MySQL Access&lt;a class="headerlink" href="#remote-mysql-access" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I like to use &lt;a href="https://www.mysql.com/products/workbench/"&gt;MySQL Workbench&lt;/a&gt; while building and testing to watch what's happening in the database. To use that with OpenShift, I had to jump through a few small hoops. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open MySQL Workbench and create a new connection&lt;/li&gt;
+&lt;li&gt;Give the connection a name&lt;/li&gt;
+&lt;li&gt;In "Connection Method", select "Standard TCP/IP over SSH"&lt;/li&gt;
+&lt;li&gt;The SSH Hostname is the full name of your OpenShift gear where MySQL is installed. It should look like &lt;code&gt;namespace-appname.rhcloud.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The SSH Username is the gear's Unique Identifier. This can be found by looking at the &lt;code&gt;OPENSHIFT_GEAR_UUID&lt;/code&gt; environment variable. It can also be found in the web console, but looking at the "remote access" section. It shows a connection string. You need the username portion. This is the part that appears before the &lt;code&gt;@&lt;/code&gt; in the &lt;code&gt;ssh longuniquestring@namespace-appname.rhcloud.com&lt;/code&gt; command. &lt;/li&gt;
+&lt;li&gt;Set the SSH key file. On Windows this is in &lt;code&gt;\Users\&amp;lt;username&amp;gt;\.ssh\id_rsa&lt;/code&gt; by default&lt;/li&gt;
+&lt;li&gt;Set MySQL Hostname equal to the value in &lt;code&gt;OPENSHIFT_MYSQL_DB_HOST&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Set Username equal to the value in &lt;code&gt;OPENSHIFT_MYSQL_DB_USERNAME&lt;/code&gt; (this was also provided to you when you installed MySQL)&lt;/li&gt;
+&lt;li&gt;See Password equal to the value in &lt;code&gt;OPENSHIFT_MYSQL_DB_PASSWORD&lt;/code&gt; (again, this was provided to you when MySQL was installed)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="travisci-setup"&gt;TravisCI setup&lt;a class="headerlink" href="#travisci-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I want to play with automated testing. The idea behind this is to get a jump start on a goal for next year at work and to learn something new. I'd like to utilize Travis CI to perform the tests and if they pass, deploy to OpenShift. If the tests fail, I don't want to push a broken build to OpenShift. That's the goal...we'll see how it turns out. But, the first step is getting Travis CI and OpenShift talking to one another.&lt;/p&gt;
+&lt;p&gt;Travis CI integrates with GitHub, so what I'm going to do in reality is push to GitHub and let Travis CI pick up the changes. From there, it will perform it's tests. If the tests pass, it will push the commit to OpenShift.&lt;/p&gt;
+&lt;p&gt;On GitHub, create a new repository for your source. This is where you will be pushing your code for Travis CI to pick up.&lt;/p&gt;
+&lt;p&gt;From your OpenShift directory (which is already a git repository):&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;git remote rename origin openshift
+git remote add origin https://github.com/&amp;lt;USER&amp;gt;/&amp;lt;repositoryname&amp;gt;.git
+git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This resets the origin to point to your new GitHub repository and sets up a new remote. Then it pushes the changes to GitHub.&lt;/p&gt;
+&lt;p&gt;Log into your &lt;a href="https://travis-ci.org/profile"&gt;Travis CI profile page&lt;/a&gt;. Make sure you are logged into GitHub first, as this will create the profile automatically. Press the "Sync now" button at the top of the page to pull a list of all of your repositories. Once that is done, find the repository you just set up, and enable integration with that repository.&lt;/p&gt;
+&lt;p&gt;Next you need to set up Travis CI and the &lt;code&gt;.travis.yml&lt;/code&gt; file. &lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;gem install travis
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will install a Ruby script that assists in this process. If you get an error when running this, you need to create an empty &lt;code&gt;.travis.yml&lt;/code&gt; file first and then run the command again.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;travis setup openshift
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Fill out the prompts. Defaults should be fine in most cases, but do pay attention to "OpenShift application name". If your GitHub repository is named differently than your OpenShift application name, the default for this prompt will be incorrect.&lt;/p&gt;
+&lt;p&gt;One last note, for a quick test you can change the &lt;code&gt;script&lt;/code&gt; section to &lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This forces the tests to pass. Once you've written tests, you can do something like:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;script:
+    - py.test
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will run your test scripts, utilizing &lt;code&gt;py.test&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Deploy these changes to GitHub:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;git add .travis.yml
+git commit -m "Deploying Travis"
+git push origin master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will commit and push the changes to GitHub. A few seconds later, if you are watching Travis CI, you'll see it notices the new commit and starts running tests. If you tests complete with a status code of &lt;code&gt;0&lt;/code&gt; (successful), it will deploy the changes to OpenShift. If the tests fail (any other status code), it will not deploy to OpenShift.&lt;/p&gt;
+&lt;h2 id="pytest-setup"&gt;py.test setup&lt;a class="headerlink" href="#pytest-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Setting up the testing frame work involves a few Python modules. These need to be added to both &lt;code&gt;requirements.txt&lt;/code&gt; and &lt;code&gt;setup.py&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;pytest&amp;gt;=2.8.0
+hypothesis==1.16.0
+pytest-runner==2.6.2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The next step is setting up some quick integration with &lt;code&gt;setup.py&lt;/code&gt;, so that users can run &lt;code&gt;python setup.py test&lt;/code&gt; and execute your tests.&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;setup.py&lt;/code&gt;, add (or edit) the &lt;code&gt;setup_requires&lt;/code&gt; list to include &lt;code&gt;pytest-runner&lt;/code&gt;. Add (or edit) the &lt;code&gt;tests_require&lt;/code&gt; list to include &lt;code&gt;pytest&lt;/code&gt;. I also added the following to my &lt;code&gt;setup.cfg&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="k"&gt;[aliases]&lt;/span&gt;
+&lt;span class="na"&gt;test&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;pytest&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I modified my &lt;code&gt;setup_requires&lt;/code&gt; list a bit, so that it's conditional. Since this would install the &lt;code&gt;pytest-runner&lt;/code&gt; on every call to &lt;code&gt;setup.py&lt;/code&gt;, even when the module wouldn't be called, I wanted the runner to only be required when &lt;code&gt;pytest&lt;/code&gt; is utilized.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="n"&gt;needs_pytest&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;'pytest'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'test'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'ptr'&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;pytest_runner&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'pytest-runner'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;needs_pytest&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;setup_requires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="c"&gt;#... Other requirements here&lt;/span&gt;
+    &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;pytest_runner&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I wanted to test that my tests were working correctly. I created a &lt;code&gt;tests&lt;/code&gt; directory, which is where I plan on storing all of my test cases. &lt;code&gt;pytest&lt;/code&gt; will find any files that start or end with &lt;code&gt;test&lt;/code&gt; and execute them. I created a very simple &lt;code&gt;test_tests.py&lt;/code&gt; file with the following simple test (taken from the &lt;a href="https://hypothesis.readthedocs.org/en/latest/quickstart.html#writing-tests"&gt;Hypothesis Quickstart&lt;/a&gt;)&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;@given(st.integers(), st.integers())
+def test_ints_are_commutative(x, y):
+    assert x + y == y + x
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, Travis CI needs to be told what to do. Modify the &lt;code&gt;script&lt;/code&gt; key to include &lt;code&gt;py.test&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;script:
+   - py.test
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After a successful run through Travis, you'll see something like this:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;tests/test_tests.py .
+=========================== 1 passed in 0.26 seconds ===========================
+The command "py.test" exited with 0.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With this, the set up is complete. You have a Flask application, connected to MySQL, that is integrated with a CI system which automatically deploys to OpenShift when all tests pass. &lt;/p&gt;
+&lt;p&gt;On to building something!&lt;/p&gt;</summary><category term="technical"></category></entry><entry><title>I'm running for moderator on Stack Overflow again</title><link href="http://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html" rel="alternate"></link><updated>2015-12-08T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-11-18:i'm-running-for-moderator-on-stack-overflow-again.html</id><summary type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In April, &lt;a href="http://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html"&gt;I ran for moderator&lt;/a&gt; on Stack Overflow and didn't make it through the primaries. That's ok though, there were several very good users that did get &lt;a href="http://stackoverflow.com/election/6"&gt;elected&lt;/a&gt;. In a surprise announcement, though, Stack Overflow is running a second election this year. This is the first time this has happened since 2011. I'm still interested in a position and I'm still active in the community, so I'm going to run again. This post will follow the process.&lt;/p&gt;
 &lt;h2 id="nomination-phase"&gt;Nomination Phase&lt;a class="headerlink" href="#nomination-phase" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
