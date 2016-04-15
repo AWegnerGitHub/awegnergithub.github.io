@@ -1,7 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2016-01-09T00:00:00-06:00</updated><entry><title>How I built a Flask application that integrates with Travis CI and OpenShift</title><link href="http://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" rel="alternate"></link><updated>2015-12-12T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-12-11:how-i-set-up-openshift-travisci-and-flask.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2016-03-15T12:26:00-05:00</updated><entry><title>My experiences releasing a package to PyPI</title><link href="http://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html" rel="alternate"></link><updated>2016-03-15T12:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2016-03-15:my-experiences-releasing-a-package-to-pypi.html</id><summary type="html">
 &lt;h2 id="motivation"&gt;Motivation&lt;a class="headerlink" href="#motivation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Since I &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;shut down&lt;/a&gt; Vipers early this year, I've been itching to do &lt;em&gt;something&lt;/em&gt; web related. Web technologies aren't my best technical skill, but I like trying out new things and learning something in the process. I use Python at work. I like Python a lot. With Christmas and New Years coming up, I want to have a project during my down time. My goal is to get a &lt;a href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; application built and then deployed to &lt;a href="https://www.openshift.com/"&gt;OpenShift&lt;/a&gt;. Part of this deployment is to utilize &lt;a href="https://travis-ci.org/"&gt;TravisCI&lt;/a&gt;. I'm planning on using &lt;a href="http://pytest.org/latest/"&gt;pytest&lt;/a&gt; and &lt;a href="https://hypothesis.readthedocs.org/en/latest/"&gt;hypothesis&lt;/a&gt; for my test suite. Finally, I want to use my own (sub)domain, instead of the provided &lt;code&gt;rhcloud&lt;/code&gt; one.&lt;/p&gt;
+&lt;p&gt;In some of my &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;other projects&lt;/a&gt;, I've needed to make extensive use of the Stack Exchange API. I built a small library - StackAPI - to assist in this task and released it on Python's &lt;a href="https://pypi.python.org/pypi/StackAPI"&gt;PyPI repository&lt;/a&gt;. This post is going to cover some of the technical decisions and issues I ran into while going through this process. This was my first project being released to PyPI.&lt;/p&gt;
+&lt;p&gt;My goals when releasing this were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Clean up my own code so that it is usable by others&lt;/li&gt;
+&lt;li&gt;Improve the documentation and host the documentation on &lt;a href="https://readthedocs.org/"&gt;Read the Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Automatically release it to PyPI, if it passes basic tests&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Those goals sound simple. In the future, they probably will be, but for this first release it wasn't as simple as I was hoping.&lt;/p&gt;
+&lt;h2 id="project-layout"&gt;Project Layout&lt;a class="headerlink" href="#project-layout" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Before this project, I'd written modules and libraries that were used by myself (for personal projects) or as part of a larger application (for work). In both cases, though, I had a directory structure that looked something like this:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;/project_root
+    /mymodule
+        __init__.py
+        mymodule.py
+    __init__.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This was close to the end goal, but lacked some files in the &lt;code&gt;project_root&lt;/code&gt; that were needed for a proper install via &lt;code&gt;pip&lt;/code&gt;. The important file that was missing was &lt;code&gt;setup.py&lt;/code&gt;. I needed this file to ensure that everything would install with a simple &lt;code&gt;pip install stackapi&lt;/code&gt; &lt;/p&gt;
+&lt;h3 id="setuppy"&gt;setup.py&lt;a class="headerlink" href="#setuppy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;My &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.py"&gt;&lt;code&gt;setup.py&lt;/code&gt;&lt;/a&gt; is pretty basic and available on GitHub. There are a couple important things though.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;version&lt;/code&gt;: This is needed, but I didn't want to have to constantly remember to update this when pushing a version to PyPI. This was one of my first criteria when starting the project. I wanted to automate as much as I could, and versioning was at the top of that list. It's small, but easy to forget and keep syncronized across all the files in the project. I decided to utilize &lt;a href="https://pypi.python.org/pypi/bumpversion"&gt;bumpversion&lt;/a&gt; and &lt;a href="http://www.fabfile.org/"&gt;Fabric&lt;/a&gt; to manage this specific field (both here and elsewhere in the project).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;install_requires&lt;/code&gt;: StackAPI is built in the fantasitc &lt;a href="http://docs.python-requests.org/en/master/"&gt;Requests&lt;/a&gt; library. To ensure this was installed when StackAPI was install, it was needed in this field.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tests_require&lt;/code&gt;: The testsuite I build utilizes the &lt;code&gt;mock&lt;/code&gt; library. I don't want that to be installed if the developer isn't running the tests, so it is added to this field.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;test_suite&lt;/code&gt;: I wanted developers to be able to run &lt;code&gt;python setup.py test&lt;/code&gt; to execute the test suite. To do so, I had to point to the where the tests were being executed from.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The rest of &lt;code&gt;setup.py&lt;/code&gt; seemed to be fairly standard when compared to other Python libraries.&lt;/p&gt;
+&lt;h3 id="bumpversion-and-fabric"&gt;Bumpversion and Fabric&lt;a class="headerlink" href="#bumpversion-and-fabric" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;As I mentioned, I wanted to automate any versioning that was required. To do so, I used the &lt;a href="https://pypi.python.org/pypi/bumpversion"&gt;bumpversion&lt;/a&gt; library and wrote a small &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/fabfile.py"&gt;Fabric&lt;/a&gt; script to handle it automatically. &lt;code&gt;bumpversion&lt;/code&gt; uses a &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.cfg"&gt;config file&lt;/a&gt;, to determine what it is going to do. I configured it to automatically create a commit and a new git tag for each version. I then pointed to a couple files where the current version is listed. When &lt;code&gt;bumpversion&lt;/code&gt; is executed, it will change the version in each of those files to the new version. It will then create a single commit to the git repository with a commit message similar to &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Bump version: 0.1.6 → 0.1.7&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That is nice and clean. It tags the commit for me, which is useful later, when I want to push the change to PyPI.&lt;/p&gt;
+&lt;p&gt;To make running &lt;code&gt;bumpversion&lt;/code&gt; a bit easier, I utilized a Fabric routine I found &lt;a href="https://gist.github.com/jbarratt/85c91d7b904462702892"&gt;online&lt;/a&gt; and adjusted it for my purposes. When I run &lt;code&gt;fab release&lt;/code&gt;, all of the &lt;code&gt;bumpversion&lt;/code&gt; 'stuff' occurs. Then I just have to push the commit (and new tag) to GitHub. &lt;/p&gt;
+&lt;h3 id="final-project-layout"&gt;Final Project Layout&lt;a class="headerlink" href="#final-project-layout" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The final project layout I settled on was this:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;/stackapi
+    /docs
+        ...
+    /stackapi
+        __init__.py
+        stackapi.py
+    /tests
+    .gitignore
+    .travis.yml
+    fabfile.py
+    setup.cfg
+    setup.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="read-the-docs"&gt;Read the Docs&lt;a class="headerlink" href="#read-the-docs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="configure-the-project"&gt;Configure the project&lt;a class="headerlink" href="#configure-the-project" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In the final project layout, you can see there is a &lt;code&gt;docs&lt;/code&gt; directory. One of my goals was to make this library usable and understandable by other developers. A good part of that means having decent documentation. I spent way more time than I expected cleaning the documentation in the code and creating documentation with examples. Most of that time was spent learning the sphinx documentation style and ReStructuredText, which Read the Docs utilizes.&lt;/p&gt;
+&lt;p&gt;The first step in this process was installing and setting up the initial configuration for the documentation:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;pip install sphinx sphinx-autobuild
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, I created the &lt;code&gt;docs&lt;/code&gt; directory and switched to it and ran:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;sphinx-quickstart
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This starts a short, interactive, wizard. Fill out the questions. At the end of this, it creates a &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/docs/conf.py"&gt;&lt;code&gt;conf.py&lt;/code&gt;&lt;/a&gt; file in the &lt;code&gt;docs&lt;/code&gt; directory. The rest of the &lt;a href="https://github.com/AWegnerGitHub/stackapi/tree/master/docs"&gt;documentation&lt;/a&gt; is ReStructuredText files.&lt;/p&gt;
+&lt;p&gt;To see how the documentation looks, from the &lt;code&gt;docs&lt;/code&gt; directory, run:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;make html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This creates a &lt;code&gt;_build&lt;/code&gt; directory. If you open &lt;code&gt;_build/html/index.html&lt;/code&gt;, the documentation can be browsed locally. I do not commit this directory to git, though. It is ignored in &lt;code&gt;.gitignore&lt;/code&gt;, as a user can regenerate it at will.&lt;/p&gt;
+&lt;h3 id="configure-read-the-docs"&gt;Configure Read the Docs&lt;a class="headerlink" href="#configure-read-the-docs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once I was satisfied with how the documentation looked, I had to configure Read the Docs to read my GitHub repository. To repeat those steps:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sign up (or log in) at &lt;a href="https://readthedocs.org/"&gt;Read the Docs&lt;/a&gt; (part of this will be associating the account to a GitHub account)&lt;/li&gt;
+&lt;li&gt;Visit your &lt;a href="https://readthedocs.org/dashboard/"&gt;dashboard&lt;/a&gt; and click "Import a project"&lt;/li&gt;
+&lt;li&gt;Fill out the form, but in my case the defaults were all appropriate. Do note that URLs are case sensitive.&lt;/li&gt;
+&lt;li&gt;Click "Create". This is the first version of your documentation.&lt;/li&gt;
+&lt;li&gt;To keep the code updating as you update GitHub, log into GitHub and go to the repository's "Settings" page.&lt;/li&gt;
+&lt;li&gt;Click "Webhooks &amp;amp; Services"&lt;/li&gt;
+&lt;li&gt;Click "Add Service"&lt;/li&gt;
+&lt;li&gt;Select "ReadTheDocs" and add the service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At this point, each time you push a change to the repository, a new set of documents will be built. I then added the Read the Docs badge to my &lt;code&gt;README.rst&lt;/code&gt; for a simple link to the detailed documentation.&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;image&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt; https://readthedocs.org/projects/stackapi/badge/?version=latest
+&lt;span class="nc"&gt;:target:&lt;/span&gt; &lt;span class="nf"&gt;http://stackapi.readthedocs.org/en/latest/?badge=latest&lt;/span&gt;
+&lt;span class="nc"&gt;:alt:&lt;/span&gt; &lt;span class="nf"&gt;Documentation Status&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="force-rebuild-of-docs"&gt;Force rebuild of docs&lt;a class="headerlink" href="#force-rebuild-of-docs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Toward the very end of this project, Read the Docs had a minor hiccup and failed on building my documentation. I didn't want to force a build by making a fake commit. Instead, Read the Docs provides the information needed to force a rebuild. It requires a very simple &lt;code&gt;POST&lt;/code&gt; to the Post Commit Hook they provide. In my case, this was as simple as running this command (provided from the Dashboard):&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;curl -X POST https://readthedocs.org/build/stackapi
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="pypi"&gt;PyPI&lt;a class="headerlink" href="#pypi" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Nearing the end of the journey, it was time to see what exactly PyPI required. The first step was setting up an account on both the Test and Production instances of PyPI.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PiPY Test: http://testpypi.python.org/pypi?%3Aaction=register_form&lt;/li&gt;
+&lt;li&gt;PyPI Live: https://pypi.python.org/pypi?%3Aaction=register_form&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Having one on both was important while testing. It meant that I didn't have to send broken versions to the live PyPI server, and I could adjust ReStructuredText formatting issues without requiring another release to PyPI. Each time a version is pushed to PyPI it &lt;strong&gt;must&lt;/strong&gt; have a new version number. By using the test instance, I could use as many of these fake versions as needed to fix things. Hooray for test environments!&lt;/p&gt;
+&lt;p&gt;Before we perform this step automatically, we need to test that the PyPI accounts work. By following portions of a &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml"&gt;"First Time with PyPI"&lt;/a&gt; tutorial, I focused by steps down to these:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Create a &lt;code&gt;.pypirc&lt;/code&gt; file in your home directory - not your project directory. This won't be required once Travis CI is set up and configured, so having the passwords in this, temporarily, wasn't an issue because I eventually deleted the file.&lt;/p&gt;
+&lt;p&gt;[distutils]
+index-servers =
+  pypi
+  pypitest&lt;/p&gt;
+&lt;p&gt;[pypi]
+repository=https://pypi.python.org/pypi
+username=your_username
+password=your_password&lt;/p&gt;
+&lt;p&gt;[pypitest]
+repository=https://testpypi.python.org/pypi
+username=your_username
+password=your_password&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Register the package on PyPI Test: &lt;code&gt;python setup.py register -r pypitest&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Register the package on PyPI Live: &lt;code&gt;python setup.py register -r pypi&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Upload the project to Test: &lt;code&gt;python setup.py register -r pypitest&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Upload the project to Live, &lt;em&gt;if&lt;/em&gt; you're ready for your first release. Remember, once a version is released to PyPI, it can't be used again (or overwritten): &lt;code&gt;python setup.py register -r pypi&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If all of the above passed to your satisfaction, you can remove the &lt;code&gt;.pypirc&lt;/code&gt; file and move on to configuring Travis CI.    &lt;/p&gt;
+&lt;h2 id="travis"&gt;Travis&lt;a class="headerlink" href="#travis" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml"&gt;GitHub&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using &lt;code&gt;python setup.py -q install&lt;/code&gt;. Then the test suite is run. &lt;/p&gt;
+&lt;p&gt;The important bits are in the &lt;code&gt;deploy&lt;/code&gt; section. &lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+  &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since &lt;code&gt;bumpversion&lt;/code&gt; makes a new git tag with each new version, this works perfectly. &lt;/p&gt;
+&lt;p&gt;This does require that my password be included in the yml file. To keep this secure, I utilized the &lt;a href="https://blog.travis-ci.com/2013-01-14-new-client/"&gt;Travis Command Line Client&lt;/a&gt; (&lt;code&gt;gem install travis&lt;/code&gt;). In my local directory, I then ran:&lt;/p&gt;
+&lt;div class="codehilite code"&gt;&lt;pre&gt;travis encrypt --add deploy.password
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This added the password to the YML file. &lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This was the first time I've released something to PyPI. It took a lot more set up than I expected it would take. However, now that I've gone through the process, gotten used to the ReStructuredText format that Sphinx and Read the Docs require, and set up PyPI for one project, I think it'll be fairly simple to do in the future. Most of the work is getting the other services to talk with GitHub and practicing good developer habits (documentation...).&lt;/p&gt;
+&lt;h2 id="all-stackapi-links"&gt;All StackAPI Links&lt;a class="headerlink" href="#all-stackapi-links" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;All of these links are to the various places that StackAPI lives on the internet&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: https://github.com/AWegnerGitHub/stackapi&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Read the Docs&lt;/strong&gt;: http://stackapi.readthedocs.org/en/latest/&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TravisCI&lt;/strong&gt;: https://travis-ci.org/AWegnerGitHub/stackapi&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PyPI&lt;/strong&gt;: https://pypi.python.org/pypi/StackAPI&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="technical"></category></entry><entry><title>How I built a Flask application that integrates with Travis CI and OpenShift</title><link href="http://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" rel="alternate"></link><updated>2015-12-12T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-12-11:how-i-set-up-openshift-travisci-and-flask.html</id><summary type="html">
+&lt;h2 id="motivation"&gt;Motivation&lt;a class="headerlink" href="#motivation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Since I &lt;a href="|filename|2015_01_08_thanks-for-all-the-fish.md"&gt;shut down&lt;/a&gt; Vipers early this year, I've been itching to do &lt;em&gt;something&lt;/em&gt; web related. Web technologies aren't my best technical skill, but I like trying out new things and learning something in the process. I use Python at work. I like Python a lot. With Christmas and New Years coming up, I want to have a project during my down time. My goal is to get a &lt;a href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; application built and then deployed to &lt;a href="https://www.openshift.com/"&gt;OpenShift&lt;/a&gt;. Part of this deployment is to utilize &lt;a href="https://travis-ci.org/"&gt;TravisCI&lt;/a&gt;. I'm planning on using &lt;a href="http://pytest.org/latest/"&gt;pytest&lt;/a&gt; and &lt;a href="https://hypothesis.readthedocs.org/en/latest/"&gt;hypothesis&lt;/a&gt; for my test suite. Finally, I want to use my own (sub)domain, instead of the provided &lt;code&gt;rhcloud&lt;/code&gt; one.&lt;/p&gt;
 &lt;p&gt;Of these three technologies, I've used only Flask before. The &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;comment flagging bot&lt;/a&gt; I built has a dashboard built in Flask. I've never used OpenShift or TravisCI. I selected OpenShift because it has a couple &lt;a href="http://www.paasify.it/compare/heroku-vs-openshift%20online"&gt;features&lt;/a&gt; I want that Heroku doesn't. The biggest one, according to the previous link, was that OpenShift has support for MySQL and Heroku doesn't (surprisingly). I want to use TravisCI and automated testing, because one of my goals for next year at work is to introduce automated tested to our development. (I work with Engineers, not coders...that's my excuse and it's a bad excuse, so I'm going to try and fix it.) To get ready for that goal, I want to test out a system that does continuous integration/automated testing. Both OpenShift and Travis CI provide me with free services. Hypothesis and py.test provide me with a way to generate comprehensive test conditions. &lt;/p&gt;
 &lt;h2 id="openshift-set-up"&gt;OpenShift set up&lt;a class="headerlink" href="#openshift-set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Signing up for OpenShift was easy. Fill out the form, provide an email address - though they don't like email addresses with &lt;code&gt;+&lt;/code&gt; signs, which is disappointing - and then click the link they email back to you. &lt;/p&gt;
@@ -605,7 +744,7 @@ http://dev.iceburg.net/jquery/jqModal/
 &lt;p&gt;I &lt;a href="http://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html"&gt;posted&lt;/a&gt; a proposal on how I think this could be fixed.&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="programming"></category></entry><entry><title>How I set up this site with GitHub Pages and CloudFlare</title><link href="http://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html" rel="alternate"></link><updated>2015-07-09T11:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-07-09:how-i-set-up-this-site-with-github-pages-and-cloudflare.html</id><summary type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In a &lt;a href="http://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html"&gt;previous post&lt;/a&gt;, I described why I moved from Wordpress to Pelican for my blog. This one goes a step further and describes how I eliminated the 
-need for the dedicated server I'd been utilizing as a part of &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;Team Vipers&lt;/a&gt;. By eliminating that server, I reduced my costs to zero but kept control 
+need for the dedicated server I'd been utilizing as a part of &lt;a href="|filename|2015_01_08_thanks-for-all-the-fish.md"&gt;Team Vipers&lt;/a&gt;. By eliminating that server, I reduced my costs to zero but kept control 
 over the DNS of my domain (thanks to &lt;a href="https://www.cloudflare.com/"&gt;CloudFlare&lt;/a&gt;) and had an easier method of updating the site using &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="github-pages-setup"&gt;GitHub Pages Setup&lt;a class="headerlink" href="#github-pages-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;To utilize GitHub Pages, I needed to create a new &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io"&gt;repository&lt;/a&gt; that followed the format &lt;code&gt;GitHubUsername.github.io&lt;/code&gt;. This repository would house the 
@@ -856,80 +995,7 @@ MySQL/MariaDB before and I happened to have another application utilizing MariaD
 &lt;p&gt;Originally, Zephyr used the &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L68"&gt;&lt;code&gt;watch&lt;/code&gt;&lt;/a&gt; method when monitoring a room. This method would long poll the room. It turns out that this is 
 pretty unreliable. I'd get multiple errors through out the week, ranging from &lt;code&gt;Connection Aborted&lt;/code&gt; errors to random &lt;code&gt;404&lt;/code&gt; messages. The 
 solution has been to switch to &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"&gt;&lt;code&gt;watch_socket&lt;/code&gt;&lt;/a&gt;. The only time I've had problems since this switch is when the Stack Exchange 
-web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Thanks for all the fish</title><link href="http://andrewwegner.com/thanks-for-all-the-fish.html" rel="alternate"></link><updated>2015-04-28T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-08:thanks-for-all-the-fish.html</id><summary type="html">
-&lt;h2 id="goodbye-team-vipers"&gt;Goodbye Team Vipers&lt;a class="headerlink" href="#goodbye-team-vipers" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;A few days ago Team Vipers shut down. Exactly 6 years after I join the community and 5 years after taking 
-over as owner, I decided to step aside. I announced my decision to my admin team in November and asked if anyone wanted to 
-take over. A week later I made the announcement public. I copied that below. My hope was that someone would be willing to 
-take over day to day operations and management. &lt;/p&gt;
-&lt;p&gt;Unfortunately, no one was able to take on the responsibilities. I had to make the hard choice of shutting down the community. 
-I am unable to provide the time or monetary commitment this community requires any longer. Team Vipers was a home and 
-community for 6 years. I've met a lot of people playing games with members of the community. Several other sites were 
-created by members of Team Vipers. They have indicated they'd be willing to absorb and welcome members from Vipers. &lt;/p&gt;
-&lt;p&gt;It's been a great run. So long Vipers, and thanks for all the fish.&lt;/p&gt;
-&lt;iframe allowfullscreen="" frameborder="0" height="270" src="https://www.youtube.com/embed/BL-5OdZc3zw?feature=oembed" width="480"&gt;&lt;/iframe&gt;
-&lt;p&gt;&lt;img alt="Thanks for the fish" src="http://andrewwegner.com/images/thanks-for-the-fish.jpg"/&gt;&lt;/p&gt;
-&lt;hr/&gt;
-&lt;h2 id="original-announcement"&gt;Original Announcement&lt;a class="headerlink" href="#original-announcement" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;On January 5th, 2015, I am stepping away from Vipers as the owner and administrator. Unfortunately, I no longer have time 
-to maintain the servers in a way that benefits the community. I announced this to the admin team earlier this week.&lt;/p&gt;
-&lt;h3 id="what-do-we-do-before-january-5th"&gt;What do we do before January 5th?&lt;a class="headerlink" href="#what-do-we-do-before-january-5th" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;I am giving you this heads up to discuss the future of Vipers. If someone wants to step up and take everything on, I'll 
-gladly offer help during the transition. If you have questions about what happens behind the scenes, I'll answer those 
-as well. In fact, I'll start with a few questions that I think may help lead this discussion.&lt;/p&gt;
-&lt;h3 id="do-we-need-multiple-game-servers"&gt;Do we need multiple game servers?&lt;a class="headerlink" href="#do-we-need-multiple-game-servers" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Short answer - No. If the community wants to focus on a specific server mode, then a single server is all that is needed. 
-When I joined Vipers there were two servers: An Orange server and a vanilla server. For the first year-ish, the 
-servers base grew and contracted around different mods. Orange turned to Crit Orange, a Randomizer appeared and then 
-splintered into it's own community, the Nest grew and then shrank. Zombie popped up. Prophunt and Dodgeball came around 
-multiple times. In all of this, there has been between one or two popular servers, with the rest being very niche. Those 
-are for fun. Those are also frustrating to fix when updates break them.&lt;/p&gt;
-&lt;h3 id="do-we-need-a-dedicated-server"&gt;Do we need a dedicated server?&lt;a class="headerlink" href="#do-we-need-a-dedicated-server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Again, no. The benefit the dedicated server provided is IP address stability. Before the dedicated server, the game servers 
-jumped around IPs every few months. With each move players were lost. Some found us months or years later when they
-randomly stumbled upon us. Others are just gone. More importantly though, is dealing with performance. If there is a 
-hosting company that can provide high quality, low ping, servers at a cheap price - that is worth it. A word of advice, 
-avoid EscapedTurkey. It is a one man operation and that person doesn't know what they are doing. If an issue crops up, 
-it takes hours to days to resolve it. It is because of them that we purchased a dedicated server.&lt;/p&gt;
-&lt;p&gt;One other note. I can not transfer the dedicated server to anyone. It's rented in my name and the hosting company doesn't 
-allow transfers. So, no matter what happens, the IP addresses would have to change anyway. The upside of this long 
-transition period is that you have plenty of time to advertise and set up the new servers. We could have in game announcements 
-AND we can lock the existing servers with the new IP in the titles. It won't be an immediate cut over. It provides 
-notification to the players.&lt;/p&gt;
-&lt;h3 id="do-we-need-the-forums"&gt;Do we need the forums?&lt;a class="headerlink" href="#do-we-need-the-forums" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Yes. The forums are what kept me in Vipers before I ended up in the position I'm in now. Without the forums, there is no 
-community. There are people that you see frequently on the servers, but rarely any meaningful interaction. With the forums 
-we get stories of our members' lives. If, however, you are going to stick to playing Valve games, I highly recommend a 
-change in forum software. Find something that supports integration with Steam (either natively or via plugin) and start 
-over. With that integration, you can do so many more (and non-hackish) things. You can pull information from Steam or 
-any other TF2 community that exposes an API. Banning a player on the servers and the forums is easy as both are based 
-on the same thing. Additionally, requiring the Steam login should eliminate the spam (no random Chinese, Russian, 
-Californian spam bots). In any case, I will provide a full database dump for you. If you stick with PHPBB, I think a 
-fresh install of PHPBB would be a good thing, but you'll have all of the data and should be able to simply import it 
-into the database. If you go with something else, you'll have the database and can attempt to use that software's 
-conversion script. Results will vary on how that works.&lt;/p&gt;
-&lt;h3 id="does-we-make-money-on-donations"&gt;Does we make money on donations?&lt;a class="headerlink" href="#does-we-make-money-on-donations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;No. Since July of [2014 to November 2014], the community has donated $20. Total. It has been 14 months since we reached our monthly 
-goal. In the last year, we have broken $50 only 4 times. To prevent someone from misconstruing this as a plea for 
-money, I've disabled donations. I don't want someone to start a misguided "Save the Vipers" campaign that you believe 
-can succeed with donations. The way to "save the vipers" is to come together as a team and discuss your options.&lt;/p&gt;
-&lt;h3 id="what-happens-if-no-one-steps-up"&gt;What happens if no one steps up?&lt;a class="headerlink" href="#what-happens-if-no-one-steps-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Someone in the community may step up, but if no one steps up by January, then Vipers has one last New Years hoo-rah 
-and fades to the internet. If someone does step up, I am still available to help with initial set up. I'm still available 
-to play games and to talk to. I'm not dropping off the face of the earth and I'm not rage quitting. This is very 
-much a case of real life happens.&lt;/p&gt;
-&lt;p&gt;I think that is going to cover your initial questions. If you have more, post them here and I'll answer them.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;It has been a great 6 years with everyone here. While I may be stepping down as owner, if someone keeps Vipers around, 
-you'll keep me around as a regular. I've had fun talking to all of you and playing with (and against) all of you.&lt;/em&gt;&lt;/p&gt;
-&lt;hr/&gt;
-&lt;h2 id="updated-steam-group-ownership"&gt;Updated Steam Group Ownership&lt;a class="headerlink" href="#updated-steam-group-ownership" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Updated April 28, 2015&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Ownership of the Steam Group for Team Vipers has been transferred back to Russell, the original founder of Vipers. The 
-&lt;a href="http://steamcommunity.com/groups/viperservers#announcements/detail/205255298394906049"&gt;announcement&lt;/a&gt; was posted to the group earlier today.&lt;/p&gt;
-&lt;p&gt;I've also transfered data from the Vipers blog to my personal one here and removed links to Vipers from most posts 
-since they will all fail to resolve correctly. Unfortunately, it's not worth it to preserve small bits of history in 
-this case and was just easier to remove the links. The best I can do it transfer the blog posts and copy snippets or
-screenshots here. Direct links to the forum discussions has been intentionally removed.&lt;/p&gt;</summary><category term="team vipers"></category></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"></link><updated>2016-01-09T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">
+web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"></link><updated>2016-01-09T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This post was originally &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;published&lt;/a&gt; by &lt;a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile"&gt;me&lt;/a&gt; on Meta Stack Overflow on December 14, 2014. I've republished it here
 so that I can easily update information related to recent developments. If you have questions or comments, I highly
@@ -1229,24 +1295,7 @@ ignore your tantrum and leave you banned. &lt;/p&gt;
 &lt;p&gt;Above I've posted three of the most common methods people use to appeal their ban on the Viper servers. Every time one of
 these types of appeals is posted, it is rejected and the player is told they aren't welcome. All I (and the community) ask
 is a little bit of respect. You've already proven that you can't follow our rules if we reach this point. If you have truly 
-changed, why don't you demonstrate some of that change while requesting the ban be removed.&lt;/p&gt;</summary><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>Mann Vs Vipers Beaten!</title><link href="http://andrewwegner.com/mann-vs-vipers-beaten.html" rel="alternate"></link><updated>2013-12-05T09:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-12-05:mann-vs-vipers-beaten.html</id><summary type="html">&lt;p&gt;The Team Vipers' Mann Vs Machine modification - Mann Vs Vipers - that was completed in August has finally been beaten. 
-Last night a starving group of players finally put down Wave 9. &lt;/p&gt;
-&lt;p&gt;The players were:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;MooMooCow&lt;/li&gt;
-&lt;li&gt;CutieVamp&lt;/li&gt;
-&lt;li&gt;Batman&lt;/li&gt;
-&lt;li&gt;Starfox&lt;/li&gt;
-&lt;li&gt;Healthy Cyanide&lt;/li&gt;
-&lt;li&gt;Zhiv&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The team struggled against the Admin bots - InsaneMosquito, Venom and SchooledYa. I've been told we are terrifying to play
-against and making us MvM bots with even higher stats made it even more terrifying. (I approve.)&lt;/p&gt;
-&lt;p&gt;Here's a video of Wave 9 from the victory. The winning strategy appears to be the one that works against us most of the time. 
-Separate the medic (me), from the Heavy (Venom) and the Soldier (SchooledYa). Together, we're hard to stop, but apart we
-can each be picked on for a while until there is no health left. The bots must have learned that weakness as well (I don't approve.)&lt;/p&gt;
-&lt;p&gt;Congratulations to the winners!&lt;/p&gt;
-&lt;iframe width="612" height="344" src="https://www.youtube.com/embed/PIpd2SInvYM?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</summary><category term="team vipers"></category><category term="community"></category></entry><entry><title>I had a secret addiction to the TF2 idling economy but I'm better now (honest)</title><link href="http://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html" rel="alternate"></link><updated>2013-08-13T00:01:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-08-13:i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html</id><summary type="html">
+changed, why don't you demonstrate some of that change while requesting the ban be removed.&lt;/p&gt;</summary><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>I had a secret addiction to the TF2 idling economy but I'm better now (honest)</title><link href="http://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html" rel="alternate"></link><updated>2013-08-13T00:01:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-08-13:i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html</id><summary type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;On July 11, 2013, Valve released a &lt;a href="http://www.teamfortress.com/post.php?id=11105"&gt;patch&lt;/a&gt; to Team Fortress 2 to limit idling. Idling is the process of launching
 Team Fortress and then letting it run for a few hours and collecting item drops. It used to be simple to do by utilizing
@@ -1451,7 +1500,7 @@ of a month from from last time they were banned. If they return to their previou
 they will not be able to return in the future. &lt;/p&gt;
 &lt;h2 id="update-at-shutdown"&gt;Update at shutdown&lt;a class="headerlink" href="#update-at-shutdown" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;Updated January 20, 2015&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;In January 2015, Team Vipers &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;shut down&lt;/a&gt;. With that shutdown, all chat monitoring also shut down. The system was active 
+&lt;p&gt;In January 2015, Team Vipers &lt;a href="|filename|2015_01_08_thanks-for-all-the-fish.md"&gt;shut down&lt;/a&gt;. With that shutdown, all chat monitoring also shut down. The system was active 
 from April 23, 2012 to January 4, 2015, for a total of 987 days. In that time, 4457 bans were issued for inappropriate 
 language. That is over 4 users a day being removed from our player base because they couldn't maintain a respectful 
 attitude. I consider that a success. I believe Viper community members did too.&lt;/p&gt;</summary><category term="team vipers"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Connect Python to OSI Soft PI</title><link href="http://andrewwegner.com/connect-python-to-osi-soft-pi.html" rel="alternate"></link><updated>2012-04-16T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-02-07:connect-python-to-osi-soft-pi.html</id><summary type="html">&lt;p&gt;OSI PI is a historian database. I had a task to connect a python application to this database. I asked a question on 
@@ -1511,80 +1560,7 @@ python, but it seems to be very slow when I need to run a large number of querie
 open/close the database connection for each query, but OSI PI/ADODB complains if I do not. Performance has not reached a 
 point where I am forced to rewrite this yet. If/when I do I will follow up again. In the meantime others using this 
 solution should be aware that it is slow when running many queries.&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="technical"></category></entry><entry><title>A new, more fair, RTD</title><link href="http://andrewwegner.com/a-new-more-fair-rtd.html" rel="alternate"></link><updated>2015-05-20T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2011-02-04:a-new-more-fair-rtd.html</id><summary type="html">
-&lt;h2 id="the-old-rtd"&gt;The old RTD&lt;a class="headerlink" href="#the-old-rtd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Viper's own LinuxLover, aka &lt;a href="https://forums.alliedmods.net/member.php?u=38829"&gt;pheadxdll&lt;/a&gt; on the &lt;a href="https://forums.alliedmods.net/index.php"&gt;SourceMod forums&lt;/a&gt;, wrote the &lt;a href="https://forums.alliedmods.net/showthread.php?p=666222"&gt;original version&lt;/a&gt; of the Roll the Dice
-plugin. It has provided countless hours of fun for players. After all, who doesn't love getting Toxic while standing near an enemy 
-spawn and hearing the rage as they die immediately. It's usually worth the instant death that follows when the effect
-wears off ten seconds later.&lt;/p&gt;
-&lt;p&gt;There were problems though. The biggest was that the chances of getting a Good vs Bad roll were not equal. Instead, you 
-had a roughly equal chance of getting any roll. There were 14 possible rolls. You had a 1 out of 14 chance of getting a specific
-effect. However, 9 of those effects were negative. Thus, you had a much higher chance of getting a negative effect vs a 
-positive one. The other major problem was that it was very difficult to add new effects. Finally, with the released mod
-not being updated, and LinuxLover departing Vipers to handle his own community on the Randomizer server, it was next to
-impossible to get changes made.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;NOTE&lt;/em&gt;: LinuxLover released a new version of RTD (the 0.4 branch) sometime after we had forked the version we had. The new
-version on SourceMod contains many of the same features we have. It does not, however, contain all of them.&lt;/p&gt;
-&lt;h2 id="the-new-rtd"&gt;The new RTD&lt;a class="headerlink" href="#the-new-rtd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The logic for how rolls are determined has been changed. There is now a list of Good Effects and a list of Bad Effects. When
-someone rolls, the first thing that is done is determine whether or not we are going to have a Good or Bad effect. That is a 
-50/50 chance. Then it randomly selects one of the effects that are active and appropriate for the player's current class
-that falls under the winning category. This should even out the Good vs Bad complaints.&lt;/p&gt;
-&lt;p&gt;Another change that I've added is that we can now more easily add effects. Some new effects have been added:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Powerplay: When Uber isn't enough...you need Kritz and Uber. &lt;/li&gt;
-&lt;li&gt;Freeze Bullets: You've been shot! You should run away, but you can't. You're frozen in place for the next ten seconds, if 
- you're lucky.&lt;/li&gt;
-&lt;li&gt;Fire Bullets: A bullet wound isn't enough. You need to be on fire too.&lt;/li&gt;
-&lt;li&gt;No crits: Haha! You are on an all crits server and you just lost your crits. Go sit at the little kid table.&lt;/li&gt;
-&lt;li&gt;Valve Rockets: We've included something that may be slightly overkill. You tell me:&lt;/li&gt;
-&lt;li&gt;+9900% damage&lt;/li&gt;
-&lt;li&gt;+9000% clip size&lt;/li&gt;
-&lt;li&gt;+75% firing speed&lt;/li&gt;
-&lt;li&gt;+500 health on kill&lt;/li&gt;
-&lt;li&gt;10 seconds of crits on kill&lt;/li&gt;
-&lt;li&gt;+200% speed&lt;/li&gt;
-&lt;li&gt;+60% reload time&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Because sometimes overkill is needed. &lt;/p&gt;
-&lt;p&gt;We've been testing performance of this over the last few months. Today is the day that everyone can get it without
-   an admin being around.&lt;/p&gt;
-&lt;p&gt;For those that haven't seen it, here is one of our first tests back in November&lt;/p&gt;
-&lt;iframe allowfullscreen="" frameborder="0" height="344" src="https://www.youtube.com/embed/OzHNr1Bz5QQ?feature=oembed" width="612"&gt;&lt;/iframe&gt;
-&lt;ul&gt;
-&lt;li&gt;The Headless Horseless Headmann: That's right, you can be the Halloween nightmare.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;Update:&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Homing Projectiles: Is that soldier aimbotting?! Nope. His rockets are just following you where ever you go. Boom! Oh, 
- sniper arrows and pyro flares are probably something to avoid too.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Finally, I added in the ability to log rolls to a database so that we can find fancy stats and ensure it's rolling fairly. I'll
-update this post in a few months with some of our gathered stats.&lt;/p&gt;
-&lt;h2 id="source-code"&gt;Source Code&lt;a class="headerlink" href="#source-code" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Updated May 20, 2015 with link to GitHub instead of the old SVN, my apologies for missing that link when migrating to this blog
-It is important to note that this version hasn't been updated in a LONG time and all effects may not work any more. Specifically,
-homing probably doesn't work because the Sidewinder extension had been broken by a Valve update in mid-2014. Other effects
-should continue to work&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The source code is released on Github. It requires several common modules which are all available on the SourceMod forums.&lt;/p&gt;
-&lt;p&gt;The repository is: &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;https://github.com/AWegnerGitHub/Vipers-Server-Plugins&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="statistics"&gt;Statistics&lt;a class="headerlink" href="#statistics" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;This section was updated in January 2015 after the shutdown&lt;/em&gt;&lt;/p&gt;
-&lt;h3 id="good-vs-bad"&gt;Good vs Bad&lt;a class="headerlink" href="#good-vs-bad" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;I don't have exact stats on Good vs Bad rolls before the rewrite, but we started logging all rolls with the rewrite. This is the 
-split of Good vs Bad. I am very happy with an almost exactly 50/50 split over nearly a million RTDs.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="RTD Split" src="http://andrewwegner.com/images/rtd-split.png"/&gt;&lt;/p&gt;
-&lt;h3 id="class-with-the-most-rtds"&gt;Class with the most RTDs&lt;a class="headerlink" href="#class-with-the-most-rtds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Solider was the most popular class on the crit server. The images below show number of times our soldiers got certain rolls. Note that God Mode is 
-low because the community decided having both God Mode and Powerplay was redundant. They decided to keep Power play. God Mode was
-disabled about a year after this version was released. Homing is low because it wasn't implemented until about 18 months after
-the initial release.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="RTD Soldier" src="http://andrewwegner.com/images/rtd-soldier.png"/&gt;&lt;/p&gt;
-&lt;h3 id="class-with-the-least-rtds"&gt;Class with the least RTDs&lt;a class="headerlink" href="#class-with-the-least-rtds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Medics rolled RTD the least number of times. This means sense for two reasons. First, they were not a common class on the crit server. When 
-nearly everything is one hit, one kill, it's very hard to build uber. Second, when you &lt;em&gt;do&lt;/em&gt; try to build Uber, ruining it with a 50/50
-shot at getting a bad roll isn't good for the team. The low God Mode and Homing results are the same here as they were for the soldier.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="RTD Medic" src="http://andrewwegner.com/images/rtd-medic.png"/&gt; &lt;/p&gt;</summary><category term="team vipers"></category><category term="programming"></category></entry><entry><title>A special kind of troll</title><link href="http://andrewwegner.com/a-special-kind-of-troll.html" rel="alternate"></link><updated>2011-07-07T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-12-28:a-special-kind-of-troll.html</id><summary type="html">
+&lt;/blockquote&gt;</summary><category term="technical"></category></entry><entry><title>A special kind of troll</title><link href="http://andrewwegner.com/a-special-kind-of-troll.html" rel="alternate"></link><updated>2011-07-07T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-12-28:a-special-kind-of-troll.html</id><summary type="html">
 &lt;h2 id="what-happened"&gt;What happened?&lt;a class="headerlink" href="#what-happened" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Over the Christmas holiday, the Team Vipers forums were hit by "multiple" users who decided it was a good idea to use our community 
 as a battle ground. A Viper member stepped in to "help" resolve the problem by attempting to play mediator. (Notice the

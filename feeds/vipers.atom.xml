@@ -1,78 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/vipers.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-05-20T00:00:00-05:00</updated><entry><title>Thanks for all the fish</title><link href="http://andrewwegner.com/thanks-for-all-the-fish.html" rel="alternate"></link><updated>2015-04-28T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-08:thanks-for-all-the-fish.html</id><summary type="html">
-&lt;h2 id="goodbye-team-vipers"&gt;Goodbye Team Vipers&lt;a class="headerlink" href="#goodbye-team-vipers" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;A few days ago Team Vipers shut down. Exactly 6 years after I join the community and 5 years after taking 
-over as owner, I decided to step aside. I announced my decision to my admin team in November and asked if anyone wanted to 
-take over. A week later I made the announcement public. I copied that below. My hope was that someone would be willing to 
-take over day to day operations and management. &lt;/p&gt;
-&lt;p&gt;Unfortunately, no one was able to take on the responsibilities. I had to make the hard choice of shutting down the community. 
-I am unable to provide the time or monetary commitment this community requires any longer. Team Vipers was a home and 
-community for 6 years. I've met a lot of people playing games with members of the community. Several other sites were 
-created by members of Team Vipers. They have indicated they'd be willing to absorb and welcome members from Vipers. &lt;/p&gt;
-&lt;p&gt;It's been a great run. So long Vipers, and thanks for all the fish.&lt;/p&gt;
-&lt;iframe allowfullscreen="" frameborder="0" height="270" src="https://www.youtube.com/embed/BL-5OdZc3zw?feature=oembed" width="480"&gt;&lt;/iframe&gt;
-&lt;p&gt;&lt;img alt="Thanks for the fish" src="http://andrewwegner.com/images/thanks-for-the-fish.jpg"/&gt;&lt;/p&gt;
-&lt;hr/&gt;
-&lt;h2 id="original-announcement"&gt;Original Announcement&lt;a class="headerlink" href="#original-announcement" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;On January 5th, 2015, I am stepping away from Vipers as the owner and administrator. Unfortunately, I no longer have time 
-to maintain the servers in a way that benefits the community. I announced this to the admin team earlier this week.&lt;/p&gt;
-&lt;h3 id="what-do-we-do-before-january-5th"&gt;What do we do before January 5th?&lt;a class="headerlink" href="#what-do-we-do-before-january-5th" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;I am giving you this heads up to discuss the future of Vipers. If someone wants to step up and take everything on, I'll 
-gladly offer help during the transition. If you have questions about what happens behind the scenes, I'll answer those 
-as well. In fact, I'll start with a few questions that I think may help lead this discussion.&lt;/p&gt;
-&lt;h3 id="do-we-need-multiple-game-servers"&gt;Do we need multiple game servers?&lt;a class="headerlink" href="#do-we-need-multiple-game-servers" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Short answer - No. If the community wants to focus on a specific server mode, then a single server is all that is needed. 
-When I joined Vipers there were two servers: An Orange server and a vanilla server. For the first year-ish, the 
-servers base grew and contracted around different mods. Orange turned to Crit Orange, a Randomizer appeared and then 
-splintered into it's own community, the Nest grew and then shrank. Zombie popped up. Prophunt and Dodgeball came around 
-multiple times. In all of this, there has been between one or two popular servers, with the rest being very niche. Those 
-are for fun. Those are also frustrating to fix when updates break them.&lt;/p&gt;
-&lt;h3 id="do-we-need-a-dedicated-server"&gt;Do we need a dedicated server?&lt;a class="headerlink" href="#do-we-need-a-dedicated-server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Again, no. The benefit the dedicated server provided is IP address stability. Before the dedicated server, the game servers 
-jumped around IPs every few months. With each move players were lost. Some found us months or years later when they
-randomly stumbled upon us. Others are just gone. More importantly though, is dealing with performance. If there is a 
-hosting company that can provide high quality, low ping, servers at a cheap price - that is worth it. A word of advice, 
-avoid EscapedTurkey. It is a one man operation and that person doesn't know what they are doing. If an issue crops up, 
-it takes hours to days to resolve it. It is because of them that we purchased a dedicated server.&lt;/p&gt;
-&lt;p&gt;One other note. I can not transfer the dedicated server to anyone. It's rented in my name and the hosting company doesn't 
-allow transfers. So, no matter what happens, the IP addresses would have to change anyway. The upside of this long 
-transition period is that you have plenty of time to advertise and set up the new servers. We could have in game announcements 
-AND we can lock the existing servers with the new IP in the titles. It won't be an immediate cut over. It provides 
-notification to the players.&lt;/p&gt;
-&lt;h3 id="do-we-need-the-forums"&gt;Do we need the forums?&lt;a class="headerlink" href="#do-we-need-the-forums" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Yes. The forums are what kept me in Vipers before I ended up in the position I'm in now. Without the forums, there is no 
-community. There are people that you see frequently on the servers, but rarely any meaningful interaction. With the forums 
-we get stories of our members' lives. If, however, you are going to stick to playing Valve games, I highly recommend a 
-change in forum software. Find something that supports integration with Steam (either natively or via plugin) and start 
-over. With that integration, you can do so many more (and non-hackish) things. You can pull information from Steam or 
-any other TF2 community that exposes an API. Banning a player on the servers and the forums is easy as both are based 
-on the same thing. Additionally, requiring the Steam login should eliminate the spam (no random Chinese, Russian, 
-Californian spam bots). In any case, I will provide a full database dump for you. If you stick with PHPBB, I think a 
-fresh install of PHPBB would be a good thing, but you'll have all of the data and should be able to simply import it 
-into the database. If you go with something else, you'll have the database and can attempt to use that software's 
-conversion script. Results will vary on how that works.&lt;/p&gt;
-&lt;h3 id="does-we-make-money-on-donations"&gt;Does we make money on donations?&lt;a class="headerlink" href="#does-we-make-money-on-donations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;No. Since July of [2014 to November 2014], the community has donated $20. Total. It has been 14 months since we reached our monthly 
-goal. In the last year, we have broken $50 only 4 times. To prevent someone from misconstruing this as a plea for 
-money, I've disabled donations. I don't want someone to start a misguided "Save the Vipers" campaign that you believe 
-can succeed with donations. The way to "save the vipers" is to come together as a team and discuss your options.&lt;/p&gt;
-&lt;h3 id="what-happens-if-no-one-steps-up"&gt;What happens if no one steps up?&lt;a class="headerlink" href="#what-happens-if-no-one-steps-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Someone in the community may step up, but if no one steps up by January, then Vipers has one last New Years hoo-rah 
-and fades to the internet. If someone does step up, I am still available to help with initial set up. I'm still available 
-to play games and to talk to. I'm not dropping off the face of the earth and I'm not rage quitting. This is very 
-much a case of real life happens.&lt;/p&gt;
-&lt;p&gt;I think that is going to cover your initial questions. If you have more, post them here and I'll answer them.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;It has been a great 6 years with everyone here. While I may be stepping down as owner, if someone keeps Vipers around, 
-you'll keep me around as a regular. I've had fun talking to all of you and playing with (and against) all of you.&lt;/em&gt;&lt;/p&gt;
-&lt;hr/&gt;
-&lt;h2 id="updated-steam-group-ownership"&gt;Updated Steam Group Ownership&lt;a class="headerlink" href="#updated-steam-group-ownership" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Updated April 28, 2015&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Ownership of the Steam Group for Team Vipers has been transferred back to Russell, the original founder of Vipers. The 
-&lt;a href="http://steamcommunity.com/groups/viperservers#announcements/detail/205255298394906049"&gt;announcement&lt;/a&gt; was posted to the group earlier today.&lt;/p&gt;
-&lt;p&gt;I've also transfered data from the Vipers blog to my personal one here and removed links to Vipers from most posts 
-since they will all fail to resolve correctly. Unfortunately, it's not worth it to preserve small bits of history in 
-this case and was just easier to remove the links. The best I can do it transfer the blog posts and copy snippets or
-screenshots here. Direct links to the forum discussions has been intentionally removed.&lt;/p&gt;</summary><category term="team vipers"></category></entry><entry><title>How to appeal a ban effectively</title><link href="http://andrewwegner.com/how-to-appeal-a-ban-effectively.html" rel="alternate"></link><updated>2014-04-22T22:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-04-22:how-to-appeal-a-ban-effectively.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/vipers.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2015-05-20T00:00:00-05:00</updated><entry><title>How to appeal a ban effectively</title><link href="http://andrewwegner.com/how-to-appeal-a-ban-effectively.html" rel="alternate"></link><updated>2014-04-22T22:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-04-22:how-to-appeal-a-ban-effectively.html</id><summary type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In &lt;a href="http://andrewwegner.com/how-not-to-appeal-a-ban.html"&gt;last week's post&lt;/a&gt;, I showed three ways that appealing bans on the Vipers forums would fail. Everyone makes mistakes
 and we try to recognize that when someone comes to the forums and makes a good appeal. We usually offer an unadvertised 
@@ -172,24 +99,7 @@ ignore your tantrum and leave you banned. &lt;/p&gt;
 &lt;p&gt;Above I've posted three of the most common methods people use to appeal their ban on the Viper servers. Every time one of
 these types of appeals is posted, it is rejected and the player is told they aren't welcome. All I (and the community) ask
 is a little bit of respect. You've already proven that you can't follow our rules if we reach this point. If you have truly 
-changed, why don't you demonstrate some of that change while requesting the ban be removed.&lt;/p&gt;</summary><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>Mann Vs Vipers Beaten!</title><link href="http://andrewwegner.com/mann-vs-vipers-beaten.html" rel="alternate"></link><updated>2013-12-05T09:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-12-05:mann-vs-vipers-beaten.html</id><summary type="html">&lt;p&gt;The Team Vipers' Mann Vs Machine modification - Mann Vs Vipers - that was completed in August has finally been beaten. 
-Last night a starving group of players finally put down Wave 9. &lt;/p&gt;
-&lt;p&gt;The players were:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;MooMooCow&lt;/li&gt;
-&lt;li&gt;CutieVamp&lt;/li&gt;
-&lt;li&gt;Batman&lt;/li&gt;
-&lt;li&gt;Starfox&lt;/li&gt;
-&lt;li&gt;Healthy Cyanide&lt;/li&gt;
-&lt;li&gt;Zhiv&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The team struggled against the Admin bots - InsaneMosquito, Venom and SchooledYa. I've been told we are terrifying to play
-against and making us MvM bots with even higher stats made it even more terrifying. (I approve.)&lt;/p&gt;
-&lt;p&gt;Here's a video of Wave 9 from the victory. The winning strategy appears to be the one that works against us most of the time. 
-Separate the medic (me), from the Heavy (Venom) and the Soldier (SchooledYa). Together, we're hard to stop, but apart we
-can each be picked on for a while until there is no health left. The bots must have learned that weakness as well (I don't approve.)&lt;/p&gt;
-&lt;p&gt;Congratulations to the winners!&lt;/p&gt;
-&lt;iframe width="612" height="344" src="https://www.youtube.com/embed/PIpd2SInvYM?feature=oembed" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</summary><category term="team vipers"></category><category term="community"></category></entry><entry><title>Give some refined, Win some prizes</title><link href="http://andrewwegner.com/give-some-refined-win-some-prizes.html" rel="alternate"></link><updated>2013-04-03T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-02-25:give-some-refined-win-some-prizes.html</id><summary type="html">
+changed, why don't you demonstrate some of that change while requesting the ban be removed.&lt;/p&gt;</summary><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>Give some refined, Win some prizes</title><link href="http://andrewwegner.com/give-some-refined-win-some-prizes.html" rel="alternate"></link><updated>2013-04-03T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-02-25:give-some-refined-win-some-prizes.html</id><summary type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Financially, Vipers is supported by donations from the community. When the community doesn't cover the cost, I end up
 covering the difference. This isn't my favorite thing to do in the world, but we've been pretty successful in the past. 
@@ -312,83 +222,10 @@ of a month from from last time they were banned. If they return to their previou
 they will not be able to return in the future. &lt;/p&gt;
 &lt;h2 id="update-at-shutdown"&gt;Update at shutdown&lt;a class="headerlink" href="#update-at-shutdown" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;Updated January 20, 2015&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;In January 2015, Team Vipers &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;shut down&lt;/a&gt;. With that shutdown, all chat monitoring also shut down. The system was active 
+&lt;p&gt;In January 2015, Team Vipers &lt;a href="|filename|2015_01_08_thanks-for-all-the-fish.md"&gt;shut down&lt;/a&gt;. With that shutdown, all chat monitoring also shut down. The system was active 
 from April 23, 2012 to January 4, 2015, for a total of 987 days. In that time, 4457 bans were issued for inappropriate 
 language. That is over 4 users a day being removed from our player base because they couldn't maintain a respectful 
-attitude. I consider that a success. I believe Viper community members did too.&lt;/p&gt;</summary><category term="team vipers"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>A new, more fair, RTD</title><link href="http://andrewwegner.com/a-new-more-fair-rtd.html" rel="alternate"></link><updated>2015-05-20T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2011-02-04:a-new-more-fair-rtd.html</id><summary type="html">
-&lt;h2 id="the-old-rtd"&gt;The old RTD&lt;a class="headerlink" href="#the-old-rtd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Viper's own LinuxLover, aka &lt;a href="https://forums.alliedmods.net/member.php?u=38829"&gt;pheadxdll&lt;/a&gt; on the &lt;a href="https://forums.alliedmods.net/index.php"&gt;SourceMod forums&lt;/a&gt;, wrote the &lt;a href="https://forums.alliedmods.net/showthread.php?p=666222"&gt;original version&lt;/a&gt; of the Roll the Dice
-plugin. It has provided countless hours of fun for players. After all, who doesn't love getting Toxic while standing near an enemy 
-spawn and hearing the rage as they die immediately. It's usually worth the instant death that follows when the effect
-wears off ten seconds later.&lt;/p&gt;
-&lt;p&gt;There were problems though. The biggest was that the chances of getting a Good vs Bad roll were not equal. Instead, you 
-had a roughly equal chance of getting any roll. There were 14 possible rolls. You had a 1 out of 14 chance of getting a specific
-effect. However, 9 of those effects were negative. Thus, you had a much higher chance of getting a negative effect vs a 
-positive one. The other major problem was that it was very difficult to add new effects. Finally, with the released mod
-not being updated, and LinuxLover departing Vipers to handle his own community on the Randomizer server, it was next to
-impossible to get changes made.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;NOTE&lt;/em&gt;: LinuxLover released a new version of RTD (the 0.4 branch) sometime after we had forked the version we had. The new
-version on SourceMod contains many of the same features we have. It does not, however, contain all of them.&lt;/p&gt;
-&lt;h2 id="the-new-rtd"&gt;The new RTD&lt;a class="headerlink" href="#the-new-rtd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The logic for how rolls are determined has been changed. There is now a list of Good Effects and a list of Bad Effects. When
-someone rolls, the first thing that is done is determine whether or not we are going to have a Good or Bad effect. That is a 
-50/50 chance. Then it randomly selects one of the effects that are active and appropriate for the player's current class
-that falls under the winning category. This should even out the Good vs Bad complaints.&lt;/p&gt;
-&lt;p&gt;Another change that I've added is that we can now more easily add effects. Some new effects have been added:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Powerplay: When Uber isn't enough...you need Kritz and Uber. &lt;/li&gt;
-&lt;li&gt;Freeze Bullets: You've been shot! You should run away, but you can't. You're frozen in place for the next ten seconds, if 
- you're lucky.&lt;/li&gt;
-&lt;li&gt;Fire Bullets: A bullet wound isn't enough. You need to be on fire too.&lt;/li&gt;
-&lt;li&gt;No crits: Haha! You are on an all crits server and you just lost your crits. Go sit at the little kid table.&lt;/li&gt;
-&lt;li&gt;Valve Rockets: We've included something that may be slightly overkill. You tell me:&lt;/li&gt;
-&lt;li&gt;+9900% damage&lt;/li&gt;
-&lt;li&gt;+9000% clip size&lt;/li&gt;
-&lt;li&gt;+75% firing speed&lt;/li&gt;
-&lt;li&gt;+500 health on kill&lt;/li&gt;
-&lt;li&gt;10 seconds of crits on kill&lt;/li&gt;
-&lt;li&gt;+200% speed&lt;/li&gt;
-&lt;li&gt;+60% reload time&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Because sometimes overkill is needed. &lt;/p&gt;
-&lt;p&gt;We've been testing performance of this over the last few months. Today is the day that everyone can get it without
-   an admin being around.&lt;/p&gt;
-&lt;p&gt;For those that haven't seen it, here is one of our first tests back in November&lt;/p&gt;
-&lt;iframe allowfullscreen="" frameborder="0" height="344" src="https://www.youtube.com/embed/OzHNr1Bz5QQ?feature=oembed" width="612"&gt;&lt;/iframe&gt;
-&lt;ul&gt;
-&lt;li&gt;The Headless Horseless Headmann: That's right, you can be the Halloween nightmare.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;Update:&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Homing Projectiles: Is that soldier aimbotting?! Nope. His rockets are just following you where ever you go. Boom! Oh, 
- sniper arrows and pyro flares are probably something to avoid too.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Finally, I added in the ability to log rolls to a database so that we can find fancy stats and ensure it's rolling fairly. I'll
-update this post in a few months with some of our gathered stats.&lt;/p&gt;
-&lt;h2 id="source-code"&gt;Source Code&lt;a class="headerlink" href="#source-code" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Updated May 20, 2015 with link to GitHub instead of the old SVN, my apologies for missing that link when migrating to this blog
-It is important to note that this version hasn't been updated in a LONG time and all effects may not work any more. Specifically,
-homing probably doesn't work because the Sidewinder extension had been broken by a Valve update in mid-2014. Other effects
-should continue to work&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The source code is released on Github. It requires several common modules which are all available on the SourceMod forums.&lt;/p&gt;
-&lt;p&gt;The repository is: &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;https://github.com/AWegnerGitHub/Vipers-Server-Plugins&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="statistics"&gt;Statistics&lt;a class="headerlink" href="#statistics" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;This section was updated in January 2015 after the shutdown&lt;/em&gt;&lt;/p&gt;
-&lt;h3 id="good-vs-bad"&gt;Good vs Bad&lt;a class="headerlink" href="#good-vs-bad" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;I don't have exact stats on Good vs Bad rolls before the rewrite, but we started logging all rolls with the rewrite. This is the 
-split of Good vs Bad. I am very happy with an almost exactly 50/50 split over nearly a million RTDs.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="RTD Split" src="http://andrewwegner.com/images/rtd-split.png"/&gt;&lt;/p&gt;
-&lt;h3 id="class-with-the-most-rtds"&gt;Class with the most RTDs&lt;a class="headerlink" href="#class-with-the-most-rtds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Solider was the most popular class on the crit server. The images below show number of times our soldiers got certain rolls. Note that God Mode is 
-low because the community decided having both God Mode and Powerplay was redundant. They decided to keep Power play. God Mode was
-disabled about a year after this version was released. Homing is low because it wasn't implemented until about 18 months after
-the initial release.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="RTD Soldier" src="http://andrewwegner.com/images/rtd-soldier.png"/&gt;&lt;/p&gt;
-&lt;h3 id="class-with-the-least-rtds"&gt;Class with the least RTDs&lt;a class="headerlink" href="#class-with-the-least-rtds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Medics rolled RTD the least number of times. This means sense for two reasons. First, they were not a common class on the crit server. When 
-nearly everything is one hit, one kill, it's very hard to build uber. Second, when you &lt;em&gt;do&lt;/em&gt; try to build Uber, ruining it with a 50/50
-shot at getting a bad roll isn't good for the team. The low God Mode and Homing results are the same here as they were for the soldier.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="RTD Medic" src="http://andrewwegner.com/images/rtd-medic.png"/&gt; &lt;/p&gt;</summary><category term="team vipers"></category><category term="programming"></category></entry><entry><title>A special kind of troll</title><link href="http://andrewwegner.com/a-special-kind-of-troll.html" rel="alternate"></link><updated>2011-07-07T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-12-28:a-special-kind-of-troll.html</id><summary type="html">
+attitude. I consider that a success. I believe Viper community members did too.&lt;/p&gt;</summary><category term="team vipers"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>A special kind of troll</title><link href="http://andrewwegner.com/a-special-kind-of-troll.html" rel="alternate"></link><updated>2011-07-07T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-12-28:a-special-kind-of-troll.html</id><summary type="html">
 &lt;h2 id="what-happened"&gt;What happened?&lt;a class="headerlink" href="#what-happened" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Over the Christmas holiday, the Team Vipers forums were hit by "multiple" users who decided it was a good idea to use our community 
 as a battle ground. A Viper member stepped in to "help" resolve the problem by attempting to play mediator. (Notice the

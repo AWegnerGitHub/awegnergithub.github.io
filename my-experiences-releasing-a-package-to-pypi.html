@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+        <meta name="copyright" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="My experiences releasing a package to PyPI "/>
+<meta property="og:url" content="http://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html" />
+<meta property="og:description" content="I released StackAPI to PyPI. This post talks about my experiences." />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2016-03-15T12:26:00-05:00" />
+<meta name="twitter:title" content="My experiences releasing a package to PyPI ">
+<meta name="twitter:description" content="I released StackAPI to PyPI. This post talks about my experiences.">
+
+        <title>My experiences releasing a package to PyPI  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="http://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://andrewwegner.com">Home</a></li>
+                            <li ><a href="http://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="http://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="http://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html"> My experiences releasing a package to PyPI  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#motivation">Motivation</a></li>
+<li><a href="#project-layout">Project Layout</a><ul>
+<li><a href="#setuppy">setup.py</a></li>
+<li><a href="#bumpversion-and-fabric">Bumpversion and Fabric</a></li>
+<li><a href="#final-project-layout">Final Project Layout</a></li>
+</ul>
+</li>
+<li><a href="#read-the-docs">Read the Docs</a><ul>
+<li><a href="#configure-the-project">Configure the project</a></li>
+<li><a href="#configure-read-the-docs">Configure Read the Docs</a></li>
+<li><a href="#force-rebuild-of-docs">Force rebuild of docs</a></li>
+</ul>
+</li>
+<li><a href="#pypi">PyPI</a></li>
+<li><a href="#travis">Travis</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#all-stackapi-links">All StackAPI Links</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">¶</a></h2>
+<p>In some of my <a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html">other projects</a>, I've needed to make extensive use of the Stack Exchange API. I built a small library - StackAPI - to assist in this task and released it on Python's <a href="https://pypi.python.org/pypi/StackAPI">PyPI repository</a>. This post is going to cover some of the technical decisions and issues I ran into while going through this process. This was my first project being released to PyPI.</p>
+<p>My goals when releasing this were:</p>
+<ul>
+<li>Clean up my own code so that it is usable by others</li>
+<li>Improve the documentation and host the documentation on <a href="https://readthedocs.org/">Read the Docs</a></li>
+<li>Automatically release it to PyPI, if it passes basic tests</li>
+</ul>
+<p>Those goals sound simple. In the future, they probably will be, but for this first release it wasn't as simple as I was hoping.</p>
+<h2 id="project-layout">Project Layout<a class="headerlink" href="#project-layout" title="Permanent link">¶</a></h2>
+<p>Before this project, I'd written modules and libraries that were used by myself (for personal projects) or as part of a larger application (for work). In both cases, though, I had a directory structure that looked something like this:</p>
+<div class="codehilite code"><pre>/project_root
+    /mymodule
+        __init__.py
+        mymodule.py
+    __init__.py
+</pre></div>
+<p>This was close to the end goal, but lacked some files in the <code>project_root</code> that were needed for a proper install via <code>pip</code>. The important file that was missing was <code>setup.py</code>. I needed this file to ensure that everything would install with a simple <code>pip install stackapi</code> </p>
+<h3 id="setuppy">setup.py<a class="headerlink" href="#setuppy" title="Permanent link">¶</a></h3>
+<p>My <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.py"><code>setup.py</code></a> is pretty basic and available on GitHub. There are a couple important things though.</p>
+<ul>
+<li><code>version</code>: This is needed, but I didn't want to have to constantly remember to update this when pushing a version to PyPI. This was one of my first criteria when starting the project. I wanted to automate as much as I could, and versioning was at the top of that list. It's small, but easy to forget and keep syncronized across all the files in the project. I decided to utilize <a href="https://pypi.python.org/pypi/bumpversion">bumpversion</a> and <a href="http://www.fabfile.org/">Fabric</a> to manage this specific field (both here and elsewhere in the project).</li>
+<li><code>install_requires</code>: StackAPI is built in the fantasitc <a href="http://docs.python-requests.org/en/master/">Requests</a> library. To ensure this was installed when StackAPI was install, it was needed in this field.</li>
+<li><code>tests_require</code>: The testsuite I build utilizes the <code>mock</code> library. I don't want that to be installed if the developer isn't running the tests, so it is added to this field.</li>
+<li><code>test_suite</code>: I wanted developers to be able to run <code>python setup.py test</code> to execute the test suite. To do so, I had to point to the where the tests were being executed from.</li>
+</ul>
+<p>The rest of <code>setup.py</code> seemed to be fairly standard when compared to other Python libraries.</p>
+<h3 id="bumpversion-and-fabric">Bumpversion and Fabric<a class="headerlink" href="#bumpversion-and-fabric" title="Permanent link">¶</a></h3>
+<p>As I mentioned, I wanted to automate any versioning that was required. To do so, I used the <a href="https://pypi.python.org/pypi/bumpversion">bumpversion</a> library and wrote a small <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/fabfile.py">Fabric</a> script to handle it automatically. <code>bumpversion</code> uses a <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.cfg">config file</a>, to determine what it is going to do. I configured it to automatically create a commit and a new git tag for each version. I then pointed to a couple files where the current version is listed. When <code>bumpversion</code> is executed, it will change the version in each of those files to the new version. It will then create a single commit to the git repository with a commit message similar to </p>
+<blockquote>
+<p>Bump version: 0.1.6 → 0.1.7</p>
+</blockquote>
+<p>That is nice and clean. It tags the commit for me, which is useful later, when I want to push the change to PyPI.</p>
+<p>To make running <code>bumpversion</code> a bit easier, I utilized a Fabric routine I found <a href="https://gist.github.com/jbarratt/85c91d7b904462702892">online</a> and adjusted it for my purposes. When I run <code>fab release</code>, all of the <code>bumpversion</code> 'stuff' occurs. Then I just have to push the commit (and new tag) to GitHub. </p>
+<h3 id="final-project-layout">Final Project Layout<a class="headerlink" href="#final-project-layout" title="Permanent link">¶</a></h3>
+<p>The final project layout I settled on was this:</p>
+<div class="codehilite code"><pre>/stackapi
+    /docs
+        ...
+    /stackapi
+        __init__.py
+        stackapi.py
+    /tests
+    .gitignore
+    .travis.yml
+    fabfile.py
+    setup.cfg
+    setup.py
+</pre></div>
+<h2 id="read-the-docs">Read the Docs<a class="headerlink" href="#read-the-docs" title="Permanent link">¶</a></h2>
+<h3 id="configure-the-project">Configure the project<a class="headerlink" href="#configure-the-project" title="Permanent link">¶</a></h3>
+<p>In the final project layout, you can see there is a <code>docs</code> directory. One of my goals was to make this library usable and understandable by other developers. A good part of that means having decent documentation. I spent way more time than I expected cleaning the documentation in the code and creating documentation with examples. Most of that time was spent learning the sphinx documentation style and ReStructuredText, which Read the Docs utilizes.</p>
+<p>The first step in this process was installing and setting up the initial configuration for the documentation:</p>
+<div class="codehilite code"><pre>pip install sphinx sphinx-autobuild
+</pre></div>
+<p>Then, I created the <code>docs</code> directory and switched to it and ran:</p>
+<div class="codehilite code"><pre>sphinx-quickstart
+</pre></div>
+<p>This starts a short, interactive, wizard. Fill out the questions. At the end of this, it creates a <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/docs/conf.py"><code>conf.py</code></a> file in the <code>docs</code> directory. The rest of the <a href="https://github.com/AWegnerGitHub/stackapi/tree/master/docs">documentation</a> is ReStructuredText files.</p>
+<p>To see how the documentation looks, from the <code>docs</code> directory, run:</p>
+<div class="codehilite code"><pre>make html
+</pre></div>
+<p>This creates a <code>_build</code> directory. If you open <code>_build/html/index.html</code>, the documentation can be browsed locally. I do not commit this directory to git, though. It is ignored in <code>.gitignore</code>, as a user can regenerate it at will.</p>
+<h3 id="configure-read-the-docs">Configure Read the Docs<a class="headerlink" href="#configure-read-the-docs" title="Permanent link">¶</a></h3>
+<p>Once I was satisfied with how the documentation looked, I had to configure Read the Docs to read my GitHub repository. To repeat those steps:</p>
+<ul>
+<li>Sign up (or log in) at <a href="https://readthedocs.org/">Read the Docs</a> (part of this will be associating the account to a GitHub account)</li>
+<li>Visit your <a href="https://readthedocs.org/dashboard/">dashboard</a> and click "Import a project"</li>
+<li>Fill out the form, but in my case the defaults were all appropriate. Do note that URLs are case sensitive.</li>
+<li>Click "Create". This is the first version of your documentation.</li>
+<li>To keep the code updating as you update GitHub, log into GitHub and go to the repository's "Settings" page.</li>
+<li>Click "Webhooks &amp; Services"</li>
+<li>Click "Add Service"</li>
+<li>Select "ReadTheDocs" and add the service</li>
+</ul>
+<p>At this point, each time you push a change to the repository, a new set of documents will be built. I then added the Read the Docs badge to my <code>README.rst</code> for a simple link to the detailed documentation.</p>
+<div class="codehilite code"><pre><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> https://readthedocs.org/projects/stackapi/badge/?version=latest
+<span class="nc">:target:</span> <span class="nf">http://stackapi.readthedocs.org/en/latest/?badge=latest</span>
+<span class="nc">:alt:</span> <span class="nf">Documentation Status</span>
+</pre></div>
+<h3 id="force-rebuild-of-docs">Force rebuild of docs<a class="headerlink" href="#force-rebuild-of-docs" title="Permanent link">¶</a></h3>
+<p>Toward the very end of this project, Read the Docs had a minor hiccup and failed on building my documentation. I didn't want to force a build by making a fake commit. Instead, Read the Docs provides the information needed to force a rebuild. It requires a very simple <code>POST</code> to the Post Commit Hook they provide. In my case, this was as simple as running this command (provided from the Dashboard):</p>
+<div class="codehilite code"><pre>curl -X POST https://readthedocs.org/build/stackapi
+</pre></div>
+<h2 id="pypi">PyPI<a class="headerlink" href="#pypi" title="Permanent link">¶</a></h2>
+<p>Nearing the end of the journey, it was time to see what exactly PyPI required. The first step was setting up an account on both the Test and Production instances of PyPI.</p>
+<ul>
+<li>PiPY Test: http://testpypi.python.org/pypi?%3Aaction=register_form</li>
+<li>PyPI Live: https://pypi.python.org/pypi?%3Aaction=register_form</li>
+</ul>
+<p>Having one on both was important while testing. It meant that I didn't have to send broken versions to the live PyPI server, and I could adjust ReStructuredText formatting issues without requiring another release to PyPI. Each time a version is pushed to PyPI it <strong>must</strong> have a new version number. By using the test instance, I could use as many of these fake versions as needed to fix things. Hooray for test environments!</p>
+<p>Before we perform this step automatically, we need to test that the PyPI accounts work. By following portions of a <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml">"First Time with PyPI"</a> tutorial, I focused by steps down to these:</p>
+<ul>
+<li>
+<p>Create a <code>.pypirc</code> file in your home directory - not your project directory. This won't be required once Travis CI is set up and configured, so having the passwords in this, temporarily, wasn't an issue because I eventually deleted the file.</p>
+<p>[distutils]
+index-servers =
+  pypi
+  pypitest</p>
+<p>[pypi]
+repository=https://pypi.python.org/pypi
+username=your_username
+password=your_password</p>
+<p>[pypitest]
+repository=https://testpypi.python.org/pypi
+username=your_username
+password=your_password</p>
+</li>
+<li>
+<p>Register the package on PyPI Test: <code>python setup.py register -r pypitest</code></p>
+</li>
+<li>Register the package on PyPI Live: <code>python setup.py register -r pypi</code></li>
+<li>Upload the project to Test: <code>python setup.py register -r pypitest</code></li>
+<li>Upload the project to Live, <em>if</em> you're ready for your first release. Remember, once a version is released to PyPI, it can't be used again (or overwritten): <code>python setup.py register -r pypi</code></li>
+</ul>
+<p>If all of the above passed to your satisfaction, you can remove the <code>.pypirc</code> file and move on to configuring Travis CI.    </p>
+<h2 id="travis">Travis<a class="headerlink" href="#travis" title="Permanent link">¶</a></h2>
+<p>The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml">GitHub</a>. </p>
+<p>My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using <code>python setup.py -q install</code>. Then the test suite is run. </p>
+<p>The important bits are in the <code>deploy</code> section. </p>
+<div class="codehilite code"><pre><span class="n">on</span><span class="o">:</span>
+  <span class="n">tags</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="n">branch</span><span class="o">:</span> <span class="n">master</span>
+</pre></div>
+<p>If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since <code>bumpversion</code> makes a new git tag with each new version, this works perfectly. </p>
+<p>This does require that my password be included in the yml file. To keep this secure, I utilized the <a href="https://blog.travis-ci.com/2013-01-14-new-client/">Travis Command Line Client</a> (<code>gem install travis</code>). In my local directory, I then ran:</p>
+<div class="codehilite code"><pre>travis encrypt --add deploy.password
+</pre></div>
+<p>This added the password to the YML file. </p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>This was the first time I've released something to PyPI. It took a lot more set up than I expected it would take. However, now that I've gone through the process, gotten used to the ReStructuredText format that Sphinx and Read the Docs require, and set up PyPI for one project, I think it'll be fairly simple to do in the future. Most of the work is getting the other services to talk with GitHub and practicing good developer habits (documentation...).</p>
+<h2 id="all-stackapi-links">All StackAPI Links<a class="headerlink" href="#all-stackapi-links" title="Permanent link">¶</a></h2>
+<p>All of these links are to the various places that StackAPI lives on the internet</p>
+<ul>
+<li><strong>GitHub</strong>: https://github.com/AWegnerGitHub/stackapi</li>
+<li><strong>Read the Docs</strong>: http://stackapi.readthedocs.org/en/latest/</li>
+<li><strong>TravisCI</strong>: https://travis-ci.org/AWegnerGitHub/stackapi</li>
+<li><strong>PyPI</strong>: https://pypi.python.org/pypi/StackAPI</li>
+</ul>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" title="Previous: How I built a Flask application that integrates with Travis CI and OpenShift">How I built a Flask application that integrates with Travis CI and OpenShift</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2016-03-15T12:26:00-05:00">Mar 15, 2016</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>6</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam sidebar-social-links"></i></a>
+    <a href="http://careers.stackoverflow.com/andrewwegner" title="My Stack Overflow Careers Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack overflow careers sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="http://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
