@@ -190,24 +190,26 @@
 <p>Having one on both was important while testing. It meant that I didn't have to send broken versions to the live PyPI server, and I could adjust ReStructuredText formatting issues without requiring another release to PyPI. Each time a version is pushed to PyPI it <strong>must</strong> have a new version number. By using the test instance, I could use as many of these fake versions as needed to fix things. Hooray for test environments!</p>
 <p>Before we perform this step automatically, we need to test that the PyPI accounts work. By following portions of a <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml">"First Time with PyPI"</a> tutorial, I focused by steps down to these:</p>
 <ul>
-<li>
-<p>Create a <code>.pypirc</code> file in your home directory - not your project directory. This won't be required once Travis CI is set up and configured, so having the passwords in this, temporarily, wasn't an issue because I eventually deleted the file.</p>
-<p>[distutils]
-index-servers =
-  pypi
-  pypitest</p>
-<p>[pypi]
-repository=https://pypi.python.org/pypi
-username=your_username
-password=your_password</p>
-<p>[pypitest]
-repository=https://testpypi.python.org/pypi
-username=your_username
-password=your_password</p>
-</li>
-<li>
-<p>Register the package on PyPI Test: <code>python setup.py register -r pypitest</code></p>
-</li>
+<li>Create a <code>.pypirc</code> file in your home directory - not your project directory. This won't be required once Travis CI is set up and configured, so having the passwords in this, temporarily, wasn't an issue because I eventually deleted the file.</li>
+</ul>
+<p>The file looks like this:</p>
+<div class="codehilite code"><pre><span class="k">[distutils]</span>
+<span class="na">index-servers</span> <span class="o">=</span><span class="s"></span>
+<span class="s">  pypi</span>
+<span class="s">  pypitest</span>
+
+<span class="k">[pypi]</span>
+<span class="na">repository</span><span class="o">=</span><span class="s">https://pypi.python.org/pypi</span>
+<span class="na">username</span><span class="o">=</span><span class="s">your_username</span>
+<span class="na">password</span><span class="o">=</span><span class="s">your_password</span>
+
+<span class="k">[pypitest]</span>
+<span class="na">repository</span><span class="o">=</span><span class="s">https://testpypi.python.org/pypi</span>
+<span class="na">username</span><span class="o">=</span><span class="s">your_username</span>
+<span class="na">password</span><span class="o">=</span><span class="s">your_password</span>
+</pre></div>
+<ul>
+<li>Register the package on PyPI Test: <code>python setup.py register -r pypitest</code></li>
 <li>Register the package on PyPI Live: <code>python setup.py register -r pypi</code></li>
 <li>Upload the project to Test: <code>python setup.py register -r pypitest</code></li>
 <li>Upload the project to Live, <em>if</em> you're ready for your first release. Remember, once a version is released to PyPI, it can't be used again (or overwritten): <code>python setup.py register -r pypi</code></li>
