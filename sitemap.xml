@@ -5,34 +5,34 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/</loc>
-<lastmod>2016-12-09T22:22:50-00:00</lastmod>
+<lastmod>2016-12-09T22:25:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/archives.html</loc>
-<lastmod>2016-12-09T22:22:50-00:00</lastmod>
+<lastmod>2016-12-09T22:25:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/tags.html</loc>
-<lastmod>2016-12-09T22:22:50-00:00</lastmod>
+<lastmod>2016-12-09T22:25:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/categories.html</loc>
-<lastmod>2016-12-09T22:22:50-00:00</lastmod>
+<lastmod>2016-12-09T22:25:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://andrewwegner.com/pages/data-analysis-with-pandas-review.html</loc>
+<loc>http://andrewwegner.com/data-analysis-with-pandas-review.html</loc>
 <lastmod>2016-12-09T22:54:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -249,6 +249,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://andrewwegner.com/category/review.html</loc>
+<lastmod>2016-12-09T22:54:00-05:51</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://andrewwegner.com/category/side-activities.html</loc>
 <lastmod>2016-11-06T22:54:00-05:51</lastmod>
 <changefreq>daily</changefreq>
@@ -285,7 +292,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/tag/technical.html</loc>
-<lastmod>2016-03-15T12:26:00-05:51</lastmod>
+<lastmod>2016-12-09T22:54:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -298,6 +305,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://andrewwegner.com/tag/review.html</loc>
+<lastmod>2016-12-09T22:54:00-05:51</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://andrewwegner.com/tag/programming.html</loc>
 <lastmod>2016-01-09T00:00:00-05:51</lastmod>
 <changefreq>daily</changefreq>
@@ -305,8 +319,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://andrewwegner.com/tag/job.html</loc>
-<lastmod>2015-10-10T14:20:00-05:51</lastmod>
+<loc>http://andrewwegner.com/tag/moderation.html</loc>
+<lastmod>2016-11-06T22:54:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -326,8 +340,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://andrewwegner.com/tag/moderation.html</loc>
-<lastmod>2016-11-06T22:54:00-05:51</lastmod>
+<loc>http://andrewwegner.com/tag/job.html</loc>
+<lastmod>2015-10-10T14:20:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -355,7 +369,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/author/andy-wegner.html</loc>
-<lastmod>2016-11-06T22:54:00-05:51</lastmod>
+<lastmod>2016-12-09T22:54:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
