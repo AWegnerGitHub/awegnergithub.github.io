@@ -14,7 +14,7 @@ that the instructor was offering a coupon code on reddit to take the course for 
 way that didn't make me tune out the instructor, even after 19 hours.&lt;/p&gt;
 &lt;h2 id="thoughts-on-the-lessons"&gt;Thoughts on the lessons&lt;a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The course starts a bit slow with your basic "How to install" tutorials. The entire course is done in a series of 
-&lt;a href="http://jupyter.org/"&gt;Jupyter Notebooks&lt;/a&gt; and, obviously, requires that you have Python (the instructor uses 3.5), pandas and a few 
+&lt;a href="https://github.com/AWegnerGitHub/Data-Analysis-with-Pandas---Udemy-Course"&gt;Jupyter Notebooks&lt;/a&gt; and, obviously, requires that you have Python (the instructor uses 3.5), pandas and a few 
 other modules installed before we get to the good stuff. The instructor uses OS X during all lectures, but that has 
 no effect on how things are communicated to the student. Everything is done in the Jupyter Notebooks or at a &lt;a href="https://www.continuum.io/downloads"&gt;conda&lt;/a&gt; 
 prompt. This works the same across all major operating systems. The only reason I felt this was slow was because I 
@@ -83,4 +83,6 @@ code in this section.&lt;/p&gt;
 very easy.&lt;/p&gt;
 &lt;p&gt;I've now spent 19 hours (re)learning pandas and I feel that I've still just scratched the surface. I've learned a lot 
 that I'll be taking back to my code, but throughout the course I still got the impression there is much more to pandas.&lt;/p&gt;
+&lt;h2 id="notebooks"&gt;Notebooks&lt;a class="headerlink" href="#notebooks" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The notebooks that I created during this course are all available on &lt;a href="https://github.com/AWegnerGitHub/Data-Analysis-with-Pandas---Udemy-Course"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Completion Award" src="http://andrewwegner.com/images/udemy-data-analysis-pandas-completion.jpg"/&gt;&lt;/p&gt;</summary><category term="review"></category><category term="technical"></category></entry></feed>
