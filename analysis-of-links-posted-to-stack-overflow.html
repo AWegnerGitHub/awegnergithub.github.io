@@ -116,7 +116,7 @@ encourage you to visit the <a href="http://meta.stackoverflow.com/q/300916/18913
 <p>The three largest slices of the pie are the status 200s (site working!), status 404 (page not found, but server responded saying the page isn't found) and Connection Errors. Connection errors are sites that had no proper server response. The request to access the page timed out. I was generous in the time out and allowed a request to live for 20 seconds before failing a link with this status. The <code>4xx</code> and <code>5xx</code> errors are status codes that fall in the 400 and 500 range of HTTP responses. These are client and server error ranges, thus counted as a failure. <code>2xx</code> errors (of which was are in the low triple) are pages that responded with a success message in the 200 range, but it wasn't a <code>200</code> code. Finally, there were just over a hundred sites that hit a redirect loop that didn't seem to end. These are the <code>3xx</code> errors. I failed a site with this range if it redirected more than 30 times. There are a negligible number of sites that returned status codes in the 600 and <a href="https://github.com/joho/7XX-rfc">700</a> range<sup>4</sup></p>
 <h3 id="by-most-common">By most common<a class="headerlink" href="#by-most-common" title="Permanent link">¶</a></h3>
 <p>There are, expectedly, many URLs that failed that appeared frequently in the sample set. Below is a list of the top 50<sup>3</sup> URLs that are in posts most often, but failed three times over the course of three weeks.</p>
-<div class="codehilite code"><pre>http://docs.jquery.com/Plugins/validation
+<div class="codehilight code"><pre><span></span>http://docs.jquery.com/Plugins/validation
 http://www.eclipse.org/eclipselink/moxy.php
 http://jackson.codehaus.org/
 http://xstream.codehaus.org/
@@ -169,7 +169,7 @@ http://dev.iceburg.net/jquery/jqModal/
 </pre></div>
 <h3 id="by-post-score">By post score<a class="headerlink" href="#by-post-score" title="Permanent link">¶</a></h3>
 <p>Count of posts by score (top 10)  (Covers 94% of all broken links):</p>
-<div class="codehilite code"><pre>| Score | Percentage of Total Broken |
+<div class="codehilight code"><pre><span></span>| Score | Percentage of Total Broken |
 |-------|----------------------------|
 | 0     | 36.4087%                   |
 | 1     | 25.1674%                   |
@@ -185,7 +185,7 @@ http://dev.iceburg.net/jquery/jqModal/
 <h3 id="by-number-of-views">By number of views<a class="headerlink" href="#by-number-of-views" title="Permanent link">¶</a></h3>
 <p><em>Note, this is number of views at the time the data dump was created, not as of today</em></p>
 <p>Count of posts by number of views (top 10):</p>
-<div class="codehilite code"><pre>| Views        | Total Views |
+<div class="codehilight code"><pre><span></span>| Views        | Total Views |
 |--------------|-------------|
 | (0, 200]     | 24.4709%    |
 | (200, 400]   | 14.2186%    |
@@ -201,7 +201,7 @@ http://dev.iceburg.net/jquery/jqModal/
 <h3 id="by-days-since-post-created">By days since post created<a class="headerlink" href="#by-days-since-post-created" title="Permanent link">¶</a></h3>
 <p><em>Note: This is number of days since creation at the time the data dump was created, not from today</em></p>
 <p>Count of posts by days since creation (top 10) (Covers 64% of broken links):</p>
-<div class="codehilite code"><pre>| Days since Creation | Percentage of Total Broken |
+<div class="codehilight code"><pre><span></span>| Days since Creation | Percentage of Total Broken |
 |---------------------|----------------------------|
 | (1110, 1140]        | 7.2938%                    |
 | (1140, 1170]        | 6.7648%                    |
@@ -216,7 +216,7 @@ http://dev.iceburg.net/jquery/jqModal/
 </pre></div>
 <h3 id="by-ratio-of-viewsdays">By Ratio of Views:Days<a class="headerlink" href="#by-ratio-of-viewsdays" title="Permanent link">¶</a></h3>
 <p>Ratio Views:Days (top 20) (Covers 90% of broken links):</p>
-<div class="codehilite code"><pre>| Views:Days Ratio | Percentage of Total Broken |
+<div class="codehilight code"><pre><span></span>| Views:Days Ratio | Percentage of Total Broken |
 |------------------|-------------|
 | (0, 0.25]        | 27.2369%    |
 | (0.25, 0.5]      | 18.8496%    |

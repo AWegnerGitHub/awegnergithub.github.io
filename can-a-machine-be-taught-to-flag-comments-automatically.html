@@ -116,7 +116,7 @@ encourage you to visit the <a href="http://meta.stackoverflow.com/q/280546/18913
 <li>Had variations of the following phrases:</li>
 </ul>
 <p>Phrases</p>
-<div class="codehilite code"><pre>'%mark%answer%'
+<div class="codehilight code"><pre><span></span>'%mark%answer%'
 '%mark%accept%'
 '%accept%answer%'
 '%lease%accept%'
@@ -131,7 +131,7 @@ encourage you to visit the <a href="http://meta.stackoverflow.com/q/280546/18913
 <p>This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.</p>
 <p>My next step was to train a classifier. I had initially assumed that I'd start with a Naive Bayes to get a baseline and then work to something more complicated from there. Perhaps, extract text features, user information, etc. and build a fancy classifier. My initial tests showed that the Naive Bayes was accurate 80-90% of the time with test data.</p>
 <p>I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these threshold took a few weeks but eventually I determined the following thresholds were appropriate for my use:</p>
-<div class="codehilite code"><pre><span class="gh">Type            | Threshold     | Flagging Enabled</span>
+<div class="codehilight code"><pre><span></span><span class="gh">Type            | Threshold     | Flagging Enabled</span>
 <span class="gh">--------------------------------------------------</span>
 too chatty      | 0.9997        | True
 obsolete        | 0.99          | True
@@ -141,12 +141,12 @@ good comment    | 0.9999        | False
 <hr/>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">¶</a></h2>
 <p>What have the results of this experiment been? From my point of view, I'd venture that it's been successful. I have automatically flagged over 17,000 comments. As of December 17, 2014, the process has been running for 173 days. My comment flagging stats are currently:</p>
-<div class="codehilite code"><pre>26885   comments flagged
+<div class="codehilight code"><pre><span></span>26885   comments flagged
 26714   deemed helpful
 171     declined
 </pre></div>
 <p>Started at (approximately):</p>
-<div class="codehilite code"><pre>9885    comments flagged
+<div class="codehilight code"><pre><span></span>9885    comments flagged
 9847    deemed helpful
 38      declined
 </pre></div>
@@ -224,7 +224,7 @@ This is, by far, the largest number of declined flags the process has generated 
 <p>The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.</p>
 <h3 id="may-2015-11-months">May 2015 (11 Months)<a class="headerlink" href="#may-2015-11-months" title="Permanent link">¶</a></h3>
 <p>After nearly a year of running, these are my flagging statistics:</p>
-<div class="codehilite code"><pre>39938   comments flagged
+<div class="codehilight code"><pre><span></span>39938   comments flagged
 39659   deemed helpful
 279     declined
 </pre></div>
@@ -236,7 +236,7 @@ This is, by far, the largest number of declined flags the process has generated 
 <p><img alt="Flags per day with rolling 10 day average - 90 day window" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/></p>
 <h3 id="sept-2015-15-months">Sept 2015 (15 Months)<a class="headerlink" href="#sept-2015-15-months" title="Permanent link">¶</a></h3>
 <p>It has been almost 15 months since the process started. In that time, the model has gotten more accurate. Since the last update in May, I've had only 3 declined comment flags:</p>
-<div class="codehilite code"><pre>52351   comments flagged
+<div class="codehilight code"><pre><span></span>52351   comments flagged
 52069   deemed helpful
 282     declined
 </pre></div>

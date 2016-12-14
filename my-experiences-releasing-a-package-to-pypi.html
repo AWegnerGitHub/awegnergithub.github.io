@@ -112,7 +112,7 @@
 <p>Those goals sound simple. In the future, they probably will be, but for this first release it wasn't as simple as I was hoping.</p>
 <h2 id="project-layout">Project Layout<a class="headerlink" href="#project-layout" title="Permanent link">¶</a></h2>
 <p>Before this project, I'd written modules and libraries that were used by myself (for personal projects) or as part of a larger application (for work). In both cases, though, I had a directory structure that looked something like this:</p>
-<div class="codehilite code"><pre>/project_root
+<div class="codehilight code"><pre><span></span>/project_root
     /mymodule
         __init__.py
         mymodule.py
@@ -137,7 +137,7 @@
 <p>To make running <code>bumpversion</code> a bit easier, I utilized a Fabric routine I found <a href="https://gist.github.com/jbarratt/85c91d7b904462702892">online</a> and adjusted it for my purposes. When I run <code>fab release</code>, all of the <code>bumpversion</code> 'stuff' occurs. Then I just have to push the commit (and new tag) to GitHub. </p>
 <h3 id="final-project-layout">Final Project Layout<a class="headerlink" href="#final-project-layout" title="Permanent link">¶</a></h3>
 <p>The final project layout I settled on was this:</p>
-<div class="codehilite code"><pre>/stackapi
+<div class="codehilight code"><pre><span></span>/stackapi
     /docs
         ...
     /stackapi
@@ -154,14 +154,14 @@
 <h3 id="configure-the-project">Configure the project<a class="headerlink" href="#configure-the-project" title="Permanent link">¶</a></h3>
 <p>In the final project layout, you can see there is a <code>docs</code> directory. One of my goals was to make this library usable and understandable by other developers. A good part of that means having decent documentation. I spent way more time than I expected cleaning the documentation in the code and creating documentation with examples. Most of that time was spent learning the sphinx documentation style and ReStructuredText, which Read the Docs utilizes.</p>
 <p>The first step in this process was installing and setting up the initial configuration for the documentation:</p>
-<div class="codehilite code"><pre>pip install sphinx sphinx-autobuild
+<div class="codehilight code"><pre><span></span>pip install sphinx sphinx-autobuild
 </pre></div>
 <p>Then, I created the <code>docs</code> directory and switched to it and ran:</p>
-<div class="codehilite code"><pre>sphinx-quickstart
+<div class="codehilight code"><pre><span></span>sphinx-quickstart
 </pre></div>
 <p>This starts a short, interactive, wizard. Fill out the questions. At the end of this, it creates a <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/docs/conf.py"><code>conf.py</code></a> file in the <code>docs</code> directory. The rest of the <a href="https://github.com/AWegnerGitHub/stackapi/tree/master/docs">documentation</a> is ReStructuredText files.</p>
 <p>To see how the documentation looks, from the <code>docs</code> directory, run:</p>
-<div class="codehilite code"><pre>make html
+<div class="codehilight code"><pre><span></span>make html
 </pre></div>
 <p>This creates a <code>_build</code> directory. If you open <code>_build/html/index.html</code>, the documentation can be browsed locally. I do not commit this directory to git, though. It is ignored in <code>.gitignore</code>, as a user can regenerate it at will.</p>
 <h3 id="configure-read-the-docs">Configure Read the Docs<a class="headerlink" href="#configure-read-the-docs" title="Permanent link">¶</a></h3>
@@ -177,13 +177,13 @@
 <li>Select "ReadTheDocs" and add the service</li>
 </ul>
 <p>At this point, each time you push a change to the repository, a new set of documents will be built. I then added the Read the Docs badge to my <code>README.rst</code> for a simple link to the detailed documentation.</p>
-<div class="codehilite code"><pre><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> https://readthedocs.org/projects/stackapi/badge/?version=latest
+<div class="codehilight code"><pre><span></span><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> https://readthedocs.org/projects/stackapi/badge/?version=latest
 <span class="nc">:target:</span> <span class="nf">http://stackapi.readthedocs.org/en/latest/?badge=latest</span>
 <span class="nc">:alt:</span> <span class="nf">Documentation Status</span>
 </pre></div>
 <h3 id="force-rebuild-of-docs">Force rebuild of docs<a class="headerlink" href="#force-rebuild-of-docs" title="Permanent link">¶</a></h3>
 <p>Toward the very end of this project, Read the Docs had a minor hiccup and failed on building my documentation. I didn't want to force a build by making a fake commit. Instead, Read the Docs provides the information needed to force a rebuild. It requires a very simple <code>POST</code> to the Post Commit Hook they provide. In my case, this was as simple as running this command (provided from the Dashboard):</p>
-<div class="codehilite code"><pre>curl -X POST https://readthedocs.org/build/stackapi
+<div class="codehilight code"><pre><span></span>curl -X POST https://readthedocs.org/build/stackapi
 </pre></div>
 <h2 id="pypi">PyPI<a class="headerlink" href="#pypi" title="Permanent link">¶</a></h2>
 <p>Nearing the end of the journey, it was time to see what exactly PyPI required. The first step was setting up an account on both the Test and Production instances of PyPI.</p>
@@ -197,7 +197,7 @@
 <li>Create a <code>.pypirc</code> file in your home directory - not your project directory. This won't be required once Travis CI is set up and configured, so having the passwords in this, temporarily, wasn't an issue because I eventually deleted the file.</li>
 </ul>
 <p>The file looks like this:</p>
-<div class="codehilite code"><pre><span class="k">[distutils]</span>
+<div class="codehilight code"><pre><span></span><span class="k">[distutils]</span>
 <span class="na">index-servers</span> <span class="o">=</span><span class="s"></span>
 <span class="s">  pypi</span>
 <span class="s">  pypitest</span>
@@ -223,13 +223,13 @@
 <p>The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml">GitHub</a>. </p>
 <p>My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using <code>python setup.py -q install</code>. Then the test suite is run. </p>
 <p>The important bits are in the <code>deploy</code> section. </p>
-<div class="codehilite code"><pre><span class="n">on</span><span class="o">:</span>
+<div class="codehilight code"><pre><span></span><span class="n">on</span><span class="o">:</span>
   <span class="n">tags</span><span class="o">:</span> <span class="kc">true</span>
   <span class="n">branch</span><span class="o">:</span> <span class="n">master</span>
 </pre></div>
 <p>If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since <code>bumpversion</code> makes a new git tag with each new version, this works perfectly. </p>
 <p>This does require that my password be included in the yml file. To keep this secure, I utilized the <a href="https://blog.travis-ci.com/2013-01-14-new-client/">Travis Command Line Client</a> (<code>gem install travis</code>). In my local directory, I then ran:</p>
-<div class="codehilite code"><pre>travis encrypt --add deploy.password
+<div class="codehilight code"><pre><span></span>travis encrypt --add deploy.password
 </pre></div>
 <p>This added the password to the YML file. </p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>

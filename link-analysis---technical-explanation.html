@@ -99,13 +99,13 @@
 <h2 id="set-up">Set up<a class="headerlink" href="#set-up" title="Permanent link">¶</a></h2>
 <h3 id="the-database">The database<a class="headerlink" href="#the-database" title="Permanent link">¶</a></h3>
 <p>The process began by downloading the March 2013 <a href="https://archive.org/details/stackexchange">data dump</a>. I loaded the <code>posts</code> into a [MariaDB] instance on my local machine. This was accomplished with a very simple script and patience, as the script took a while to run.</p>
-<div class="codehilite code"><pre>load xml local infile '/path/to/posts.xml'
+<div class="codehilight code"><pre><span></span>load xml local infile '/path/to/posts.xml'
 into table posts
 rows identified by '&lt;row&gt;';
 </pre></div>
 <h3 id="the-data">The data<a class="headerlink" href="#the-data" title="Permanent link">¶</a></h3>
 <p>Once this was done, the next step was selecting my random sample of data. I did this by randomly selecting 25% of the days in a year and then pulling all posts for those days across all years of Stack Overflow's existence. The Python script I used to do this was fairly simple:</p>
-<div class="codehilite code"><pre><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">datetime</span>
+<div class="codehilight code"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
 
@@ -123,7 +123,7 @@ rows identified by '&lt;row&gt;';
 <p>At the end of this run, the days that I cared about are in the <code>dayslist</code> variable. I used that to pull questions and answers from the database that were created on that month/day combination. In the end, this resulted in just over 25% of the total posts being selected. To ensure that I could replicate the results, I also saved the dates that were selected.</p>
 <h2 id="parsing-the-data">Parsing the data<a class="headerlink" href="#parsing-the-data" title="Permanent link">¶</a></h2>
 <p>The next step was to parse out links from the data. I used the following script to extract anchor text and links from a post. </p>
-<div class="codehilite code"><pre>def links_in_post(post):
+<div class="codehilight code"><pre><span></span>def links_in_post(post):
     """
     Returns a list of all links found
     :param posts: A list of dictionaries with a 'body' key containing HTML strings

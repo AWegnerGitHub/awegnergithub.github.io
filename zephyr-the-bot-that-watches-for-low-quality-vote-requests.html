@@ -145,7 +145,7 @@ SmokeDetector to watch for commonly spammed domains.</p>
 <h3 id="upgrade-from-sqlite-to-mariadb">Upgrade from SQLite to MariaDB<a class="headerlink" href="#upgrade-from-sqlite-to-mariadb" title="Permanent link">¶</a></h3>
 <p>Zephyr was originally built against an SQLite database. This worked, but was getting slower as more data was being added. This slow down
 was beginning to affect performance. I started seeing this error more and more frequently:</p>
-<div class="codehilite code"><pre>Traceback (most recent call last):
+<div class="codehilight code"><pre><span></span>Traceback (most recent call last):
   File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py", line 255, in _close_connection
     self._dialect.do_close(connection)
   File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py", line 418, in do_close

@@ -75,7 +75,7 @@
 
             
             <p>For various reasons, MyISAM tables are known to crash. When this happens, the following message will be displayed:</p>
-<div class="codehilite code"><pre>INVALID SQL: 145 : Table &#39;{something}&#39; is marked as crashed and should be repaired
+<div class="codehilight code"><pre><span></span>INVALID SQL: 145 : Table &#39;{something}&#39; is marked as crashed and should be repaired
 </pre></div>
 
 
@@ -84,34 +84,34 @@ if MySQL itself has issues and you use the <code>kill</code> command to stop it.
 are being used, do not make MyISAM tables happy.</p>
 <p>To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files 
 are stored.</p>
-<div class="codehilite code"><pre>locate *.MYI
+<div class="codehilight code"><pre><span></span>locate *.MYI
 </pre></div>
 
 
 <p>This will return where all the MYI files are stored. In this example, I am using</p>
-<div class="codehilite code"><pre>/var/lib/mysql/mysql/
+<div class="codehilight code"><pre><span></span>/var/lib/mysql/mysql/
 </pre></div>
 
 
 <p>Go to the directory of the crashed table using the <code>cd</code> command. Next, stop MySQL. This is to ensure the tables are not 
 accessed while we perform our repair functions. If you don't perform this step, the repair may not succeed.</p>
-<div class="codehilite code"><pre>service mysqld stop
+<div class="codehilight code"><pre><span></span>service mysqld stop
 </pre></div>
 
 
 <p>Next we are going to perform two repair functions. The first one may take a while depending on the size of your tables.</p>
-<div class="codehilite code"><pre>myisamchk -r --force --safe-recover *.MYI
+<div class="codehilight code"><pre><span></span>myisamchk -r --force --safe-recover *.MYI
 </pre></div>
 
 
 <p>The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It 
 is likely that this step is not needed after performing the previous step, but it should only take a few seconds now.</p>
-<div class="codehilite code"><pre>myisamchk --force --fast --update-state *.MYI
+<div class="codehilight code"><pre><span></span>myisamchk --force --fast --update-state *.MYI
 </pre></div>
 
 
 <p>Finally, restart MySQL</p>
-<div class="codehilite code"><pre>service mysqld start
+<div class="codehilight code"><pre><span></span>service mysqld start
 </pre></div>
             
             

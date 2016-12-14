@@ -79,17 +79,17 @@ network card. To associate these IP addresses with the server some manipulation 
 performed. The steps outlined in this walk-through are for RedHat based systems. This tutorial is for statically assigned 
 IP Addresses (as a server generally will have).
 For this walk through we are going to add one additional IP address to <code>eth0</code>. Navigate to</p>
-<div class="codehilite code"><pre>cd /etc/sysconfig/network-scripts
+<div class="codehilight code"><pre><span></span>cd /etc/sysconfig/network-scripts
 </pre></div>
 
 
 <p>Copy <code>ifcfg-eth0</code> to <code>ifcfg-eth0:0</code></p>
-<div class="codehilite code"><pre>cp ifcfg-eth0 ifcfg-eth0:0
+<div class="codehilight code"><pre><span></span>cp ifcfg-eth0 ifcfg-eth0:0
 </pre></div>
 
 
 <p>Now we need to modify the new file slightly so that it gets it's own IP address. Open <code>ifcfg-eth0:0</code> in your favorite editor</p>
-<div class="codehilite code"><pre>DEVICE=eth0:0           &lt;-- Change this to match the new eth0:0 file we just created
+<div class="codehilight code"><pre><span></span>DEVICE=eth0:0           &lt;-- Change this to match the new eth0:0 file we just created
 BOOTPROTO=none
 BROADCAST=x.x.x.x       &lt;-- This is the broad cast address for the subnet the new IP is on
 DNS1=x.x.x.x            &lt;-- This is the main DNS server you are using (example: 64.120.14.26)
@@ -107,7 +107,7 @@ NAME=&quot;System eth0:0&quot;    &lt;-- Change to reflect new name of device
 
 
 <p>Save your file with the new settings. Now we need to restart the networking service:</p>
-<div class="codehilite code"><pre>service network restart
+<div class="codehilight code"><pre><span></span>service network restart
 </pre></div>
 
 

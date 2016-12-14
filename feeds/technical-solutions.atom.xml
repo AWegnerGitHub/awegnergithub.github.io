@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2016-03-15T12:26:00-05:00</updated><entry><title>My experiences releasing a package to PyPI</title><link href="http://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html" rel="alternate"></link><updated>2016-03-15T12:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2016-03-15:my-experiences-releasing-a-package-to-pypi.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2016-03-15T12:26:00-05:00</updated><entry><title>My experiences releasing a package to PyPI</title><link href="http://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html" rel="alternate"></link><published>2016-03-15T12:26:00-05:00</published><updated>2016-03-15T12:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2016-03-15:/my-experiences-releasing-a-package-to-pypi.html</id><summary type="html">&lt;p&gt;I released StackAPI to PyPI. This post talks about my experiences.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="motivation"&gt;Motivation&lt;a class="headerlink" href="#motivation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In some of my &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;other projects&lt;/a&gt;, I've needed to make extensive use of the Stack Exchange API. I built a small library - StackAPI - to assist in this task and released it on Python's &lt;a href="https://pypi.python.org/pypi/StackAPI"&gt;PyPI repository&lt;/a&gt;. This post is going to cover some of the technical decisions and issues I ran into while going through this process. This was my first project being released to PyPI.&lt;/p&gt;
 &lt;p&gt;My goals when releasing this were:&lt;/p&gt;
@@ -11,7 +11,7 @@
 &lt;p&gt;Those goals sound simple. In the future, they probably will be, but for this first release it wasn't as simple as I was hoping.&lt;/p&gt;
 &lt;h2 id="project-layout"&gt;Project Layout&lt;a class="headerlink" href="#project-layout" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Before this project, I'd written modules and libraries that were used by myself (for personal projects) or as part of a larger application (for work). In both cases, though, I had a directory structure that looked something like this:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;/project_root
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/project_root
     /mymodule
         __init__.py
         mymodule.py
@@ -36,7 +36,7 @@
 &lt;p&gt;To make running &lt;code&gt;bumpversion&lt;/code&gt; a bit easier, I utilized a Fabric routine I found &lt;a href="https://gist.github.com/jbarratt/85c91d7b904462702892"&gt;online&lt;/a&gt; and adjusted it for my purposes. When I run &lt;code&gt;fab release&lt;/code&gt;, all of the &lt;code&gt;bumpversion&lt;/code&gt; 'stuff' occurs. Then I just have to push the commit (and new tag) to GitHub. &lt;/p&gt;
 &lt;h3 id="final-project-layout"&gt;Final Project Layout&lt;a class="headerlink" href="#final-project-layout" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The final project layout I settled on was this:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;/stackapi
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/stackapi
     /docs
         ...
     /stackapi
@@ -53,14 +53,14 @@
 &lt;h3 id="configure-the-project"&gt;Configure the project&lt;a class="headerlink" href="#configure-the-project" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;In the final project layout, you can see there is a &lt;code&gt;docs&lt;/code&gt; directory. One of my goals was to make this library usable and understandable by other developers. A good part of that means having decent documentation. I spent way more time than I expected cleaning the documentation in the code and creating documentation with examples. Most of that time was spent learning the sphinx documentation style and ReStructuredText, which Read the Docs utilizes.&lt;/p&gt;
 &lt;p&gt;The first step in this process was installing and setting up the initial configuration for the documentation:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;pip install sphinx sphinx-autobuild
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install sphinx sphinx-autobuild
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then, I created the &lt;code&gt;docs&lt;/code&gt; directory and switched to it and ran:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;sphinx-quickstart
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sphinx-quickstart
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This starts a short, interactive, wizard. Fill out the questions. At the end of this, it creates a &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/docs/conf.py"&gt;&lt;code&gt;conf.py&lt;/code&gt;&lt;/a&gt; file in the &lt;code&gt;docs&lt;/code&gt; directory. The rest of the &lt;a href="https://github.com/AWegnerGitHub/stackapi/tree/master/docs"&gt;documentation&lt;/a&gt; is ReStructuredText files.&lt;/p&gt;
 &lt;p&gt;To see how the documentation looks, from the &lt;code&gt;docs&lt;/code&gt; directory, run:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;make html
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make html
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This creates a &lt;code&gt;_build&lt;/code&gt; directory. If you open &lt;code&gt;_build/html/index.html&lt;/code&gt;, the documentation can be browsed locally. I do not commit this directory to git, though. It is ignored in &lt;code&gt;.gitignore&lt;/code&gt;, as a user can regenerate it at will.&lt;/p&gt;
 &lt;h3 id="configure-read-the-docs"&gt;Configure Read the Docs&lt;a class="headerlink" href="#configure-read-the-docs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -76,13 +76,13 @@
 &lt;li&gt;Select "ReadTheDocs" and add the service&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;At this point, each time you push a change to the repository, a new set of documents will be built. I then added the Read the Docs badge to my &lt;code&gt;README.rst&lt;/code&gt; for a simple link to the detailed documentation.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;image&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt; https://readthedocs.org/projects/stackapi/badge/?version=latest
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;image&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt; https://readthedocs.org/projects/stackapi/badge/?version=latest
 &lt;span class="nc"&gt;:target:&lt;/span&gt; &lt;span class="nf"&gt;http://stackapi.readthedocs.org/en/latest/?badge=latest&lt;/span&gt;
 &lt;span class="nc"&gt;:alt:&lt;/span&gt; &lt;span class="nf"&gt;Documentation Status&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="force-rebuild-of-docs"&gt;Force rebuild of docs&lt;a class="headerlink" href="#force-rebuild-of-docs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Toward the very end of this project, Read the Docs had a minor hiccup and failed on building my documentation. I didn't want to force a build by making a fake commit. Instead, Read the Docs provides the information needed to force a rebuild. It requires a very simple &lt;code&gt;POST&lt;/code&gt; to the Post Commit Hook they provide. In my case, this was as simple as running this command (provided from the Dashboard):&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;curl -X POST https://readthedocs.org/build/stackapi
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl -X POST https://readthedocs.org/build/stackapi
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="pypi"&gt;PyPI&lt;a class="headerlink" href="#pypi" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Nearing the end of the journey, it was time to see what exactly PyPI required. The first step was setting up an account on both the Test and Production instances of PyPI.&lt;/p&gt;
@@ -96,7 +96,7 @@
 &lt;li&gt;Create a &lt;code&gt;.pypirc&lt;/code&gt; file in your home directory - not your project directory. This won't be required once Travis CI is set up and configured, so having the passwords in this, temporarily, wasn't an issue because I eventually deleted the file.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The file looks like this:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="k"&gt;[distutils]&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[distutils]&lt;/span&gt;
 &lt;span class="na"&gt;index-servers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&lt;/span&gt;
 &lt;span class="s"&gt;  pypi&lt;/span&gt;
 &lt;span class="s"&gt;  pypitest&lt;/span&gt;
@@ -122,13 +122,13 @@
 &lt;p&gt;The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml"&gt;GitHub&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using &lt;code&gt;python setup.py -q install&lt;/code&gt;. Then the test suite is run. &lt;/p&gt;
 &lt;p&gt;The important bits are in the &lt;code&gt;deploy&lt;/code&gt; section. &lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
   &lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
   &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since &lt;code&gt;bumpversion&lt;/code&gt; makes a new git tag with each new version, this works perfectly. &lt;/p&gt;
 &lt;p&gt;This does require that my password be included in the yml file. To keep this secure, I utilized the &lt;a href="https://blog.travis-ci.com/2013-01-14-new-client/"&gt;Travis Command Line Client&lt;/a&gt; (&lt;code&gt;gem install travis&lt;/code&gt;). In my local directory, I then ran:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;travis encrypt --add deploy.password
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;travis encrypt --add deploy.password
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This added the password to the YML file. &lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -140,7 +140,7 @@
 &lt;li&gt;&lt;strong&gt;Read the Docs&lt;/strong&gt;: http://stackapi.readthedocs.org/en/latest/&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;TravisCI&lt;/strong&gt;: https://travis-ci.org/AWegnerGitHub/stackapi&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;PyPI&lt;/strong&gt;: https://pypi.python.org/pypi/StackAPI&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="technical"></category></entry><entry><title>How I built a Flask application that integrates with Travis CI and OpenShift</title><link href="http://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" rel="alternate"></link><updated>2015-12-12T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-12-11:how-i-set-up-openshift-travisci-and-flask.html</id><summary type="html">
+&lt;/ul&gt;</content><category term="technical"></category></entry><entry><title>How I built a Flask application that integrates with Travis CI and OpenShift</title><link href="http://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" rel="alternate"></link><published>2015-12-11T09:15:00-06:00</published><updated>2015-12-12T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-12-11:/how-i-set-up-openshift-travisci-and-flask.html</id><summary type="html">&lt;p&gt;A walkthrough on how I set up a Flask application on OpenShift and used TravisCI to deploy it&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="motivation"&gt;Motivation&lt;a class="headerlink" href="#motivation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Since I &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;shut down&lt;/a&gt; Vipers early this year, I've been itching to do &lt;em&gt;something&lt;/em&gt; web related. Web technologies aren't my best technical skill, but I like trying out new things and learning something in the process. I use Python at work. I like Python a lot. With Christmas and New Years coming up, I want to have a project during my down time. My goal is to get a &lt;a href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; application built and then deployed to &lt;a href="https://www.openshift.com/"&gt;OpenShift&lt;/a&gt;. Part of this deployment is to utilize &lt;a href="https://travis-ci.org/"&gt;TravisCI&lt;/a&gt;. I'm planning on using &lt;a href="http://pytest.org/latest/"&gt;pytest&lt;/a&gt; and &lt;a href="https://hypothesis.readthedocs.org/en/latest/"&gt;hypothesis&lt;/a&gt; for my test suite. Finally, I want to use my own (sub)domain, instead of the provided &lt;code&gt;rhcloud&lt;/code&gt; one.&lt;/p&gt;
 &lt;p&gt;Of these three technologies, I've used only Flask before. The &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;comment flagging bot&lt;/a&gt; I built has a dashboard built in Flask. I've never used OpenShift or TravisCI. I selected OpenShift because it has a couple &lt;a href="http://www.paasify.it/compare/heroku-vs-openshift%20online"&gt;features&lt;/a&gt; I want that Heroku doesn't. The biggest one, according to the previous link, was that OpenShift has support for MySQL and Heroku doesn't (surprisingly). I want to use TravisCI and automated testing, because one of my goals for next year at work is to introduce automated tested to our development. (I work with Engineers, not coders...that's my excuse and it's a bad excuse, so I'm going to try and fix it.) To get ready for that goal, I want to test out a system that does continuous integration/automated testing. Both OpenShift and Travis CI provide me with free services. Hypothesis and py.test provide me with a way to generate comprehensive test conditions. &lt;/p&gt;
@@ -151,15 +151,15 @@
 &lt;p&gt;OpenShift rhc can be run on any operating system with Ruby 1.8.7 or higher assuming you have the requisite user permissions to install programs. Instructions for specific operating systems are provided below. &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Based on that, I figured I'd install the latest version of &lt;a href="http://rubyinstaller.org/downloads/"&gt;Ruby&lt;/a&gt;. At the time I tested this, that was 2.2.3. Unfortunately, when I ran the command to install the &lt;code&gt;rhc&lt;/code&gt; tools, I received an error. After a bit of Googling, I found that it doesn't like 2.2x. So, I installed 2.1.7 instead. Next, I ran:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;gem install rhc
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gem install rhc
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This installs several gems and took a few minutes to complete. Next,&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;rhc setup
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rhc setup
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This started the OpenShift setup wizard. It consisted of filling out the few prompts and letting it generate an SSH key and then connecting to my account. Remember the Namespace you select. Again, this took a few minutes.&lt;/p&gt;
 &lt;h2 id="flask-setup"&gt;Flask setup&lt;a class="headerlink" href="#flask-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The next step was to set up my first "Gear". This would be the Flask application. I'll work on the database next. First, I just want Python and Flask to function properly. Fortunately, this is very easy, as OpenShift has a Flask template.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;rhc app create testapp python-2.7 --from-code=https://github.com/openshift-quickstart/flask-base.git
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rhc app create testapp python-2.7 --from-code=https://github.com/openshift-quickstart/flask-base.git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;A few notes:&lt;/p&gt;
 &lt;ul&gt;
@@ -168,38 +168,38 @@
 &lt;li&gt;The &lt;code&gt;--from-code&lt;/code&gt; parameter will download that repository and use it as the base of your application. &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;At this point, Flask can be run locally using:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;python app.py
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python app.py
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The application can be pushed back to OpenShift at this point and there should be a functional page on your OpenShift domain. In your command line, from the directory of your project:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;git add --all
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git add --all
 git commit -m "Adding Flask application"
 git push
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This will take a moment. At the end, you should see these lines in your command prompt:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Git&lt;/span&gt; &lt;span class="n"&gt;Post&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Receive&lt;/span&gt; &lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;success&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Git&lt;/span&gt; &lt;span class="n"&gt;Post&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Receive&lt;/span&gt; &lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;success&lt;/span&gt;
 &lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Activation&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;success&lt;/span&gt;
 &lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Deployment&lt;/span&gt; &lt;span class="n"&gt;completed&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;success&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If all three are a success, then you should be able to visit your URL. Your URL is a combination of your selected Namespace and the application name you created.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;http://&amp;lt;namespace&amp;gt;-&amp;lt;testapp&amp;gt;.rhcloud.com/
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;http://&amp;lt;namespace&amp;gt;-&amp;lt;testapp&amp;gt;.rhcloud.com/
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This should show a "Welcome to Flask on OpenShift" page. If you append &lt;code&gt;/test&lt;/code&gt; to your URL, you'll get a message that says "It's Alive!"&lt;/p&gt;
 &lt;p&gt;If it doesn't, you can check your error logs by running:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;rhc tail -a &amp;lt;testapp&amp;gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rhc tail -a &amp;lt;testapp&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="mysql-setup"&gt;MySQL setup&lt;a class="headerlink" href="#mysql-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Next, I set up my application to utilize MySQL. It's the database I have the most experience with, so I decided to keep that aspect of this project simple for myself. The first step was to add a MySQL 5.5 cartridge to my test gear (OpenShift terminology). I did this in the OpenShift web console. The UI provided me with the option to install various databases and one of those was MySQL. Clicking the link caused a few second delay as it was set up, and then I was presented with login credentials to my database. Step one...done.&lt;/p&gt;
 &lt;p&gt;The next step is installing the correct Python modules to utilize MySQL. I selected &lt;a href="http://www.pymysql.org/"&gt;PyMySQL&lt;/a&gt; (again, experience) and &lt;a href="http://www.sqlalchemy.org/"&gt;SQLAlchemy&lt;/a&gt;. I added these to both &lt;code&gt;requirements.txt&lt;/code&gt; and &lt;code&gt;setup.py&lt;/code&gt;. The idea behind doing it in both places is to make life easy for myself in the future. Additionally, the quick tutorials I've looked at for TravisCI encourage the usage of &lt;code&gt;requirements.txt&lt;/code&gt;, while it seems OpenShift uses the &lt;code&gt;setup.py&lt;/code&gt;. I'll fix that eventually, but getting it set up initially, this will be fastest.&lt;/p&gt;
 &lt;p&gt;Add these to &lt;code&gt;requirements.txt&lt;/code&gt;&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;sqlalchemy==1.0.9
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sqlalchemy==1.0.9
 pymysql==0.6.7
 Flask-SQLAlchemy==2.1
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add this to the &lt;code&gt;install_requires&lt;/code&gt; list in &lt;code&gt;setup.py&lt;/code&gt;&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;'sqlalchemy==1.0.9','pymysql==0.6.7','Flask-SQLAlchemy==2.1'
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;'sqlalchemy==1.0.9','pymysql==0.6.7','Flask-SQLAlchemy==2.1'
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The nice thing about OpenShift is that the credentials to the database are placed in &lt;a href="https://developers.openshift.com/en/managing-environment-variables.html#database-variables"&gt;environment variables&lt;/a&gt;, so I don't need to embed the passwords, connections strings, or anything potentially sensitive in my code. For MySQL these are available as:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;Variable Name               |   Purpose
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Variable Name               |   Purpose
 ------------------------------------------------
 OPENSHIFT_MYSQL_DB_HOST     |   The host name or IP address used to connect to the database.
 OPENSHIFT_MYSQL_DB_PORT     |   The port the database server is listening on.
@@ -210,20 +210,20 @@ OPENSHIFT_MYSQL_DB_URL      |   Database connection URL.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="utilizing-the-database"&gt;Utilizing the database&lt;a class="headerlink" href="#utilizing-the-database" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Setting up SQLAlchemy and MySQL is fairly easy. I tested this with a simple table and ensured that it appeared in the database as expected.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;User&lt;/span&gt;(&lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Model&lt;/span&gt;):
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;User&lt;/span&gt;(&lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Model&lt;/span&gt;):
     &lt;span class="n"&gt;__tablename__&lt;/span&gt; = &lt;span class="s"&gt;'users'&lt;/span&gt;
     &lt;span class="n"&gt;id&lt;/span&gt; = &lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Column&lt;/span&gt;(&lt;span class="s"&gt;'user_id'&lt;/span&gt;, &lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Integer&lt;/span&gt;, &lt;span class="n"&gt;primary_key&lt;/span&gt;=&lt;span class="nb"&gt;True&lt;/span&gt;)
     &lt;span class="nb"&gt;name&lt;/span&gt; = &lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Column&lt;/span&gt;(&lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;String&lt;/span&gt;(&lt;span class="mi"&gt;60&lt;/span&gt;))
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;A few adjustments were made to the import statements of the Flask application:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask_sqlalchemy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SQLAlchemy&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask_sqlalchemy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SQLAlchemy&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;A couple variables were created and loaded:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;app.config.from_pyfile('flaskapp.cfg')
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;app.config.from_pyfile('flaskapp.cfg')
 db = SQLAlchemy(app)
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Finally, the &lt;code&gt;flaskapp.cfg&lt;/code&gt; file was modified to include these two lines:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_MYSQL_DB_URL'] + os.environ['OPENSHIFT_APP_NAME]
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_MYSQL_DB_URL'] + os.environ['OPENSHIFT_APP_NAME]
 SQLALCHEMY_ECHO = False
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="remote-mysql-access"&gt;Remote MySQL Access&lt;a class="headerlink" href="#remote-mysql-access" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -244,66 +244,66 @@ SQLALCHEMY_ECHO = False
 &lt;p&gt;Travis CI integrates with GitHub, so what I'm going to do in reality is push to GitHub and let Travis CI pick up the changes. From there, it will perform it's tests. If the tests pass, it will push the commit to OpenShift.&lt;/p&gt;
 &lt;p&gt;On GitHub, create a new repository for your source. This is where you will be pushing your code for Travis CI to pick up.&lt;/p&gt;
 &lt;p&gt;From your OpenShift directory (which is already a git repository):&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;git remote rename origin openshift
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git remote rename origin openshift
 git remote add origin https://github.com/&amp;lt;USER&amp;gt;/&amp;lt;repositoryname&amp;gt;.git
 git push -u origin master
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This resets the origin to point to your new GitHub repository and sets up a new remote. Then it pushes the changes to GitHub.&lt;/p&gt;
 &lt;p&gt;Log into your &lt;a href="https://travis-ci.org/profile"&gt;Travis CI profile page&lt;/a&gt;. Make sure you are logged into GitHub first, as this will create the profile automatically. Press the "Sync now" button at the top of the page to pull a list of all of your repositories. Once that is done, find the repository you just set up, and enable integration with that repository.&lt;/p&gt;
 &lt;p&gt;Next you need to set up Travis CI and the &lt;code&gt;.travis.yml&lt;/code&gt; file. &lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;gem install travis
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gem install travis
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This will install a Ruby script that assists in this process. If you get an error when running this, you need to create an empty &lt;code&gt;.travis.yml&lt;/code&gt; file first and then run the command again.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;travis setup openshift
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;travis setup openshift
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Fill out the prompts. Defaults should be fine in most cases, but do pay attention to "OpenShift application name". If your GitHub repository is named differently than your OpenShift application name, the default for this prompt will be incorrect.&lt;/p&gt;
 &lt;p&gt;One last note, for a quick test you can change the &lt;code&gt;script&lt;/code&gt; section to &lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This forces the tests to pass. Once you've written tests, you can do something like:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;script:
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;script:
     - py.test
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This will run your test scripts, utilizing &lt;code&gt;py.test&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Deploy these changes to GitHub:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;git add .travis.yml
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git add .travis.yml
 git commit -m "Deploying Travis"
 git push origin master
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This will commit and push the changes to GitHub. A few seconds later, if you are watching Travis CI, you'll see it notices the new commit and starts running tests. If you tests complete with a status code of &lt;code&gt;0&lt;/code&gt; (successful), it will deploy the changes to OpenShift. If the tests fail (any other status code), it will not deploy to OpenShift.&lt;/p&gt;
 &lt;h2 id="pytest-setup"&gt;py.test setup&lt;a class="headerlink" href="#pytest-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Setting up the testing frame work involves a few Python modules. These need to be added to both &lt;code&gt;requirements.txt&lt;/code&gt; and &lt;code&gt;setup.py&lt;/code&gt;.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;pytest&amp;gt;=2.8.0
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pytest&amp;gt;=2.8.0
 hypothesis==1.16.0
 pytest-runner==2.6.2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The next step is setting up some quick integration with &lt;code&gt;setup.py&lt;/code&gt;, so that users can run &lt;code&gt;python setup.py test&lt;/code&gt; and execute your tests.&lt;/p&gt;
 &lt;p&gt;In &lt;code&gt;setup.py&lt;/code&gt;, add (or edit) the &lt;code&gt;setup_requires&lt;/code&gt; list to include &lt;code&gt;pytest-runner&lt;/code&gt;. Add (or edit) the &lt;code&gt;tests_require&lt;/code&gt; list to include &lt;code&gt;pytest&lt;/code&gt;. I also added the following to my &lt;code&gt;setup.cfg&lt;/code&gt;&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="k"&gt;[aliases]&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[aliases]&lt;/span&gt;
 &lt;span class="na"&gt;test&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;pytest&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I modified my &lt;code&gt;setup_requires&lt;/code&gt; list a bit, so that it's conditional. Since this would install the &lt;code&gt;pytest-runner&lt;/code&gt; on every call to &lt;code&gt;setup.py&lt;/code&gt;, even when the module wouldn't be called, I wanted the runner to only be required when &lt;code&gt;pytest&lt;/code&gt; is utilized.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
-&lt;span class="n"&gt;needs_pytest&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;'pytest'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'test'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'ptr'&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;pytest_runner&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'pytest-runner'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;needs_pytest&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="n"&gt;needs_pytest&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;'pytest'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'test'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'ptr'&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;intersection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;pytest_runner&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'pytest-runner'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;needs_pytest&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 
 &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;setup_requires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-        &lt;span class="c"&gt;#... Other requirements here&lt;/span&gt;
+        &lt;span class="c1"&gt;#... Other requirements here&lt;/span&gt;
     &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;pytest_runner&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I wanted to test that my tests were working correctly. I created a &lt;code&gt;tests&lt;/code&gt; directory, which is where I plan on storing all of my test cases. &lt;code&gt;pytest&lt;/code&gt; will find any files that start or end with &lt;code&gt;test&lt;/code&gt; and execute them. I created a very simple &lt;code&gt;test_tests.py&lt;/code&gt; file with the following simple test (taken from the &lt;a href="https://hypothesis.readthedocs.org/en/latest/quickstart.html#writing-tests"&gt;Hypothesis Quickstart&lt;/a&gt;)&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;@given(st.integers(), st.integers())
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@given(st.integers(), st.integers())
 def test_ints_are_commutative(x, y):
     assert x + y == y + x
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Finally, Travis CI needs to be told what to do. Modify the &lt;code&gt;script&lt;/code&gt; key to include &lt;code&gt;py.test&lt;/code&gt;&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;script:
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;script:
    - py.test
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After a successful run through Travis, you'll see something like this:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;tests/test_tests.py .
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tests/test_tests.py .
 =========================== 1 passed in 0.26 seconds ===========================
 The command "py.test" exited with 0.
 &lt;/pre&gt;&lt;/div&gt;
@@ -315,7 +315,7 @@ The command "py.test" exited with 0.
 &lt;p&gt;CloudFlare recognized this immediately and redirected me to my Flask application. Hooray!&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With this, the set up is complete. You have a Flask application, connected to MySQL, that is integrated with a CI system which automatically deploys to OpenShift when all tests pass and uses CloudFlare (because I already was doing so), to provide a CDN. &lt;/p&gt;
-&lt;p&gt;On to building something!&lt;/p&gt;</summary><category term="technical"></category></entry><entry><title>Connect Python to OSI Soft PI</title><link href="http://andrewwegner.com/connect-python-to-osi-soft-pi.html" rel="alternate"></link><updated>2012-04-16T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-02-07:connect-python-to-osi-soft-pi.html</id><summary type="html">&lt;p&gt;OSI PI is a historian database. I had a task to connect a python application to this database. I asked a question on 
+&lt;p&gt;On to building something!&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Connect Python to OSI Soft PI</title><link href="http://andrewwegner.com/connect-python-to-osi-soft-pi.html" rel="alternate"></link><published>2012-02-07T12:45:00-06:00</published><updated>2012-04-16T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-02-07:/connect-python-to-osi-soft-pi.html</id><summary type="html">&lt;p&gt;How I connected Python to OSI Soft PI&lt;/p&gt;</summary><content type="html">&lt;p&gt;OSI PI is a historian database. I had a task to connect a python application to this database. I asked a question on 
 &lt;a href="http://stackoverflow.com/questions/8898114/how-can-i-connect-python-2-6-to-osi-pi"&gt;Stack Overflow&lt;/a&gt; about whether this was a simple problem to solve. After two weeks I still hadn't gotten a viable response,
 so I had to build by own solution.&lt;/p&gt;
 &lt;p&gt;I did reach out to the vendor first for help. Their response back was not helpful. &lt;/p&gt;
@@ -330,34 +330,34 @@ by the company initially didn't work. &lt;/p&gt;
 &lt;p&gt;The code below shows how I was able to finally connect python to OSI PI. It may not be the most elegant, but it 
 functions for the purposes of my application. Initially I was attempting to connect using the &lt;a href="https://github.com/mkleehammer/pyodbc"&gt;pyodbc&lt;/a&gt; module. Unfortunately, 
 OSI PI would return a message like this:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="n"&gt;pyodbc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nl"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;IM002&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[IM002] [OSI][PI ODBC][PI]PI-API Error &amp;lt;pilg_getdefserverinfo&amp;gt; 0 (0) (SQLDriverConnectW); [01000] [Microsoft][ODBC Driver Manager] The driver doesn&amp;#39;t support the version of ODBC behavior that the application requested (see SQLSetEnvAttr). (0)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pyodbc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nl"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;IM002&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[IM002] [OSI][PI ODBC][PI]PI-API Error &amp;lt;pilg_getdefserverinfo&amp;gt; 0 (0) (SQLDriverConnectW); [01000] [Microsoft][ODBC Driver Manager] The driver doesn&amp;#39;t support the version of ODBC behavior that the application requested (see SQLSetEnvAttr). (0)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;They vendor mentioned that using OLEDB instead may prove more fruitful. Thus, the code below is how I got connected using 
 the vendor provided OLDEB driver. The downside is that I also had to do this all through COM objects using &lt;a href="http://python.net/crew/skippy/win32/Downloads.html"&gt;win32com&lt;/a&gt;. 
 I'm not knocking the module, because it is extremely useful and I've done some great things with it.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;win32com.client&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Dispatch&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;win32com.client&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Dispatch&lt;/span&gt;
 
-&lt;span class="n"&gt;oConn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Dispatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ADODB.Connection&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;oRS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Dispatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ADODB.RecordSet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;oConn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Dispatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ADODB.Connection&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;oRS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Dispatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ADODB.RecordSet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ConnectionString&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Provider=PIOLEDB;Data Source=&amp;lt;server&amp;gt;;User ID=&amp;lt;username&amp;gt;;database=&amp;lt;database&amp;gt;;Password=&amp;lt;password&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ConnectionString&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Provider=PIOLEDB;Data Source=&amp;lt;server&amp;gt;;User ID=&amp;lt;username&amp;gt;;database=&amp;lt;database&amp;gt;;Password=&amp;lt;password&amp;gt;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Open&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;State&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;We&amp;#39;ve connected to the database.&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;db_cmd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&amp;quot;SELECT tag FROM pipoint WHERE tag LIKE &amp;#39;TAG0001%&amp;#39;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;We&amp;#39;ve connected to the database.&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;db_cmd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;SELECT tag FROM pipoint WHERE tag LIKE &amp;#39;TAG0001%&amp;#39;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ActiveConnection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;oConn&lt;/span&gt;
     &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;db_cmd&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;EOF&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="c"&gt;#print oRS.Fields.Item(&amp;quot;tag&amp;quot;).Value   # Ability to print by a field name&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Value&lt;/span&gt;        &lt;span class="c"&gt;# Ability to print by a field location&lt;/span&gt;
+        &lt;span class="c1"&gt;#print oRS.Fields.Item(&amp;quot;tag&amp;quot;).Value   # Ability to print by a field name&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Value&lt;/span&gt;        &lt;span class="c1"&gt;# Ability to print by a field location&lt;/span&gt;
         &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MoveNext&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;oRS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;oRS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
 &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Not connected&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Not connected&amp;quot;&lt;/span&gt;
 
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;State&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;oConn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -372,22 +372,22 @@ python, but it seems to be very slow when I need to run a large number of querie
 open/close the database connection for each query, but OSI PI/ADODB complains if I do not. Performance has not reached a 
 point where I am forced to rewrite this yet. If/when I do I will follow up again. In the meantime others using this 
 solution should be aware that it is slow when running many queries.&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="technical"></category></entry><entry><title>Multiple IP addresses on the same physical network card</title><link href="http://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" rel="alternate"></link><updated>2010-11-17T12:54:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-11-17:multiple-ip-addresses-on-the-same-physical-network-card.html</id><summary type="html">&lt;p&gt;There are times when a server can be allocated more than one IP Address even though it contains only one physical 
+&lt;/blockquote&gt;</content><category term="technical"></category></entry><entry><title>Multiple IP addresses on the same physical network card</title><link href="http://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" rel="alternate"></link><published>2010-11-17T12:54:00-06:00</published><updated>2010-11-17T12:54:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-11-17:/multiple-ip-addresses-on-the-same-physical-network-card.html</id><summary type="html">&lt;p&gt;A quick walkthrough on how to configure a single network card to pull multiple IP addresses (RedHat based distribution)&lt;/p&gt;</summary><content type="html">&lt;p&gt;There are times when a server can be allocated more than one IP Address even though it contains only one physical 
 network card. To associate these IP addresses with the server some manipulation of networking settings will need to be 
 performed. The steps outlined in this walk-through are for RedHat based systems. This tutorial is for statically assigned 
 IP Addresses (as a server generally will have).
 For this walk through we are going to add one additional IP address to &lt;code&gt;eth0&lt;/code&gt;. Navigate to&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;cd /etc/sysconfig/network-scripts
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /etc/sysconfig/network-scripts
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Copy &lt;code&gt;ifcfg-eth0&lt;/code&gt; to &lt;code&gt;ifcfg-eth0:0&lt;/code&gt;&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;cp ifcfg-eth0 ifcfg-eth0:0
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cp ifcfg-eth0 ifcfg-eth0:0
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now we need to modify the new file slightly so that it gets it's own IP address. Open &lt;code&gt;ifcfg-eth0:0&lt;/code&gt; in your favorite editor&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;DEVICE=eth0:0           &amp;lt;-- Change this to match the new eth0:0 file we just created
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;DEVICE=eth0:0           &amp;lt;-- Change this to match the new eth0:0 file we just created
 BOOTPROTO=none
 BROADCAST=x.x.x.x       &amp;lt;-- This is the broad cast address for the subnet the new IP is on
 DNS1=x.x.x.x            &amp;lt;-- This is the main DNS server you are using (example: 64.120.14.26)
@@ -405,13 +405,13 @@ NAME=&amp;quot;System eth0:0&amp;quot;    &amp;lt;-- Change to reflect new name 
 
 
 &lt;p&gt;Save your file with the new settings. Now we need to restart the networking service:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;service network restart
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;service network restart
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;When the network components come back up you should see your new device in the &lt;code&gt;ifconfig&lt;/code&gt; command. To add more IPs, 
-copy and replace values as specified above.&lt;/p&gt;</summary><category term="technical"></category></entry><entry><title>Fixing MYISAM Crashed Tables</title><link href="http://andrewwegner.com/fixing-myisam-crashed-tables.html" rel="alternate"></link><updated>2010-05-14T10:08:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-05-14:fixing-myisam-crashed-tables.html</id><summary type="html">&lt;p&gt;For various reasons, MyISAM tables are known to crash. When this happens, the following message will be displayed:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;INVALID SQL: 145 : Table &amp;#39;{something}&amp;#39; is marked as crashed and should be repaired
+copy and replace values as specified above.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Fixing MYISAM Crashed Tables</title><link href="http://andrewwegner.com/fixing-myisam-crashed-tables.html" rel="alternate"></link><published>2010-05-14T10:08:00-05:00</published><updated>2010-05-14T10:08:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-05-14:/fixing-myisam-crashed-tables.html</id><summary type="html">&lt;p&gt;How to fix MyISAM tables that are marked as crashed&lt;/p&gt;</summary><content type="html">&lt;p&gt;For various reasons, MyISAM tables are known to crash. When this happens, the following message will be displayed:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;INVALID SQL: 145 : Table &amp;#39;{something}&amp;#39; is marked as crashed and should be repaired
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -420,32 +420,32 @@ if MySQL itself has issues and you use the &lt;code&gt;kill&lt;/code&gt; command
 are being used, do not make MyISAM tables happy.&lt;/p&gt;
 &lt;p&gt;To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files 
 are stored.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;locate *.MYI
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;locate *.MYI
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;This will return where all the MYI files are stored. In this example, I am using&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;/var/lib/mysql/mysql/
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/var/lib/mysql/mysql/
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Go to the directory of the crashed table using the &lt;code&gt;cd&lt;/code&gt; command. Next, stop MySQL. This is to ensure the tables are not 
 accessed while we perform our repair functions. If you don't perform this step, the repair may not succeed.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;service mysqld stop
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;service mysqld stop
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Next we are going to perform two repair functions. The first one may take a while depending on the size of your tables.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;myisamchk -r --force --safe-recover *.MYI
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;myisamchk -r --force --safe-recover *.MYI
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It 
 is likely that this step is not needed after performing the previous step, but it should only take a few seconds now.&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;myisamchk --force --fast --update-state *.MYI
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;myisamchk --force --fast --update-state *.MYI
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Finally, restart MySQL&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;service mysqld start
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="technical"></category></entry></feed>
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;service mysqld start
+&lt;/pre&gt;&lt;/div&gt;</content><category term="technical"></category></entry></feed>

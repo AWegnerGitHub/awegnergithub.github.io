@@ -107,15 +107,15 @@
 <p>OpenShift rhc can be run on any operating system with Ruby 1.8.7 or higher assuming you have the requisite user permissions to install programs. Instructions for specific operating systems are provided below. </p>
 </blockquote>
 <p>Based on that, I figured I'd install the latest version of <a href="http://rubyinstaller.org/downloads/">Ruby</a>. At the time I tested this, that was 2.2.3. Unfortunately, when I ran the command to install the <code>rhc</code> tools, I received an error. After a bit of Googling, I found that it doesn't like 2.2x. So, I installed 2.1.7 instead. Next, I ran:</p>
-<div class="codehilite code"><pre>gem install rhc
+<div class="codehilight code"><pre><span></span>gem install rhc
 </pre></div>
 <p>This installs several gems and took a few minutes to complete. Next,</p>
-<div class="codehilite code"><pre>rhc setup
+<div class="codehilight code"><pre><span></span>rhc setup
 </pre></div>
 <p>This started the OpenShift setup wizard. It consisted of filling out the few prompts and letting it generate an SSH key and then connecting to my account. Remember the Namespace you select. Again, this took a few minutes.</p>
 <h2 id="flask-setup">Flask setup<a class="headerlink" href="#flask-setup" title="Permanent link">¶</a></h2>
 <p>The next step was to set up my first "Gear". This would be the Flask application. I'll work on the database next. First, I just want Python and Flask to function properly. Fortunately, this is very easy, as OpenShift has a Flask template.</p>
-<div class="codehilite code"><pre>rhc app create testapp python-2.7 --from-code=https://github.com/openshift-quickstart/flask-base.git
+<div class="codehilight code"><pre><span></span>rhc app create testapp python-2.7 --from-code=https://github.com/openshift-quickstart/flask-base.git
 </pre></div>
 <p>A few notes:</p>
 <ul>
@@ -124,38 +124,38 @@
 <li>The <code>--from-code</code> parameter will download that repository and use it as the base of your application. </li>
 </ul>
 <p>At this point, Flask can be run locally using:</p>
-<div class="codehilite code"><pre>python app.py
+<div class="codehilight code"><pre><span></span>python app.py
 </pre></div>
 <p>The application can be pushed back to OpenShift at this point and there should be a functional page on your OpenShift domain. In your command line, from the directory of your project:</p>
-<div class="codehilite code"><pre>git add --all
+<div class="codehilight code"><pre><span></span>git add --all
 git commit -m "Adding Flask application"
 git push
 </pre></div>
 <p>This will take a moment. At the end, you should see these lines in your command prompt:</p>
-<div class="codehilite code"><pre><span class="n">remote</span><span class="o">:</span> <span class="n">Git</span> <span class="n">Post</span><span class="o">-</span><span class="n">Receive</span> <span class="n">Result</span><span class="o">:</span> <span class="n">success</span>
+<div class="codehilight code"><pre><span></span><span class="n">remote</span><span class="o">:</span> <span class="n">Git</span> <span class="n">Post</span><span class="o">-</span><span class="n">Receive</span> <span class="n">Result</span><span class="o">:</span> <span class="n">success</span>
 <span class="n">remote</span><span class="o">:</span> <span class="n">Activation</span> <span class="n">status</span><span class="o">:</span> <span class="n">success</span>
 <span class="n">remote</span><span class="o">:</span> <span class="n">Deployment</span> <span class="n">completed</span> <span class="k">with</span> <span class="n">status</span><span class="o">:</span> <span class="n">success</span>
 </pre></div>
 <p>If all three are a success, then you should be able to visit your URL. Your URL is a combination of your selected Namespace and the application name you created.</p>
-<div class="codehilite code"><pre>http://&lt;namespace&gt;-&lt;testapp&gt;.rhcloud.com/
+<div class="codehilight code"><pre><span></span>http://&lt;namespace&gt;-&lt;testapp&gt;.rhcloud.com/
 </pre></div>
 <p>This should show a "Welcome to Flask on OpenShift" page. If you append <code>/test</code> to your URL, you'll get a message that says "It's Alive!"</p>
 <p>If it doesn't, you can check your error logs by running:</p>
-<div class="codehilite code"><pre>rhc tail -a &lt;testapp&gt;
+<div class="codehilight code"><pre><span></span>rhc tail -a &lt;testapp&gt;
 </pre></div>
 <h2 id="mysql-setup">MySQL setup<a class="headerlink" href="#mysql-setup" title="Permanent link">¶</a></h2>
 <p>Next, I set up my application to utilize MySQL. It's the database I have the most experience with, so I decided to keep that aspect of this project simple for myself. The first step was to add a MySQL 5.5 cartridge to my test gear (OpenShift terminology). I did this in the OpenShift web console. The UI provided me with the option to install various databases and one of those was MySQL. Clicking the link caused a few second delay as it was set up, and then I was presented with login credentials to my database. Step one...done.</p>
 <p>The next step is installing the correct Python modules to utilize MySQL. I selected <a href="http://www.pymysql.org/">PyMySQL</a> (again, experience) and <a href="http://www.sqlalchemy.org/">SQLAlchemy</a>. I added these to both <code>requirements.txt</code> and <code>setup.py</code>. The idea behind doing it in both places is to make life easy for myself in the future. Additionally, the quick tutorials I've looked at for TravisCI encourage the usage of <code>requirements.txt</code>, while it seems OpenShift uses the <code>setup.py</code>. I'll fix that eventually, but getting it set up initially, this will be fastest.</p>
 <p>Add these to <code>requirements.txt</code></p>
-<div class="codehilite code"><pre>sqlalchemy==1.0.9
+<div class="codehilight code"><pre><span></span>sqlalchemy==1.0.9
 pymysql==0.6.7
 Flask-SQLAlchemy==2.1
 </pre></div>
 <p>Add this to the <code>install_requires</code> list in <code>setup.py</code></p>
-<div class="codehilite code"><pre>'sqlalchemy==1.0.9','pymysql==0.6.7','Flask-SQLAlchemy==2.1'
+<div class="codehilight code"><pre><span></span>'sqlalchemy==1.0.9','pymysql==0.6.7','Flask-SQLAlchemy==2.1'
 </pre></div>
 <p>The nice thing about OpenShift is that the credentials to the database are placed in <a href="https://developers.openshift.com/en/managing-environment-variables.html#database-variables">environment variables</a>, so I don't need to embed the passwords, connections strings, or anything potentially sensitive in my code. For MySQL these are available as:</p>
-<div class="codehilite code"><pre>Variable Name               |   Purpose
+<div class="codehilight code"><pre><span></span>Variable Name               |   Purpose
 ------------------------------------------------
 OPENSHIFT_MYSQL_DB_HOST     |   The host name or IP address used to connect to the database.
 OPENSHIFT_MYSQL_DB_PORT     |   The port the database server is listening on.
@@ -166,20 +166,20 @@ OPENSHIFT_MYSQL_DB_URL      |   Database connection URL.
 </pre></div>
 <h3 id="utilizing-the-database">Utilizing the database<a class="headerlink" href="#utilizing-the-database" title="Permanent link">¶</a></h3>
 <p>Setting up SQLAlchemy and MySQL is fairly easy. I tested this with a simple table and ensured that it appeared in the database as expected.</p>
-<div class="codehilite code"><pre><span class="k">class</span> <span class="n">User</span>(<span class="n">db</span>.<span class="n">Model</span>):
+<div class="codehilight code"><pre><span></span><span class="k">class</span> <span class="n">User</span>(<span class="n">db</span>.<span class="n">Model</span>):
     <span class="n">__tablename__</span> = <span class="s">'users'</span>
     <span class="n">id</span> = <span class="n">db</span>.<span class="n">Column</span>(<span class="s">'user_id'</span>, <span class="n">db</span>.<span class="n">Integer</span>, <span class="n">primary_key</span>=<span class="nb">True</span>)
     <span class="nb">name</span> = <span class="n">db</span>.<span class="n">Column</span>(<span class="n">db</span>.<span class="n">String</span>(<span class="mi">60</span>))
 </pre></div>
 <p>A few adjustments were made to the import statements of the Flask application:</p>
-<div class="codehilite code"><pre><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<div class="codehilight code"><pre><span></span><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
 </pre></div>
 <p>A couple variables were created and loaded:</p>
-<div class="codehilite code"><pre>app.config.from_pyfile('flaskapp.cfg')
+<div class="codehilight code"><pre><span></span>app.config.from_pyfile('flaskapp.cfg')
 db = SQLAlchemy(app)
 </pre></div>
 <p>Finally, the <code>flaskapp.cfg</code> file was modified to include these two lines:</p>
-<div class="codehilite code"><pre>SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_MYSQL_DB_URL'] + os.environ['OPENSHIFT_APP_NAME]
+<div class="codehilight code"><pre><span></span>SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_MYSQL_DB_URL'] + os.environ['OPENSHIFT_APP_NAME]
 SQLALCHEMY_ECHO = False
 </pre></div>
 <h3 id="remote-mysql-access">Remote MySQL Access<a class="headerlink" href="#remote-mysql-access" title="Permanent link">¶</a></h3>
@@ -200,66 +200,66 @@ SQLALCHEMY_ECHO = False
 <p>Travis CI integrates with GitHub, so what I'm going to do in reality is push to GitHub and let Travis CI pick up the changes. From there, it will perform it's tests. If the tests pass, it will push the commit to OpenShift.</p>
 <p>On GitHub, create a new repository for your source. This is where you will be pushing your code for Travis CI to pick up.</p>
 <p>From your OpenShift directory (which is already a git repository):</p>
-<div class="codehilite code"><pre>git remote rename origin openshift
+<div class="codehilight code"><pre><span></span>git remote rename origin openshift
 git remote add origin https://github.com/&lt;USER&gt;/&lt;repositoryname&gt;.git
 git push -u origin master
 </pre></div>
 <p>This resets the origin to point to your new GitHub repository and sets up a new remote. Then it pushes the changes to GitHub.</p>
 <p>Log into your <a href="https://travis-ci.org/profile">Travis CI profile page</a>. Make sure you are logged into GitHub first, as this will create the profile automatically. Press the "Sync now" button at the top of the page to pull a list of all of your repositories. Once that is done, find the repository you just set up, and enable integration with that repository.</p>
 <p>Next you need to set up Travis CI and the <code>.travis.yml</code> file. </p>
-<div class="codehilite code"><pre>gem install travis
+<div class="codehilight code"><pre><span></span>gem install travis
 </pre></div>
 <p>This will install a Ruby script that assists in this process. If you get an error when running this, you need to create an empty <code>.travis.yml</code> file first and then run the command again.</p>
-<div class="codehilite code"><pre>travis setup openshift
+<div class="codehilight code"><pre><span></span>travis setup openshift
 </pre></div>
 <p>Fill out the prompts. Defaults should be fine in most cases, but do pay attention to "OpenShift application name". If your GitHub repository is named differently than your OpenShift application name, the default for this prompt will be incorrect.</p>
 <p>One last note, for a quick test you can change the <code>script</code> section to </p>
-<div class="codehilite code"><pre><span class="n">script</span><span class="o">:</span> <span class="kc">true</span>
+<div class="codehilight code"><pre><span></span><span class="n">script</span><span class="o">:</span> <span class="kc">true</span>
 </pre></div>
 <p>This forces the tests to pass. Once you've written tests, you can do something like:</p>
-<div class="codehilite code"><pre>script:
+<div class="codehilight code"><pre><span></span>script:
     - py.test
 </pre></div>
 <p>This will run your test scripts, utilizing <code>py.test</code></p>
 <p>Deploy these changes to GitHub:</p>
-<div class="codehilite code"><pre>git add .travis.yml
+<div class="codehilight code"><pre><span></span>git add .travis.yml
 git commit -m "Deploying Travis"
 git push origin master
 </pre></div>
 <p>This will commit and push the changes to GitHub. A few seconds later, if you are watching Travis CI, you'll see it notices the new commit and starts running tests. If you tests complete with a status code of <code>0</code> (successful), it will deploy the changes to OpenShift. If the tests fail (any other status code), it will not deploy to OpenShift.</p>
 <h2 id="pytest-setup">py.test setup<a class="headerlink" href="#pytest-setup" title="Permanent link">¶</a></h2>
 <p>Setting up the testing frame work involves a few Python modules. These need to be added to both <code>requirements.txt</code> and <code>setup.py</code>.</p>
-<div class="codehilite code"><pre>pytest&gt;=2.8.0
+<div class="codehilight code"><pre><span></span>pytest&gt;=2.8.0
 hypothesis==1.16.0
 pytest-runner==2.6.2
 </pre></div>
 <p>The next step is setting up some quick integration with <code>setup.py</code>, so that users can run <code>python setup.py test</code> and execute your tests.</p>
 <p>In <code>setup.py</code>, add (or edit) the <code>setup_requires</code> list to include <code>pytest-runner</code>. Add (or edit) the <code>tests_require</code> list to include <code>pytest</code>. I also added the following to my <code>setup.cfg</code></p>
-<div class="codehilite code"><pre><span class="k">[aliases]</span>
+<div class="codehilight code"><pre><span></span><span class="k">[aliases]</span>
 <span class="na">test</span><span class="o">=</span><span class="s">pytest</span>
 </pre></div>
 <p>I modified my <code>setup_requires</code> list a bit, so that it's conditional. Since this would install the <code>pytest-runner</code> on every call to <code>setup.py</code>, even when the module wouldn't be called, I wanted the runner to only be required when <code>pytest</code> is utilized.</p>
-<div class="codehilite code"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">needs_pytest</span> <span class="o">=</span> <span class="p">{</span><span class="s">'pytest'</span><span class="p">,</span> <span class="s">'test'</span><span class="p">,</span> <span class="s">'ptr'</span><span class="p">}</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-<span class="n">pytest_runner</span> <span class="o">=</span> <span class="p">[</span><span class="s">'pytest-runner'</span><span class="p">]</span> <span class="k">if</span> <span class="n">needs_pytest</span> <span class="k">else</span> <span class="p">[]</span>
+<div class="codehilight code"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">needs_pytest</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'pytest'</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">,</span> <span class="s1">'ptr'</span><span class="p">}</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">pytest_runner</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'pytest-runner'</span><span class="p">]</span> <span class="k">if</span> <span class="n">needs_pytest</span> <span class="k">else</span> <span class="p">[]</span>
 
 <span class="n">setup</span><span class="p">(</span>
     <span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span>
-        <span class="c">#... Other requirements here</span>
+        <span class="c1">#... Other requirements here</span>
     <span class="p">]</span> <span class="o">+</span> <span class="n">pytest_runner</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 <p>I wanted to test that my tests were working correctly. I created a <code>tests</code> directory, which is where I plan on storing all of my test cases. <code>pytest</code> will find any files that start or end with <code>test</code> and execute them. I created a very simple <code>test_tests.py</code> file with the following simple test (taken from the <a href="https://hypothesis.readthedocs.org/en/latest/quickstart.html#writing-tests">Hypothesis Quickstart</a>)</p>
-<div class="codehilite code"><pre>@given(st.integers(), st.integers())
+<div class="codehilight code"><pre><span></span>@given(st.integers(), st.integers())
 def test_ints_are_commutative(x, y):
     assert x + y == y + x
 </pre></div>
 <p>Finally, Travis CI needs to be told what to do. Modify the <code>script</code> key to include <code>py.test</code></p>
-<div class="codehilite code"><pre>script:
+<div class="codehilight code"><pre><span></span>script:
    - py.test
 </pre></div>
 <p>After a successful run through Travis, you'll see something like this:</p>
-<div class="codehilite code"><pre>tests/test_tests.py .
+<div class="codehilight code"><pre><span></span>tests/test_tests.py .
 =========================== 1 passed in 0.26 seconds ===========================
 The command "py.test" exited with 0.
 </pre></div>

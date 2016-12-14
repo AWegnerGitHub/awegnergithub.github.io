@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/programming-projects.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2016-01-09T00:00:00-06:00</updated><entry><title>Zephyr - The bot that watches for low quality vote requests</title><link href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" rel="alternate"></link><updated>2015-05-08T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-03-12:zephyr-the-bot-that-watches-for-low-quality-vote-requests.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Programming Projects</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/programming-projects.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2016-01-09T00:00:00-06:00</updated><entry><title>Zephyr - The bot that watches for low quality vote requests</title><link href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" rel="alternate"></link><published>2015-03-12T23:34:00-05:00</published><updated>2015-05-08T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-03-12:/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html</id><summary type="html">&lt;p&gt;Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Stack Exchange receives thousands of questions per day across all of their sites. Not all of these are high quality
 posts. Fortunately, users of the Stack Exchange network are given &lt;a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/"&gt;tools&lt;/a&gt; to help keep that low quality stuff to a 
@@ -48,7 +48,7 @@ SmokeDetector to watch for commonly spammed domains.&lt;/p&gt;
 &lt;h3 id="upgrade-from-sqlite-to-mariadb"&gt;Upgrade from SQLite to MariaDB&lt;a class="headerlink" href="#upgrade-from-sqlite-to-mariadb" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Zephyr was originally built against an SQLite database. This worked, but was getting slower as more data was being added. This slow down
 was beginning to affect performance. I started seeing this error more and more frequently:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;Traceback (most recent call last):
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Traceback (most recent call last):
   File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py", line 255, in _close_connection
     self._dialect.do_close(connection)
   File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py", line 418, in do_close
@@ -72,7 +72,7 @@ MySQL/MariaDB before and I happened to have another application utilizing MariaD
 &lt;p&gt;Originally, Zephyr used the &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L68"&gt;&lt;code&gt;watch&lt;/code&gt;&lt;/a&gt; method when monitoring a room. This method would long poll the room. It turns out that this is 
 pretty unreliable. I'd get multiple errors through out the week, ranging from &lt;code&gt;Connection Aborted&lt;/code&gt; errors to random &lt;code&gt;404&lt;/code&gt; messages. The 
 solution has been to switch to &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"&gt;&lt;code&gt;watch_socket&lt;/code&gt;&lt;/a&gt;. The only time I've had problems since this switch is when the Stack Exchange 
-web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"></link><updated>2016-01-09T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">
+web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</content><category term="Stack Exchange"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"></link><published>2015-01-02T08:47:00-06:00</published><updated>2016-01-09T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:/can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">&lt;p&gt;Description of how I automatically flag comments on Stack Overflow&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This post was originally &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;published&lt;/a&gt; by &lt;a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile"&gt;me&lt;/a&gt; on Meta Stack Overflow on December 14, 2014. I've republished it here
 so that I can easily update information related to recent developments. If you have questions or comments, I highly
@@ -89,7 +89,7 @@ encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/280546/18
 &lt;li&gt;Had variations of the following phrases:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Phrases&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;'%mark%answer%'
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;'%mark%answer%'
 '%mark%accept%'
 '%accept%answer%'
 '%lease%accept%'
@@ -104,7 +104,7 @@ encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/280546/18
 &lt;p&gt;This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.&lt;/p&gt;
 &lt;p&gt;My next step was to train a classifier. I had initially assumed that I'd start with a Naive Bayes to get a baseline and then work to something more complicated from there. Perhaps, extract text features, user information, etc. and build a fancy classifier. My initial tests showed that the Naive Bayes was accurate 80-90% of the time with test data.&lt;/p&gt;
 &lt;p&gt;I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these threshold took a few weeks but eventually I determined the following thresholds were appropriate for my use:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;&lt;span class="gh"&gt;Type            | Threshold     | Flagging Enabled&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gh"&gt;Type            | Threshold     | Flagging Enabled&lt;/span&gt;
 &lt;span class="gh"&gt;--------------------------------------------------&lt;/span&gt;
 too chatty      | 0.9997        | True
 obsolete        | 0.99          | True
@@ -114,12 +114,12 @@ good comment    | 0.9999        | False
 &lt;hr/&gt;
 &lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;What have the results of this experiment been? From my point of view, I'd venture that it's been successful. I have automatically flagged over 17,000 comments. As of December 17, 2014, the process has been running for 173 days. My comment flagging stats are currently:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;26885   comments flagged
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;26885   comments flagged
 26714   deemed helpful
 171     declined
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Started at (approximately):&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;9885    comments flagged
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;9885    comments flagged
 9847    deemed helpful
 38      declined
 &lt;/pre&gt;&lt;/div&gt;
@@ -197,7 +197,7 @@ This is, by far, the largest number of declined flags the process has generated 
 &lt;p&gt;The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.&lt;/p&gt;
 &lt;h3 id="may-2015-11-months"&gt;May 2015 (11 Months)&lt;a class="headerlink" href="#may-2015-11-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;After nearly a year of running, these are my flagging statistics:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;39938   comments flagged
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;39938   comments flagged
 39659   deemed helpful
 279     declined
 &lt;/pre&gt;&lt;/div&gt;
@@ -209,7 +209,7 @@ This is, by far, the largest number of declined flags the process has generated 
 &lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 90 day window" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/&gt;&lt;/p&gt;
 &lt;h3 id="sept-2015-15-months"&gt;Sept 2015 (15 Months)&lt;a class="headerlink" href="#sept-2015-15-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;It has been almost 15 months since the process started. In that time, the model has gotten more accurate. Since the last update in May, I've had only 3 declined comment flags:&lt;/p&gt;
-&lt;div class="codehilite code"&gt;&lt;pre&gt;52351   comments flagged
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;52351   comments flagged
 52069   deemed helpful
 282     declined
 &lt;/pre&gt;&lt;/div&gt;
@@ -220,4 +220,4 @@ This is, by far, the largest number of declined flags the process has generated 
 &lt;p&gt;By month, this is the break down of rejected flags.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="2015 Flag Summary" src="http://andrewwegner.com/images/2015-flag-summary.png"/&gt;&lt;/p&gt;
 &lt;p&gt;The blip at the end of November is due to new moderators being elected and adjusting to what other moderators consider "good" versus "bad" comments. I didn't see the spike in the April election which is interesting, but after a couple days in November it's back to normal. The January spike I mentioned above. &lt;/p&gt;
-&lt;p&gt;Interesting note: The longest stretch in the year with no declined flags was from August 13th through November 24th.&lt;/p&gt;</summary><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry></feed>
+&lt;p&gt;Interesting note: The longest stretch in the year with no declined flags was from August 13th through November 24th.&lt;/p&gt;</content><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry></feed>
