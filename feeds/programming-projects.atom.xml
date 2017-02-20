@@ -1,5 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Programming Projects</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/programming-projects.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2016-01-09T00:00:00-06:00</updated><entry><title>Zephyr - The bot that watches for low quality vote requests</title><link href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" rel="alternate"></link><published>2015-03-12T23:34:00-05:00</published><updated>2015-05-08T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-03-12:/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html</id><summary type="html">&lt;p&gt;Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Programming Projects</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/programming-projects.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-02-19T22:51:00-06:00</updated><entry><title>Can a machine be taught to flag comments automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html" rel="alternate"></link><published>2017-02-19T22:51:00-06:00</published><updated>2017-02-19T22:51:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-02-19:/can-a-machine-be-taught-to-flag-spam-automatically.html</id><summary type="html">&lt;p&gt;Description of how a group of people helped completely eliminate spam on the Stack Exchange network&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is the draft version of a soon to go live Meta post. It will be updated here with the final version when that has
+happened. &lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;TL;DR: &lt;a href="http://charcoal-se.org/people.html"&gt;We&lt;/a&gt; did it, so...yes.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="what-is-this"&gt;What is this?&lt;a class="headerlink" href="#what-is-this" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Charcoal is the &lt;a href="http://charcoal-se.org/people.html"&gt;organization&lt;/a&gt; behind the &lt;a href="https://github.com/Charcoal-SE/SmokeDetector"&gt;SmokeDetector&lt;/a&gt; bot and other &lt;a href="https://github.com/Charcoal-SE"&gt;nice things&lt;/a&gt;. This bot scans new 
+posts across the entire network for spam and reports it to various chatrooms where people can act on it. If a post has 
+been created or edited, anywhere on the network, we've probably seen it. The bot utilizes our knowledge of how spammers 
+work and what they have previously posted to come up with common patterns and rules to detect spam in the new and 
+updated posts. You've likely seen the SmokeDetector bot if you visit chatrooms such as &lt;a href="http://chat.meta.stackexchange.com/rooms/89/tavern-on-the-meta"&gt;Tavern on the Meta&lt;/a&gt;, 
+&lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt;, &lt;a href="http://chat.stackoverflow.com/rooms/41570/so-close-vote-reviewers"&gt;SO Close Vote Reviewers&lt;/a&gt; and others across the network. Over time, the bot has become very 
+accurate. &lt;/p&gt;
+&lt;p&gt;Now we are leveraging the years of data and accuracy to automatically cast spam flags. With approximately 57,000 posts 
+to draw from and over 45,000 true positives, we have a vast trove of data to utilize.&lt;/p&gt;
+&lt;h2 id="what-are-we-doing"&gt;What are we doing?&lt;a class="headerlink" href="#what-are-we-doing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For over 3 years, SmokeDetector has reported potential spam so that users can flag the posts as appropriate. Users 
+have provided feedback to inform the bot on whether the detection was correct or not (referred to as "feedback"). 
+This feedback is stored in our web dashboard, &lt;a href="https://metasmoke.charcoal-se.org"&gt;metasmoke&lt;/a&gt; (&lt;a href="https://github.com/Charcoal-SE/metasmoke"&gt;code&lt;/a&gt;). Over time, we've used this feedback to 
+evaluate our patterns ("reasons") and improve our accuracy. &lt;a href="https://metasmoke.erwaysoftware.com/reason/106"&gt;Several&lt;/a&gt; of our &lt;a href="https://metasmoke.erwaysoftware.com/reason/21"&gt;reasons&lt;/a&gt; are over 99.9% 
+&lt;a href="https://metasmoke.erwaysoftware.com/reason/61"&gt;accurate&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Early last year, and after getting a baseline accuracy from &lt;a href="http://stackoverflow.com/users/1933347/jmac"&gt;jmac&lt;/a&gt; (thank you!), we realized we could use the 
+system to automatically cast spam flags. On Stack Overflow the current accuracy of users flagging spam posts is 85.7%. 
+Across the rest of the network users are 95.4% accurate. We determined we can beat those numbers and eliminate spam 
+from Stack Overflow and the rest of the network even faster. &lt;/p&gt;
+&lt;p&gt;Without going into too much detail (if you really want it, it's available on our &lt;a href="https://charcoal-se.org/flagging"&gt;website&lt;/a&gt;), we leverage the 
+accuracy of each existing reason to come up with a weight indicating how certain the system is that a post is spam. If 
+this value exceeds a specific threshold, the system will cast up to three spam flags on the post. We cast multiple 
+flags utilizing a number of different users' accounts and the Stack Exchange API. Via metasmoke, users are given the 
+opportunity to &lt;a href="https://metasmoke.erwaysoftware.com/flagging/preferences"&gt;enable&lt;/a&gt; their accounts to be used to flag spam. When a post is eligible for flagging because it 
+exceeded the threshold set by each individual user, accounts are randomly selected from the pool of enabled users to 
+cast a single flag each, up to a maximum of three per post so that we never unilaterally nuke something.&lt;/p&gt;
+&lt;h2 id="what-are-our-safety-checks"&gt;What are our safety checks?&lt;a class="headerlink" href="#what-are-our-safety-checks" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We designed the entire system with accuracy and sanity checks in mind. Our design collaborations are available for your 
+browsing pleasure (&lt;a href="https://docs.google.com/document/d/1Bg0u4oY9W_skp79wSnyQWttUIBH8WV46JELDGJ7Bixo/edit"&gt;RFC 1&lt;/a&gt;, &lt;a href="https://docs.google.com/document/d/1voGyl3BUA1JHJ0pR2Mf9E5-wmIDUFC1G8HcThiS7B1k/edit"&gt;RFC 2&lt;/a&gt;, &lt;a href="https://docs.google.com/document/d/1Nu2U0uFbmHpb3v61WyBxjYNK34n5tFWAPYtvu13ZQCw/edit#heading=h.9nvcibv3gama"&gt;RFC 3&lt;/a&gt;). The major things that make this system safe and sane are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We give users a choice as to how accurate they want to be with their automatic flags. Before casting any flags, we 
+ check that the preferences the user has set result in a spam detection accuracy of over 99.5% over a sample of at 
+ least 1000 posts. Remember, on SO the current accuracy is 85.7% and network wide it is 95.4%. &lt;/li&gt;
+&lt;li&gt;We do not unilaterally spam nuke a post, regardless of how sure we are it is spam. This means that a human &lt;em&gt;must&lt;/em&gt; 
+ be involved to finish off a post, even on the few sites with lower spam thresholds.&lt;/li&gt;
+&lt;li&gt;We’ve designed the system to be tolerant of faults - if there’s a malfunction anywhere in the system, any user with 
+ access to SmokeDetector can immediately halt all automatic flagging - this includes all network moderators. If this 
+ happens, it needs a system administrator to step in to re-enable flags.&lt;/li&gt;
+&lt;li&gt;We've discussed this with a community manager and have their &lt;a href="http://chat.stackexchange.com/transcript/message/35437121#35437121"&gt;blessing&lt;/a&gt; on the project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We have been casting an average of 60-70 automatic flags per day for over two months, for a total of just over 3000 
+flags network wide. These flags were cast by 22 different users. In that time, we've had &lt;a href="https://metasmoke.erwaysoftware.com/flagging/logs?filter=fps"&gt;four&lt;/a&gt;. We would be able 
+to automatically cancel these particular cases, if there was a way to &lt;a href="http://meta.stackexchange.com/questions/288120/allow-retracting-flags-from-the-api"&gt;retract flags via the API&lt;/a&gt;. Since this is 
+not possible, the flags are either declined by a moderator or manually retracted by the user.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-weights-and-accuracies.png"&gt;&lt;img alt="Weights and Accuracy" src="http://andrewwegner.com/images/spam-weights-and-accuracies.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The above graph plots the weight of the reasons against its overall volume of reports and accuracy. As minimum weight 
+increases, accuracy (yellow line and rightmost Y-axis) and total reports (blue line) on the left-hand scale increase.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-autoflags-per-day.png"&gt;&lt;img alt="Automatic Flags per day" src="http://andrewwegner.com/images/spam-autoflags-per-day.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This shows the number of posts we've automatically flagged per day over the last month. The jump on February 15th, is 
+due to increasing the number of automatic flags from 1 per post to 3 per post. You can see a live version of this graph 
+on &lt;a href="https://metasmoke.erwaysoftware.com/flagging"&gt;metasmoke's autoflagging page&lt;/a&gt;. There have been approximately 4,000 automatic spam flags cast, with only 3 
+false positives.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-spam-hours.png"&gt;&lt;img alt="Spam Hours" src="http://andrewwegner.com/images/spam-spam-hours.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Spam arrives on Stack Overflow in waves. It is easy to see the time of day that many spam reports come in. The hours, 
+above, are UTC time. The busiest spam times of day are the 8 hour block between 4am and Noon. We have affectionately 
+named this "spam hour" in the chat room. &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-average-time-to-delete.png"&gt;&lt;img alt="Average Time to Deletion" src="http://andrewwegner.com/images/spam-average-time-to-delete.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Our goal is to delete spam quickly. The graph shows the time it takes for a reported spam post to be removed from the 
+network. This section has three trend lines that show these averages. The first, red, section is when we were simply 
+reporting the posts to chatrooms and all flags had to come from users. You can see we were are pretty constant in the 
+time it takes to remove spam during this period. It took, on average, just over five minutes to get a post removed.&lt;/p&gt;
+&lt;p&gt;The green trend line is when we were issuing a single automatic flag. At implementation, we eliminated a full minute 
+from time to deletion and after a month we'd eliminated two full minutes compared to no automatic flags.&lt;/p&gt;
+&lt;p&gt;The last section, the orange, is when we implemented three automatic flags to most sites. This was rolled out last
+week, but it's already had a dramatic improvement on the time to deletion. We are seeing between 1 and 2 minutes to 
+time to deletion versus the more than 3 minutes it was taking with only a single flag.&lt;/p&gt;
+&lt;p&gt;As mentioned above, spam arrives in waves. The dashed and dotted lines on the graph show the average deletion time 
+during these two different time periods. The dashed lines show deletion time during 4am and Noon UTC, the dotted lines 
+show the rest of the 24 hour period. An interesting thing this graph shows is that time to deletion during spam hour 
+was higher when we didn't cast any automatic flags. It was removed faster outside of spam hour. That reversed when we 
+started issuing a single auto-flag. The spam hour time to deletion is slightly lower than the average. Comparing the 
+two time periods though, time to deletion during non-spam hour at the end of the non-flagging time period and the end 
+of the single flag period are roughly the same.&lt;/p&gt;
+&lt;h2 id="discussion"&gt;Discussion&lt;a class="headerlink" href="#discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We are confident in SmokeDetector and the three years of history it has. We've had many talented developers assist us 
+over the years and many more users have provided feedback to improve our detection rules. Let us know what you want us 
+to elaborate on, features you're wondering about or would like to see added, or things we might have missed in the 
+process or the tooling. Take a look at the &lt;a href="http://meta.stackexchange.com/questions/288120/allow-retracting-flags-from-the-api"&gt;feature&lt;/a&gt; we'd really like Stack Exchange to consider so that we can 
+further improve this system (and some of the other community built systems). We'll have &lt;a href="http://charcoal-se.org/people.html"&gt;Charcoal members&lt;/a&gt; hanging 
+around and answering your questions. Alternatively, feel free to drop into &lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt; and have a chat. &lt;/p&gt;</content><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Zephyr - The bot that watches for low quality vote requests</title><link href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" rel="alternate"></link><published>2015-03-12T23:34:00-05:00</published><updated>2015-05-08T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-03-12:/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html</id><summary type="html">&lt;p&gt;Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Stack Exchange receives thousands of questions per day across all of their sites. Not all of these are high quality
 posts. Fortunately, users of the Stack Exchange network are given &lt;a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/"&gt;tools&lt;/a&gt; to help keep that low quality stuff to a 
