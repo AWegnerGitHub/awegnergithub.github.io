@@ -18,6 +18,7 @@
 <meta property="og:site_name" content="Ponderings of an Andy" />
 <meta property="og:article:author" content="Andy Wegner" />
 <meta property="og:article:published_time" content="2017-02-19T22:51:00-06:00" />
+<meta property="" content="2017-02-20T00:00:00-06:00" />
 <meta name="twitter:title" content="Can a machine be taught to flag spam automatically ">
 <meta name="twitter:description" content="Description of how a group of people helped completely eliminate spam on the Stack Exchange network">
 
@@ -91,27 +92,28 @@
             
             
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>This is the draft version of a soon to go live Meta post. It will be updated here with the final version when that has
-happened. </p>
+<p>This post was originally <a href="http://meta.stackexchange.com/q/291301/186281">published</a> on Meta Stack Exchange on February 20, 2017. I've republished it here
+so that I can easily update information related to recent developments. If you have questions or comments, I highly
+encourage you to visit the <a href="http://meta.stackexchange.com/q/291301/186281">question</a> on Meta Stack Exchange and post there.</p>
 <hr/>
-<p>TL;DR: <a href="http://charcoal-se.org/people.html">We</a> did it, so...yes.</p>
+<p>TL;DR: <a href="http://charcoal-se.org/people.html">We</a> did it, so... yes.</p>
 <hr/>
 <h2 id="what-is-this">What is this?<a class="headerlink" href="#what-is-this" title="Permanent link">¶</a></h2>
 <p>Charcoal is the <a href="http://charcoal-se.org/people.html">organization</a> behind the <a href="https://github.com/Charcoal-SE/SmokeDetector">SmokeDetector</a> bot and other <a href="https://github.com/Charcoal-SE">nice things</a>. This bot scans new 
-posts across the entire network for spam and reports it to various chatrooms where people can act on it. If a post has 
-been created or edited, anywhere on the network, we've probably seen it. The bot utilizes our knowledge of how spammers 
-work and what they have previously posted to come up with common patterns and rules to detect spam in the new and 
-updated posts. You've likely seen the SmokeDetector bot if you visit chatrooms such as <a href="http://chat.meta.stackexchange.com/rooms/89/tavern-on-the-meta">Tavern on the Meta</a>, 
-<a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq">Charcoal HQ</a>, <a href="http://chat.stackoverflow.com/rooms/41570/so-close-vote-reviewers">SO Close Vote Reviewers</a> and others across the network. Over time, the bot has become very 
-accurate. </p>
-<p>Now we are leveraging the years of data and accuracy to automatically cast spam flags. With approximately 57,000 posts 
-to draw from and over 45,000 true positives, we have a vast trove of data to utilize.</p>
+posts across the entire network for spam posts and reports them to <a href="https://github.com/Charcoal-SE/SmokeDetector/wiki/Chat-Rooms">various chatrooms</a> where people can act on them. 
+If a post has been created or edited, anywhere on the network, we've probably seen it. The bot utilizes our knowledge 
+of how spammers work and what they have previously posted to come up with common patterns and rules to detect spam in 
+the new and updated posts. You've likely seen the SmokeDetector bot if you visit chatrooms such as 
+<a href="http://chat.meta.stackexchange.com/rooms/89/tavern-on-the-meta">Tavern on the Meta</a>, <a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq">Charcoal HQ</a>, <a href="http://chat.stackoverflow.com/rooms/41570/so-close-vote-reviewers">SO Close Vote Reviewers</a> and others across the network. Over time, the 
+bot has become very accurate. </p>
+<p>Now we are leveraging the years of data and accuracy to automatically cast spam flags. With approximately 58,000 posts 
+to draw from and over 46,000 true positives, we have a vast trove of data to utilize.</p>
 <h2 id="what-are-we-doing">What are we doing?<a class="headerlink" href="#what-are-we-doing" title="Permanent link">¶</a></h2>
-<p>For over 3 years, SmokeDetector has reported potential spam so that users can flag the posts as appropriate. Users 
-have provided feedback to inform the bot on whether the detection was correct or not (referred to as "feedback"). 
-This feedback is stored in our web dashboard, <a href="https://metasmoke.charcoal-se.org">metasmoke</a> (<a href="https://github.com/Charcoal-SE/metasmoke">code</a>). Over time, we've used this feedback to 
-evaluate our patterns ("reasons") and improve our accuracy. <a href="https://metasmoke.erwaysoftware.com/reason/106">Several</a> of our <a href="https://metasmoke.erwaysoftware.com/reason/21">reasons</a> are over 99.9% 
-<a href="https://metasmoke.erwaysoftware.com/reason/61">accurate</a>.</p>
+<p>For over 3 years, SmokeDetector has reported potential spam across the Stack Exchange network so that users can flag 
+the posts as appropriate. Users have provided feedback to inform the bot on whether the detection was correct or not 
+(referred to as "feedback"). This feedback is stored in our web dashboard, <a href="https://metasmoke.charcoal-se.org">metasmoke</a> (<a href="https://github.com/Charcoal-SE/metasmoke">code</a>). Over time, we've 
+used this feedback to evaluate our patterns ("reasons") and improve our accuracy. <a href="https://metasmoke.erwaysoftware.com/reason/106">Several</a> of our <a href="https://metasmoke.erwaysoftware.com/reason/21">reasons</a> 
+are over 99.9% <a href="https://metasmoke.erwaysoftware.com/reason/61">accurate</a>.</p>
 <p>Early last year, and after getting a baseline accuracy from <a href="http://stackoverflow.com/users/1933347/jmac">jmac</a> (thank you!), we realized we could use the 
 system to automatically cast spam flags. On Stack Overflow the current accuracy of users flagging spam posts is 85.7%. 
 Across the rest of the network users are 95.4% accurate. We determined we can beat those numbers and eliminate spam 
@@ -120,16 +122,18 @@ from Stack Overflow and the rest of the network even faster. </p>
 accuracy of each existing reason to come up with a weight indicating how certain the system is that a post is spam. If 
 this value exceeds a specific threshold, the system will cast up to three spam flags on the post. We cast multiple 
 flags utilizing a number of different users' accounts and the Stack Exchange API. Via metasmoke, users are given the 
-opportunity to <a href="https://metasmoke.erwaysoftware.com/flagging/preferences">enable</a> their accounts to be used to flag spam. When a post is eligible for flagging because it 
-exceeded the threshold set by each individual user, accounts are randomly selected from the pool of enabled users to 
-cast a single flag each, up to a maximum of three per post so that we never unilaterally nuke something.</p>
+opportunity to <a href="https://metasmoke.erwaysoftware.com/flagging/ocs">enable their accounts to be used to flag spam</a> (You can too, if you've made it this far). When a 
+post is eligible for flagging because it exceeded the threshold set by each individual user, accounts are randomly 
+selected from the pool of enabled users to cast a single flag each, up to a maximum of three per post so that we never 
+unilaterally nuke something.</p>
 <h2 id="what-are-our-safety-checks">What are our safety checks?<a class="headerlink" href="#what-are-our-safety-checks" title="Permanent link">¶</a></h2>
-<p>We designed the entire system with accuracy and sanity checks in mind. Our design collaborations are available for your 
-browsing pleasure (<a href="https://docs.google.com/document/d/1Bg0u4oY9W_skp79wSnyQWttUIBH8WV46JELDGJ7Bixo/edit">RFC 1</a>, <a href="https://docs.google.com/document/d/1voGyl3BUA1JHJ0pR2Mf9E5-wmIDUFC1G8HcThiS7B1k/edit">RFC 2</a>, <a href="https://docs.google.com/document/d/1Nu2U0uFbmHpb3v61WyBxjYNK34n5tFWAPYtvu13ZQCw/edit#heading=h.9nvcibv3gama">RFC 3</a>). The major things that make this system safe and sane are:</p>
+<p>We designed the entire system with accuracy and sanity checks in mind. Our design collaborations are available for 
+your browsing pleasure (<a href="https://docs.google.com/document/d/1Bg0u4oY9W_skp79wSnyQWttUIBH8WV46JELDGJ7Bixo/edit">RFC 1</a>, <a href="https://docs.google.com/document/d/1voGyl3BUA1JHJ0pR2Mf9E5-wmIDUFC1G8HcThiS7B1k/edit">RFC 2</a>, <a href="https://docs.google.com/document/d/1Nu2U0uFbmHpb3v61WyBxjYNK34n5tFWAPYtvu13ZQCw/edit#heading=h.9nvcibv3gama">RFC 3</a>). The major things that make this system safe and sane 
+are:</p>
 <ul>
 <li>We give users a choice as to how accurate they want to be with their automatic flags. Before casting any flags, we 
  check that the preferences the user has set result in a spam detection accuracy of over 99.5% over a sample of at 
- least 1000 posts. Remember, on SO the current accuracy is 85.7% and network wide it is 95.4%. </li>
+ least 1000 posts. Remember, the current accuracy of humans is 85.7% on SO and network wide it is 95.4%. </li>
 <li>We do not unilaterally spam nuke a post, regardless of how sure we are it is spam. This means that a human <em>must</em> 
  be involved to finish off a post, even on the few sites with lower spam thresholds.</li>
 <li>We’ve designed the system to be tolerant of faults - if there’s a malfunction anywhere in the system, any user with 
@@ -138,39 +142,41 @@ browsing pleasure (<a href="https://docs.google.com/document/d/1Bg0u4oY9W_skp79w
 <li>We've discussed this with a community manager and have their <a href="http://chat.stackexchange.com/transcript/message/35437121#35437121">blessing</a> on the project.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">¶</a></h2>
-<p>We have been casting an average of 60-70 automatic flags per day for over two months, for a total of just over 3000 
-flags network wide. These flags were cast by 22 different users. In that time, we've had <a href="https://metasmoke.erwaysoftware.com/flagging/logs?filter=fps">four</a>. We would be able 
-to automatically cancel these particular cases, if there was a way to <a href="http://meta.stackexchange.com/questions/288120/allow-retracting-flags-from-the-api">retract flags via the API</a>. Since this is 
-not possible, the flags are either declined by a moderator or manually retracted by the user.</p>
+<p>We have been casting an average of 60-70 automatic flags per day for over two months, for a total of just over 4000 
+flags network wide. These flags were cast by 22 different users. In that time, we've had <a href="https://metasmoke.erwaysoftware.com/flagging/logs?filter=fps">four</a> false positives. 
+We would like to be able to automatically cancel these particular cases. This isn't possible though, so we've created 
+a feature request to <a href="http://meta.stackexchange.com/questions/288120/allow-retracting-flags-from-the-api">retract flags via the API</a>. In the mean time, the flags are either manually retracted by the 
+user or declined by a moderator.</p>
 <p><a href="http://andrewwegner.com/images/spam-weights-and-accuracies.png"><img alt="Weights and Accuracy" src="http://andrewwegner.com/images/spam-weights-and-accuracies.png"/></a></p>
 <p>The above graph plots the weight of the reasons against its overall volume of reports and accuracy. As minimum weight 
 increases, accuracy (yellow line and rightmost Y-axis) and total reports (blue line) on the left-hand scale increase.</p>
 <p><a href="http://andrewwegner.com/images/spam-autoflags-per-day.png"><img alt="Automatic Flags per day" src="http://andrewwegner.com/images/spam-autoflags-per-day.png"/></a></p>
 <p>This shows the number of posts we've automatically flagged per day over the last month. The jump on February 15th, is 
 due to increasing the number of automatic flags from 1 per post to 3 per post. You can see a live version of this graph 
-on <a href="https://metasmoke.erwaysoftware.com/flagging">metasmoke's autoflagging page</a>. There have been approximately 4,000 automatic spam flags cast, with only 3 
-false positives.</p>
+on <a href="https://metasmoke.erwaysoftware.com/flagging">metasmoke's autoflagging page</a>. </p>
 <p><a href="http://andrewwegner.com/images/spam-spam-hours.png"><img alt="Spam Hours" src="http://andrewwegner.com/images/spam-spam-hours.png"/></a></p>
-<p>Spam arrives on Stack Overflow in waves. It is easy to see the time of day that many spam reports come in. The hours, 
+<p>Spam arrives on Stack Exchange in waves. It is easy to see the time of day that many spam reports come in. The hours, 
 above, are UTC time. The busiest spam times of day are the 8 hour block between 4am and Noon. We have affectionately 
 named this "spam hour" in the chat room. </p>
 <p><a href="http://andrewwegner.com/images/spam-average-time-to-delete.png"><img alt="Average Time to Deletion" src="http://andrewwegner.com/images/spam-average-time-to-delete.png"/></a></p>
-<p>Our goal is to delete spam quickly. The graph shows the time it takes for a reported spam post to be removed from the 
-network. This section has three trend lines that show these averages. The first, red, section is when we were simply 
-reporting the posts to chatrooms and all flags had to come from users. You can see we were are pretty constant in the 
-time it takes to remove spam during this period. It took, on average, just over five minutes to get a post removed.</p>
+<p>Our goal is to delete spam quickly and accurately. The graph shows the time it takes for a reported spam post to be 
+removed from the network. This section has three trend lines that show these averages. The first, red section is when 
+we were simply reporting the posts to chatrooms and all flags had to come from users. You can see we are pretty constant 
+in the time it takes to remove spam during this period. It took, on average, just over five minutes to get a post 
+removed.</p>
 <p>The green trend line is when we were issuing a single automatic flag. At implementation, we eliminated a full minute 
 from time to deletion and after a month we'd eliminated two full minutes compared to no automatic flags.</p>
-<p>The last section, the orange, is when we implemented three automatic flags to most sites. This was rolled out last
+<p>The last section, the orange, is when we implemented three automatic flags to most sites. This was rolled out last 
 week, but it's already had a dramatic improvement on the time to deletion. We are seeing between 1 and 2 minutes to 
-time to deletion versus the more than 3 minutes it was taking with only a single flag.</p>
+time to deletion.</p>
 <p>As mentioned above, spam arrives in waves. The dashed and dotted lines on the graph show the average deletion time 
 during these two different time periods. The dashed lines show deletion time during 4am and Noon UTC, the dotted lines 
 show the rest of the 24 hour period. An interesting thing this graph shows is that time to deletion during spam hour 
 was higher when we didn't cast any automatic flags. It was removed faster outside of spam hour. That reversed when we 
 started issuing a single auto-flag. The spam hour time to deletion is slightly lower than the average. Comparing the 
 two time periods though, time to deletion during non-spam hour at the end of the non-flagging time period and the end 
-of the single flag period are roughly the same.</p>
+of the single flag period are roughly the same. </p>
+<p>We'll update these in a few weeks too, to better show the trend we are seeing with three automatic flags.  </p>
 <h2 id="discussion">Discussion<a class="headerlink" href="#discussion" title="Permanent link">¶</a></h2>
 <p>We are confident in SmokeDetector and the three years of history it has. We've had many talented developers assist us 
 over the years and many more users have provided feedback to improve our detection rules. Let us know what you want us 
@@ -193,6 +199,10 @@ around and answering your questions. Alternatively, feel free to drop into <a hr
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
             <time pubdate="pubdate" datetime="2017-02-19T22:51:00-06:00">Feb 19, 2017</time>
+
+<h4>Last Updated</h4>
+<time datetime="2017-02-20T00:00:00-06:00">Feb 20, 2017</time>
+
             <h4>Category</h4>
             <a class="category-link" href="http://andrewwegner.com/categories.html#programming-projects-ref">Programming Projects</a>
             <h4>Tags</h4>
