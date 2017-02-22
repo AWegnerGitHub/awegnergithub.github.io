@@ -79,6 +79,7 @@
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#what-is-this">What is this?</a></li>
+<li><a href="#what-problem-does-this-address">What problem does this address?</a></li>
 <li><a href="#what-are-we-doing">What are we doing?</a></li>
 <li><a href="#what-are-our-safety-checks">What are our safety checks?</a></li>
 <li><a href="#results">Results</a></li>
@@ -95,6 +96,8 @@
 <p>This post was originally <a href="http://meta.stackexchange.com/q/291301/186281">published</a> on Meta Stack Exchange on February 20, 2017. I've republished it here
 so that I can easily update information related to recent developments. If you have questions or comments, I highly
 encourage you to visit the <a href="http://meta.stackexchange.com/q/291301/186281">question</a> on Meta Stack Exchange and post there.</p>
+<p>At one point, the post was featured across the entire Stack Exchange network:</p>
+<p><a href="http://andrewwegner.com/images/spam-featured-announcement.png"><img alt="Featured Announcement" src="http://andrewwegner.com/images/spam-featured-announcement.png"/></a></p>
 <hr/>
 <p>TL;DR: <a href="http://charcoal-se.org/people.html">We</a> did it, so... yes.</p>
 <hr/>
@@ -108,6 +111,15 @@ the new and updated posts. You've likely seen the SmokeDetector bot if you visit
 bot has become very accurate. </p>
 <p>Now we are leveraging the years of data and accuracy to automatically cast spam flags. With approximately 58,000 posts 
 to draw from and over 46,000 true positives, we have a vast trove of data to utilize.</p>
+<h2 id="what-problem-does-this-address">What problem does this address?<a class="headerlink" href="#what-problem-does-this-address" title="Permanent link">¶</a></h2>
+<p>To put it simply, <strong>spam</strong>. Stack Exchange is one of the most popular networks of websites on the Internet, and <em>all</em> 
+of it gets spammed at some point. Our statistics show that we see about 100 spam posts per day, on average over the 
+last three months. </p>
+<p>A decent chunk of this isn't the type you'd want to see at work (or at all). The faster we can get this off the home 
+page, the better for all involved. Unfortunately, it's not unheard of for spam to last several hours, even on the 
+larger sites such as Graphic Design.</p>
+<p>Over the past three years, efforts with Smokey have significantly cut the time it takes for spam to be deleted. This 
+project is an extension of that, and it's now well within reach to delete spam within seconds of it being posted.</p>
 <h2 id="what-are-we-doing">What are we doing?<a class="headerlink" href="#what-are-we-doing" title="Permanent link">¶</a></h2>
 <p>For over 3 years, SmokeDetector has reported potential spam across the Stack Exchange network so that users can flag 
 the posts as appropriate. Users have provided feedback to inform the bot on whether the detection was correct or not 
@@ -149,7 +161,8 @@ a feature request to <a href="http://meta.stackexchange.com/questions/288120/all
 user or declined by a moderator.</p>
 <p><a href="http://andrewwegner.com/images/spam-weights-and-accuracies.png"><img alt="Weights and Accuracy" src="http://andrewwegner.com/images/spam-weights-and-accuracies.png"/></a></p>
 <p>The above graph plots the weight of the reasons against its overall volume of reports and accuracy. As minimum weight 
-increases, accuracy (yellow line and rightmost Y-axis) and total reports (blue line) on the left-hand scale increase.</p>
+increases, accuracy (yellow line and rightmost Y-axis) and total reports (blue line) on the left-hand scale increase. 
+The green line represents the number of true positives, which are verified by SmokeDetector user feedback.</p>
 <p><a href="http://andrewwegner.com/images/spam-autoflags-per-day.png"><img alt="Automatic Flags per day" src="http://andrewwegner.com/images/spam-autoflags-per-day.png"/></a></p>
 <p>This shows the number of posts we've automatically flagged per day over the last month. The jump on February 15th, is 
 due to increasing the number of automatic flags from 1 per post to 3 per post. You can see a live version of this graph 

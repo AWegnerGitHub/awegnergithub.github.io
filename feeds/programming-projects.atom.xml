@@ -4,6 +4,8 @@
 &lt;p&gt;This post was originally &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;published&lt;/a&gt; on Meta Stack Exchange on February 20, 2017. I've republished it here
 so that I can easily update information related to recent developments. If you have questions or comments, I highly
 encourage you to visit the &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;question&lt;/a&gt; on Meta Stack Exchange and post there.&lt;/p&gt;
+&lt;p&gt;At one point, the post was featured across the entire Stack Exchange network:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-featured-announcement.png"&gt;&lt;img alt="Featured Announcement" src="http://andrewwegner.com/images/spam-featured-announcement.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;hr/&gt;
 &lt;p&gt;TL;DR: &lt;a href="http://charcoal-se.org/people.html"&gt;We&lt;/a&gt; did it, so... yes.&lt;/p&gt;
 &lt;hr/&gt;
@@ -17,6 +19,15 @@ the new and updated posts. You've likely seen the SmokeDetector bot if you visit
 bot has become very accurate. &lt;/p&gt;
 &lt;p&gt;Now we are leveraging the years of data and accuracy to automatically cast spam flags. With approximately 58,000 posts 
 to draw from and over 46,000 true positives, we have a vast trove of data to utilize.&lt;/p&gt;
+&lt;h2 id="what-problem-does-this-address"&gt;What problem does this address?&lt;a class="headerlink" href="#what-problem-does-this-address" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To put it simply, &lt;strong&gt;spam&lt;/strong&gt;. Stack Exchange is one of the most popular networks of websites on the Internet, and &lt;em&gt;all&lt;/em&gt; 
+of it gets spammed at some point. Our statistics show that we see about 100 spam posts per day, on average over the 
+last three months. &lt;/p&gt;
+&lt;p&gt;A decent chunk of this isn't the type you'd want to see at work (or at all). The faster we can get this off the home 
+page, the better for all involved. Unfortunately, it's not unheard of for spam to last several hours, even on the 
+larger sites such as Graphic Design.&lt;/p&gt;
+&lt;p&gt;Over the past three years, efforts with Smokey have significantly cut the time it takes for spam to be deleted. This 
+project is an extension of that, and it's now well within reach to delete spam within seconds of it being posted.&lt;/p&gt;
 &lt;h2 id="what-are-we-doing"&gt;What are we doing?&lt;a class="headerlink" href="#what-are-we-doing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For over 3 years, SmokeDetector has reported potential spam across the Stack Exchange network so that users can flag 
 the posts as appropriate. Users have provided feedback to inform the bot on whether the detection was correct or not 
@@ -58,7 +69,8 @@ a feature request to &lt;a href="http://meta.stackexchange.com/questions/288120/
 user or declined by a moderator.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-weights-and-accuracies.png"&gt;&lt;img alt="Weights and Accuracy" src="http://andrewwegner.com/images/spam-weights-and-accuracies.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The above graph plots the weight of the reasons against its overall volume of reports and accuracy. As minimum weight 
-increases, accuracy (yellow line and rightmost Y-axis) and total reports (blue line) on the left-hand scale increase.&lt;/p&gt;
+increases, accuracy (yellow line and rightmost Y-axis) and total reports (blue line) on the left-hand scale increase. 
+The green line represents the number of true positives, which are verified by SmokeDetector user feedback.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-autoflags-per-day.png"&gt;&lt;img alt="Automatic Flags per day" src="http://andrewwegner.com/images/spam-autoflags-per-day.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This shows the number of posts we've automatically flagged per day over the last month. The jump on February 15th, is 
 due to increasing the number of automatic flags from 1 per post to 3 per post. You can see a live version of this graph 
