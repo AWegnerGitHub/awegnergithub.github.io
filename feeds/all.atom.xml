@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-02-20T00:00:00-06:00</updated><entry><title>Can a machine be taught to flag spam automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html" rel="alternate"></link><published>2017-02-19T22:51:00-06:00</published><updated>2017-02-20T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-02-19:/can-a-machine-be-taught-to-flag-spam-automatically.html</id><summary type="html">&lt;p&gt;Description of how a group of people helped completely eliminate spam on the Stack Exchange network&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-04-20T07:40:00-05:00</updated><entry><title>Review of Udemy's "Become a Product Manager | Learn the Skills &amp; Get the job" course</title><link href="http://andrewwegner.com/become-a-product-manager-review.html" rel="alternate"></link><published>2017-04-20T07:40:00-05:00</published><updated>2017-04-20T07:40:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-20:/become-a-product-manager-review.html</id><summary type="html">&lt;p&gt;My review of "Become a Product Manager  | Learn the Skills &amp;amp; Get the job" on Udemy.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I recently finished the &lt;a href="https://www.udemy.com/become-a-product-manager-learn-the-skills-get-a-job/learn/v4/overview"&gt;"Become a Product Manager  | Learn the Skills &amp;amp; Get the job"&lt;/a&gt; course on Udemy. I had picked
+this up in December during one of Udemy's frequent $15 dollars. I was looking to take something non-technical that covers
+more of the "soft skills" I utilize in my job. I do a lot of software "product manager" work, without the title, at my job
+and was hoping to brush up on those skills. &lt;/p&gt;
+&lt;h2 id="thoughts-on-the-lessons"&gt;Thoughts on the lessons&lt;a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course is billed as a 13 hour course, with activities and interviews with product managers. The course is taught by 
+Cole Mercer (a Senior product manager at &lt;a href="https://soundcloud.com/"&gt;SoundCloud&lt;/a&gt;) and Evan Kimbrell (founder of &lt;a href="http://www.sprintkick.com/"&gt;Sprintkick&lt;/a&gt;). The course is 
+packed with useful content, resources and interviews. I learned a lot and reinforced a lot of what I already knew. That 
+information will be incredibly useful at work.&lt;/p&gt;
+&lt;p&gt;That glowing review said, I had a hard time getting through the lessons. Despite the amount of useful information, I found 
+the lessons to be...boring, at best. At worst, the instructors attempted to throw jokes in that just didn't work for this format.
+That type of distraction made it hard to stick with the lessons. Additionally, the quizzes that cropped up occassionally, were 
+treated as a joke by the course creators. There were joke answers, there were joke explanations for answers and their were 
+questions unrelated to the content but instead about the instructors. &lt;/p&gt;
+&lt;p&gt;Finally, there are several points in the lessons that ask students to go the message board and provide feedback, do a quick activity,
+and interact with one another. I did a couple of these. I stopped doing them when I didn't receive any responses from either other
+students or the instructors. A closer look at the message board shows this is very common. I have to scroll back through a couple 
+"load more" clicks on the message board to find &lt;em&gt;any&lt;/em&gt; posts that even have a response. The interaction I was hoping for from the 
+instructors just doesn't exist with this course. &lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The content in this course is amazingly helpful. There are links to articles that I'll be able to use for years. The information
+in the lectures is also helpful, if you can get through the bland presentation of the material. The frequent, distracting, jokes and 
+lack of interaction makes this course less stellar. &lt;/p&gt;
+&lt;p&gt;Overall, I'd consider this a middle of the road course. The presentation is what drags down this information packed course. &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.sprintkick.com/"&gt;&lt;img alt="Completion Award" src="https://soundcloud.com/"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Can a machine be taught to flag spam automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html" rel="alternate"></link><published>2017-02-19T22:51:00-06:00</published><updated>2017-02-20T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-02-19:/can-a-machine-be-taught-to-flag-spam-automatically.html</id><summary type="html">&lt;p&gt;Description of how a group of people helped completely eliminate spam on the Stack Exchange network&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This post was originally &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;published&lt;/a&gt; on Meta Stack Exchange on February 20, 2017. I've republished it here
 so that I can easily update information related to recent developments. If you have questions or comments, I highly
 encourage you to visit the &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;question&lt;/a&gt; on Meta Stack Exchange and post there.&lt;/p&gt;
-&lt;p&gt;At one point, the post was featured across the entire Stack Exchange network:&lt;/p&gt;
+&lt;p&gt;The post was featured across the entire Stack Exchange network for a week, too. This drove a huge amount of traffic
+to the question and resulted in some valuable feedback:&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-featured-announcement.png"&gt;&lt;img alt="Featured Announcement" src="http://andrewwegner.com/images/spam-featured-announcement.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;hr/&gt;
 &lt;p&gt;TL;DR: &lt;a href="http://charcoal-se.org/people.html"&gt;We&lt;/a&gt; did it, so... yes.&lt;/p&gt;
@@ -579,10 +606,10 @@ OPENSHIFT_MYSQL_DB_URL      |   Database connection URL.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="utilizing-the-database"&gt;Utilizing the database&lt;a class="headerlink" href="#utilizing-the-database" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Setting up SQLAlchemy and MySQL is fairly easy. I tested this with a simple table and ensured that it appeared in the database as expected.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="n"&gt;User&lt;/span&gt;(&lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Model&lt;/span&gt;):
-    &lt;span class="n"&gt;__tablename__&lt;/span&gt; = &lt;span class="s"&gt;'users'&lt;/span&gt;
-    &lt;span class="n"&gt;id&lt;/span&gt; = &lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Column&lt;/span&gt;(&lt;span class="s"&gt;'user_id'&lt;/span&gt;, &lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Integer&lt;/span&gt;, &lt;span class="n"&gt;primary_key&lt;/span&gt;=&lt;span class="nb"&gt;True&lt;/span&gt;)
-    &lt;span class="nb"&gt;name&lt;/span&gt; = &lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;Column&lt;/span&gt;(&lt;span class="n"&gt;db&lt;/span&gt;.&lt;span class="n"&gt;String&lt;/span&gt;(&lt;span class="mi"&gt;60&lt;/span&gt;))
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;User&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="nx"&gt;__tablename__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'users'&lt;/span&gt;
+    &lt;span class="nx"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'user_id'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Integer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;primary_key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Column&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;A few adjustments were made to the import statements of the Flask application:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask_sqlalchemy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SQLAlchemy&lt;/span&gt;

@@ -166,10 +166,10 @@ OPENSHIFT_MYSQL_DB_URL      |   Database connection URL.
 </pre></div>
 <h3 id="utilizing-the-database">Utilizing the database<a class="headerlink" href="#utilizing-the-database" title="Permanent link">¶</a></h3>
 <p>Setting up SQLAlchemy and MySQL is fairly easy. I tested this with a simple table and ensured that it appeared in the database as expected.</p>
-<div class="codehilight code"><pre><span></span><span class="k">class</span> <span class="n">User</span>(<span class="n">db</span>.<span class="n">Model</span>):
-    <span class="n">__tablename__</span> = <span class="s">'users'</span>
-    <span class="n">id</span> = <span class="n">db</span>.<span class="n">Column</span>(<span class="s">'user_id'</span>, <span class="n">db</span>.<span class="n">Integer</span>, <span class="n">primary_key</span>=<span class="nb">True</span>)
-    <span class="nb">name</span> = <span class="n">db</span>.<span class="n">Column</span>(<span class="n">db</span>.<span class="n">String</span>(<span class="mi">60</span>))
+<div class="codehilight code"><pre><span></span><span class="kr">class</span> <span class="nx">User</span><span class="p">(</span><span class="nx">db</span><span class="p">.</span><span class="nx">Model</span><span class="p">)</span><span class="o">:</span>
+    <span class="nx">__tablename__</span> <span class="o">=</span> <span class="s1">'users'</span>
+    <span class="nx">id</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">Column</span><span class="p">(</span><span class="s1">'user_id'</span><span class="p">,</span> <span class="nx">db</span><span class="p">.</span><span class="nx">Integer</span><span class="p">,</span> <span class="nx">primary_key</span><span class="o">=</span><span class="nx">True</span><span class="p">)</span>
+    <span class="nx">name</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">Column</span><span class="p">(</span><span class="nx">db</span><span class="p">.</span><span class="nb">String</span><span class="p">(</span><span class="mi">60</span><span class="p">))</span>
 </pre></div>
 <p>A few adjustments were made to the import statements of the Flask application:</p>
 <div class="codehilight code"><pre><span></span><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
@@ -297,7 +297,7 @@ The command "py.test" exited with 0.
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="http://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>8</span>
+                    <span>9</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
