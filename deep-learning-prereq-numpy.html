@@ -10,18 +10,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="technical, Technical Solutions, " />
+<meta name="keywords" content="review, technical, learning, Review, " />
 
-<meta property="og:title" content="Multiple IP addresses on the same physical network card "/>
-<meta property="og:url" content="http://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" />
-<meta property="og:description" content="A quick walkthrough on how to configure a single network card to pull multiple IP addresses (RedHat based distribution)" />
+<meta property="og:title" content="Review of Udemy&#39;s &#34;Deep Learning Prerequisites: The Numpy Stack in Python&#34; course "/>
+<meta property="og:url" content="http://andrewwegner.com/deep-learning-prereq-numpy.html" />
+<meta property="og:description" content="My review of &#34;Deep Learning Prerequisites: The Numpy Stack in Python&#34; on Udemy." />
 <meta property="og:site_name" content="Ponderings of an Andy" />
 <meta property="og:article:author" content="Andy Wegner" />
-<meta property="og:article:published_time" content="2010-11-17T12:54:00-06:00" />
-<meta name="twitter:title" content="Multiple IP addresses on the same physical network card ">
-<meta name="twitter:description" content="A quick walkthrough on how to configure a single network card to pull multiple IP addresses (RedHat based distribution)">
+<meta property="og:article:published_time" content="2017-04-20T22:30:00-05:00" />
+<meta name="twitter:title" content="Review of Udemy&#39;s &#34;Deep Learning Prerequisites: The Numpy Stack in Python&#34; course ">
+<meta name="twitter:description" content="My review of &#34;Deep Learning Prerequisites: The Numpy Stack in Python&#34; on Udemy.">
 
-        <title>Multiple IP addresses on the same physical network card  · Ponderings of an Andy
+        <title>Review of Udemy&#39;s &#34;Deep Learning Prerequisites: The Numpy Stack in Python&#34; course  · Ponderings of an Andy
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -66,61 +66,61 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="http://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html"> Multiple IP addresses on the same physical network card  </a></h1>
+    <h1><a href="http://andrewwegner.com/deep-learning-prereq-numpy.html"> Review of Udemy's "Deep Learning Prerequisites: The Numpy Stack in Python" course  </a></h1>
     </header>
 </div>
 
 <div class="row-fluid">
-        <div class="span8 offset2 article-content">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#course">Course</a></li>
+<li><a href="#thoughts-on-the-lessons">Thoughts on the lessons</a></li>
+<li><a href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
 
             
-            <p>There are times when a server can be allocated more than one IP Address even though it contains only one physical 
-network card. To associate these IP addresses with the server some manipulation of networking settings will need to be 
-performed. The steps outlined in this walk-through are for RedHat based systems. This tutorial is for statically assigned 
-IP Addresses (as a server generally will have).
-For this walk through we are going to add one additional IP address to <code>eth0</code>. Navigate to</p>
-<div class="codehilight code"><pre><span></span>cd /etc/sysconfig/network-scripts
-</pre></div>
-
-
-<p>Copy <code>ifcfg-eth0</code> to <code>ifcfg-eth0:0</code></p>
-<div class="codehilight code"><pre><span></span>cp ifcfg-eth0 ifcfg-eth0:0
-</pre></div>
-
-
-<p>Now we need to modify the new file slightly so that it gets it's own IP address. Open <code>ifcfg-eth0:0</code> in your favorite editor</p>
-<div class="codehilight code"><pre><span></span>DEVICE=eth0:0           &lt;-- Change this to match the new eth0:0 file we just created
-BOOTPROTO=none
-BROADCAST=x.x.x.x       &lt;-- This is the broad cast address for the subnet the new IP is on
-DNS1=x.x.x.x            &lt;-- This is the main DNS server you are using (example: 64.120.14.26)
-GATEWAY=x.x.x.x         &lt;-- This is the gateway address for the subnet the new IP is on
-HWADDR=&lt;DO NOT CHANGE&gt;  &lt;-- Don&#39;t change this from what is existing. The Hardware address is the same as the physical one
-IPADDR=x.x.x.x          &lt;-- This is your new IP address
-NETMASK=x.x.x.x         &lt;-- This is the netmask for the subnet the new IP is on
-ONBOOT=yes              &lt;-- Leave to yes
-OPTIONS=layer2=1
-TYPE=Ethernet
-PREFIX=29
-DEFROUTE=yes
-NAME=&quot;System eth0:0&quot;    &lt;-- Change to reflect new name of device
-</pre></div>
-
-
-<p>Save your file with the new settings. Now we need to restart the networking service:</p>
-<div class="codehilight code"><pre><span></span>service network restart
-</pre></div>
-
-
-<p>When the network components come back up you should see your new device in the <code>ifconfig</code> command. To add more IPs, 
-copy and replace values as specified above.</p>
+            
+<h2 id="course">Course<a class="headerlink" href="#course" title="Permanent link">¶</a></h2>
+<p>I found <a href="https://www.udemy.com/user/lazy-programmer/">Lazy Programmer's</a> Deep Learning courses on Udemy. A couple of those seem very interesting, specifically the ones 
+about Natural Language Processing. I'd love to be able to enhance either my <a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html">comment flagging</a>, <a href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html">Zephyr</a> or <a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">SmokeDetector</a> 
+with language processing capabilities. I also have tried, multiple times, to come up with a way to detect duplicate questions on
+Stack Overflow, but my limited knowledge of true NLP concepts has proved to be unhelpful in that task. </p>
+<p>I have the goal of getting to the NLP courses and completing a few other data science and machine learning courses this year. I've
+picked out a few that look interesting and useful in either personal or professional projects. That will be my main focus in the next
+several months. When I need a break from these topics, I may find another soft skills course to look at. Or, I have a play through of
+Witcher 3 waiting for me. </p>
+<p>To start this journey, I need to cover some prerequisites. Data Science and Machine learning utilize several important libraries and
+I need to know them or brush up my skills when using them. I took the <a href="http://andrewwegner.com/data-analysis-with-pandas-review.html">Data Analysis with Pandas</a> last winter and found that helpful.
+Lazy Programmer offers one covering the numpy stack. That's what I just finished.</p>
+<h2 id="thoughts-on-the-lessons">Thoughts on the lessons<a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link">¶</a></h2>
+<p><a href="https://www.udemy.com/deep-learning-prerequisites-the-numpy-stack-in-python/learn/v4/overview">Deep Learning Prerequisites: The Numpy Stack in Python</a> is a brief two hour course that gives a crash course in how to use numpy, pandas,
+matplotlib and scipy. It touches each of these <em>very</em> briefly. The goal of the course isn't to get you intimately familiar with the libraries.
+The goal is to get you to know the libraries exist and a few of their most common tasks. In this regard, it was very useful.</p>
+<p>The course also served as a nice introduction to the instructor and their teaching style. It is all hands on though, which I like. I prefer
+to do the coding (and add my own comments along the way) to watching someone present a huge chunk of code and walk through that line by
+line. I've posted my <a href="https://github.com/AWegnerGitHub/Deep-Learning-Prerequisites-The-Numpy-Stack-in-Python">IPython Notebooks</a> on GitHub.</p>
+<p>One other thing this course does is introduce users to the assumptions the instructor makes about the students. Machine learning and data science,
+in general, have a lot of math behind them. The instructor assumes that students have the theorectical background for this and teaches how to
+implement this math in Numpy. Note to self: Brush up on those math skills. I haven't used some of this in a long time. </p>
+<h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
+<p>This is an introduction course to the bigger <a href="https://lazyprogrammer.me/data-science-courses/">"Deep Learning" courses</a> that Lazy Programmer offers. It does it's job well and has increased my
+confidence in the instructor. My last couple courses haven't been great and I'm happy that this quick two hour course was available. I'm looking 
+forward to taking some more of these courses.</p>
+<p><a href="https://ude.my/UC-9CGD0JX8"><img alt="Completion Award" src="http://andrewwegner.com/images/udemy-deep-learning-prereq-numpy.jpg"/></a></p>
             
             
             <hr/>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="http://andrewwegner.com/fixing-myisam-crashed-tables.html" title="Previous: Fixing MYISAM Crashed Tables">Fixing MYISAM Crashed Tables</a></li>
-                <li class="next-article"><a href="http://andrewwegner.com/a-special-kind-of-troll.html" title="Next: A special kind of troll">A special kind of troll</a> »</li>
+                <li class="previous-article">« <a href="http://andrewwegner.com/become-a-product-manager-review.html" title="Previous: Review of Udemy&#39;s &#34;Become a Product Manager | Learn the Skills &amp; Get the job&#34; course">Review of Udemy's "Become a Product Manager | Learn the Skills & Get the job" course</a></li>
             </ul>
             </nav>
             </aside>
@@ -128,11 +128,17 @@ copy and replace values as specified above.</p>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2010-11-17T12:54:00-06:00">Nov 17, 2010</time>
+            <time pubdate="pubdate" datetime="2017-04-20T22:30:00-05:00">Apr 20, 2017</time>
             <h4>Category</h4>
-            <a class="category-link" href="http://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#review-ref">Review</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#learning-ref">learning
+                    <span>4</span>
+</a></li>
+                <li><a href="http://andrewwegner.com/tags.html#review-ref">review
+                    <span>4</span>
+</a></li>
                 <li><a href="http://andrewwegner.com/tags.html#technical-ref">technical
                     <span>10</span>
 </a></li>

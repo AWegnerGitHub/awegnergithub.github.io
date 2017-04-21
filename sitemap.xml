@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/</loc>
-<lastmod>2017-04-20T08:03:33-00:00</lastmod>
+<lastmod>2017-04-20T22:31:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/archives.html</loc>
-<lastmod>2017-04-20T08:03:33-00:00</lastmod>
+<lastmod>2017-04-20T22:31:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/tags.html</loc>
-<lastmod>2017-04-20T08:03:33-00:00</lastmod>
+<lastmod>2017-04-20T22:31:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://andrewwegner.com/categories.html</loc>
-<lastmod>2017-04-20T08:03:33-00:00</lastmod>
+<lastmod>2017-04-20T22:31:55-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://andrewwegner.com/deep-learning-prereq-numpy.html</loc>
+<lastmod>2017-04-20T22:30:00-05:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -271,7 +278,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/category/review.html</loc>
-<lastmod>2017-04-20T07:40:00-05:51</lastmod>
+<lastmod>2017-04-20T22:30:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -306,7 +313,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/tag/learning.html</loc>
-<lastmod>2017-04-20T07:40:00-05:51</lastmod>
+<lastmod>2017-04-20T22:30:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -320,7 +327,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/tag/technical.html</loc>
-<lastmod>2017-04-20T07:40:00-05:51</lastmod>
+<lastmod>2017-04-20T22:30:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -334,7 +341,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/tag/review.html</loc>
-<lastmod>2017-04-20T07:40:00-05:51</lastmod>
+<lastmod>2017-04-20T22:30:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -397,7 +404,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://andrewwegner.com/author/andy-wegner.html</loc>
-<lastmod>2017-04-20T07:40:00-05:51</lastmod>
+<lastmod>2017-04-20T22:30:00-05:51</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
