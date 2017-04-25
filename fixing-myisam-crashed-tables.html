@@ -62,7 +62,7 @@
             <div class="row-fluid">
                 <div class="span1"></div>
                 <div class="span10">
-<article itemscope itemtype="http://schema.org/Blog">
+<article itemscope itemtype="http://schema.org/docs/full.html">
 <meta itemprop="headline" content="Fixing MYISAM Crashed Tables" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
@@ -74,6 +74,7 @@
         <div class="span8 offset2 article-content">
 
             
+            <div itemprop="articleBody">
             <p>For various reasons, MyISAM tables are known to crash. When this happens, the following message will be displayed:</p>
 <div class="codehilight code"><pre><span></span>INVALID SQL: 145 : Table &#39;{something}&#39; is marked as crashed and should be repaired
 </pre></div>
@@ -113,6 +114,7 @@ is likely that this step is not needed after performing the previous step, but i
 <p>Finally, restart MySQL</p>
 <div class="codehilight code"><pre><span></span>service mysqld start
 </pre></div>
+            </div>
             
             
             <hr/>

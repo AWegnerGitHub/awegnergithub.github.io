@@ -62,7 +62,7 @@
             <div class="row-fluid">
                 <div class="span1"></div>
                 <div class="span10">
-<article itemscope itemtype="http://schema.org/Blog">
+<article itemscope itemtype="http://schema.org/docs/full.html">
 <meta itemprop="headline" content="A proposal to fix broken links on Stack Overflow" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
@@ -88,6 +88,7 @@
     <div class="span8 article-content">
 
             
+            <div itemprop="articleBody">
             
 <p>This post was <a href="http://meta.stackoverflow.com/q/300916/189134">published</a> by <a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile">me</a> on Meta Stack Overflow on August 7th, 2015. I've republished it here
 so that I can easily update information related to recent developments. If you have questions or comments, I highly
@@ -129,6 +130,7 @@ encourage you to visit the <a href="http://meta.stackoverflow.com/q/300916/18913
 <li>The need to throttle requests so that you don't flood a site with requests. I solved this by only querying unique URLs. This still issues a lot of requests to certain, popular, domains. This could be solved by staggering the checks over a period of minutes/hours versus spewing 100s - 1000s of <code>GET</code> requests at midnight daily. </li>
 </ul>
 <p>With the broken link queue, I feel the first two would be acceptable. Much like posts in the Low Quality queue appear because of a heuristic, despite not being low quality, links will be the same way. The system will flag them as broken and the queue will determine if that is true (if an archived version of the site can't be found by the automated process). The bullet about throttling requests is an implementation detail that I'm sure the developers would be able to figure out.</p>
+            </div>
             
             
             <hr/>

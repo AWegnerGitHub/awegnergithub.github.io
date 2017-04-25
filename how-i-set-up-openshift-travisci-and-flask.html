@@ -63,7 +63,7 @@
             <div class="row-fluid">
                 <div class="span1"></div>
                 <div class="span10">
-<article itemscope itemtype="http://schema.org/Blog">
+<article itemscope itemtype="http://schema.org/docs/full.html">
 <meta itemprop="headline" content="How I built a Flask application that integrates with Travis CI and OpenShift" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
@@ -96,6 +96,7 @@
     <div class="span8 article-content">
 
             
+            <div itemprop="articleBody">
             
 <h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">¶</a></h2>
 <p>Since I <a href="http://andrewwegner.com/thanks-for-all-the-fish.html">shut down</a> Vipers early this year, I've been itching to do <em>something</em> web related. Web technologies aren't my best technical skill, but I like trying out new things and learning something in the process. I use Python at work. I like Python a lot. With Christmas and New Years coming up, I want to have a project during my down time. My goal is to get a <a href="http://flask.pocoo.org/">Flask</a> application built and then deployed to <a href="https://www.openshift.com/">OpenShift</a>. Part of this deployment is to utilize <a href="https://travis-ci.org/">TravisCI</a>. I'm planning on using <a href="http://pytest.org/latest/">pytest</a> and <a href="https://hypothesis.readthedocs.org/en/latest/">hypothesis</a> for my test suite. Finally, I want to use my own (sub)domain, instead of the provided <code>rhcloud</code> one.</p>
@@ -272,6 +273,7 @@ The command "py.test" exited with 0.
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
 <p>With this, the set up is complete. You have a Flask application, connected to MySQL, that is integrated with a CI system which automatically deploys to OpenShift when all tests pass and uses CloudFlare (because I already was doing so), to provide a CDN. </p>
 <p>On to building something!</p>
+            </div>
             
             
             <hr/>

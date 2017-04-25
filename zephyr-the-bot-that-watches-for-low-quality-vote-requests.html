@@ -63,7 +63,7 @@
             <div class="row-fluid">
                 <div class="span1"></div>
                 <div class="span10">
-<article itemscope itemtype="http://schema.org/Blog">
+<article itemscope itemtype="http://schema.org/docs/full.html">
 <meta itemprop="headline" content="Zephyr - The bot that watches for low quality vote requests" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
@@ -96,6 +96,7 @@
     <div class="span8 article-content">
 
             
+            <div itemprop="articleBody">
             
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
 <p>Stack Exchange receives thousands of questions per day across all of their sites. Not all of these are high quality
@@ -170,6 +171,7 @@ MySQL/MariaDB before and I happened to have another application utilizing MariaD
 pretty unreliable. I'd get multiple errors through out the week, ranging from <code>Connection Aborted</code> errors to random <code>404</code> messages. The 
 solution has been to switch to <a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"><code>watch_socket</code></a>. The only time I've had problems since this switch is when the Stack Exchange 
 web sockets go down. This saves a lot of restarts to get everything up and running again.</p>
+            </div>
             
             
             <hr/>
