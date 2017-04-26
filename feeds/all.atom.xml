@@ -1,35 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-04-24T00:00:00-05:00</updated><entry><title>Review of Udemy's "Deep Learning Prerequisites: The Numpy Stack in Python" course</title><link href="http://andrewwegner.com/deep-learning-prereq-numpy.html" rel="alternate"></link><published>2017-04-20T22:30:00-05:00</published><updated>2017-04-20T22:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-20:/deep-learning-prereq-numpy.html</id><summary type="html">&lt;p&gt;My review of "Deep Learning Prerequisites: The Numpy Stack in Python" on Udemy.&lt;/p&gt;</summary><content type="html">
-&lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I found &lt;a href="https://www.udemy.com/user/lazy-programmer/"&gt;Lazy Programmer's&lt;/a&gt; Deep Learning courses on Udemy. A couple of those seem very interesting, specifically the ones 
-about Natural Language Processing. I'd love to be able to enhance either my &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;comment flagging&lt;/a&gt;, &lt;a href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html"&gt;Zephyr&lt;/a&gt; or &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; 
-with language processing capabilities. I also have tried, multiple times, to come up with a way to detect duplicate questions on
-Stack Overflow, but my limited knowledge of true NLP concepts has proved to be unhelpful in that task. &lt;/p&gt;
-&lt;p&gt;I have the goal of getting to the NLP courses and completing a few other data science and machine learning courses this year. I've
-picked out a few that look interesting and useful in either personal or professional projects. That will be my main focus in the next
-several months. When I need a break from these topics, I may find another soft skills course to look at. Or, I have a play through of
-Witcher 3 waiting for me. &lt;/p&gt;
-&lt;p&gt;To start this journey, I need to cover some prerequisites. Data Science and Machine learning utilize several important libraries and
-I need to know them or brush up my skills when using them. I took the &lt;a href="http://andrewwegner.com/data-analysis-with-pandas-review.html"&gt;Data Analysis with Pandas&lt;/a&gt; last winter and found that helpful.
-Lazy Programmer offers one covering the numpy stack. That's what I just finished.&lt;/p&gt;
-&lt;h2 id="thoughts-on-the-lessons"&gt;Thoughts on the lessons&lt;a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://www.udemy.com/deep-learning-prerequisites-the-numpy-stack-in-python/learn/v4/overview"&gt;Deep Learning Prerequisites: The Numpy Stack in Python&lt;/a&gt; is a brief two hour course that gives a crash course in how to use numpy, pandas,
-matplotlib and scipy. It touches each of these &lt;em&gt;very&lt;/em&gt; briefly. The goal of the course isn't to get you intimately familiar with the libraries.
-The goal is to get you to know the libraries exist and a few of their most common tasks. In this regard, it was very useful.&lt;/p&gt;
-&lt;p&gt;The course also served as a nice introduction to the instructor and their teaching style. It is all hands on though, which I like. I prefer
-to do the coding (and add my own comments along the way) to watching someone present a huge chunk of code and walk through that line by
-line. I've posted my &lt;a href="https://github.com/AWegnerGitHub/Deep-Learning-Prerequisites-The-Numpy-Stack-in-Python"&gt;IPython Notebooks&lt;/a&gt; on GitHub.&lt;/p&gt;
-&lt;p&gt;One other thing this course does is introduce users to the assumptions the instructor makes about the students. Machine learning and data science,
-in general, have a lot of math behind them. The instructor assumes that students have the theorectical background for this and teaches how to
-implement this math in Numpy. Note to self: Brush up on those math skills. I haven't used some of this in a long time. &lt;/p&gt;
-&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This is an introduction course to the bigger &lt;a href="https://lazyprogrammer.me/data-science-courses/"&gt;"Deep Learning" courses&lt;/a&gt; that Lazy Programmer offers. It does it's job well and has increased my
-confidence in the instructor. My last couple courses haven't been great and I'm happy that this quick two hour course was available. I'm looking 
-forward to taking some more of these courses.&lt;/p&gt;
-&lt;p&gt;One thing I will need to consider as I go through this course: whether or not to either set up a Linux machine or a virtual machine. Windows doesn'taking
-seem to play well with all the libraries I'll be needing. It may make my life easier too. So far, everyone seems to be using a Mac or Linux machine to
-teach these courses and offer only basic "It may work on Windows" advice.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://ude.my/UC-9CGD0JX8"&gt;&lt;img alt="Completion Award" src="http://andrewwegner.com/images/udemy-deep-learning-prereq-numpy.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Review of Udemy's "Become a Product Manager | Learn the Skills &amp; Get the job" course</title><link href="http://andrewwegner.com/become-a-product-manager-review.html" rel="alternate"></link><published>2017-04-20T07:40:00-05:00</published><updated>2017-04-20T07:40:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-20:/become-a-product-manager-review.html</id><summary type="html">&lt;p&gt;My review of "Become a Product Manager  | Learn the Skills &amp;amp; Get the job" on Udemy.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-04-24T00:00:00-05:00</updated><entry><title>Review of Udemy's "Deep Learning Prerequisites: The Numpy Stack in Python" course</title><link href="http://andrewwegner.com/deep-learning-prereq-numpy.html" rel="alternate"></link><published>2017-04-20T22:30:00-05:00</published><updated>2017-04-20T22:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-20:/deep-learning-prereq-numpy.html</id><summary type="html">&lt;p class="first last"&gt;My review of &amp;quot;Deep Learning Prerequisites: The Numpy Stack in Python&amp;quot; on Udemy.&lt;/p&gt;
+</summary><content type="html">
+&lt;div class="section" id="course"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;Course&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I found &lt;a class="reference external" href="https://www.udemy.com/user/lazy-programmer/"&gt;Lazy
+Programmer's&lt;/a&gt; Deep
+Learning courses on Udemy. A couple of those seem very interesting,
+specifically the ones about Natural Language Processing. I'd love to be
+able to enhance either my &lt;a class="reference external" href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;comment
+flagging&lt;/a&gt;,
+&lt;a class="reference external" href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html"&gt;Zephyr&lt;/a&gt;
+or
+&lt;a class="reference external" href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt;
+with language processing capabilities. I also have tried, multiple
+times, to come up with a way to detect duplicate questions on Stack
+Overflow, but my limited knowledge of true NLP concepts has proved to be
+unhelpful in that task.&lt;/p&gt;
+&lt;p&gt;I have the goal of getting to the NLP courses and completing a few other
+data science and machine learning courses this year. I've picked out a
+few that look interesting and useful in either personal or professional
+projects. That will be my main focus in the next several months. When I
+need a break from these topics, I may find another soft skills course to
+look at. Or, I have a play through of Witcher 3 waiting for me.&lt;/p&gt;
+&lt;p&gt;To start this journey, I need to cover some prerequisites. Data Science
+and Machine learning utilize several important libraries and I need to
+know them or brush up my skills when using them. I took the &lt;a class="reference external" href="http://andrewwegner.com/data-analysis-with-pandas-review.html"&gt;Data
+Analysis with
+Pandas&lt;/a&gt;
+last winter and found that helpful. Lazy Programmer offers one covering
+the numpy stack. That's what I just finished.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="thoughts-on-the-lessons"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;Thoughts on the lessons&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.udemy.com/deep-learning-prerequisites-the-numpy-stack-in-python/learn/v4/overview"&gt;Deep Learning Prerequisites: The Numpy Stack in
+Python&lt;/a&gt;
+is a brief two hour course that gives a crash course in how to use
+numpy, pandas, matplotlib and scipy. It touches each of these &lt;em&gt;very&lt;/em&gt;
+briefly. The goal of the course isn't to get you intimately familiar
+with the libraries. The goal is to get you to know the libraries exist
+and a few of their most common tasks. In this regard, it was very
+useful.&lt;/p&gt;
+&lt;p&gt;The course also served as a nice introduction to the instructor and
+their teaching style. It is all hands on though, which I like. I prefer
+to do the coding (and add my own comments along the way) to watching
+someone present a huge chunk of code and walk through that line by line.
+I've posted my &lt;a class="reference external" href="https://github.com/AWegnerGitHub/Deep-Learning-Prerequisites-The-Numpy-Stack-in-Python"&gt;IPython
+Notebooks&lt;/a&gt;
+on GitHub.&lt;/p&gt;
+&lt;p&gt;One other thing this course does is introduce users to the assumptions
+the instructor makes about the students. Machine learning and data
+science, in general, have a lot of math behind them. The instructor
+assumes that students have the theorectical background for this and
+teaches how to implement this math in Numpy. Note to self: Brush up on
+those math skills. I haven't used some of this in a long time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="final-thoughts"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id3"&gt;Final Thoughts&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is an introduction course to the bigger &lt;a class="reference external" href="https://lazyprogrammer.me/data-science-courses/"&gt;"Deep Learning"
+courses&lt;/a&gt; that Lazy
+Programmer offers. It does it's job well and has increased my confidence
+in the instructor. My last couple courses haven't been great and I'm
+happy that this quick two hour course was available. I'm looking forward
+to taking some more of these courses.&lt;/p&gt;
+&lt;p&gt;One thing I will need to consider as I go through this course: whether
+or not to either set up a Linux machine or a virtual machine. Windows
+doesn'taking seem to play well with all the libraries I'll be needing.
+It may make my life easier too. So far, everyone seems to be using a Mac
+or Linux machine to teach these courses and offer only basic "It may
+work on Windows" advice.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://ude.my/UC-9CGD0JX8"&gt;&lt;img alt="Completion Award" src="images/udemy-deep-learning-prereq-numpy.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Review of Udemy's "Become a Product Manager | Learn the Skills &amp; Get the job" course</title><link href="http://andrewwegner.com/become-a-product-manager-review.html" rel="alternate"></link><published>2017-04-20T07:40:00-05:00</published><updated>2017-04-20T07:40:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-20:/become-a-product-manager-review.html</id><summary type="html">&lt;p&gt;My review of "Become a Product Manager  | Learn the Skills &amp;amp; Get the job" on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I recently finished the &lt;a href="https://www.udemy.com/become-a-product-manager-learn-the-skills-get-a-job/learn/v4/overview"&gt;"Become a Product Manager  | Learn the Skills &amp;amp; Get the job"&lt;/a&gt; course on Udemy. I had picked
 this up in December during one of Udemy's frequent $15 dollars. I was looking to take something non-technical that covers
