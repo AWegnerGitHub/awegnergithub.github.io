@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-04-24T00:00:00-05:00</updated><entry><title>Review of Udemy's "Deep Learning Prerequisites: The Numpy Stack in Python" course</title><link href="http://andrewwegner.com/deep-learning-prereq-numpy.html" rel="alternate"></link><published>2017-04-20T22:30:00-05:00</published><updated>2017-04-20T22:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-20:/deep-learning-prereq-numpy.html</id><summary type="html">&lt;p&gt;My review of "Deep Learning Prerequisites: The Numpy Stack in Python" on Udemy.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-04-26T14:30:00-05:00</updated><entry><title>Choosing an ORM library for a new project</title><link href="http://andrewwegner.com/choosing-orm-library.html" rel="alternate"></link><published>2017-04-26T14:30:00-05:00</published><updated>2017-04-26T14:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-26:/choosing-orm-library.html</id><summary type="html">&lt;p&gt;A discussion about how a team picked an ORM library for a new project.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="project-history"&gt;Project History&lt;a class="headerlink" href="#project-history" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; project is over three years old at this point. It's grown from a small python script to a 
+decently sized application that integrates with another project. In that time, it's expanded what types of spam and
+patterns it looks for, what chat rooms it posts to, what external services it integrates with and how permissions to
+use the system are determined. &lt;/p&gt;
+&lt;p&gt;A lot has changed under the hood. I was hoping to put a cool chart here showing code change over time, but some early
+decisions with the project really throw off the chart. Using a &lt;a href="https://erikbern.com/2016/12/05/the-half-life-of-code.html"&gt;Ship of Theseus&lt;/a&gt; analogy for code, you can see how 
+much has changed. The basic idea is, if a ship leaves port and replaces every plank along it's journey, is it still the 
+same ship when it returns? With code, the idea is to apply this to lines of code in an application.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://andrewwegner.com/images/smokey-git-theseus-all.png"&gt;&lt;img alt="SmokeDetector - Git of Theseus" src="http://andrewwegner.com/images/smokey-git-theseus-all.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="what-happened-in-2014"&gt;What happened in 2014?!&lt;a class="headerlink" href="#what-happened-in-2014" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In late 2014, the project attempted their first machine learning method of detecting spam. In this time period, a 
+&lt;a href="https://github.com/Charcoal-SE/SmokeDetector/commit/102aa9c64edafb7f5fef5ba16414f4cefad03d64"&gt;commit&lt;/a&gt; was added that added about 200,000 lines of code to the project. This was almost all training data for a 
+Bayesian algorithm. It wasn't needed and probably shouldn't have been added to the main repository. Unfortunately, it 
+stayed in the repository for over a year and was finally &lt;a href="https://github.com/Charcoal-SE/SmokeDetector/commit/68d49ccc0b4981a4ebe91d993f42643542e44d80"&gt;removed&lt;/a&gt; in late 2015. This is the cause of the weird graph 
+above, and why almost everything added in 2014 looks like it's missing in later years.&lt;/p&gt;
+&lt;h3 id="what-has-really-changed"&gt;What has really changed?&lt;a class="headerlink" href="#what-has-really-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After eliminating that bayesian directory from git history, you can get a much better idea of how much has changed. &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://andrewwegner.com/images/smokey-git-theseus-filtered.png"&gt;&lt;img alt="SmokeDetector - Git of Theseus - Filtered" src="http://andrewwegner.com/images/smokey-git-theseus-filtered.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Very little of the original code, written in 2014, remains untouched. The explosion in code after that is due to
+new detection patterns, chat commands (and a rewrite), integration with MetaSmoke and the introduction of blacklists.&lt;/p&gt;
+&lt;p&gt;Even more dramatically, you can see how long a line of code is expected to survive in the code base.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://andrewwegner.com/images/smokey-git-theseus-survival.png"&gt;&lt;img alt="SmokeDetector - Line Survival Rate" src="http://andrewwegner.com/images/smokey-git-theseus-survival.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Within one year, the team is removing over 40% what's been committed to the repository. Looking at these commits, 
+it was determined that a vast majority aren't even &lt;em&gt;code&lt;/em&gt;. They are new items to blacklist or new patterns to detect. &lt;/p&gt;
+&lt;h2 id="enter-the-database"&gt;Enter the database&lt;a class="headerlink" href="#enter-the-database" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;All of this type of data can be stored in a database and managed outside of code. In early 2017, those discussions 
+started taking place. Several team members come from a Ruby background and were familiar with it's &lt;a href="https://en.wikipedia.org/wiki/Object-relational_mapping"&gt;ORM&lt;/a&gt; method of
+accessing databases. They wanted something similar when a database was brought into SmokeDetector.&lt;/p&gt;
+&lt;p&gt;A bit of research was done and it was narrowed down to &lt;a href="http://docs.peewee-orm.com/en/latest/"&gt;peewee&lt;/a&gt; and &lt;a href="https://www.sqlalchemy.org/"&gt;SQLAlchemy&lt;/a&gt;. &lt;/p&gt;
+&lt;h3 id="how-to-choose"&gt;How to choose?&lt;a class="headerlink" href="#how-to-choose" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Fortunately for the SmokeDetector team, there weren't any strong opinions either way. The biggest reason for choosing
+one over the other came down to a &lt;a href="https://www.reddit.com/r/Python/comments/4tnqai/choosing_a_python_ormpeewee_vs_sqlalchemy/d5jyuug/"&gt;comment made by the peewee author&lt;/a&gt; on reddit. They state:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[...] SQLAlchemy is the gold standard for ORM in the Python world. It has a very active community and a maintainer 
+who is committed to excellence. If you're a glass-half-empty guy, to put it another way, you can't go wrong if you 
+choose SQLAlchemy.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The weaknesses they list for using their own package is the smaller ecosystem, support and number of developers.&lt;/p&gt;
+&lt;h3 id="technical-differences"&gt;Technical differences&lt;a class="headerlink" href="#technical-differences" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;That's a boring story though. Not to be deterred from such a glowing review from a competitor, I wanted to see what the
+technical differences were between the two solutions.&lt;/p&gt;
+&lt;p&gt;To that end, I put together a small Python notebook showing the &lt;a href="https://gist.github.com/AWegnerGitHub/201dbaf09740f9ecd797c32ebfc15872"&gt;differences between peewee and SQLAlchemy&lt;/a&gt; in a 
+handful of tests. These tests included inserting two settings in an SQLite database, retrieving one, inserting a large
+list of users and then retrieving a subset of those users.&lt;/p&gt;
+&lt;p&gt;The results were...unremarkable. &lt;/p&gt;
+&lt;p&gt;[![peewee vs SQLAlchemy results][13]][13]&lt;/p&gt;
+&lt;p&gt;The two libraries each took two tests (out of four) for being faster than the other. In both cases where SQLAlchemy was
+faster, it was between two and six times faster. Where peewee was faster it was between a fraction faster and twice as
+fast. &lt;/p&gt;
+&lt;p&gt;The time scales are so small though, and SmokeDetector doesn't need to have thousands, hundreds or even tens of hits to
+the database a second. A hundred extra milliseconds isn't going to cripple anything it handles.&lt;/p&gt;
+&lt;p&gt;Thus, the choice was made based on the recommendation of the author of the peewee library. SQLAlchemy has a larger
+community and better support. &lt;/p&gt;</content><category term="technical"></category><category term="programming"></category></entry><entry><title>Review of Udemy's "Deep Learning Prerequisites: The Numpy Stack in Python" course</title><link href="http://andrewwegner.com/deep-learning-prereq-numpy.html" rel="alternate"></link><published>2017-04-20T22:30:00-05:00</published><updated>2017-04-20T22:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-20:/deep-learning-prereq-numpy.html</id><summary type="html">&lt;p&gt;My review of "Deep Learning Prerequisites: The Numpy Stack in Python" on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I found &lt;a href="https://www.udemy.com/user/lazy-programmer/"&gt;Lazy Programmer's&lt;/a&gt; Deep Learning courses on Udemy. A couple of those seem very interesting, specifically the ones 
 about Natural Language Processing. I'd love to be able to enhance either my &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;comment flagging&lt;/a&gt;, &lt;a href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html"&gt;Zephyr&lt;/a&gt; or &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; 
