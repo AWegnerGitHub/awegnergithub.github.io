@@ -64,8 +64,9 @@
                 <div class="span10">
 <article itemscope itemtype="http://schema.org/BlogPosting">
 <meta itemprop="headline" content="Multiple IP addresses on the same physical network card" />
-<meta itemprop="author" content="Andy Wegner" />
 <time itemprop="datePublished" datetime="2010-11-17T12:54:00-06:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="http://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
     <h1><a href="http://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html"> Multiple IP addresses on the same physical network card  </a></h1>
@@ -76,7 +77,7 @@
         <div class="span8 offset2 article-content">
 
             
-            <div itemprop="articleBody">
+            <div itemprop="articleBody mainEntityOfPage">
             <p>There are times when a server can be allocated more than one IP Address even though it contains only one physical 
 network card. To associate these IP addresses with the server some manipulation of networking settings will need to be 
 performed. The steps outlined in this walk-through are for RedHat based systems. This tutorial is for statically assigned 
@@ -117,6 +118,14 @@ NAME=&quot;System eth0:0&quot;    &lt;-- Change to reflect new name of device
 <p>When the network components come back up you should see your new device in the <code>ifconfig</code> command. To add more IPs, 
 copy and replace values as specified above.</p>
             </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="http://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="http://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online 
+            community building, tinkering with new code and building new applications. 
+            He writes about his experiences with each of these.</span>
+
+            </div>
             
             
             <hr/>
@@ -133,6 +142,8 @@ copy and replace values as specified above.</p>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
             <time itemprop="dateCreated" datetime="2010-11-17T12:54:00-06:00">Nov 17, 2010</time>
+<time itemprop="dateModified" datetime="2010-11-17T12:54:00-06:00">
+
             <h4>Category</h4>
             <a class="category-link" href="http://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
             <h4>Tags</h4>

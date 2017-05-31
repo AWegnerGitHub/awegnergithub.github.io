@@ -64,8 +64,9 @@
                 <div class="span10">
 <article itemscope itemtype="http://schema.org/BlogPosting">
 <meta itemprop="headline" content="Link Analysis - Technical Explanation" />
-<meta itemprop="author" content="Andy Wegner" />
 <time itemprop="datePublished" datetime="2015-08-10T23:41:00-05:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="http://andrewwegner.com/link-analysis---technical-explanation.html" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
     <h1><a href="http://andrewwegner.com/link-analysis---technical-explanation.html"> Link Analysis - Technical Explanation  </a></h1>
@@ -95,7 +96,7 @@
     <div class="span8 article-content">
 
             
-            <div itemprop="articleBody">
+            <div itemprop="articleBody mainEntityOfPage">
             
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
 <p>In my last two posts, I've discussed the number of <a href="http://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html">rotten links</a> on Stack Overflow and a <a href="http://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html">proposal to fix said links</a>. In this post, I'm going to discuss how I performed this analysis. </p>
@@ -180,6 +181,14 @@ rows identified by '&lt;row&gt;';
 <p>I am rather proud of how the results turned out for this project. I went into it expecting about 15% of links to be broken, but I didn't really realize what the meant. Fifteen percent of 21 million total posts is over 3 million. That's a large number. BUT, it also ignored that a large percentage of posts don't contain links. I failed to consider that in my original hypothesis. </p>
 <p>Less than half of my sample had links (2.3M out of 5.6M). Of the 2.3M with links, only 1.5M were unique links. The final result of 10% failed links makes much more sense in this context. Ten percent of 1.5M links means that there are 150K links that are bad. </p>
             </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="http://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="http://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online 
+            community building, tinkering with new code and building new applications. 
+            He writes about his experiences with each of these.</span>
+
+            </div>
             
             
             <hr/>
@@ -196,6 +205,8 @@ rows identified by '&lt;row&gt;';
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
             <time itemprop="dateCreated" datetime="2015-08-10T23:41:00-05:00">Aug 10, 2015</time>
+<time itemprop="dateModified" datetime="2015-08-10T23:41:00-05:00">
+
         <h4>Stack Overflow Link Analysis</h4>
     <ul class="multi-parts-list">
             <li >

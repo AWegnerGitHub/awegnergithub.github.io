@@ -65,8 +65,9 @@
                 <div class="span10">
 <article itemscope itemtype="http://schema.org/BlogPosting">
 <meta itemprop="headline" content="How I built a Flask application that integrates with Travis CI and OpenShift" />
-<meta itemprop="author" content="Andy Wegner" />
 <time itemprop="datePublished" datetime="2015-12-11T09:15:00-06:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="http://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
     <h1><a href="http://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html"> How I built a Flask application that integrates with Travis CI and OpenShift  </a></h1>
@@ -98,7 +99,7 @@
     <div class="span8 article-content">
 
             
-            <div itemprop="articleBody">
+            <div itemprop="articleBody mainEntityOfPage">
             
 <h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">¶</a></h2>
 <p>Since I <a href="http://andrewwegner.com/thanks-for-all-the-fish.html">shut down</a> Vipers early this year, I've been itching to do <em>something</em> web related. Web technologies aren't my best technical skill, but I like trying out new things and learning something in the process. I use Python at work. I like Python a lot. With Christmas and New Years coming up, I want to have a project during my down time. My goal is to get a <a href="http://flask.pocoo.org/">Flask</a> application built and then deployed to <a href="https://www.openshift.com/">OpenShift</a>. Part of this deployment is to utilize <a href="https://travis-ci.org/">TravisCI</a>. I'm planning on using <a href="http://pytest.org/latest/">pytest</a> and <a href="https://hypothesis.readthedocs.org/en/latest/">hypothesis</a> for my test suite. Finally, I want to use my own (sub)domain, instead of the provided <code>rhcloud</code> one.</p>
@@ -276,6 +277,14 @@ The command "py.test" exited with 0.
 <p>With this, the set up is complete. You have a Flask application, connected to MySQL, that is integrated with a CI system which automatically deploys to OpenShift when all tests pass and uses CloudFlare (because I already was doing so), to provide a CDN. </p>
 <p>On to building something!</p>
             </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="http://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="http://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online 
+            community building, tinkering with new code and building new applications. 
+            He writes about his experiences with each of these.</span>
+
+            </div>
             
             
             <hr/>
@@ -295,7 +304,7 @@ The command "py.test" exited with 0.
 
 <h4>Last Updated</h4>
 <time datetime="2015-12-12T00:00:00-06:00">Dec 12, 2015</time>
-
+<time itemprop="dateModified" datetime="2015-12-12T00:00:00-06:00">
             <h4>Category</h4>
             <a class="category-link" href="http://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
             <h4>Tags</h4>

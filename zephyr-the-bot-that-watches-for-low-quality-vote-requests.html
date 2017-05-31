@@ -65,8 +65,9 @@
                 <div class="span10">
 <article itemscope itemtype="http://schema.org/BlogPosting">
 <meta itemprop="headline" content="Zephyr - The bot that watches for low quality vote requests" />
-<meta itemprop="author" content="Andy Wegner" />
 <time itemprop="datePublished" datetime="2015-03-12T23:34:00-05:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
     <h1><a href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html"> Zephyr - The bot that watches for low quality vote requests  </a></h1>
@@ -98,7 +99,7 @@
     <div class="span8 article-content">
 
             
-            <div itemprop="articleBody">
+            <div itemprop="articleBody mainEntityOfPage">
             
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
 <p>Stack Exchange receives thousands of questions per day across all of their sites. Not all of these are high quality
@@ -174,6 +175,14 @@ pretty unreliable. I'd get multiple errors through out the week, ranging from <c
 solution has been to switch to <a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"><code>watch_socket</code></a>. The only time I've had problems since this switch is when the Stack Exchange 
 web sockets go down. This saves a lot of restarts to get everything up and running again.</p>
             </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="http://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="http://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online 
+            community building, tinkering with new code and building new applications. 
+            He writes about his experiences with each of these.</span>
+
+            </div>
             
             
             <hr/>
@@ -193,7 +202,7 @@ web sockets go down. This saves a lot of restarts to get everything up and runni
 
 <h4>Last Updated</h4>
 <time datetime="2015-05-08T00:00:00-05:00">May 8, 2015</time>
-
+<time itemprop="dateModified" datetime="2015-05-08T00:00:00-05:00">
             <h4>Category</h4>
             <a class="category-link" href="http://andrewwegner.com/categories.html#programming-projects-ref">Programming Projects</a>
             <h4>Tags</h4>
