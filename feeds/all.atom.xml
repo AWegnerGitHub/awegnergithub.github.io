@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-05-22T23:45:00-05:00</updated><entry><title>Stack Overflow's Problem - Feedback from an experienced user</title><link href="http://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html" rel="alternate"></link><published>2017-05-22T23:45:00-05:00</published><updated>2017-05-22T23:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-05-22:/stack-overflows-problem-feedback-from-an-experienced-user.html</id><summary type="html">&lt;p&gt;Stack Overflow appears to have made several poor decisions in the past few years. This is feedback from an experienced community member on how those decisions are perceived&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-06-28T06:16:00-05:00</updated><entry><title>Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course</title><link href="http://andrewwegner.com/django-fullstack-bootcamp-course-review.html" rel="alternate"></link><published>2017-06-28T06:16:00-05:00</published><updated>2017-06-28T06:16:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-06-28:/django-fullstack-bootcamp-course-review.html</id><summary type="html">&lt;p&gt;My review of the Python and Django Full Stack Web Developer Bootcamp course on Udemy.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After ploughing through &lt;a href="http://andrewwegner.com/deep-learning-prereq-numpy.html"&gt;two machine learning&lt;/a&gt; &lt;a href="http://andrewwegner.com/deep-learning-prereq-linear-logistic-regression.html"&gt;prerequisite courses&lt;/a&gt;, I wanted to have a change in content for the next
+course I took. I've used Django in the past to build &lt;a href="https://github.com/AWegnerGitHub/IRVING"&gt;IRVING&lt;/a&gt; - a dashboard that allows users to run queries against many
+database types and display the results in one location. The majority of this was done almost 6 years ago though. It was built
+to assist in a job I no longer hold. Since then, I've ignored it and haven't used Django for a major project. I have used it to
+test a small snippet of code here or there, but never a complete application. &lt;/p&gt;
+&lt;p&gt;I remember liking Django. To that end, I decided to take Jose Portilla's &lt;a href="https://www.udemy.com/python-and-django-full-stack-web-developer-bootcamp/learn/v4/overview"&gt;Python and Django Full Stack Web Developer Bootcamp&lt;/a&gt;
+course on Udemy. &lt;/p&gt;
+&lt;h2 id="thoughts-on-the-course"&gt;Thoughts on the course&lt;a class="headerlink" href="#thoughts-on-the-course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I am conflicted on how to rate this course. On the one hand, it covers a lot in the 30ish hours that the lectures take. Starting at
+the very basics and moving through more advanced Django topics, it covers HTML and CSS then moves to Bootstrap, Javascript, the DOM,
+jQuery, and Python before finally getting to Django. On the other hand, it moves through those basic lectures very slowly. Django isn't
+even reached until two thirds of the way through the course. &lt;/p&gt;
+&lt;p&gt;The lectures were a combination of hands on coding and an explanation of what the code is doing. The instructor types slightly 
+faster than me. This was a problem only at transitions between files, for example moving between an HTML file and a CSS file. I found myself
+rewinding the video lectures many times around these transitions. &lt;/p&gt;
+&lt;p&gt;One thing that I liked very early on in the lecture was the introduction of GitHub's &lt;a href="https://atom.io/"&gt;ATOM text editor&lt;/a&gt;. I've used this once before, for a job 
+interview that went very poorly (another story, for another time). I'd heard good things about it though. I used it throughout the course as a way to 
+force myself to use something other than PyCharm. Now that the course is complete, I have decided that I like ATOM, but not enough to switch from
+PyCharm. It does have some nice features, especially with plugins, that I may utilize when building boiler plate code and templates though. &lt;/p&gt;
+&lt;h2 id="foundation-vs-django-content"&gt;Foundation vs Django content&lt;a class="headerlink" href="#foundation-vs-django-content" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The foundational material - HTML, CSS, Bootstrap, Javascript, jQuery and even the Python - dragged on a little long for my taste. As I 
+mentioned above, this foundation took up the first two thirds of the course. I'd have prefered it if more time could be spent covering
+other aspects of Django, especially some of the concepts that are thrown at the student in the last clone project.&lt;/p&gt;
+&lt;p&gt;The Django content, itself, was great. It started at basics like setting up a project and single application within the project and 
+moved through URL routing, templates, views and briefly touched on the admin side. There were advanced topics on class based views and
+the debug toolbar, both of which are important when developing. &lt;/p&gt;
+&lt;p&gt;I can't help feeling that important things were missed though. For example, the admin side is barely touched. It is incredibly capable, yet the
+most that is done in this course with the admin backend is registering a model to appear. Groups and permissions aren't touched at all. Customizing
+views in the backend aren't mentioned, either. Another thing that I was hoping would be covered as part of the "and much,much more!" bullet in the
+course description was both &lt;a href="https://docs.djangoproject.com/en/1.11/topics/signals/"&gt;signals&lt;/a&gt; and &lt;a href="https://www.djangoproject.com/weblog/2016/sep/09/channels-adopted-official-django-project/"&gt;channels&lt;/a&gt;, but they are not mentioned.&lt;/p&gt;
+&lt;p&gt;Clone projects are useful in giving students a "real world" example that they are familiar with to bring everything they've learned together. There
+are two such projects in this course, a blog and a message board/social media site. The blog one was a logical extension of the 5 parts that were
+covered by Django. The message board, however, wasn't as useful. In an effort to be more "real world", the instructor missed a lot of steps in the
+preceeding foundational lectures. This project introduces multiple applications in the same project, but never introduced that concept previously 
+and doesn't expand on it much here. Instead, the project becomes a combination of speed coding to keep up with what's happening in the lecture and 
+copy and pasting code from the notes when the instructor does the same thing. I appreciate the more realistic project, but for all the time that was 
+spent building the foundation of Django knowledge, there is a big gap between the last lecture and this clone. &lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course was worthwhile, once I made it through the foundational courses. It was a great refresher for what I'd done 6 years ago. Either I did
+things very inefficiently then, or Django has had a &lt;em&gt;ton&lt;/em&gt; of improvements (or both), but looking back at IRVING, I see many things that could be 
+improved. I'm not sure if I actually will though, just due to not using the application any longer. &lt;/p&gt;
+&lt;p&gt;The long foundational courses either should have been condensed. I would have rather had more focus on Django and covered more topics there. This
+is especially true after completing the second clone project. New concepts were used in this project, but glossed over as "there is excellent
+documentation on this", instead of the in depth explanations that were provided earlier in the course.&lt;/p&gt;
+&lt;p&gt;I'd recommend this course for the Django topics. However, if you are coming into the course with any type of web development background (even the 
+relatively basic one I have), be prepared to be bored during the first half of the course.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;a href="https://ude.my/UC-1VGWNREH"&gt;&lt;img alt="Python and Django Full Stack Web Developer Bootcamp Award" src="http://andrewwegner.com/images/udemy-django-full-stack-bootcamp.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Stack Overflow's Problem - Feedback from an experienced user</title><link href="http://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html" rel="alternate"></link><published>2017-05-22T23:45:00-05:00</published><updated>2017-05-22T23:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-05-22:/stack-overflows-problem-feedback-from-an-experienced-user.html</id><summary type="html">&lt;p&gt;Stack Overflow appears to have made several poor decisions in the past few years. This is feedback from an experienced community member on how those decisions are perceived&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Stack Overflow launched in 2008. As it nears it's 9th year of operation, I am afraid the resource that I depend on is losing it's way. Stack Overflow launched after I graduated college. I can't imagine how helpful it would have been during that time period, but it's been invaluable in my professional career. I &lt;a href="https://stackoverflow.com/users/189134/andy?tab=profile"&gt;joined&lt;/a&gt; the site about a year after it's public launch, in October 2009.&lt;/p&gt;
 &lt;p&gt;In that time, I've gone from lurker to participant to moderator candidate (several times). I know Stack Overflow and Meta Stack Overflow. I am a moderator on another Stack Exchange site and have a good understanding of how the network operates. I also am one of the &lt;a href="http://andrewwegner.com/images/top_lqp_queue.png"&gt;most prolific reviewers&lt;/a&gt; in the Stack Overflow &lt;a href="https://stackoverflow.com/review/low-quality-posts/stats"&gt;Low Quality Posts review queue&lt;/a&gt; and have built several applications that work with the Stack Exchange API. I am a power user and know the network and the community.&lt;/p&gt;
