@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-07-31T12:00:00-05:00</updated><entry><title>A reflection on my decade at Caterpillar</title><link href="http://andrewwegner.com/a-decade-at-caterpillar.html" rel="alternate"></link><published>2017-07-31T12:00:00-05:00</published><updated>2017-07-31T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-07-31:/a-decade-at-caterpillar.html</id><summary type="html">&lt;p&gt;My career at Caterpillar has come to an end. This is a reflection on the last decade.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-08-18T10:06:00-05:00</updated><entry><title>Collecting Diamonds on Stack Exchange</title><link href="http://andrewwegner.com/collecting-diamonds-on-stack-exchange.html" rel="alternate"></link><published>2017-08-18T10:06:00-05:00</published><updated>2017-08-18T10:06:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-08-18:/collecting-diamonds-on-stack-exchange.html</id><summary type="html">&lt;p&gt;I've picked up a couple moderation diamonds recently. A reflection on the Stack Overflow election.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's been over two years since I first ran for moderator on Stack Overflow. &lt;a href="http://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html"&gt;I've ran for moderator&lt;/a&gt; &lt;a href="http://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html"&gt;three times&lt;/a&gt;, &lt;a href="http://andrewwegner.com/third-times-the-charm.html"&gt;previously&lt;/a&gt; on Stack Overflow. 
+In each election I've done better, coming in fifth in the third election. Well, it's been a little over 8 months since the last one and new moderators are needed
+again. I decided to run once more with the knowledge that if I lost, I probably wouldn't run again in the next election. &lt;/p&gt;
+&lt;h2 id="nomination-phase"&gt;Nomination Phase&lt;a class="headerlink" href="#nomination-phase" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The nomination phase started off as usual, with a handful of users posting their nomination. This time there were 12 candidates, meaning there would be a primary
+to narrow it down to 10 before the final election. My nomination was the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I'm &lt;strong&gt;Andy&lt;/strong&gt;. I've answered the questions posted by the community &lt;a href="https://meta.stackoverflow.com/questions/352386/2017-moderator-election-qa-questionnaire/352388#352388"&gt;here&lt;/a&gt; I encourage you to take a look.&lt;/p&gt;
+&lt;h2 id="why-should-you-vote-for-me"&gt;Why should you vote for me?&lt;a class="headerlink" href="#why-should-you-vote-for-me" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;I've been a moderator on &lt;a href="https://communitybuilding.stackexchange.com/"&gt;Community Building&lt;/a&gt; for several years. I was appointed to a moderator position on &lt;a href="https://hardwarerecs.stackexchange.com/"&gt;Hardware Recommendations&lt;/a&gt;. I know the moderator 
+tools and have worked with the current moderators.&lt;/li&gt;
+&lt;li&gt;I'm active in the review queues (I am the top reviewer in the Low Quality Post reviewers, with over 26,500 reviews in this queue). I also enjoy the other 
+moderation aspects of Stack Exchange.&lt;/li&gt;
+&lt;li&gt;I believe that moderation can be tool assisted. I've helped to flag a sizable percentage of &lt;a href="https://meta.stackoverflow.com/questions/280546/can-a-machine-be-taught-to-flag-comments-automatically"&gt;comments&lt;/a&gt; on Stack Overflow. I've helped build the community 
+&lt;a href="https://meta.stackexchange.com/questions/291301/can-a-machine-be-taught-to-flag-spam-automatically"&gt;spam detection bot&lt;/a&gt;. These types of tools help eliminate the obvious bad stuff so that moderation time can be spent on the less obvious stuff.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have a history of good community moderation, am here consistently, and believe I can help the current team.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="Candidate Score" src="http://andrewwegner.com/images/2017_candidate_score.png"/&gt;&lt;/p&gt;
+&lt;h3 id="nomination-reflections"&gt;Nomination Reflections&lt;a class="headerlink" href="#nomination-reflections" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;An astute reader may have noticed this is pretty similar to previous nomination posts. There are a couple major differences though. The first thing is that I am the 
+the number one Low Quality Posts reviewer on the site. I am pretty proud of this particular statistic. It shows just how much work I've done during my tenure at Stack 
+Overflow to improve the quality of the site. The unfortunate thing is that I'd probably lose this position as a moderator because they don't sit in the review queues.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Low Quality Posts" src="http://andrewwegner.com/images/number_1_low_quality_reviewer.png"/&gt;&lt;/p&gt;
+&lt;p&gt;The other major change was that I had picked up a moderator position on Hardware Recommendations. That happened at the end of June. Hardware Recommendations is about ten 
+times the size of Community Building (a site I've moderated for several years). It's also a couple orders of magnitude &lt;em&gt;smaller&lt;/em&gt; than Stack Overflow. &lt;/p&gt;
+&lt;h2 id="primary-phase"&gt;Primary Phase&lt;a class="headerlink" href="#primary-phase" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The most exciting part of the election season is the primary phase. The community can see the scores of users over time and have built tools to watch those numbers change 
+over time. It turns out that this time, my numbers were really high.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Primary Results Table" src="http://andrewwegner.com/images/2017-07-SO-Election-Primary-Results.png"/&gt;&lt;/p&gt;
+&lt;p&gt;There were plenty of good people in the election this time. One interesting thing that I found was that a lot of candidates, like me, were supportive of automation. Several
+users utilized bots that posted low quality content to various chat rooms. This is a big change from previous elections. It was a welcome change. I think that automated
+quality content checking can help a lot.&lt;/p&gt;
+&lt;h2 id="election"&gt;Election&lt;a class="headerlink" href="#election" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The election ended on August 1st. (&lt;a href="http://andrewwegner.com/a-decade-at-caterpillar.html"&gt;A busy day for me, apparently&lt;/a&gt;). It was a close election. Most surprisingly, no one won in the first round with everyone else 
+picking up carry over votes to get second. I think that speaks to the quality of the candidates. After &lt;a href="https://www.opavote.com/results/5927932925050880"&gt;8 rounds in OpaVote&lt;/a&gt;, both Cody Gray and I were elected the two newest moderators on Stack Overflow!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Election Results - OpaVote" src="http://andrewwegner.com/images/2017_opavote_results.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Election Results" src="http://andrewwegner.com/images/2017_election_results.png"/&gt;&lt;/p&gt;
+&lt;h2 id="post-election"&gt;Post Election&lt;a class="headerlink" href="#post-election" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The election ended a few weeks ago. I handled more moderator flags in my first hour as a Stack Overflow moderator than I had at both Community Building and 
+Hardware Recommendations combined. What I'm saying...Stack Overflow has a &lt;em&gt;ton&lt;/em&gt; of flags that need to be handled. In good news, since the election, we have gotten the
+moderator queue down from about 1,100 flags to about 75 at any given time. I doubt it will stay that low, but it's still nice to see that I was immediately helpful.&lt;/p&gt;
+&lt;p&gt;Finally, since the election I turned off the comment flagging bot. It had been used for just over 3 years. The community is currently &lt;a href="https://meta.stackoverflow.com/q/354719/189134"&gt;debating&lt;/a&gt; whether or not it should
+run under a moderator account. The thing that I am finding more interesting about this discussion is that the community seems to agree it's helpful, &lt;a href="https://meta.stackoverflow.com/a/354723/189134"&gt;respects&lt;/a&gt; the 99+%
+accuracy, would love for Stack Exchange themselves to run this tool, but doesn't want the bot to run with moderator privileges. There is, however, a very sizable portion of
+the community that &lt;em&gt;does&lt;/em&gt; want this done under my account. We'll see how this plays out, but I'm hoping to be able to use the bot again soon.&lt;/p&gt;</content><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>A reflection on my decade at Caterpillar</title><link href="http://andrewwegner.com/a-decade-at-caterpillar.html" rel="alternate"></link><published>2017-07-31T12:00:00-05:00</published><updated>2017-07-31T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-07-31:/a-decade-at-caterpillar.html</id><summary type="html">&lt;p&gt;My career at Caterpillar has come to an end. This is a reflection on the last decade.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="right-out-of-college"&gt;Right out of college&lt;a class="headerlink" href="#right-out-of-college" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Ten an a half years ago, I was the manager at the university helpdesk and less than six months from graduation. I hadn't 
 heard back from the company I interned with. I was getting concerned. I went to the university's yearly career fair. I had 

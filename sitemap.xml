@@ -2,9 +2,14 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://andrewwegner.com/</loc>
-<lastmod>2017-07-31</lastmod>
+<lastmod>2017-08-18</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
+</url><url>
+<loc>http://andrewwegner.com/collecting-diamonds-on-stack-exchange.html</loc>
+<lastmod>2017-08-18</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url><url>
 <loc>http://andrewwegner.com/a-decade-at-caterpillar.html</loc>
 <lastmod>2017-07-31</lastmod>
@@ -212,7 +217,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>http://andrewwegner.com/category/side-activities.html</loc>
-<lastmod>2017-05-22</lastmod>
+<lastmod>2017-08-18</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -232,7 +237,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>http://andrewwegner.com/tag/stack-exchange.html</loc>
-<lastmod>2017-05-22</lastmod>
+<lastmod>2017-08-18</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -272,7 +277,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>http://andrewwegner.com/tag/moderation.html</loc>
-<lastmod>2015-12-08</lastmod>
+<lastmod>2017-08-18</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -297,7 +302,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>http://andrewwegner.com/author/andy-wegner.html</loc>
-<lastmod>2017-07-31</lastmod>
+<lastmod>2017-08-18</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url>
