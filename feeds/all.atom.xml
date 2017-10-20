@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-08-18T10:06:00-05:00</updated><entry><title>Collecting Diamonds on Stack Exchange</title><link href="http://andrewwegner.com/collecting-diamonds-on-stack-exchange.html" rel="alternate"></link><published>2017-08-18T10:06:00-05:00</published><updated>2017-08-18T10:06:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-08-18:/collecting-diamonds-on-stack-exchange.html</id><summary type="html">&lt;p&gt;I've picked up a couple moderation diamonds recently. A reflection on the Stack Overflow election.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-10-20T11:17:00-05:00</updated><entry><title>Review of Udemy's AWS Serverless APIs &amp; Apps - A Complete Introduction course</title><link href="http://andrewwegner.com/aws-serverless-apis-apps-review.html" rel="alternate"></link><published>2017-10-20T11:17:00-05:00</published><updated>2017-10-20T11:17:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-10-20:/aws-serverless-apis-apps-review.html</id><summary type="html">&lt;p&gt;My review of the AWS Serverless APIs &amp;amp; Apps course on Udemy.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been involved with the &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; spam hunting project for several years. In that time It's grown from 
+a small Python script to a large combination of Python, Ruby and user scripts. The infrastructure hasn't really changed
+in that time, though, and it's starting to show. SmokeDetector, the Python script, is run by multiple users so that 
+random network problems that kill the instance don't take the entire system off line. Arguably, the project should
+work on fixing this instability, but the alternative that we came up with works too. &lt;/p&gt;
+&lt;p&gt;At least it did. Now this distributed way of running is starting to cause issues. Keeping each instance in sync
+with one another is a very difficult problem. We've built a decent solution to this for handling spam patterns,
+but we've failed to replicate this for other things like permission sets or notifications. Adding this involves
+integration with GitHub and a series of new commands. It's painful.&lt;/p&gt;
+&lt;p&gt;One of the recent discussions to solve this problem was a centralized database. That brings me to this course. &lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://ude.my/UC-1ESFUC2V"&gt;AWS Serverless APIs &amp;amp; Apps - A Complete Introduction&lt;/a&gt; by Maximilian Schwarzmüller on Udemy 
+looked like a good overview for AWS lambda and DynamoDB, two solutions the SmokeDetector project was looking 
+into using.&lt;/p&gt;
+&lt;h2 id="thoughts-on-the-course"&gt;Thoughts on the course&lt;a class="headerlink" href="#thoughts-on-the-course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course provides a good overview of Amazon's API Gateway, AWS Lambda and several other Amazon services. There 
+is a little bit of coding involved - using NodeJS - but a large majority is dedicated to working in the various Amazon
+consoles. Except for one optional lecture, the entire course can be completed using Amazon's free tier. This is 
+great for a course and one of the factors I used to determine if I really wanted to take the course. The instructor
+is very clear, throughout the course, which aspects cost additional money so that no unexpected charges show up
+from Amazon.&lt;/p&gt;
+&lt;p&gt;The course covers the API Gateway, AWS permissions, AWS Lambda, body mapping templates, DynamoDB, authentication with
+Cognito and hosting a serverless SPA. At first glance this seems like a lot to cover in an 8 hour course. The instructor
+has broken these into small digestable lectures that do a good job of introducing each new service, explaining the theory
+behind each and then using the service to implement functionality into the course long project. &lt;/p&gt;
+&lt;p&gt;A course long project is a good way to show how each of these Amazon services are useful to a larger project. Instead of 
+focusing on a small example project where it is difficult to expand the course work into the real world, a real world 
+project with various requirements is used. This project uses each of the services I mentioned above in a natural way. 
+Implementing new functionality doesn't feel forced, instead it is something that users would expect from a modern application.&lt;/p&gt;
+&lt;p&gt;I am very happy with this course. Everything was very well presented. The project was useful because I can easily understand
+how each of the Amazon services function. I also have a good idea how the console works and how to troubleshoot problems
+because of the work that was done in this course. &lt;/p&gt;
+&lt;p&gt;My only complaint with regard to this course is that the video lectures are interrupted with text based lectures consisting
+of more details and links to documentation. I appreciate these links and used several of them, but the interruption of the 
+videos to present these broke the nice flow of the lectures. Presenting these links at the end of the section, I think would be 
+less of an interruption. This was a minor thing, though, and doesn't take away from how much I enjoyed the course. &lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I feel that I have a decent understanding of Amazon's services at this point. I am looking forward to applying this new
+knowledge and, hopefully, improving the SmokeDetector infrastructure at the same time. I highly recommend this course
+if you are thinking of migrating anything to Amazon. I feel much more comfortable about moving aspects of a project
+to this new solution.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;a href="https://ude.my/UC-1ESFUC2V"&gt;&lt;img alt="AWS Serverless APIs and Apps Completion" src="http://andrewwegner.com/images/udemy-aws-serverless-apis-apps.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Collecting Diamonds on Stack Exchange</title><link href="http://andrewwegner.com/collecting-diamonds-on-stack-exchange.html" rel="alternate"></link><published>2017-08-18T10:06:00-05:00</published><updated>2017-08-18T10:06:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-08-18:/collecting-diamonds-on-stack-exchange.html</id><summary type="html">&lt;p&gt;I've picked up a couple moderation diamonds recently. A reflection on the Stack Overflow election.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It's been over two years since I first ran for moderator on Stack Overflow. &lt;a href="http://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html"&gt;I've ran for moderator&lt;/a&gt; &lt;a href="http://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html"&gt;three times&lt;/a&gt;, &lt;a href="http://andrewwegner.com/third-times-the-charm.html"&gt;previously&lt;/a&gt; on Stack Overflow. 
 In each election I've done better, coming in fifth in the third election. Well, it's been a little over 8 months since the last one and new moderators are needed
@@ -49,7 +92,7 @@ run under a moderator account. The thing that I am finding more interesting abou
 accuracy, would love for Stack Exchange themselves to run this tool, but doesn't want the bot to run with moderator privileges. There is, however, a very sizable portion of
 the community that &lt;em&gt;does&lt;/em&gt; want this done under my account. We'll see how this plays out, but I'm hoping to be able to use the bot again soon.&lt;/p&gt;</content><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>A reflection on my decade at Caterpillar</title><link href="http://andrewwegner.com/a-decade-at-caterpillar.html" rel="alternate"></link><published>2017-07-31T12:00:00-05:00</published><updated>2017-07-31T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-07-31:/a-decade-at-caterpillar.html</id><summary type="html">&lt;p&gt;My career at Caterpillar has come to an end. This is a reflection on the last decade.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="right-out-of-college"&gt;Right out of college&lt;a class="headerlink" href="#right-out-of-college" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Ten an a half years ago, I was the manager at the university helpdesk and less than six months from graduation. I hadn't 
+&lt;p&gt;Ten and a half years ago, I was the manager at the university helpdesk and less than six months from graduation. I hadn't 
 heard back from the company I interned with. I was getting concerned. I went to the university's yearly career fair. I had 
 companies I wanted to talk with, a few that looked interesting and a handful that I knew handed out decent freebees, so I'd 
 stop by those too. After all, what college student is going to turn down a freebee?&lt;/p&gt;
