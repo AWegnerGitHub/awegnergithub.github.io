@@ -1,5 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Jobs</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/jobs.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-07-31T12:00:00-05:00</updated><entry><title>A reflection on my decade at Caterpillar</title><link href="http://andrewwegner.com/a-decade-at-caterpillar.html" rel="alternate"></link><published>2017-07-31T12:00:00-05:00</published><updated>2017-07-31T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-07-31:/a-decade-at-caterpillar.html</id><summary type="html">&lt;p&gt;My career at Caterpillar has come to an end. This is a reflection on the last decade.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Jobs</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/jobs.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-11-28T09:01:00-06:00</updated><entry><title>How I found an awesome remote only job</title><link href="http://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html" rel="alternate"></link><published>2017-11-28T09:01:00-06:00</published><updated>2017-11-28T09:01:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-11-28:/how-i-found-an-awesome-remote-only-job.html</id><summary type="html">&lt;p&gt;A brief walkthrough of my job hunting process&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's been over three months since I &lt;a href="http://andrewwegner.com/a-decade-at-caterpillar.html"&gt;left my position at Caterpillar&lt;/a&gt;, but
+leaving that job wasn't as simple as finding a position and changing jobs. Since
+my initial post that I was changing positions, I've gotten questions from several
+professional contacts that were also looking to move, but weren't entirely sure
+of the process I used to find my new job. I hope to answer some of those
+questions with this post.&lt;/p&gt;
+&lt;h2 id="new-job-criteria"&gt;New Job Criteria&lt;a class="headerlink" href="#new-job-criteria" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One of the advantages I had during this search was that I had a job already. This
+allowed me to hunt for a job at my own pace. I didn't need a new position
+immediately. The slower pace also let me set my own criteria for what I wanted
+in a new job.&lt;/p&gt;
+&lt;h3 id="full-time-work-from-home"&gt;Full time work from home&lt;a class="headerlink" href="#full-time-work-from-home" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;At Caterpillar, I worked from home one to two days a week. I did this for several
+years and enjoyed it. I found that I was much more productive. I was able to focus
+on the work that needed to be done that day because the distractions of working
+in a cube farm weren't present. I didn't hear the side conversations that I wasn't
+involved in. I didn't get the "hey can you help me" questions that could be solved
+with a few seconds of trying some new code. I was able to concentrate on the task
+and not context switch frequently.&lt;/p&gt;
+&lt;p&gt;Additionally, the drive to and from the office was consuming almost two hours a
+day. In the winter, this was brutal. I was leaving as the sun rose and getting
+home well after it had set. I wasn't seeing the family.&lt;/p&gt;
+&lt;p&gt;My most important criteria was born from these two. I wanted to be able to work
+from home, full time. I was not opposed to the occasional yearly get together,
+but I didn't want to go into an office on a regular basis.&lt;/p&gt;
+&lt;h3 id="pay-and-benefits-must-improve"&gt;Pay and benefits must improve&lt;a class="headerlink" href="#pay-and-benefits-must-improve" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Caterpillar had great benefits. I don't remember ever worrying about health
+coverage, or prescription drug coverage. Pay was "industry average", which
+always seemed a bit lower than what sites like &lt;a href="https://www.glassdoor.com"&gt;glassdoor.com&lt;/a&gt; said I should
+make. Part of this was due to the yearly bonus I was eligible for. This was
+dependent on the business performance and not guaranteed. It also fluctuated a lot.
+The fact that Caterpillar went through nearly five years of poor market performance
+didn't help with those bonuses either.&lt;/p&gt;
+&lt;p&gt;A new position would need to meet or exceed the health benefits I had. The pay
+would need to improve too. Working from home would have the advantage of not
+paying for gas for the car as frequently. It'd also reduce the maintenance costs
+of putting so many miles on the car.&lt;/p&gt;
+&lt;h3 id="something-challenging"&gt;Something challenging&lt;a class="headerlink" href="#something-challenging" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A new position is going to bring new challenges. It's new. You don't know the job.
+But, I wanted it to be challenging after I made it over that initial period of
+adjustment. I started looking for a job that would utilize my programming skills,
+leadership skills from the projects I've led, and maybe some of the community
+management skills I had from Team Vipers and various StackExchange communities I
+participate in.&lt;/p&gt;
+&lt;h2 id="the-search"&gt;The search&lt;a class="headerlink" href="#the-search" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I had my initial, if broad, criteria defined. The next step was to start the hunt.
+I utilized several sites to help with the initial search and to help narrow
+down the list of companies I'd really like to talk with.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://remoteok.io/"&gt;remote|ok&lt;/a&gt; - A job board that updates throughout the day, yet doesn't have
+ thousands of postings. It is specific to the "IT-ish" world. This was helpful
+ in finding companies that are open to remote jobs, because I'd see those companies
+ listings repeatedly over the course of my hunt.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://weworkremotely.com/"&gt;We Work Remotely&lt;/a&gt; - Another "IT-ish" job board that updates one or two
+ times a day. It has multiple categories of jobs and usually is pulling in
+ positions from other job boards. I preferred using this over the source sites
+ because this had a much smaller set of jobs and was restricted to my area of
+ interest.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/jobs"&gt;Stack Overflow Jobs&lt;/a&gt; - I have a love/hate relationship with Stack Overflow
+ Jobs. On the one hand, it had &lt;a href="https://meta.stackoverflow.com/search?q=user%3A189134+%5Bjobs%5D"&gt;so many UI/UX issues&lt;/a&gt;. On the other hand,
+ it makes it really easy to find remote jobs and narrow it down to only jobs
+ I'm interested in. This is where I eventually found the posting for the job I
+ took.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If I'm being honest, my search for a job took over eighteen months. I found
+several jobs that were interesting and that I applied for, but the process was
+slow. There were several false starts, several job applications were ignored,
+and several interviews that didn't move forward at either my choice or the
+company's choice.&lt;/p&gt;
+&lt;h2 id="keeping-it-all-straight"&gt;Keeping it all straight&lt;a class="headerlink" href="#keeping-it-all-straight" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I put out a lot of job applications. This meant that I needed to adjust my
+resume and cover letter to each company. I needed to keep track of when I applied,
+who I interacted with, when interviews were scheduled, and when to give up on
+a job.&lt;/p&gt;
+&lt;p&gt;Enter: &lt;a href="https://trello.com/"&gt;Trello&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Trello Job Search Board" src="http://andrewwegner.com/images/trello-job-board.png"/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prep: This is a reminder to update resume and cover letter for each position,
+ and a list of the labels I utilize. The colored labels made it easy to identify
+ the current status, and whether this was a local or remote position.
+ After searching for about nine months, I started to consider office positions
+ in a few specific cities.&lt;/li&gt;
+&lt;li&gt;Interesting Positions: All new jobs I was considering would go here. It'd
+ consist of a link to the job posting. This was made really easy by utilizing
+ a &lt;a href="https://trello.com/add-card"&gt;bookmarklet&lt;/a&gt; provided by Trello that would send any link to this list on
+ this board.&lt;/li&gt;
+&lt;li&gt;Companies to watch: As my hunt continued, I found several companies that
+ seemed interesting or that had expressed interest in my skill set. I set up
+ links to the job pages for each of these companies so that I could see if anything
+ new and interesting was posted.&lt;/li&gt;
+&lt;li&gt;Submitted applications: After updating my resume and cover letter, filling out
+ the application forms, and pressing submit, a job posting would be moved from
+ "Interesting Positions" to "Submitted Applications".&lt;/li&gt;
+&lt;li&gt;Interviews: When a company liked an application and scheduled an interview, I'd
+ move the card to this step. Additionally, I'd add a comment with the name of the
+ people I'd be talking with - Human Resources representative, technical leads, managers -
+ so that I knew who I'd be talking with.&lt;/li&gt;
+&lt;li&gt;Recheck opening availability: If a card sat in "Interesting Positions" for a
+ period of time, I needed to check if the position  was still available before
+ finally submitting an application. There were many times that I'd mark a job
+ as interesting and then never apply. This list helped keep the viable list of
+ positions down to what was still available.&lt;/li&gt;
+&lt;li&gt;Cold Opportunities / Rejections: Just as I ignored positions, my applications
+ were ignored many times. Other times, an interview process would just fizzle out.
+ These seemed like the company didn't want to send a rejection notice and hoped
+ that ignoring me would provide a hint. It was unprofessional, and I wouldn't look
+ at those companies again. Other times, official rejection responses would be sent
+ back. I appreciated these, even though they were rejections.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="butler-for-trello"&gt;Butler for Trello&lt;a class="headerlink" href="#butler-for-trello" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The last list on the board was &lt;a href="https://butlerfortrello.com/"&gt;Butler for Trello&lt;/a&gt;. This is the system that
+automated a lot of the moving of jobs through the process and applying proper labels.
+When a new job was added to the "Interesting Positions" list, a due date was added
+for one month from now. Triggering off this due date, the butler would move cards
+to "Recheck" if the due date was exceeded.&lt;/p&gt;
+&lt;p&gt;When a card was moved to "Submitted Applications" the due date was changed to be
+three weeks from now. The thought here was that if I haded heard from the company
+in three weeks, I was probably being ignored and thus rejected.&lt;/p&gt;
+&lt;p&gt;This automation helped keep the board clean and usable. I was always presented
+with a list of openings I was interested in that were current. Moving through
+the interview process, the cards would be moved if a period of time was exceeded.
+I didn't need to remember to move stuff based on when I submitted an application,
+or when the last interview was. It just happened.&lt;/p&gt;
+&lt;p&gt;It was amazing.&lt;/p&gt;
+&lt;h2 id="getting-the-job"&gt;Getting the job&lt;a class="headerlink" href="#getting-the-job" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As I said above, this was a long process. That list of cold opportunities and
+rejections is pretty long. I talked to a lot of different companies and went
+through a lot of different interviews. Eventually, though, I found a job
+advertising a Senior Integration Tester at a new start up.&lt;/p&gt;
+&lt;p&gt;The interview process consisted of 4 interviews - one with the Senior Vice President
+of Development, and three individual interviews with team leads (my peers). I also
+needed to submit a project demonstrating how I'd test the API.&lt;/p&gt;
+&lt;p&gt;The interviews felt like conversations. We discussed my project. I had to defend
+a few decisions, but there were no wrong answers. Everyone was professional, yet
+personable.&lt;/p&gt;
+&lt;p&gt;After all of this, an offer was presented and after some last minute "do I really
+want to make a big change in my life" doubts were squashed, I accepted. I love the
+job. &lt;/p&gt;</content><category term="job"></category><category term="technical"></category></entry><entry><title>A reflection on my decade at Caterpillar</title><link href="http://andrewwegner.com/a-decade-at-caterpillar.html" rel="alternate"></link><published>2017-07-31T12:00:00-05:00</published><updated>2017-07-31T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-07-31:/a-decade-at-caterpillar.html</id><summary type="html">&lt;p&gt;My career at Caterpillar has come to an end. This is a reflection on the last decade.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="right-out-of-college"&gt;Right out of college&lt;a class="headerlink" href="#right-out-of-college" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Ten and a half years ago, I was the manager at the university helpdesk and less than six months from graduation. I hadn't 
 heard back from the company I interned with. I was getting concerned. I went to the university's yearly career fair. I had 
