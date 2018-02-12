@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-01-27T00:04:00-06:00</updated><entry><title>Well, there goes my data...</title><link href="http://andrewwegner.com/backup-your-data.html" rel="alternate"></link><published>2018-01-27T00:04:00-06:00</published><updated>2018-01-27T00:04:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-01-27:/backup-your-data.html</id><summary type="html">&lt;p&gt;Learn from my mistake and test your backups&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-02-12T15:15:00-06:00</updated><entry><title>...and then there was a backup server</title><link href="http://andrewwegner.com/new-house-server.html" rel="alternate"></link><published>2018-02-12T15:15:00-06:00</published><updated>2018-02-12T15:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-12:/new-house-server.html</id><summary type="html">&lt;p&gt;Technical discussion about the new backup server&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In my &lt;a href="http://andrewwegner.com/backup-your-data.html"&gt;last post&lt;/a&gt;, I covered the events that lead to my data loss scare. Faulty, untested, backups will bite you every time. The question 
+is just, "when will it happen?". By mid-to-late January (three months later), I'd gotten everything back from &lt;a href="http://sertdatarecovery.com"&gt;SERT Data Recovery&lt;/a&gt; and
+was happy that everything was recovered. It was time to finally build that huge NAS.&lt;/p&gt;
+&lt;h2 id="server-goals"&gt;Server Goals&lt;a class="headerlink" href="#server-goals" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A NAS for a home backup solution could be something as simple as a prebuilt device with a couple hard drives. I'm a bit of a geek and have a lot of digital data, not to 
+mention family pictures, years worth of programs I've written, and a digital music and movie collection. I'm a digital pack rat, but a well organized digital pack rat. 
+I also wanted to get more out of this server than "plug the device into the router". I ran game servers for &lt;a href="http://andrewwegner.com/thanks-for-all-the-fish.html"&gt;Vipers&lt;/a&gt; for five years. I did a little bit of server 
+work at Caterpillar. I've toyed with server virtual machines off and on for testing various packages and software over the years. Through all of this, though, I've 
+never had a server in the house that I could use to run some of my scripts on. Those always ran on my desktop because it was always on. This server was going to change that. &lt;/p&gt;
+&lt;p&gt;I had several goals when building this thing:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Have more storage space than I needed for several years. I didn't want to rebuild this in 18 months because I was bad at planning. Years ago when I built my computer
+ for college, I stuck two 120 gigabyte hard drives in the machine and thought I'd never fill that. When I came home that first summer, I already had to upgrade hard drives 
+ because I was low on space. &lt;/li&gt;
+&lt;li&gt;Run a server version of Linux. I don't want to buy a license for a Microsoft server product and my Microsoft Academic Licenses expired a while ago. During my time with Vipers, I used a Red Hat variant of Linux. At Caterpillar we used Ubuntu. &lt;/li&gt;
+&lt;li&gt;Utilize &lt;a href="https://en.wikipedia.org/wiki/ZFS"&gt;ZFS&lt;/a&gt; for protection against data corruption. This combined with my more recent usage of Ubuntu lead me to decide on using Ubuntu Server for the operating system. 
+ At the time of this post, I'll be using the 16.04 LTS version. I'll continue to upgrade to future LTS versions.&lt;/li&gt;
+&lt;li&gt;Back up data from all devices in the house automatically. As camera phones have gotten better, we've found that we carry our bulky digital camera less and less. The problem
+ with the phone camera is that we need to get the pictures to the computer. I don't want to hunt down a data cable or email the pictures to myself. I'm also not a fan of 
+ posting everything to social media. I want my phone to send the pictures to a backup location automatically.&lt;/li&gt;
+&lt;li&gt;Host my personal git repositories and personal projects.&lt;/li&gt;
+&lt;li&gt;Be able to stream music and movies to other devices on the network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="hardware"&gt;Hardware&lt;a class="headerlink" href="#hardware" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now that I've decided my goals, it was time to pick out hardware. The biggest decision was to determine how much storage space I'd be getting. The idea was that hard drives
+would be the majority of the cost of this machine. In the end, I went with the following hardware:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Rosewell 4U server chasis. It's rack mountable for the future when I can convince myself that a server rack in the basement is a thing I want to spend money on and haul around.&lt;/li&gt;
+&lt;li&gt;Supermicro MBD-X11SSM-F-O Micro AT server motherboard (LGA 1151)&lt;/li&gt;
+&lt;li&gt;Intel Xeon E3-1230 V5 3.4 Ghz processor&lt;/li&gt;
+&lt;li&gt;2x Supermicro certified MEM-DR416L-SL01-EU21 16 GB DDR4-2133 ECC server memory. Take careful note of that model. I originally ordered MEM-DR416L-SL01-ER21 (notice 
+ the single "R" to "U" character difference). The motherboard did not like the ER21 at all. &lt;/li&gt;
+&lt;li&gt;EVGA 650 power supply (I've been really happy with EVGA power supplies on my last 4 machine builds).&lt;/li&gt;
+&lt;li&gt;1x Western Digital Blue 1 terabyte SSD (for the operating system and other applications)&lt;/li&gt;
+&lt;li&gt;7x Western Digital Red 4 terabyte hard drives (for all the data)&lt;/li&gt;
+&lt;li&gt;Enough SATA cables for all 8 drives&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'll be running ZFS in RAIDZ2 (dual parity). This means with 7 drives, two will be effectively parity drives. I'll have a total of 20 terabytes, minus formatting, for data. After formatting this comes down to a little over 16 terabytes of usable space. Considering that the rest of the household has a combined 5 terabytes, if I use up every available bit, I'm hoping that 16 will last me a while.&lt;/p&gt;
+&lt;h3 id="that-ram"&gt;That RAM...&lt;a class="headerlink" href="#that-ram" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I went with the Supermicro board based on a recommendation from a friend. Supermicro's site is really good. It has &lt;a href="https://www.supermicro.com/products/motherboard/Xeon/C236_C232/X11SSM-F.cfm"&gt;tested compatible hardware lists&lt;/a&gt; and, it turns out, 
+a knowledgeable person behind their online store's chat feature. The problem that I ran into when building this machine is that the compatible RAM was really hard to find. 
+I didn't realize that and ordered the mother board in my first batch of components. When I finally went to look for RAM, I failed to notice a single character difference between
+the EU21 version that I needed and the ER21 version that I ordered first. &lt;/p&gt;
+&lt;p&gt;I assembled the machine, plugged everything in, and turned on the new server. Then it beeped at me. A lot. After some troubleshooting, re-seating the RAM and &lt;em&gt;finally&lt;/em&gt;
+ realizing that I ordered the wrong stuff, I exchanged what I ordered with what I needed. The EU21 RAM worked perfectly. &lt;/p&gt;
+&lt;h2 id="whats-next"&gt;What's next&lt;a class="headerlink" href="#whats-next" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The hardware is assembled. Ubuntu 16.04 Server has been installed. The next step is configuring the server to be the backup solution for the entire house and meeting my other 
+goals. I'll have a few more posts in this series on how I accomplished those goals. Stay tuned!&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Well, there goes my data...</title><link href="http://andrewwegner.com/backup-your-data.html" rel="alternate"></link><published>2018-01-27T00:04:00-06:00</published><updated>2018-01-27T00:04:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-01-27:/backup-your-data.html</id><summary type="html">&lt;p&gt;Learn from my mistake and test your backups&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;October 2017 started nicely. The weather was still good. Fall hadn't really arrived yet, though I was still raking some leaves. Halloween was approaching and 
 soccer season had just ended so I had time of weekends to do a few more projects. Then in mid-October one of my hard drives died. It was sudden. There were
@@ -54,7 +103,7 @@ before Christmas. However, all of my data was recovered, so it's a pretty minor 
 &lt;h2 id="whats-next"&gt;What's next?&lt;a class="headerlink" href="#whats-next" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It's been a little over a month since I've transfered my data to a the new drive in my desktop. I've manually run my back up process two or three times. I'm pretty much where
 I was at the beginning of October. Crossing my fingers that when I get on the computer in the morning, all my data will be there. That's not acceptable any more. &lt;/p&gt;
-&lt;p&gt;I'm finally building the backup solution. I'll be a huge (for a family) NAS. The goal is to be able to back up from Windows, Ubuntu and a couple Android phones automatically. &lt;/p&gt;
+&lt;p&gt;I'm finally building the backup solution. It'll be a huge (for a family) NAS. The goal is to be able to back up from Windows, Ubuntu and a couple Android phones automatically. &lt;/p&gt;
 &lt;p&gt;The next entry will cover the device itself and my choices for certain hardware. I'll follow that up with an article on the software set up to get the entire thing working.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>How I found an awesome remote only job</title><link href="http://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html" rel="alternate"></link><published>2017-11-28T09:01:00-06:00</published><updated>2017-11-28T09:01:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-11-28:/how-i-found-an-awesome-remote-only-job.html</id><summary type="html">&lt;p&gt;A brief walkthrough of my job hunting process&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It's been over three months since I &lt;a href="http://andrewwegner.com/a-decade-at-caterpillar.html"&gt;left my position at Caterpillar&lt;/a&gt;, but
