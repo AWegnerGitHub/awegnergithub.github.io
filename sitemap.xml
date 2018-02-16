@@ -2,9 +2,14 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://andrewwegner.com/</loc>
-<lastmod>2018-02-12</lastmod>
+<lastmod>2018-02-15</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
+</url><url>
+<loc>http://andrewwegner.com/zfs-pool-on-ubuntu.html</loc>
+<lastmod>2018-02-15</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url><url>
 <loc>http://andrewwegner.com/new-house-server.html</loc>
 <lastmod>2018-02-12</lastmod>
@@ -242,7 +247,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>http://andrewwegner.com/category/technical-solutions.html</loc>
-<lastmod>2017-04-26</lastmod>
+<lastmod>2018-02-15</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -317,12 +322,12 @@
 <priority>0.40</priority>
 </url><url>
 <loc>http://andrewwegner.com/tag/technical.html</loc>
-<lastmod>2018-02-12</lastmod>
+<lastmod>2018-02-15</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
 <loc>http://andrewwegner.com/author/andy-wegner.html</loc>
-<lastmod>2018-02-12</lastmod>
+<lastmod>2018-02-15</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url>

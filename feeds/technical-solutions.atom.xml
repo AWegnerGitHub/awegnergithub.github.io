@@ -1,5 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-04-26T14:30:00-05:00</updated><entry><title>Choosing an ORM library for a new project</title><link href="http://andrewwegner.com/choosing-orm-library.html" rel="alternate"></link><published>2017-04-26T14:30:00-05:00</published><updated>2017-04-26T14:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-26:/choosing-orm-library.html</id><summary type="html">&lt;p&gt;A discussion about how a team picked an ORM library for a new project.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-02-15T22:30:00-06:00</updated><entry><title>Setting up a ZFS pool on Ubuntu 16.04</title><link href="http://andrewwegner.com/zfs-pool-on-ubuntu.html" rel="alternate"></link><published>2018-02-15T22:30:00-06:00</published><updated>2018-02-15T22:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-15:/zfs-pool-on-ubuntu.html</id><summary type="html">&lt;p&gt;With the backup server assembled, it's time to start configuring it. This post covers setting up the ZFS pool for all the data&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://andrewwegner.com/new-house-server.html"&gt;Previously&lt;/a&gt; in this series, the new NAS was assembled. Ubuntu 16.04 has been installed and updated. It's time to do something with all those hard drives! &lt;/p&gt;
+&lt;p&gt;I'll be setting the seven 4TB drives in a single &lt;a href="https://en.wikipedia.org/wiki/ZFS"&gt;ZFS&lt;/a&gt; pool. I'm using ZFS for protection against data corruption. It offers several other &lt;a href="https://wiki.ubuntu.com/ZFS"&gt;features&lt;/a&gt; too. I'll
+be using dual parity, which means I could lose two drives and be able to recover. The goal is never to test this, but I'd rather not go through a &lt;a href="http://andrewwegner.com/backup-your-data.html"&gt;data loss scare&lt;/a&gt; again.&lt;/p&gt;
+&lt;p&gt;Before we begin, it's a good idea to ensure Ubuntu has been updated.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With the update complete, let's get started. &lt;/p&gt;
+&lt;h2 id="installing-zfs"&gt;Installing ZFS&lt;a class="headerlink" href="#installing-zfs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Installing the ZFS file system is simple on Ubuntu. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install zfs parted
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ta-da! Your system is now capable of setting up ZFS pools. The &lt;code&gt;parted&lt;/code&gt; package will be used to set up a ZFS pool shortly.&lt;/p&gt;
+&lt;h2 id="setting-up-our-pool"&gt;Setting up our pool&lt;a class="headerlink" href="#setting-up-our-pool" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Pools are the basic building block of ZFS. A pool is made up of the underlying devices that will store the data. Setting up our ZFS pool requires a little bit of prep work
+for our new drives. First, ensure that the &lt;code&gt;zfs&lt;/code&gt; package installed correctly by running:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zpool status
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;At this point in the process, you should get the message &lt;code&gt;no pools available&lt;/code&gt;. &lt;/p&gt;
+&lt;h3 id="adding-the-gpt-label"&gt;Adding the GPT label&lt;a class="headerlink" href="#adding-the-gpt-label" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I'm setting up this pool with brand new drives. We need to add a &lt;code&gt;GPT&lt;/code&gt; label to each disk so that ZFS doesn't complain about disks having an &lt;code&gt;invalid vdev specification&lt;/code&gt; 
+when we create the pool. To do this, we'll find the names of our drives first&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ls -l /dev/sd*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;On my system, I get a result similar to this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;brw-rw---- 1 root disk 8,   0 Feb 13 09:23 /dev/sda
+brw-rw---- 1 root disk 8,   1 Feb 13 09:23 /dev/sda1
+brw-rw---- 1 root disk 8,   2 Feb 13 09:23 /dev/sda2
+brw-rw---- 1 root disk 8,   5 Feb 13 09:23 /dev/sda5
+brw-rw---- 1 root disk 8,  16 Feb 13 09:23 /dev/sdb
+brw-rw---- 1 root disk 8,  32 Feb 13 09:23 /dev/sdc
+brw-rw---- 1 root disk 8,  48 Feb 13 09:23 /dev/sdd
+brw-rw---- 1 root disk 8,  64 Feb 13 09:23 /dev/sde
+brw-rw---- 1 root disk 8,  80 Feb 13 09:23 /dev/sdf
+brw-rw---- 1 root disk 8,  96 Feb 13 09:23 /dev/sdg
+brw-rw---- 1 root disk 8, 112 Feb 13 09:23 /dev/sdh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We'll be adding the &lt;code&gt;GPT&lt;/code&gt; labels to each of the unformatted drives. The unformatted ones are the listed drives that don't have a numeral as well. For me, that means we'll
+be working with &lt;code&gt;sdb&lt;/code&gt;, &lt;code&gt;sdc&lt;/code&gt;, &lt;code&gt;sdd&lt;/code&gt;, &lt;code&gt;sde&lt;/code&gt;, &lt;code&gt;sdf&lt;/code&gt;, &lt;code&gt;sdg&lt;/code&gt; and &lt;code&gt;sdh&lt;/code&gt;. The &lt;code&gt;sda&lt;/code&gt; drive has been formatted and contains partitions already. Those are &lt;code&gt;sda1&lt;/code&gt;, &lt;code&gt;sda2&lt;/code&gt; and &lt;code&gt;sda5&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;For each drive, except &lt;code&gt;sda&lt;/code&gt; in my case, we need to run the &lt;code&gt;parted&lt;/code&gt; command.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo parted /dev/sdb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will give you a short dialog. All you will need to do is issue the &lt;code&gt;mklabel GPT&lt;/code&gt; command and then quit (using &lt;code&gt;q&lt;/code&gt;)&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;GNU Parted 3.2
+Using /dev/sdb
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted) mklabel GPT
+(parted) q
+Information: You may need to update /etc/fstab.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="getting-device-ids"&gt;Getting device IDs&lt;a class="headerlink" href="#getting-device-ids" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once the &lt;code&gt;GPT&lt;/code&gt; labels are added, we can create our pool. However, we're not going to use the device paths returned above. Theoretically, those can change (especially if you 
+replace a drive). That would be bad and mess with the entire ZFS pool. Instead we're going to create the pool by using the device id. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ls -l /dev/disk/by-id/*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This returns output similar to this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;...
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/wwn-0x50014ee20f1d3114 -&amp;gt; ../../sdc
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/wwn-0x50014ee20f3ba2b9 -&amp;gt; ../../sdg
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/wwn-0x50014ee2647227b7 -&amp;gt; ../../sdb
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/wwn-0x50014ee26490a21e -&amp;gt; ../../sdd
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/wwn-0x50014ee2b9c81501 -&amp;gt; ../../sdh
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/wwn-0x50014ee2b9e6ab61 -&amp;gt; ../../sdf
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/wwn-0x50014ee2b9e6b857 -&amp;gt; ../../sde
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/wwn-0x5001b444a9525c87 -&amp;gt; ../../sda
+lrwxrwxrwx 1 root root 10 Feb 13 09:23 /dev/disk/by-id/wwn-0x5001b444a9525c87-part1 -&amp;gt; ../../sda1
+lrwxrwxrwx 1 root root 10 Feb 13 09:23 /dev/disk/by-id/wwn-0x5001b444a9525c87-part2 -&amp;gt; ../../sda2
+lrwxrwxrwx 1 root root 10 Feb 13 09:23 /dev/disk/by-id/wwn-0x5001b444a9525c87-part5 -&amp;gt; ../../sda5
+
+...
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K0HLKUXT -&amp;gt; ../../sdb
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K0HLKXS0 -&amp;gt; ../../sdc
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K4YJ6T0U -&amp;gt; ../../sdg
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K5LCEYN4 -&amp;gt; ../../sdf
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K6VNN6TA -&amp;gt; ../../sde
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K6VNNTXY -&amp;gt; ../../sdd
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K7TSA4VS -&amp;gt; ../../sdh
+lrwxrwxrwx 1 root root  9 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WDS100T1B0A-00H9H0_174256421671 -&amp;gt; ../../sda
+lrwxrwxrwx 1 root root 10 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WDS100T1B0A-00H9H0_174256421671-part1 -&amp;gt; ../../sda1
+lrwxrwxrwx 1 root root 10 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WDS100T1B0A-00H9H0_174256421671-part2 -&amp;gt; ../../sda2
+lrwxrwxrwx 1 root root 10 Feb 13 09:23 /dev/disk/by-id/ata-WDC_WDS100T1B0A-00H9H0_174256421671-part5 -&amp;gt; ../../sda5
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Notice that both formats symlink to the same location. This means you can pick which ever format you like better. However, I recommend the second one that contains the 
+device serial number. It'll make it easier to determine problem disks in the future. &lt;/p&gt;
+&lt;h3 id="create-the-pool"&gt;Create the pool&lt;a class="headerlink" href="#create-the-pool" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Now that we've determined the device ides for each of our hard drives, it's time to actually create the pool. As I mentioned above, we'll be creating using dual parity
+(&lt;code&gt;raidz2&lt;/code&gt;). We'll be naming our pool &lt;code&gt;data&lt;/code&gt;. Once this command is complete, &lt;code&gt;/data&lt;/code&gt; will be where this pool resides.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zpool create data raidz2 /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K0HLKUXT /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K0HLKXS0 /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K6VNNTXY /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K6VNN6TA /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K5LCEYN4 /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K4YJ6T0U /dev/disk/by-id/ata-WDC_WD40EFRX-68N32N0_WD-WCC7K7TSA4VS
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will take a little while, but a surprisingly smaller amount of time than I initially expected. &lt;/p&gt;
+&lt;p&gt;Once the creation is complete, take a look at the status of your new pool:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zpool status
+
+  pool: data
+ state: ONLINE
+  scan: none requested
+config:
+
+        NAME                                          STATE     READ WRITE CKSUM
+        data                                          ONLINE       0     0     0
+          raidz2-0                                    ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K0HLKUXT  ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K0HLKXS0  ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K6VNNTXY  ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K6VNN6TA  ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K5LCEYN4  ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K4YJ6T0U  ONLINE       0     0     0
+            ata-WDC_WD40EFRX-68N32N0_WD-WCC7K7TSA4VS  ONLINE       0     0     0
+
+errors: No known data errors
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That last line is important. No known data errors is good. &lt;/p&gt;
+&lt;h2 id="create-datasets"&gt;Create datasets&lt;a class="headerlink" href="#create-datasets" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Where pools are the basic building blocks of ZFS, datasets is a term for a ZFS file system, volume, snapshot or clone. Each dataset can be managed and configured differently.
+This means that you can compress one dataset, but leave the others alone. You can put a quota on one, but leave the others without a quota. Creating a dataset is pretty easy:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd /
+sudo zfs create data/storage
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will create a dataset that exists at &lt;code&gt;/data&lt;/code&gt; named &lt;code&gt;storage&lt;/code&gt;. You can have child datasets that inherit attributes from parents (or even grandparents) by doing something
+like:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zfs create data/storage/music
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will create the new dataset at &lt;code&gt;/data/storage&lt;/code&gt; named &lt;code&gt;music&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once you've set up your datasets, you can see they were all created and how much space they have available by issuing &lt;code&gt;sudo zfs list&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="set-up-complete"&gt;Set up complete&lt;a class="headerlink" href="#set-up-complete" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With that, we've finished setting up ZFS on Ubuntu 16.04. I set up a few datasets for my purposes. I'm one step closer to getting this running and handling all of the 
+digital data in the house. &lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Choosing an ORM library for a new project</title><link href="http://andrewwegner.com/choosing-orm-library.html" rel="alternate"></link><published>2017-04-26T14:30:00-05:00</published><updated>2017-04-26T14:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-26:/choosing-orm-library.html</id><summary type="html">&lt;p&gt;A discussion about how a team picked an ORM library for a new project.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="project-history"&gt;Project History&lt;a class="headerlink" href="#project-history" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; project is over three years old at this point. It's grown from a small python script to a 
 decently sized application that integrates with another project. In that time, it's expanded what types of spam and
