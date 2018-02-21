@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-10-20T11:17:00-05:00</updated><entry><title>Review of Udemy's AWS Serverless APIs &amp; Apps - A Complete Introduction course</title><link href="http://andrewwegner.com/aws-serverless-apis-apps-review.html" rel="alternate"></link><published>2017-10-20T11:17:00-05:00</published><updated>2017-10-20T11:17:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-10-20:/aws-serverless-apis-apps-review.html</id><summary type="html">&lt;p&gt;My review of the AWS Serverless APIs &amp;amp; Apps course on Udemy.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-02-20T22:45:00-06:00</updated><entry><title>Review of Udemy's Django Course from Basics to Advance</title><link href="http://andrewwegner.com/django-course-basic-to-advance.html" rel="alternate"></link><published>2018-02-20T22:45:00-06:00</published><updated>2018-02-20T22:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-20:/django-course-basic-to-advance.html</id><summary type="html">&lt;p&gt;My review of the Django Course from Basics to Advance course on Udemy.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With the &lt;a href="http://andrewwegner.com/new-house-server.html"&gt;new server&lt;/a&gt; coming along nicely, I wanted to take a quick refresher on Django. Last summer I went through another &lt;a href="http://andrewwegner.com/django-fullstack-bootcamp-course-review.html"&gt;Django course&lt;/a&gt;. That 
+was a decent course. I didn't need anything that intensive or that focused on the non-Django portions though. I have a couple plans for web control panels 
+that will help me manage the aspects of the new server I care most about. I decided to take a look at &lt;a href="https://www.udemy.com/django-course-from-basics-to-advance/"&gt;Django Course from Basics to Advance&lt;/a&gt; by Bucky Roberts. 
+It is billed as a five hour course and seemed to hit major aspects of the framework. It was released in January 2018, so it was brand new at the time I signed up.&lt;/p&gt;
+&lt;p&gt;Spoiler alert: &lt;em&gt;Avoid this course&lt;/em&gt;. It's a waste of money. The bad grammar in the title should have been the red flag that made me avoid it. Unfortunately, that was 
+only the start of my issues with the course. &lt;/p&gt;
+&lt;h2 id="thoughts-on-the-course"&gt;Thoughts on the course&lt;a class="headerlink" href="#thoughts-on-the-course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Literally ten seconds into the first lecture: "If you guys were wondering what the F Django is, it's not a movie, well it is a movie." It only goes 
+down hill from there. A few complaints:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A majority of the lectures start with "Alright Hauses" &lt;/li&gt;
+&lt;li&gt;"Think of [Django] like PHP, if you guys are fuzzy on it, but cooler."&lt;/li&gt;
+&lt;li&gt;Lecture 3 includes a rant about what an "app" is and how everyone is developing "apps" now.&lt;/li&gt;
+&lt;li&gt;In lecture 10, the instructor starts with a rant about an overweight airline passenger sitting next to them on a plane&lt;/li&gt;
+&lt;li&gt;Insults and mocking of front end developers&lt;/li&gt;
+&lt;li&gt;One of the lectures ends with "To be honest, my mom keeps texting me and it's kind of annoying."&lt;/li&gt;
+&lt;li&gt;Another lecture is interrupted with this train of thought: "There is a dog barking outside. It's annoying me."&lt;/li&gt;
+&lt;li&gt;Finally, one lecture ends with "Thank you guys for watching. Don't forget to subscribe!"&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's a YouTube channel. The instructor uploaded their YouTube channel to Udemy. Not only that, they uploaded two year old tutorial videos. It's not
+even current! &lt;/p&gt;
+&lt;p&gt;There are technical issues with the course too:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The instructor is using Django 1.9. There is three years out of date at this point. &lt;/li&gt;
+&lt;li&gt;Installation instructions tell users to use administration or &lt;code&gt;sudo&lt;/code&gt; rights for all Python libraries&lt;/li&gt;
+&lt;li&gt;Installation instructions are done using &lt;code&gt;easy_install&lt;/code&gt; not &lt;code&gt;pip&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the &lt;code&gt;urls.py&lt;/code&gt; files that define URL routes, there are lines that look like this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;url(r'^admin/', admin.site.urls)
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The instructor attempts to describe the &lt;code&gt;r&lt;/code&gt; in front of &lt;code&gt;'^admin/'&lt;/code&gt; by saying:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Whenever I type "r", it means 'regular expression'.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is just flat wrong. &lt;code&gt;r&lt;/code&gt; indicates a &lt;a href="https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals"&gt;raw string&lt;/a&gt;. From the documentation:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Both string and bytes literals may optionally be prefixed with a letter 'r' or 'R'; such strings are called raw strings and treat backslashes as literal characters.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Don't waste your time with this. Don't look at it. Don't think about it. This course is a YouTube channel. If you really want to watch a two year old series running a 
+three year old version of Django &lt;a href="https://www.youtube.com/watch?v=qgGIqRFvFFk&amp;amp;list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK"&gt;watch it on YouTube&lt;/a&gt;. It's not worth it. The information is outdated and wrong in many spots. The instructor uploaded this course for
+a quick dollar. They didn't build this course for Udemy. They built it for YouTube and you can tell. The quality of content here is not what I've come to expect from
+Udemy course.&lt;/p&gt;
+&lt;p&gt;Fortunately for me, Udemy Support was very helpful when I requested a refund. I listed most of the complaints I did above and mentioned it course was just a 
+YouTube channel that had been uploaded to Udemy. I was issued a refund in under an hour. I also left my first public review of a course on Udemy so that other students
+know they can get the same content elsewhere.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Course Review" src="{attach}images/django-course-basics-to-advance-review-screenshot.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;I still want to find a quick refresher. I'll have to go hunting for that later. &lt;/p&gt;
+&lt;hr/&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Review of Udemy's AWS Serverless APIs &amp; Apps - A Complete Introduction course</title><link href="http://andrewwegner.com/aws-serverless-apis-apps-review.html" rel="alternate"></link><published>2017-10-20T11:17:00-05:00</published><updated>2017-10-20T11:17:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-10-20:/aws-serverless-apis-apps-review.html</id><summary type="html">&lt;p&gt;My review of the AWS Serverless APIs &amp;amp; Apps course on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've been involved with the &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; spam hunting project for several years. In that time It's grown from 
 a small Python script to a large combination of Python, Ruby and user scripts. The infrastructure hasn't really changed
