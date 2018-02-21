@@ -47,7 +47,7 @@ Udemy course.&lt;/p&gt;
 &lt;p&gt;Fortunately for me, Udemy Support was very helpful when I requested a refund. I listed most of the complaints I did above and mentioned it course was just a 
 YouTube channel that had been uploaded to Udemy. I was issued a refund in under an hour. I also left my first public review of a course on Udemy so that other students
 know they can get the same content elsewhere.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Course Review" src="{attach}images/django-course-basics-to-advance-review-screenshot.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Course Review" src="http://andrewwegner.com/images/django-course-basics-to-advance-review-screenshot.png"/&gt;&lt;/p&gt;
 &lt;p&gt;I still want to find a quick refresher. I'll have to go hunting for that later. &lt;/p&gt;
 &lt;hr/&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Setting up a ZFS pool on Ubuntu 16.04</title><link href="http://andrewwegner.com/zfs-pool-on-ubuntu.html" rel="alternate"></link><published>2018-02-15T22:30:00-06:00</published><updated>2018-02-15T22:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-15:/zfs-pool-on-ubuntu.html</id><summary type="html">&lt;p&gt;With the backup server assembled, it's time to start configuring it. This post covers setting up the ZFS pool for all the data&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
