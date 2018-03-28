@@ -1,5 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-02-20T22:45:00-06:00</updated><entry><title>Review of Udemy's Django Course from Basics to Advance</title><link href="http://andrewwegner.com/django-course-basic-to-advance.html" rel="alternate"></link><published>2018-02-20T22:45:00-06:00</published><updated>2018-02-20T22:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-20:/django-course-basic-to-advance.html</id><summary type="html">&lt;p&gt;My review of the Django Course from Basics to Advance course on Udemy.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-03-27T23:30:00-05:00</updated><entry><title>Setting up a ZFS pool on Ubuntu 16.04</title><link href="http://andrewwegner.com/Installing%20NextCloud.html" rel="alternate"></link><published>2018-03-27T23:30:00-05:00</published><updated>2018-03-27T23:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-03-27:/Installing NextCloud.html</id><summary type="html">&lt;p&gt;The ZFS pool is set up. It's time to use all that storage space.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In the last post, I described how I &lt;a href="http://andrewwegner.com/zfs-pool-on-ubuntu.html"&gt;set up ZFS on the new server&lt;/a&gt;. With a newly configured operating system and tons of space, it's time to start using it. One of the goals
+I &lt;a href="http://andrewwegner.com/new-house-server.html"&gt;mentioned&lt;/a&gt; when I set up this server was the ability to: &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Back up data from all devices in the house automatically. As camera phones have gotten better, we've found that we carry our bulky digital camera less and less. The problem
+ with the phone camera is that we need to get the pictures to the computer. I don't want to hunt down a data cable or email the pictures to myself. I'm also not a fan of 
+ posting everything to social media. I want my phone to send the pictures to a backup location automatically.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I'm going to accomplish that by hosting an instance of &lt;a href="https://nextcloud.com/"&gt;NextCloud&lt;/a&gt; on this new server. Fortunately, the install process is pretty simple for this one. NextCloud provides 
+&lt;a href="https://nextcloud.com/install/"&gt;installation instructions&lt;/a&gt;. When I installed it in mid-February 2018, it was on version 12.x. As of this post, in late March 2018, it's on version 13.x. I'll cover install
+and upgrade processes in this post.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="prerequisites"&gt;Prerequisites&lt;a class="headerlink" href="#prerequisites" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;For NextCloud you'll need either MySQL or MariaDB. I host it via Apache2, so we'll have that installed too. NextCloud is written in PHP, meaning we need that too.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install apache2 mariadb-server php7.0 libapache2-mod-php7.0 php7.0-mbstring php7.0-curl php7.0-zip php7.0-gd php7.0-mysql php7.0-mcrypt php7.0-bcmath php7.0-xml php7.0-json php7.0-tidy
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Enable the Apache2 rewrite module and restart the web server.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo a2enmod rewrite
+sudo service apache2 restart
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="set-up-the-database"&gt;Set up the database&lt;a class="headerlink" href="#set-up-the-database" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You'll need to create a database for NextCloud. Log into your database using credentials that can create new users and databases. &lt;code&gt;root&lt;/code&gt; will work.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mysql -uroot -p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next, execute a couple SQL statements to create a database and create a user that can access the database. Make sure you use a secure password.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;CREATE DATABASE nextcloud;
+GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextclouduser'@'localhost' IDENTIFIED BY 'YOURSECUREPASSWORDHERE';
+FLUSH PRIVILEGES;
+\q
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="download-nextcloud"&gt;Download NextCloud&lt;a class="headerlink" href="#download-nextcloud" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;As I mentioned above, I initially installed version 12 of NextCloud. The latest version can be found on the &lt;a href="https://nextcloud.com/install/"&gt;NextCloud install page&lt;/a&gt;. The URL from that page should be
+used instead of the version 12 link in the following code block. The code block below will be putting NextCloud in the default location Ubuntu has Apache look. You can modify
+that as needed. If you do so, the virtual host will need to be modified slightly.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo cd /tmp &amp;amp;&amp;amp; wget wget https://download.nextcloud.com/server/releases/nextcloud-12.0.2.zip
+sudo unzip nextcloud-12.0.2.zip
+sudo mv nextcloud/ /var/www/html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We need to adjust ownership of the files so that Apache can read them. The default user and group, in this case is &lt;code&gt;www-data&lt;/code&gt;. If you have configured your server to use a 
+different user or group, adjust this command accordingly.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo chown www-data:www-data -R /var/www/html/nextcloud
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="create-the-virtual-host"&gt;Create the Virtual Host&lt;a class="headerlink" href="#create-the-virtual-host" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I'll be exposing this to the internet and I'll be accessing it via the internet. That means I really don't want to send data unencrypted to or from NextCloud. I'll be setting
+up the standard port 80 web server traffic to redirect to the secure port of 443. I'll cover generating SSL certificates in a future post. I use &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;. The keys 
+referenced in the virtual host configuration file below created by that process.&lt;/p&gt;
+&lt;p&gt;Create a new virtual host.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo touch /etc/apache2/sites-available/nextcloud.conf
+sudo ln -s /etc/apache2/sites-available/nextcloud.conf /etc/apache2/sites-enabled/nextcloud.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you need to edit this newly created file &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo nano /etc/apache2/sites-available/nextcloud.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Paste the following:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:80&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    ServerAdmin YOUR@EMAILADDRESS
+    DocumentRoot /var/www/html/nextcloud/
+    ServerName nas.example.com
+    Redirect permanent / https://nas.example.com/
+
+    &lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="err"&gt;/var/www/html/nextcloud&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    &lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
+
+    ErrorLog /var/log/apache2/nas.example.com-error_log
+    CustomLog /var/log/apache2/nas.example.com-access_log common
+&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:443&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    ServerName nas.example.com
+    DocumentRoot /var/www/html/nextcloud/
+    RewriteCond %{THE_REQUEST} ^.*/index\.php
+    RewriteRule ^(.*)index.php$ /$1 [R=301,L]
+    SSLEngine on
+    SSLCertificateFile /opt/repos/dehydrated/certs/nas.example.com/cert.pem
+    SSLCertificateKeyFile /opt/repos/dehydrated/certs/nas.example.com/privkey.pem
+    SSLCertificateChainFile /opt/repos/dehydrated/certs/nas.example.com/chain.pem
+    &lt;span class="nt"&gt;&amp;lt;IfModule&lt;/span&gt; &lt;span class="err"&gt;mod_headers.c&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+    &lt;span class="nt"&gt;&amp;lt;/IfModule&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="err"&gt;/var/www/html/nextcloud&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    &lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
+
+    ErrorLog /var/log/apache2/nas.example.com-error_log
+    CustomLog /var/log/apache2/nas.example.com-access_log common
+ &lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There are two separate virtual host configurations being created here. The first one, on port 80, is setting up the permanent redirect to the HTTPS site. &lt;/p&gt;
+&lt;p&gt;In the secure virtual host configuration, we're setting a small rewrite rule to provide nicer URLs and configuring the SSL certificates to use. The &lt;code&gt;DocumentRoot&lt;/code&gt; variables
+should match the path you installed NextCloud into in the previous step.&lt;/p&gt;
+&lt;h3 id="application-configuration"&gt;Application Configuration&lt;a class="headerlink" href="#application-configuration" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;There are a few settings that you need to change in the NextCloud configuration. Do this by editing &lt;code&gt;/var/www/html/nextcloud/config/config.php&lt;/code&gt;. If this file doesn't exist, 
+you need to copy &lt;code&gt;/var/www/html/nextcloud/config/config.sample.php&lt;/code&gt; to &lt;code&gt;/var/www/html/nextcloud/config/config.php&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The important settings to check are:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;- `datadirectory`: In my case, this was pointed at a dataset I created when I [set up my ZFS pool][1]
+- `overwrite.cli.url`: Changed to point to the HTTPS version of the URL I want to use
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="complete-the-installation"&gt;Complete the installation&lt;a class="headerlink" href="#complete-the-installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Restart Apache and the navigate to the domain you've set up for your NextCloud installation. I am assuming that you know how to set up a DNS record for the server name
+you specified in your virtual host configuration.&lt;/p&gt;
+&lt;p&gt;Once you've reached the domain in your web browser, follow the instructions on screen. You'll need the database username and password you created above. You'll also create an
+administration user. &lt;/p&gt;
+&lt;h3 id="upgrading"&gt;Upgrading&lt;a class="headerlink" href="#upgrading" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After some time, NextCloud will update. You should apply these updates, as they'll include new features and security patches. Log into NextCloud using your administration user.
+Click on the Gear icon in the upper right and pick "Settings". On the left hand side, select "Basic settings". Half way down the page you'll see the version you are currently
+running and whether or not there is an update available. If there is, you can begin the update from here.&lt;/p&gt;
+&lt;p&gt;NextCloud does not support skipping versions when updating. This means if you are on version 12, you can upgrade to version 13. You can not, however, upgrade directly from 12 to 14. &lt;/p&gt;
+&lt;h2 id="syncing-data"&gt;Syncing data&lt;a class="headerlink" href="#syncing-data" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;NextCloud provides client applications that allow you to automatically sync data to your install. There are clients for both computers and mobile devices. My use case only
+requires the mobile clients right now, but that may change in the future. From the &lt;a href="https://nextcloud.com/install/"&gt;install page&lt;/a&gt;, you can find the clients for Android, iOS and Windows devices. Select
+the appropriate installer on your device.&lt;/p&gt;
+&lt;p&gt;Once the mobile client is installed, you need to provide the URL to your installation and a username and password that can access your information. I've enabled automatic
+uploads of new pictures from my devices only when I'm on a wireless connection (no sense wasting mobile data). This, however, is why I wanted the SSL certificates. The client
+doesn't let me whitelist uploading from specific networks. I'd prefer I don't send my pictures unencrypted.&lt;/p&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been using NextCloud for almost three months so far. I love it. Previously, I'd have to find a data cable and remember to manually backup my pictures once and a while. Now,
+it "just happens". If I take a picture at home, it's backed up within seconds. If I take a bunch of pictures while I'm out of the house, my pictures are backed up within 
+minutes of me getting home. &lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Review of Udemy's Django Course from Basics to Advance</title><link href="http://andrewwegner.com/django-course-basic-to-advance.html" rel="alternate"></link><published>2018-02-20T22:45:00-06:00</published><updated>2018-02-20T22:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-20:/django-course-basic-to-advance.html</id><summary type="html">&lt;p&gt;My review of the Django Course from Basics to Advance course on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With the &lt;a href="http://andrewwegner.com/new-house-server.html"&gt;new server&lt;/a&gt; coming along nicely, I wanted to take a quick refresher on Django. Last summer I went through another &lt;a href="http://andrewwegner.com/django-fullstack-bootcamp-course-review.html"&gt;Django course&lt;/a&gt;. That 
 was a decent course. I didn't need anything that intensive or that focused on the non-Django portions though. I have a couple plans for web control panels 
