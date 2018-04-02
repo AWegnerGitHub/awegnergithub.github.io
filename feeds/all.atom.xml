@@ -40,7 +40,7 @@ it deployed to &lt;em&gt;my&lt;/em&gt; AWS account using &lt;em&gt;my&lt;/em&gt;
   &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;py&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This script will set up a build task and run your &lt;code&gt;hello.py&lt;/code&gt; file, using Python 3.5. You will see that "Hello World!" is printed in the build console.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="First Build" src="{attach}images/2-first-build.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="First Build" src="http://andrewwegner.com/images/2-travis-first-build.png"/&gt;&lt;/p&gt;
 &lt;h3 id="add-environment-variables"&gt;Add Environment Variables&lt;a class="headerlink" href="#add-environment-variables" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Now that our build script is working, we can work on "deployment". Deployment to AWS (or other cloud services) requires that you provide credentials. I am not a fan of 
 including credentials in my repository, even if they are encrypted. Opting for an environment variable should be more secure, as the credentials are never in your repository
@@ -109,7 +109,11 @@ rather that a build breaks after the transfer due to the lack of appropriate var
 transferring the repository. One of the steps that the owner should take is to log into Travis CI and ensure all secure variables have been removed from the Travis CI 
 environment. This will break the builds, but it will also ensure that private variables aren't leaked unintentionally to a third party.&lt;/p&gt;
 &lt;h2 id="repository"&gt;Repository&lt;a class="headerlink" href="#repository" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The repository for testing is available on &lt;a href="https://github.com/AWegnerGitHub/TravisIssue"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Installing NextCloud</title><link href="http://andrewwegner.com/installing-nextcloud.html" rel="alternate"></link><published>2018-03-27T23:30:00-05:00</published><updated>2018-03-27T23:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-03-27:/installing-nextcloud.html</id><summary type="html">&lt;p&gt;The ZFS pool is set up. It's time to use all that storage space and install NextCloud.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;The repository for testing is available on &lt;a href="https://github.com/AWegnerGitHub/TravisIssue"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This issue has been reported in the following places:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Travis CI Github Issues&lt;/li&gt;
+&lt;/ul&gt;</content><category term="technical"></category></entry><entry><title>Installing NextCloud</title><link href="http://andrewwegner.com/installing-nextcloud.html" rel="alternate"></link><published>2018-03-27T23:30:00-05:00</published><updated>2018-03-27T23:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-03-27:/installing-nextcloud.html</id><summary type="html">&lt;p&gt;The ZFS pool is set up. It's time to use all that storage space and install NextCloud.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the last post, I described how I &lt;a href="http://andrewwegner.com/zfs-pool-on-ubuntu.html"&gt;set up ZFS on the new server&lt;/a&gt;. With a newly configured operating system and tons of space, it's time to start using it. One of the goals
 I &lt;a href="http://andrewwegner.com/new-house-server.html"&gt;mentioned&lt;/a&gt; when I set up this server was the ability to: &lt;/p&gt;
