@@ -1,5 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-03-27T23:30:00-05:00</updated><entry><title>Setting up a ZFS pool on Ubuntu 16.04</title><link href="http://andrewwegner.com/Installing%20NextCloud.html" rel="alternate"></link><published>2018-03-27T23:30:00-05:00</published><updated>2018-03-27T23:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-03-27:/Installing NextCloud.html</id><summary type="html">&lt;p&gt;The ZFS pool is set up. It's time to use all that storage space.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-04-02T12:30:00-05:00</updated><entry><title>Travis CI doesn't keep your environment variable secure</title><link href="http://andrewwegner.com/travisci-insecure-environment-variables.html" rel="alternate"></link><published>2018-04-02T12:30:00-05:00</published><updated>2018-04-02T12:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-02:/travisci-insecure-environment-variables.html</id><summary type="html">&lt;p&gt;Travis CI does not keep your environment variables secure if you transfer a repository.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On December 27, 2017 I reported a security issue directly to the security team as their &lt;a href="https://github.com/travis-ci/travis-ci/blob/master/CONTRIBUTING.md"&gt;CONTRIBUTING.md&lt;/a&gt; recommends. I received an automated response that a human would
+follow up with me soon. It was their end of year, two week vacation (which is awesome!). I sent the same email again on January 26, 2018 and received a response back from AJ Bowen, a Build Infrastructure Engineer at Travis CI on January 29, 2018. They'd created an internal issue to track the behavior and would follow up within two weeks. &lt;/p&gt;
+&lt;p&gt;I followed up with AJ on February 28, 2018 and didn't receive a response. We're now over three months since my initial report. I believe it's time to make this more public so 
+that others know to be careful with their Travis CI managed environment variables.&lt;/p&gt;
+&lt;h2 id="the-issue"&gt;The Issue&lt;a class="headerlink" href="#the-issue" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://travis-ci.org/"&gt;Travis CI &lt;/a&gt; is an application that allows you to automatically test and deploy applications after a commit is pushed to GitHub. I've used this ability to run unit tests, 
+&lt;a href="http://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html"&gt;automatically deploy updates to PyPI&lt;/a&gt;, and more recently when testing deployment to AWS using the Serverless framework. It's that last one that led me to this issue.&lt;/p&gt;
+&lt;p&gt;Part of deploying to AWS requires that you have credentials to deploy. I didn't want to put my AWS deploy credentials in GitHub, even if they are &lt;a href="https://docs.travis-ci.com/user/environment-variables/#Encrypting-environment-variables"&gt;encrypted&lt;/a&gt;. Instead, 
+I decided to set my variables in the &lt;a href="https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings"&gt;Travis CI Settings&lt;/a&gt;. I went forward with my testing, watched the deploys happen as expected and eventually needed to transfer my
+repository to a third party. &lt;/p&gt;
+&lt;p&gt;I used GitHub to transfer the repository to the new owner. We tested a build and watched it deploy. The Travis CI console showed a successful deploy. The problem is, 
+it deployed to &lt;em&gt;my&lt;/em&gt; AWS account using &lt;em&gt;my&lt;/em&gt; AWS credentials. These "secure" environment variables had been transfered to a third party and were no longer in my control.&lt;/p&gt;
+&lt;h2 id="reproduction-short-version"&gt;Reproduction - Short Version&lt;a class="headerlink" href="#reproduction-short-version" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Reproducing the issue is trivial. The short version is this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;On one GitHub account, create a repository with a &lt;code&gt;.travis.yml&lt;/code&gt; file &lt;/li&gt;
+&lt;li&gt;On the Travis CI account associated with step 1, set up an environment variable and elect &lt;em&gt;not&lt;/em&gt; to show the value in the build log&lt;/li&gt;
+&lt;li&gt;Transfer the GitHub repository to another account.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At this point, the environment variables defined in step 2 are accessible by the new owner from step 3. &lt;/p&gt;
+&lt;h2 id="reproduction-long-version"&gt;Reproduction - Long Version&lt;a class="headerlink" href="#reproduction-long-version" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The detailed steps taken to reproduce this issue show that Travis CI is simply looking for the environment variable values and scrubbing those from the build logs. Once transfered, an edit can be introduced to show these variables with minimal work. &lt;/p&gt;
+&lt;h3 id="create-a-repository"&gt;Create a repository&lt;a class="headerlink" href="#create-a-repository" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Create a new repository and add something. For this test, I created a simple Python Hello World file, and named it &lt;code&gt;hello.py&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;print("Hello World")
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Commit this change to your new repository.&lt;/p&gt;
+&lt;h3 id="enable-travis-ci-integration"&gt;Enable Travis CI integration&lt;a class="headerlink" href="#enable-travis-ci-integration" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Go to &lt;a href="https://travis-ci.org/"&gt;Travis CI&lt;/a&gt; and log in with the GitHub account associated with the above step. Sync your account. Then enable integration by changing the repository switch.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable Integration" src="http://andrewwegner.com/images/1-travis-enable-repository.png"/&gt;&lt;/p&gt;
+&lt;h3 id="create-a-travisyml-file"&gt;Create a .travis.yml file&lt;a class="headerlink" href="#create-a-travisyml-file" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;With the integration now in place, set up a basic build script by adding a &lt;code&gt;.travis.yml&lt;/code&gt; file to the repository. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s2"&gt;"3.5"&lt;/span&gt;
+&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; 
+  &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This script will set up a build task and run your &lt;code&gt;hello.py&lt;/code&gt; file, using Python 3.5. You will see that "Hello World!" is printed in the build console.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="First Build" src="{attach}images/2-first-build.png"/&gt;&lt;/p&gt;
+&lt;h3 id="add-environment-variables"&gt;Add Environment Variables&lt;a class="headerlink" href="#add-environment-variables" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Now that our build script is working, we can work on "deployment". Deployment to AWS (or other cloud services) requires that you provide credentials. I am not a fan of 
+including credentials in my repository, even if they are encrypted. Opting for an environment variable should be more secure, as the credentials are never in your repository
+in the first place. &lt;strong&gt;It is important to note that you are still giving your credentials to Travis CI in this case.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;To set up environment variables, click on "More Options" and "Settings" within the Travis CI application.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Travis Settings" src="http://andrewwegner.com/images/3-add-variable-1.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Now scroll down to "Environment Variables". Add the name of the variable and the value. Be sure to leave the default value of "Off" selected. You don't want to display this 
+value in the build log. Finally click "Add".&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Adding a variable" src="http://andrewwegner.com/images/4-add-variable-2.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I've added a second variable for further testing.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Adding a second variable" src="http://andrewwegner.com/images/5-add-variable-3.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Notice that variable values are hidden from view after clicking "Add".&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Variable values hidden" src="http://andrewwegner.com/images/6-variables-added.png"/&gt;&lt;/p&gt;
+&lt;h3 id="check-values-during-build"&gt;Check values during build&lt;a class="headerlink" href="#check-values-during-build" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;With the variables saved, restart your build. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Restart Build" src="http://andrewwegner.com/images/7-restart-build.png"/&gt;&lt;/p&gt;
+&lt;p&gt;When the build has completed, check the build log. Even though we aren't using these values yet, we can see the environment variables exist and are "Secure".&lt;/p&gt;
+&lt;p&gt;&lt;img alt='"Secure" Variables' src="http://andrewwegner.com/images/8-variables-secure.png"/&gt;&lt;/p&gt;
+&lt;h3 id="accessing-the-values"&gt;Accessing the values&lt;a class="headerlink" href="#accessing-the-values" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;These values are not actually secure. Travis CI is filtering for the values of these environment variables and if the specific string is found, it is scrubbed from
+the log. We can see this with a small change to &lt;code&gt;hello.py&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Hello World!"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;aws_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'AWS_ACCESS_KEY_ID'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;aws_secret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'AWS_SECRET_ACCESS_KEY'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"AWS KEY ID: |{}{}|"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_id&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;aws_id&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:]))&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"AWS SECRET KEY: |{} {}|"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_secret&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_secret&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;aws_secret&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_secret&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:]))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In this example, we are splitting the values of the environment variables in half. For the &lt;code&gt;AWS_ACCESS_KEY_ID&lt;/code&gt; value, you smash these two together. This will match the 
+environment variable value, and will not be shown because the pattern still matches the value:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;|{}{}|
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For &lt;code&gt;AWS_SECRET_ACCESS_KEY&lt;/code&gt;, we split the two halves with a space and print it out. This will be shown, because the extra space no longer matches the exact value of the 
+environment variable.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;|{} {}|
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Commit and push the change to GitHub. In Travis CI, we see the following in the build log:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Accessing the values" src="http://andrewwegner.com/images/9-variables-filtered-by-match.png"/&gt;&lt;/p&gt;
+&lt;p&gt;As expected, the first pattern is hidden because it matches the environment variable. The second pattern is shown, because the space in the middle means the pattern no longer 
+matches.&lt;/p&gt;
+&lt;h3 id="transfer-the-repository"&gt;Transfer the repository&lt;a class="headerlink" href="#transfer-the-repository" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Now that we've shown the variables are accessible, it's time to transfer the repository to a new owner. In GitHub, this can be accomplished by going to the repository settings
+and going down to the red "danger area". Once you've entered the name of the current repository and the name of the new owner, we wait for the new owner to accept the transfer.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Transfer the repository" src="http://andrewwegner.com/images/10-transfer-repository.png"/&gt;&lt;/p&gt;
+&lt;h3 id="build-with-the-new-owner"&gt;Build with the new owner&lt;a class="headerlink" href="#build-with-the-new-owner" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Make a change and commit it to the new repository. I simply modified the "Hello World" line:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;print("Hello World from new owner!")
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A new build will kick off. You can see that the repository has transfered to the new owner in the build log. You can also see the environment variables were transfered to the 
+new owner. Other than the new owner being listed, the build log shows the same output as before&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Everything has transfered" src="http://andrewwegner.com/images/11-build-after-transfer.png"/&gt;&lt;/p&gt;
+&lt;h3 id="variables-in-the-ui"&gt;Variables in the UI&lt;a class="headerlink" href="#variables-in-the-ui" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can also see these variables have transfered by going back to "More Options", then "Settings" in Travis CI. The values are still hidden behind the input password field. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Variables in UI" src="http://andrewwegner.com/images/12-variables-transfered.png"/&gt;&lt;/p&gt;
+&lt;h2 id="impact-of-bug"&gt;Impact of bug&lt;a class="headerlink" href="#impact-of-bug" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The example above shows two problems. The bigger problem, in my opinion, is that environment variables are transfered to a new owner. The secondary problem is that "secure"
+variables are really just obfuscated. Accessing them is trivial. With this demonstration, we added in a step to show that the variables can be seen by the original
+owner. However, it is just as likely that the new owner could introduce such a change after the repository is transfered.&lt;/p&gt;
+&lt;p&gt;This bug requires the owner of the repository to perform the "dangerous" GitHub action of transferring a repository. That means it's impact is limited. However, it's just as
+likely that the original owner has forgotten that environment variables were set up in Travis CI, an entirely separate system. &lt;/p&gt;
+&lt;p&gt;When a GitHub repository is transfered to a new owner, the environment variables in Travis CI should not travel with. This is especially true for the "secure" variables. I'd 
+rather that a build breaks after the transfer due to the lack of appropriate variables being set up than having my cloud credentials be sent to a third party. &lt;/p&gt;
+&lt;h2 id="mitigation"&gt;Mitigation&lt;a class="headerlink" href="#mitigation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mitigation of this bug, until Travis CI stops transferring environment variables to new repository owners, requires the original owner to remove the variables prior to 
+transferring the repository. One of the steps that the owner should take is to log into Travis CI and ensure all secure variables have been removed from the Travis CI 
+environment. This will break the builds, but it will also ensure that private variables aren't leaked unintentionally to a third party.&lt;/p&gt;
+&lt;h2 id="repository"&gt;Repository&lt;a class="headerlink" href="#repository" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The repository for testing is available on &lt;a href="https://github.com/AWegnerGitHub/TravisIssue"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Setting up a ZFS pool on Ubuntu 16.04</title><link href="http://andrewwegner.com/Installing%20NextCloud.html" rel="alternate"></link><published>2018-03-27T23:30:00-05:00</published><updated>2018-03-27T23:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-03-27:/Installing NextCloud.html</id><summary type="html">&lt;p&gt;The ZFS pool is set up. It's time to use all that storage space.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the last post, I described how I &lt;a href="http://andrewwegner.com/zfs-pool-on-ubuntu.html"&gt;set up ZFS on the new server&lt;/a&gt;. With a newly configured operating system and tons of space, it's time to start using it. One of the goals
 I &lt;a href="http://andrewwegner.com/new-house-server.html"&gt;mentioned&lt;/a&gt; when I set up this server was the ability to: &lt;/p&gt;
