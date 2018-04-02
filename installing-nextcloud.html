@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="Installing NextCloud "/>
+<meta property="og:url" content="http://andrewwegner.com/installing-nextcloud.html" />
+<meta property="og:description" content="The ZFS pool is set up. It&#39;s time to use all that storage space and install NextCloud." />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2018-03-27T23:30:00-05:00" />
+<meta name="twitter:title" content="Installing NextCloud ">
+<meta name="twitter:description" content="The ZFS pool is set up. It&#39;s time to use all that storage space and install NextCloud.">
+
+        <title>Installing NextCloud  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="http://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+        <script type="text/javascript">
+            window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+              heap.load("653100411");
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://andrewwegner.com">Home</a></li>
+                            <li ><a href="http://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="http://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="http://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope itemtype="http://schema.org/BlogPosting">
+<meta itemprop="headline" content="Installing NextCloud" />
+<time itemprop="datePublished" datetime="2018-03-27T23:30:00-05:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="http://andrewwegner.com/installing-nextcloud.html" />
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://andrewwegner.com/installing-nextcloud.html"> Installing NextCloud  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#set-up-the-database">Set up the database</a></li>
+<li><a href="#download-nextcloud">Download NextCloud</a></li>
+<li><a href="#create-the-virtual-host">Create the Virtual Host</a></li>
+<li><a href="#application-configuration">Application Configuration</a></li>
+<li><a href="#complete-the-installation">Complete the installation</a></li>
+<li><a href="#upgrading">Upgrading</a></li>
+</ul>
+</li>
+<li><a href="#syncing-data">Syncing data</a></li>
+<li><a href="#results">Results</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <div itemprop="articleBody mainEntityOfPage">
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>In the last post, I described how I <a href="http://andrewwegner.com/zfs-pool-on-ubuntu.html">set up ZFS on the new server</a>. With a newly configured operating system and tons of space, it's time to start using it. One of the goals
+I <a href="http://andrewwegner.com/new-house-server.html">mentioned</a> when I set up this server was the ability to: </p>
+<blockquote>
+<p>Back up data from all devices in the house automatically. As camera phones have gotten better, we've found that we carry our bulky digital camera less and less. The problem
+ with the phone camera is that we need to get the pictures to the computer. I don't want to hunt down a data cable or email the pictures to myself. I'm also not a fan of 
+ posting everything to social media. I want my phone to send the pictures to a backup location automatically.</p>
+</blockquote>
+<p>I'm going to accomplish that by hosting an instance of <a href="https://nextcloud.com/">NextCloud</a> on this new server. Fortunately, the install process is pretty simple for this one. NextCloud provides 
+<a href="https://nextcloud.com/install/">installation instructions</a>. When I installed it in mid-February 2018, it was on version 12.x. As of this post, in late March 2018, it's on version 13.x. I'll cover install
+and upgrade processes in this post.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">¶</a></h2>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h3>
+<p>For NextCloud you'll need either MySQL or MariaDB. I host it via Apache2, so we'll have that installed too. NextCloud is written in PHP, meaning we need that too.</p>
+<div class="codehilight code"><pre><span></span>sudo apt-get install apache2 mariadb-server php7.0 libapache2-mod-php7.0 php7.0-mbstring php7.0-curl php7.0-zip php7.0-gd php7.0-mysql php7.0-mcrypt php7.0-bcmath php7.0-xml php7.0-json php7.0-tidy
+</pre></div>
+<p>Enable the Apache2 rewrite module and restart the web server.</p>
+<div class="codehilight code"><pre><span></span>sudo a2enmod rewrite
+sudo service apache2 restart
+</pre></div>
+<h3 id="set-up-the-database">Set up the database<a class="headerlink" href="#set-up-the-database" title="Permanent link">¶</a></h3>
+<p>You'll need to create a database for NextCloud. Log into your database using credentials that can create new users and databases. <code>root</code> will work.</p>
+<div class="codehilight code"><pre><span></span>mysql -uroot -p
+</pre></div>
+<p>Next, execute a couple SQL statements to create a database and create a user that can access the database. Make sure you use a secure password.</p>
+<div class="codehilight code"><pre><span></span>CREATE DATABASE nextcloud;
+GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextclouduser'@'localhost' IDENTIFIED BY 'YOURSECUREPASSWORDHERE';
+FLUSH PRIVILEGES;
+\q
+</pre></div>
+<h3 id="download-nextcloud">Download NextCloud<a class="headerlink" href="#download-nextcloud" title="Permanent link">¶</a></h3>
+<p>As I mentioned above, I initially installed version 12 of NextCloud. The latest version can be found on the <a href="https://nextcloud.com/install/">NextCloud install page</a>. The URL from that page should be
+used instead of the version 12 link in the following code block. The code block below will be putting NextCloud in the default location Ubuntu has Apache look. You can modify
+that as needed. If you do so, the virtual host will need to be modified slightly.</p>
+<div class="codehilight code"><pre><span></span>sudo cd /tmp &amp;&amp; wget wget https://download.nextcloud.com/server/releases/nextcloud-12.0.2.zip
+sudo unzip nextcloud-12.0.2.zip
+sudo mv nextcloud/ /var/www/html
+</pre></div>
+<p>We need to adjust ownership of the files so that Apache can read them. The default user and group, in this case is <code>www-data</code>. If you have configured your server to use a 
+different user or group, adjust this command accordingly.</p>
+<div class="codehilight code"><pre><span></span>sudo chown www-data:www-data -R /var/www/html/nextcloud
+</pre></div>
+<h3 id="create-the-virtual-host">Create the Virtual Host<a class="headerlink" href="#create-the-virtual-host" title="Permanent link">¶</a></h3>
+<p>I'll be exposing this to the internet and I'll be accessing it via the internet. That means I really don't want to send data unencrypted to or from NextCloud. I'll be setting
+up the standard port 80 web server traffic to redirect to the secure port of 443. I'll cover generating SSL certificates in a future post. I use <a href="https://letsencrypt.org/">Let's Encrypt</a>. The keys 
+referenced in the virtual host configuration file below created by that process.</p>
+<p>Create a new virtual host.</p>
+<div class="codehilight code"><pre><span></span>sudo touch /etc/apache2/sites-available/nextcloud.conf
+sudo ln -s /etc/apache2/sites-available/nextcloud.conf /etc/apache2/sites-enabled/nextcloud.conf
+</pre></div>
+<p>Now you need to edit this newly created file </p>
+<div class="codehilight code"><pre><span></span>sudo nano /etc/apache2/sites-available/nextcloud.conf
+</pre></div>
+<p>Paste the following:</p>
+<div class="codehilight code"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="err">*:80</span><span class="nt">&gt;</span>
+    ServerAdmin YOUR@EMAILADDRESS
+    DocumentRoot /var/www/html/nextcloud/
+    ServerName nas.example.com
+    Redirect permanent / https://nas.example.com/
+
+    <span class="nt">&lt;Directory</span> <span class="err">/var/www/html/nextcloud</span><span class="nt">/&gt;</span>
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    <span class="nt">&lt;/Directory&gt;</span>
+
+    ErrorLog /var/log/apache2/nas.example.com-error_log
+    CustomLog /var/log/apache2/nas.example.com-access_log common
+<span class="nt">&lt;/VirtualHost&gt;</span>
+
+<span class="nt">&lt;VirtualHost</span> <span class="err">*:443</span><span class="nt">&gt;</span>
+    ServerName nas.example.com
+    DocumentRoot /var/www/html/nextcloud/
+    RewriteCond %{THE_REQUEST} ^.*/index\.php
+    RewriteRule ^(.*)index.php$ /$1 [R=301,L]
+    SSLEngine on
+    SSLCertificateFile /opt/repos/dehydrated/certs/nas.example.com/cert.pem
+    SSLCertificateKeyFile /opt/repos/dehydrated/certs/nas.example.com/privkey.pem
+    SSLCertificateChainFile /opt/repos/dehydrated/certs/nas.example.com/chain.pem
+    <span class="nt">&lt;IfModule</span> <span class="err">mod_headers.c</span><span class="nt">&gt;</span>
+        Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+    <span class="nt">&lt;/IfModule&gt;</span>
+
+    <span class="nt">&lt;Directory</span> <span class="err">/var/www/html/nextcloud</span><span class="nt">/&gt;</span>
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    <span class="nt">&lt;/Directory&gt;</span>
+
+    ErrorLog /var/log/apache2/nas.example.com-error_log
+    CustomLog /var/log/apache2/nas.example.com-access_log common
+ <span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+<p>There are two separate virtual host configurations being created here. The first one, on port 80, is setting up the permanent redirect to the HTTPS site. </p>
+<p>In the secure virtual host configuration, we're setting a small rewrite rule to provide nicer URLs and configuring the SSL certificates to use. The <code>DocumentRoot</code> variables
+should match the path you installed NextCloud into in the previous step.</p>
+<h3 id="application-configuration">Application Configuration<a class="headerlink" href="#application-configuration" title="Permanent link">¶</a></h3>
+<p>There are a few settings that you need to change in the NextCloud configuration. Do this by editing <code>/var/www/html/nextcloud/config/config.php</code>. If this file doesn't exist, 
+you need to copy <code>/var/www/html/nextcloud/config/config.sample.php</code> to <code>/var/www/html/nextcloud/config/config.php</code>.</p>
+<p>The important settings to check are:</p>
+<div class="codehilight code"><pre><span></span>- `datadirectory`: In my case, this was pointed at a dataset I created when I [set up my ZFS pool][1]
+- `overwrite.cli.url`: Changed to point to the HTTPS version of the URL I want to use
+</pre></div>
+<h3 id="complete-the-installation">Complete the installation<a class="headerlink" href="#complete-the-installation" title="Permanent link">¶</a></h3>
+<p>Restart Apache and the navigate to the domain you've set up for your NextCloud installation. I am assuming that you know how to set up a DNS record for the server name
+you specified in your virtual host configuration.</p>
+<p>Once you've reached the domain in your web browser, follow the instructions on screen. You'll need the database username and password you created above. You'll also create an
+administration user. </p>
+<h3 id="upgrading">Upgrading<a class="headerlink" href="#upgrading" title="Permanent link">¶</a></h3>
+<p>After some time, NextCloud will update. You should apply these updates, as they'll include new features and security patches. Log into NextCloud using your administration user.
+Click on the Gear icon in the upper right and pick "Settings". On the left hand side, select "Basic settings". Half way down the page you'll see the version you are currently
+running and whether or not there is an update available. If there is, you can begin the update from here.</p>
+<p>NextCloud does not support skipping versions when updating. This means if you are on version 12, you can upgrade to version 13. You can not, however, upgrade directly from 12 to 14. </p>
+<h2 id="syncing-data">Syncing data<a class="headerlink" href="#syncing-data" title="Permanent link">¶</a></h2>
+<p>NextCloud provides client applications that allow you to automatically sync data to your install. There are clients for both computers and mobile devices. My use case only
+requires the mobile clients right now, but that may change in the future. From the <a href="https://nextcloud.com/install/">install page</a>, you can find the clients for Android, iOS and Windows devices. Select
+the appropriate installer on your device.</p>
+<p>Once the mobile client is installed, you need to provide the URL to your installation and a username and password that can access your information. I've enabled automatic
+uploads of new pictures from my devices only when I'm on a wireless connection (no sense wasting mobile data). This, however, is why I wanted the SSL certificates. The client
+doesn't let me whitelist uploading from specific networks. I'd prefer I don't send my pictures unencrypted.</p>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">¶</a></h2>
+<p>I've been using NextCloud for almost three months so far. I love it. Previously, I'd have to find a data cable and remember to manually backup my pictures once and a while. Now,
+it "just happens". If I take a picture at home, it's backed up within seconds. If I take a bunch of pictures while I'm out of the house, my pictures are backed up within 
+minutes of me getting home. </p>
+            </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="http://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="http://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online 
+            community building, tinkering with new code and building new applications. 
+            He writes about his experiences with each of these.</span>
+
+            </div>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://andrewwegner.com/django-course-basic-to-advance.html" title="Previous: Review of Udemy&#39;s Django Course from Basics to Advance">Review of Udemy's Django Course from Basics to Advance</a></li>
+                <li class="next-article"><a href="http://andrewwegner.com/travisci-insecure-environment-variables.html" title="Next: Travis CI doesn&#39;t keep your environment variable secure">Travis CI doesn't keep your environment variable secure</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2018-03-27T23:30:00-05:00">Mar 27, 2018</time>
+<time itemprop="dateModified" datetime="2018-03-27T23:30:00-05:00">
+
+        <h4>Recovering from data loss</h4>
+    <ul class="multi-parts-list">
+            <li >
+            <a href="http://andrewwegner.com/backup-your-data.html" title="Well, there goes my data...">Part 1: Well, there goes my data...</a>
+            </li>
+            <li >
+            <a href="http://andrewwegner.com/new-house-server.html" title="...and then there was a backup server">Part 2: ...and then there was a backup server</a>
+            </li>
+            <li >
+            <a href="http://andrewwegner.com/zfs-pool-on-ubuntu.html" title="Setting up a ZFS pool on Ubuntu 16.04">Part 3: Setting up a ZFS pool on Ubuntu 16.04</a>
+            </li>
+            <li  class="active-part">
+            Part 4: Installing NextCloud
+            </li>
+    </ul>
+            <h4>Category</h4>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>21</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam-square sidebar-social-links"></i></a>
+    <a href="http://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="http://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
