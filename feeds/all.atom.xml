@@ -112,7 +112,9 @@ environment. This will break the builds, but it will also ensure that private va
 &lt;p&gt;The repository for testing is available on &lt;a href="https://github.com/AWegnerGitHub/TravisIssue"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This issue has been reported in the following places:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Travis CI Github Issues&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/travis-ci/travis-ci/issues/9430"&gt;Travis CI Github Issues&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://news.ycombinator.com/item?id=16737099"&gt;Hacker News&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Charcoal HQ][21]&lt;/li&gt;
 &lt;/ul&gt;</content><category term="technical"></category></entry><entry><title>Installing NextCloud</title><link href="http://andrewwegner.com/installing-nextcloud.html" rel="alternate"></link><published>2018-03-27T23:30:00-05:00</published><updated>2018-03-27T23:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-03-27:/installing-nextcloud.html</id><summary type="html">&lt;p&gt;The ZFS pool is set up. It's time to use all that storage space and install NextCloud.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the last post, I described how I &lt;a href="http://andrewwegner.com/zfs-pool-on-ubuntu.html"&gt;set up ZFS on the new server&lt;/a&gt;. With a newly configured operating system and tons of space, it's time to start using it. One of the goals
