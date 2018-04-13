@@ -1,5 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-04-02T12:30:00-05:00</updated><entry><title>Travis CI doesn't keep your environment variable secure</title><link href="http://andrewwegner.com/travisci-insecure-environment-variables.html" rel="alternate"></link><published>2018-04-02T12:30:00-05:00</published><updated>2018-04-02T12:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-02:/travisci-insecure-environment-variables.html</id><summary type="html">&lt;p&gt;Travis CI does not keep your environment variables secure if you transfer a repository.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-04-13T08:30:00-05:00</updated><entry><title>Setting up GitLab on the new server</title><link href="http://andrewwegner.com/installing-gitlab.html" rel="alternate"></link><published>2018-04-13T08:30:00-05:00</published><updated>2018-04-13T08:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-13:/installing-gitlab.html</id><summary type="html">&lt;p&gt;Let's set up some private repositories on GitLab&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Back when I ran Vipers, my fellow admins and I hosted a small set of code repositories -
+SVN, Mercurial and Git - to host some of our custom code. We ran &lt;a href="https://rhodecode.com/"&gt;RhodeCode&lt;/a&gt; and
+the fork, &lt;a href="https://kallithea-scm.org/"&gt;Kallithea&lt;/a&gt;, when RhodeCode close sourced some of it's code and
+couldn't figure out if the license it used actually allowed themselves to do that. A private
+repository was awesome for plugins, server configurations and personal projects.&lt;/p&gt;
+&lt;p&gt;When the community was shuttered, some of the &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;plugin code was migrated to GitHub&lt;/a&gt; and it's
+sat there untouched since. My personal projects were either migrated to GitHub or
+simply stored outside of version control if it couldn't go in a public repository. That was
+less than ideal, but it worked. With the new home server set up, I wanted to get source control set
+back up for my non-public personal projects.&lt;/p&gt;
+&lt;p&gt;I rejected RhodeCode right away due to the experiences I had when they changed licenses. Turns out,
+they had done it again in the meantime. I didn't want to deal with that. I attempted to install
+Kallithea using their &lt;a href="http://kallithea.readthedocs.io/en/stable/installation.html"&gt;instructions&lt;/a&gt;, but I kept running into Python syntax errors. It wasn't
+worth the time and effort to figure out the problem.&lt;/p&gt;
+&lt;p&gt;So, I turned to &lt;a href="https://about.gitlab.com/"&gt;GitLab&lt;/a&gt;. It'd definitely overkill for what I really need, but it works and
+if I ever truly decide to get fancy, I have a lot of other tools I can use. The &lt;a href="https://about.gitlab.com/pricing/self-hosted/feature-comparison/"&gt;core&lt;/a&gt; functionality
+is what I'll be using and is free. The three other versions cost some money and contain features that
+would be useful for large team, not a single developer or very small team.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="dependencies"&gt;Dependencies&lt;a class="headerlink" href="#dependencies" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Installing GitLab is pretty simple. There are a couple dependencies needed, but I already had both OpenSSH 
+and Postfix installed, so I was able to skip the first step in the &lt;a href="https://about.gitlab.com/installation/#ubuntu"&gt;official installation guide&lt;/a&gt;. I installed
+the Ubuntu Omnibus package.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install -y curl openssh-server ca-certificates postfix
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="getting-the-package"&gt;Getting the package&lt;a class="headerlink" href="#getting-the-package" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The GitLab repository needs to added and then installed. To add the repository, issue this command:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To install the GitLab package, you need to provide an environment variable when you issue your
+&lt;code&gt;apt-get install&lt;/code&gt; command. This will be the URL where you want to access your GitLab installation.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo EXTERNAL_URL="http://gitlab.example.com" apt-get install gitlab-ee
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="complete-the-installation"&gt;Complete the installation&lt;a class="headerlink" href="#complete-the-installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once the install, above is complete, you need to log in to complete the process. In your browser,
+navigate to the URL you provided above. Set/reset the password as prompted and then login. &lt;/p&gt;
+&lt;h2 id="post-install-tweaks"&gt;Post-install Tweaks&lt;a class="headerlink" href="#post-install-tweaks" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="using-apache-instead-of-nginx"&gt;Using Apache instead of Nginx&lt;a class="headerlink" href="#using-apache-instead-of-nginx" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The omnibus package comes with Nginx bundled. Unfortunately, I don't have any experience managing
+an Nginx instance but do have experience with Apache. I want to use something that I know to make
+my life easier. Fortunately, GitLab can handle this with a few &lt;a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server/apache"&gt;minor changes to the configuration&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;In the &lt;code&gt;/etc/gitlab/gitlab.rb&lt;/code&gt; file you'll need to make several settings changes. You also need Apache 
+already installed and the &lt;code&gt;www-data&lt;/code&gt; user (on Ubuntu) added to the &lt;code&gt;gitlab-www&lt;/code&gt; group.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Find &lt;code&gt;nginx['enable']&lt;/code&gt; and set it to &lt;code&gt;false&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;In &lt;code&gt;web_server['external_users'], add&lt;/code&gt;www-data` to the array. Note that this is an array and not a single string.&lt;/li&gt;
+&lt;li&gt;In `gitlab_rails['trusted_proxies'], add the IP address of the Apache web server. &lt;/li&gt;
+&lt;li&gt;Change the gitlab workhorse settings to the following (default) values. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These may already be in the configuration file. If so, you probably don't need to modify them.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gitlab_workhorse['listen_network'] = "tcp"
+gitlab_workhorse['listen_addr'] = "127.0.0.1:8181"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, run &lt;code&gt;sudo gitlab-ctl reconfigure&lt;/code&gt; for the settings to take effect.&lt;/p&gt;
+&lt;p&gt;Now, you need to configure Apache's virtual host. GitLab provides &lt;a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server/apache"&gt;example virtual hosts&lt;/a&gt;. Since I installed
+the omnibus package and am using Apache 2.4, I selected the &lt;a href="https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/web-server/apache/gitlab-omnibus-apache24.conf"&gt;&lt;code&gt;gitlab-omnibus-apache24.conf&lt;/code&gt;&lt;/a&gt; file. Adjust all
+instances of &lt;code&gt;YOUR_SERVER_FQDN&lt;/code&gt; to the fully qualified domain name of your server.&lt;/p&gt;
+&lt;p&gt;This will go in &lt;code&gt;/etc/apache2/sites-available/&lt;/code&gt; and a symlink in &lt;code&gt;/etc/apache2/sites-enabled/&lt;/code&gt; will point to this file.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo touch /etc/apache2/sites-available/gitlab.conf
+sudo ln -s /etc/apache2/sites-available/gitlab.conf /etc/apache2/sites-enabled/gitlab.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="use-ssl-to-access-gitlab"&gt;Use SSL to access GitLab&lt;a class="headerlink" href="#use-ssl-to-access-gitlab" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The example virtual host provided by GitLab uses HTTP only. I want to set up my instance to use HTTPS. I'll be 
+doing this with &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;, like I did when I set up NextCloud in the previous post. I'll cover the exact 
+steps for Let's Encrypt in a future post. The keys referenced in the virtual host configuration file below created 
+by that process. &lt;/p&gt;
+&lt;p&gt;The first change to make is to redirect the HTTP version of your domain to HTTPS. The goal is that all traffic to
+GitLab will go over SSL. Adjust the &lt;code&gt;ServerName&lt;/code&gt; variable as appropriate.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:80&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  ServerName gitlab.example.com
+  ServerSignature Off
+
+  RewriteEngine on
+  RewriteCond %{HTTPS} !=on
+  RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [NE,R,L]
+&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, everything in the &lt;a href="https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/web-server/apache/gitlab-omnibus-apache24.conf"&gt;sample&lt;/a&gt; virtual host file can be put in the &lt;code&gt;&amp;lt;VirtualHost *:443&amp;gt;&lt;/code&gt; block.&lt;/p&gt;
+&lt;p&gt;At the top of this block, we need to reference the Let's Encrypt keys:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;SSLProtocol&lt;/span&gt; &lt;span class="nt"&gt;all&lt;/span&gt; &lt;span class="nt"&gt;-SSLv2&lt;/span&gt;
+&lt;span class="nt"&gt;SSLHonorCipherOrder&lt;/span&gt; &lt;span class="nt"&gt;on&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCipherSuite&lt;/span&gt; &lt;span class="s2"&gt;"ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS"&lt;/span&gt;
+&lt;span class="nt"&gt;Header&lt;/span&gt; &lt;span class="nt"&gt;add&lt;/span&gt; &lt;span class="nt"&gt;Strict-Transport-Security&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"max-age=15768000;includeSubdomains"&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCompression&lt;/span&gt; &lt;span class="nt"&gt;Off&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCertificateFile&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;repos&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;cert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCertificateKeyFile&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;repos&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;privkey&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCertificateChainFile&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;repos&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;chain&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Save and restart Apache. You should be automatically redirected over HTTPS when you visit your GitLab URL.&lt;/p&gt;
+&lt;h3 id="allow-spaces-in-repository-names"&gt;Allow spaces in repository names&lt;a class="headerlink" href="#allow-spaces-in-repository-names" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One of the only problems I ran into with GitLab is that, by default, repositories with spaces in them can't be viewed
+in the web browser. It throws a &lt;code&gt;400 Bad Request&lt;/code&gt; when trying to view the directory. There is a &lt;a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/32585"&gt;bug report&lt;/a&gt; 
+regarding this problem. The developers are working on updating the samples in a way that is guaranteed to work through
+the whole system. &lt;/p&gt;
+&lt;p&gt;For me, though, the first comment which suggests a minor &lt;code&gt;RewireRule&lt;/code&gt; change works great. In the virtual host, fine the line&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;RewriteRule .* http://127.0.0.1:8181%{REQUEST_URI} [P,QSA,NE]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and remove the &lt;code&gt;NE&lt;/code&gt; so that it reads&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;RewriteRule .* http://127.0.0.1:8181%{REQUEST_URI} [P,QSA]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Restart Apache and you can navigate to the directory with a space.&lt;/p&gt;
+&lt;h3 id="setting-up-smtp"&gt;Setting up SMTP&lt;a class="headerlink" href="#setting-up-smtp" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;GitLab can send out emails and requires the ability to do so when resetting a password, at minimum. I don't want this
+email to be marked as spam, so I used one of the free providers from &lt;a href="https://docs.gitlab.com/omnibus/settings/smtp.html#smtp-settings"&gt;here&lt;/a&gt; and set up an account. After editing the 
+&lt;code&gt;/etc/gitlab/gitlab.rb&lt;/code&gt; file to match the provider I selected, I ran &lt;code&gt;gitlab-ctl reconfigure&lt;/code&gt;. Now any emails GitLab
+sends out goes through the trusted email provider instead of coming directly from my residential IP address. This means 
+my mail provider trusts it. I also send out less than 5 emails a month currently, so I am &lt;em&gt;well&lt;/em&gt; below the tier where I
+lose my "free" status.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At this point, GitLab is set up over SSL on my server. I can log in and start setting up repositories. Migrating and importing 
+the code bases I didn't want to put on a public GitHub account was very satisfying. Maybe I'll look into some of the 
+more advanced features GitLab offers in the near future, but for the time being I'm happy with what I have and the 
+knowledge that I can expand what I do with GitLab.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Travis CI doesn't keep your environment variable secure</title><link href="http://andrewwegner.com/travisci-insecure-environment-variables.html" rel="alternate"></link><published>2018-04-02T12:30:00-05:00</published><updated>2018-04-02T12:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-02:/travisci-insecure-environment-variables.html</id><summary type="html">&lt;p&gt;Travis CI does not keep your environment variables secure if you transfer a repository.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;On December 27, 2017 I reported a security issue directly to the security team as their &lt;a href="https://github.com/travis-ci/travis-ci/blob/master/CONTRIBUTING.md"&gt;CONTRIBUTING.md&lt;/a&gt; recommends. I received an automated response that a human would
 follow up with me soon. It was their end of year, two week vacation (which is awesome!). I sent the same email again on January 26, 2018 and received a response back from AJ Bowen, a Build Infrastructure Engineer at Travis CI on January 29, 2018. They'd created an internal issue to track the behavior and would follow up within two weeks. &lt;/p&gt;
