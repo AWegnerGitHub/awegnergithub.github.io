@@ -1,5 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-04-13T08:30:00-05:00</updated><entry><title>Setting up GitLab on the new server</title><link href="http://andrewwegner.com/installing-gitlab.html" rel="alternate"></link><published>2018-04-13T08:30:00-05:00</published><updated>2018-04-13T08:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-13:/installing-gitlab.html</id><summary type="html">&lt;p&gt;Let's set up some private repositories on GitLab&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2018-04-25T09:30:00-05:00</updated><entry><title>Set up Dynamic CloudFlare IP with Let's Encrypt</title><link href="http://andrewwegner.com/setup-lets-encrypt.html" rel="alternate"></link><published>2018-04-25T09:30:00-05:00</published><updated>2018-04-25T09:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-25:/setup-lets-encrypt.html</id><summary type="html">&lt;p&gt;Time to make the server accessible from the internet and secure it with an SSL certificate&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In the two previous articles, I installed &lt;a href="http://andrewwegner.com/installing-nextcloud.html"&gt;NextCloud&lt;/a&gt; and &lt;a href="http://andrewwegner.com/installing-gitlab.html"&gt;GitLab&lt;/a&gt;. These are running on the server, inside my local network, with 
+no firewall rules set up to allow it to be accessible from the internet. That's great if I plan on sitting at home all the time and never
+accessing anything from the outside. However, I do plan on that. That means I need to make this server accessible from the internet. On top
+of that, I want to secure the connection to the server with SSL, so that I'm not uploading pictures or code in a way that everyone can read.&lt;/p&gt;
+&lt;h2 id="setting-up-cloudflare"&gt;Setting up CloudFlare&lt;a class="headerlink" href="#setting-up-cloudflare" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This new server sits in my house, which sits on a residential ISP network. Obviously, this isn't going to have 24x7 uptime, but that's fine
+with me. One thing that I will need, is a way to access this server regardless of the IP address my ISP has given me. This can (and does) change
+frequently enough that it'd be annoying to keep track of my current IP manually. &lt;/p&gt;
+&lt;p&gt;My solution: set up a DNS entry. In the two previous articles, I set up the Apache virtual hosts with subdomains:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ServerName nas.example.com
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ServerName gitlab.example.com
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It's time to utilize those. Then I will only need to visit those URLs and Apache will handle routing to the correct application.&lt;/p&gt;
+&lt;p&gt;I use CloudFlare to handle DNS for this blog. I described the process to &lt;a href="http://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html"&gt;set up CloudFlare&lt;/a&gt; a few years ago and never 
+looked at it again. "It just works." Hooray! &lt;/p&gt;
+&lt;p&gt;For this, we're going to add two new A entries to reflect the subdomains I want to use. I'll point it at my IP address initially too. &lt;/p&gt;
+&lt;h3 id="automating-the-ip-adddress-updates"&gt;Automating the IP adddress updates&lt;a class="headerlink" href="#automating-the-ip-adddress-updates" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The initial set up of the A entry/IP address takes a minute. The trick is automating that process every time your IP address changes. I 
+am doing that with a small Python script called &lt;a href="https://github.com/Ethaligan/cloudflare-ddns"&gt;&lt;code&gt;cloudflare-ddns&lt;/code&gt;&lt;/a&gt;. Clone this to the server.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/ethaligan/cloudflare-ddns.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next, we need to set up zone information. This is the configuration file that will be used to update your A records. Copy example.com.yml to the
+name of your domain. For example:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd zones
+cp example.com.yml andrewwegner.com.yml
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we need to edit the newly copied file to contain appropriate zone information, CloudFlare API information and your domain.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;%YAML 1.1&lt;/span&gt;
+# &lt;span class="n"&gt;Your&lt;/span&gt; &lt;span class="n"&gt;Cloudflare&lt;/span&gt; &lt;span class="n"&gt;email&lt;/span&gt; &lt;span class="n"&gt;address&lt;/span&gt;
+&lt;span class="n"&gt;cf_email&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;'your_cloudflare_email_address'&lt;/span&gt;
+
+# &lt;span class="n"&gt;Your&lt;/span&gt; &lt;span class="n"&gt;Cloudflare&lt;/span&gt; &lt;span class="n"&gt;API&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;
+# &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;support&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cloudflare&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;hc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;us&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;articles&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;200167836&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Where&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;do&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;find&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Cloudflare&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;API&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;
+&lt;span class="n"&gt;cf_api_key&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;YOUR_CLOUDFLARE_API&lt;/span&gt;
+
+# &lt;span class="n"&gt;Cloudflare&lt;/span&gt; &lt;span class="n"&gt;zone&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;
+# &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="n"&gt;re&lt;/span&gt; &lt;span class="n"&gt;updating&lt;/span&gt; &lt;span class="s"&gt;'ddns.example.com'&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="s"&gt;'example.com'&lt;/span&gt;
+&lt;span class="n"&gt;cf_zone&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+
+# &lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;records&lt;/span&gt;
+# &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="n"&gt;re&lt;/span&gt; &lt;span class="n"&gt;updating&lt;/span&gt; &lt;span class="s"&gt;'example.com'&lt;/span&gt; &lt;span class="n"&gt;record&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;its&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="s"&gt;'@'&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+# &lt;span class="n"&gt;Only&lt;/span&gt; &lt;span class="n"&gt;write&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;subdomain&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'ddns'&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="s"&gt;'ddns.example.com'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cf_records&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s"&gt;'nas'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;
+        &lt;span class="nb"&gt;log&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ERROR&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s"&gt;'gitlab'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;
+        &lt;span class="nb"&gt;log&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ERROR&lt;/span&gt;
+
+# &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt; &lt;span class="n"&gt;used&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;discover&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt; &lt;span class="n"&gt;address&lt;/span&gt;
+# &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;faster&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="s"&gt;'dig'&lt;/span&gt; &lt;span class="n"&gt;but&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;may&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;available&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt;
+# &lt;span class="n"&gt;Available&lt;/span&gt; &lt;span class="k"&gt;methods&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;'http'&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="s"&gt;'dig'&lt;/span&gt;
+&lt;span class="n"&gt;cf_resolving_method&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;'dig'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In this case, I am updating two subdomains (&lt;code&gt;nas&lt;/code&gt; and &lt;code&gt;gitlab&lt;/code&gt;) that are part of the &lt;code&gt;example.com&lt;/code&gt; domain. Those should be changed to reflect your set up.&lt;/p&gt;
+&lt;p&gt;Last, we need to schedule this to run on a regular basis so that CloudFlare always points to the correct IP address. I did this with a crontab entry:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*/30 * * * * python3 /path/to/cloudflare-ddns.py -z example.com
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Again, change &lt;code&gt;example.com&lt;/code&gt; to your domain, and it will use the appropriate YML file. With this entry, my DNS entries are updated every 30 minutes. That 
+is frequently enough for my needs.&lt;/p&gt;
+&lt;h2 id="lets-encrypt-ssl"&gt;Let's Encrypt (SSL)&lt;a class="headerlink" href="#lets-encrypt-ssl" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With the subdomains set up and working, it's time to install some SSL certificates. In previous articles, I had entries in my Apache virtual hosts that pointed to
+SSL certificates. This is where we'll set those up. &lt;/p&gt;
+&lt;p&gt;Let's Encrypt certificates are valid for 90 days. Renewing certificates, though, can be easily automated. Since I need my certificates to work through CloudFlare,
+because it provides my DNS services, I use a hook in Let's Encrypt's ACME client &lt;a href="https://github.com/lukas2511/dehydrated"&gt;&lt;code&gt;dehydrated&lt;/code&gt;&lt;/a&gt; to handle everything.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd ~
+git clone https://github.com/lukas2511/dehydrated
+cd dehydrated
+mkdir hooks
+git clone https://github.com/kappataumu/letsencrypt-cloudflare-hook hooks/cloudflare
+pip install -r hooks/cloudflare/requirements.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This downloads deydrated and then downloads the CloudFlare hook that is needed. It installs the required libraries too. &lt;/p&gt;
+&lt;p&gt;The last bit of configuration that is needed is setting up a &lt;code&gt;config&lt;/code&gt; file in the &lt;code&gt;dehydrated&lt;/code&gt; directory.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;nano `dehydrated/config`
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Add the following three lines&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;export CF_EMAIL=YOUR_CLOUDFLARE_EMAILADDRESS
+export CF_KEY=YOUR_CLOUDFLARE_API
+export CF_DEBUG=true
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Substitute your CloudFlare login email and API key as appropriate. The &lt;code&gt;CF_DEBUG&lt;/code&gt; line can be set to &lt;code&gt;false&lt;/code&gt; if you don't wish debugging information to be printed to &lt;code&gt;logs/&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;Register with Let's Encrypt and accept their terms of service:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./dehydrated --register --accept-terms
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, you're ready to generate/install the SSL certificates needed. One note: I needed to adjust the shebang line in hooks/cloudflare/hook.py to be &lt;code&gt;python3&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;Run the following commands to generate the certificates. These will end up in &lt;code&gt;dehydrated/certs&lt;/code&gt; with the full URL of each certificate. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./dehydrated -c -d nas.example.com -t dns-01 -k 'hooks/cloudflare/hook.py'
+./dehydrated -c -d gitlab.example.com -t dns-01 -k 'hooks/cloudflare/hook.py'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The path to these files are what will go in your Apache Virtual Host files:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;SSLCertificateFile /path/to/dehydrated/certs/nas.example.com/cert.pem
+SSLCertificateKeyFile /path/to/dehydrated/certs/nas.example.com/privkey.pem
+SSLCertificateChainFile /path/to/dehydrated/certs/nas.example.com/chain.pem
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I set up a crontab entry for each of my subdomains to attempt to renew the certificate once a week. Dehydrated will not attempt to renew a certificate if it's not going to 
+expire in less than 30 days, so we aren't making unneeded calls to Let's Encrypt. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0 1 6 * * /path/to/dehydrated/dehydrated -c -d nas.example.com -t dns-01 -k '/path/to/dehydrated/hooks/cloudflare/hook.py'
+10 1 6 * * /path/to/dehydrated/dehydrated -c -d gitlab.example.com -t dns-01 -k '/path/to/dehydrated/hooks/cloudflare/hook.py'
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With this final step, I have a home server that I can access from anywhere. It allows me to backup pictures automatically, holds my private repositories and is protected
+by SSL. The SSL certificates renew automatically.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Setting up GitLab on the new server</title><link href="http://andrewwegner.com/installing-gitlab.html" rel="alternate"></link><published>2018-04-13T08:30:00-05:00</published><updated>2018-04-13T08:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-13:/installing-gitlab.html</id><summary type="html">&lt;p&gt;Let's set up some private repositories on GitLab&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Back when I ran Vipers, my fellow admins and I hosted a small set of code repositories -
 SVN, Mercurial and Git - to host some of our custom code. We ran &lt;a href="https://rhodecode.com/"&gt;RhodeCode&lt;/a&gt; and
@@ -64,8 +171,8 @@ sudo ln -s /etc/apache2/sites-available/gitlab.conf /etc/apache2/sites-enabled/g
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="use-ssl-to-access-gitlab"&gt;Use SSL to access GitLab&lt;a class="headerlink" href="#use-ssl-to-access-gitlab" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The example virtual host provided by GitLab uses HTTP only. I want to set up my instance to use HTTPS. I'll be 
-doing this with &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;, like I did when I set up NextCloud in the previous post. I'll cover the exact 
-steps for Let's Encrypt in a future post. The keys referenced in the virtual host configuration file below created 
+doing this with &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;, like I did when I set up NextCloud in the previous post. I cover the exact 
+&lt;a href="http://andrewwegner.com/setup-lets-encrypt.html"&gt;steps for Let's Encrypt&lt;/a&gt; in another post. The keys referenced in the virtual host configuration file below created 
 by that process. &lt;/p&gt;
 &lt;p&gt;The first change to make is to redirect the HTTP version of your domain to HTTPS. The goal is that all traffic to
 GitLab will go over SSL. Adjust the &lt;code&gt;ServerName&lt;/code&gt; variable as appropriate.&lt;/p&gt;
@@ -85,9 +192,9 @@ GitLab will go over SSL. Adjust the &lt;code&gt;ServerName&lt;/code&gt; variable
 &lt;span class="nt"&gt;SSLCipherSuite&lt;/span&gt; &lt;span class="s2"&gt;"ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS"&lt;/span&gt;
 &lt;span class="nt"&gt;Header&lt;/span&gt; &lt;span class="nt"&gt;add&lt;/span&gt; &lt;span class="nt"&gt;Strict-Transport-Security&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"max-age=15768000;includeSubdomains"&lt;/span&gt;
 &lt;span class="nt"&gt;SSLCompression&lt;/span&gt; &lt;span class="nt"&gt;Off&lt;/span&gt;
-&lt;span class="nt"&gt;SSLCertificateFile&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;repos&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;cert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
-&lt;span class="nt"&gt;SSLCertificateKeyFile&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;repos&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;privkey&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
-&lt;span class="nt"&gt;SSLCertificateChainFile&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;repos&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;chain&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCertificateFile&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;cert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCertificateKeyFile&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;privkey&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCertificateChainFile&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;chain&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Save and restart Apache. You should be automatically redirected over HTTPS when you visit your GitLab URL.&lt;/p&gt;
 &lt;h3 id="allow-spaces-in-repository-names"&gt;Allow spaces in repository names&lt;a class="headerlink" href="#allow-spaces-in-repository-names" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -274,7 +381,7 @@ different user or group, adjust this command accordingly.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="create-the-virtual-host"&gt;Create the Virtual Host&lt;a class="headerlink" href="#create-the-virtual-host" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;I'll be exposing this to the internet and I'll be accessing it via the internet. That means I really don't want to send data unencrypted to or from NextCloud. I'll be setting
-up the standard port 80 web server traffic to redirect to the secure port of 443. I'll cover generating SSL certificates in a future post. I use &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;. The keys 
+up the standard port 80 web server traffic to redirect to the secure port of 443. I cover &lt;a href="http://andrewwegner.com/setup-lets-encrypt.html"&gt;generating SSL certificates&lt;/a&gt; in another post. I use &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;. The keys 
 referenced in the virtual host configuration file below created by that process.&lt;/p&gt;
 &lt;p&gt;Create a new virtual host.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo touch /etc/apache2/sites-available/nextcloud.conf
@@ -307,9 +414,9 @@ sudo ln -s /etc/apache2/sites-available/nextcloud.conf /etc/apache2/sites-enable
     RewriteCond %{THE_REQUEST} ^.*/index\.php
     RewriteRule ^(.*)index.php$ /$1 [R=301,L]
     SSLEngine on
-    SSLCertificateFile /opt/repos/dehydrated/certs/nas.example.com/cert.pem
-    SSLCertificateKeyFile /opt/repos/dehydrated/certs/nas.example.com/privkey.pem
-    SSLCertificateChainFile /opt/repos/dehydrated/certs/nas.example.com/chain.pem
+    SSLCertificateFile /path/to/dehydrated/certs/nas.example.com/cert.pem
+    SSLCertificateKeyFile /path/to/dehydrated/certs/nas.example.com/privkey.pem
+    SSLCertificateChainFile /path/to/dehydrated/certs/nas.example.com/chain.pem
     &lt;span class="nt"&gt;&amp;lt;IfModule&lt;/span&gt; &lt;span class="err"&gt;mod_headers.c&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
         Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
     &lt;span class="nt"&gt;&amp;lt;/IfModule&amp;gt;&lt;/span&gt;

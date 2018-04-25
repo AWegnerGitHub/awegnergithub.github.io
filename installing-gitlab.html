@@ -165,8 +165,8 @@ sudo ln -s /etc/apache2/sites-available/gitlab.conf /etc/apache2/sites-enabled/g
 </pre></div>
 <h3 id="use-ssl-to-access-gitlab">Use SSL to access GitLab<a class="headerlink" href="#use-ssl-to-access-gitlab" title="Permanent link">¶</a></h3>
 <p>The example virtual host provided by GitLab uses HTTP only. I want to set up my instance to use HTTPS. I'll be 
-doing this with <a href="https://letsencrypt.org/">Let's Encrypt</a>, like I did when I set up NextCloud in the previous post. I'll cover the exact 
-steps for Let's Encrypt in a future post. The keys referenced in the virtual host configuration file below created 
+doing this with <a href="https://letsencrypt.org/">Let's Encrypt</a>, like I did when I set up NextCloud in the previous post. I cover the exact 
+<a href="http://andrewwegner.com/setup-lets-encrypt.html">steps for Let's Encrypt</a> in another post. The keys referenced in the virtual host configuration file below created 
 by that process. </p>
 <p>The first change to make is to redirect the HTTP version of your domain to HTTPS. The goal is that all traffic to
 GitLab will go over SSL. Adjust the <code>ServerName</code> variable as appropriate.</p>
@@ -186,9 +186,9 @@ GitLab will go over SSL. Adjust the <code>ServerName</code> variable as appropri
 <span class="nt">SSLCipherSuite</span> <span class="s2">"ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS"</span>
 <span class="nt">Header</span> <span class="nt">add</span> <span class="nt">Strict-Transport-Security</span><span class="o">:</span> <span class="s2">"max-age=15768000;includeSubdomains"</span>
 <span class="nt">SSLCompression</span> <span class="nt">Off</span>
-<span class="nt">SSLCertificateFile</span> <span class="o">/</span><span class="nt">opt</span><span class="o">/</span><span class="nt">repos</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">cert</span><span class="p">.</span><span class="nc">pem</span>
-<span class="nt">SSLCertificateKeyFile</span> <span class="o">/</span><span class="nt">opt</span><span class="o">/</span><span class="nt">repos</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">privkey</span><span class="p">.</span><span class="nc">pem</span>
-<span class="nt">SSLCertificateChainFile</span> <span class="o">/</span><span class="nt">opt</span><span class="o">/</span><span class="nt">repos</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">chain</span><span class="p">.</span><span class="nc">pem</span>
+<span class="nt">SSLCertificateFile</span> <span class="o">/</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">cert</span><span class="p">.</span><span class="nc">pem</span>
+<span class="nt">SSLCertificateKeyFile</span> <span class="o">/</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">privkey</span><span class="p">.</span><span class="nc">pem</span>
+<span class="nt">SSLCertificateChainFile</span> <span class="o">/</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">chain</span><span class="p">.</span><span class="nc">pem</span>
 </pre></div>
 <p>Save and restart Apache. You should be automatically redirected over HTTPS when you visit your GitLab URL.</p>
 <h3 id="allow-spaces-in-repository-names">Allow spaces in repository names<a class="headerlink" href="#allow-spaces-in-repository-names" title="Permanent link">¶</a></h3>
@@ -231,6 +231,7 @@ knowledge that I can expand what I do with GitLab.</p>
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="http://andrewwegner.com/travisci-insecure-environment-variables.html" title="Previous: Travis CI doesn&#39;t keep your environment variable secure">Travis CI doesn't keep your environment variable secure</a></li>
+                <li class="next-article"><a href="http://andrewwegner.com/setup-lets-encrypt.html" title="Next: Set up Dynamic CloudFlare IP with Let&#39;s Encrypt">Set up Dynamic CloudFlare IP with Let's Encrypt</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -258,13 +259,16 @@ knowledge that I can expand what I do with GitLab.</p>
             <li  class="active-part">
             Part 5: Setting up GitLab on the new server
             </li>
+            <li >
+            <a href="http://andrewwegner.com/setup-lets-encrypt.html" title="Set up Dynamic CloudFlare IP with Let's Encrypt">Part 6: Set up Dynamic CloudFlare IP with Let's Encrypt</a>
+            </li>
     </ul>
             <h4>Category</h4>
             <a class="category-link" href="http://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="http://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>22</span>
+                    <span>23</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

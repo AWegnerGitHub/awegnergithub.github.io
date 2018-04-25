@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="Set up Dynamic CloudFlare IP with Let&#39;s Encrypt "/>
+<meta property="og:url" content="http://andrewwegner.com/setup-lets-encrypt.html" />
+<meta property="og:description" content="Time to make the server accessible from the internet and secure it with an SSL certificate" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2018-04-25T09:30:00-05:00" />
+<meta name="twitter:title" content="Set up Dynamic CloudFlare IP with Let&#39;s Encrypt ">
+<meta name="twitter:description" content="Time to make the server accessible from the internet and secure it with an SSL certificate">
+
+        <title>Set up Dynamic CloudFlare IP with Let&#39;s Encrypt  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="http://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="http://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+        <script type="text/javascript">
+            window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+              heap.load("653100411");
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://andrewwegner.com">Home</a></li>
+                            <li ><a href="http://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="http://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="http://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope itemtype="http://schema.org/BlogPosting">
+<meta itemprop="headline" content="Set up Dynamic CloudFlare IP with Let&#39;s Encrypt" />
+<time itemprop="datePublished" datetime="2018-04-25T09:30:00-05:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="http://andrewwegner.com/setup-lets-encrypt.html" />
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://andrewwegner.com/setup-lets-encrypt.html"> Set up Dynamic CloudFlare IP with Let's Encrypt  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#setting-up-cloudflare">Setting up CloudFlare</a><ul>
+<li><a href="#automating-the-ip-adddress-updates">Automating the IP adddress updates</a></li>
+</ul>
+</li>
+<li><a href="#lets-encrypt-ssl">Let's Encrypt (SSL)</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <div itemprop="articleBody mainEntityOfPage">
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>In the two previous articles, I installed <a href="http://andrewwegner.com/installing-nextcloud.html">NextCloud</a> and <a href="http://andrewwegner.com/installing-gitlab.html">GitLab</a>. These are running on the server, inside my local network, with 
+no firewall rules set up to allow it to be accessible from the internet. That's great if I plan on sitting at home all the time and never
+accessing anything from the outside. However, I do plan on that. That means I need to make this server accessible from the internet. On top
+of that, I want to secure the connection to the server with SSL, so that I'm not uploading pictures or code in a way that everyone can read.</p>
+<h2 id="setting-up-cloudflare">Setting up CloudFlare<a class="headerlink" href="#setting-up-cloudflare" title="Permanent link">¶</a></h2>
+<p>This new server sits in my house, which sits on a residential ISP network. Obviously, this isn't going to have 24x7 uptime, but that's fine
+with me. One thing that I will need, is a way to access this server regardless of the IP address my ISP has given me. This can (and does) change
+frequently enough that it'd be annoying to keep track of my current IP manually. </p>
+<p>My solution: set up a DNS entry. In the two previous articles, I set up the Apache virtual hosts with subdomains:</p>
+<div class="codehilight code"><pre><span></span>ServerName nas.example.com
+</pre></div>
+<p>and </p>
+<div class="codehilight code"><pre><span></span>ServerName gitlab.example.com
+</pre></div>
+<p>It's time to utilize those. Then I will only need to visit those URLs and Apache will handle routing to the correct application.</p>
+<p>I use CloudFlare to handle DNS for this blog. I described the process to <a href="http://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html">set up CloudFlare</a> a few years ago and never 
+looked at it again. "It just works." Hooray! </p>
+<p>For this, we're going to add two new A entries to reflect the subdomains I want to use. I'll point it at my IP address initially too. </p>
+<h3 id="automating-the-ip-adddress-updates">Automating the IP adddress updates<a class="headerlink" href="#automating-the-ip-adddress-updates" title="Permanent link">¶</a></h3>
+<p>The initial set up of the A entry/IP address takes a minute. The trick is automating that process every time your IP address changes. I 
+am doing that with a small Python script called <a href="https://github.com/Ethaligan/cloudflare-ddns"><code>cloudflare-ddns</code></a>. Clone this to the server.</p>
+<div class="codehilight code"><pre><span></span>git clone https://github.com/ethaligan/cloudflare-ddns.git
+</pre></div>
+<p>Next, we need to set up zone information. This is the configuration file that will be used to update your A records. Copy example.com.yml to the
+name of your domain. For example:</p>
+<div class="codehilight code"><pre><span></span>cd zones
+cp example.com.yml andrewwegner.com.yml
+</pre></div>
+<p>Now we need to edit the newly copied file to contain appropriate zone information, CloudFlare API information and your domain.</p>
+<div class="codehilight code"><pre><span></span><span class="c">%YAML 1.1</span>
+# <span class="n">Your</span> <span class="n">Cloudflare</span> <span class="n">email</span> <span class="n">address</span>
+<span class="n">cf_email</span><span class="p">:</span> <span class="s">'your_cloudflare_email_address'</span>
+
+# <span class="n">Your</span> <span class="n">Cloudflare</span> <span class="n">API</span> <span class="n">key</span>
+# <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">support</span><span class="p">.</span><span class="n">cloudflare</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">hc</span><span class="o">/</span><span class="n">en</span><span class="o">-</span><span class="n">us</span><span class="o">/</span><span class="n">articles</span><span class="o">/</span><span class="mi">200167836</span><span class="o">-</span><span class="n">Where</span><span class="o">-</span><span class="n">do</span><span class="o">-</span><span class="n">I</span><span class="o">-</span><span class="nb">find</span><span class="o">-</span><span class="n">my</span><span class="o">-</span><span class="n">Cloudflare</span><span class="o">-</span><span class="n">API</span><span class="o">-</span><span class="n">key</span>
+<span class="n">cf_api_key</span><span class="p">:</span> <span class="n">YOUR_CLOUDFLARE_API</span>
+
+# <span class="n">Cloudflare</span> <span class="n">zone</span> <span class="n">name</span>
+# <span class="n">If</span> <span class="n">you</span><span class="o">'</span><span class="n">re</span> <span class="n">updating</span> <span class="s">'ddns.example.com'</span> <span class="n">set</span> <span class="n">this</span> <span class="n">to</span> <span class="s">'example.com'</span>
+<span class="n">cf_zone</span><span class="p">:</span> <span class="n">example</span><span class="p">.</span><span class="n">com</span>
+
+# <span class="n">List</span> <span class="n">of</span> <span class="n">records</span>
+# <span class="n">If</span> <span class="n">you</span><span class="o">'</span><span class="n">re</span> <span class="n">updating</span> <span class="s">'example.com'</span> <span class="n">record</span><span class="p">,</span> <span class="n">set</span> <span class="n">its</span> <span class="n">name</span> <span class="n">to</span> <span class="s">'@'</span><span class="p">.</span>
+# <span class="n">Only</span> <span class="n">write</span> <span class="n">the</span> <span class="n">subdomain</span> <span class="p">(</span><span class="s">'ddns'</span> <span class="k">for</span> <span class="s">'ddns.example.com'</span><span class="p">)</span>
+<span class="n">cf_records</span><span class="p">:</span>
+    <span class="o">-</span> <span class="s">'nas'</span><span class="p">:</span>
+        <span class="n">type</span><span class="p">:</span> <span class="n">A</span>
+        <span class="nb">log</span><span class="p">:</span> <span class="n">ERROR</span>
+    <span class="o">-</span> <span class="s">'gitlab'</span><span class="p">:</span>
+        <span class="n">type</span><span class="p">:</span> <span class="n">A</span>
+        <span class="nb">log</span><span class="p">:</span> <span class="n">ERROR</span>
+
+# <span class="n">This</span> <span class="n">is</span> <span class="n">the</span> <span class="n">method</span> <span class="n">used</span> <span class="n">to</span> <span class="n">discover</span> <span class="n">the</span> <span class="n">server</span><span class="o">'</span><span class="n">s</span> <span class="n">IP</span> <span class="n">address</span>
+# <span class="n">The</span> <span class="n">faster</span> <span class="n">one</span> <span class="n">is</span> <span class="s">'dig'</span> <span class="n">but</span> <span class="n">it</span> <span class="n">may</span> <span class="n">not</span> <span class="n">be</span> <span class="n">available</span> <span class="n">on</span> <span class="n">your</span> <span class="n">system</span>
+# <span class="n">Available</span> <span class="k">methods</span><span class="p">:</span> <span class="s">'http'</span> <span class="n">or</span> <span class="s">'dig'</span>
+<span class="n">cf_resolving_method</span><span class="p">:</span> <span class="s">'dig'</span>
+</pre></div>
+<p>In this case, I am updating two subdomains (<code>nas</code> and <code>gitlab</code>) that are part of the <code>example.com</code> domain. Those should be changed to reflect your set up.</p>
+<p>Last, we need to schedule this to run on a regular basis so that CloudFlare always points to the correct IP address. I did this with a crontab entry:</p>
+<div class="codehilight code"><pre><span></span>*/30 * * * * python3 /path/to/cloudflare-ddns.py -z example.com
+</pre></div>
+<p>Again, change <code>example.com</code> to your domain, and it will use the appropriate YML file. With this entry, my DNS entries are updated every 30 minutes. That 
+is frequently enough for my needs.</p>
+<h2 id="lets-encrypt-ssl">Let's Encrypt (SSL)<a class="headerlink" href="#lets-encrypt-ssl" title="Permanent link">¶</a></h2>
+<p>With the subdomains set up and working, it's time to install some SSL certificates. In previous articles, I had entries in my Apache virtual hosts that pointed to
+SSL certificates. This is where we'll set those up. </p>
+<p>Let's Encrypt certificates are valid for 90 days. Renewing certificates, though, can be easily automated. Since I need my certificates to work through CloudFlare,
+because it provides my DNS services, I use a hook in Let's Encrypt's ACME client <a href="https://github.com/lukas2511/dehydrated"><code>dehydrated</code></a> to handle everything.</p>
+<div class="codehilight code"><pre><span></span>cd ~
+git clone https://github.com/lukas2511/dehydrated
+cd dehydrated
+mkdir hooks
+git clone https://github.com/kappataumu/letsencrypt-cloudflare-hook hooks/cloudflare
+pip install -r hooks/cloudflare/requirements.txt
+</pre></div>
+<p>This downloads deydrated and then downloads the CloudFlare hook that is needed. It installs the required libraries too. </p>
+<p>The last bit of configuration that is needed is setting up a <code>config</code> file in the <code>dehydrated</code> directory.</p>
+<div class="codehilight code"><pre><span></span>nano `dehydrated/config`
+</pre></div>
+<p>Add the following three lines</p>
+<div class="codehilight code"><pre><span></span>export CF_EMAIL=YOUR_CLOUDFLARE_EMAILADDRESS
+export CF_KEY=YOUR_CLOUDFLARE_API
+export CF_DEBUG=true
+</pre></div>
+<p>Substitute your CloudFlare login email and API key as appropriate. The <code>CF_DEBUG</code> line can be set to <code>false</code> if you don't wish debugging information to be printed to <code>logs/</code>. </p>
+<p>Register with Let's Encrypt and accept their terms of service:</p>
+<div class="codehilight code"><pre><span></span>./dehydrated --register --accept-terms
+</pre></div>
+<p>Finally, you're ready to generate/install the SSL certificates needed. One note: I needed to adjust the shebang line in hooks/cloudflare/hook.py to be <code>python3</code>. </p>
+<p>Run the following commands to generate the certificates. These will end up in <code>dehydrated/certs</code> with the full URL of each certificate. </p>
+<div class="codehilight code"><pre><span></span>./dehydrated -c -d nas.example.com -t dns-01 -k 'hooks/cloudflare/hook.py'
+./dehydrated -c -d gitlab.example.com -t dns-01 -k 'hooks/cloudflare/hook.py'
+</pre></div>
+<p>The path to these files are what will go in your Apache Virtual Host files:</p>
+<div class="codehilight code"><pre><span></span>SSLCertificateFile /path/to/dehydrated/certs/nas.example.com/cert.pem
+SSLCertificateKeyFile /path/to/dehydrated/certs/nas.example.com/privkey.pem
+SSLCertificateChainFile /path/to/dehydrated/certs/nas.example.com/chain.pem
+</pre></div>
+<p>I set up a crontab entry for each of my subdomains to attempt to renew the certificate once a week. Dehydrated will not attempt to renew a certificate if it's not going to 
+expire in less than 30 days, so we aren't making unneeded calls to Let's Encrypt. </p>
+<div class="codehilight code"><pre><span></span>0 1 6 * * /path/to/dehydrated/dehydrated -c -d nas.example.com -t dns-01 -k '/path/to/dehydrated/hooks/cloudflare/hook.py'
+10 1 6 * * /path/to/dehydrated/dehydrated -c -d gitlab.example.com -t dns-01 -k '/path/to/dehydrated/hooks/cloudflare/hook.py'
+</pre></div>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>With this final step, I have a home server that I can access from anywhere. It allows me to backup pictures automatically, holds my private repositories and is protected
+by SSL. The SSL certificates renew automatically.</p>
+            </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="http://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="http://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online 
+            community building, tinkering with new code and building new applications. 
+            He writes about his experiences with each of these.</span>
+
+            </div>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://andrewwegner.com/installing-gitlab.html" title="Previous: Setting up GitLab on the new server">Setting up GitLab on the new server</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2018-04-25T09:30:00-05:00">Apr 25, 2018</time>
+<time itemprop="dateModified" datetime="2018-04-25T09:30:00-05:00">
+
+        <h4>Recovering from data loss</h4>
+    <ul class="multi-parts-list">
+            <li >
+            <a href="http://andrewwegner.com/backup-your-data.html" title="Well, there goes my data...">Part 1: Well, there goes my data...</a>
+            </li>
+            <li >
+            <a href="http://andrewwegner.com/new-house-server.html" title="...and then there was a backup server">Part 2: ...and then there was a backup server</a>
+            </li>
+            <li >
+            <a href="http://andrewwegner.com/zfs-pool-on-ubuntu.html" title="Setting up a ZFS pool on Ubuntu 16.04">Part 3: Setting up a ZFS pool on Ubuntu 16.04</a>
+            </li>
+            <li >
+            <a href="http://andrewwegner.com/installing-nextcloud.html" title="Installing NextCloud">Part 4: Installing NextCloud</a>
+            </li>
+            <li >
+            <a href="http://andrewwegner.com/installing-gitlab.html" title="Setting up GitLab on the new server">Part 5: Setting up GitLab on the new server</a>
+            </li>
+            <li  class="active-part">
+            Part 6: Set up Dynamic CloudFlare IP with Let's Encrypt
+            </li>
+    </ul>
+            <h4>Category</h4>
+            <a class="category-link" href="http://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>23</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam-square sidebar-social-links"></i></a>
+    <a href="http://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="http://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
