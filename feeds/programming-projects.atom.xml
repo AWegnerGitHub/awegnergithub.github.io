@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Programming Projects</title><link href="http://andrewwegner.com/" rel="alternate"></link><link href="http://andrewwegner.com/feeds/programming-projects.atom.xml" rel="self"></link><id>http://andrewwegner.com/</id><updated>2017-02-20T00:00:00-06:00</updated><entry><title>Can a machine be taught to flag spam automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html" rel="alternate"></link><published>2017-02-19T22:51:00-06:00</published><updated>2017-02-20T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-02-19:/can-a-machine-be-taught-to-flag-spam-automatically.html</id><summary type="html">&lt;p&gt;Description of how a group of people helped completely eliminate spam on the Stack Exchange network&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Programming Projects</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/programming-projects.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2017-02-20T00:00:00-06:00</updated><entry><title>Can a machine be taught to flag spam automatically</title><link href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html" rel="alternate"></link><published>2017-02-19T22:51:00-06:00</published><updated>2017-02-20T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-02-19:/can-a-machine-be-taught-to-flag-spam-automatically.html</id><summary type="html">&lt;p&gt;Description of how a group of people helped completely eliminate spam on the Stack Exchange network&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This post was originally &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;published&lt;/a&gt; on Meta Stack Exchange on February 20, 2017. I've republished it here
 so that I can easily update information related to recent developments. If you have questions or comments, I highly
 encourage you to visit the &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;question&lt;/a&gt; on Meta Stack Exchange and post there.&lt;/p&gt;
 &lt;p&gt;The post was featured across the entire Stack Exchange network for a week, too. This drove a huge amount of traffic
 to the question and resulted in some valuable feedback:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-featured-announcement.png"&gt;&lt;img alt="Featured Announcement" src="http://andrewwegner.com/images/spam-featured-announcement.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-featured-announcement.png"&gt;&lt;img alt="Featured Announcement" src="https://andrewwegner.com/images/spam-featured-announcement.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;hr/&gt;
 &lt;p&gt;TL;DR: &lt;a href="http://charcoal-se.org/people.html"&gt;We&lt;/a&gt; did it, so... yes.&lt;/p&gt;
 &lt;hr/&gt;
@@ -68,19 +68,19 @@ flags network wide. These flags were cast by 22 different users. In that time, w
 We would like to be able to automatically cancel these particular cases. This isn't possible though, so we've created 
 a feature request to &lt;a href="http://meta.stackexchange.com/questions/288120/allow-retracting-flags-from-the-api"&gt;retract flags via the API&lt;/a&gt;. In the mean time, the flags are either manually retracted by the 
 user or declined by a moderator.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-weights-and-accuracies.png"&gt;&lt;img alt="Weights and Accuracy" src="http://andrewwegner.com/images/spam-weights-and-accuracies.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-weights-and-accuracies.png"&gt;&lt;img alt="Weights and Accuracy" src="https://andrewwegner.com/images/spam-weights-and-accuracies.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The above graph plots the weight of the reasons against its overall volume of reports and accuracy. As minimum weight 
 increases, accuracy (yellow line and rightmost Y-axis) and total reports (blue line) on the left-hand scale increase. 
 The green line represents the number of true positives, which are verified by SmokeDetector user feedback.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-autoflags-per-day.png"&gt;&lt;img alt="Automatic Flags per day" src="http://andrewwegner.com/images/spam-autoflags-per-day.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-autoflags-per-day.png"&gt;&lt;img alt="Automatic Flags per day" src="https://andrewwegner.com/images/spam-autoflags-per-day.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This shows the number of posts we've automatically flagged per day over the last month. The jump on February 15th, is 
 due to increasing the number of automatic flags from 1 per post to 3 per post. You can see a live version of this graph 
 on &lt;a href="https://metasmoke.erwaysoftware.com/flagging"&gt;metasmoke's autoflagging page&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-spam-hours.png"&gt;&lt;img alt="Spam Hours" src="http://andrewwegner.com/images/spam-spam-hours.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-spam-hours.png"&gt;&lt;img alt="Spam Hours" src="https://andrewwegner.com/images/spam-spam-hours.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Spam arrives on Stack Exchange in waves. It is easy to see the time of day that many spam reports come in. The hours, 
 above, are UTC time. The busiest spam times of day are the 8 hour block between 4am and Noon. We have affectionately 
 named this "spam hour" in the chat room. &lt;/p&gt;
-&lt;p&gt;&lt;a href="http://andrewwegner.com/images/spam-average-time-to-delete.png"&gt;&lt;img alt="Average Time to Deletion" src="http://andrewwegner.com/images/spam-average-time-to-delete.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-average-time-to-delete.png"&gt;&lt;img alt="Average Time to Deletion" src="https://andrewwegner.com/images/spam-average-time-to-delete.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Our goal is to delete spam quickly and accurately. The graph shows the time it takes for a reported spam post to be 
 removed from the network. This section has three trend lines that show these averages. The first, red section is when 
 we were simply reporting the posts to chatrooms and all flags had to come from users. You can see we are pretty constant 
@@ -105,7 +105,7 @@ over the years and many more users have provided feedback to improve our detecti
 to elaborate on, features you're wondering about or would like to see added, or things we might have missed in the 
 process or the tooling. Take a look at the &lt;a href="http://meta.stackexchange.com/questions/288120/allow-retracting-flags-from-the-api"&gt;feature&lt;/a&gt; we'd really like Stack Exchange to consider so that we can 
 further improve this system (and some of the other community built systems). We'll have &lt;a href="http://charcoal-se.org/people.html"&gt;Charcoal members&lt;/a&gt; hanging 
-around and answering your questions. Alternatively, feel free to drop into &lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt; and have a chat. &lt;/p&gt;</content><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Zephyr - The bot that watches for low quality vote requests</title><link href="http://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" rel="alternate"></link><published>2015-03-12T23:34:00-05:00</published><updated>2015-05-08T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-03-12:/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html</id><summary type="html">&lt;p&gt;Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content&lt;/p&gt;</summary><content type="html">
+around and answering your questions. Alternatively, feel free to drop into &lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt; and have a chat. &lt;/p&gt;</content><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Zephyr - The bot that watches for low quality vote requests</title><link href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" rel="alternate"></link><published>2015-03-12T23:34:00-05:00</published><updated>2015-05-08T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-03-12:/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html</id><summary type="html">&lt;p&gt;Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Stack Exchange receives thousands of questions per day across all of their sites. Not all of these are high quality
 posts. Fortunately, users of the Stack Exchange network are given &lt;a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/"&gt;tools&lt;/a&gt; to help keep that low quality stuff to a 
@@ -124,7 +124,7 @@ Other users across the network miss the request. &lt;strong&gt;&lt;a href="https
 several rooms where these types of requests are frequent. These requests all all posted into a single &lt;a href="http://chat.meta.stackexchange.com/rooms/773/low-quality-posts-hq"&gt;chat room&lt;/a&gt;. 
 This provides users with a single room to monitor to see requests for multiple questions and sites across the network.&lt;/p&gt;
 &lt;p&gt;Here is an example of what Zephyr's chat activity looks like during a spam wave:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Zephyr's chat activity during a spam wave" src="http://andrewwegner.com/images/zephyr-spam-wave.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zephyr's chat activity during a spam wave" src="https://andrewwegner.com/images/zephyr-spam-wave.png"/&gt;&lt;/p&gt;
 &lt;h3 id="how-it-works"&gt;How it works&lt;a class="headerlink" href="#how-it-works" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Zephyr utilizes the &lt;a href="https://github.com/Manishearth/ChatExchange"&gt;ChatExchange&lt;/a&gt; package to join and read the chat rooms. To do this, Zephyr required a dedicated
 account. I decided to run Zephyr with a dedicated account to completely separate the bot that would sit and watch multiple chat
@@ -150,7 +150,7 @@ posts are generated &lt;em&gt;by&lt;/em&gt; user input. However, there have been
 certain commands to it. My most common desire is to see a report of how many spam posts Zephyr has seen. Thus, Zephyr now responds
 to the command &lt;code&gt;spamreport&lt;/code&gt; from me. It then prints out a nice summary of information. This information has been utilized in 
 SmokeDetector to watch for commonly spammed domains.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Zephyr spam report for April 2015" src="http://andrewwegner.com/images/zephyr-spam-report.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zephyr spam report for April 2015" src="https://andrewwegner.com/images/zephyr-spam-report.png"/&gt;&lt;/p&gt;
 &lt;h3 id="upgrade-from-sqlite-to-mariadb"&gt;Upgrade from SQLite to MariaDB&lt;a class="headerlink" href="#upgrade-from-sqlite-to-mariadb" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Zephyr was originally built against an SQLite database. This worked, but was getting slower as more data was being added. This slow down
 was beginning to affect performance. I started seeing this error more and more frequently:&lt;/p&gt;
@@ -178,7 +178,7 @@ MySQL/MariaDB before and I happened to have another application utilizing MariaD
 &lt;p&gt;Originally, Zephyr used the &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L68"&gt;&lt;code&gt;watch&lt;/code&gt;&lt;/a&gt; method when monitoring a room. This method would long poll the room. It turns out that this is 
 pretty unreliable. I'd get multiple errors through out the week, ranging from &lt;code&gt;Connection Aborted&lt;/code&gt; errors to random &lt;code&gt;404&lt;/code&gt; messages. The 
 solution has been to switch to &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"&gt;&lt;code&gt;watch_socket&lt;/code&gt;&lt;/a&gt;. The only time I've had problems since this switch is when the Stack Exchange 
-web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</content><category term="Stack Exchange"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"></link><published>2015-01-02T08:47:00-06:00</published><updated>2016-01-09T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:/can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">&lt;p&gt;Description of how I automatically flag comments on Stack Overflow&lt;/p&gt;</summary><content type="html">
+web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</content><category term="Stack Exchange"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"></link><published>2015-01-02T08:47:00-06:00</published><updated>2016-01-09T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:/can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">&lt;p&gt;Description of how I automatically flag comments on Stack Overflow&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This post was originally &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;published&lt;/a&gt; by &lt;a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile"&gt;me&lt;/a&gt; on Meta Stack Overflow on December 14, 2014. I've republished it here
 so that I can easily update information related to recent developments. If you have questions or comments, I highly
@@ -232,13 +232,13 @@ good comment    | 0.9999        | False
 &lt;p&gt;This gives me an overall accuracy of 99.36%. Down from 99.61% when no automated process was involved.&lt;/p&gt;
 &lt;hr/&gt;
 &lt;p&gt;There are pictures that help tell this story too. In this first one, we see that the rolling 10 day average for the number of declined flags has stayed below two flags a day. In October, there was a two week period where the rolling average was 0 and nearly a month long period where the system did not make any mistakes.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="http://andrewwegner.com/images/flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the &lt;a href="http://winterbash2014.stackexchange.com/resolution"&gt;Resolution hat&lt;/a&gt;. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to day light saving time. My process starts 10 minutes after UTC. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they &lt;a href="http://meta.stackexchange.com/a/215397/186281"&gt;lost their keys&lt;/a&gt; that day.&lt;/p&gt;
 &lt;hr/&gt;
-&lt;p&gt;&lt;img alt="Total flagged vs Total Declined" src="http://andrewwegner.com/images/total_flags_vs_total_declined.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Total flagged vs Total Declined" src="https://andrewwegner.com/images/total_flags_vs_total_declined.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Except for 3 days, since June 27th, the process has flagged 100 comments a day. In this chart, you can see the number of declined comment flags along the bottom.&lt;/p&gt;
 &lt;hr/&gt;
-&lt;p&gt;&lt;img alt="Number of comments saved per day" src="http://andrewwegner.com/images/comments_saved_per_day.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Number of comments saved per day" src="https://andrewwegner.com/images/comments_saved_per_day.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Finally, this chart shows the number of comments that the system wanted to act on (and a rolling 5 day average). When the system was brought online, it was acting on 700-800 comments a day (saving to my local database). Many of these were being classified as "Good Comments". You can see the day that I adjusted the threshold for "Good Comments" to be acted upon (saved). The drop in the number of comments the system saved is dramatic. Instead of saving 700-800 comments daily, the system now averages about 150 comments to save. Since I don't flag "Good Comments", I feel this is the appropriate action to take.&lt;/p&gt;
 &lt;hr/&gt;
 &lt;h3 id="flagged-but-declined"&gt;Flagged but declined&lt;a class="headerlink" href="#flagged-but-declined" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -309,10 +309,10 @@ This is, by far, the largest number of declined flags the process has generated 
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This provides a helpful rate of 99.3%. This is down &lt;em&gt;just&lt;/em&gt; slightly from 99.36% in December. I attribute a large part of the dip to the issue mentioned above.&lt;/p&gt;
 &lt;hr/&gt;
-&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Here is an updated chart showing the rolling 10 day average for number of declined flags. I've had several stretches of multi-week time frames with no declined flags.&lt;/p&gt;
 &lt;p&gt;This is a busy chart, so I've narrowed it down to show just the last 90 days. From here you can see that in the past 90 days there have been only 10 declined flags.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 90 day window" src="http://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 90 day window" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/&gt;&lt;/p&gt;
 &lt;h3 id="sept-2015-15-months"&gt;Sept 2015 (15 Months)&lt;a class="headerlink" href="#sept-2015-15-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;It has been almost 15 months since the process started. In that time, the model has gotten more accurate. Since the last update in May, I've had only 3 declined comment flags:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;52351   comments flagged
@@ -320,10 +320,10 @@ This is, by far, the largest number of declined flags the process has generated 
 282     declined
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This provides a helpful rate of 99.46%. Here is an updated chart showing the rolling 10 day average for number of declined flags. The 90 day window is not even worth showing. It has three days where a single flag was declined.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 15 Months of data training" src="http://andrewwegner.com/images/declined_per_day_15_months.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 15 Months of data training" src="https://andrewwegner.com/images/declined_per_day_15_months.png"/&gt;&lt;/p&gt;
 &lt;h3 id="summary-of-2015"&gt;Summary of 2015&lt;a class="headerlink" href="#summary-of-2015" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;I processed comments 359 days out of the year. I missed three in January due to stopping it after a mass decline of flags (more later), I can't account for a missed day in July and August. I don't recall stopping it, but I missed July 3rd and August 19. I also missed December 28th due to a power issue. I flagged 35,960 comments. Of that, 111 were declined.&lt;/p&gt;
 &lt;p&gt;By month, this is the break down of rejected flags.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="2015 Flag Summary" src="http://andrewwegner.com/images/2015-flag-summary.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2015 Flag Summary" src="https://andrewwegner.com/images/2015-flag-summary.png"/&gt;&lt;/p&gt;
 &lt;p&gt;The blip at the end of November is due to new moderators being elected and adjusting to what other moderators consider "good" versus "bad" comments. I didn't see the spike in the April election which is interesting, but after a couple days in November it's back to normal. The January spike I mentioned above. &lt;/p&gt;
 &lt;p&gt;Interesting note: The longest stretch in the year with no declined flags was from August 13th through November 24th.&lt;/p&gt;</content><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry></feed>
