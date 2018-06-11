@@ -275,7 +275,7 @@ that I'll be taking back to my code, but throughout the course I still got the i
 <script type="text/javascript">
   const starTotal = 10;
   rating = 9.5;
-  starPercentage = ((rating / starTotal) * 100).toFixed(2);
+  starPercentage = `${((rating / starTotal) * 100)}%`;
   document.querySelector(`.${rating} .stars-inner`).style.width = starPercentage;
 </script>
 
