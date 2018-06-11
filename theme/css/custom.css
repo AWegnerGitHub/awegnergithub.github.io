@@ -14,7 +14,7 @@
 }
 
 .stars-outer::before {
-    content: "\f006 \f006 \f006 \f006 \f006";
+    content: "\f006 \f006 \f006 \f006 \f006 \f006 \f006 \f006 \f006 \f006";
 }
 
 .stars-inner {
@@ -27,6 +27,6 @@
 }
 
 .stars-inner::before {
-    content: "\f005 \f005 \f005 \f005 \f005";
+    content: "\f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005";
     color: #f8ce0b;
 }
