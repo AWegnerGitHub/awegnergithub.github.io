@@ -464,17 +464,17 @@ doesn't let me whitelist uploading from specific networks. I'd prefer I don't se
 it "just happens". If I take a picture at home, it's backed up within seconds. If I take a bunch of pictures while I'm out of the house, my pictures are backed up within 
 minutes of me getting home. &lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Review of Udemy's Django Course from Basics to Advance</title><link href="https://andrewwegner.com/django-course-basic-to-advance.html" rel="alternate"></link><published>2018-02-20T22:45:00-06:00</published><updated>2018-02-20T22:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-20:/django-course-basic-to-advance.html</id><summary type="html">&lt;p&gt;My review of the Django Course from Basics to Advance course on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;With the &lt;a href="https://andrewwegner.com/new-house-server.html"&gt;new server&lt;/a&gt; coming along nicely, I wanted to take a quick refresher on Django. Last summer I went through another &lt;a href="https://andrewwegner.com/django-fullstack-bootcamp-course-review.html"&gt;Django course&lt;/a&gt;. That 
-was a decent course. I didn't need anything that intensive or that focused on the non-Django portions though. I have a couple plans for web control panels 
-that will help me manage the aspects of the new server I care most about. I decided to take a look at &lt;a href="https://www.udemy.com/django-course-from-basics-to-advance/"&gt;Django Course from Basics to Advance&lt;/a&gt; by Bucky Roberts. 
+&lt;p&gt;With the &lt;a href="https://andrewwegner.com/new-house-server.html"&gt;new server&lt;/a&gt; coming along nicely, I wanted to take a quick refresher on Django. Last summer I went through another &lt;a href="https://andrewwegner.com/django-fullstack-bootcamp-course-review.html"&gt;Django course&lt;/a&gt;. That
+was a decent course. I didn't need anything that intensive or that focused on the non-Django portions though. I have a couple plans for web control panels
+that will help me manage the aspects of the new server I care most about. I decided to take a look at &lt;a href="https://www.udemy.com/django-course-from-basics-to-advance/"&gt;Django Course from Basics to Advance&lt;/a&gt; by Bucky Roberts.
 It is billed as a five hour course and seemed to hit major aspects of the framework. It was released in January 2018, so it was brand new at the time I signed up.&lt;/p&gt;
-&lt;p&gt;Spoiler alert: &lt;em&gt;Avoid this course&lt;/em&gt;. It's a waste of money. The bad grammar in the title should have been the red flag that made me avoid it. Unfortunately, that was 
-only the start of my issues with the course. &lt;/p&gt;
+&lt;p&gt;Spoiler alert: &lt;em&gt;Avoid this course&lt;/em&gt;. It's a waste of money. The bad grammar in the title should have been the red flag that made me avoid it. Unfortunately, that was
+only the start of my issues with the course.&lt;/p&gt;
 &lt;h2 id="thoughts-on-the-course"&gt;Thoughts on the course&lt;a class="headerlink" href="#thoughts-on-the-course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Literally ten seconds into the first lecture: "If you guys were wondering what the F Django is, it's not a movie, well it is a movie." It only goes 
+&lt;p&gt;Literally ten seconds into the first lecture: "If you guys were wondering what the F Django is, it's not a movie, well it is a movie." It only goes
 down hill from there. A few complaints:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;A majority of the lectures start with "Alright Hauses" &lt;/li&gt;
+&lt;li&gt;A majority of the lectures start with "Alright Hauses"&lt;/li&gt;
 &lt;li&gt;"Think of [Django] like PHP, if you guys are fuzzy on it, but cooler."&lt;/li&gt;
 &lt;li&gt;Lecture 3 includes a rant about what an "app" is and how everyone is developing "apps" now.&lt;/li&gt;
 &lt;li&gt;In lecture 10, the instructor starts with a rant about an overweight airline passenger sitting next to them on a plane&lt;/li&gt;
@@ -484,10 +484,10 @@ down hill from there. A few complaints:&lt;/p&gt;
 &lt;li&gt;Finally, one lecture ends with "Thank you guys for watching. Don't forget to subscribe!"&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;It's a YouTube channel. The instructor uploaded their YouTube channel to Udemy. Not only that, they uploaded two year old tutorial videos. It's not
-even current! &lt;/p&gt;
+even current!&lt;/p&gt;
 &lt;p&gt;There are technical issues with the course too:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;The instructor is using Django 1.9. There is three years out of date at this point. &lt;/li&gt;
+&lt;li&gt;The instructor is using Django 1.9. There is three years out of date at this point.&lt;/li&gt;
 &lt;li&gt;Installation instructions tell users to use administration or &lt;code&gt;sudo&lt;/code&gt; rights for all Python libraries&lt;/li&gt;
 &lt;li&gt;Installation instructions are done using &lt;code&gt;easy_install&lt;/code&gt; not &lt;code&gt;pip&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -503,15 +503,15 @@ even current! &lt;/p&gt;
 &lt;p&gt;Both string and bytes literals may optionally be prefixed with a letter 'r' or 'R'; such strings are called raw strings and treat backslashes as literal characters.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Don't waste your time with this. Don't look at it. Don't think about it. This course is a YouTube channel. If you really want to watch a two year old series running a 
+&lt;p&gt;Don't waste your time with this. Don't look at it. Don't think about it. This course is a YouTube channel. If you really want to watch a two year old series running a
 three year old version of Django &lt;a href="https://www.youtube.com/watch?v=qgGIqRFvFFk&amp;amp;list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK"&gt;watch it on YouTube&lt;/a&gt;. It's not worth it. The information is outdated and wrong in many spots. The instructor uploaded this course for
 a quick dollar. They didn't build this course for Udemy. They built it for YouTube and you can tell. The quality of content here is not what I've come to expect from
 Udemy course.&lt;/p&gt;
-&lt;p&gt;Fortunately for me, Udemy Support was very helpful when I requested a refund. I listed most of the complaints I did above and mentioned it course was just a 
+&lt;p&gt;Fortunately for me, Udemy Support was very helpful when I requested a refund. I listed most of the complaints I did above and mentioned it course was just a
 YouTube channel that had been uploaded to Udemy. I was issued a refund in under an hour. I also left my first public review of a course on Udemy so that other students
 know they can get the same content elsewhere.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Course Review" src="https://andrewwegner.com/images/django-course-basics-to-advance-review-screenshot.png"/&gt;&lt;/p&gt;
-&lt;p&gt;I still want to find a quick refresher. I'll have to go hunting for that later. &lt;/p&gt;
+&lt;p&gt;I still want to find a quick refresher. I'll have to go hunting for that later.&lt;/p&gt;
 &lt;hr/&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Setting up a ZFS pool on Ubuntu 16.04</title><link href="https://andrewwegner.com/zfs-pool-on-ubuntu.html" rel="alternate"></link><published>2018-02-15T22:30:00-06:00</published><updated>2018-02-15T22:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-15:/zfs-pool-on-ubuntu.html</id><summary type="html">&lt;p&gt;With the backup server assembled, it's time to start configuring it. This post covers setting up the ZFS pool for all the data&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://andrewwegner.com/new-house-server.html"&gt;Previously&lt;/a&gt; in this series, the new NAS was assembled. Ubuntu 16.04 has been installed and updated. It's time to do something with all those hard drives! &lt;/p&gt;
@@ -885,41 +885,41 @@ personable.&lt;/p&gt;
 want to make a big change in my life" doubts were squashed, I accepted. I love the
 job. &lt;/p&gt;</content><category term="job"></category><category term="technical"></category></entry><entry><title>Review of Udemy's AWS Serverless APIs &amp; Apps - A Complete Introduction course</title><link href="https://andrewwegner.com/aws-serverless-apis-apps-review.html" rel="alternate"></link><published>2017-10-20T11:17:00-05:00</published><updated>2017-10-20T11:17:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-10-20:/aws-serverless-apis-apps-review.html</id><summary type="html">&lt;p&gt;My review of the AWS Serverless APIs &amp;amp; Apps course on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I've been involved with the &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; spam hunting project for several years. In that time It's grown from 
+&lt;p&gt;I've been involved with the &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; spam hunting project for several years. In that time It's grown from
 a small Python script to a large combination of Python, Ruby and user scripts. The infrastructure hasn't really changed
-in that time, though, and it's starting to show. SmokeDetector, the Python script, is run by multiple users so that 
+in that time, though, and it's starting to show. SmokeDetector, the Python script, is run by multiple users so that
 random network problems that kill the instance don't take the entire system off line. Arguably, the project should
-work on fixing this instability, but the alternative that we came up with works too. &lt;/p&gt;
+work on fixing this instability, but the alternative that we came up with works too.&lt;/p&gt;
 &lt;p&gt;At least it did. Now this distributed way of running is starting to cause issues. Keeping each instance in sync
 with one another is a very difficult problem. We've built a decent solution to this for handling spam patterns,
 but we've failed to replicate this for other things like permission sets or notifications. Adding this involves
 integration with GitHub and a series of new commands. It's painful.&lt;/p&gt;
-&lt;p&gt;One of the recent discussions to solve this problem was a centralized database. That brings me to this course. &lt;/p&gt;
-&lt;p&gt;The &lt;a href="https://ude.my/UC-1ESFUC2V"&gt;AWS Serverless APIs &amp;amp; Apps - A Complete Introduction&lt;/a&gt; by Maximilian Schwarzmüller on Udemy 
-looked like a good overview for AWS lambda and DynamoDB, two solutions the SmokeDetector project was looking 
+&lt;p&gt;One of the recent discussions to solve this problem was a centralized database. That brings me to this course.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://ude.my/UC-1ESFUC2V"&gt;AWS Serverless APIs &amp;amp; Apps - A Complete Introduction&lt;/a&gt; by Maximilian Schwarzmüller on Udemy
+looked like a good overview for AWS lambda and DynamoDB, two solutions the SmokeDetector project was looking
 into using.&lt;/p&gt;
 &lt;h2 id="thoughts-on-the-course"&gt;Thoughts on the course&lt;a class="headerlink" href="#thoughts-on-the-course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This course provides a good overview of Amazon's API Gateway, AWS Lambda and several other Amazon services. There 
+&lt;p&gt;This course provides a good overview of Amazon's API Gateway, AWS Lambda and several other Amazon services. There
 is a little bit of coding involved - using NodeJS - but a large majority is dedicated to working in the various Amazon
-consoles. Except for one optional lecture, the entire course can be completed using Amazon's free tier. This is 
+consoles. Except for one optional lecture, the entire course can be completed using Amazon's free tier. This is
 great for a course and one of the factors I used to determine if I really wanted to take the course. The instructor
 is very clear, throughout the course, which aspects cost additional money so that no unexpected charges show up
 from Amazon.&lt;/p&gt;
 &lt;p&gt;The course covers the API Gateway, AWS permissions, AWS Lambda, body mapping templates, DynamoDB, authentication with
 Cognito and hosting a serverless SPA. At first glance this seems like a lot to cover in an 8 hour course. The instructor
 has broken these into small digestable lectures that do a good job of introducing each new service, explaining the theory
-behind each and then using the service to implement functionality into the course long project. &lt;/p&gt;
-&lt;p&gt;A course long project is a good way to show how each of these Amazon services are useful to a larger project. Instead of 
-focusing on a small example project where it is difficult to expand the course work into the real world, a real world 
-project with various requirements is used. This project uses each of the services I mentioned above in a natural way. 
+behind each and then using the service to implement functionality into the course long project.&lt;/p&gt;
+&lt;p&gt;A course long project is a good way to show how each of these Amazon services are useful to a larger project. Instead of
+focusing on a small example project where it is difficult to expand the course work into the real world, a real world
+project with various requirements is used. This project uses each of the services I mentioned above in a natural way.
 Implementing new functionality doesn't feel forced, instead it is something that users would expect from a modern application.&lt;/p&gt;
 &lt;p&gt;I am very happy with this course. Everything was very well presented. The project was useful because I can easily understand
 how each of the Amazon services function. I also have a good idea how the console works and how to troubleshoot problems
-because of the work that was done in this course. &lt;/p&gt;
+because of the work that was done in this course.&lt;/p&gt;
 &lt;p&gt;My only complaint with regard to this course is that the video lectures are interrupted with text based lectures consisting
-of more details and links to documentation. I appreciate these links and used several of them, but the interruption of the 
-videos to present these broke the nice flow of the lectures. Presenting these links at the end of the section, I think would be 
-less of an interruption. This was a minor thing, though, and doesn't take away from how much I enjoyed the course. &lt;/p&gt;
+of more details and links to documentation. I appreciate these links and used several of them, but the interruption of the
+videos to present these broke the nice flow of the lectures. Presenting these links at the end of the section, I think would be
+less of an interruption. This was a minor thing, though, and doesn't take away from how much I enjoyed the course.&lt;/p&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I feel that I have a decent understanding of Amazon's services at this point. I am looking forward to applying this new
 knowledge and, hopefully, improving the SmokeDetector infrastructure at the same time. I highly recommend this course
@@ -1073,28 +1073,28 @@ Your work life balance initiatives do not appear to account for those employees 
 course I took. I've used Django in the past to build &lt;a href="https://github.com/AWegnerGitHub/IRVING"&gt;IRVING&lt;/a&gt; - a dashboard that allows users to run queries against many
 database types and display the results in one location. The majority of this was done almost 6 years ago though. It was built
 to assist in a job I no longer hold. Since then, I've ignored it and haven't used Django for a major project. I have used it to
-test a small snippet of code here or there, but never a complete application. &lt;/p&gt;
+test a small snippet of code here or there, but never a complete application.&lt;/p&gt;
 &lt;p&gt;I remember liking Django. To that end, I decided to take Jose Portilla's &lt;a href="https://www.udemy.com/python-and-django-full-stack-web-developer-bootcamp/learn/v4/overview"&gt;Python and Django Full Stack Web Developer Bootcamp&lt;/a&gt;
-course on Udemy. &lt;/p&gt;
+course on Udemy.&lt;/p&gt;
 &lt;h2 id="thoughts-on-the-course"&gt;Thoughts on the course&lt;a class="headerlink" href="#thoughts-on-the-course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I am conflicted on how to rate this course. On the one hand, it covers a lot in the 30ish hours that the lectures take. Starting at
 the very basics and moving through more advanced Django topics, it covers HTML and CSS then moves to Bootstrap, Javascript, the DOM,
 jQuery, and Python before finally getting to Django. On the other hand, it moves through those basic lectures very slowly. Django isn't
-even reached until two thirds of the way through the course. &lt;/p&gt;
-&lt;p&gt;The lectures were a combination of hands on coding and an explanation of what the code is doing. The instructor types slightly 
+even reached until two thirds of the way through the course.&lt;/p&gt;
+&lt;p&gt;The lectures were a combination of hands on coding and an explanation of what the code is doing. The instructor types slightly
 faster than me. This was a problem only at transitions between files, for example moving between an HTML file and a CSS file. I found myself
-rewinding the video lectures many times around these transitions. &lt;/p&gt;
-&lt;p&gt;One thing that I liked very early on in the lecture was the introduction of GitHub's &lt;a href="https://atom.io/"&gt;ATOM text editor&lt;/a&gt;. I've used this once before, for a job 
-interview that went very poorly (another story, for another time). I'd heard good things about it though. I used it throughout the course as a way to 
+rewinding the video lectures many times around these transitions.&lt;/p&gt;
+&lt;p&gt;One thing that I liked very early on in the lecture was the introduction of GitHub's &lt;a href="https://atom.io/"&gt;ATOM text editor&lt;/a&gt;. I've used this once before, for a job
+interview that went very poorly (another story, for another time). I'd heard good things about it though. I used it throughout the course as a way to
 force myself to use something other than PyCharm. Now that the course is complete, I have decided that I like ATOM, but not enough to switch from
-PyCharm. It does have some nice features, especially with plugins, that I may utilize when building boiler plate code and templates though. &lt;/p&gt;
+PyCharm. It does have some nice features, especially with plugins, that I may utilize when building boiler plate code and templates though.&lt;/p&gt;
 &lt;h2 id="foundation-vs-django-content"&gt;Foundation vs Django content&lt;a class="headerlink" href="#foundation-vs-django-content" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The foundational material - HTML, CSS, Bootstrap, Javascript, jQuery and even the Python - dragged on a little long for my taste. As I 
+&lt;p&gt;The foundational material - HTML, CSS, Bootstrap, Javascript, jQuery and even the Python - dragged on a little long for my taste. As I
 mentioned above, this foundation took up the first two thirds of the course. I'd have prefered it if more time could be spent covering
 other aspects of Django, especially some of the concepts that are thrown at the student in the last clone project.&lt;/p&gt;
-&lt;p&gt;The Django content, itself, was great. It started at basics like setting up a project and single application within the project and 
+&lt;p&gt;The Django content, itself, was great. It started at basics like setting up a project and single application within the project and
 moved through URL routing, templates, views and briefly touched on the admin side. There were advanced topics on class based views and
-the debug toolbar, both of which are important when developing. &lt;/p&gt;
+the debug toolbar, both of which are important when developing.&lt;/p&gt;
 &lt;p&gt;I can't help feeling that important things were missed though. For example, the admin side is barely touched. It is incredibly capable, yet the
 most that is done in this course with the admin backend is registering a model to appear. Groups and permissions aren't touched at all. Customizing
 views in the backend aren't mentioned, either. Another thing that I was hoping would be covered as part of the "and much,much more!" bullet in the
@@ -1102,18 +1102,18 @@ course description was both &lt;a href="https://docs.djangoproject.com/en/1.11/t
 &lt;p&gt;Clone projects are useful in giving students a "real world" example that they are familiar with to bring everything they've learned together. There
 are two such projects in this course, a blog and a message board/social media site. The blog one was a logical extension of the 5 parts that were
 covered by Django. The message board, however, wasn't as useful. In an effort to be more "real world", the instructor missed a lot of steps in the
-preceeding foundational lectures. This project introduces multiple applications in the same project, but never introduced that concept previously 
-and doesn't expand on it much here. Instead, the project becomes a combination of speed coding to keep up with what's happening in the lecture and 
-copy and pasting code from the notes when the instructor does the same thing. I appreciate the more realistic project, but for all the time that was 
-spent building the foundation of Django knowledge, there is a big gap between the last lecture and this clone. &lt;/p&gt;
+preceeding foundational lectures. This project introduces multiple applications in the same project, but never introduced that concept previously
+and doesn't expand on it much here. Instead, the project becomes a combination of speed coding to keep up with what's happening in the lecture and
+copy and pasting code from the notes when the instructor does the same thing. I appreciate the more realistic project, but for all the time that was
+spent building the foundation of Django knowledge, there is a big gap between the last lecture and this clone.&lt;/p&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This course was worthwhile, once I made it through the foundational courses. It was a great refresher for what I'd done 6 years ago. Either I did
-things very inefficiently then, or Django has had a &lt;em&gt;ton&lt;/em&gt; of improvements (or both), but looking back at IRVING, I see many things that could be 
-improved. I'm not sure if I actually will though, just due to not using the application any longer. &lt;/p&gt;
+things very inefficiently then, or Django has had a &lt;em&gt;ton&lt;/em&gt; of improvements (or both), but looking back at IRVING, I see many things that could be
+improved. I'm not sure if I actually will though, just due to not using the application any longer.&lt;/p&gt;
 &lt;p&gt;The long foundational courses either should have been condensed. I would have rather had more focus on Django and covered more topics there. This
 is especially true after completing the second clone project. New concepts were used in this project, but glossed over as "there is excellent
 documentation on this", instead of the in depth explanations that were provided earlier in the course.&lt;/p&gt;
-&lt;p&gt;I'd recommend this course for the Django topics. However, if you are coming into the course with any type of web development background (even the 
+&lt;p&gt;I'd recommend this course for the Django topics. However, if you are coming into the course with any type of web development background (even the
 relatively basic one I have), be prepared to be bored during the first half of the course.&lt;/p&gt;
 &lt;hr/&gt;
 &lt;p&gt;&lt;a href="https://ude.my/UC-1VGWNREH"&gt;&lt;img alt="Python and Django Full Stack Web Developer Bootcamp Award" src="https://andrewwegner.com/images/udemy-django-full-stack-bootcamp.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Stack Overflow's Problem - Feedback from an experienced user</title><link href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html" rel="alternate"></link><published>2017-05-22T23:45:00-05:00</published><updated>2017-05-22T23:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-05-22:/stack-overflows-problem-feedback-from-an-experienced-user.html</id><summary type="html">&lt;p&gt;Stack Overflow appears to have made several poor decisions in the past few years. This is feedback from an experienced community member on how those decisions are perceived&lt;/p&gt;</summary><content type="html">
@@ -1189,27 +1189,27 @@ relatively basic one I have), be prepared to be bored during the first half of t
 &lt;p&gt;I continue to invest my time and effort into the community, but even as an active user who really wants the company and community to succeed, it's getting harder and harder to ignore that those of us that have been around for years are not being listened to any more. We're being treated as the grumpy old person that grumbles about the way things used to be. Our experiences on the site are brushed aside as being unhelpful to new users. That completely ignores that fact that we are still trying to reach the goal on which Stack Overflow was created: &lt;a href="https://stackoverflow.com/tour"&gt;"With your help, we're working together to build a library of detailed answers to every question about programming."&lt;/a&gt; To do this, we need high quality questions and answers so that we can actually provide help to all users. I think &lt;em&gt;this&lt;/em&gt; is the biggest challenge that Stack Overflow is going to face in the next 18 months. &lt;/p&gt;
 &lt;p&gt;I want Stack Overflow to continue to grow. I also want Stack Overflow to have high quality content. I think my experience and the experience of others can help build the features to accomplish this. We just need Stack Overflow to refocus on the Q&amp;amp;A portion of their network again.&lt;/p&gt;</content><category term="Stack Exchange"></category></entry><entry><title>Review of Udemy's Deep Learning Prerequisites - Linear and Logistic Regression courses</title><link href="https://andrewwegner.com/deep-learning-prereq-linear-logistic-regression.html" rel="alternate"></link><published>2017-05-03T10:00:00-05:00</published><updated>2017-05-03T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-05-03:/deep-learning-prereq-linear-logistic-regression.html</id><summary type="html">&lt;p&gt;My review of the Deep Learning Prerequisites - Linear and Logistic Regression courses on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;My &lt;a href="https://andrewwegner.com/deep-learning-prereq-numpy.html"&gt;last review&lt;/a&gt; covered &lt;a href="https://www.udemy.com/user/lazy-programmer/"&gt;Lazy Programmer's&lt;/a&gt; &lt;a href="https://www.udemy.com/deep-learning-prerequisites-the-numpy-stack-in-python/learn/v4/overview"&gt;Numpy prerequisites course&lt;/a&gt; on Udemy. In my goal to learn more about NLP, 
+&lt;p&gt;My &lt;a href="https://andrewwegner.com/deep-learning-prereq-numpy.html"&gt;last review&lt;/a&gt; covered &lt;a href="https://www.udemy.com/user/lazy-programmer/"&gt;Lazy Programmer's&lt;/a&gt; &lt;a href="https://www.udemy.com/deep-learning-prerequisites-the-numpy-stack-in-python/learn/v4/overview"&gt;Numpy prerequisites course&lt;/a&gt; on Udemy. In my goal to learn more about NLP,
 I'm continuing through the courses this instructor has designed. To this end, that requires two additional prerequisites: &lt;a href="https://www.udemy.com/data-science-linear-regression-in-python/learn/v4/overview"&gt;Linear
 Regression&lt;/a&gt; and &lt;a href="https://www.udemy.com/data-science-logistic-regression-in-python/learn/v4/overview"&gt;Logistic Regression&lt;/a&gt;. This review covers those two seperate courses.  &lt;/p&gt;
 &lt;h2 id="thoughts-on-the-lessons"&gt;Thoughts on the lessons&lt;a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;These two courses are each short three hour courses giving a crash course in how to perform linear regression analysis and logistic
-regression analysis. The courses cover both the theorectical math needed and the more practical Python code needed. The instructor 
-states, several times, that simply copying the code isn't good enough in the later courses. The mathmatical background is needed to 
-succeed later. With that in mind, I spent most of these lectures relearning much of the math. The instructor provides several detailed 
-"Theory" lectures and I found those helpful. &lt;/p&gt;
-&lt;p&gt;After the theory is introduced, the next step is applying this in code. The instructor's code is short and to the point. It shows the 
+regression analysis. The courses cover both the theorectical math needed and the more practical Python code needed. The instructor
+states, several times, that simply copying the code isn't good enough in the later courses. The mathmatical background is needed to
+succeed later. With that in mind, I spent most of these lectures relearning much of the math. The instructor provides several detailed
+"Theory" lectures and I found those helpful.&lt;/p&gt;
+&lt;p&gt;After the theory is introduced, the next step is applying this in code. The instructor's code is short and to the point. It shows the
 what was just taught and provides efficient &lt;code&gt;numpy&lt;/code&gt; code to convert the theory into something workable.&lt;/p&gt;
 &lt;p&gt;Once again, I'm happy with the instructor and their teaching style. I think this will go well with the future courses I'm planning on taking
 that are by the same person. I'm continuing to brush up on those math skills that haven't been used in a while, but at this point, I am happy
-with how everything is heading for this series of courses. &lt;/p&gt;
+with how everything is heading for this series of courses.&lt;/p&gt;
 &lt;p&gt;I've posted my &lt;a href="https://github.com/AWegnerGitHub/Deep-Learning-Prerequisites"&gt;IPython Notebooks&lt;/a&gt; on GitHub for all three of the courses related to the prerequisites.&lt;/p&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I am still looking forward to taking the &lt;a href="https://lazyprogrammer.me/data-science-courses/"&gt;courses designed by the Lazy Programmer&lt;/a&gt;. The series of prerequisites were very helpful in helping
 me to catch up on the skills I'll need, but didn't know (or remember much of) ahead of time. With the actual content coming up, I am hoping
 the lecture style and hands on coding sections continue be the same quality.&lt;/p&gt;
-&lt;p&gt;The Linear and Logistic Regression courses didn't require much in terms of software - Python, numpy, pandas and matplotlib - but I still need to 
-decide how I'm going to proceed with the courses. I'm not sure whether or not I want to set up a Linux machine or a virtual machine. Windows doesn't 
+&lt;p&gt;The Linear and Logistic Regression courses didn't require much in terms of software - Python, numpy, pandas and matplotlib - but I still need to
+decide how I'm going to proceed with the courses. I'm not sure whether or not I want to set up a Linux machine or a virtual machine. Windows doesn't
 seem to play well with all the libraries I'll be needing. It may make my life easier too. So far, everyone seems to be using a Mac or Linux machine to
 teach these courses and offer only basic "It may work on Windows" advice.&lt;/p&gt;
 &lt;hr/&gt;
@@ -1271,14 +1271,14 @@ the database a second. A hundred extra milliseconds isn't going to cripple anyth
 &lt;p&gt;Thus, the choice was made based on the recommendation of the author of the peewee library. SQLAlchemy has a larger
 community and better support. &lt;/p&gt;</content><category term="technical"></category><category term="programming"></category></entry><entry><title>Review of Udemy's "Deep Learning Prerequisites: The Numpy Stack in Python" course</title><link href="https://andrewwegner.com/deep-learning-prereq-numpy.html" rel="alternate"></link><published>2017-04-20T22:30:00-05:00</published><updated>2017-04-20T22:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-20:/deep-learning-prereq-numpy.html</id><summary type="html">&lt;p&gt;My review of "Deep Learning Prerequisites: The Numpy Stack in Python" on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I found &lt;a href="https://www.udemy.com/user/lazy-programmer/"&gt;Lazy Programmer's&lt;/a&gt; Deep Learning courses on Udemy. A couple of those seem very interesting, specifically the ones 
-about Natural Language Processing. I'd love to be able to enhance either my &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;comment flagging&lt;/a&gt;, &lt;a href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html"&gt;Zephyr&lt;/a&gt; or &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; 
+&lt;p&gt;I found &lt;a href="https://www.udemy.com/user/lazy-programmer/"&gt;Lazy Programmer's&lt;/a&gt; Deep Learning courses on Udemy. A couple of those seem very interesting, specifically the ones
+about Natural Language Processing. I'd love to be able to enhance either my &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;comment flagging&lt;/a&gt;, &lt;a href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html"&gt;Zephyr&lt;/a&gt; or &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt;
 with language processing capabilities. I also have tried, multiple times, to come up with a way to detect duplicate questions on
-Stack Overflow, but my limited knowledge of true NLP concepts has proved to be unhelpful in that task. &lt;/p&gt;
+Stack Overflow, but my limited knowledge of true NLP concepts has proved to be unhelpful in that task.&lt;/p&gt;
 &lt;p&gt;I have the goal of getting to the NLP courses and completing a few other data science and machine learning courses this year. I've
 picked out a few that look interesting and useful in either personal or professional projects. That will be my main focus in the next
 several months. When I need a break from these topics, I may find another soft skills course to look at. Or, I have a play through of
-Witcher 3 waiting for me. &lt;/p&gt;
+Witcher 3 waiting for me.&lt;/p&gt;
 &lt;p&gt;To start this journey, I need to cover some prerequisites. Data Science and Machine learning utilize several important libraries and
 I need to know them or brush up my skills when using them. I took the &lt;a href="https://andrewwegner.com/data-analysis-with-pandas-review.html"&gt;Data Analysis with Pandas&lt;/a&gt; last winter and found that helpful.
 Lazy Programmer offers one covering the numpy stack. That's what I just finished.&lt;/p&gt;
@@ -1291,10 +1291,10 @@ to do the coding (and add my own comments along the way) to watching someone pre
 line. I've posted my &lt;a href="https://github.com/AWegnerGitHub/Deep-Learning-Prerequisites"&gt;IPython Notebooks&lt;/a&gt; on GitHub.&lt;/p&gt;
 &lt;p&gt;One other thing this course does is introduce users to the assumptions the instructor makes about the students. Machine learning and data science,
 in general, have a lot of math behind them. The instructor assumes that students have the theorectical background for this and teaches how to
-implement this math in Numpy. Note to self: Brush up on those math skills. I haven't used some of this in a long time. &lt;/p&gt;
+implement this math in Numpy. Note to self: Brush up on those math skills. I haven't used some of this in a long time.&lt;/p&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This is an introduction course to the bigger &lt;a href="https://lazyprogrammer.me/data-science-courses/"&gt;"Deep Learning" courses&lt;/a&gt; that Lazy Programmer offers. It does it's job well and has increased my
-confidence in the instructor. My last couple courses haven't been great and I'm happy that this quick two hour course was available. I'm looking 
+confidence in the instructor. My last couple courses haven't been great and I'm happy that this quick two hour course was available. I'm looking
 forward to taking some more of these courses.&lt;/p&gt;
 &lt;p&gt;One thing I will need to consider as I go through this course: whether or not to either set up a Linux machine or a virtual machine. Windows doesn't
 seem to play well with all the libraries I'll be needing. It may make my life easier too. So far, everyone seems to be using a Mac or Linux machine to
@@ -1304,27 +1304,27 @@ teach these courses and offer only basic "It may work on Windows" advice.&lt;/p&
 &lt;p&gt;I recently finished the &lt;a href="https://www.udemy.com/become-a-product-manager-learn-the-skills-get-a-job/learn/v4/overview"&gt;"Become a Product Manager  | Learn the Skills &amp;amp; Get the job"&lt;/a&gt; course on Udemy. I had picked
 this up in December during one of Udemy's frequent $15 dollars. I was looking to take something non-technical that covers
 more of the "soft skills" I utilize in my job. I do a lot of software "product manager" work, without the title, at my job
-and was hoping to brush up on those skills. &lt;/p&gt;
+and was hoping to brush up on those skills.&lt;/p&gt;
 &lt;h2 id="thoughts-on-the-lessons"&gt;Thoughts on the lessons&lt;a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This course is billed as a 13 hour course, with activities and interviews with product managers. The course is taught by 
-Cole Mercer (a Senior product manager at &lt;a href="https://soundcloud.com/"&gt;SoundCloud&lt;/a&gt;) and Evan Kimbrell (founder of &lt;a href="http://www.sprintkick.com/"&gt;Sprintkick&lt;/a&gt;). The course is 
-packed with useful content, resources and interviews. I learned a lot and reinforced a lot of what I already knew. That 
+&lt;p&gt;This course is billed as a 13 hour course, with activities and interviews with product managers. The course is taught by
+Cole Mercer (a Senior product manager at &lt;a href="https://soundcloud.com/"&gt;SoundCloud&lt;/a&gt;) and Evan Kimbrell (founder of &lt;a href="http://www.sprintkick.com/"&gt;Sprintkick&lt;/a&gt;). The course is
+packed with useful content, resources and interviews. I learned a lot and reinforced a lot of what I already knew. That
 information will be incredibly useful at work.&lt;/p&gt;
-&lt;p&gt;That glowing review said, I had a hard time getting through the lessons. Despite the amount of useful information, I found 
+&lt;p&gt;That glowing review said, I had a hard time getting through the lessons. Despite the amount of useful information, I found
 the lessons to be...boring, at best. At worst, the instructors attempted to throw jokes in that just didn't work for this format.
-That type of distraction made it hard to stick with the lessons. Additionally, the quizzes that cropped up occassionally, were 
-treated as a joke by the course creators. There were joke answers, there were joke explanations for answers and their were 
-questions unrelated to the content but instead about the instructors. &lt;/p&gt;
+That type of distraction made it hard to stick with the lessons. Additionally, the quizzes that cropped up occassionally, were
+treated as a joke by the course creators. There were joke answers, there were joke explanations for answers and their were
+questions unrelated to the content but instead about the instructors.&lt;/p&gt;
 &lt;p&gt;Finally, there are several points in the lessons that ask students to go the message board and provide feedback, do a quick activity,
 and interact with one another. I did a couple of these. I stopped doing them when I didn't receive any responses from either other
-students or the instructors. A closer look at the message board shows this is very common. I have to scroll back through a couple 
-"load more" clicks on the message board to find &lt;em&gt;any&lt;/em&gt; posts that even have a response. The interaction I was hoping for from the 
-instructors just doesn't exist with this course. &lt;/p&gt;
+students or the instructors. A closer look at the message board shows this is very common. I have to scroll back through a couple
+"load more" clicks on the message board to find &lt;em&gt;any&lt;/em&gt; posts that even have a response. The interaction I was hoping for from the
+instructors just doesn't exist with this course.&lt;/p&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The content in this course is amazingly helpful. There are links to articles that I'll be able to use for years. The information
-in the lectures is also helpful, if you can get through the bland presentation of the material. The frequent, distracting, jokes and 
-lack of interaction makes this course less stellar. &lt;/p&gt;
-&lt;p&gt;Overall, I'd consider this a middle of the road course. The presentation is what drags down this information packed course. &lt;/p&gt;
+in the lectures is also helpful, if you can get through the bland presentation of the material. The frequent, distracting, jokes and
+lack of interaction makes this course less stellar.&lt;/p&gt;
+&lt;p&gt;Overall, I'd consider this a middle of the road course. The presentation is what drags down this information packed course.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://ude.my/UC-XK0L2MOQ"&gt;&lt;img alt="Completion Award" src="https://andrewwegner.com/images/udemy-become-a-product-manager-completion.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Can a machine be taught to flag spam automatically</title><link href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html" rel="alternate"></link><published>2017-02-19T22:51:00-06:00</published><updated>2017-02-20T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-02-19:/can-a-machine-be-taught-to-flag-spam-automatically.html</id><summary type="html">&lt;p&gt;Description of how a group of people helped completely eliminate spam on the Stack Exchange network&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This post was originally &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;published&lt;/a&gt; on Meta Stack Exchange on February 20, 2017. I've republished it here
@@ -1433,17 +1433,17 @@ process or the tooling. Take a look at the &lt;a href="http://meta.stackexchange
 further improve this system (and some of the other community built systems). We'll have &lt;a href="http://charcoal-se.org/people.html"&gt;Charcoal members&lt;/a&gt; hanging 
 around and answering your questions. Alternatively, feel free to drop into &lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt; and have a chat. &lt;/p&gt;</content><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Review of Udemy's "From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase" course</title><link href="https://andrewwegner.com/loony-corn-machine-learning-review.html" rel="alternate"></link><published>2016-12-28T20:10:00-06:00</published><updated>2017-04-24T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2016-12-28:/loony-corn-machine-learning-review.html</id><summary type="html">&lt;p&gt;My review of "From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase" on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I decided to squeeze one more course in before 2016 ended. This time I chose 
+&lt;p&gt;I decided to squeeze one more course in before 2016 ended. This time I chose
 &lt;a href="https://www.udemy.com/from-0-1-machine-learning/learn/v4/overview"&gt;"From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase"&lt;/a&gt; by the LoonyCorn team on Udemy. This course was
 a 20 hour overview of machine learning techniques. I've been interested in taking some more formal training on various
-machine learning algorithms and this course sounded like it would be useful. &lt;/p&gt;
+machine learning algorithms and this course sounded like it would be useful.&lt;/p&gt;
 &lt;h2 id="thoughts-on-the-lessons"&gt;Thoughts on the lessons&lt;a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I was very disappointed in this course. The lessons had large portions of time that overlapped one another, the 
+&lt;p&gt;I was very disappointed in this course. The lessons had large portions of time that overlapped one another, the
 background music was distracting, the instructor's speaking volume isn't consistent, the "coding" portions weren't
 done in a way that allowed me to follow along, code was presented with bugs and the instructor glossed over
 these with a simple "we'll fix those later". The theories were presented fairly well but really should have been
 condensed into a handful of lessons instead of spread out so broadly.&lt;/p&gt;
-&lt;p&gt;It took me a few lessons to realize it, but the course notes - effectively power point slides that are hand written 
+&lt;p&gt;It took me a few lessons to realize it, but the course notes - effectively power point slides that are hand written
 during the lecture - and the instructor's voice were recorded at different times. Multiple times through the lessons,
 the &lt;em&gt;exact&lt;/em&gt; same portion is used repeatedly. Lecture notes are "rewritten" or explained again. This repetition is used
 ineffectively, as the instructor's voice isn't consistent within a single lecture. The repeated parts are either much
@@ -1459,88 +1459,88 @@ something useful, but it never seemed to materialize. I did complete the course 
 that I can apply elsewhere. In the new year, I'll be looking for another machine learning course that, hopefully, is
 much better than this one.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://ude.my/UC-9WXL1L1V"&gt;&lt;img alt="Completion Award" src="https://andrewwegner.com/images/udemy-machine-learning-nlp-python-completion.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Review of Udemy's "Data Analysis with Pandas" course</title><link href="https://andrewwegner.com/data-analysis-with-pandas-review.html" rel="alternate"></link><published>2016-12-09T22:54:00-06:00</published><updated>2016-12-09T22:54:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2016-12-09:/data-analysis-with-pandas-review.html</id><summary type="html">&lt;p&gt;My review of "Data Analysis with Pandas" on Udemy.&lt;/p&gt;</summary><content type="html">
-&lt;p&gt;It's been a few years since I finished my formal education. I've been getting the itch to take a few more structured 
-training courses, but don't have the desire to commit to another full university degree. Fortunately, there are a lot 
-of places online that now offer training and college courses (both free and paid). I'll be picking out a few and going 
-through them as my free time permits. I'll be sharing my thoughts on the courses in a series of posts with a review of 
+&lt;p&gt;It's been a few years since I finished my formal education. I've been getting the itch to take a few more structured
+training courses, but don't have the desire to commit to another full university degree. Fortunately, there are a lot
+of places online that now offer training and college courses (both free and paid). I'll be picking out a few and going
+through them as my free time permits. I'll be sharing my thoughts on the courses in a series of posts with a review of
 the course and, if available, a link to show what I produced during the course.&lt;/p&gt;
 &lt;h2 id="data-analysis-with-pandas"&gt;Data Analysis with Pandas&lt;a class="headerlink" href="#data-analysis-with-pandas" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I recently completed &lt;a href="https://www.udemy.com/data-analysis-with-pandas/learn/v4/overview"&gt;Data Analysis with Pandas&lt;/a&gt; by Boris Paskhaver on Udemy. I use pandas both at work and in 
-personal projects and constantly find new things the library can do. This course is billed as a 19 hour course spanning 
-173 lectures. The curriculum looked like it covered both basics and topics I was less familiar with. It also helped 
+&lt;p&gt;I recently completed &lt;a href="https://www.udemy.com/data-analysis-with-pandas/learn/v4/overview"&gt;Data Analysis with Pandas&lt;/a&gt; by Boris Paskhaver on Udemy. I use pandas both at work and in
+personal projects and constantly find new things the library can do. This course is billed as a 19 hour course spanning
+173 lectures. The curriculum looked like it covered both basics and topics I was less familiar with. It also helped
 that the instructor was offering a coupon code on reddit to take the course for free. I decided to take the course.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Spoiler&lt;/em&gt;: Even if this wasn't free, this class was worth the price. It covered a large part of pandas and did so in a 
+&lt;p&gt;&lt;em&gt;Spoiler&lt;/em&gt;: Even if this wasn't free, this class was worth the price. It covered a large part of pandas and did so in a
 way that didn't make me tune out the instructor, even after 19 hours.&lt;/p&gt;
 &lt;h2 id="thoughts-on-the-lessons"&gt;Thoughts on the lessons&lt;a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The course starts a bit slow with your basic "How to install" tutorials. The entire course is done in a series of 
-&lt;a href="https://github.com/AWegnerGitHub/Data-Analysis-with-Pandas"&gt;Jupyter Notebooks&lt;/a&gt; and, obviously, requires that you have Python (the instructor uses 3.5), pandas and a few 
-other modules installed before we get to the good stuff. The instructor uses OS X during all lectures, but that has 
-no effect on how things are communicated to the student. Everything is done in the Jupyter Notebooks or at a &lt;a href="https://www.continuum.io/downloads"&gt;conda&lt;/a&gt; 
-prompt. This works the same across all major operating systems. The only reason I felt this was slow was because I 
-already had all of the requirements installed due to using the library before. I understand the need for this lesson, 
+&lt;p&gt;The course starts a bit slow with your basic "How to install" tutorials. The entire course is done in a series of
+&lt;a href="https://github.com/AWegnerGitHub/Data-Analysis-with-Pandas"&gt;Jupyter Notebooks&lt;/a&gt; and, obviously, requires that you have Python (the instructor uses 3.5), pandas and a few
+other modules installed before we get to the good stuff. The instructor uses OS X during all lectures, but that has
+no effect on how things are communicated to the student. Everything is done in the Jupyter Notebooks or at a &lt;a href="https://www.continuum.io/downloads"&gt;conda&lt;/a&gt;
+prompt. This works the same across all major operating systems. The only reason I felt this was slow was because I
+already had all of the requirements installed due to using the library before. I understand the need for this lesson,
 though, and can't hold it against the instructor for needing to include this.&lt;/p&gt;
-&lt;p&gt;One thing that I liked about the introduction was that the instructor provided a series of CSV files we'd use 
-throughout the rest of the lessons. These CSVs were varied in size and composition. I thought this was a great way to 
-keep everyone on the same page. I've seen a lot of tutorials on pandas around the internet and most of them depend on 
-generating random data. By providing everyone with a set of CSVs it is much easier to focus on specific aspects of the 
+&lt;p&gt;One thing that I liked about the introduction was that the instructor provided a series of CSV files we'd use
+throughout the rest of the lessons. These CSVs were varied in size and composition. I thought this was a great way to
+keep everyone on the same page. I've seen a lot of tutorials on pandas around the internet and most of them depend on
+generating random data. By providing everyone with a set of CSVs it is much easier to focus on specific aspects of the
 data and how certain functions work.&lt;/p&gt;
 &lt;h3 id="series-and-dataframes"&gt;Series and DataFrames&lt;a class="headerlink" href="#series-and-dataframes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The course really begins in Section 2 which is on the pandas &lt;a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html"&gt;Series&lt;/a&gt; object. It covers what a series is, various 
-methods of creating one, and then goes over the various methods and attributes you can use on a series object. The 
-module covers 21 lessons and lays the foundation for the entire pandas library. Section 3, 4, and 5 cover 
-&lt;a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html"&gt;DataFrames&lt;/a&gt;. These sections cover 41 lessons. DataFrames are the heart of the pandas library. This is the object 
+&lt;p&gt;The course really begins in Section 2 which is on the pandas &lt;a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html"&gt;Series&lt;/a&gt; object. It covers what a series is, various
+methods of creating one, and then goes over the various methods and attributes you can use on a series object. The
+module covers 21 lessons and lays the foundation for the entire pandas library. Section 3, 4, and 5 cover
+&lt;a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html"&gt;DataFrames&lt;/a&gt;. These sections cover 41 lessons. DataFrames are the heart of the pandas library. This is the object
 you'll use most of the time, which explains the number of lessons that focus on DataFrames.&lt;/p&gt;
-&lt;p&gt;These lessons cover everything from selecting a series (column) in a data frame, adding a new column, dropping null 
-values and sorting values. More advanced topics include various ways of filtering a dataframe to only the data you are 
-interested in, applying a function to all values and working with either index labels or index positions. These modules 
+&lt;p&gt;These lessons cover everything from selecting a series (column) in a data frame, adding a new column, dropping null
+values and sorting values. More advanced topics include various ways of filtering a dataframe to only the data you are
+interested in, applying a function to all values and working with either index labels or index positions. These modules
 are the heart of the entire course.&lt;/p&gt;
 &lt;h3 id="text-data-and-datetime-data"&gt;Text data and DateTime data&lt;a class="headerlink" href="#text-data-and-datetime-data" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Sections 6 and 10 deal with text data and datetime data. One complaint I had about these two sections was that they 
-were separated so much. Both types of data need to be operated on the same way in pandas. Namely, you have to add 
-either &lt;code&gt;.str&lt;/code&gt; or &lt;code&gt;.dt&lt;/code&gt; when calling a string or datetime function. I also think that datetimes are important enough 
+&lt;p&gt;Sections 6 and 10 deal with text data and datetime data. One complaint I had about these two sections was that they
+were separated so much. Both types of data need to be operated on the same way in pandas. Namely, you have to add
+either &lt;code&gt;.str&lt;/code&gt; or &lt;code&gt;.dt&lt;/code&gt; when calling a string or datetime function. I also think that datetimes are important enough
 and used frequently enough that getting a lesson in on how to properly use them early would make more sense.&lt;/p&gt;
-&lt;p&gt;That complaint aside, both sections cover their content well. There isn't anything ground breaking here, especially 
-if you've done any sort of work with either strings or dates in Python. The functions introduced all work as you'd 
+&lt;p&gt;That complaint aside, both sections cover their content well. There isn't anything ground breaking here, especially
+if you've done any sort of work with either strings or dates in Python. The functions introduced all work as you'd
 expect based on that experience.&lt;/p&gt;
-&lt;p&gt;The DateTime section also provides information on how to work with date offsets and time deltas. Adding and 
+&lt;p&gt;The DateTime section also provides information on how to work with date offsets and time deltas. Adding and
 subtracting days/weeks/months is always important and the lessons cover how to do so pretty well.&lt;/p&gt;
 &lt;h3 id="advanced-features"&gt;Advanced Features&lt;a class="headerlink" href="#advanced-features" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Sections 7, 8 and 9 cover aspects of pandas that many will use as well. These cover ways to join and group multiple data 
-sets into a single data frame and the benefits of each method. &lt;/p&gt;
-&lt;p&gt;MultiIndexes are not something I've used a lot, but after these 14 lessons I have already thought of ways I can 
+&lt;p&gt;Sections 7, 8 and 9 cover aspects of pandas that many will use as well. These cover ways to join and group multiple data
+sets into a single data frame and the benefits of each method.&lt;/p&gt;
+&lt;p&gt;MultiIndexes are not something I've used a lot, but after these 14 lessons I have already thought of ways I can
 improve my code at work to utilize these.&lt;/p&gt;
 &lt;h3 id="panels"&gt;Panels&lt;a class="headerlink" href="#panels" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Section 11 covers a topic that was brand new to me: Panels. I have never used them or heard of them. A series is a 1D 
-dataset, a dataframe is a 2D dataset and a panel is a 3D dataset. It is a group of dataframes. The instructor explained 
+&lt;p&gt;Section 11 covers a topic that was brand new to me: Panels. I have never used them or heard of them. A series is a 1D
+dataset, a dataframe is a 2D dataset and a panel is a 3D dataset. It is a group of dataframes. The instructor explained
 this concept very clearly and worked through multiple examples of how to build and use a panel.&lt;/p&gt;
-&lt;p&gt;In this lesson, the panel we utilized was created by calling Google Finance for multiple companies. However, the panel 
-that was returned was not formatted the way I expected and it bothered me for several of the lessons. At first, this 
-was mentioned by the instructor in passing, and then seemed to be ignored. However, toward the end of the section, the 
+&lt;p&gt;In this lesson, the panel we utilized was created by calling Google Finance for multiple companies. However, the panel
+that was returned was not formatted the way I expected and it bothered me for several of the lessons. At first, this
+was mentioned by the instructor in passing, and then seemed to be ignored. However, toward the end of the section, the
 course covered ways of reforming the panel to be in a different format.&lt;/p&gt;
 &lt;h3 id="inputoutput-and-visualization"&gt;Input/Output and Visualization&lt;a class="headerlink" href="#inputoutput-and-visualization" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Sections 12 and 13 covered the portions of pandas that my users see at work. The end result of data manipulation. I 
-produce visuals or excel documents and they are happy. The lessons cover how to export to CSVs and Excel (you need 
-an &lt;code&gt;ExcelWriter&lt;/code&gt;). It also covers the four most common visualizations I produce at my job - line charts, bar charts, 
+&lt;p&gt;Sections 12 and 13 covered the portions of pandas that my users see at work. The end result of data manipulation. I
+produce visuals or excel documents and they are happy. The lessons cover how to export to CSVs and Excel (you need
+an &lt;code&gt;ExcelWriter&lt;/code&gt;). It also covers the four most common visualizations I produce at my job - line charts, bar charts,
 pie charts and histograms.&lt;/p&gt;
-&lt;p&gt;Outside of the scope of this course, but something I'll look into, is what else &lt;code&gt;matplotlib&lt;/code&gt; can do. We did very 
+&lt;p&gt;Outside of the scope of this course, but something I'll look into, is what else &lt;code&gt;matplotlib&lt;/code&gt; can do. We did very
 little to customize our plots and I know that the library can do so much more.&lt;/p&gt;
 &lt;h3 id="options"&gt;Options&lt;a class="headerlink" href="#options" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The final section covers a few of the miscellaneous options pandas has. There isn't anything exciting in this section 
-and these 4 lessons are short. Placing them at the end is a decent spot for them, as it reminds you to go look at the 
+&lt;p&gt;The final section covers a few of the miscellaneous options pandas has. There isn't anything exciting in this section
+and these 4 lessons are short. Placing them at the end is a decent spot for them, as it reminds you to go look at the
 documentation to see what other options are available (there are a ton).&lt;/p&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;While I used a coupon code to take this course for free, I feel it was worth the listed price. The course covers 19 
-hours and 172 lessons. The may seem overwhelming at first, but the lessons are short, with most falling in the 4-7 
+&lt;p&gt;While I used a coupon code to take this course for free, I feel it was worth the listed price. The course covers 19
+hours and 172 lessons. The may seem overwhelming at first, but the lessons are short, with most falling in the 4-7
 minute range. There are a couple that reach the 10+ minute point, but they still held my attention the entire lesson.&lt;/p&gt;
-&lt;p&gt;The instructor has the lessons structured in a way that allows you to pause and return at the start of any lesson 
-without having to reexecute a long series of code. Most of the lessons are self contained, where a dataset is either 
+&lt;p&gt;The instructor has the lessons structured in a way that allows you to pause and return at the start of any lesson
+without having to reexecute a long series of code. Most of the lessons are self contained, where a dataset is either
 reimported at the start of each lesson or a new one is introduced.&lt;/p&gt;
-&lt;p&gt;The only Section that didn't seem to follow this pattern was the visualization module. That module kept using code 
-from previous lessons. The section is less than an hour, but if you take a break you may need to rerun some of your 
+&lt;p&gt;The only Section that didn't seem to follow this pattern was the visualization module. That module kept using code
+from previous lessons. The section is less than an hour, but if you take a break you may need to rerun some of your
 code in this section.&lt;/p&gt;
-&lt;p&gt;There are 4 "quizzes" in this course. If you've worked through the lessons with the instructor, the questions are 
+&lt;p&gt;There are 4 "quizzes" in this course. If you've worked through the lessons with the instructor, the questions are
 very easy.&lt;/p&gt;
-&lt;p&gt;I've now spent 19 hours (re)learning pandas and I feel that I've still just scratched the surface. I've learned a lot 
+&lt;p&gt;I've now spent 19 hours (re)learning pandas and I feel that I've still just scratched the surface. I've learned a lot
 that I'll be taking back to my code, but throughout the course I still got the impression there is much more to pandas.&lt;/p&gt;
 &lt;h2 id="notebooks"&gt;Notebooks&lt;a class="headerlink" href="#notebooks" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The notebooks that I created during this course are all available on &lt;a href="https://github.com/AWegnerGitHub/Data-Analysis-with-Pandas"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
