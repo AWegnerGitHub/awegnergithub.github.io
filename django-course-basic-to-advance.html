@@ -231,8 +231,7 @@ know they can get the same content elsewhere.</p>
   const starTotal = 10;
   rating = 0.5;
   starPercentage = ((rating / starTotal) * 100).toFixed(2);
-  alert(starPercentage);
-  document.querySelector('.${rating} .stars-inner').style.width = starPercentage;
+  document.querySelector(`.${rating} .stars-inner`).style.width = starPercentage;
 </script>
 
                 </div>
