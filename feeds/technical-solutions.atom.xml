@@ -1,5 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2018-04-25T09:30:00-05:00</updated><entry><title>Set up Dynamic CloudFlare IP with Let's Encrypt</title><link href="https://andrewwegner.com/setup-lets-encrypt.html" rel="alternate"></link><published>2018-04-25T09:30:00-05:00</published><updated>2018-04-25T09:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-25:/setup-lets-encrypt.html</id><summary type="html">&lt;p&gt;Time to make the server accessible from the internet and secure it with an SSL certificate&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2018-07-13T10:00:00-05:00</updated><entry><title>Deploying a Flask Slack app on Google Cloud Platform</title><link href="https://andrewwegner.com/slack-app-google-cloud.html" rel="alternate"></link><published>2018-07-13T10:00:00-05:00</published><updated>2018-07-13T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-13:/slack-app-google-cloud.html</id><summary type="html">&lt;p&gt;Setup a Slack app using Flask and deploy it to Google's Cloud&lt;/p&gt;</summary><content type="html">&lt;hr /&gt;
+&lt;h2 id="background-and-goals"&gt;Background and goals&lt;a class="headerlink" href="#background-and-goals" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At work I am the software QA team lead (I haven't given myself a fancy title, but I should). As such, I spend a lot of time in JIRA tracking our bug and feature requests and in Slack working with every aspect of the company to ensure the new features work as expected and bugs as appropriately squashed. As new releases approach their release date, I start running more queries to ensure everything will be done on time.&lt;/p&gt;
+&lt;p&gt;Mini-rant: I hate JIRA's UI. It's slow, clunky and makes rolling things up as I need them unnecessarily complicated.&lt;/p&gt;
+&lt;p&gt;Despite that complaint, JIRA is good because it has so much flexibility on the web UI and, even better, it has an API I can use to automate the queries I use. So, that's what I did. Our last release was larger and more complex than the ones we've done in the last year (since I started). The reason for this complexity was that we needed to coordinate our updates with those of our third party billing platform. Messing up how we bill customers is a great way to get into a "discussion" with the higher ups at any company.&lt;/p&gt;
+&lt;p&gt;In this release, I started poking around &lt;a href="https://developer.atlassian.com/server/jira/platform/rest-apis/"&gt;JIRA's API&lt;/a&gt;. With very little work, I'd managed to automatically run the queries that were taking a significant amount of time in the UI. I formatted these nicely and started posting the results in Slack during our update calls so that all of the developers were on the same page. From my point of view, these calls were more efficient. After the release was pushed out, I decided to see what it'd take to make these queries available to everyone via a Slack slash command.&lt;/p&gt;
+&lt;p&gt;This article will talk about the process I went through, give a small tutorial for a basic command, explain how I tested locally, provide a few tips that deal with pitfalls I encountered and explain how I deployed this to Google's cloud platform.&lt;/p&gt;
+&lt;h2 id="writing-the-flask-app"&gt;Writing the Flask app&lt;a class="headerlink" href="#writing-the-flask-app" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://api.slack.com/slash-commands"&gt;Slack's slash apps&lt;/a&gt; do not run on Slack's platform. When a slash command is issued, it calls a predefined URL and awaits a response. My experience is with Python. I've used both Flask and Django web frameworks. These commands will be small and don't need any of the back end batteries that Django includes, so I chose to use Flask to handle the commands I wanted to create.&lt;/p&gt;
+&lt;h3 id="slash-pitfall-1-timeouts"&gt;Slash Pitfall 1: Timeouts&lt;a class="headerlink" href="#slash-pitfall-1-timeouts" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The first pitfall that I encountered was before I even started writing code. Slack only allows a slash command 3000 milliseconds to respond, before it times out. Unfortunately, connecting to JIRA and running the series of queries I need takes a minimum of 5 seconds. Fortunately, the workaround for this was simple: Use &lt;a href="https://api.slack.com/slash-commands#responding_response_url"&gt;delayed responses&lt;/a&gt; by responding to the initial command with a confirmation message of some kind, then perform the work and respond again using the Slack passed &lt;code&gt;response_url&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id="sample-application"&gt;Sample Application&lt;a class="headerlink" href="#sample-application" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The application code below is a simple toy example. It will respond to the command "/hello-world" and then reply again after a few seconds, to simulate the delayed responses I needed.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;functools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;wraps&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;threading&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Thread&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;asyncio&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sleep&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;jsonify&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;SLACK_VERIFICATION_TOKEN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="c1"&gt;# Put your token here&lt;/span&gt;
+&lt;span class="n"&gt;SLACK_TEAM_ID&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="c1"&gt;# Put your team ID here&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;validate_request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Decorator to validate request is from slack&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="nd"&gt;@wraps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;check_request_validity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;is_request_valid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;abort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;400&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;check_request_validity&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;is_request_valid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Validate a request is from Slack&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;is_token_valid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;token&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;SLACK_VERIFICATION_TOKEN&lt;/span&gt;
+    &lt;span class="n"&gt;is_team_id_valid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;team_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;SLACK_TEAM_ID&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;is_token_valid&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;is_team_id_valid&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;slack_command_response&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                           &lt;span class="n"&gt;response_text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                           &lt;span class="n"&gt;response_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ephemeral&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Respond to a Slack command&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;response_type&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ephemeral&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;in_channel&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;response_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ephemeral&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;response_type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;response_type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;text&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;response_text&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start_command_worker&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Switch to new event loop and run forever&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_event_loop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_forever&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+
+&lt;span class="n"&gt;command_loop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new_event_loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;command_worker&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Thread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;start_command_worker&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;command_loop&lt;/span&gt;&lt;span class="p"&gt;,))&lt;/span&gt;
+&lt;span class="n"&gt;command_worker&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response_url&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Sends &amp;quot;Hello World!&amp;quot; to Slack after 5 seconds&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;slack_command_response&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                           &lt;span class="n"&gt;response_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ephemeral&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                           &lt;span class="n"&gt;response_text&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello World!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/hello-world&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="nd"&gt;@validate_request&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;command_hello_world&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;command_loop&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;call_soon_threadsafe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                      &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;response_url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;jsonify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;response_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ephemeral&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Waiting to greet you...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c1"&gt;# This is used when running locally. Gunicorn is used to run the&lt;/span&gt;
+    &lt;span class="c1"&gt;# application on Google App Engine. See entrypoint in app.yaml.&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;127.0.0.1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="sample-application-walkthrough"&gt;Sample Application Walkthrough&lt;a class="headerlink" href="#sample-application-walkthrough" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The only interesting thing in the imports here is the inclusion of &lt;code&gt;asyncio&lt;/code&gt;. Since I need to fire off an immediate response and then do the "real work", I'll funnel that work into worker threads. I'm also including &lt;code&gt;functools.wraps&lt;/code&gt; because I'm making a decorator for validating a request is coming from Slack. For a single command, this type of decorator isn't needed, but I have multiple Slack slash commands in the real application. I figured it'd be helpful to show here too. This application will also need the &lt;a href="http://docs.python-requests.org/en/master/"&gt;requests&lt;/a&gt; library.&lt;/p&gt;
+&lt;p&gt;Speaking of that decorator, the first function encountered in the code is &lt;code&gt;validate_request&lt;/code&gt;. This will be the decorator that ensures a request came from Slack. It calls &lt;code&gt;is_request_valid&lt;/code&gt;, which compares the passed &lt;code&gt;token&lt;/code&gt; and &lt;code&gt;team_id&lt;/code&gt; to the values we've previously saved. If they match, the request is valid. If they don't match, the request is invalid. This application is only for my team and won't be distributed elsewhere.&lt;/p&gt;
+&lt;p&gt;Next up is &lt;code&gt;slack_command_response&lt;/code&gt;, which is used to send text back to Slack. It will respond to the &lt;code&gt;response_url&lt;/code&gt; parameter. This is passed by Slack and is part of the &lt;code&gt;request.form&lt;/code&gt; object Flask receives. This can be found at &lt;code&gt;request.form['response_url']&lt;/code&gt;. It will reply either &lt;code&gt;ephemeral&lt;/code&gt; (default) or &lt;code&gt;in_channel&lt;/code&gt;. The first will reply only to the user and will hide the slash command that was used. The second will reply to the entire channel and will leave the slash command visible to all.&lt;/p&gt;
+&lt;p&gt;Starting the worker thread is done in &lt;code&gt;start_command_worker&lt;/code&gt; and the next three lines. This will fire up a thread that listens forever. It will not take place on the main thread, which allows Flask to respond immediately and then perform work in the background. Remember, this is a small application and will work for the scale me and my team will be using this on. This is most certainly not designed for a huge number of users constantly using it.&lt;/p&gt;
+&lt;p&gt;Now it's time to get to the real work. &lt;code&gt;hello_world&lt;/code&gt; and &lt;code&gt;command_hello_world&lt;/code&gt;. If you've used Flask before, you can see that &lt;code&gt;command_hello_world&lt;/code&gt; will be the function associated with a user hitting &lt;code&gt;http:\\server.tld\hello-world&lt;/code&gt; with a &lt;code&gt;POST&lt;/code&gt; request. Slack only sends &lt;code&gt;POST&lt;/code&gt; requests, so I care about &lt;code&gt;GET&lt;/code&gt; methods. In &lt;code&gt;command_hello_world&lt;/code&gt;, we send a call to the command worker thread, telling it to call &lt;code&gt;hello_world&lt;/code&gt; and then pass the &lt;code&gt;response_url&lt;/code&gt; as a parameter. The function immediately returns a response to Slack telling the user to wait.&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;hello_world&lt;/code&gt;, the function sleeps for a few seconds before sending a response back to the passed &lt;code&gt;response_url&lt;/code&gt;. This &lt;code&gt;sleep&lt;/code&gt; is to emulate "real work" being done. In my case, it's five seconds of queries to JIRA to gather and format all of the data I want to return.&lt;/p&gt;
+&lt;p&gt;Finally, this can run locally by firing up Flask. I tested with this command:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;FLASK_APP=jira-slack-integration.py flask run
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;When deploying to Google App Engine, the &lt;code&gt;main&lt;/code&gt; function won't be utilized. I cover that below.&lt;/p&gt;
+&lt;h2 id="testing-the-application"&gt;Testing the application&lt;a class="headerlink" href="#testing-the-application" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now it's time for everyone's favorite part of development: TESTING!&lt;/p&gt;
+&lt;h3 id="slack-set-up-part-1"&gt;Slack set up - Part 1&lt;a class="headerlink" href="#slack-set-up-part-1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To test a Slack application, though, some set up within Slack is needed: create a Slack Application, set up and gather tokens, and set up slash command end points.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;First, create a &lt;a href="https://api.slack.com/apps?new_app=1"&gt;new Slack App&lt;/a&gt;. Fill out the name and select the appropriate workspace.&lt;/li&gt;
+&lt;li&gt;After submission, it redirects to a basic information section about the new application. Scroll down to "App Credentials". Copy the &lt;code&gt;Verification Token&lt;/code&gt; and put it in the &lt;code&gt;SLACK_VERIFICATION_TOKEN&lt;/code&gt; variable in the Flask application.&lt;/li&gt;
+&lt;li&gt;Open Slack in the browser, sign in, and then open the web console. In Chrome, do this with &lt;kbd class="light"&gt;CTRL&lt;/kbd&gt;+&lt;kbd class="light"&gt;SHIFT&lt;/kbd&gt;+&lt;kbd class="light"&gt;I&lt;/kbd&gt; or with &lt;kbd class="light"&gt;F12&lt;/kbd&gt; in FireFox. View the page source and search for &lt;code&gt;team_id&lt;/code&gt;. It will look something like this: &lt;code&gt;"T083XXXX"&lt;/code&gt;. Copy this value to &lt;code&gt;SLACK_TEAM_ID&lt;/code&gt; in the Flask application.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="ngrok-set-up"&gt;ngrok set up&lt;a class="headerlink" href="#ngrok-set-up" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Before slash commands can be set up in Slack, you need a development environment and an easy way to access our development server. One option is to punch holes in the router's firewall to point to your development machine. This works if you are on a home network and you'll be the only machine running the development server. It's no so easy if your set up is more complicated or infrastructure is outside of your control.&lt;/p&gt;
+&lt;p&gt;I choose to use &lt;a href="https://ngrok.com/"&gt;ngrok&lt;/a&gt; instead. This application provides you with a free, secure and public URL to your local development environment without worrying about your NAT or firewall settings.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Sign up. After that the four steps to complete setup are shown&lt;/li&gt;
+&lt;li&gt;Download ngrok. There are downloads for a variety of operating systems. This includes Ubuntu, which I use for my work related development work.&lt;/li&gt;
+&lt;li&gt;Unzip ngrok to any location: &lt;code&gt;unzip /path/to/ngrok.zip&lt;/code&gt; This places an &lt;code&gt;ngrok&lt;/code&gt; binary in the selected location.&lt;/li&gt;
+&lt;li&gt;Set up the authentication token. This is a one time step.&lt;/li&gt;
+&lt;li&gt;Start &lt;code&gt;ngrok&lt;/code&gt;. If you're using the script from above, Flask should run on the local machine on port 5000. The command to start &lt;code&gt;ngrok&lt;/code&gt; to point to the Flask server is: &lt;code&gt;./ngrok http 5000&lt;/code&gt;. In another command prompt start the Flask application.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="slack-set-up-part-2"&gt;Slack set up - Part 2&lt;a class="headerlink" href="#slack-set-up-part-2" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;ngrok&lt;/code&gt; provides a public URL. In the screenshot below, my URL is &lt;code&gt;https://1eed8eae.ngrok.io&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ngrok dashboard" src="https://andrewwegner.com/images/ngrok.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Important Note:&lt;/strong&gt; This changes every time &lt;code&gt;ngrok&lt;/code&gt; is stated.&lt;/p&gt;
+&lt;p&gt;At this point, I can visit &lt;code&gt;https://1eed8eae.ngrok.io/hello-world&lt;/code&gt; in my browser and get an error message because I didn't configure it to support &lt;code&gt;GET&lt;/code&gt; requests.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go back to Slack and the management area where the new application was set up.&lt;/li&gt;
+&lt;li&gt;Select "Slash Commands"&lt;/li&gt;
+&lt;li&gt;Select "Create New Command"&lt;/li&gt;
+&lt;li&gt;Put in the command users will use within Slack. This can be anything.&lt;/li&gt;
+&lt;li&gt;Enter the request URL. This will be &lt;code&gt;https://1eed8eae.ngrok.io/hello-world&lt;/code&gt; with this example&lt;/li&gt;
+&lt;li&gt;Provide a description of the command&lt;/li&gt;
+&lt;li&gt;Add a usage hint. This is useful if you are passing parameters to the command.&lt;/li&gt;
+&lt;li&gt;Press save&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img alt="Slash Command Example" src="https://andrewwegner.com/images/slash-command-example.png" /&gt;&lt;/p&gt;
+&lt;p&gt;The slash command is now set up. The last step is installing the application. Go back to "Basic Information" and expand "Install your app to your workspace" then press the green "Install App to Workspace" button. You'll be presented with an oAuth Access Token. For this example application, it's not needed.&lt;/p&gt;
+&lt;p&gt;Now go into any channel in Slack and use the new &lt;code&gt;/hello-world&lt;/code&gt; command.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Important Note:&lt;/strong&gt; If/when you shut down and restart &lt;code&gt;ngrok&lt;/code&gt;, you'll get a new end point. The slash command will need to be modified to point to this new request URL to continue to function. These changes will not be required once the application is deployed to Google's App Engine.&lt;/p&gt;
+&lt;h2 id="deploy-application-to-app-engine"&gt;Deploy application to App Engine&lt;a class="headerlink" href="#deploy-application-to-app-engine" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This project requires the use of the &lt;a href="https://cloud.google.com/appengine/docs/the-appengine-environments"&gt;flexible app engine environment&lt;/a&gt; (vs. standard environment). The biggest reason for this is due to the network requirements. It seems that anything other than Node.js has networking restrictions, and the sample application needs to connect to Slack and my application also needed to connect to JIRA. Another downside of the standard environment is that it only supports Python 2.7. I don't believe there is anything in the example application that would break on Python 2, but there are a few Python 3 specific things I used in my real application (f strings, are one).&lt;/p&gt;
+&lt;p&gt;The flexible environment isn't free though. It's always on. The sample application and my real application are so small and used by so few people that it costs less than fifty cents a day. This isn't a huge deal when the rest of our Google cloud bill exceeds that by a couple orders of magnitude, but it is something to consider if you are just running this as a small side thing. It's not free.&lt;/p&gt;
+&lt;h3 id="set-up-gcloud-sdk"&gt;Set up gcloud SDK&lt;a class="headerlink" href="#set-up-gcloud-sdk" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Due to the size of this application, the &lt;a href="https://cloud.google.com/appengine/docs/flexible/python/"&gt;quick start tutorial&lt;/a&gt; that Google provides is perfect.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Using the Google Cloud Platform console, create a new App Engine project and enable billing (billing must be enabled). This can be done from &lt;a href="https://console.cloud.google.com/projectselector/appengine/create?lang=flex_python&amp;amp;st=true"&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Download the &lt;a href="https://cloud.google.com/sdk/docs/"&gt;Google Cloud SDK&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Extract this to any location. To add it to the path, run &lt;code&gt;./google-cloud-sdk/install.sh&lt;/code&gt;. If this isn't done, the full path needs to be in all &lt;code&gt;gcloud&lt;/code&gt; commands.&lt;/li&gt;
+&lt;li&gt;Initialize the SDK by running &lt;code&gt;gcloud init&lt;/code&gt; and follow the prompts on screen. You'll need access to a browser for this step as you'll be authorizing your account using oAuth.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="set-up-appyaml"&gt;Set up app.yaml&lt;a class="headerlink" href="#set-up-appyaml" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;With &lt;code&gt;gcloud&lt;/code&gt; set up on your development machine, there is one last step to do: Configuring the &lt;code&gt;app.yaml&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;This file contains information on the type of environment you'll be deploying to. Create and save an &lt;code&gt;app.yaml&lt;/code&gt; file in the same directory as the Flask application. For this example, the Flask application is in a file saved as &lt;code&gt;example-script.py&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;runtime&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;flex&lt;/span&gt;
+&lt;span class="n"&gt;entrypoint&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;gunicorn&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;$PORT&lt;/span&gt; &lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;
+
+&lt;span class="n"&gt;runtime_config&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;python_version&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+
+&lt;span class="n"&gt;manual_scaling&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;instances&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;cpu&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+  &lt;span class="n"&gt;memory_gb&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;
+  &lt;span class="n"&gt;disk_size_gb&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Other than the &lt;code&gt;entrypoint&lt;/code&gt; line, this is the example &lt;code&gt;app.yaml&lt;/code&gt; provided by Google. &lt;code&gt;example-script&lt;/code&gt; is the name of the file that contains the Flask application.&lt;/p&gt;
+&lt;h3 id="deploy-to-google"&gt;Deploy to Google&lt;a class="headerlink" href="#deploy-to-google" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Finally, it's time to deploy this application to Google. From within the same directory where &lt;code&gt;example-script.py&lt;/code&gt; resides, run:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gcloud app deploy
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Wait a few minutes for the deployment to occur. When it's complete, the command prompt will say so and provide a URL where the application is accessible.&lt;/p&gt;
+&lt;p&gt;The last thing that needs to be done, is repointing the slash commands to this new location. With it deployed to Google's Cloud Platform, the &lt;code&gt;ngrok&lt;/code&gt; provided URLs need to be changed. The endpoints remain the same though.&lt;/p&gt;
+&lt;p&gt;Once the slash commands are changed and saved, test them out and enjoy the new slash commands hosted on Google's App Engine.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Set up Dynamic CloudFlare IP with Let's Encrypt</title><link href="https://andrewwegner.com/setup-lets-encrypt.html" rel="alternate"></link><published>2018-04-25T09:30:00-05:00</published><updated>2018-04-25T09:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-25:/setup-lets-encrypt.html</id><summary type="html">&lt;p&gt;Time to make the server accessible from the internet and secure it with an SSL certificate&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the two previous articles, I installed &lt;a href="https://andrewwegner.com/installing-nextcloud.html"&gt;NextCloud&lt;/a&gt; and &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;GitLab&lt;/a&gt;. These are running on the server, inside my local network, with 
 no firewall rules set up to allow it to be accessible from the internet. That's great if I plan on sitting at home all the time and never
