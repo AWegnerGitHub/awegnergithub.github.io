@@ -113,7 +113,7 @@
 &lt;li&gt;Sign up. After that the four steps to complete setup are shown&lt;/li&gt;
 &lt;li&gt;Download ngrok. There are downloads for a variety of operating systems. This includes Ubuntu, which I use for my work related development work.&lt;/li&gt;
 &lt;li&gt;Unzip ngrok to any location: &lt;code&gt;unzip /path/to/ngrok.zip&lt;/code&gt; This places an &lt;code&gt;ngrok&lt;/code&gt; binary in the selected location.&lt;/li&gt;
-&lt;li&gt;Set up the authentication token. This is a one time step.&lt;/li&gt;
+&lt;li&gt;Set up the authentication token. This is a one time step. This will create a &lt;code&gt;~/.ngrok2/ngrok.yml&lt;/code&gt; file.&lt;/li&gt;
 &lt;li&gt;Start &lt;code&gt;ngrok&lt;/code&gt;. If you're using the script from above, Flask should run on the local machine on port 5000. The command to start &lt;code&gt;ngrok&lt;/code&gt; to point to the Flask server is: &lt;code&gt;./ngrok http 5000&lt;/code&gt;. In another command prompt start the Flask application.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="slack-set-up-part-2"&gt;Slack set up - Part 2&lt;a class="headerlink" href="#slack-set-up-part-2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
