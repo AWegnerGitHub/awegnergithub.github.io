@@ -10,16 +10,16 @@
 
 <meta name="keywords" content="review, technical, learning, Review, " />
 
-<meta property="og:title" content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course "/>
-<meta property="og:url" content="https://andrewwegner.com/aws-serverless-apis-apps-review.html" />
-<meta property="og:description" content="My review of the AWS Serverless APIs &amp; Apps course on Udemy." />
+<meta property="og:title" content="Review of Udemy&#39;s renamed The 2018 Git Complete: 45 minute crash course using Angular. "/>
+<meta property="og:url" content="https://andrewwegner.com/git-45-minute-crash-course.html" />
+<meta property="og:description" content="My review of the The 2018 Git Complete: 45 minute crash course using Angular." />
 <meta property="og:site_name" content="Ponderings of an Andy" />
 <meta property="og:article:author" content="Andy Wegner" />
-<meta property="og:article:published_time" content="2017-10-20T11:17:00-05:00" />
-<meta name="twitter:title" content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course ">
-<meta name="twitter:description" content="My review of the AWS Serverless APIs &amp; Apps course on Udemy.">
+<meta property="og:article:published_time" content="2018-10-01T09:45:00-05:00" />
+<meta name="twitter:title" content="Review of Udemy&#39;s renamed The 2018 Git Complete: 45 minute crash course using Angular. ">
+<meta name="twitter:description" content="My review of the The 2018 Git Complete: 45 minute crash course using Angular.">
 
-        <title>Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course  · Ponderings of an Andy
+        <title>Review of Udemy&#39;s renamed The 2018 Git Complete: 45 minute crash course using Angular.  · Ponderings of an Andy
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
@@ -61,14 +61,14 @@
                 <div class="span1"></div>
                 <div class="span10">
 <section itemscope itemtype="https://schema.org/Review">
-<meta itemprop="itemReviewed" content="AWS Serverless APIs &amp; Apps - A Complete Introduction" />
-<meta itemprop="headline" content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course" />
-<time itemprop="datePublished" datetime="2017-10-20T11:17:00-05:00">
+<meta itemprop="itemReviewed" content="The 2018 Git Complete: 45 minute crash course using Angular." />
+<meta itemprop="headline" content="Review of Udemy&#39;s renamed The 2018 Git Complete: 45 minute crash course using Angular." />
+<time itemprop="datePublished" datetime="2018-10-01T09:45:00-05:00">
 <meta itemprop="publisher" content="Andy Wegner" />
-<link rel="canonical" href="https://andrewwegner.com/aws-serverless-apis-apps-review.html" />
+<link rel="canonical" href="https://andrewwegner.com/git-45-minute-crash-course.html" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://andrewwegner.com/aws-serverless-apis-apps-review.html"> Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course  </a></h1>
+    <h1><a href="https://andrewwegner.com/git-45-minute-crash-course.html"> Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.  </a></h1>
     </header>
 </div>
 
@@ -79,7 +79,7 @@
         <div class="toc">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#thoughts-on-the-course">Thoughts on the course</a></li>
+<li><a href="#course">Course</a></li>
 <li><a href="#final-thoughts">Final Thoughts</a></li>
 </ul>
 </div>
@@ -91,48 +91,20 @@
             <div itemprop="reviewBody mainEntityOfPage">
             
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>I've been involved with the <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">SmokeDetector</a> spam hunting project for several years. In that time It's grown from
-a small Python script to a large combination of Python, Ruby and user scripts. The infrastructure hasn't really changed
-in that time, though, and it's starting to show. SmokeDetector, the Python script, is run by multiple users so that
-random network problems that kill the instance don't take the entire system off line. Arguably, the project should
-work on fixing this instability, but the alternative that we came up with works too.</p>
-<p>At least it did. Now this distributed way of running is starting to cause issues. Keeping each instance in sync
-with one another is a very difficult problem. We've built a decent solution to this for handling spam patterns,
-but we've failed to replicate this for other things like permission sets or notifications. Adding this involves
-integration with GitHub and a series of new commands. It's painful.</p>
-<p>One of the recent discussions to solve this problem was a centralized database. That brings me to this course.</p>
-<p>The <a href="https://ude.my/UC-1ESFUC2V">AWS Serverless APIs &amp; Apps - A Complete Introduction</a> by Maximilian Schwarzmüller on Udemy
-looked like a good overview for AWS lambda and DynamoDB, two solutions the SmokeDetector project was looking
-into using.</p>
-<h2 id="thoughts-on-the-course">Thoughts on the course<a class="headerlink" href="#thoughts-on-the-course" title="Permanent link">¶</a></h2>
-<p>This course provides a good overview of Amazon's API Gateway, AWS Lambda and several other Amazon services. There
-is a little bit of coding involved - using NodeJS - but a large majority is dedicated to working in the various Amazon
-consoles. Except for one optional lecture, the entire course can be completed using Amazon's free tier. This is
-great for a course and one of the factors I used to determine if I really wanted to take the course. The instructor
-is very clear, throughout the course, which aspects cost additional money so that no unexpected charges show up
-from Amazon.</p>
-<p>The course covers the API Gateway, AWS permissions, AWS Lambda, body mapping templates, DynamoDB, authentication with
-Cognito and hosting a serverless SPA. At first glance this seems like a lot to cover in an 8 hour course. The instructor
-has broken these into small digestable lectures that do a good job of introducing each new service, explaining the theory
-behind each and then using the service to implement functionality into the course long project.</p>
-<p>A course long project is a good way to show how each of these Amazon services are useful to a larger project. Instead of
-focusing on a small example project where it is difficult to expand the course work into the real world, a real world
-project with various requirements is used. This project uses each of the services I mentioned above in a natural way.
-Implementing new functionality doesn't feel forced, instead it is something that users would expect from a modern application.</p>
-<p>I am very happy with this course. Everything was very well presented. The project was useful because I can easily understand
-how each of the Amazon services function. I also have a good idea how the console works and how to troubleshoot problems
-because of the work that was done in this course.</p>
-<p>My only complaint with regard to this course is that the video lectures are interrupted with text based lectures consisting
-of more details and links to documentation. I appreciate these links and used several of them, but the interruption of the
-videos to present these broke the nice flow of the lectures. Presenting these links at the end of the section, I think would be
-less of an interruption. This was a minor thing, though, and doesn't take away from how much I enjoyed the course.</p>
+<p>I use Git extensively in both my personal and professional work. I've set up <a href="https://andrewwegner.com/installing-gitlab.html">GitLab</a> for my personal work. I know enough about Git to be effective in a small environment with a handful of developers. I found a 30 minute crash course about Git on Udemy and decided to take it with the goal of learning a little bit more. </p>
+<p>The course I found was <a href="https://www.udemy.com/git-complete-the-30-minute-crash-course-to-learning-git/">The 30 minute crash course to learning GIT</a><a href="https://www.udemy.com/git-complete-the-30-minute-crash-course-to-learning-git/">2</a> by Ricardo Morales. </p>
+<p><em>Spoiler</em>: I rated this course poorly on Udemy and since that rating, the course name has been changed to "The 2018 Git Complete: 45 minute Crash Course using Angular". The course has been updated slightly to add 15 more minutes of content since I completed the course. I have watched those as well and have not changed my rating. </p>
+<h2 id="course">Course<a class="headerlink" href="#course" title="Permanent link">¶</a></h2>
+<p>When I took this course it was definately incomplete. The very first lesson starts with "In our previous lecture...". Obviously, as the first lecture, there isn't a previous one. The 15 minutes of new content does add a few introduction lectures before this, so it's not as jarring, but the order of lectures is still out of order. There are next instances of "In the next lecture I'll cover..." and then the next lecture is something else, or "In the last lecture we talked about..." and the mentioned topic was a few lectures ago.</p>
+<p>The course is a very quick run down of common Git commands. Very quick. Most lessons are under a minute in length. What this means is that there is almost no explaination about the command you're about to learn. In most of the lectures, it's a quick reading of the command's "help" sentence, then typing the command in a terminal window to show the syntax. Unfortunately, there isn't an over all project and the order of the lectures is out of order, so it's difficult to see how a particular command actually works since there isn't any set up done ahead of time. </p>
+<p>One example of how this is poorly demostrated is in the lecture on renaming a file. The example uses <code>mv</code> to rename a file, talks about how it's been renamed, and then uses <code>mv</code> to rename it back to the original name to that there "won't be problems with Git." The entire point of the lecture is to show how this should be accomplished and this lecture misses it's mark entirely.</p>
+<p>Another example is in the lessons on handling merge conflicts. This is an important topic because conflicts need to be handled when multiple developers are working on the same thing. The lecture on handling these though talks about the theory of handling it but doesn't provide a demo. The same thing is done in the topic on rebasing.</p>
+<p>Minute long lectures are not a good format. The lessons are rushed to the point where there is almost no content. Reading the "help" sentence and then showing the syntax doesn't make this a crash course. It makes it an audio/visual help document. </p>
 <h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
-<p>I feel that I have a decent understanding of Amazon's services at this point. I am looking forward to applying this new
-knowledge and, hopefully, improving the SmokeDetector infrastructure at the same time. I highly recommend this course
-if you are thinking of migrating anything to Amazon. I feel much more comfortable about moving aspects of a project
-to this new solution.</p>
-<hr/>
-<p><a href="https://ude.my/UC-1ESFUC2V"><img alt="AWS Serverless APIs and Apps Completion" src="https://andrewwegner.com/images/udemy-aws-serverless-apis-apps.jpg"/></a></p>
+<p>If you know anything about Git, avoid this course. If you don't know anything about Git, I'd avoid it too, unless you prefer listening to help documents instead of reading them. There isn't any novel content here. Examples are lacking, at best. Lectures are out of order and when I took it, missing entirely. The newly renamed course to include "using Angular" is incredibly misleading. Angular is used only to generate a project that can be committed to Git. Nothing done here uses Angular other than generating that project. </p>
+<p>If you know anything about Git, there is nothing here you don't know. </p>
+<p>The completion award below reflects the name of the course before it was renamed. </p>
+<p><a href="https://ude.my/UC-H4EVPTH5"><img alt="Completion Award" src="https://andrewwegner.com/images/udemy-git-crash-course.jpg"/></a></p>
             </div>
             <hr />
             <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
@@ -148,8 +120,7 @@ to this new solution.</p>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html" title="Previous: Collecting Diamonds on Stack Exchange">Collecting Diamonds on Stack Exchange</a></li>
-                <li class="next-article"><a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html" title="Next: How I found an awesome remote only job">How I found an awesome remote only job</a> »</li>
+                <li class="previous-article">« <a href="https://andrewwegner.com/ubuntu-backup-rsync.html" title="Previous: Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync">Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync</a></li>
             </ul>
             </nav>
             </aside>
@@ -157,17 +128,17 @@ to this new solution.</p>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2017-10-20T11:17:00-05:00">Oct 20, 2017</time>
+            <time itemprop="dateCreated" datetime="2018-10-01T09:45:00-05:00">Oct 1, 2018</time>
             <h4>Score</h4>
             <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-              <span itemprop="ratingValue">8.5</span>
+              <span itemprop="ratingValue">3.0</span>
               <div class="stars-outer">
                 <div class="stars-inner"></div>
               </div>
               <meta itemprop="bestRating" content="10" />
               <meta itemprop="worstRating" content="0" />
             </div>
-<time itemprop="dateModified" datetime="2017-10-20T11:17:00-05:00">
+<time itemprop="dateModified" datetime="2018-10-01T09:45:00-05:00">
 
         <h4>Course Reviews</h4>
     <ul class="multi-parts-list" id="series-parts">
@@ -189,8 +160,8 @@ to this new solution.</p>
             <li >
             <a href="https://andrewwegner.com/django-fullstack-bootcamp-course-review.html" title="Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course">Part 6: Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course</a>
             </li>
-            <li  class="active-part">
-            Part 7: Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course
+            <li >
+            <a href="https://andrewwegner.com/aws-serverless-apis-apps-review.html" title="Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course">Part 7: Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course</a>
             </li>
             <li >
             <a href="https://andrewwegner.com/django-course-basic-to-advance.html" title="Review of Udemy's Django Course from Basics to Advance">Part 8: Review of Udemy's Django Course from Basics to Advance</a>
@@ -198,8 +169,8 @@ to this new solution.</p>
             <li >
             <a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html" title="Review of Udemy's Learn DaVinci Resolve 15 from scratch">Part 9: Review of Udemy's Learn DaVinci Resolve 15 from scratch</a>
             </li>
-            <li >
-            <a href="https://andrewwegner.com/git-45-minute-crash-course.html" title="Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.">Part 10: Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.</a>
+            <li  class="active-part">
+            Part 10: Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.
             </li>
     </ul>
             <h4>Category</h4>
@@ -229,7 +200,7 @@ to this new solution.</p>
 </section>
 <script type="text/javascript">
   const starTotal = 10;
-  rating = 8.5;
+  rating = 3.0;
   starPercentage = `${((rating / starTotal) * 100)}%`;
   document.querySelector(`.stars-inner`).style.width = starPercentage;
 </script>
