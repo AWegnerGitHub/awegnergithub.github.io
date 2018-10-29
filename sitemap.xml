@@ -2,9 +2,14 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://andrewwegner.com/</loc>
-<lastmod>2018-10-01</lastmod>
+<lastmod>2018-10-29</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
+</url><url>
+<loc>https://andrewwegner.com/docker-essentials-course.html</loc>
+<lastmod>2018-10-29</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url><url>
 <loc>https://andrewwegner.com/git-45-minute-crash-course.html</loc>
 <lastmod>2018-10-01</lastmod>
@@ -282,7 +287,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/category/review.html</loc>
-<lastmod>2018-10-01</lastmod>
+<lastmod>2018-10-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -332,7 +337,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/tag/learning.html</loc>
-<lastmod>2018-10-01</lastmod>
+<lastmod>2018-10-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -357,7 +362,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/tag/review.html</loc>
-<lastmod>2018-10-01</lastmod>
+<lastmod>2018-10-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -367,12 +372,12 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/tag/technical.html</loc>
-<lastmod>2018-10-01</lastmod>
+<lastmod>2018-10-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/author/andy-wegner.html</loc>
-<lastmod>2018-10-01</lastmod>
+<lastmod>2018-10-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url>
