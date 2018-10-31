@@ -10,16 +10,16 @@
 
 <meta name="keywords" content="review, technical, learning, Review, " />
 
-<meta property="og:title" content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course "/>
-<meta property="og:url" content="https://andrewwegner.com/aws-serverless-apis-apps-review.html" />
-<meta property="og:description" content="My review of the AWS Serverless APIs &amp; Apps course on Udemy." />
+<meta property="og:title" content="Review of Udemy&#39;s Docker Swarm: Beginner + Advanced "/>
+<meta property="og:url" content="https://andrewwegner.com/docker-swarm-beginner-advanced.html" />
+<meta property="og:description" content="My review of the Docker Swarm: Beginner + Advanced" />
 <meta property="og:site_name" content="Ponderings of an Andy" />
 <meta property="og:article:author" content="Andy Wegner" />
-<meta property="og:article:published_time" content="2017-10-20T11:17:00-05:00" />
-<meta name="twitter:title" content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course ">
-<meta name="twitter:description" content="My review of the AWS Serverless APIs &amp; Apps course on Udemy.">
+<meta property="og:article:published_time" content="2018-10-31T15:00:00-05:00" />
+<meta name="twitter:title" content="Review of Udemy&#39;s Docker Swarm: Beginner + Advanced ">
+<meta name="twitter:description" content="My review of the Docker Swarm: Beginner + Advanced">
 
-        <title>Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course  · Ponderings of an Andy
+        <title>Review of Udemy&#39;s Docker Swarm: Beginner + Advanced  · Ponderings of an Andy
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
@@ -61,14 +61,14 @@
                 <div class="span1"></div>
                 <div class="span10">
 <section itemscope itemtype="https://schema.org/Review">
-<meta itemprop="itemReviewed" content="AWS Serverless APIs &amp; Apps - A Complete Introduction" />
-<meta itemprop="headline" content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course" />
-<time itemprop="datePublished" datetime="2017-10-20T11:17:00-05:00">
+<meta itemprop="itemReviewed" content="Docker Swarm: Beginner + Advanced" />
+<meta itemprop="headline" content="Review of Udemy&#39;s Docker Swarm: Beginner + Advanced" />
+<time itemprop="datePublished" datetime="2018-10-31T15:00:00-05:00">
 <meta itemprop="publisher" content="Andy Wegner" />
-<link rel="canonical" href="https://andrewwegner.com/aws-serverless-apis-apps-review.html" />
+<link rel="canonical" href="https://andrewwegner.com/docker-swarm-beginner-advanced.html" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://andrewwegner.com/aws-serverless-apis-apps-review.html"> Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course  </a></h1>
+    <h1><a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html"> Review of Udemy's Docker Swarm: Beginner + Advanced  </a></h1>
     </header>
 </div>
 
@@ -79,7 +79,7 @@
         <div class="toc">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#thoughts-on-the-course">Thoughts on the course</a></li>
+<li><a href="#course">Course</a></li>
 <li><a href="#final-thoughts">Final Thoughts</a></li>
 </ul>
 </div>
@@ -91,48 +91,16 @@
             <div itemprop="reviewBody mainEntityOfPage">
             
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>I've been involved with the <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">SmokeDetector</a> spam hunting project for several years. In that time It's grown from
-a small Python script to a large combination of Python, Ruby and user scripts. The infrastructure hasn't really changed
-in that time, though, and it's starting to show. SmokeDetector, the Python script, is run by multiple users so that
-random network problems that kill the instance don't take the entire system off line. Arguably, the project should
-work on fixing this instability, but the alternative that we came up with works too.</p>
-<p>At least it did. Now this distributed way of running is starting to cause issues. Keeping each instance in sync
-with one another is a very difficult problem. We've built a decent solution to this for handling spam patterns,
-but we've failed to replicate this for other things like permission sets or notifications. Adding this involves
-integration with GitHub and a series of new commands. It's painful.</p>
-<p>One of the recent discussions to solve this problem was a centralized database. That brings me to this course.</p>
-<p>The <a href="https://ude.my/UC-1ESFUC2V">AWS Serverless APIs &amp; Apps - A Complete Introduction</a> by Maximilian Schwarzmüller on Udemy
-looked like a good overview for AWS lambda and DynamoDB, two solutions the SmokeDetector project was looking
-into using.</p>
-<h2 id="thoughts-on-the-course">Thoughts on the course<a class="headerlink" href="#thoughts-on-the-course" title="Permanent link">¶</a></h2>
-<p>This course provides a good overview of Amazon's API Gateway, AWS Lambda and several other Amazon services. There
-is a little bit of coding involved - using NodeJS - but a large majority is dedicated to working in the various Amazon
-consoles. Except for one optional lecture, the entire course can be completed using Amazon's free tier. This is
-great for a course and one of the factors I used to determine if I really wanted to take the course. The instructor
-is very clear, throughout the course, which aspects cost additional money so that no unexpected charges show up
-from Amazon.</p>
-<p>The course covers the API Gateway, AWS permissions, AWS Lambda, body mapping templates, DynamoDB, authentication with
-Cognito and hosting a serverless SPA. At first glance this seems like a lot to cover in an 8 hour course. The instructor
-has broken these into small digestable lectures that do a good job of introducing each new service, explaining the theory
-behind each and then using the service to implement functionality into the course long project.</p>
-<p>A course long project is a good way to show how each of these Amazon services are useful to a larger project. Instead of
-focusing on a small example project where it is difficult to expand the course work into the real world, a real world
-project with various requirements is used. This project uses each of the services I mentioned above in a natural way.
-Implementing new functionality doesn't feel forced, instead it is something that users would expect from a modern application.</p>
-<p>I am very happy with this course. Everything was very well presented. The project was useful because I can easily understand
-how each of the Amazon services function. I also have a good idea how the console works and how to troubleshoot problems
-because of the work that was done in this course.</p>
-<p>My only complaint with regard to this course is that the video lectures are interrupted with text based lectures consisting
-of more details and links to documentation. I appreciate these links and used several of them, but the interruption of the
-videos to present these broke the nice flow of the lectures. Presenting these links at the end of the section, I think would be
-less of an interruption. This was a minor thing, though, and doesn't take away from how much I enjoyed the course.</p>
+<p>I recently found short two courses about Docker on Udemy there were listed as free by the author as they get ready to update the course. This is a review of <a href="https://www.udemy.com/docker-swarm-from-beginner-to-advanced-with-docker-cluster-hosting/">Docker Swarm: Beginner + Advanced</a> by Luke Angel. This is the second course I've reviewed by this author. The previous course was reviewed <a href="https://andrewwegner.com/docker-essentials-course.html">here</a>.</p>
+<p>I have a very basic idea of what the container/microservice architechure is designed to solve. I've never used it professionally or on personal projects. My experience is limited to reading articles about technologies such as Docker or Kubernetes and thinking that I'd like to try those out at some point in the future.</p>
+<h2 id="course">Course<a class="headerlink" href="#course" title="Permanent link">¶</a></h2>
+<p>This is another hour long course and promises "foundational knowledge" by the end of the course. I disagree with this. </p>
+<p>The course starts with a lecture that is essentially an ad (almost in the form of a TV episode trailer) for the course. There are duplicate lectures, which seems to be a recurring problem based on the same issue in the previous course. Another problem that has carried over from the previous course is audio issues and inconsistances. </p>
+<p>This is not a beginner course, despite the name. The author assumes knowledge of Docker and does not explain concepts when the "demo" starts. Speaking of the "demo", this isn't a true demonstration of the product. Instead, the author provides a ZIP file of commands that are run and outputs of those commands. In the lectures, a few elements of the output are highlighted and explained. I didn't find this to be a useful demonstration.</p>
 <h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
-<p>I feel that I have a decent understanding of Amazon's services at this point. I am looking forward to applying this new
-knowledge and, hopefully, improving the SmokeDetector infrastructure at the same time. I highly recommend this course
-if you are thinking of migrating anything to Amazon. I feel much more comfortable about moving aspects of a project
-to this new solution.</p>
-<hr/>
-<p><a href="https://ude.my/UC-1ESFUC2V"><img alt="AWS Serverless APIs and Apps Completion" src="https://andrewwegner.com/images/udemy-aws-serverless-apis-apps.jpg"/></a></p>
+<p>This is a course that is several years old. It is not well put together, with multiple lectures being duplicated. Sound issues plague the presentation throughout the hour. These are all similar complaints to the <a href="https://andrewwegner.com/docker-essentials-course.html">previous course</a>. This course also includes a demonstration, that is really just looking at the output of an attached text file. For a demonstration, I was expecting to be able to follow along, as as this is "Beginner + Advanced", I was expecting some kind of instructions on how to set up my environment. There is none.</p>
+<p>I don't recommend this course (or the <a href="https://andrewwegner.com/docker-essentials-course.html">previous one</a>) because of how little "useful" content is fit into these two hours. </p>
+<p><a href="https://ude.my/UC-X9SRS3MO"><img alt="Completion Award" src="https://andrewwegner.com/images/udemy-docker-swarm-beginner-to-advanced.jpg"/></a></p>
             </div>
             <hr />
             <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
@@ -148,8 +116,7 @@ to this new solution.</p>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html" title="Previous: Collecting Diamonds on Stack Exchange">Collecting Diamonds on Stack Exchange</a></li>
-                <li class="next-article"><a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html" title="Next: How I found an awesome remote only job">How I found an awesome remote only job</a> »</li>
+                <li class="previous-article">« <a href="https://andrewwegner.com/docker-essentials-course.html" title="Previous: Review of Udemy&#39;s Docker and Containers: The Essentials">Review of Udemy's Docker and Containers: The Essentials</a></li>
             </ul>
             </nav>
             </aside>
@@ -157,17 +124,17 @@ to this new solution.</p>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2017-10-20T11:17:00-05:00">Oct 20, 2017</time>
+            <time itemprop="dateCreated" datetime="2018-10-31T15:00:00-05:00">Oct 31, 2018</time>
             <h4>Score</h4>
             <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-              <span itemprop="ratingValue">8.5</span>
+              <span itemprop="ratingValue">1.5</span>
               <div class="stars-outer">
                 <div class="stars-inner"></div>
               </div>
               <meta itemprop="bestRating" content="10" />
               <meta itemprop="worstRating" content="0" />
             </div>
-<time itemprop="dateModified" datetime="2017-10-20T11:17:00-05:00">
+<time itemprop="dateModified" datetime="2018-10-31T15:00:00-05:00">
 
         <h4>Course Reviews</h4>
     <ul class="multi-parts-list" id="series-parts">
@@ -189,8 +156,8 @@ to this new solution.</p>
             <li >
             <a href="https://andrewwegner.com/django-fullstack-bootcamp-course-review.html" title="Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course">Part 6: Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course</a>
             </li>
-            <li  class="active-part">
-            Part 7: Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course
+            <li >
+            <a href="https://andrewwegner.com/aws-serverless-apis-apps-review.html" title="Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course">Part 7: Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course</a>
             </li>
             <li >
             <a href="https://andrewwegner.com/django-course-basic-to-advance.html" title="Review of Udemy's Django Course from Basics to Advance">Part 8: Review of Udemy's Django Course from Basics to Advance</a>
@@ -204,8 +171,8 @@ to this new solution.</p>
             <li >
             <a href="https://andrewwegner.com/docker-essentials-course.html" title="Review of Udemy's Docker and Containers: The Essentials">Part 11: Review of Udemy's Docker and Containers: The Essentials</a>
             </li>
-            <li >
-            <a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html" title="Review of Udemy's Docker Swarm: Beginner + Advanced">Part 12: Review of Udemy's Docker Swarm: Beginner + Advanced</a>
+            <li  class="active-part">
+            Part 12: Review of Udemy's Docker Swarm: Beginner + Advanced
             </li>
     </ul>
             <h4>Category</h4>
@@ -235,7 +202,7 @@ to this new solution.</p>
 </section>
 <script type="text/javascript">
   const starTotal = 10;
-  rating = 8.5;
+  rating = 1.5;
   starPercentage = `${((rating / starTotal) * 100)}%`;
   document.querySelector(`.stars-inner`).style.width = starPercentage;
 </script>
