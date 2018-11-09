@@ -834,7 +834,7 @@ technical differences were between the two solutions.&lt;/p&gt;
 handful of tests. These tests included inserting two settings in an SQLite database, retrieving one, inserting a large
 list of users and then retrieving a subset of those users.&lt;/p&gt;
 &lt;p&gt;The results were...unremarkable. &lt;/p&gt;
-&lt;p&gt;[![peewee vs SQLAlchemy results][13]][13]&lt;/p&gt;
+&lt;p&gt;&lt;a href="{filename}peewee-vs-sqlalcheme-results.png"&gt;&lt;img alt="peewee vs SQLAlchemy results" src="{filename}peewee-vs-sqlalcheme-results.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The two libraries each took two tests (out of four) for being faster than the other. In both cases where SQLAlchemy was
 faster, it was between two and six times faster. Where peewee was faster it was between a fraction faster and twice as
 fast. &lt;/p&gt;
