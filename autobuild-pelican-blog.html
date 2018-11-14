@@ -175,14 +175,14 @@ variable we'll need. This will be the Personal Access Token used to commit to th
 <p>Click "Generate new token" and enter your password as appropriate. Provide a useful description for your token and under the <code>repo</code> scope,
 select only <code>public_repo</code>. If you are planning on committing to a private repository, you will need to select the entire <code>repo</code> scope. Since my 
 generated content isn't hosted in a private repository, the <code>public_repo</code> is enough. Select "Generate token" at the bottom.</p>
-<p>[<img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_token.png"/>]</p>
+<p><img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_token.png"/></p>
 <p>You will be presented with your token. <strong>Copy this someplace, you won't be able to access this value again</strong>. </p>
 <h3 id="travis-ci-environment-variable">Travis CI Environment Variable<a class="headerlink" href="#travis-ci-environment-variable" title="Permanent link">¶</a></h3>
 <p>Now, this token needs to be accessible in Travis CI. Navigate to <a href="https://travis-ci.org/">Travis CI</a> and find your <code>content</code> repository. Under "More Options", 
 on the left select "Settings". Scroll down to "Environment Variables". In my <code>deploy.sh</code> script, I use the variable <code>GITHUB_API_KEY</code>, 
 so that is what I'll use here too. Enter the variable name and the token GitHub provided in the previous step. Do not change "Display value 
 in build log" to <code>true</code> and press "Add".</p>
-<p>[<img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_envvariable.png"/>]</p>
+<p><img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_envvariable.png"/></p>
 <h3 id="deploysh">deploy.sh<a class="headerlink" href="#deploysh" title="Permanent link">¶</a></h3>
 <p>The next step is configuring the <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/deploy.sh"><code>deploy.sh</code></a> script in the source repository. For my configuration, all that is needed is 
 changing the <code>GH_USERNAME</code> variable to be the name of the user hosting the blog. Still, there is more to the script, if you 
@@ -190,7 +190,7 @@ find this and wish to make changes. </p>
 <p>There are a few areas that may be important. The first is that pushes to the generated repository are done with the username "Travis CI" and
 an associated Travis CI email address. Change these as you wish. I didn't want them in my name, so that I could easily pick out which commits
 I did versus which ones were done automatically. The old commits in my name vs. the new automated commits look like this in GitHub.</p>
-<p>[<img alt="Blog commit differences" src="https://andrewwegner.com/images/build_blog_github_commits.png"/>]</p>
+<p><img alt="Blog commit differences" src="https://andrewwegner.com/images/build_blog_github_commits.png"/></p>
 <p>Another important line of code is the second to last one in the deploy script:</p>
 <div class="codehilight code"><pre><span></span>git push -fq https://$GH_USERNAME:$GITHUB_API_KEY@github.com/$TARGET_REPO &amp;&gt;/dev/null || exit $?
 </pre></div>
