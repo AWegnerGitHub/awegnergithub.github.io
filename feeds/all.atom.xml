@@ -1,5 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2018-10-31T15:00:00-05:00</updated><entry><title>Review of Udemy's Docker Swarm: Beginner + Advanced</title><link href="https://andrewwegner.com/docker-swarm-beginner-advanced.html" rel="alternate"></link><published>2018-10-31T15:00:00-05:00</published><updated>2018-10-31T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-10-31:/docker-swarm-beginner-advanced.html</id><summary type="html">&lt;p&gt;My review of the Docker Swarm: Beginner + Advanced&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2018-11-15T08:30:00-06:00</updated><entry><title>Autobuild and Deploy this Pelican Blog</title><link href="https://andrewwegner.com/autobuild-pelican-blog.html" rel="alternate"></link><published>2018-11-15T08:30:00-06:00</published><updated>2018-11-15T08:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-11-15:/autobuild-pelican-blog.html</id><summary type="html">&lt;p&gt;It's time to automate the deployment of this Pelican blog. This is a walkthrough of how I set it up.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Several years ago, I &lt;a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html"&gt;migrated from Wordpress to Pelican&lt;/a&gt; for this blog. I set it up to &lt;a href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html"&gt;run on GitHub Pages&lt;/a&gt;. I've
+been happy with that set up. I can modify my template as needed (which is infrequent), I can publish a post relatively easily
+and can write the entire post in MarkDown. &lt;/p&gt;
+&lt;p&gt;There was room for improvement though. The way I originally set it up required me to push to two different repositories
+every time I wrote a new blog post. Once for the MarkDown file and images, and once for the generated HTML. I wanted to
+eliminate the need for me to perform the second step. &lt;/p&gt;
+&lt;h2 id="previously-on-this-blog"&gt;Previously on this blog&lt;a class="headerlink" href="#previously-on-this-blog" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Previously, this blog was broken into two repositories. One was the "source" and one was the generated HTML. In my development
+environment, there was also my local theme and a clone of the &lt;a href="https://github.com/getpelican/pelican-plugins"&gt;Pelican plugins repository&lt;/a&gt;. The generated HTML was a submodule
+of the source repository and was placed in the &lt;code&gt;output&lt;/code&gt; directory. I used the following command to generate HTML each time I created a new post&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pelican content --output output --settings publishconf.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Using my settings, this would generate my HTML in the output directory. After this was generated, I'd push the content repository 
+which had a &lt;code&gt;.gitignore&lt;/code&gt; rule to ignore the &lt;code&gt;output&lt;/code&gt; directory, and then I'd push the output directory. &lt;/p&gt;
+&lt;p&gt;With all of this, I had a &lt;code&gt;requirements.txt&lt;/code&gt; document so that I could theorectically generate a post from anywhere, but I failed to keep
+that updated an in sync with my development environment. On more than one occassion, I tried to write a post on my laptop (not my usual
+development machine) and failed due to the mismatched dependancies, missing theme and missing plugins. &lt;/p&gt;
+&lt;p&gt;My development environment was fragile and couldn't be replicated with what I'd posted on GitHub. I'd also forgotten to push the &lt;code&gt;output&lt;/code&gt; 
+directory on more than one occassion, which was annoying. &lt;/p&gt;
+&lt;p&gt;I set out to change all of this with the following goals:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Only a single push to GitHub would generate and deploy the HTML for this blog &lt;/li&gt;
+&lt;li&gt;I should be able to clone the appropriate repositories and generate content locally in an emergency&lt;/li&gt;
+&lt;li&gt;It'd be nice to have true seperation between the content of the site (the MarkDown articles) and the source code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="warning"&gt;Warning&lt;a class="headerlink" href="#warning" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Earlier this year, I made a &lt;a href="https://andrewwegner.com/travisci-insecure-environment-variables.html"&gt;public post about how poorly Travis CI handles secure environment variables&lt;/a&gt;. The public 
+&lt;a href="https://github.com/travis-ci/travis-ci/issues/9430"&gt;GitHub issue&lt;/a&gt; hasn't been worked on yet. The two issues identified still persist:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Secure variables can be show via simple string manipulation from a malicious commit&lt;/li&gt;
+&lt;li&gt;Secure variables are transfered to a third party if the repository is transfered &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I feel that the still need to be addressed. They are security issues. &lt;/p&gt;
+&lt;p&gt;That said, I am using a Travis CI secure environment variable in my deployment script. It is the GitHub token used to push 
+to the repository that contains generated HTML. I have choosen to do this because I am the only one that will be committing
+to the repository and will not be transfering it to a 3rd party. This is a personal site. &lt;/p&gt;
+&lt;p&gt;There are alternatives if you don't like the idea of storing your token with Travis CI. I've accepted that risk, even though I
+believe the issue should be fixed as soon as possible.&lt;/p&gt;
+&lt;h2 id="improved-deployment"&gt;Improved Deployment&lt;a class="headerlink" href="#improved-deployment" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With my goals in place, I started with the "nice to have", because...this isn't work and I can prioritize how I want. I split my 
+blog into three repositories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content"&gt;awegnergithub.github.io-content&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source"&gt;awegnergithub.github.io-source&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io"&gt;awegnergithub.github.io&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="content"&gt;Content&lt;a class="headerlink" href="#content" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content"&gt;content repository&lt;/a&gt; is the one repository that I commit MarkDown to. This would be the repository that triggers new deployments
+and would be the one that changes most frequently. Other than a single &lt;code&gt;.travis.yml&lt;/code&gt; file, the only thing in this repository would be
+content that is used on the site. It'd be my MarkDown articles, associated images, and meta files (&lt;code&gt;robots.txt&lt;/code&gt;, and verification files)
+but wouldn't contain any Pelican code, plugins or theme information. &lt;/p&gt;
+&lt;h3 id="source"&gt;Source&lt;a class="headerlink" href="#source" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source"&gt;source repository&lt;/a&gt; is where Pelican source code lives. This repository already existed in my first iteration of the blog. I needed to
+pull out the &lt;code&gt;content&lt;/code&gt; and &lt;code&gt;output&lt;/code&gt; directories and add in the theme and plugins that had only exisited locally. I also updated &lt;code&gt;requirements.txt&lt;/code&gt;
+to contain all of the dependancies I needed to generate the site correctly. I am pretty embarassed to admit that I hadn't updated this file in almost
+three years, except to fix a plugin that had broken. &lt;/p&gt;
+&lt;p&gt;I had Pelican pinned to an old version that I hadn't used in over a year and I was missing dependancies that the Pelican plugins required. This took
+a lot more time to hunt down than I expected, and it's entire my fault for not keeping this updated over the years. Fortunately, with the setup, I have
+to keep this updated or the site won't generate correctly.&lt;/p&gt;
+&lt;h3 id="generated-content"&gt;Generated Content&lt;a class="headerlink" href="#generated-content" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The last &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io"&gt;repository&lt;/a&gt; is the one that holds the generated HTML for this blog. This already existed and continues to serve exactly the same 
+purpose as before. The only difference is that the content should be pushed to this repository automatically.&lt;/p&gt;
+&lt;h2 id="set-up"&gt;Set up&lt;a class="headerlink" href="#set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="github-token"&gt;GitHub Token&lt;a class="headerlink" href="#github-token" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;With the three repositories set up and content commited to them as appropriate, the next step is setting up the single Travis CI environment 
+variable we'll need. This will be the Personal Access Token used to commit to the generated content repository. &lt;/p&gt;
+&lt;p&gt;To do this, navigate to GitHub, select your avatar in the upper right, and select "Settings". On the left, select "Developer settings" then 
+"Personal access tokens".&lt;/p&gt;
+&lt;p&gt;Click "Generate new token" and enter your password as appropriate. Provide a useful description for your token and under the &lt;code&gt;repo&lt;/code&gt; scope,
+select only &lt;code&gt;public_repo&lt;/code&gt;. If you are planning on committing to a private repository, you will need to select the entire &lt;code&gt;repo&lt;/code&gt; scope. Since my 
+generated content isn't hosted in a private repository, the &lt;code&gt;public_repo&lt;/code&gt; is enough. Select "Generate token" at the bottom.&lt;/p&gt;
+&lt;p&gt;[&lt;img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_token.png"/&gt;]&lt;/p&gt;
+&lt;p&gt;You will be presented with your token. &lt;strong&gt;Copy this someplace, you won't be able to access this value again&lt;/strong&gt;. &lt;/p&gt;
+&lt;h3 id="travis-ci-environment-variable"&gt;Travis CI Environment Variable&lt;a class="headerlink" href="#travis-ci-environment-variable" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Now, this token needs to be accessible in Travis CI. Navigate to &lt;a href="https://travis-ci.org/"&gt;Travis CI&lt;/a&gt; and find your &lt;code&gt;content&lt;/code&gt; repository. Under "More Options", 
+on the left select "Settings". Scroll down to "Environment Variables". In my &lt;code&gt;deploy.sh&lt;/code&gt; script, I use the variable &lt;code&gt;GITHUB_API_KEY&lt;/code&gt;, 
+so that is what I'll use here too. Enter the variable name and the token GitHub provided in the previous step. Do not change "Display value 
+in build log" to &lt;code&gt;true&lt;/code&gt; and press "Add".&lt;/p&gt;
+&lt;p&gt;[&lt;img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_envvariable.png"/&gt;]&lt;/p&gt;
+&lt;h3 id="deploysh"&gt;deploy.sh&lt;a class="headerlink" href="#deploysh" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next step is configuring the &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/deploy.sh"&gt;&lt;code&gt;deploy.sh&lt;/code&gt;&lt;/a&gt; script in the source repository. For my configuration, all that is needed is 
+changing the &lt;code&gt;GH_USERNAME&lt;/code&gt; variable to be the name of the user hosting the blog. Still, there is more to the script, if you 
+find this and wish to make changes. &lt;/p&gt;
+&lt;p&gt;There are a few areas that may be important. The first is that pushes to the generated repository are done with the username "Travis CI" and
+an associated Travis CI email address. Change these as you wish. I didn't want them in my name, so that I could easily pick out which commits
+I did versus which ones were done automatically. The old commits in my name vs. the new automated commits look like this in GitHub.&lt;/p&gt;
+&lt;p&gt;[&lt;img alt="Blog commit differences" src="https://andrewwegner.com/images/build_blog_github_commits.png"/&gt;]&lt;/p&gt;
+&lt;p&gt;Another important line of code is the second to last one in the deploy script:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git push -fq https://$GH_USERNAME:$GITHUB_API_KEY@github.com/$TARGET_REPO &amp;amp;&amp;gt;/dev/null || exit $?
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This line pushes the generated site to the appropriate repository using the &lt;code&gt;GITHUB_API_KEY&lt;/code&gt; we previously generated and told
+Travis CI about. It also sends all output of this command to &lt;code&gt;/dev/null&lt;/code&gt; so that the secure key won't show up in the build log. If
+this isn't done, Travis CI will print out the command and may or may not properly obscure it (see my previous warning, above).&lt;/p&gt;
+&lt;h3 id="travisyml"&gt;.travis.yml&lt;a class="headerlink" href="#travisyml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Lastly, we need to tell Travis CI what to do when there is a commit made to the &lt;code&gt;content&lt;/code&gt; repository. The only non-content file 
+in this repository is &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/blob/master/.travis.yml"&gt;&lt;code&gt;.travis.yml&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Right now, I have it building against Python 3.5 simply because that is the version I have installed and utilize most often. There is
+no reason this blog wouldn't generate against 3.6 or 3.7. I'm pretty sure all of the dependancies will also work against 2.7 
+right now too. &lt;/p&gt;
+&lt;p&gt;It will only build when I commit to the &lt;code&gt;master&lt;/code&gt; branch. I don't use other branches right now, but if I ever do, they won't trigger a build.&lt;/p&gt;
+&lt;p&gt;The important bits are in the &lt;code&gt;before_script&lt;/code&gt; and &lt;code&gt;script&lt;/code&gt; sections.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;before_script:
+  - git clone https://github.com/AWegnerGithub/awegnergithub.github.io-source.git source
+  - mkdir source/content 
+  - rsync -av --progress ./* source/content --exclude source
+  - cd source
+  - pip install --upgrade pip
+  - pip install -r requirements.txt
+script:
+  - pelican content --output output --settings publishconf.py --verbose
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In &lt;code&gt;before_script&lt;/code&gt;, I clone my &lt;code&gt;source&lt;/code&gt; repository containing all my Pelican settings into the &lt;code&gt;source&lt;/code&gt; directory. Next, I add a &lt;code&gt;content&lt;/code&gt; 
+directory into this newly created &lt;code&gt;source&lt;/code&gt; directory. I &lt;code&gt;rsync&lt;/code&gt; my content to this directory and exclude &lt;code&gt;source&lt;/code&gt; because you can't 
+recursively copy a directory into itself.&lt;/p&gt;
+&lt;p&gt;Then, I get my dependancies installed. I update &lt;code&gt;pip&lt;/code&gt; and install my &lt;code&gt;requirements.txt&lt;/code&gt;. Finally, I execute the same &lt;code&gt;pelican&lt;/code&gt; command I 
+previously used and add on the &lt;code&gt;verbose&lt;/code&gt; flag, just in case I need to troubleshoot a failed build.&lt;/p&gt;
+&lt;p&gt;Deployment is done via the &lt;code&gt;deploy&lt;/code&gt; block, but all it is doing is calling my &lt;code&gt;deploy.sh&lt;/code&gt; script that I covered above.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;deploy&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;provider&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt;
+  &lt;span class="n"&gt;skip_cleanup&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+  &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;bash&lt;/span&gt; &lt;span class="n"&gt;deploy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;sh&lt;/span&gt;
+  &lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;skip_cleanup&lt;/code&gt; is important to leave as &lt;code&gt;true&lt;/code&gt; so that the output from the &lt;code&gt;script&lt;/code&gt; block isn't cleaned up before we deploy. &lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post should be the first one that is automatically deployed. I'm sure there are improvements I can and will make to my 
+&lt;code&gt;deploy.sh&lt;/code&gt; script or &lt;code&gt;.travis.yml&lt;/code&gt; over time, but right now I'm happy with how it works. In testings, a deployment is taking 
+about a minute or two from the time I push a new article. This is about how long it took previously, but now I only need to 
+perform a single push. &lt;/p&gt;
+&lt;p&gt;I'm also happy with the split of my repositories. I was never a huge fan of having content and source code mashed together, but
+it worked. Now, I can keep the two seperate and easily determine where everything is. Template changes are source code, article
+changes are content. If I make changes to anything other than content, I can trigger a rebuild within Travis CI with the click 
+of a button. If I am just adding an article, I just need to wait a few minutes for it to be built and deployed. Hooray for
+automation!&lt;/p&gt;
+&lt;p&gt;One other thing this split may have done is make it easier to eventually add comments to the blog. That's been a long term
+goal and one that I've investigated off and on over the past three years. Since I host everything via GitHub Pages and 
+don't have a database, comments would probably need to be done via GitHub comments somehow. I have ideas, but haven't started 
+testing any of those yet. This split will make it easier, I think, when or if I investigate further.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Review of Udemy's Docker Swarm: Beginner + Advanced</title><link href="https://andrewwegner.com/docker-swarm-beginner-advanced.html" rel="alternate"></link><published>2018-10-31T15:00:00-05:00</published><updated>2018-10-31T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-10-31:/docker-swarm-beginner-advanced.html</id><summary type="html">&lt;p&gt;My review of the Docker Swarm: Beginner + Advanced&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I recently found short two courses about Docker on Udemy there were listed as free by the author as they get ready to update the course. This is a review of &lt;a href="https://www.udemy.com/docker-swarm-from-beginner-to-advanced-with-docker-cluster-hosting/"&gt;Docker Swarm: Beginner + Advanced&lt;/a&gt; by Luke Angel. This is the second course I've reviewed by this author. The previous course was reviewed &lt;a href="https://andrewwegner.com/docker-essentials-course.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I have a very basic idea of what the container/microservice architechure is designed to solve. I've never used it professionally or on personal projects. My experience is limited to reading articles about technologies such as Docker or Kubernetes and thinking that I'd like to try those out at some point in the future.&lt;/p&gt;

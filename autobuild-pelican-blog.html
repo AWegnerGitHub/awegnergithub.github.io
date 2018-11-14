@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="Autobuild and Deploy this Pelican Blog "/>
+<meta property="og:url" content="https://andrewwegner.com/autobuild-pelican-blog.html" />
+<meta property="og:description" content="It&#39;s time to automate the deployment of this Pelican blog. This is a walkthrough of how I set it up." />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2018-11-15T08:30:00-06:00" />
+<meta name="twitter:title" content="Autobuild and Deploy this Pelican Blog ">
+<meta name="twitter:description" content="It&#39;s time to automate the deployment of this Pelican blog. This is a walkthrough of how I set it up.">
+
+        <title>Autobuild and Deploy this Pelican Blog  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+		<script type="text/javascript">
+			window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+			  heap.load("653100411");
+		</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://andrewwegner.com">Home</a></li>
+                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<meta itemprop="headline" content="Autobuild and Deploy this Pelican Blog" />
+<time itemprop="datePublished" datetime="2018-11-15T08:30:00-06:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="https://andrewwegner.com/autobuild-pelican-blog.html" />
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://andrewwegner.com/autobuild-pelican-blog.html"> Autobuild and Deploy this Pelican Blog  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid" id="table-of-contents">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#previously-on-this-blog">Previously on this blog</a></li>
+<li><a href="#warning">Warning</a></li>
+<li><a href="#improved-deployment">Improved Deployment</a><ul>
+<li><a href="#content">Content</a></li>
+<li><a href="#source">Source</a></li>
+<li><a href="#generated-content">Generated Content</a></li>
+</ul>
+</li>
+<li><a href="#set-up">Set up</a><ul>
+<li><a href="#github-token">GitHub Token</a></li>
+<li><a href="#travis-ci-environment-variable">Travis CI Environment Variable</a></li>
+<li><a href="#deploysh">deploy.sh</a></li>
+<li><a href="#travisyml">.travis.yml</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <div itemprop="articleBody mainEntityOfPage">
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>Several years ago, I <a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html">migrated from Wordpress to Pelican</a> for this blog. I set it up to <a href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html">run on GitHub Pages</a>. I've
+been happy with that set up. I can modify my template as needed (which is infrequent), I can publish a post relatively easily
+and can write the entire post in MarkDown. </p>
+<p>There was room for improvement though. The way I originally set it up required me to push to two different repositories
+every time I wrote a new blog post. Once for the MarkDown file and images, and once for the generated HTML. I wanted to
+eliminate the need for me to perform the second step. </p>
+<h2 id="previously-on-this-blog">Previously on this blog<a class="headerlink" href="#previously-on-this-blog" title="Permanent link">¶</a></h2>
+<p>Previously, this blog was broken into two repositories. One was the "source" and one was the generated HTML. In my development
+environment, there was also my local theme and a clone of the <a href="https://github.com/getpelican/pelican-plugins">Pelican plugins repository</a>. The generated HTML was a submodule
+of the source repository and was placed in the <code>output</code> directory. I used the following command to generate HTML each time I created a new post</p>
+<div class="codehilight code"><pre><span></span>pelican content --output output --settings publishconf.py
+</pre></div>
+<p>Using my settings, this would generate my HTML in the output directory. After this was generated, I'd push the content repository 
+which had a <code>.gitignore</code> rule to ignore the <code>output</code> directory, and then I'd push the output directory. </p>
+<p>With all of this, I had a <code>requirements.txt</code> document so that I could theorectically generate a post from anywhere, but I failed to keep
+that updated an in sync with my development environment. On more than one occassion, I tried to write a post on my laptop (not my usual
+development machine) and failed due to the mismatched dependancies, missing theme and missing plugins. </p>
+<p>My development environment was fragile and couldn't be replicated with what I'd posted on GitHub. I'd also forgotten to push the <code>output</code> 
+directory on more than one occassion, which was annoying. </p>
+<p>I set out to change all of this with the following goals:</p>
+<ul>
+<li>Only a single push to GitHub would generate and deploy the HTML for this blog </li>
+<li>I should be able to clone the appropriate repositories and generate content locally in an emergency</li>
+<li>It'd be nice to have true seperation between the content of the site (the MarkDown articles) and the source code</li>
+</ul>
+<h2 id="warning">Warning<a class="headerlink" href="#warning" title="Permanent link">¶</a></h2>
+<p>Earlier this year, I made a <a href="https://andrewwegner.com/travisci-insecure-environment-variables.html">public post about how poorly Travis CI handles secure environment variables</a>. The public 
+<a href="https://github.com/travis-ci/travis-ci/issues/9430">GitHub issue</a> hasn't been worked on yet. The two issues identified still persist:</p>
+<ul>
+<li>Secure variables can be show via simple string manipulation from a malicious commit</li>
+<li>Secure variables are transfered to a third party if the repository is transfered </li>
+</ul>
+<p>I feel that the still need to be addressed. They are security issues. </p>
+<p>That said, I am using a Travis CI secure environment variable in my deployment script. It is the GitHub token used to push 
+to the repository that contains generated HTML. I have choosen to do this because I am the only one that will be committing
+to the repository and will not be transfering it to a 3rd party. This is a personal site. </p>
+<p>There are alternatives if you don't like the idea of storing your token with Travis CI. I've accepted that risk, even though I
+believe the issue should be fixed as soon as possible.</p>
+<h2 id="improved-deployment">Improved Deployment<a class="headerlink" href="#improved-deployment" title="Permanent link">¶</a></h2>
+<p>With my goals in place, I started with the "nice to have", because...this isn't work and I can prioritize how I want. I split my 
+blog into three repositories:</p>
+<ul>
+<li><a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content">awegnergithub.github.io-content</a></li>
+<li><a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source">awegnergithub.github.io-source</a></li>
+<li><a href="https://github.com/AWegnerGitHub/awegnergithub.github.io">awegnergithub.github.io</a></li>
+</ul>
+<h3 id="content">Content<a class="headerlink" href="#content" title="Permanent link">¶</a></h3>
+<p>The <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content">content repository</a> is the one repository that I commit MarkDown to. This would be the repository that triggers new deployments
+and would be the one that changes most frequently. Other than a single <code>.travis.yml</code> file, the only thing in this repository would be
+content that is used on the site. It'd be my MarkDown articles, associated images, and meta files (<code>robots.txt</code>, and verification files)
+but wouldn't contain any Pelican code, plugins or theme information. </p>
+<h3 id="source">Source<a class="headerlink" href="#source" title="Permanent link">¶</a></h3>
+<p>The <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source">source repository</a> is where Pelican source code lives. This repository already existed in my first iteration of the blog. I needed to
+pull out the <code>content</code> and <code>output</code> directories and add in the theme and plugins that had only exisited locally. I also updated <code>requirements.txt</code>
+to contain all of the dependancies I needed to generate the site correctly. I am pretty embarassed to admit that I hadn't updated this file in almost
+three years, except to fix a plugin that had broken. </p>
+<p>I had Pelican pinned to an old version that I hadn't used in over a year and I was missing dependancies that the Pelican plugins required. This took
+a lot more time to hunt down than I expected, and it's entire my fault for not keeping this updated over the years. Fortunately, with the setup, I have
+to keep this updated or the site won't generate correctly.</p>
+<h3 id="generated-content">Generated Content<a class="headerlink" href="#generated-content" title="Permanent link">¶</a></h3>
+<p>The last <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io">repository</a> is the one that holds the generated HTML for this blog. This already existed and continues to serve exactly the same 
+purpose as before. The only difference is that the content should be pushed to this repository automatically.</p>
+<h2 id="set-up">Set up<a class="headerlink" href="#set-up" title="Permanent link">¶</a></h2>
+<h3 id="github-token">GitHub Token<a class="headerlink" href="#github-token" title="Permanent link">¶</a></h3>
+<p>With the three repositories set up and content commited to them as appropriate, the next step is setting up the single Travis CI environment 
+variable we'll need. This will be the Personal Access Token used to commit to the generated content repository. </p>
+<p>To do this, navigate to GitHub, select your avatar in the upper right, and select "Settings". On the left, select "Developer settings" then 
+"Personal access tokens".</p>
+<p>Click "Generate new token" and enter your password as appropriate. Provide a useful description for your token and under the <code>repo</code> scope,
+select only <code>public_repo</code>. If you are planning on committing to a private repository, you will need to select the entire <code>repo</code> scope. Since my 
+generated content isn't hosted in a private repository, the <code>public_repo</code> is enough. Select "Generate token" at the bottom.</p>
+<p>[<img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_token.png"/>]</p>
+<p>You will be presented with your token. <strong>Copy this someplace, you won't be able to access this value again</strong>. </p>
+<h3 id="travis-ci-environment-variable">Travis CI Environment Variable<a class="headerlink" href="#travis-ci-environment-variable" title="Permanent link">¶</a></h3>
+<p>Now, this token needs to be accessible in Travis CI. Navigate to <a href="https://travis-ci.org/">Travis CI</a> and find your <code>content</code> repository. Under "More Options", 
+on the left select "Settings". Scroll down to "Environment Variables". In my <code>deploy.sh</code> script, I use the variable <code>GITHUB_API_KEY</code>, 
+so that is what I'll use here too. Enter the variable name and the token GitHub provided in the previous step. Do not change "Display value 
+in build log" to <code>true</code> and press "Add".</p>
+<p>[<img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_envvariable.png"/>]</p>
+<h3 id="deploysh">deploy.sh<a class="headerlink" href="#deploysh" title="Permanent link">¶</a></h3>
+<p>The next step is configuring the <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/deploy.sh"><code>deploy.sh</code></a> script in the source repository. For my configuration, all that is needed is 
+changing the <code>GH_USERNAME</code> variable to be the name of the user hosting the blog. Still, there is more to the script, if you 
+find this and wish to make changes. </p>
+<p>There are a few areas that may be important. The first is that pushes to the generated repository are done with the username "Travis CI" and
+an associated Travis CI email address. Change these as you wish. I didn't want them in my name, so that I could easily pick out which commits
+I did versus which ones were done automatically. The old commits in my name vs. the new automated commits look like this in GitHub.</p>
+<p>[<img alt="Blog commit differences" src="https://andrewwegner.com/images/build_blog_github_commits.png"/>]</p>
+<p>Another important line of code is the second to last one in the deploy script:</p>
+<div class="codehilight code"><pre><span></span>git push -fq https://$GH_USERNAME:$GITHUB_API_KEY@github.com/$TARGET_REPO &amp;&gt;/dev/null || exit $?
+</pre></div>
+<p>This line pushes the generated site to the appropriate repository using the <code>GITHUB_API_KEY</code> we previously generated and told
+Travis CI about. It also sends all output of this command to <code>/dev/null</code> so that the secure key won't show up in the build log. If
+this isn't done, Travis CI will print out the command and may or may not properly obscure it (see my previous warning, above).</p>
+<h3 id="travisyml">.travis.yml<a class="headerlink" href="#travisyml" title="Permanent link">¶</a></h3>
+<p>Lastly, we need to tell Travis CI what to do when there is a commit made to the <code>content</code> repository. The only non-content file 
+in this repository is <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/blob/master/.travis.yml"><code>.travis.yml</code></a>.</p>
+<p>Right now, I have it building against Python 3.5 simply because that is the version I have installed and utilize most often. There is
+no reason this blog wouldn't generate against 3.6 or 3.7. I'm pretty sure all of the dependancies will also work against 2.7 
+right now too. </p>
+<p>It will only build when I commit to the <code>master</code> branch. I don't use other branches right now, but if I ever do, they won't trigger a build.</p>
+<p>The important bits are in the <code>before_script</code> and <code>script</code> sections.</p>
+<div class="codehilight code"><pre><span></span>before_script:
+  - git clone https://github.com/AWegnerGithub/awegnergithub.github.io-source.git source
+  - mkdir source/content 
+  - rsync -av --progress ./* source/content --exclude source
+  - cd source
+  - pip install --upgrade pip
+  - pip install -r requirements.txt
+script:
+  - pelican content --output output --settings publishconf.py --verbose
+</pre></div>
+<p>In <code>before_script</code>, I clone my <code>source</code> repository containing all my Pelican settings into the <code>source</code> directory. Next, I add a <code>content</code> 
+directory into this newly created <code>source</code> directory. I <code>rsync</code> my content to this directory and exclude <code>source</code> because you can't 
+recursively copy a directory into itself.</p>
+<p>Then, I get my dependancies installed. I update <code>pip</code> and install my <code>requirements.txt</code>. Finally, I execute the same <code>pelican</code> command I 
+previously used and add on the <code>verbose</code> flag, just in case I need to troubleshoot a failed build.</p>
+<p>Deployment is done via the <code>deploy</code> block, but all it is doing is calling my <code>deploy.sh</code> script that I covered above.</p>
+<div class="codehilight code"><pre><span></span><span class="n">deploy</span><span class="o">:</span>
+  <span class="n">provider</span><span class="o">:</span> <span class="n">script</span>
+  <span class="n">skip_cleanup</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="n">script</span><span class="o">:</span> <span class="n">bash</span> <span class="n">deploy</span><span class="o">.</span><span class="na">sh</span>
+  <span class="n">on</span><span class="o">:</span>
+    <span class="n">branch</span><span class="o">:</span> <span class="n">master</span>
+</pre></div>
+<p><code>skip_cleanup</code> is important to leave as <code>true</code> so that the output from the <code>script</code> block isn't cleaned up before we deploy. </p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>This post should be the first one that is automatically deployed. I'm sure there are improvements I can and will make to my 
+<code>deploy.sh</code> script or <code>.travis.yml</code> over time, but right now I'm happy with how it works. In testings, a deployment is taking 
+about a minute or two from the time I push a new article. This is about how long it took previously, but now I only need to 
+perform a single push. </p>
+<p>I'm also happy with the split of my repositories. I was never a huge fan of having content and source code mashed together, but
+it worked. Now, I can keep the two seperate and easily determine where everything is. Template changes are source code, article
+changes are content. If I make changes to anything other than content, I can trigger a rebuild within Travis CI with the click 
+of a button. If I am just adding an article, I just need to wait a few minutes for it to be built and deployed. Hooray for
+automation!</p>
+<p>One other thing this split may have done is make it easier to eventually add comments to the blog. That's been a long term
+goal and one that I've investigated off and on over the past three years. Since I host everything via GitHub Pages and 
+don't have a database, comments would probably need to be done via GitHub comments somehow. I have ideas, but haven't started 
+testing any of those yet. This split will make it easier, I think, when or if I investigate further.</p>
+            </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online 
+            community building, tinkering with new code and building new applications. 
+            He writes about his experiences with each of these.</span>
+
+            </div>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html" title="Previous: Review of Udemy&#39;s Docker Swarm: Beginner + Advanced">Review of Udemy's Docker Swarm: Beginner + Advanced</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2018-11-15T08:30:00-06:00">Nov 15, 2018</time>
+<time itemprop="dateModified" datetime="2018-11-15T08:30:00-06:00">
+
+            <h4>Category</h4>
+            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>30</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam-square sidebar-social-links"></i></a>
+    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a> Modified by <a href="https://www.andrewwegner.com" title="Andrew Wegner Home Page">Andy Wegner</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
