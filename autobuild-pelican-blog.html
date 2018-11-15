@@ -106,44 +106,45 @@
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
 <p>Several years ago, I <a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html">migrated from Wordpress to Pelican</a> for this blog. I set it up to <a href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html">run on GitHub Pages</a>. I've
 been happy with that set up. I can modify my template as needed (which is infrequent), I can publish a post relatively easily
-and can write the entire post in MarkDown. </p>
+and can write the entire post in MarkDown.</p>
 <p>There was room for improvement though. The way I originally set it up required me to push to two different repositories
 every time I wrote a new blog post. Once for the MarkDown file and images, and once for the generated HTML. I wanted to
-eliminate the need for me to perform the second step. </p>
+eliminate the need for me to perform the second step.</p>
 <h2 id="previously-on-this-blog">Previously on this blog<a class="headerlink" href="#previously-on-this-blog" title="Permanent link">¶</a></h2>
 <p>Previously, this blog was broken into two repositories. One was the "source" and one was the generated HTML. In my development
-environment, there was also my local theme and a clone of the <a href="https://github.com/getpelican/pelican-plugins">Pelican plugins repository</a>. The generated HTML was a submodule
-of the source repository and was placed in the <code>output</code> directory. I used the following command to generate HTML each time I created a new post</p>
+environment, there was also my local theme and a clone of the <a href="https://github.com/getpelican/pelican-plugins">Pelican plugins repository</a>, but I never formalized these
+into curated repositories. The generated HTML was a submodule of the source repository and was placed in the <code>output</code>
+directory. I used the following command to generate HTML each time I created a new post</p>
 <div class="codehilight code"><pre><span></span>pelican content --output output --settings publishconf.py
 </pre></div>
-<p>Using my settings, this would generate my HTML in the output directory. After this was generated, I'd push the content repository 
-which had a <code>.gitignore</code> rule to ignore the <code>output</code> directory, and then I'd push the output directory. </p>
-<p>With all of this, I had a <code>requirements.txt</code> document so that I could theorectically generate a post from anywhere, but I failed to keep
-that updated an in sync with my development environment. On more than one occassion, I tried to write a post on my laptop (not my usual
-development machine) and failed due to the mismatched dependancies, missing theme and missing plugins. </p>
-<p>My development environment was fragile and couldn't be replicated with what I'd posted on GitHub. I'd also forgotten to push the <code>output</code> 
-directory on more than one occassion, which was annoying. </p>
+<p>Using my settings, this would generate my HTML in the output directory. After this was generated, I'd push the content repository
+which had a <code>.gitignore</code> rule to ignore the <code>output</code> directory, and then I'd push the output directory.</p>
+<p>With all of this, I had a <code>requirements.txt</code> document so that I could theoretically generate a post from anywhere, but I failed to keep
+that updated an in sync with my development environment. On more than one occasion, I tried to write a post on my laptop (not my usual
+development machine) and failed due to the mismatched dependencies, missing theme and missing plugins.</p>
+<p>My development environment was fragile and couldn't be replicated with what I'd posted on GitHub. I'd also forgotten to push the <code>output</code>
+directory on more than one occasion, which was annoying.</p>
 <p>I set out to change all of this with the following goals:</p>
 <ul>
-<li>Only a single push to GitHub would generate and deploy the HTML for this blog </li>
+<li>Only a single push to GitHub would generate and deploy the HTML for this blog</li>
 <li>I should be able to clone the appropriate repositories and generate content locally in an emergency</li>
-<li>It'd be nice to have true seperation between the content of the site (the MarkDown articles) and the source code</li>
+<li>It'd be nice to have true separation between the content of the site (the MarkDown articles) and the source code</li>
 </ul>
 <h2 id="warning">Warning<a class="headerlink" href="#warning" title="Permanent link">¶</a></h2>
-<p>Earlier this year, I made a <a href="https://andrewwegner.com/travisci-insecure-environment-variables.html">public post about how poorly Travis CI handles secure environment variables</a>. The public 
+<p>Earlier this year, I made a <a href="https://andrewwegner.com/travisci-insecure-environment-variables.html">public post about how poorly Travis CI handles secure environment variables</a>. The public
 <a href="https://github.com/travis-ci/travis-ci/issues/9430">GitHub issue</a> hasn't been worked on yet. The two issues identified still persist:</p>
 <ul>
 <li>Secure variables can be show via simple string manipulation from a malicious commit</li>
-<li>Secure variables are transfered to a third party if the repository is transfered </li>
+<li>Secure variables are transferred to a third party if the repository is transferred</li>
 </ul>
-<p>I feel that the still need to be addressed. They are security issues. </p>
-<p>That said, I am using a Travis CI secure environment variable in my deployment script. It is the GitHub token used to push 
-to the repository that contains generated HTML. I have choosen to do this because I am the only one that will be committing
-to the repository and will not be transfering it to a 3rd party. This is a personal site. </p>
+<p>I feel that the still need to be addressed. They are security issues.</p>
+<p>That said, I am using a Travis CI secure environment variable in my deployment script. It is the GitHub token used to push
+to the repository that contains generated HTML. I have chosen to do this because I am the only one that will be committing
+to the repository and will not be transferring it to a 3rd party. This is a personal site.</p>
 <p>There are alternatives if you don't like the idea of storing your token with Travis CI. I've accepted that risk, even though I
 believe the issue should be fixed as soon as possible.</p>
 <h2 id="improved-deployment">Improved Deployment<a class="headerlink" href="#improved-deployment" title="Permanent link">¶</a></h2>
-<p>With my goals in place, I started with the "nice to have", because...this isn't work and I can prioritize how I want. I split my 
+<p>With my goals in place, I started with the "nice to have", because...this isn't work and I can prioritize how I want. I split my
 blog into three repositories:</p>
 <ul>
 <li><a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content">awegnergithub.github.io-content</a></li>
@@ -154,39 +155,39 @@ blog into three repositories:</p>
 <p>The <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content">content repository</a> is the one repository that I commit MarkDown to. This would be the repository that triggers new deployments
 and would be the one that changes most frequently. Other than a single <code>.travis.yml</code> file, the only thing in this repository would be
 content that is used on the site. It'd be my MarkDown articles, associated images, and meta files (<code>robots.txt</code>, and verification files)
-but wouldn't contain any Pelican code, plugins or theme information. </p>
+but wouldn't contain any Pelican code, plugins or theme information.</p>
 <h3 id="source">Source<a class="headerlink" href="#source" title="Permanent link">¶</a></h3>
 <p>The <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source">source repository</a> is where Pelican source code lives. This repository already existed in my first iteration of the blog. I needed to
-pull out the <code>content</code> and <code>output</code> directories and add in the theme and plugins that had only exisited locally. I also updated <code>requirements.txt</code>
-to contain all of the dependancies I needed to generate the site correctly. I am pretty embarassed to admit that I hadn't updated this file in almost
-three years, except to fix a plugin that had broken. </p>
-<p>I had Pelican pinned to an old version that I hadn't used in over a year and I was missing dependancies that the Pelican plugins required. This took
+pull out the <code>content</code> and <code>output</code> directories and add in the theme and plugins that had only existed locally. I also updated <code>requirements.txt</code>
+to contain all of the dependencies I needed to generate the site correctly. I am pretty embarrassed to admit that I hadn't updated this file in almost
+three years, except to fix a plugin that had broken.</p>
+<p>I had Pelican pinned to an old version that I hadn't used in over a year and I was missing dependencies that the Pelican plugins required. This took
 a lot more time to hunt down than I expected, and it's entire my fault for not keeping this updated over the years. Fortunately, with the setup, I have
 to keep this updated or the site won't generate correctly.</p>
 <h3 id="generated-content">Generated Content<a class="headerlink" href="#generated-content" title="Permanent link">¶</a></h3>
-<p>The last <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io">repository</a> is the one that holds the generated HTML for this blog. This already existed and continues to serve exactly the same 
+<p>The last <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io">repository</a> is the one that holds the generated HTML for this blog. This already existed and continues to serve exactly the same
 purpose as before. The only difference is that the content should be pushed to this repository automatically.</p>
 <h2 id="set-up">Set up<a class="headerlink" href="#set-up" title="Permanent link">¶</a></h2>
 <h3 id="github-token">GitHub Token<a class="headerlink" href="#github-token" title="Permanent link">¶</a></h3>
-<p>With the three repositories set up and content commited to them as appropriate, the next step is setting up the single Travis CI environment 
-variable we'll need. This will be the Personal Access Token used to commit to the generated content repository. </p>
-<p>To do this, navigate to GitHub, select your avatar in the upper right, and select "Settings". On the left, select "Developer settings" then 
+<p>With the three repositories set up and content committed to them as appropriate, the next step is setting up the single Travis CI environment
+variable we'll need. This will be the Personal Access Token used to commit to the generated content repository.</p>
+<p>To do this, navigate to GitHub, select your avatar in the upper right, and select "Settings". On the left, select "Developer settings" then
 "Personal access tokens".</p>
 <p>Click "Generate new token" and enter your password as appropriate. Provide a useful description for your token and under the <code>repo</code> scope,
-select only <code>public_repo</code>. If you are planning on committing to a private repository, you will need to select the entire <code>repo</code> scope. Since my 
+select only <code>public_repo</code>. If you are planning on committing to a private repository, you will need to select the entire <code>repo</code> scope. Since my
 generated content isn't hosted in a private repository, the <code>public_repo</code> is enough. Select "Generate token" at the bottom.</p>
 <p><img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_token.png"/></p>
-<p>You will be presented with your token. <strong>Copy this someplace, you won't be able to access this value again</strong>. </p>
+<p>You will be presented with your token. <strong>Copy this someplace, you won't be able to access this value again</strong>.</p>
 <h3 id="travis-ci-environment-variable">Travis CI Environment Variable<a class="headerlink" href="#travis-ci-environment-variable" title="Permanent link">¶</a></h3>
-<p>Now, this token needs to be accessible in Travis CI. Navigate to <a href="https://travis-ci.org/">Travis CI</a> and find your <code>content</code> repository. Under "More Options", 
-on the left select "Settings". Scroll down to "Environment Variables". In my <code>deploy.sh</code> script, I use the variable <code>GITHUB_API_KEY</code>, 
-so that is what I'll use here too. Enter the variable name and the token GitHub provided in the previous step. Do not change "Display value 
+<p>Now, this token needs to be accessible in Travis CI. Navigate to <a href="https://travis-ci.org/">Travis CI</a> and find your <code>content</code> repository. Under "More Options",
+on the left select "Settings". Scroll down to "Environment Variables". In my <code>deploy.sh</code> script, I use the variable <code>GITHUB_API_KEY</code>,
+so that is what I'll use here too. Enter the variable name and the token GitHub provided in the previous step. Do not change "Display value
 in build log" to <code>true</code> and press "Add".</p>
 <p><img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_envvariable.png"/></p>
 <h3 id="deploysh">deploy.sh<a class="headerlink" href="#deploysh" title="Permanent link">¶</a></h3>
-<p>The next step is configuring the <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/deploy.sh"><code>deploy.sh</code></a> script in the source repository. For my configuration, all that is needed is 
-changing the <code>GH_USERNAME</code> variable to be the name of the user hosting the blog. Still, there is more to the script, if you 
-find this and wish to make changes. </p>
+<p>The next step is configuring the <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/deploy.sh"><code>deploy.sh</code></a> script in the source repository. For my configuration, all that is needed is
+changing the <code>GH_USERNAME</code> variable to be the name of the user hosting the blog. Still, there is more to the script, if you
+find this and wish to make changes.</p>
 <p>There are a few areas that may be important. The first is that pushes to the generated repository are done with the username "Travis CI" and
 an associated Travis CI email address. Change these as you wish. I didn't want them in my name, so that I could easily pick out which commits
 I did versus which ones were done automatically. The old commits in my name vs. the new automated commits look like this in GitHub.</p>
@@ -198,16 +199,16 @@ I did versus which ones were done automatically. The old commits in my name vs. 
 Travis CI about. It also sends all output of this command to <code>/dev/null</code> so that the secure key won't show up in the build log. If
 this isn't done, Travis CI will print out the command and may or may not properly obscure it (see my previous warning, above).</p>
 <h3 id="travisyml">.travis.yml<a class="headerlink" href="#travisyml" title="Permanent link">¶</a></h3>
-<p>Lastly, we need to tell Travis CI what to do when there is a commit made to the <code>content</code> repository. The only non-content file 
+<p>Lastly, we need to tell Travis CI what to do when there is a commit made to the <code>content</code> repository. The only non-content file
 in this repository is <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/blob/master/.travis.yml"><code>.travis.yml</code></a>.</p>
 <p>Right now, I have it building against Python 3.5 simply because that is the version I have installed and utilize most often. There is
-no reason this blog wouldn't generate against 3.6 or 3.7. I'm pretty sure all of the dependancies will also work against 2.7 
-right now too. </p>
+no reason this blog wouldn't generate against 3.6 or 3.7. I'm pretty sure all of the dependencies will also work against 2.7
+right now too.</p>
 <p>It will only build when I commit to the <code>master</code> branch. I don't use other branches right now, but if I ever do, they won't trigger a build.</p>
 <p>The important bits are in the <code>before_script</code> and <code>script</code> sections.</p>
 <div class="codehilight code"><pre><span></span>before_script:
   - git clone https://github.com/AWegnerGithub/awegnergithub.github.io-source.git source
-  - mkdir source/content 
+  - mkdir source/content
   - rsync -av --progress ./* source/content --exclude source
   - cd source
   - pip install --upgrade pip
@@ -215,10 +216,10 @@ right now too. </p>
 script:
   - pelican content --output output --settings publishconf.py --verbose
 </pre></div>
-<p>In <code>before_script</code>, I clone my <code>source</code> repository containing all my Pelican settings into the <code>source</code> directory. Next, I add a <code>content</code> 
-directory into this newly created <code>source</code> directory. I <code>rsync</code> my content to this directory and exclude <code>source</code> because you can't 
+<p>In <code>before_script</code>, I clone my <code>source</code> repository containing all my Pelican settings into the <code>source</code> directory. Next, I add a <code>content</code>
+directory into this newly created <code>source</code> directory. I <code>rsync</code> my content to this directory and exclude <code>source</code> because you can't
 recursively copy a directory into itself.</p>
-<p>Then, I get my dependancies installed. I update <code>pip</code> and install my <code>requirements.txt</code>. Finally, I execute the same <code>pelican</code> command I 
+<p>Then, I get my dependancies installed. I update <code>pip</code> and install my <code>requirements.txt</code>. Finally, I execute the same <code>pelican</code> command I
 previously used and add on the <code>verbose</code> flag, just in case I need to troubleshoot a failed build.</p>
 <p>Deployment is done via the <code>deploy</code> block, but all it is doing is calling my <code>deploy.sh</code> script that I covered above.</p>
 <div class="codehilight code"><pre><span></span><span class="n">deploy</span><span class="o">:</span>
@@ -228,20 +229,20 @@ previously used and add on the <code>verbose</code> flag, just in case I need to
   <span class="n">on</span><span class="o">:</span>
     <span class="n">branch</span><span class="o">:</span> <span class="n">master</span>
 </pre></div>
-<p><code>skip_cleanup</code> is important to leave as <code>true</code> so that the output from the <code>script</code> block isn't cleaned up before we deploy. </p>
+<p><code>skip_cleanup</code> is important to leave as <code>true</code> so that the output from the <code>script</code> block isn't cleaned up before we deploy.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
-<p>This post should be the first one that is automatically deployed. I'm sure there are improvements I can and will make to my 
-<code>deploy.sh</code> script or <code>.travis.yml</code> over time, but right now I'm happy with how it works. In testings, a deployment is taking 
-about a minute or two from the time I push a new article. This is about how long it took previously, but now I only need to 
-perform a single push. </p>
+<p>This post should be the first one that is automatically deployed. I'm sure there are improvements I can and will make to my
+<code>deploy.sh</code> script or <code>.travis.yml</code> over time, but right now I'm happy with how it works. In testings, a deployment is taking
+about a minute or two from the time I push a new article. This is about how long it took previously, but now I only need to
+perform a single push.</p>
 <p>I'm also happy with the split of my repositories. I was never a huge fan of having content and source code mashed together, but
-it worked. Now, I can keep the two seperate and easily determine where everything is. Template changes are source code, article
-changes are content. If I make changes to anything other than content, I can trigger a rebuild within Travis CI with the click 
+it worked. Now, I can keep the two separate and easily determine where everything is. Template changes are source code, article
+changes are content. If I make changes to anything other than content, I can trigger a rebuild within Travis CI with the click
 of a button. If I am just adding an article, I just need to wait a few minutes for it to be built and deployed. Hooray for
 automation!</p>
 <p>One other thing this split may have done is make it easier to eventually add comments to the blog. That's been a long term
-goal and one that I've investigated off and on over the past three years. Since I host everything via GitHub Pages and 
-don't have a database, comments would probably need to be done via GitHub comments somehow. I have ideas, but haven't started 
+goal and one that I've investigated off and on over the past three years. Since I host everything via GitHub Pages and
+don't have a database, comments would probably need to be done via GitHub comments somehow. I have ideas, but haven't started
 testing any of those yet. This split will make it easier, I think, when or if I investigate further.</p>
             </div>
             <hr />
