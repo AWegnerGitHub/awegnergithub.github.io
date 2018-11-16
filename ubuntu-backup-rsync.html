@@ -95,19 +95,19 @@
             <div itemprop="articleBody mainEntityOfPage">
             
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>The server has been running for almost nine months. It's been backing up family data and pictures from phones without any problems. Now it's time to back up the laptop because I have the space and really should make sure the stuff that isn't work related (ie. the stuff that is in the work git repositories) is also backed up. </p>
-<p>Enter <a href="https://rsync.samba.org/"><code>rsync</code></a>. </p>
+<p>The server has been running for almost nine months. It's been backing up family data and pictures from phones without any problems. Now it's time to back up the laptop because I have the space and really should make sure the stuff that isn't work related (ie. the stuff that is in the work git repositories) is also backed up.</p>
+<p>Enter <a href="https://rsync.samba.org/"><code>rsync</code></a>.</p>
 <h2 id="how-to">How To<a class="headerlink" href="#how-to" title="Permanent link">¶</a></h2>
 <p>My goal is to automatically back up my home directory from the laptop to the server on a daily basis. This will provide a once a day backup and if I need to do more than that in the future, it will be as easy as modifying the final cronjob that I'll use.</p>
 <h3 id="ssh-key">SSH Key<a class="headerlink" href="#ssh-key" title="Permanent link">¶</a></h3>
-<p>The first step is setting up an SSH key so that I don't have to manually provide a password. I can, in the future, add restrictions on the server side as to what this particular key will be able to do too. I'm not doing that today though, because I don't open SSH to the outside world. </p>
-<p>The first thing to do is generate a new key. I already have an SSH key configured, but it has a password. On the laptop, run the follwoing:</p>
+<p>The first step is setting up an SSH key so that I don't have to manually provide a password. I can, in the future, add restrictions on the server side as to what this particular key will be able to do too. I'm not doing that today though, because I don't open SSH to the outside world.</p>
+<p>The first thing to do is generate a new key. I already have an SSH key configured, but it has a password. On the laptop, run the following:</p>
 <div class="codehilight code"><pre><span></span>ssh-keygen -t rsa -b 2048 -f ~/.ssh/laptop-rsync-key
 </pre></div>
 <p>When asked to enter a passphrase, simply press enter and then enter again to confirm the empty passphrase.</p>
 <p>This will put <code>laptop-rsync-key</code> and <code>laptop-rsync-key.pub</code> in my user's <code>.ssh/</code> directory.</p>
 <h3 id="copy-the-public-key-to-the-server">Copy the public key to the server<a class="headerlink" href="#copy-the-public-key-to-the-server" title="Permanent link">¶</a></h3>
-<p>Next, we need to copy the public key that was just generated to the server. </p>
+<p>Next, we need to copy the public key that was just generated to the server.</p>
 <div class="codehilight code"><pre><span></span><span class="n">scp</span> <span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">laptop</span><span class="o">-</span><span class="n">rsync</span><span class="o">-</span><span class="n">key</span><span class="p">.</span><span class="n">pub</span> <span class="n">andy</span><span class="mf">@192.168.140.187</span><span class="o">:~/</span><span class="p">.</span><span class="n">ssh</span>
 </pre></div>
 <p>Once it's been copied, log into the server. Now you need to add this key to the <code>authorized_keys</code>.</p>
@@ -120,7 +120,7 @@ cat laptop-rsync-key.pub &gt;&gt; authorized_keys
 </pre></div>
 <p>Once I confirmed this worked, I added it to my user's crontab on the laptop. It will run once a day now.</p>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">¶</a></h2>
-<p>The next steps I'll take be taking are to restrict the new SSH key on the server to only allow it to perform <code>rsync</code> tasks. This can be done by slightly modifying the appropriate line in <code>authorized_keys</code>. I'll see how this daily, single, back up works for a while. If I need to, I may change it to a rotating weekly backup. I don't forsee that right now, but I need a few weeks of seeing how this works and if the single day is good enough. </p>
+<p>The next steps I'll take be taking are to restrict the new SSH key on the server to only allow it to perform <code>rsync</code> tasks. This can be done by slightly modifying the appropriate line in <code>authorized_keys</code>. I'll see how this daily, single, back up works for a while. If I need to, I may change it to a rotating weekly backup. I don't forsee that right now, but I need a few weeks of seeing how this works and if the single day is good enough.</p>
             </div>
             <hr />
             <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">

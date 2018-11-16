@@ -125,18 +125,18 @@
 <p>My <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.py"><code>setup.py</code></a> is pretty basic and available on GitHub. There are a couple important things though.</p>
 <ul>
 <li><code>version</code>: This is needed, but I didn't want to have to constantly remember to update this when pushing a version to PyPI. This was one of my first criteria when starting the project. I wanted to automate as much as I could, and versioning was at the top of that list. It's small, but easy to forget and keep syncronized across all the files in the project. I decided to utilize <a href="https://pypi.python.org/pypi/bumpversion">bumpversion</a> and <a href="http://www.fabfile.org/">Fabric</a> to manage this specific field (both here and elsewhere in the project).</li>
-<li><code>install_requires</code>: StackAPI is built in the fantasitc <a href="http://docs.python-requests.org/en/master/">Requests</a> library. To ensure this was installed when StackAPI was install, it was needed in this field.</li>
-<li><code>tests_require</code>: The testsuite I build utilizes the <code>mock</code> library. I don't want that to be installed if the developer isn't running the tests, so it is added to this field.</li>
+<li><code>install_requires</code>: StackAPI is built in the fantastic <a href="http://docs.python-requests.org/en/master/">Requests</a> library. To ensure this was installed when StackAPI was install, it was needed in this field.</li>
+<li><code>tests_require</code>: The test suite I build utilizes the <code>mock</code> library. I don't want that to be installed if the developer isn't running the tests, so it is added to this field.</li>
 <li><code>test_suite</code>: I wanted developers to be able to run <code>python setup.py test</code> to execute the test suite. To do so, I had to point to the where the tests were being executed from.</li>
 </ul>
 <p>The rest of <code>setup.py</code> seemed to be fairly standard when compared to other Python libraries.</p>
 <h3 id="bumpversion-and-fabric">Bumpversion and Fabric<a class="headerlink" href="#bumpversion-and-fabric" title="Permanent link">¶</a></h3>
-<p>As I mentioned, I wanted to automate any versioning that was required. To do so, I used the <a href="https://pypi.python.org/pypi/bumpversion">bumpversion</a> library and wrote a small <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/fabfile.py">Fabric</a> script to handle it automatically. <code>bumpversion</code> uses a <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.cfg">config file</a>, to determine what it is going to do. I configured it to automatically create a commit and a new git tag for each version. I then pointed to a couple files where the current version is listed. When <code>bumpversion</code> is executed, it will change the version in each of those files to the new version. It will then create a single commit to the git repository with a commit message similar to </p>
+<p>As I mentioned, I wanted to automate any versioning that was required. To do so, I used the <a href="https://pypi.python.org/pypi/bumpversion">bumpversion</a> library and wrote a small <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/fabfile.py">Fabric</a> script to handle it automatically. <code>bumpversion</code> uses a <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.cfg">config file</a>, to determine what it is going to do. I configured it to automatically create a commit and a new git tag for each version. I then pointed to a couple files where the current version is listed. When <code>bumpversion</code> is executed, it will change the version in each of those files to the new version. It will then create a single commit to the git repository with a commit message similar to</p>
 <blockquote>
 <p>Bump version: 0.1.6 → 0.1.7</p>
 </blockquote>
 <p>That is nice and clean. It tags the commit for me, which is useful later, when I want to push the change to PyPI.</p>
-<p>To make running <code>bumpversion</code> a bit easier, I utilized a Fabric routine I found <a href="https://gist.github.com/jbarratt/85c91d7b904462702892">online</a> and adjusted it for my purposes. When I run <code>fab release</code>, all of the <code>bumpversion</code> 'stuff' occurs. Then I just have to push the commit (and new tag) to GitHub. </p>
+<p>To make running <code>bumpversion</code> a bit easier, I utilized a Fabric routine I found <a href="https://gist.github.com/jbarratt/85c91d7b904462702892">online</a> and adjusted it for my purposes. When I run <code>fab release</code>, all of the <code>bumpversion</code> 'stuff' occurs. Then I just have to push the commit (and new tag) to GitHub.</p>
 <h3 id="final-project-layout">Final Project Layout<a class="headerlink" href="#final-project-layout" title="Permanent link">¶</a></h3>
 <p>The final project layout I settled on was this:</p>
 <div class="codehilight code"><pre><span></span>/stackapi
@@ -220,20 +220,20 @@
 <li>Upload the project to Test: <code>python setup.py register -r pypitest</code></li>
 <li>Upload the project to Live, <em>if</em> you're ready for your first release. Remember, once a version is released to PyPI, it can't be used again (or overwritten): <code>python setup.py register -r pypi</code></li>
 </ul>
-<p>If all of the above passed to your satisfaction, you can remove the <code>.pypirc</code> file and move on to configuring Travis CI.    </p>
+<p>If all of the above passed to your satisfaction, you can remove the <code>.pypirc</code> file and move on to configuring Travis CI.</p>
 <h2 id="travis">Travis<a class="headerlink" href="#travis" title="Permanent link">¶</a></h2>
-<p>The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml">GitHub</a>. </p>
-<p>My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using <code>python setup.py -q install</code>. Then the test suite is run. </p>
-<p>The important bits are in the <code>deploy</code> section. </p>
+<p>The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml">GitHub</a>.</p>
+<p>My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using <code>python setup.py -q install</code>. Then the test suite is run.</p>
+<p>The important bits are in the <code>deploy</code> section.</p>
 <div class="codehilight code"><pre><span></span><span class="n">on</span><span class="o">:</span>
   <span class="n">tags</span><span class="o">:</span> <span class="kc">true</span>
   <span class="n">branch</span><span class="o">:</span> <span class="n">master</span>
 </pre></div>
-<p>If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since <code>bumpversion</code> makes a new git tag with each new version, this works perfectly. </p>
+<p>If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since <code>bumpversion</code> makes a new git tag with each new version, this works perfectly.</p>
 <p>This does require that my password be included in the yml file. To keep this secure, I utilized the <a href="https://blog.travis-ci.com/2013-01-14-new-client/">Travis Command Line Client</a> (<code>gem install travis</code>). In my local directory, I then ran:</p>
 <div class="codehilight code"><pre><span></span>travis encrypt --add deploy.password
 </pre></div>
-<p>This added the password to the YML file. </p>
+<p>This added the password to the YML file.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
 <p>This was the first time I've released something to PyPI. It took a lot more set up than I expected it would take. However, now that I've gone through the process, gotten used to the ReStructuredText format that Sphinx and Read the Docs require, and set up PyPI for one project, I think it'll be fairly simple to do in the future. Most of the work is getting the other services to talk with GitHub and practicing good developer habits (documentation...).</p>
 <h2 id="all-stackapi-links">All StackAPI Links<a class="headerlink" href="#all-stackapi-links" title="Permanent link">¶</a></h2>

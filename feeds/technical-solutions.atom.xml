@@ -142,19 +142,19 @@ goal and one that I've investigated off and on over the past three years. Since 
 don't have a database, comments would probably need to be done via GitHub comments somehow. I have ideas, but haven't started
 testing any of those yet. This split will make it easier, I think, when or if I investigate further.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync</title><link href="https://andrewwegner.com/ubuntu-backup-rsync.html" rel="alternate"></link><published>2018-09-26T12:30:00-05:00</published><updated>2018-09-26T12:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-09-26:/ubuntu-backup-rsync.html</id><summary type="html">&lt;p&gt;The server has been running and the laptop needs to be backed up. This walks through how I did it.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The server has been running for almost nine months. It's been backing up family data and pictures from phones without any problems. Now it's time to back up the laptop because I have the space and really should make sure the stuff that isn't work related (ie. the stuff that is in the work git repositories) is also backed up. &lt;/p&gt;
-&lt;p&gt;Enter &lt;a href="https://rsync.samba.org/"&gt;&lt;code&gt;rsync&lt;/code&gt;&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;The server has been running for almost nine months. It's been backing up family data and pictures from phones without any problems. Now it's time to back up the laptop because I have the space and really should make sure the stuff that isn't work related (ie. the stuff that is in the work git repositories) is also backed up.&lt;/p&gt;
+&lt;p&gt;Enter &lt;a href="https://rsync.samba.org/"&gt;&lt;code&gt;rsync&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="how-to"&gt;How To&lt;a class="headerlink" href="#how-to" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;My goal is to automatically back up my home directory from the laptop to the server on a daily basis. This will provide a once a day backup and if I need to do more than that in the future, it will be as easy as modifying the final cronjob that I'll use.&lt;/p&gt;
 &lt;h3 id="ssh-key"&gt;SSH Key&lt;a class="headerlink" href="#ssh-key" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The first step is setting up an SSH key so that I don't have to manually provide a password. I can, in the future, add restrictions on the server side as to what this particular key will be able to do too. I'm not doing that today though, because I don't open SSH to the outside world. &lt;/p&gt;
-&lt;p&gt;The first thing to do is generate a new key. I already have an SSH key configured, but it has a password. On the laptop, run the follwoing:&lt;/p&gt;
+&lt;p&gt;The first step is setting up an SSH key so that I don't have to manually provide a password. I can, in the future, add restrictions on the server side as to what this particular key will be able to do too. I'm not doing that today though, because I don't open SSH to the outside world.&lt;/p&gt;
+&lt;p&gt;The first thing to do is generate a new key. I already have an SSH key configured, but it has a password. On the laptop, run the following:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh-keygen -t rsa -b 2048 -f ~/.ssh/laptop-rsync-key
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;When asked to enter a passphrase, simply press enter and then enter again to confirm the empty passphrase.&lt;/p&gt;
 &lt;p&gt;This will put &lt;code&gt;laptop-rsync-key&lt;/code&gt; and &lt;code&gt;laptop-rsync-key.pub&lt;/code&gt; in my user's &lt;code&gt;.ssh/&lt;/code&gt; directory.&lt;/p&gt;
 &lt;h3 id="copy-the-public-key-to-the-server"&gt;Copy the public key to the server&lt;a class="headerlink" href="#copy-the-public-key-to-the-server" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Next, we need to copy the public key that was just generated to the server. &lt;/p&gt;
+&lt;p&gt;Next, we need to copy the public key that was just generated to the server.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;scp&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;laptop&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rsync&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pub&lt;/span&gt; &lt;span class="n"&gt;andy&lt;/span&gt;&lt;span class="mf"&gt;@192.168.140.187&lt;/span&gt;&lt;span class="o"&gt;:~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Once it's been copied, log into the server. Now you need to add this key to the &lt;code&gt;authorized_keys&lt;/code&gt;.&lt;/p&gt;
@@ -167,7 +167,7 @@ cat laptop-rsync-key.pub &amp;gt;&amp;gt; authorized_keys
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Once I confirmed this worked, I added it to my user's crontab on the laptop. It will run once a day now.&lt;/p&gt;
 &lt;h2 id="next-steps"&gt;Next steps&lt;a class="headerlink" href="#next-steps" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The next steps I'll take be taking are to restrict the new SSH key on the server to only allow it to perform &lt;code&gt;rsync&lt;/code&gt; tasks. This can be done by slightly modifying the appropriate line in &lt;code&gt;authorized_keys&lt;/code&gt;. I'll see how this daily, single, back up works for a while. If I need to, I may change it to a rotating weekly backup. I don't forsee that right now, but I need a few weeks of seeing how this works and if the single day is good enough. &lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Deploying a Flask Slack app on Google Cloud Platform</title><link href="https://andrewwegner.com/slack-app-google-cloud.html" rel="alternate"></link><published>2018-07-13T10:00:00-05:00</published><updated>2018-07-13T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-13:/slack-app-google-cloud.html</id><summary type="html">&lt;p&gt;Setup a Slack app using Flask and deploy it to Google's Cloud&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;The next steps I'll take be taking are to restrict the new SSH key on the server to only allow it to perform &lt;code&gt;rsync&lt;/code&gt; tasks. This can be done by slightly modifying the appropriate line in &lt;code&gt;authorized_keys&lt;/code&gt;. I'll see how this daily, single, back up works for a while. If I need to, I may change it to a rotating weekly backup. I don't forsee that right now, but I need a few weeks of seeing how this works and if the single day is good enough.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Deploying a Flask Slack app on Google Cloud Platform</title><link href="https://andrewwegner.com/slack-app-google-cloud.html" rel="alternate"></link><published>2018-07-13T10:00:00-05:00</published><updated>2018-07-13T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-13:/slack-app-google-cloud.html</id><summary type="html">&lt;p&gt;Setup a Slack app using Flask and deploy it to Google's Cloud&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="background-and-goals"&gt;Background and goals&lt;a class="headerlink" href="#background-and-goals" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At work I am the software QA team lead (I haven't given myself a fancy title, but I should). As such, I spend a lot of time in JIRA tracking our bug and feature requests and in Slack working with every aspect of the company to ensure the new features work as expected and bugs as appropriately squashed. As new releases approach their release date, I start running more queries to ensure everything will be done on time.&lt;/p&gt;
 &lt;p&gt;Mini-rant: I hate JIRA's UI. It's slow, clunky and makes rolling things up as I need them unnecessarily complicated.&lt;/p&gt;
@@ -562,27 +562,27 @@ more advanced features GitLab offers in the near future, but for the time being 
 knowledge that I can expand what I do with GitLab.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Travis CI doesn't keep your environment variable secure</title><link href="https://andrewwegner.com/travisci-insecure-environment-variables.html" rel="alternate"></link><published>2018-04-02T12:30:00-05:00</published><updated>2018-04-02T12:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-02:/travisci-insecure-environment-variables.html</id><summary type="html">&lt;p&gt;Travis CI does not keep your environment variables secure if you transfer a repository.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;On December 27, 2017 I reported a security issue directly to the security team as their &lt;a href="https://github.com/travis-ci/travis-ci/blob/master/CONTRIBUTING.md"&gt;CONTRIBUTING.md&lt;/a&gt; recommends. I received an automated response that a human would
-follow up with me soon. It was their end of year, two week vacation (which is awesome!). I sent the same email again on January 26, 2018 and received a response back from AJ Bowen, a Build Infrastructure Engineer at Travis CI on January 29, 2018. They'd created an internal issue to track the behavior and would follow up within two weeks. &lt;/p&gt;
-&lt;p&gt;I followed up with AJ on February 28, 2018 and didn't receive a response. We're now over three months since my initial report. I believe it's time to make this more public so 
+follow up with me soon. It was their end of year, two week vacation (which is awesome!). I sent the same email again on January 26, 2018 and received a response back from AJ Bowen, a Build Infrastructure Engineer at Travis CI on January 29, 2018. They'd created an internal issue to track the behavior and would follow up within two weeks.&lt;/p&gt;
+&lt;p&gt;I followed up with AJ on February 28, 2018 and didn't receive a response. We're now over three months since my initial report. I believe it's time to make this more public so
 that others know to be careful with their Travis CI managed environment variables.&lt;/p&gt;
 &lt;h2 id="the-issue"&gt;The Issue&lt;a class="headerlink" href="#the-issue" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://travis-ci.org/"&gt;Travis CI &lt;/a&gt; is an application that allows you to automatically test and deploy applications after a commit is pushed to GitHub. I've used this ability to run unit tests, 
+&lt;p&gt;&lt;a href="https://travis-ci.org/"&gt;Travis CI &lt;/a&gt; is an application that allows you to automatically test and deploy applications after a commit is pushed to GitHub. I've used this ability to run unit tests,
 &lt;a href="https://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html"&gt;automatically deploy updates to PyPI&lt;/a&gt;, and more recently when testing deployment to AWS using the Serverless framework. It's that last one that led me to this issue.&lt;/p&gt;
-&lt;p&gt;Part of deploying to AWS requires that you have credentials to deploy. I didn't want to put my AWS deploy credentials in GitHub, even if they are &lt;a href="https://docs.travis-ci.com/user/environment-variables/#Encrypting-environment-variables"&gt;encrypted&lt;/a&gt;. Instead, 
+&lt;p&gt;Part of deploying to AWS requires that you have credentials to deploy. I didn't want to put my AWS deploy credentials in GitHub, even if they are &lt;a href="https://docs.travis-ci.com/user/environment-variables/#Encrypting-environment-variables"&gt;encrypted&lt;/a&gt;. Instead,
 I decided to set my variables in the &lt;a href="https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings"&gt;Travis CI Settings&lt;/a&gt;. I went forward with my testing, watched the deploys happen as expected and eventually needed to transfer my
-repository to a third party. &lt;/p&gt;
-&lt;p&gt;I used GitHub to transfer the repository to the new owner. We tested a build and watched it deploy. The Travis CI console showed a successful deploy. The problem is, 
-it deployed to &lt;em&gt;my&lt;/em&gt; AWS account using &lt;em&gt;my&lt;/em&gt; AWS credentials. These "secure" environment variables had been transfered to a third party and were no longer in my control.&lt;/p&gt;
+repository to a third party.&lt;/p&gt;
+&lt;p&gt;I used GitHub to transfer the repository to the new owner. We tested a build and watched it deploy. The Travis CI console showed a successful deploy. The problem is,
+it deployed to &lt;em&gt;my&lt;/em&gt; AWS account using &lt;em&gt;my&lt;/em&gt; AWS credentials. These "secure" environment variables had been transferred to a third party and were no longer in my control.&lt;/p&gt;
 &lt;h2 id="reproduction-short-version"&gt;Reproduction - Short Version&lt;a class="headerlink" href="#reproduction-short-version" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Reproducing the issue is trivial. The short version is this:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;On one GitHub account, create a repository with a &lt;code&gt;.travis.yml&lt;/code&gt; file &lt;/li&gt;
+&lt;li&gt;On one GitHub account, create a repository with a &lt;code&gt;.travis.yml&lt;/code&gt; file&lt;/li&gt;
 &lt;li&gt;On the Travis CI account associated with step 1, set up an environment variable and elect &lt;em&gt;not&lt;/em&gt; to show the value in the build log&lt;/li&gt;
 &lt;li&gt;Transfer the GitHub repository to another account.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;At this point, the environment variables defined in step 2 are accessible by the new owner from step 3. &lt;/p&gt;
+&lt;p&gt;At this point, the environment variables defined in step 2 are accessible by the new owner from step 3.&lt;/p&gt;
 &lt;h2 id="reproduction-long-version"&gt;Reproduction - Long Version&lt;a class="headerlink" href="#reproduction-long-version" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The detailed steps taken to reproduce this issue show that Travis CI is simply looking for the environment variable values and scrubbing those from the build logs. Once transfered, an edit can be introduced to show these variables with minimal work. &lt;/p&gt;
+&lt;p&gt;The detailed steps taken to reproduce this issue show that Travis CI is simply looking for the environment variable values and scrubbing those from the build logs. Once transferred, an edit can be introduced to show these variables with minimal work.&lt;/p&gt;
 &lt;h3 id="create-a-repository"&gt;Create a repository&lt;a class="headerlink" href="#create-a-repository" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Create a new repository and add something. For this test, I created a simple Python Hello World file, and named it &lt;code&gt;hello.py&lt;/code&gt;.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;print("Hello World")
@@ -592,22 +592,22 @@ it deployed to &lt;em&gt;my&lt;/em&gt; AWS account using &lt;em&gt;my&lt;/em&gt;
 &lt;p&gt;Go to &lt;a href="https://travis-ci.org/"&gt;Travis CI&lt;/a&gt; and log in with the GitHub account associated with the above step. Sync your account. Then enable integration by changing the repository switch.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Enable Integration" src="https://andrewwegner.com/images/1-travis-enable-repository.png"/&gt;&lt;/p&gt;
 &lt;h3 id="create-a-travisyml-file"&gt;Create a .travis.yml file&lt;a class="headerlink" href="#create-a-travisyml-file" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;With the integration now in place, set up a basic build script by adding a &lt;code&gt;.travis.yml&lt;/code&gt; file to the repository. &lt;/p&gt;
+&lt;p&gt;With the integration now in place, set up a basic build script by adding a &lt;code&gt;.travis.yml&lt;/code&gt; file to the repository.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
 &lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
   &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="s2"&gt;"3.5"&lt;/span&gt;
-&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; 
+&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
   &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;py&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This script will set up a build task and run your &lt;code&gt;hello.py&lt;/code&gt; file, using Python 3.5. You will see that "Hello World!" is printed in the build console.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="First Build" src="https://andrewwegner.com/images/2-travis-first-build.png"/&gt;&lt;/p&gt;
 &lt;h3 id="add-environment-variables"&gt;Add Environment Variables&lt;a class="headerlink" href="#add-environment-variables" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Now that our build script is working, we can work on "deployment". Deployment to AWS (or other cloud services) requires that you provide credentials. I am not a fan of 
+&lt;p&gt;Now that our build script is working, we can work on "deployment". Deployment to AWS (or other cloud services) requires that you provide credentials. I am not a fan of
 including credentials in my repository, even if they are encrypted. Opting for an environment variable should be more secure, as the credentials are never in your repository
 in the first place. &lt;strong&gt;It is important to note that you are still giving your credentials to Travis CI in this case.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;To set up environment variables, click on "More Options" and "Settings" within the Travis CI application.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Travis Settings" src="https://andrewwegner.com/images/3-add-variable-1.png"/&gt;&lt;/p&gt;
-&lt;p&gt;Now scroll down to "Environment Variables". Add the name of the variable and the value. Be sure to leave the default value of "Off" selected. You don't want to display this 
+&lt;p&gt;Now scroll down to "Environment Variables". Add the name of the variable and the value. Be sure to leave the default value of "Off" selected. You don't want to display this
 value in the build log. Finally click "Add".&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Adding a variable" src="https://andrewwegner.com/images/4-add-variable-2.png"/&gt;&lt;/p&gt;
 &lt;p&gt;I've added a second variable for further testing.&lt;/p&gt;
@@ -615,7 +615,7 @@ value in the build log. Finally click "Add".&lt;/p&gt;
 &lt;p&gt;Notice that variable values are hidden from view after clicking "Add".&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Variable values hidden" src="https://andrewwegner.com/images/6-variables-added.png"/&gt;&lt;/p&gt;
 &lt;h3 id="check-values-during-build"&gt;Check values during build&lt;a class="headerlink" href="#check-values-during-build" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;With the variables saved, restart your build. &lt;/p&gt;
+&lt;p&gt;With the variables saved, restart your build.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Restart Build" src="https://andrewwegner.com/images/7-restart-build.png"/&gt;&lt;/p&gt;
 &lt;p&gt;When the build has completed, check the build log. Even though we aren't using these values yet, we can see the environment variables exist and are "Secure".&lt;/p&gt;
 &lt;p&gt;&lt;img alt='"Secure" Variables' src="https://andrewwegner.com/images/8-variables-secure.png"/&gt;&lt;/p&gt;
@@ -630,17 +630,17 @@ the log. We can see this with a small change to &lt;code&gt;hello.py&lt;/code&gt
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"AWS KEY ID: |{}{}|"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_id&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;aws_id&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:]))&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"AWS SECRET KEY: |{} {}|"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_secret&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_secret&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;aws_secret&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aws_secret&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:]))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;In this example, we are splitting the values of the environment variables in half. For the &lt;code&gt;AWS_ACCESS_KEY_ID&lt;/code&gt; value, you smash these two together. This will match the 
+&lt;p&gt;In this example, we are splitting the values of the environment variables in half. For the &lt;code&gt;AWS_ACCESS_KEY_ID&lt;/code&gt; value, you smash these two together. This will match the
 environment variable value, and will not be shown because the pattern still matches the value:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;|{}{}|
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;For &lt;code&gt;AWS_SECRET_ACCESS_KEY&lt;/code&gt;, we split the two halves with a space and print it out. This will be shown, because the extra space no longer matches the exact value of the 
+&lt;p&gt;For &lt;code&gt;AWS_SECRET_ACCESS_KEY&lt;/code&gt;, we split the two halves with a space and print it out. This will be shown, because the extra space no longer matches the exact value of the
 environment variable.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;|{} {}|
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Commit and push the change to GitHub. In Travis CI, we see the following in the build log:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Accessing the values" src="https://andrewwegner.com/images/9-variables-filtered-by-match.png"/&gt;&lt;/p&gt;
-&lt;p&gt;As expected, the first pattern is hidden because it matches the environment variable. The second pattern is shown, because the space in the middle means the pattern no longer 
+&lt;p&gt;As expected, the first pattern is hidden because it matches the environment variable. The second pattern is shown, because the space in the middle means the pattern no longer
 matches.&lt;/p&gt;
 &lt;h3 id="transfer-the-repository"&gt;Transfer the repository&lt;a class="headerlink" href="#transfer-the-repository" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Now that we've shown the variables are accessible, it's time to transfer the repository to a new owner. In GitHub, this can be accomplished by going to the repository settings
@@ -650,23 +650,23 @@ and going down to the red "danger area". Once you've entered the name of the cur
 &lt;p&gt;Make a change and commit it to the new repository. I simply modified the "Hello World" line:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;print("Hello World from new owner!")
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;A new build will kick off. You can see that the repository has transfered to the new owner in the build log. You can also see the environment variables were transfered to the 
+&lt;p&gt;A new build will kick off. You can see that the repository has transferred to the new owner in the build log. You can also see the environment variables were transfered to the
 new owner. Other than the new owner being listed, the build log shows the same output as before&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Everything has transfered" src="https://andrewwegner.com/images/11-build-after-transfer.png"/&gt;&lt;/p&gt;
 &lt;h3 id="variables-in-the-ui"&gt;Variables in the UI&lt;a class="headerlink" href="#variables-in-the-ui" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;You can also see these variables have transfered by going back to "More Options", then "Settings" in Travis CI. The values are still hidden behind the input password field. &lt;/p&gt;
+&lt;p&gt;You can also see these variables have transferred by going back to "More Options", then "Settings" in Travis CI. The values are still hidden behind the input password field.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Variables in UI" src="https://andrewwegner.com/images/12-variables-transfered.png"/&gt;&lt;/p&gt;
 &lt;h2 id="impact-of-bug"&gt;Impact of bug&lt;a class="headerlink" href="#impact-of-bug" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The example above shows two problems. The bigger problem, in my opinion, is that environment variables are transfered to a new owner. The secondary problem is that "secure"
+&lt;p&gt;The example above shows two problems. The bigger problem, in my opinion, is that environment variables are transferred to a new owner. The secondary problem is that "secure"
 variables are really just obfuscated. Accessing them is trivial. With this demonstration, we added in a step to show that the variables can be seen by the original
-owner. However, it is just as likely that the new owner could introduce such a change after the repository is transfered.&lt;/p&gt;
+owner. However, it is just as likely that the new owner could introduce such a change after the repository is transferred.&lt;/p&gt;
 &lt;p&gt;This bug requires the owner of the repository to perform the "dangerous" GitHub action of transferring a repository. That means it's impact is limited. However, it's just as
-likely that the original owner has forgotten that environment variables were set up in Travis CI, an entirely separate system. &lt;/p&gt;
-&lt;p&gt;When a GitHub repository is transfered to a new owner, the environment variables in Travis CI should not travel with. This is especially true for the "secure" variables. I'd 
-rather that a build breaks after the transfer due to the lack of appropriate variables being set up than having my cloud credentials be sent to a third party. &lt;/p&gt;
+likely that the original owner has forgotten that environment variables were set up in Travis CI, an entirely separate system.&lt;/p&gt;
+&lt;p&gt;When a GitHub repository is transferred to a new owner, the environment variables in Travis CI should not travel with. This is especially true for the "secure" variables. I'd
+rather that a build breaks after the transfer due to the lack of appropriate variables being set up than having my cloud credentials be sent to a third party.&lt;/p&gt;
 &lt;h2 id="mitigation"&gt;Mitigation&lt;a class="headerlink" href="#mitigation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Mitigation of this bug, until Travis CI stops transferring environment variables to new repository owners, requires the original owner to remove the variables prior to 
-transferring the repository. One of the steps that the owner should take is to log into Travis CI and ensure all secure variables have been removed from the Travis CI 
+&lt;p&gt;Mitigation of this bug, until Travis CI stops transferring environment variables to new repository owners, requires the original owner to remove the variables prior to
+transferring the repository. One of the steps that the owner should take is to log into Travis CI and ensure all secure variables have been removed from the Travis CI
 environment. This will break the builds, but it will also ensure that private variables aren't leaked unintentionally to a third party.&lt;/p&gt;
 &lt;h2 id="repository"&gt;Repository&lt;a class="headerlink" href="#repository" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The repository for testing is available on &lt;a href="https://github.com/AWegnerGitHub/TravisIssue"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
@@ -930,59 +930,59 @@ like:&lt;/p&gt;
 &lt;p&gt;With that, we've finished setting up ZFS on Ubuntu 16.04. I set up a few datasets for my purposes. I'm one step closer to getting this running and handling all of the 
 digital data in the house. &lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Choosing an ORM library for a new project</title><link href="https://andrewwegner.com/choosing-orm-library.html" rel="alternate"></link><published>2017-04-26T14:30:00-05:00</published><updated>2017-04-26T14:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-26:/choosing-orm-library.html</id><summary type="html">&lt;p&gt;A discussion about how a team picked an ORM library for a new project.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="project-history"&gt;Project History&lt;a class="headerlink" href="#project-history" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; project is over three years old at this point. It's grown from a small python script to a 
+&lt;p&gt;The &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; project is over three years old at this point. It's grown from a small python script to a
 decently sized application that integrates with another project. In that time, it's expanded what types of spam and
 patterns it looks for, what chat rooms it posts to, what external services it integrates with and how permissions to
-use the system are determined. &lt;/p&gt;
+use the system are determined.&lt;/p&gt;
 &lt;p&gt;A lot has changed under the hood. I was hoping to put a cool chart here showing code change over time, but some early
-decisions with the project really throw off the chart. Using a &lt;a href="https://erikbern.com/2016/12/05/the-half-life-of-code.html"&gt;Ship of Theseus&lt;/a&gt; analogy for code, you can see how 
-much has changed. The basic idea is, if a ship leaves port and replaces every plank along it's journey, is it still the 
+decisions with the project really throw off the chart. Using a &lt;a href="https://erikbern.com/2016/12/05/the-half-life-of-code.html"&gt;Ship of Theseus&lt;/a&gt; analogy for code, you can see how
+much has changed. The basic idea is, if a ship leaves port and replaces every plank along it's journey, is it still the
 same ship when it returns? With code, the idea is to apply this to lines of code in an application.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://andrewwegner.com/images/smokey-git-theseus-all.png"&gt;&lt;img alt="SmokeDetector - Git of Theseus" src="https://andrewwegner.com/images/smokey-git-theseus-all.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id="what-happened-in-2014"&gt;What happened in 2014?!&lt;a class="headerlink" href="#what-happened-in-2014" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;In late 2014, the project attempted their first machine learning method of detecting spam. In this time period, a 
-&lt;a href="https://github.com/Charcoal-SE/SmokeDetector/commit/102aa9c64edafb7f5fef5ba16414f4cefad03d64"&gt;commit&lt;/a&gt; was added that added about 200,000 lines of code to the project. This was almost all training data for a 
-Bayesian algorithm. It wasn't needed and probably shouldn't have been added to the main repository. Unfortunately, it 
-stayed in the repository for over a year and was finally &lt;a href="https://github.com/Charcoal-SE/SmokeDetector/commit/68d49ccc0b4981a4ebe91d993f42643542e44d80"&gt;removed&lt;/a&gt; in late 2015. This is the cause of the weird graph 
+&lt;p&gt;In late 2014, the project attempted their first machine learning method of detecting spam. In this time period, a
+&lt;a href="https://github.com/Charcoal-SE/SmokeDetector/commit/102aa9c64edafb7f5fef5ba16414f4cefad03d64"&gt;commit&lt;/a&gt; was added that added about 200,000 lines of code to the project. This was almost all training data for a
+Bayesian algorithm. It wasn't needed and probably shouldn't have been added to the main repository. Unfortunately, it
+stayed in the repository for over a year and was finally &lt;a href="https://github.com/Charcoal-SE/SmokeDetector/commit/68d49ccc0b4981a4ebe91d993f42643542e44d80"&gt;removed&lt;/a&gt; in late 2015. This is the cause of the weird graph
 above, and why almost everything added in 2014 looks like it's missing in later years.&lt;/p&gt;
 &lt;h3 id="what-has-really-changed"&gt;What has really changed?&lt;a class="headerlink" href="#what-has-really-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;After eliminating that bayesian directory from git history, you can get a much better idea of how much has changed. &lt;/p&gt;
+&lt;p&gt;After eliminating that Bayesian directory from git history, you can get a much better idea of how much has changed. &lt;/p&gt;
 &lt;p&gt;&lt;a href="https://andrewwegner.com/images/smokey-git-theseus-filtered.png"&gt;&lt;img alt="SmokeDetector - Git of Theseus - Filtered" src="https://andrewwegner.com/images/smokey-git-theseus-filtered.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Very little of the original code, written in 2014, remains untouched. The explosion in code after that is due to
 new detection patterns, chat commands (and a rewrite), integration with MetaSmoke and the introduction of blacklists.&lt;/p&gt;
 &lt;p&gt;Even more dramatically, you can see how long a line of code is expected to survive in the code base.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://andrewwegner.com/images/smokey-git-theseus-survival.png"&gt;&lt;img alt="SmokeDetector - Line Survival Rate" src="https://andrewwegner.com/images/smokey-git-theseus-survival.png"/&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Within one year, the team is removing over 40% what's been committed to the repository. Looking at these commits, 
-it was determined that a vast majority aren't even &lt;em&gt;code&lt;/em&gt;. They are new items to blacklist or new patterns to detect. &lt;/p&gt;
+&lt;p&gt;Within one year, the team is removing over 40% what's been committed to the repository. Looking at these commits,
+it was determined that a vast majority aren't even &lt;em&gt;code&lt;/em&gt;. They are new items to blacklist or new patterns to detect.&lt;/p&gt;
 &lt;h2 id="enter-the-database"&gt;Enter the database&lt;a class="headerlink" href="#enter-the-database" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;All of this type of data can be stored in a database and managed outside of code. In early 2017, those discussions 
+&lt;p&gt;All of this type of data can be stored in a database and managed outside of code. In early 2017, those discussions
 started taking place. Several team members come from a Ruby background and were familiar with it's &lt;a href="https://en.wikipedia.org/wiki/Object-relational_mapping"&gt;ORM&lt;/a&gt; method of
 accessing databases. They wanted something similar when a database was brought into SmokeDetector.&lt;/p&gt;
-&lt;p&gt;A bit of research was done and it was narrowed down to &lt;a href="http://docs.peewee-orm.com/en/latest/"&gt;peewee&lt;/a&gt; and &lt;a href="https://www.sqlalchemy.org/"&gt;SQLAlchemy&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;A bit of research was done and it was narrowed down to &lt;a href="http://docs.peewee-orm.com/en/latest/"&gt;peewee&lt;/a&gt; and &lt;a href="https://www.sqlalchemy.org/"&gt;SQLAlchemy&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="how-to-choose"&gt;How to choose?&lt;a class="headerlink" href="#how-to-choose" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Fortunately for the SmokeDetector team, there weren't any strong opinions either way. The biggest reason for choosing
 one over the other came down to a &lt;a href="https://www.reddit.com/r/Python/comments/4tnqai/choosing_a_python_ormpeewee_vs_sqlalchemy/d5jyuug/"&gt;comment made by the peewee author&lt;/a&gt; on reddit. They state:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;[...] SQLAlchemy is the gold standard for ORM in the Python world. It has a very active community and a maintainer 
-who is committed to excellence. If you're a glass-half-empty guy, to put it another way, you can't go wrong if you 
+&lt;p&gt;[...] SQLAlchemy is the gold standard for ORM in the Python world. It has a very active community and a maintainer
+who is committed to excellence. If you're a glass-half-empty guy, to put it another way, you can't go wrong if you
 choose SQLAlchemy.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The weaknesses they list for using their own package is the smaller ecosystem, support and number of developers.&lt;/p&gt;
 &lt;h3 id="technical-differences"&gt;Technical differences&lt;a class="headerlink" href="#technical-differences" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;That's a boring story though. Not to be deterred from such a glowing review from a competitor, I wanted to see what the
 technical differences were between the two solutions.&lt;/p&gt;
-&lt;p&gt;To that end, I put together a small Python notebook showing the &lt;a href="https://gist.github.com/AWegnerGitHub/201dbaf09740f9ecd797c32ebfc15872"&gt;differences between peewee and SQLAlchemy&lt;/a&gt; in a 
+&lt;p&gt;To that end, I put together a small Python notebook showing the &lt;a href="https://gist.github.com/AWegnerGitHub/201dbaf09740f9ecd797c32ebfc15872"&gt;differences between peewee and SQLAlchemy&lt;/a&gt; in a
 handful of tests. These tests included inserting two settings in an SQLite database, retrieving one, inserting a large
 list of users and then retrieving a subset of those users.&lt;/p&gt;
-&lt;p&gt;The results were...unremarkable. &lt;/p&gt;
+&lt;p&gt;The results were...unremarkable.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://andrewwegner.com/images/peewee-vs-sqlalcheme-results.png"&gt;&lt;img alt="peewee vs SQLAlchemy results" src="https://andrewwegner.com/images/peewee-vs-sqlalcheme-results.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The two libraries each took two tests (out of four) for being faster than the other. In both cases where SQLAlchemy was
 faster, it was between two and six times faster. Where peewee was faster it was between a fraction faster and twice as
-fast. &lt;/p&gt;
+fast.&lt;/p&gt;
 &lt;p&gt;The time scales are so small though, and SmokeDetector doesn't need to have thousands, hundreds or even tens of hits to
 the database a second. A hundred extra milliseconds isn't going to cripple anything it handles.&lt;/p&gt;
 &lt;p&gt;Thus, the choice was made based on the recommendation of the author of the peewee library. SQLAlchemy has a larger
-community and better support. &lt;/p&gt;</content><category term="technical"></category><category term="programming"></category></entry><entry><title>My experiences releasing a package to PyPI</title><link href="https://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html" rel="alternate"></link><published>2016-03-15T12:26:00-05:00</published><updated>2016-03-15T12:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2016-03-15:/my-experiences-releasing-a-package-to-pypi.html</id><summary type="html">&lt;p&gt;I released StackAPI to PyPI. This post talks about my experiences.&lt;/p&gt;</summary><content type="html">
+community and better support.&lt;/p&gt;</content><category term="technical"></category><category term="programming"></category></entry><entry><title>My experiences releasing a package to PyPI</title><link href="https://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html" rel="alternate"></link><published>2016-03-15T12:26:00-05:00</published><updated>2016-03-15T12:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2016-03-15:/my-experiences-releasing-a-package-to-pypi.html</id><summary type="html">&lt;p&gt;I released StackAPI to PyPI. This post talks about my experiences.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="motivation"&gt;Motivation&lt;a class="headerlink" href="#motivation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In some of my &lt;a href="http://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;other projects&lt;/a&gt;, I've needed to make extensive use of the Stack Exchange API. I built a small library - StackAPI - to assist in this task and released it on Python's &lt;a href="https://pypi.python.org/pypi/StackAPI"&gt;PyPI repository&lt;/a&gt;. This post is going to cover some of the technical decisions and issues I ran into while going through this process. This was my first project being released to PyPI.&lt;/p&gt;
 &lt;p&gt;My goals when releasing this were:&lt;/p&gt;
@@ -1005,18 +1005,18 @@ community and better support. &lt;/p&gt;</content><category term="technical"></c
 &lt;p&gt;My &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.py"&gt;&lt;code&gt;setup.py&lt;/code&gt;&lt;/a&gt; is pretty basic and available on GitHub. There are a couple important things though.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;version&lt;/code&gt;: This is needed, but I didn't want to have to constantly remember to update this when pushing a version to PyPI. This was one of my first criteria when starting the project. I wanted to automate as much as I could, and versioning was at the top of that list. It's small, but easy to forget and keep syncronized across all the files in the project. I decided to utilize &lt;a href="https://pypi.python.org/pypi/bumpversion"&gt;bumpversion&lt;/a&gt; and &lt;a href="http://www.fabfile.org/"&gt;Fabric&lt;/a&gt; to manage this specific field (both here and elsewhere in the project).&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;install_requires&lt;/code&gt;: StackAPI is built in the fantasitc &lt;a href="http://docs.python-requests.org/en/master/"&gt;Requests&lt;/a&gt; library. To ensure this was installed when StackAPI was install, it was needed in this field.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;tests_require&lt;/code&gt;: The testsuite I build utilizes the &lt;code&gt;mock&lt;/code&gt; library. I don't want that to be installed if the developer isn't running the tests, so it is added to this field.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;install_requires&lt;/code&gt;: StackAPI is built in the fantastic &lt;a href="http://docs.python-requests.org/en/master/"&gt;Requests&lt;/a&gt; library. To ensure this was installed when StackAPI was install, it was needed in this field.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tests_require&lt;/code&gt;: The test suite I build utilizes the &lt;code&gt;mock&lt;/code&gt; library. I don't want that to be installed if the developer isn't running the tests, so it is added to this field.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;test_suite&lt;/code&gt;: I wanted developers to be able to run &lt;code&gt;python setup.py test&lt;/code&gt; to execute the test suite. To do so, I had to point to the where the tests were being executed from.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The rest of &lt;code&gt;setup.py&lt;/code&gt; seemed to be fairly standard when compared to other Python libraries.&lt;/p&gt;
 &lt;h3 id="bumpversion-and-fabric"&gt;Bumpversion and Fabric&lt;a class="headerlink" href="#bumpversion-and-fabric" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;As I mentioned, I wanted to automate any versioning that was required. To do so, I used the &lt;a href="https://pypi.python.org/pypi/bumpversion"&gt;bumpversion&lt;/a&gt; library and wrote a small &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/fabfile.py"&gt;Fabric&lt;/a&gt; script to handle it automatically. &lt;code&gt;bumpversion&lt;/code&gt; uses a &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.cfg"&gt;config file&lt;/a&gt;, to determine what it is going to do. I configured it to automatically create a commit and a new git tag for each version. I then pointed to a couple files where the current version is listed. When &lt;code&gt;bumpversion&lt;/code&gt; is executed, it will change the version in each of those files to the new version. It will then create a single commit to the git repository with a commit message similar to &lt;/p&gt;
+&lt;p&gt;As I mentioned, I wanted to automate any versioning that was required. To do so, I used the &lt;a href="https://pypi.python.org/pypi/bumpversion"&gt;bumpversion&lt;/a&gt; library and wrote a small &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/fabfile.py"&gt;Fabric&lt;/a&gt; script to handle it automatically. &lt;code&gt;bumpversion&lt;/code&gt; uses a &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.cfg"&gt;config file&lt;/a&gt;, to determine what it is going to do. I configured it to automatically create a commit and a new git tag for each version. I then pointed to a couple files where the current version is listed. When &lt;code&gt;bumpversion&lt;/code&gt; is executed, it will change the version in each of those files to the new version. It will then create a single commit to the git repository with a commit message similar to&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Bump version: 0.1.6 → 0.1.7&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;That is nice and clean. It tags the commit for me, which is useful later, when I want to push the change to PyPI.&lt;/p&gt;
-&lt;p&gt;To make running &lt;code&gt;bumpversion&lt;/code&gt; a bit easier, I utilized a Fabric routine I found &lt;a href="https://gist.github.com/jbarratt/85c91d7b904462702892"&gt;online&lt;/a&gt; and adjusted it for my purposes. When I run &lt;code&gt;fab release&lt;/code&gt;, all of the &lt;code&gt;bumpversion&lt;/code&gt; 'stuff' occurs. Then I just have to push the commit (and new tag) to GitHub. &lt;/p&gt;
+&lt;p&gt;To make running &lt;code&gt;bumpversion&lt;/code&gt; a bit easier, I utilized a Fabric routine I found &lt;a href="https://gist.github.com/jbarratt/85c91d7b904462702892"&gt;online&lt;/a&gt; and adjusted it for my purposes. When I run &lt;code&gt;fab release&lt;/code&gt;, all of the &lt;code&gt;bumpversion&lt;/code&gt; 'stuff' occurs. Then I just have to push the commit (and new tag) to GitHub.&lt;/p&gt;
 &lt;h3 id="final-project-layout"&gt;Final Project Layout&lt;a class="headerlink" href="#final-project-layout" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The final project layout I settled on was this:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/stackapi
@@ -1100,20 +1100,20 @@ community and better support. &lt;/p&gt;</content><category term="technical"></c
 &lt;li&gt;Upload the project to Test: &lt;code&gt;python setup.py register -r pypitest&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Upload the project to Live, &lt;em&gt;if&lt;/em&gt; you're ready for your first release. Remember, once a version is released to PyPI, it can't be used again (or overwritten): &lt;code&gt;python setup.py register -r pypi&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;If all of the above passed to your satisfaction, you can remove the &lt;code&gt;.pypirc&lt;/code&gt; file and move on to configuring Travis CI.    &lt;/p&gt;
+&lt;p&gt;If all of the above passed to your satisfaction, you can remove the &lt;code&gt;.pypirc&lt;/code&gt; file and move on to configuring Travis CI.&lt;/p&gt;
 &lt;h2 id="travis"&gt;Travis&lt;a class="headerlink" href="#travis" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml"&gt;GitHub&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using &lt;code&gt;python setup.py -q install&lt;/code&gt;. Then the test suite is run. &lt;/p&gt;
-&lt;p&gt;The important bits are in the &lt;code&gt;deploy&lt;/code&gt; section. &lt;/p&gt;
+&lt;p&gt;The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using &lt;code&gt;python setup.py -q install&lt;/code&gt;. Then the test suite is run.&lt;/p&gt;
+&lt;p&gt;The important bits are in the &lt;code&gt;deploy&lt;/code&gt; section.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
   &lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
   &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since &lt;code&gt;bumpversion&lt;/code&gt; makes a new git tag with each new version, this works perfectly. &lt;/p&gt;
+&lt;p&gt;If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since &lt;code&gt;bumpversion&lt;/code&gt; makes a new git tag with each new version, this works perfectly.&lt;/p&gt;
 &lt;p&gt;This does require that my password be included in the yml file. To keep this secure, I utilized the &lt;a href="https://blog.travis-ci.com/2013-01-14-new-client/"&gt;Travis Command Line Client&lt;/a&gt; (&lt;code&gt;gem install travis&lt;/code&gt;). In my local directory, I then ran:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;travis encrypt --add deploy.password
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This added the password to the YML file. &lt;/p&gt;
+&lt;p&gt;This added the password to the YML file.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This was the first time I've released something to PyPI. It took a lot more set up than I expected it would take. However, now that I've gone through the process, gotten used to the ReStructuredText format that Sphinx and Read the Docs require, and set up PyPI for one project, I think it'll be fairly simple to do in the future. Most of the work is getting the other services to talk with GitHub and practicing good developer habits (documentation...).&lt;/p&gt;
 &lt;h2 id="all-stackapi-links"&gt;All StackAPI Links&lt;a class="headerlink" href="#all-stackapi-links" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
