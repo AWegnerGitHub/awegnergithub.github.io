@@ -10,16 +10,16 @@
 
 <meta name="keywords" content="review, technical, learning, Review, " />
 
-<meta property="og:title" content="Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch "/>
-<meta property="og:url" content="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html" />
-<meta property="og:description" content="My review of the Learn DaVinci Resolve 15 from scratch course on Udemy." />
+<meta property="og:title" content="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course "/>
+<meta property="og:url" content="https://andrewwegner.com/sanic-webframework-review.html" />
+<meta property="og:description" content="My review of the Sanic Web Framework fro Pythonistas course on Udemy." />
 <meta property="og:site_name" content="Ponderings of an Andy" />
 <meta property="og:article:author" content="Andy Wegner" />
-<meta property="og:article:published_time" content="2018-09-21T09:45:00-05:00" />
-<meta name="twitter:title" content="Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch ">
-<meta name="twitter:description" content="My review of the Learn DaVinci Resolve 15 from scratch course on Udemy.">
+<meta property="og:article:published_time" content="2019-01-23T10:00:00-06:00" />
+<meta name="twitter:title" content="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course ">
+<meta name="twitter:description" content="My review of the Sanic Web Framework fro Pythonistas course on Udemy.">
 
-        <title>Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch  · Ponderings of an Andy
+        <title>Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course  · Ponderings of an Andy
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
@@ -62,14 +62,14 @@
                 <div class="span1"></div>
                 <div class="span10">
 <section itemscope itemtype="https://schema.org/Review">
-<meta itemprop="itemReviewed" content="Learn DaVinci Resolve 15 from scratch" />
-<meta itemprop="headline" content="Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch" />
-<time itemprop="datePublished" datetime="2018-09-21T09:45:00-05:00">
+<meta itemprop="itemReviewed" content="Sanic - An Asynchronous Web Framework for Pythonista" />
+<meta itemprop="headline" content="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course" />
+<time itemprop="datePublished" datetime="2019-01-23T10:00:00-06:00">
 <meta itemprop="publisher" content="Andy Wegner" />
-<link rel="canonical" href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html" />
+<link rel="canonical" href="https://andrewwegner.com/sanic-webframework-review.html" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html"> Review of Udemy's Learn DaVinci Resolve 15 from scratch  </a></h1>
+    <h1><a href="https://andrewwegner.com/sanic-webframework-review.html"> Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course  </a></h1>
     </header>
 </div>
 
@@ -93,23 +93,64 @@
             <div itemprop="reviewBody mainEntityOfPage">
             
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>It's been a while since I've done a course review. I wanted to try something new in an area that seems interesting, but I'm not sure if I want to do anything with it hobby-wise. <a href="https://www.udemy.com/davinci-resolve-15-from-scratch/">Learn DaVinci Resolve 15 from scratch</a> caught my attention, and I found a coupon code that allowed me to take the course for free. Video editting sounds interesting and I always have the "do something with family videos" on my very distant TODO list. The course is two and a half hours long and it seems to be a basic class.</p>
-<p><a href="https://www.blackmagicdesign.com/products/davinciresolve/">DaVinci Resolve</a> is a very powerful, professional piece video editing software. The free version has everything I'd ever need for home use or even YouTube content. The paid version adds in multi-user collaboration features, additional 3D tools and new Resolve FX.</p>
-<h2 id="course">Course<a class="headerlink" href="#course" title="Permanent link">¶</a></h2>
-<p>The course focuses heavily on learning the <em>interface</em> of DaVinci Resolve. There are a few basic tutorials and the author promises more in the future. This isn't exactly what I was expecting with a course description that includes</p>
+<p>At work we are starting to write version 2 of our API. As part of this new version, we're migrating from PHP to Python (hooray!). There are various technical
+reasons for this, but I am excited. My technical skills are much (<em>much</em>) better in Python. Part of this migration involved decided the framework we'd be using
+and after several internal discussions, we settled on <a href="https://sanic.readthedocs.io/en/latest/">Sanic</a>. The first line of the documentation reads:</p>
 <blockquote>
-<p>Learn how to use DaVinci Resolve to create beautiful and stunning videos for the world to see.</p>
+<p>Sanic is a Flask-like Python 3.5+ web server that’s written to go fast.</p>
 </blockquote>
-<p>That said, it does provide a good overview of each of the tabs in DaVinci Resolve. The explanation of what each tab is used for and the very basic examples of how to use each give users an idea of how powerful DaVinci Resolve can be.</p>
+<p>Great! I used Flask at my previous job. To be clear, Sanic is not <em>based on</em> Flask, but it's API is <em>Flask-like</em>. Good enjoy to start with. With the framework
+set, and previous experience with a similar framework, I wanted to go through how Sanic works.</p>
+<p>I turned to Udemy and the <a href="https://www.udemy.com/sanic-an-asynchronous-web-framework-for-pythonistas/">Sanic - an asynchronous web framework for Pythonistas</a>, created by Szabó Dániel Ernő.</p>
+<h2 id="course">Course<a class="headerlink" href="#course" title="Permanent link">¶</a></h2>
+<p>The course is roughly two hours long and consists of 20 tutorial videos. Each one is less than 10 minutes long. It covers a wide range of features available in
+Sanic. The instructor made their code available on <a href="https://github.com/r3ap3rpy/sanic-web-framework">GitHub</a>. I never actually used the GitHub repository though. Instead, I followed along with the brief
+tutorials.</p>
+<p>For me, this speaks to the instructor's ability to keep the lessons and code short and simple yet effectively show how a single feature works. By making the
+code easy enough to type and follow along, the lesson was more effective because I was <em>doing</em> instead of just reading code.</p>
+<p>The first few lessons are a little rough, because the recordings stutter like the machine that was doing the recording wasn't powerful enough. After 5-6 lessons
+this clears up. It's a minor thing but I do feel it's something that should have been fixed before the course was posted. One other annoyance was that each
+lesson contains the same boiler plate code:</p>
+<div class="codehilight code"><pre><span></span><span class="kn">import</span> <span class="nn">sanic</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">sanic</span><span class="o">.</span><span class="n">Sanic</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
+</pre></div>
+<p>The lesson code will then go after the <code>app</code> variable is defined. The problem with this boiler plate code is that the instructor types it out every single lesson.
+Again, this is minor and it makes each lesson self contained, but I think having this code already written and adding in the important, lesson specific code,
+would have made the lesson more succinct. It also would have prevented a few typos that the instructor made and had to spend time correcting.</p>
 <h2 id="thoughts-on-the-lessons">Thoughts on the lessons<a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link">¶</a></h2>
-<p>As an overview of the interface for DaVinci Resolve, this course is good. As a "learn from scratch" course, the interface overview quickly shows that two and a half hours isn't enough time to learn the software beyond the very basics. The title is a bit misleading and as someone who didn't know anything about DaVinci Resolve and only took this course because of a potentially budding hobby, I was hoping for more than a two hour tutorial on where to click in the interface to do the basics. Alas, my ignorance of the topic meant I wasn't able to judge the course accurately.</p>
-<p>I had several nit-picks with the content too. For one, I was immediately turned off to the course creator when they begged in the first lecture to not give them bad reviews. That isn't the type of thing I expect from someone who's put time and effort into creating the course. I was worried when this was done, but it turned out to be better than the begging implied.</p>
-<p>My second complaint is about how the content is presented. This is a course on <em>video editting</em>. I expect a certain amount of care to be put into the presentation of such a topic, but the course wasn't well paced. There are very abrupt endings to several lectures. There are other lectures that have long periods of silence at the end. There are also more than a few occasions where the audio and video seem to be out of sync. You never see the instructor, but when they are presenting a new tab and say something like "Click on this tab" and then the mouse doesn't move to the tab for a few seconds it makes it hard to follow along.</p>
-<p>My final complaint is how incomplete the course is. There is one five second lecture that is just "This lecture will be uploaded very soon". The last bonus lecutre ends with "See you at the next lecture", but there are no more lectures. I realize the course was released this month, but it's incomplete. The full price of the course is $80. I expect more to be completed for that price.</p>
-<p>This is a good overview of the DaVinci Resolve environment. I understand what each tab is and how I can use them for basic edits. I feel comfortable enough to make a very simple video with some home videos now.</p>
+<p>The lessons themselves were effective at teaching a single Sanic feature. Some were a little short and almost all of them lacked any complexity you'd find in
+a real application, but they were quick ways to show how a feature worked and didn't spend a lot of time doing more than that. Lessons covered a variety of
+things you'd expect a web framework to handle:</p>
+<ul>
+<li>Request Parameters</li>
+<li>Aliases</li>
+<li>Listeners</li>
+<li>Configuration</li>
+<li>Middleware</li>
+<li>Cookies</li>
+<li>Streaming files</li>
+<li>Logging</li>
+<li>Class methodology</li>
+<li>Blueprints</li>
+<li>Request Types</li>
+<li>Error handling</li>
+</ul>
+<p>Ironically, in the error handling lesson, the instructor had an error in their code. This is great, because it helps to see how to troubleshoot errors that Sanic
+can throw. My issue is that the instructor left the time where he's looking at another monitor (probably reading documentation) in the video. I feel this time
+could have been removed and the troubleshooting steps still been effectively shown.</p>
 <h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
-<p>If you are paying for the course, you should avoid it for a while. It's not complete. There is no guarantee that additional lectures will be added and the promise of "more to come" isn't worth the full price. If you are looking for an overview of the most important buttons in DaVinci Resolve, this is a good course. If you are looking for details on what every button or menu option is going to do, this course doesn't cover that. Finally, if you are really looking to "learn DaVinci Resolve" and not "learn the DaVinci Resolve interface", this isn't the best course either. There are some tutorials here, but they are not the majority of content. </p>
-<p><a href="https://ude.my/UC-SMH6Q3ET"><img alt="Completion Award" src="https://andrewwegner.com/images/udemy-learn-davinci-resolve-15-from-scratch.jpg"/></a></p>
+<p>Overall, I was happy with this course. It's about two hours long and does a good job of showing various aspects of Sanic. I don't recall ever being pointed
+to the documentation, which is a little surprising, but it was easy enough to find. The course provides a good foundation of knowing what Sanic can handle. As
+of the time of this post, Udemy says there have been ten students that signed up for the course. That is low and the lack of Q&amp;A is also a bit concerning. I
+don't know how responsive the instructor is to student questions.</p>
+<p>If you have a few hours (and dollars, during a Udemy sale) to spare and wish to learn some basics about Sanic, this is a good course to take. If not, the
+<a href="https://github.com/r3ap3rpy/sanic-web-framework">GitHub repository</a> contains all of the lessons you go over. </p>
+<p><a href="https://ude.my/UC-LYP0VLF7"><img alt="Sanic - An Asynchronous Web Framework for Pythonistas Completion" src="https://andrewwegner.com/images/udemy-sanic.jpg"/></a></p>
             </div>
             <hr />
             <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
@@ -125,8 +166,7 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://andrewwegner.com/slack-app-google-cloud.html" title="Previous: Deploying a Flask Slack app on Google Cloud Platform">Deploying a Flask Slack app on Google Cloud Platform</a></li>
-                <li class="next-article"><a href="https://andrewwegner.com/ubuntu-backup-rsync.html" title="Next: Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync">Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync</a> »</li>
+                <li class="previous-article">« <a href="https://andrewwegner.com/autobuild-pelican-blog.html" title="Previous: Autobuild and Deploy this Pelican Blog">Autobuild and Deploy this Pelican Blog</a></li>
             </ul>
             </nav>
             </aside>
@@ -134,17 +174,17 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2018-09-21T09:45:00-05:00">Sep 21, 2018</time>
+            <time itemprop="dateCreated" datetime="2019-01-23T10:00:00-06:00">Jan 23, 2019</time>
             <h4>Score</h4>
             <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-              <span itemprop="ratingValue">4.5</span>
+              <span itemprop="ratingValue">7.0</span>
               <div class="stars-outer">
                 <div class="stars-inner"></div>
               </div>
               <meta itemprop="bestRating" content="10" />
               <meta itemprop="worstRating" content="0" />
             </div>
-<time itemprop="dateModified" datetime="2018-09-21T09:45:00-05:00">
+<time itemprop="dateModified" datetime="2019-01-23T10:00:00-06:00">
 
         <h4>Course Reviews</h4>
     <ul class="multi-parts-list" id="series-parts">
@@ -172,8 +212,8 @@
             <li >
             <a href="https://andrewwegner.com/django-course-basic-to-advance.html" title="Review of Udemy's Django Course from Basics to Advance">Part 8: Review of Udemy's Django Course from Basics to Advance</a>
             </li>
-            <li  class="active-part">
-            Part 9: Review of Udemy's Learn DaVinci Resolve 15 from scratch
+            <li >
+            <a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html" title="Review of Udemy's Learn DaVinci Resolve 15 from scratch">Part 9: Review of Udemy's Learn DaVinci Resolve 15 from scratch</a>
             </li>
             <li >
             <a href="https://andrewwegner.com/git-45-minute-crash-course.html" title="Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.">Part 10: Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.</a>
@@ -184,8 +224,8 @@
             <li >
             <a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html" title="Review of Udemy's Docker Swarm: Beginner + Advanced">Part 12: Review of Udemy's Docker Swarm: Beginner + Advanced</a>
             </li>
-            <li >
-            <a href="https://andrewwegner.com/sanic-webframework-review.html" title="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course">Part 13: Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course</a>
+            <li  class="active-part">
+            Part 13: Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course
             </li>
     </ul>
             <h4>Category</h4>
@@ -215,7 +255,7 @@
 </section>
 <script type="text/javascript">
   const starTotal = 10;
-  rating = 4.5;
+  rating = 7.0;
   starPercentage = `${((rating / starTotal) * 100)}%`;
   document.querySelector(`.stars-inner`).style.width = starPercentage;
 </script>
