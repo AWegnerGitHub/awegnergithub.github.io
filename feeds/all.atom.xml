@@ -148,12 +148,15 @@ find this and wish to make changes.&lt;/p&gt;
 an associated Travis CI email address. Change these as you wish. I didn't want them in my name, so that I could easily pick out which commits
 I did versus which ones were done automatically. The old commits in my name vs. the new automated commits look like this in GitHub.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Blog commit differences" src="https://andrewwegner.com/images/build_blog_github_commits.png"/&gt;&lt;/p&gt;
-&lt;p&gt;Another important line of code is the second to last one in the deploy script:&lt;/p&gt;
+&lt;p&gt;Another important line of code is this one in the deploy script:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git push -fq https://$GH_USERNAME:$GITHUB_API_KEY@github.com/$TARGET_REPO &amp;amp;&amp;gt;/dev/null || exit $?
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This line pushes the generated site to the appropriate repository using the &lt;code&gt;GITHUB_API_KEY&lt;/code&gt; we previously generated and told
 Travis CI about. It also sends all output of this command to &lt;code&gt;/dev/null&lt;/code&gt; so that the secure key won't show up in the build log. If
 this isn't done, Travis CI will print out the command and may or may not properly obscure it (see my previous warning, above).&lt;/p&gt;
+&lt;p&gt;The deployment ends by pinging Google and Bing with my &lt;code&gt;sitemap.xml&lt;/code&gt;. This is an automated way of telling the two search engines
+that the site has been updated and they should recheck the sitemap and reindex as appropriate. It doesn't guarantee they will
+crawl the site immediately, but it does let them know their is an update before their next scheduled crawl.&lt;/p&gt;
 &lt;h3 id="travisyml"&gt;.travis.yml&lt;a class="headerlink" href="#travisyml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Lastly, we need to tell Travis CI what to do when there is a commit made to the &lt;code&gt;content&lt;/code&gt; repository. The only non-content file
 in this repository is &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/blob/master/.travis.yml"&gt;&lt;code&gt;.travis.yml&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
