@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update "/>
+<meta property="og:url" content="https://andrewwegner.com/xps-tb16-bios-fix.html" />
+<meta property="og:description" content="Updating BIOS using a Dell provided update broke how my Thunder Bolt dock and XPS interacted. This is how I fixed it." />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2019-01-31T10:30:00-06:00" />
+<meta name="twitter:title" content="Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update ">
+<meta name="twitter:description" content="Updating BIOS using a Dell provided update broke how my Thunder Bolt dock and XPS interacted. This is how I fixed it.">
+
+        <title>Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+
+<script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("653100411");
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://andrewwegner.com">Home</a></li>
+                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<meta itemprop="headline" content="Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update" />
+<time itemprop="datePublished" datetime="2019-01-31T10:30:00-06:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="https://andrewwegner.com/xps-tb16-bios-fix.html" />
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://andrewwegner.com/xps-tb16-bios-fix.html"> Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid" id="table-of-contents">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#what-happened">What happened?</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#rolling-back-bios">Rolling back BIOS</a></li>
+<li><a href="#dell-support">Dell Support</a></li>
+<li><a href="#inspiration">Inspiration</a></li>
+<li><a href="#fix">Fix</a></li>
+<li><a href="#final-thoughts">Final thoughts</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <div itemprop="articleBody mainEntityOfPage">
+            
+<h2 id="what-happened">What happened?<a class="headerlink" href="#what-happened" title="Permanent link">¶</a></h2>
+<p>In November of 2018, Dell released a <a href="https://www.dell.com/support/home/us/en/04/drivers/driversdetails?driverId=T7XJF&amp;osCode=WT64A&amp;productCode=xps-13-9360-laptop">BIOS update</a> (version 2.10.0) for my XPS 13 9360 running Ubuntu 18.04.1. Among the enhancements
+this updated added was:</p>
+<blockquote>
+<p>Enhanced the stability of Linux operating system</p>
+</blockquote>
+<p><img alt="BIOS Update available" src="https://andrewwegner.com/images/update-available.png"/></p>
+<p>I've been putting off updating due to squeamishness involving touching the BIOS. If it goes poorly, it could make my day really
+stressful.</p>
+<p>It's current -50 with the windchill outside. Schools are closed. Businesses are closed. Even the Post Office has said they aren't
+delivering mail because it's so cold. This sounds like the perfect time to perform and update.</p>
+<p>There was my mistake...</p>
+<p>After installing the update and rebooting the machine, the XPS froze as the Ubuntu login screen was loading. There was only a
+mouse cursor on an otherwise black screen. The mouse didn't respond to input from the touch pad or from a USB mouse. The keyboard
+didn't appear to be responding either. The external monitors weren't receiving a signal and finally, an attempt to SSH into the laptop failed.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h2>
+<p>The laptop was entirely unresponsive. First step: "Did you reboot it?" Yes. I had to hold down the power button so it wasn't clean.
+The exact same symptoms occurred: Black screen with only a mouse cursor right before the login page loads. Doesn't respond to any input.</p>
+<p>Next, I unplugged everything. The laptop is plugged into a Thunder Bolt 16 docking station so that I can utilize two external
+monitors. I also have Logitech headphones plugged into one of the USB ports and an external keyboard and mouse. Then I rebooted again by
+holding down the power button.</p>
+<p>This time, everything worked. The login screen popped up, the machine responded to input events and everything was fine. Victory?</p>
+<p>Nope.</p>
+<p>I started plugging stuff back in: Keyboard, then mouse, then headphones. No problems. Then I plugged in the Thunder Bolt docking station. A few
+seconds later, the screen went black and stopped responding.</p>
+<p>After a few reboots and a few tests of plugging in the dock, I realized that it was the dock causing the laptop issues. When it was plugged into
+the wall adapter, it worked fine. The docking station was causing the problem. This isn't great, but at least the laptop works.</p>
+<h2 id="rolling-back-bios">Rolling back BIOS<a class="headerlink" href="#rolling-back-bios" title="Permanent link">¶</a></h2>
+<p>At this point, it was time to roll back the BIOS. An update broke it, the original version should fix it...hopefully. The first step was
+finding the old version - 2.9.0. Fortunately, Dell's support is helpful in this one single way. There is a page for old drivers and I quickly
+found the <a href="https://www.dell.com/support/home/us/en/19/drivers/driversdetails?driverId=RCKDK&amp;osCode=WT64A&amp;productCode=xps-13-9360-laptop">System BIOS version 2.9.0</a>.</p>
+<p>To perform the roll back, there are only a few steps you need to do.</p>
+<ul>
+<li>Get a USB drive that is formatted with FAT32</li>
+<li>Copy the BIOS file to the drive and leave it plugged into the XPS</li>
+<li>Make sure the XPS is plugged in (with the wall adapter, not the Thunder Bolt)</li>
+<li>Restart the machine</li>
+<li>At the Dell splash screen press <kbd class="light">F12</kbd> to open the One Time Boot Menu</li>
+<li>Select "BIOS Flash Update"</li>
+<li>Select the file you downloaded on the USB drive</li>
+<li>Wait patiently as BIOS is flashed again</li>
+</ul>
+<p>When the flashing was done, I was back to BIOS 2.9.0. Ubuntu restarted...and the same issue occurred. Plugging in the Thunder Bolt made the
+laptop seize.</p>
+<h2 id="dell-support">Dell Support<a class="headerlink" href="#dell-support" title="Permanent link">¶</a></h2>
+<p>With the BIOS reflash a failure, I turned to Dell support. I didn't have high expectations going in to this. Yet, somehow, I came out even
+more disappointed. Through two phone calls, I was informed that</p>
+<blockquote>
+<p>Dell doesn't support Ubuntu</p>
+</blockquote>
+<p>This is despite that fact that the laptop came with Ubuntu installed by Dell <em>and</em> the BIOS update was from Dell. Since my operating system
+was not Windows, I couldn't get any support.</p>
+<p>I turned to the Dell Community forums. After some private back and forth with a community moderator (and Dell Social Media Support employee), I
+was given this:</p>
+<blockquote>
+<p>At this point, I do not think that the TB16 or XPS hardware are at fault here. I think that the BIOS update broke the laptop USB Type-C.
+Not physically, but in the operating system. So even though you backflashed, the issue remains.</p>
+</blockquote>
+<p>I was encouraged to test the Thunder Bolt with another Dell laptop. It's fortunate that my wife has a Dell for her work. Without it, I
+wouldn't have been able to get this message when attempting to flash the Thunder Bolt firmware I was pointed to:</p>
+<blockquote>
+<p>Error: Collecting Dock Information failed</p>
+</blockquote>
+<p>I never heard back from Dell support after providing them with a screenshot of that error.</p>
+<p>I was on my own.</p>
+<h2 id="inspiration">Inspiration<a class="headerlink" href="#inspiration" title="Permanent link">¶</a></h2>
+<p>At first glance, the quote from the forum moderator above doesn't make much sense. How can the BIOS update break the USB Type-C port in the operating system?
+How can it not be fixed by going to a previous version?</p>
+<p>Then it hit me: There was more to this BIOS update. A day earlier I'd updated the kernel and after a reboot been fine and forgot about it.</p>
+<div class="codehilight code"><pre><span></span>$ uname -r
+<span class="m">4</span>.15.0-44-generic
+</pre></div>
+<p>Working with that, the phrase "Thunder Bolt" and Google, I stumbled across a post on <a href="https://askubuntu.com/a/1113954/183377">Stack Exchange</a> with the same issue. Of course.
+Why didn't I start there?</p>
+<h2 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">¶</a></h2>
+<p>The fix involved going back to the previous kernel. I didn't follow the <a href="https://askubuntu.com/a/1113954/183377">Ask Ubuntu post</a> exactly. First, I edited by grub configuration to display the
+grub menu. This is at <code>/etc/default/grub</code>. I changed the <code>GRUB_TIMEOUT</code> value to <code>-1</code> and uncommented <code>GRUB_HIDDEN_TIMEOUT</code>. After saving that config file
+I run <code>sudo update-grub</code></p>
+<p>Then I restarted.</p>
+<p>When the grub menu appeared, I selected "Advanced Boot Options" and then selected the <code>4.15.0-43-generic</code> kernel and continued the boot.</p>
+<p>Ubuntu loaded. It stayed responsive when I swapped from the wall adapter to the Thunder Bolt dock.</p>
+<p>Victory!</p>
+<h2 id="final-thoughts">Final thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
+<p>With the XPS working again, I have decided to stay on BIOS 2.9.0 for now. I also haven't re-updated the kernel to the <code>-44</code> version. In fact, I purged that one
+for the time being with this command:</p>
+<div class="codehilight code"><pre><span></span>sudo apt-get purge -f linux-image-4.15.0-44-generic
+</pre></div>
+<p>This is a <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1813663">known bug</a> with 4.15.0-44 and a fix is being worked on. It also seems to impact more than just Dell products. It also looks like
+4.15.0-45 will fix the issue. We'll see.</p>
+<p>Also, Dell support is less helpful than I thought it would be. </p>
+            </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+            </div>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://andrewwegner.com/sanic-webframework-review.html" title="Previous: Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course">Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2019-01-31T10:30:00-06:00">Jan 31, 2019</time>
+<time itemprop="dateModified" datetime="2019-01-31T10:30:00-06:00">
+
+            <h4>Category</h4>
+            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>32</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam-square sidebar-social-links"></i></a>
+    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
