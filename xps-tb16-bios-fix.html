@@ -103,14 +103,14 @@ this updated added was:</p>
 <p><img alt="BIOS Update available" src="https://andrewwegner.com/images/update-available.png"/></p>
 <p>I've been putting off updating due to squeamishness involving touching the BIOS. If it goes poorly, it could make my day really
 stressful.</p>
-<p>It's current -50 with the windchill outside. Schools are closed. Businesses are closed. Even the Post Office has said they aren't
-delivering mail because it's so cold. This sounds like the perfect time to perform and update.</p>
+<p>It's currently -50 with the windchill outside. Schools are closed. Businesses are closed. Even the Post Office has said they aren't
+delivering mail because it's so cold. This sounds like the perfect time to perform an update.</p>
 <p>There was my mistake...</p>
 <p>After installing the update and rebooting the machine, the XPS froze as the Ubuntu login screen was loading. There was only a
 mouse cursor on an otherwise black screen. The mouse didn't respond to input from the touch pad or from a USB mouse. The keyboard
-didn't appear to be responding either. The external monitors weren't receiving a signal and finally, an attempt to SSH into the laptop failed.</p>
+didn't appear to be responding either. The external monitors weren't receiving a signal and, finally, an attempt to SSH into the laptop failed.</p>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h2>
-<p>The laptop was entirely unresponsive. First step: "Did you reboot it?" Yes. I had to hold down the power button so it wasn't clean.
+<p>The laptop was entirely unresponsive. First step: "Did you reboot it?" Yes. I had to hold down the power button so it wasn't a clean reboot.
 The exact same symptoms occurred: Black screen with only a mouse cursor right before the login page loads. Doesn't respond to any input.</p>
 <p>Next, I unplugged everything. The laptop is plugged into a Thunder Bolt 16 docking station so that I can utilize two external
 monitors. I also have Logitech headphones plugged into one of the USB ports and an external keyboard and mouse. Then I rebooted again by
@@ -162,16 +162,16 @@ wouldn't have been able to get this message when attempting to flash the Thunder
 <h2 id="inspiration">Inspiration<a class="headerlink" href="#inspiration" title="Permanent link">¶</a></h2>
 <p>At first glance, the quote from the forum moderator above doesn't make much sense. How can the BIOS update break the USB Type-C port in the operating system?
 How can it not be fixed by going to a previous version?</p>
-<p>Then it hit me: There was more to this BIOS update. A day earlier I'd updated the kernel and after a reboot been fine and forgot about it.</p>
+<p>Then it hit me: There was more to this BIOS update. A day earlier I'd updated the kernel and hadn't rebooted yet and forgot about it.</p>
 <div class="codehilight code"><pre><span></span>$ uname -r
 <span class="m">4</span>.15.0-44-generic
 </pre></div>
 <p>Working with that, the phrase "Thunder Bolt" and Google, I stumbled across a post on <a href="https://askubuntu.com/a/1113954/183377">Stack Exchange</a> with the same issue. Of course.
-Why didn't I start there?</p>
+Why didn't I start there? I had been chasing the wrong thing. BIOS wasn't the cause, it was just the reason for the system reboot.</p>
 <h2 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">¶</a></h2>
 <p>The fix involved going back to the previous kernel. I didn't follow the <a href="https://askubuntu.com/a/1113954/183377">Ask Ubuntu post</a> exactly. First, I edited by grub configuration to display the
 grub menu. This is at <code>/etc/default/grub</code>. I changed the <code>GRUB_TIMEOUT</code> value to <code>-1</code> and uncommented <code>GRUB_HIDDEN_TIMEOUT</code>. After saving that config file
-I run <code>sudo update-grub</code></p>
+I ran <code>sudo update-grub</code></p>
 <p>Then I restarted.</p>
 <p>When the grub menu appeared, I selected "Advanced Boot Options" and then selected the <code>4.15.0-43-generic</code> kernel and continued the boot.</p>
 <p>Ubuntu loaded. It stayed responsive when I swapped from the wall adapter to the Thunder Bolt dock.</p>
@@ -181,7 +181,7 @@ I run <code>sudo update-grub</code></p>
 for the time being with this command:</p>
 <div class="codehilight code"><pre><span></span>sudo apt-get purge -f linux-image-4.15.0-44-generic
 </pre></div>
-<p>This is a <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1813663">known bug</a> with 4.15.0-44 and a fix is being worked on. It also seems to impact more than just Dell products. It also looks like
+<p>This is a <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1813663">known bug</a> with 4.15.0-44 and a fix is being worked on. It also seems to impact more than just Dell products. It looks like
 4.15.0-45 will fix the issue. We'll see.</p>
 <p>Also, Dell support is less helpful than I thought it would be. </p>
             </div>
