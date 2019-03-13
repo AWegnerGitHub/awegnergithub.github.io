@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="Upgrading the home network to use Ubiquiti products "/>
+<meta property="og:url" content="https://andrewwegner.com/ubiquiti-home-network.html" />
+<meta property="og:description" content="My home network received a major upgrade. This post covers the new hardware and impressions a month after the upgrade." />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2019-03-13T11:30:00-05:00" />
+<meta name="twitter:title" content="Upgrading the home network to use Ubiquiti products ">
+<meta name="twitter:description" content="My home network received a major upgrade. This post covers the new hardware and impressions a month after the upgrade.">
+
+        <title>Upgrading the home network to use Ubiquiti products  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+
+<script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("653100411");
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://andrewwegner.com">Home</a></li>
+                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<meta itemprop="headline" content="Upgrading the home network to use Ubiquiti products" />
+<time itemprop="datePublished" datetime="2019-03-13T11:30:00-05:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="https://andrewwegner.com/ubiquiti-home-network.html" />
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://andrewwegner.com/ubiquiti-home-network.html"> Upgrading the home network to use Ubiquiti products  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid" id="table-of-contents">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#routers-past">Routers past</a></li>
+<li><a href="#enter-ubiquti">Enter Ubiquti</a></li>
+<li><a href="#ubiquiti-devices">Ubiquiti Devices</a><ul>
+<li><a href="#security-gateway">Security Gateway</a></li>
+<li><a href="#24-port-switch">24 port switch</a></li>
+<li><a href="#24-port-switch-poe">24 port switch PoE</a></li>
+<li><a href="#access-points">Access Points</a></li>
+<li><a href="#cloud-key-gen-1">Cloud Key (Gen 1)</a></li>
+</ul>
+</li>
+<li><a href="#review">Review</a></li>
+<li><a href="#whats-next">What's next?</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <div itemprop="articleBody mainEntityOfPage">
+            
+<h2 id="routers-past">Routers past<a class="headerlink" href="#routers-past" title="Permanent link">¶</a></h2>
+<p>I am not known for being gentle with routers at my house. I have pushed many consumer
+grade routers to their limits and ended up replacing them for newer models or
+competing models. My most recent model was an <a href="https://www.newegg.com/Product/Product.aspx?Item=N82E16833320115">ASUS RT-AC66U</a>. I bought this
+in 2015. It is one of the longer surviving routers in the house.</p>
+<p>Since I started <a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html">working from home though</a>, I've been noticing more problems.
+These include randomly dropping all wireless connections, randomly losing connection
+to the cable modem and frequently needing reboots to fix these problems. The issue
+that finally made me start looking for another replacement was when the entire
+router would reboot when a new wireless device connected to the network.</p>
+<p>This was especially obnoxious when family members would come home and their phones
+would reconnect to the home network. On more than one occasion a work call was
+dropped, a college course interrupted or a review session with coworkers disconnected.</p>
+<p>I've also found myself adding smart home "things" to my house in the past few years.
+I'd told myself that I didn't need smart plugs, smart lights, voice assistants,
+and the like, but I received a free voice assistant at some point. I set it up and
+the family got hooked. One voice assistant became two then more. I attached
+smart plugs to Christmas lights "as an experiment" and found it worked way
+better than I expected. Christmas ended and the plugs were re-purposed. I brought
+in smart lights and out fitted my office with those. I have more, but haven't yet
+expanded to other rooms. It's coming though.</p>
+<p>In short, I have more devices than ever connected to the network and the wireless
+router I had didn't seem up to the task of handling all of it.</p>
+<p>It was time for an upgrade. I didn't want just another router that I'd have to
+replace in a few years though. I wanted something high quality and that could
+handle anything I through at it.</p>
+<h2 id="enter-ubiquti">Enter Ubiquti<a class="headerlink" href="#enter-ubiquti" title="Permanent link">¶</a></h2>
+<p>I don't remember what brought [Ubiquiti][ubiquiti] to my attention years ago, but I
+was immediately impressed with the hardware, the reviews and the price point. It
+is not a home router, but it's also not a five figure price.</p>
+<p>I did some research I what I'd need in the house. I needed to be able to support
+several wired devices, even more wireless ones (computers, phones, tablets, and
+home automation devices). I wanted to have a guest network like the previous ASUS,
+so that I could easily give visitors access to the internet without giving them
+access to everything on the network. I also wanted to segregate all of those
+smart devices to their own network.</p>
+<p>I am trained as an information security professional. I understand the risks that
+all of these devices can add. It's a lot of little mini-computers on the network.
+I don't want an outlet plug compromising my house. I also don't have top secret
+data, so a little risk for the sake of convenience is ok to me. If I could
+put these devices on a network that is seperate from both the main network and
+the guest network, that'd be good for my purposes.</p>
+<h2 id="ubiquiti-devices">Ubiquiti Devices<a class="headerlink" href="#ubiquiti-devices" title="Permanent link">¶</a></h2>
+<p>After a lot of research on the <a href="https://www.ui.com/products/#default">devices Ubiquiti offers</a>, I picked out the
+ones that would be used. I'd be using the UniFi branded products instead of the
+Edgemax branded products. From everything I was able to find, the hardware between
+the two brands is how they are managed.</p>
+<p>I am <em>not</em> a network engineer. I work with some great ones at work and they
+speak another technical language entirely. As useful as it'd be to know more
+in that area for work, that's not a goal I wanted to pursue for a home project.
+I went with UniFi because of it's easier management with the UniFi controller.</p>
+<p>I went with the following devices</p>
+<ul>
+<li><a href="https://www.ui.com/unifi-routing/usg/">UniFi Security Gateway</a></li>
+<li><a href="https://www.ui.com/unifi-switching/unifi-switch-2448/">UniFi 24 port switch</a></li>
+<li><a href="https://www.ui.com/unifi-switching/unifi-switch-poe/">UniFi 24 port switch with PoE</a></li>
+<li><a href="https://www.ui.com/unifi/unifi-ap-ac-pro/">UniFi AP AC Pro</a></li>
+<li><a href="https://www.ui.com/unifi/unifi-cloud-key/">UniFi Cloud Key (gen 1)</a></li>
+</ul>
+<h3 id="security-gateway">Security Gateway<a class="headerlink" href="#security-gateway" title="Permanent link">¶</a></h3>
+<p>The <a href="https://www.ui.com/unifi-routing/usg/">security gateway</a> is the router the handles the network. It's much
+smaller than previous routers I've had. The purpose of this product is to provide
+routing, not be the device everything in the network plugs into. That's the switches.</p>
+<p>The cable modem plugs into WAN1 and the switch plugs into LAN1. That's it. Nice and simple.</p>
+<h3 id="24-port-switch">24 port switch<a class="headerlink" href="#24-port-switch" title="Permanent link">¶</a></h3>
+<p>The <a href="https://www.ui.com/unifi-switching/unifi-switch-2448/">24 port switch</a> is the first switch I bought for this project. It was a mistake. The mistake
+was mine though. The Access points are powered via power over ethernet. This switch doesn't
+have that. The best I can come up with for how this mistake was made is that I had both the
+PoE and non-PoE versions open when I went to order and put the wrong one in my cart.</p>
+<p>Whoops.</p>
+<p>That said, it ended up being a happy mistake. I have more wired devices than I realized. Previously,
+I had a router and a couple small switches scattered around the house to allow multiple devices
+to be plugged in. If I'd just ordered the single 24 Port PoE switch, I'd have used well over half
+of the ports immediately between the existing devices and the new access points.</p>
+<p>My solution was to keep this switch, and only plug in the wired and non-PoE devices into
+this switch. Anything that needed to be powered via PoE would go into the PoE switch.</p>
+<h3 id="24-port-switch-poe">24 port switch PoE<a class="headerlink" href="#24-port-switch-poe" title="Permanent link">¶</a></h3>
+<p>The <a href="https://www.ui.com/unifi-switching/unifi-switch-poe/">24 port PoE device</a> is slightly deeper than the non-PoE version. It also has
+case fans. I am using this device to power the access points I purchased. It was originally
+going to power the cloud key too.</p>
+<h3 id="access-points">Access Points<a class="headerlink" href="#access-points" title="Permanent link">¶</a></h3>
+<p>I bought a 5 pack of <a href="https://www.ui.com/unifi/unifi-ap-ac-pro/">AC Pro access points</a>. As I mentioned, these are
+powered via power over ethernet. That means I needed to run wires to locations around
+the house. That's an exercise I don't want to repeat.</p>
+<p>I've put up three of the five access points initially to see how much coverage
+they provide to the house. So far, I am pleased with how they are performing. I'm
+not sure where the last two will go yet, but I'll find a spot eventually.</p>
+<p>These access points are handling the three networks without any issues. The
+trust home devices are on one network, the smart home devices are on another, and
+a third guest network is used occasionally with no issues.</p>
+<h3 id="cloud-key-gen-1">Cloud Key (Gen 1)<a class="headerlink" href="#cloud-key-gen-1" title="Permanent link">¶</a></h3>
+<p>This is the device I wish I'd researched a little more before purchasing. I see
+it's purpose, but I don't need it. I can run the UniFi controller on my Ubuntu
+server. It took a little bit of work to get it installed because of port
+conflicts with GitLab and poor error messages, but once that was figured out, it
+works just fine.</p>
+<p>My other complaint about the first generation cloud key is that it just hangs from
+the switch. The second generation is mountable (and performs more tasks for other)
+Ubiquiti products. I purchased the first generation though and don't think I'll
+ever use it.</p>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">¶</a></h2>
+<p>The set up of all devices is very simple. Plug it in, set up your management
+account on the UniFi controller, adopt the devices and you are set up. A little
+configuration is needed to set up wireless networks, but that didn't take a lot
+of work either.</p>
+<p>From the controller, updating the firmware of all devices is simple. If there
+is an update, the controller lets you know and you click "update". Five minutes later,
+the device reboots with the new firmware and everything works. I was able to update
+everything within thirty minutes.</p>
+<p>Be aware of which devices are plugged into what. You don't want to reboot an upstream
+device before the down stream ones are finished. For that reason, I updated the
+access points first, then the switches, then the security gateway.</p>
+<p>Since everything was set up, I haven't been disconnected from the cable modem once.
+I haven't had the entire wireless network shutdown when a family member came home.
+I haven't had any spots without coverage in the house.</p>
+<p>In fact, I have a brand new first world problem. A couple of the smart plugs I
+have can only be configured on the 2.4Ghz band. The three access points I have cover
+the entire house in a 5Ghz signal. To configure these plugs, I need to step out
+into the yard to get outside of the 5Ghz range.</p>
+<p>The amount of details available in the UniFi controller is amazing. I can see
+signal strength of all wireless network devices. I can see nearby wireless networks
+that I couldn't see with the previous router. I can see traffic patterns (I watch
+a lot of video services). I even have the intrusion prevention system enabled
+because my internet speed isn't fast enough to be impacted by the load this puts
+on the security gateway. There is one persistent IP in Europe that likes to scan
+me. Hi Netherlands! I see you!</p>
+<h2 id="whats-next">What's next?<a class="headerlink" href="#whats-next" title="Permanent link">¶</a></h2>
+<p>So far, everything I've thrown at this new set up has handled it like it was nothing.
+That makes sense. These are business class products and are designed to handle way
+more than I should be able to throw at it as a home user. I like a challenge.</p>
+<p>What's next though? I'd like to get even more information from the devices. A true
+monitoring solution for the entire home network or at the least the network equipment
+and the server. I've been investigating the <a href="https://www.influxdata.com/time-series-platform/">TICK stack</a> for gathering metrics.
+I'll see if I can set something like that up in a way that I like.</p>
+<p>I'd also like to expand wireless coverage out to the shed. I'm not sure if I can
+do that with the access points though. I don't want to run an ethernet cord out
+there (and bury it). That's really far down on my wish list though.</p>
+            </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+            </div>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://andrewwegner.com/xps-tb16-bios-fix.html" title="Previous: Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update">Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2019-03-13T11:30:00-05:00">Mar 13, 2019</time>
+<time itemprop="dateModified" datetime="2019-03-13T11:30:00-05:00">
+
+            <h4>Category</h4>
+            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>33</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam-square sidebar-social-links"></i></a>
+    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
