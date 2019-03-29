@@ -2,9 +2,14 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://andrewwegner.com/</loc>
-<lastmod>2019-03-13</lastmod>
+<lastmod>2019-03-29</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
+</url><url>
+<loc>https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html</loc>
+<lastmod>2019-03-29</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
 </url><url>
 <loc>https://andrewwegner.com/ubiquiti-home-network.html</loc>
 <lastmod>2019-03-13</lastmod>
@@ -317,7 +322,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/category/side-activities.html</loc>
-<lastmod>2018-02-12</lastmod>
+<lastmod>2019-03-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -337,7 +342,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/tag/stack-exchange.html</loc>
-<lastmod>2017-08-18</lastmod>
+<lastmod>2019-03-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -402,7 +407,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/author/andy-wegner.html</loc>
-<lastmod>2019-03-13</lastmod>
+<lastmod>2019-03-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url>
