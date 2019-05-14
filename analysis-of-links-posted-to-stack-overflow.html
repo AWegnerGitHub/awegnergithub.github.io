@@ -119,128 +119,128 @@ encourage you to visit the <a href="http://meta.stackoverflow.com/q/300916/18913
 <p>The three largest slices of the pie are the status 200s (site working!), status 404 (page not found, but server responded saying the page isn't found) and Connection Errors. Connection errors are sites that had no proper server response. The request to access the page timed out. I was generous in the time out and allowed a request to live for 20 seconds before failing a link with this status. The <code>4xx</code> and <code>5xx</code> errors are status codes that fall in the 400 and 500 range of HTTP responses. These are client and server error ranges, thus counted as a failure. <code>2xx</code> errors (of which was are in the low triple) are pages that responded with a success message in the 200 range, but it wasn't a <code>200</code> code. Finally, there were just over a hundred sites that hit a redirect loop that didn't seem to end. These are the <code>3xx</code> errors. I failed a site with this range if it redirected more than 30 times. There are a negligible number of sites that returned status codes in the 600 and <a href="https://github.com/joho/7XX-rfc">700</a> range<sup>4</sup></p>
 <h3 id="by-most-common">By most common<a class="headerlink" href="#by-most-common" title="Permanent link">¶</a></h3>
 <p>There are, expectedly, many URLs that failed that appeared frequently in the sample set. Below is a list of the top 50<sup>3</sup> URLs that are in posts most often, but failed three times over the course of three weeks.</p>
-<div class="codehilight code"><pre><span></span>http://docs.jquery.com/Plugins/validation
-http://www.eclipse.org/eclipselink/moxy.php
-http://jackson.codehaus.org/
-http://xstream.codehaus.org/
-http://opencv.willowgarage.com/wiki/
-http://developer.android.com/resources/articles/painless-threading.html
-http://valums.com/ajax-upload/
-http://sqlite.phxsoftware.com/
-http://qt.nokia.com/
-http://www.oracle.com/technetwork/java/codeconv-138413.html
-http://download.java.net/jdk8/docs/api/java/time/package-summary.html
-http://docs.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
-http://watin.sourceforge.net/
-http://leandrovieira.com/projects/jquery/lightbox/
-https://graph.facebook.com/
-https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
-http://www.postsharp.org/
-http://www.erichynds.com/jquery/jquery-ui-multiselect-widget/
-http://ha.ckers.org/xss.html
-http://jetty.codehaus.org/jetty/
-http://cpp-next.com/archive/2009/08/want-speed-pass-by-value/
-http://codespeak.net/lxml/
-http://www.hpl.hp.com/personal/Hans_Boehm/gc/
-http://jquery.com/demo/thickbox/
-http://book.git-scm.com/5_submodules.html
-http://monotouch.net/
-http://developer.android.com/resources/articles/timed-ui-updates.html
-http://jquery.bassistance.de/validate/demo/
-http://codeigniter.com/user_guide/database/active_record.html
-http://www.phantomjs.org/
-http://watin.org/
-http://www.db4o.com/
-http://qt.nokia.com/products/
-http://referencesource.microsoft.com/netframework.aspx
-https://github.com/facebook/php-sdk/
-http://java.decompiler.free.fr/
-http://pivotal.github.com/jasmine/
-http://api.jquery.com/category/plugins/templates/
-http://code.google.com/closure/library
-http://www.w3schools.com/tags/ref_entities.asp
-http://xstream.codehaus.org/tutorial.html
-https://github.com/facebook/php-sdk
-http://download.java.net/maven/1/jstl/jars/jstl-1.2.jar
-https://developers.facebook.com/docs/offline-access-deprecation/
-http://www.parashift.com/c++-faq-lite/pointers-to-members.html
-https://developers.facebook.com/docs/mobile/ios/build/
-http://downloads.php.net/pierre/
-http://fluentnhibernate.org/
-http://net.tutsplus.com/tutorials/javascript-ajax/5-ways-to-make-ajax-calls-with-jquery/
-http://dev.iceburg.net/jquery/jqModal/
+<div class="codehilight code"><pre><span></span><span class="nv">http</span>:<span class="o">//</span><span class="nv">docs</span>.<span class="nv">jquery</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">Plugins</span><span class="o">/</span><span class="nv">validation</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">eclipse</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">eclipselink</span><span class="o">/</span><span class="nv">moxy</span>.<span class="nv">php</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">jackson</span>.<span class="nv">codehaus</span>.<span class="nv">org</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">xstream</span>.<span class="nv">codehaus</span>.<span class="nv">org</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">opencv</span>.<span class="nv">willowgarage</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">wiki</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">developer</span>.<span class="nv">android</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">resources</span><span class="o">/</span><span class="nv">articles</span><span class="o">/</span><span class="nv">painless</span><span class="o">-</span><span class="nv">threading</span>.<span class="nv">html</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">valums</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">ajax</span><span class="o">-</span><span class="nv">upload</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">sqlite</span>.<span class="nv">phxsoftware</span>.<span class="nv">com</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">qt</span>.<span class="nv">nokia</span>.<span class="nv">com</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">oracle</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">technetwork</span><span class="o">/</span><span class="nv">java</span><span class="o">/</span><span class="nv">codeconv</span><span class="o">-</span><span class="mi">138413</span>.<span class="nv">html</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">download</span>.<span class="nv">java</span>.<span class="nv">net</span><span class="o">/</span><span class="nv">jdk8</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">api</span><span class="o">/</span><span class="nv">java</span><span class="o">/</span><span class="nv">time</span><span class="o">/</span><span class="nv">package</span><span class="o">-</span><span class="nv">summary</span>.<span class="nv">html</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">docs</span>.<span class="nv">oracle</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">javase</span><span class="o">/</span><span class="mi">1</span>.<span class="mi">4</span>.<span class="mi">2</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">api</span><span class="o">/</span><span class="nv">java</span><span class="o">/</span><span class="nv">text</span><span class="o">/</span><span class="nv">SimpleDateFormat</span>.<span class="nv">html</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">watin</span>.<span class="nv">sourceforge</span>.<span class="nv">net</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">leandrovieira</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">projects</span><span class="o">/</span><span class="nv">jquery</span><span class="o">/</span><span class="nv">lightbox</span><span class="o">/</span>
+<span class="nv">https</span>:<span class="o">//</span><span class="nv">graph</span>.<span class="nv">facebook</span>.<span class="nv">com</span><span class="o">/</span>
+<span class="nv">https</span>:<span class="o">//</span><span class="nv">ccrma</span>.<span class="nv">stanford</span>.<span class="nv">edu</span><span class="o">/</span><span class="nv">courses</span><span class="o">/</span><span class="mi">422</span><span class="o">/</span><span class="nv">projects</span><span class="o">/</span><span class="nv">WaveFormat</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">postsharp</span>.<span class="nv">org</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">erichynds</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">jquery</span><span class="o">/</span><span class="nv">jquery</span><span class="o">-</span><span class="nv">ui</span><span class="o">-</span><span class="nv">multiselect</span><span class="o">-</span><span class="nv">widget</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">ha</span>.<span class="nv">ckers</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">xss</span>.<span class="nv">html</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">jetty</span>.<span class="nv">codehaus</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">jetty</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">cpp</span><span class="o">-</span><span class="k">next</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">archive</span><span class="o">/</span><span class="mi">2009</span><span class="o">/</span><span class="mi">08</span><span class="o">/</span><span class="nv">want</span><span class="o">-</span><span class="nv">speed</span><span class="o">-</span><span class="nv">pass</span><span class="o">-</span><span class="nv">by</span><span class="o">-</span><span class="nv">value</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">codespeak</span>.<span class="nv">net</span><span class="o">/</span><span class="nv">lxml</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">hpl</span>.<span class="nv">hp</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">personal</span><span class="o">/</span><span class="nv">Hans_Boehm</span><span class="o">/</span><span class="nv">gc</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">jquery</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">demo</span><span class="o">/</span><span class="nv">thickbox</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">book</span>.<span class="nv">git</span><span class="o">-</span><span class="nv">scm</span>.<span class="nv">com</span><span class="o">/</span><span class="mi">5</span><span class="nv">_submodules</span>.<span class="nv">html</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">monotouch</span>.<span class="nv">net</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">developer</span>.<span class="nv">android</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">resources</span><span class="o">/</span><span class="nv">articles</span><span class="o">/</span><span class="nv">timed</span><span class="o">-</span><span class="nv">ui</span><span class="o">-</span><span class="nv">updates</span>.<span class="nv">html</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">jquery</span>.<span class="nv">bassistance</span>.<span class="nv">de</span><span class="o">/</span><span class="nv">validate</span><span class="o">/</span><span class="nv">demo</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">codeigniter</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">user_guide</span><span class="o">/</span><span class="nv">database</span><span class="o">/</span><span class="nv">active_record</span>.<span class="nv">html</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">phantomjs</span>.<span class="nv">org</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">watin</span>.<span class="nv">org</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">db4o</span>.<span class="nv">com</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">qt</span>.<span class="nv">nokia</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">products</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">referencesource</span>.<span class="nv">microsoft</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">netframework</span>.<span class="nv">aspx</span>
+<span class="nv">https</span>:<span class="o">//</span><span class="nv">github</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">facebook</span><span class="o">/</span><span class="nv">php</span><span class="o">-</span><span class="nv">sdk</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">java</span>.<span class="nv">decompiler</span>.<span class="nv">free</span>.<span class="nv">fr</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">pivotal</span>.<span class="nv">github</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">jasmine</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">api</span>.<span class="nv">jquery</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">category</span><span class="o">/</span><span class="nv">plugins</span><span class="o">/</span><span class="nv">templates</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">code</span>.<span class="nv">google</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">closure</span><span class="o">/</span><span class="nv">library</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">w3schools</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">tags</span><span class="o">/</span><span class="nv">ref_entities</span>.<span class="nv">asp</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">xstream</span>.<span class="nv">codehaus</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">tutorial</span>.<span class="nv">html</span>
+<span class="nv">https</span>:<span class="o">//</span><span class="nv">github</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">facebook</span><span class="o">/</span><span class="nv">php</span><span class="o">-</span><span class="nv">sdk</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">download</span>.<span class="nv">java</span>.<span class="nv">net</span><span class="o">/</span><span class="nv">maven</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="nv">jstl</span><span class="o">/</span><span class="nv">jars</span><span class="o">/</span><span class="nv">jstl</span><span class="o">-</span><span class="mi">1</span>.<span class="mi">2</span>.<span class="nv">jar</span>
+<span class="nv">https</span>:<span class="o">//</span><span class="nv">developers</span>.<span class="nv">facebook</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">offline</span><span class="o">-</span><span class="nv">access</span><span class="o">-</span><span class="nv">deprecation</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">parashift</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">c</span><span class="o">++-</span><span class="nv">faq</span><span class="o">-</span><span class="nv">lite</span><span class="o">/</span><span class="nv">pointers</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">members</span>.<span class="nv">html</span>
+<span class="nv">https</span>:<span class="o">//</span><span class="nv">developers</span>.<span class="nv">facebook</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">mobile</span><span class="o">/</span><span class="nv">ios</span><span class="o">/</span><span class="nv">build</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">downloads</span>.<span class="nv">php</span>.<span class="nv">net</span><span class="o">/</span><span class="nv">pierre</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">fluentnhibernate</span>.<span class="nv">org</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">net</span>.<span class="nv">tutsplus</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">tutorials</span><span class="o">/</span><span class="nv">javascript</span><span class="o">-</span><span class="nv">ajax</span><span class="o">/</span><span class="mi">5</span><span class="o">-</span><span class="nv">ways</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">make</span><span class="o">-</span><span class="nv">ajax</span><span class="o">-</span><span class="nv">calls</span><span class="o">-</span><span class="nv">with</span><span class="o">-</span><span class="nv">jquery</span><span class="o">/</span>
+<span class="nv">http</span>:<span class="o">//</span><span class="nv">dev</span>.<span class="nv">iceburg</span>.<span class="nv">net</span><span class="o">/</span><span class="nv">jquery</span><span class="o">/</span><span class="nv">jqModal</span><span class="o">/</span>
 </pre></div>
 <h3 id="by-post-score">By post score<a class="headerlink" href="#by-post-score" title="Permanent link">¶</a></h3>
 <p>Count of posts by score (top 10)  (Covers 94% of all broken links):</p>
-<div class="codehilight code"><pre><span></span>| Score | Percentage of Total Broken |
-|-------|----------------------------|
-| 0     | 36.4087%                   |
-| 1     | 25.1674%                   |
-| 2     | 13.4089%                   |
-| 3     | 7.2806%                    | 
-| 4     | 4.2971%                    |
-| 5     | 2.7065%                    |
-| 6     | 1.8068%                    |
-| 7     | 1.2854%                    |
-| -1    | 1.1935%                    |
-| 8     | 0.9415%                    |
+<div class="codehilight code"><pre><span></span><span class="o">|</span> <span class="n">Score</span> <span class="o">|</span> <span class="n">Percentage</span> <span class="k">of</span> <span class="n">Total</span> <span class="n">Broken</span> <span class="o">|</span>
+<span class="o">|</span><span class="c1">-------|----------------------------|</span>
+<span class="o">|</span> <span class="mi">0</span>     <span class="o">|</span> <span class="mi">36</span><span class="p">.</span><span class="mi">4087</span><span class="o">%</span>                   <span class="o">|</span>
+<span class="o">|</span> <span class="mi">1</span>     <span class="o">|</span> <span class="mi">25</span><span class="p">.</span><span class="mi">1674</span><span class="o">%</span>                   <span class="o">|</span>
+<span class="o">|</span> <span class="mi">2</span>     <span class="o">|</span> <span class="mi">13</span><span class="p">.</span><span class="mi">4089</span><span class="o">%</span>                   <span class="o">|</span>
+<span class="o">|</span> <span class="mi">3</span>     <span class="o">|</span> <span class="mi">7</span><span class="p">.</span><span class="mi">2806</span><span class="o">%</span>                    <span class="o">|</span> 
+<span class="o">|</span> <span class="mi">4</span>     <span class="o">|</span> <span class="mi">4</span><span class="p">.</span><span class="mi">2971</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">5</span>     <span class="o">|</span> <span class="mi">2</span><span class="p">.</span><span class="mi">7065</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">6</span>     <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">8068</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">7</span>     <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">2854</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="o">-</span><span class="mi">1</span>    <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">1935</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">8</span>     <span class="o">|</span> <span class="mi">0</span><span class="p">.</span><span class="mi">9415</span><span class="o">%</span>                    <span class="o">|</span>
 </pre></div>
 <h3 id="by-number-of-views">By number of views<a class="headerlink" href="#by-number-of-views" title="Permanent link">¶</a></h3>
 <p><em>Note, this is number of views at the time the data dump was created, not as of today</em></p>
 <p>Count of posts by number of views (top 10):</p>
-<div class="codehilight code"><pre><span></span>| Views        | Total Views |
-|--------------|-------------|
-| (0, 200]     | 24.4709%    |
-| (200, 400]   | 14.2186%    |
-| (400, 600]   | 9.5045%     |
-| (600, 800]   | 6.9793%     | 
-| (800, 1000]  | 5.2574%     |
-| (1000, 1200] | 4.1864%     |
-| (1200, 1400] | 3.3699%     |
-| (1400, 1600] | 2.7766%     |
-| (1600, 1800] | 2.3477%     |
-| (1800, 2000] | 1.9550%     |
+<div class="codehilight code"><pre><span></span><span class="o">|</span> <span class="n">Views</span>        <span class="o">|</span> <span class="n">Total</span> <span class="n">Views</span> <span class="o">|</span>
+<span class="o">|</span><span class="c1">--------------|-------------|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>     <span class="o">|</span> <span class="mi">24</span><span class="p">.</span><span class="mi">4709</span><span class="o">%</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">400</span><span class="p">]</span>   <span class="o">|</span> <span class="mi">14</span><span class="p">.</span><span class="mi">2186</span><span class="o">%</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">]</span>   <span class="o">|</span> <span class="mi">9</span><span class="p">.</span><span class="mi">5045</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">800</span><span class="p">]</span>   <span class="o">|</span> <span class="mi">6</span><span class="p">.</span><span class="mi">9793</span><span class="o">%</span>     <span class="o">|</span> 
+<span class="o">|</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>  <span class="o">|</span> <span class="mi">5</span><span class="p">.</span><span class="mi">2574</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1200</span><span class="p">]</span> <span class="o">|</span> <span class="mi">4</span><span class="p">.</span><span class="mi">1864</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">1400</span><span class="p">]</span> <span class="o">|</span> <span class="mi">3</span><span class="p">.</span><span class="mi">3699</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1400</span><span class="p">,</span> <span class="mi">1600</span><span class="p">]</span> <span class="o">|</span> <span class="mi">2</span><span class="p">.</span><span class="mi">7766</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1600</span><span class="p">,</span> <span class="mi">1800</span><span class="p">]</span> <span class="o">|</span> <span class="mi">2</span><span class="p">.</span><span class="mi">3477</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1800</span><span class="p">,</span> <span class="mi">2000</span><span class="p">]</span> <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">9550</span><span class="o">%</span>     <span class="o">|</span>
 </pre></div>
 <h3 id="by-days-since-post-created">By days since post created<a class="headerlink" href="#by-days-since-post-created" title="Permanent link">¶</a></h3>
 <p><em>Note: This is number of days since creation at the time the data dump was created, not from today</em></p>
 <p>Count of posts by days since creation (top 10) (Covers 64% of broken links):</p>
-<div class="codehilight code"><pre><span></span>| Days since Creation | Percentage of Total Broken |
-|---------------------|----------------------------|
-| (1110, 1140]        | 7.2938%                    |
-| (1140, 1170]        | 6.7648%                    |
-| (1470, 1500]        | 6.6579%                    |
-| (1080, 1110]        | 6.6535%                    | 
-| (750, 780]          | 6.5535%                    |
-| (720, 750]          | 6.5516%                    |
-| (1500, 1530]        | 6.3978%                    |
-| (390, 420]          | 5.8508%                    |
-| (360, 390]          | 5.8258%                    |
-| (780, 810]          | 5.5175%                    |
+<div class="codehilight code"><pre><span></span><span class="o">|</span> <span class="n">Days</span> <span class="n">since</span> <span class="n">Creation</span> <span class="o">|</span> <span class="n">Percentage</span> <span class="k">of</span> <span class="n">Total</span> <span class="n">Broken</span> <span class="o">|</span>
+<span class="o">|</span><span class="c1">---------------------|----------------------------|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1110</span><span class="p">,</span> <span class="mi">1140</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">7</span><span class="p">.</span><span class="mi">2938</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1140</span><span class="p">,</span> <span class="mi">1170</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">6</span><span class="p">.</span><span class="mi">7648</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1470</span><span class="p">,</span> <span class="mi">1500</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">6</span><span class="p">.</span><span class="mi">6579</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1080</span><span class="p">,</span> <span class="mi">1110</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">6</span><span class="p">.</span><span class="mi">6535</span><span class="o">%</span>                    <span class="o">|</span> 
+<span class="o">|</span> <span class="p">(</span><span class="mi">750</span><span class="p">,</span> <span class="mi">780</span><span class="p">]</span>          <span class="o">|</span> <span class="mi">6</span><span class="p">.</span><span class="mi">5535</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">720</span><span class="p">,</span> <span class="mi">750</span><span class="p">]</span>          <span class="o">|</span> <span class="mi">6</span><span class="p">.</span><span class="mi">5516</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">1530</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">6</span><span class="p">.</span><span class="mi">3978</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">390</span><span class="p">,</span> <span class="mi">420</span><span class="p">]</span>          <span class="o">|</span> <span class="mi">5</span><span class="p">.</span><span class="mi">8508</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">360</span><span class="p">,</span> <span class="mi">390</span><span class="p">]</span>          <span class="o">|</span> <span class="mi">5</span><span class="p">.</span><span class="mi">8258</span><span class="o">%</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">780</span><span class="p">,</span> <span class="mi">810</span><span class="p">]</span>          <span class="o">|</span> <span class="mi">5</span><span class="p">.</span><span class="mi">5175</span><span class="o">%</span>                    <span class="o">|</span>
 </pre></div>
 <h3 id="by-ratio-of-viewsdays">By Ratio of Views:Days<a class="headerlink" href="#by-ratio-of-viewsdays" title="Permanent link">¶</a></h3>
 <p>Ratio Views:Days (top 20) (Covers 90% of broken links):</p>
-<div class="codehilight code"><pre><span></span>| Views:Days Ratio | Percentage of Total Broken |
-|------------------|-------------|
-| (0, 0.25]        | 27.2369%    |
-| (0.25, 0.5]      | 18.8496%    |
-| (0.5, 0.75]      | 11.4321%    |
-| (0.75, 1]        | 7.2481%     | 
-| (1, 1.25]        | 5.1668%     |
-| (1.25, 1.5]      | 3.7907%     |
-| (1.5, 1.75]      | 2.9310%     |
-| (1.75, 2]        | 2.4033%     |
-| (2, 2.25]        | 1.9788%     |
-| (2.25, 2.5]      | 1.6850%     |
-| (2.5, 2.75]      | 1.4080%     |
-| (2.75, 3]        | 1.1879%     |
-| (3, 3.25]        | 1.0654%     |
-| (3.25, 3.5]      | 0.9391%     |
-| (3.5, 3.75]      | 0.8334%     |
-| (3.75, 4]        | 0.7165%     |
-| (4, 4.25]        | 0.6634%     |
-| (4.25, 4.5]      | 0.5789%     |
-| (4.5, 4.75]      | 0.5508%     |
-| (4.75, 5]        | 0.4833%     |
+<div class="codehilight code"><pre><span></span><span class="o">|</span> <span class="n">Views</span><span class="p">:</span><span class="n">Days</span> <span class="n">Ratio</span> <span class="o">|</span> <span class="n">Percentage</span> <span class="k">of</span> <span class="n">Total</span> <span class="n">Broken</span> <span class="o">|</span>
+<span class="o">|</span><span class="c1">------------------|-------------|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">25</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">27</span><span class="p">.</span><span class="mi">2369</span><span class="o">%</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">]</span>      <span class="o">|</span> <span class="mi">18</span><span class="p">.</span><span class="mi">8496</span><span class="o">%</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">]</span>      <span class="o">|</span> <span class="mi">11</span><span class="p">.</span><span class="mi">4321</span><span class="o">%</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">7</span><span class="p">.</span><span class="mi">2481</span><span class="o">%</span>     <span class="o">|</span> 
+<span class="o">|</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">25</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">5</span><span class="p">.</span><span class="mi">1668</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="p">]</span>      <span class="o">|</span> <span class="mi">3</span><span class="p">.</span><span class="mi">7907</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">75</span><span class="p">]</span>      <span class="o">|</span> <span class="mi">2</span><span class="p">.</span><span class="mi">9310</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">2</span><span class="p">.</span><span class="mi">4033</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">25</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">9788</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">25</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">5</span><span class="p">]</span>      <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">6850</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">75</span><span class="p">]</span>      <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">4080</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">1879</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">.</span><span class="mi">25</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0654</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">3</span><span class="p">.</span><span class="mi">25</span><span class="p">,</span> <span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="p">]</span>      <span class="o">|</span> <span class="mi">0</span><span class="p">.</span><span class="mi">9391</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">3</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">.</span><span class="mi">75</span><span class="p">]</span>      <span class="o">|</span> <span class="mi">0</span><span class="p">.</span><span class="mi">8334</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">3</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">0</span><span class="p">.</span><span class="mi">7165</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">.</span><span class="mi">25</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">0</span><span class="p">.</span><span class="mi">6634</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">4</span><span class="p">.</span><span class="mi">25</span><span class="p">,</span> <span class="mi">4</span><span class="p">.</span><span class="mi">5</span><span class="p">]</span>      <span class="o">|</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5789</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">4</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">.</span><span class="mi">75</span><span class="p">]</span>      <span class="o">|</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5508</span><span class="o">%</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">4</span><span class="p">.</span><span class="mi">75</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>        <span class="o">|</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4833</span><span class="o">%</span>     <span class="o">|</span>
 </pre></div>
 <hr/>
 <h2 id="discussion">Discussion<a class="headerlink" href="#discussion" title="Permanent link">¶</a></h2>

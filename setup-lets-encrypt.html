@@ -104,10 +104,10 @@ of that, I want to secure the connection to the server with SSL, so that I'm not
 with me. One thing that I will need, is a way to access this server regardless of the IP address my ISP has given me. This can (and does) change
 frequently enough that it'd be annoying to keep track of my current IP manually. </p>
 <p>My solution: set up a DNS entry. In the two previous articles, I set up the Apache virtual hosts with subdomains:</p>
-<div class="codehilight code"><pre><span></span>ServerName nas.example.com
+<div class="codehilight code"><pre><span></span><span class="n">ServerName</span> <span class="n">nas</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
 </pre></div>
 <p>and </p>
-<div class="codehilight code"><pre><span></span>ServerName gitlab.example.com
+<div class="codehilight code"><pre><span></span><span class="n">ServerName</span> <span class="n">gitlab</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
 </pre></div>
 <p>It's time to utilize those. Then I will only need to visit those URLs and Apache will handle routing to the correct application.</p>
 <p>I use CloudFlare to handle DNS for this blog. I described the process to <a href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html">set up CloudFlare</a> a few years ago and never 
@@ -116,45 +116,45 @@ looked at it again. "It just works." Hooray! </p>
 <h3 id="automating-the-ip-adddress-updates">Automating the IP adddress updates<a class="headerlink" href="#automating-the-ip-adddress-updates" title="Permanent link">¶</a></h3>
 <p>The initial set up of the A entry/IP address takes a minute. The trick is automating that process every time your IP address changes. I 
 am doing that with a small Python script called <a href="https://github.com/Ethaligan/cloudflare-ddns"><code>cloudflare-ddns</code></a>. Clone this to the server.</p>
-<div class="codehilight code"><pre><span></span>git clone https://github.com/ethaligan/cloudflare-ddns.git
+<div class="codehilight code"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">ethaligan</span><span class="o">/</span><span class="n">cloudflare</span><span class="o">-</span><span class="n">ddns</span><span class="p">.</span><span class="n">git</span>
 </pre></div>
 <p>Next, we need to set up zone information. This is the configuration file that will be used to update your A records. Copy example.com.yml to the
 name of your domain. For example:</p>
-<div class="codehilight code"><pre><span></span>cd zones
-cp example.com.yml andrewwegner.com.yml
+<div class="codehilight code"><pre><span></span><span class="n">cd</span> <span class="n">zones</span>
+<span class="n">cp</span> <span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">yml</span> <span class="n">andrewwegner</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">yml</span>
 </pre></div>
 <p>Now we need to edit the newly copied file to contain appropriate zone information, CloudFlare API information and your domain.</p>
-<div class="codehilight code"><pre><span></span><span class="c">%YAML 1.1</span>
-# <span class="n">Your</span> <span class="n">Cloudflare</span> <span class="n">email</span> <span class="n">address</span>
-<span class="n">cf_email</span><span class="p">:</span> <span class="s">'your_cloudflare_email_address'</span>
+<div class="codehilight code"><pre><span></span><span class="o">%</span><span class="nv">YAML</span> <span class="mi">1</span>.<span class="mi">1</span>
+# <span class="nv">Your</span> <span class="nv">Cloudflare</span> <span class="nv">email</span> <span class="nv">address</span>
+<span class="nv">cf_email</span>: <span class="s1">'</span><span class="s">your_cloudflare_email_address</span><span class="s1">'</span>
 
-# <span class="n">Your</span> <span class="n">Cloudflare</span> <span class="n">API</span> <span class="n">key</span>
-# <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">support</span><span class="p">.</span><span class="n">cloudflare</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">hc</span><span class="o">/</span><span class="n">en</span><span class="o">-</span><span class="n">us</span><span class="o">/</span><span class="n">articles</span><span class="o">/</span><span class="mi">200167836</span><span class="o">-</span><span class="n">Where</span><span class="o">-</span><span class="n">do</span><span class="o">-</span><span class="n">I</span><span class="o">-</span><span class="nb">find</span><span class="o">-</span><span class="n">my</span><span class="o">-</span><span class="n">Cloudflare</span><span class="o">-</span><span class="n">API</span><span class="o">-</span><span class="n">key</span>
-<span class="n">cf_api_key</span><span class="p">:</span> <span class="n">YOUR_CLOUDFLARE_API</span>
+# <span class="nv">Your</span> <span class="nv">Cloudflare</span> <span class="nv">API</span> <span class="nv">key</span>
+# <span class="nv">https</span>:<span class="o">//</span><span class="nv">support</span>.<span class="nv">cloudflare</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">hc</span><span class="o">/</span><span class="nv">en</span><span class="o">-</span><span class="nv">us</span><span class="o">/</span><span class="nv">articles</span><span class="o">/</span><span class="mi">200167836</span><span class="o">-</span><span class="nv">Where</span><span class="o">-</span><span class="k">do</span><span class="o">-</span><span class="nv">I</span><span class="o">-</span><span class="nv">find</span><span class="o">-</span><span class="nv">my</span><span class="o">-</span><span class="nv">Cloudflare</span><span class="o">-</span><span class="nv">API</span><span class="o">-</span><span class="nv">key</span>
+<span class="nv">cf_api_key</span>: <span class="nv">YOUR_CLOUDFLARE_API</span>
 
-# <span class="n">Cloudflare</span> <span class="n">zone</span> <span class="n">name</span>
-# <span class="n">If</span> <span class="n">you</span><span class="o">'</span><span class="n">re</span> <span class="n">updating</span> <span class="s">'ddns.example.com'</span> <span class="n">set</span> <span class="n">this</span> <span class="n">to</span> <span class="s">'example.com'</span>
-<span class="n">cf_zone</span><span class="p">:</span> <span class="n">example</span><span class="p">.</span><span class="n">com</span>
+# <span class="nv">Cloudflare</span> <span class="nv">zone</span> <span class="nv">name</span>
+# <span class="k">If</span> <span class="nv">you</span><span class="s1">'</span><span class="s">re updating </span><span class="s1">'</span><span class="nv">ddns</span>.<span class="nv">example</span>.<span class="nv">com</span><span class="s1">'</span><span class="s"> set this to </span><span class="s1">'</span><span class="nv">example</span>.<span class="nv">com</span><span class="s1">'</span>
+<span class="nv">cf_zone</span>: <span class="nv">example</span>.<span class="nv">com</span>
 
-# <span class="n">List</span> <span class="n">of</span> <span class="n">records</span>
-# <span class="n">If</span> <span class="n">you</span><span class="o">'</span><span class="n">re</span> <span class="n">updating</span> <span class="s">'example.com'</span> <span class="n">record</span><span class="p">,</span> <span class="n">set</span> <span class="n">its</span> <span class="n">name</span> <span class="n">to</span> <span class="s">'@'</span><span class="p">.</span>
-# <span class="n">Only</span> <span class="n">write</span> <span class="n">the</span> <span class="n">subdomain</span> <span class="p">(</span><span class="s">'ddns'</span> <span class="k">for</span> <span class="s">'ddns.example.com'</span><span class="p">)</span>
-<span class="n">cf_records</span><span class="p">:</span>
-    <span class="o">-</span> <span class="s">'nas'</span><span class="p">:</span>
-        <span class="n">type</span><span class="p">:</span> <span class="n">A</span>
-        <span class="nb">log</span><span class="p">:</span> <span class="n">ERROR</span>
-    <span class="o">-</span> <span class="s">'gitlab'</span><span class="p">:</span>
-        <span class="n">type</span><span class="p">:</span> <span class="n">A</span>
-        <span class="nb">log</span><span class="p">:</span> <span class="n">ERROR</span>
+# <span class="nv">List</span> <span class="nv">of</span> <span class="nv">records</span>
+# <span class="k">If</span> <span class="nv">you</span><span class="s1">'</span><span class="s">re updating </span><span class="s1">'</span><span class="nv">example</span>.<span class="nv">com</span><span class="s1">'</span><span class="s"> record, set its name to </span><span class="s1">'</span>@<span class="s1">'</span><span class="s">.</span>
+# <span class="nv">Only</span> <span class="nv">write</span> <span class="nv">the</span> <span class="nv">subdomain</span> <span class="ss">(</span><span class="s1">'</span><span class="s">ddns</span><span class="s1">'</span> <span class="k">for</span> <span class="s1">'</span><span class="s">ddns.example.com</span><span class="s1">'</span><span class="ss">)</span>
+<span class="nv">cf_records</span>:
+    <span class="o">-</span> <span class="s1">'</span><span class="s">nas</span><span class="s1">'</span>:
+        <span class="nv">type</span>: <span class="nv">A</span>
+        <span class="nv">log</span>: <span class="nv">ERROR</span>
+    <span class="o">-</span> <span class="s1">'</span><span class="s">gitlab</span><span class="s1">'</span>:
+        <span class="nv">type</span>: <span class="nv">A</span>
+        <span class="nv">log</span>: <span class="nv">ERROR</span>
 
-# <span class="n">This</span> <span class="n">is</span> <span class="n">the</span> <span class="n">method</span> <span class="n">used</span> <span class="n">to</span> <span class="n">discover</span> <span class="n">the</span> <span class="n">server</span><span class="o">'</span><span class="n">s</span> <span class="n">IP</span> <span class="n">address</span>
-# <span class="n">The</span> <span class="n">faster</span> <span class="n">one</span> <span class="n">is</span> <span class="s">'dig'</span> <span class="n">but</span> <span class="n">it</span> <span class="n">may</span> <span class="n">not</span> <span class="n">be</span> <span class="n">available</span> <span class="n">on</span> <span class="n">your</span> <span class="n">system</span>
-# <span class="n">Available</span> <span class="k">methods</span><span class="p">:</span> <span class="s">'http'</span> <span class="n">or</span> <span class="s">'dig'</span>
-<span class="n">cf_resolving_method</span><span class="p">:</span> <span class="s">'dig'</span>
+# <span class="nv">This</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">method</span> <span class="nv">used</span> <span class="nv">to</span> <span class="nv">discover</span> <span class="nv">the</span> <span class="nv">server</span><span class="s1">'</span><span class="s">s IP address</span>
+# <span class="nv">The</span> <span class="nv">faster</span> <span class="nv">one</span> <span class="nv">is</span> <span class="s1">'</span><span class="s">dig</span><span class="s1">'</span> <span class="nv">but</span> <span class="nv">it</span> <span class="nv">may</span> <span class="nv">not</span> <span class="nv">be</span> <span class="nv">available</span> <span class="nv">on</span> <span class="nv">your</span> <span class="nv">system</span>
+# <span class="nv">Available</span> <span class="nv">methods</span>: <span class="s1">'</span><span class="s">http</span><span class="s1">'</span> <span class="nv">or</span> <span class="s1">'</span><span class="s">dig</span><span class="s1">'</span>
+<span class="nv">cf_resolving_method</span>: <span class="s1">'</span><span class="s">dig</span><span class="s1">'</span>
 </pre></div>
 <p>In this case, I am updating two subdomains (<code>nas</code> and <code>gitlab</code>) that are part of the <code>example.com</code> domain. Those should be changed to reflect your set up.</p>
 <p>Last, we need to schedule this to run on a regular basis so that CloudFlare always points to the correct IP address. I did this with a crontab entry:</p>
-<div class="codehilight code"><pre><span></span>*/30 * * * * python3 /path/to/cloudflare-ddns.py -z example.com
+<div class="codehilight code"><pre><span></span><span class="o">*/</span><span class="mi">30</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">python3</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="k">to</span><span class="o">/</span><span class="n">cloudflare</span><span class="o">-</span><span class="n">ddns</span><span class="p">.</span><span class="n">py</span> <span class="o">-</span><span class="n">z</span> <span class="n">example</span><span class="p">.</span><span class="n">com</span>
 </pre></div>
 <p>Again, change <code>example.com</code> to your domain, and it will use the appropriate YML file. With this entry, my DNS entries are updated every 30 minutes. That 
 is frequently enough for my needs.</p>
@@ -163,40 +163,40 @@ is frequently enough for my needs.</p>
 SSL certificates. This is where we'll set those up. </p>
 <p>Let's Encrypt certificates are valid for 90 days. Renewing certificates, though, can be easily automated. Since I need my certificates to work through CloudFlare,
 because it provides my DNS services, I use a hook in Let's Encrypt's ACME client <a href="https://github.com/lukas2511/dehydrated"><code>dehydrated</code></a> to handle everything.</p>
-<div class="codehilight code"><pre><span></span>cd ~
-git clone https://github.com/lukas2511/dehydrated
-cd dehydrated
-mkdir hooks
-git clone https://github.com/kappataumu/letsencrypt-cloudflare-hook hooks/cloudflare
-pip install -r hooks/cloudflare/requirements.txt
+<div class="codehilight code"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">lukas2511</span><span class="o">/</span><span class="n">dehydrated</span>
+<span class="n">cd</span> <span class="n">dehydrated</span>
+<span class="n">mkdir</span> <span class="n">hooks</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">kappataumu</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">-</span><span class="n">cloudflare</span><span class="o">-</span><span class="n">hook</span> <span class="n">hooks</span><span class="o">/</span><span class="n">cloudflare</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">hooks</span><span class="o">/</span><span class="n">cloudflare</span><span class="o">/</span><span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
 </pre></div>
 <p>This downloads deydrated and then downloads the CloudFlare hook that is needed. It installs the required libraries too. </p>
 <p>The last bit of configuration that is needed is setting up a <code>config</code> file in the <code>dehydrated</code> directory.</p>
-<div class="codehilight code"><pre><span></span>nano `dehydrated/config`
+<div class="codehilight code"><pre><span></span><span class="n">nano</span> <span class="o">`</span><span class="n">dehydrated</span><span class="o">/</span><span class="n">config</span><span class="o">`</span>
 </pre></div>
 <p>Add the following three lines</p>
-<div class="codehilight code"><pre><span></span>export CF_EMAIL=YOUR_CLOUDFLARE_EMAILADDRESS
-export CF_KEY=YOUR_CLOUDFLARE_API
-export CF_DEBUG=true
+<div class="codehilight code"><pre><span></span><span class="n">export</span> <span class="n">CF_EMAIL</span><span class="o">=</span><span class="n">YOUR_CLOUDFLARE_EMAILADDRESS</span>
+<span class="n">export</span> <span class="n">CF_KEY</span><span class="o">=</span><span class="n">YOUR_CLOUDFLARE_API</span>
+<span class="n">export</span> <span class="n">CF_DEBUG</span><span class="o">=</span><span class="k">true</span>
 </pre></div>
 <p>Substitute your CloudFlare login email and API key as appropriate. The <code>CF_DEBUG</code> line can be set to <code>false</code> if you don't wish debugging information to be printed to <code>logs/</code>. </p>
 <p>Register with Let's Encrypt and accept their terms of service:</p>
-<div class="codehilight code"><pre><span></span>./dehydrated --register --accept-terms
+<div class="codehilight code"><pre><span></span><span class="p">.</span><span class="o">/</span><span class="n">dehydrated</span> <span class="c1">--register --accept-terms</span>
 </pre></div>
 <p>Finally, you're ready to generate/install the SSL certificates needed. One note: I needed to adjust the shebang line in hooks/cloudflare/hook.py to be <code>python3</code>. </p>
 <p>Run the following commands to generate the certificates. These will end up in <code>dehydrated/certs</code> with the full URL of each certificate. </p>
-<div class="codehilight code"><pre><span></span>./dehydrated -c -d nas.example.com -t dns-01 -k 'hooks/cloudflare/hook.py'
-./dehydrated -c -d gitlab.example.com -t dns-01 -k 'hooks/cloudflare/hook.py'
+<div class="codehilight code"><pre><span></span><span class="p">.</span><span class="o">/</span><span class="n">dehydrated</span> <span class="o">-</span><span class="k">c</span> <span class="o">-</span><span class="n">d</span> <span class="n">nas</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span> <span class="o">-</span><span class="n">t</span> <span class="n">dns</span><span class="o">-</span><span class="mi">01</span> <span class="o">-</span><span class="n">k</span> <span class="s1">'hooks/cloudflare/hook.py'</span>
+<span class="p">.</span><span class="o">/</span><span class="n">dehydrated</span> <span class="o">-</span><span class="k">c</span> <span class="o">-</span><span class="n">d</span> <span class="n">gitlab</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span> <span class="o">-</span><span class="n">t</span> <span class="n">dns</span><span class="o">-</span><span class="mi">01</span> <span class="o">-</span><span class="n">k</span> <span class="s1">'hooks/cloudflare/hook.py'</span>
 </pre></div>
 <p>The path to these files are what will go in your Apache Virtual Host files:</p>
-<div class="codehilight code"><pre><span></span>SSLCertificateFile /path/to/dehydrated/certs/nas.example.com/cert.pem
-SSLCertificateKeyFile /path/to/dehydrated/certs/nas.example.com/privkey.pem
-SSLCertificateChainFile /path/to/dehydrated/certs/nas.example.com/chain.pem
+<div class="codehilight code"><pre><span></span><span class="n">SSLCertificateFile</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="k">to</span><span class="o">/</span><span class="n">dehydrated</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">nas</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">cert</span><span class="p">.</span><span class="n">pem</span>
+<span class="n">SSLCertificateKeyFile</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="k">to</span><span class="o">/</span><span class="n">dehydrated</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">nas</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">privkey</span><span class="p">.</span><span class="n">pem</span>
+<span class="n">SSLCertificateChainFile</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="k">to</span><span class="o">/</span><span class="n">dehydrated</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">nas</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="k">chain</span><span class="p">.</span><span class="n">pem</span>
 </pre></div>
 <p>I set up a crontab entry for each of my subdomains to attempt to renew the certificate once a week. Dehydrated will not attempt to renew a certificate if it's not going to 
 expire in less than 30 days, so we aren't making unneeded calls to Let's Encrypt. </p>
-<div class="codehilight code"><pre><span></span>0 1 6 * * /path/to/dehydrated/dehydrated -c -d nas.example.com -t dns-01 -k '/path/to/dehydrated/hooks/cloudflare/hook.py'
-10 1 6 * * /path/to/dehydrated/dehydrated -c -d gitlab.example.com -t dns-01 -k '/path/to/dehydrated/hooks/cloudflare/hook.py'
+<div class="codehilight code"><pre><span></span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">6</span> <span class="o">*</span> <span class="o">*</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="k">to</span><span class="o">/</span><span class="n">dehydrated</span><span class="o">/</span><span class="n">dehydrated</span> <span class="o">-</span><span class="k">c</span> <span class="o">-</span><span class="n">d</span> <span class="n">nas</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span> <span class="o">-</span><span class="n">t</span> <span class="n">dns</span><span class="o">-</span><span class="mi">01</span> <span class="o">-</span><span class="n">k</span> <span class="s1">'/path/to/dehydrated/hooks/cloudflare/hook.py'</span>
+<span class="mi">10</span> <span class="mi">1</span> <span class="mi">6</span> <span class="o">*</span> <span class="o">*</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="k">to</span><span class="o">/</span><span class="n">dehydrated</span><span class="o">/</span><span class="n">dehydrated</span> <span class="o">-</span><span class="k">c</span> <span class="o">-</span><span class="n">d</span> <span class="n">gitlab</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span> <span class="o">-</span><span class="n">t</span> <span class="n">dns</span><span class="o">-</span><span class="mi">01</span> <span class="o">-</span><span class="n">k</span> <span class="s1">'/path/to/dehydrated/hooks/cloudflare/hook.py'</span>
 </pre></div>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
 <p>With this final step, I have a home server that I can access from anywhere. It allows me to backup pictures automatically, holds my private repositories and is protected
@@ -254,7 +254,7 @@ by SSL. The SSL certificates renew automatically.</p>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>33</span>
+                    <span>34</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

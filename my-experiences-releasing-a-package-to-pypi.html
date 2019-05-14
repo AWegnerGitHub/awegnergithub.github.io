@@ -115,11 +115,11 @@
 <p>Those goals sound simple. In the future, they probably will be, but for this first release it wasn't as simple as I was hoping.</p>
 <h2 id="project-layout">Project Layout<a class="headerlink" href="#project-layout" title="Permanent link">¶</a></h2>
 <p>Before this project, I'd written modules and libraries that were used by myself (for personal projects) or as part of a larger application (for work). In both cases, though, I had a directory structure that looked something like this:</p>
-<div class="codehilight code"><pre><span></span>/project_root
-    /mymodule
-        __init__.py
-        mymodule.py
-    __init__.py
+<div class="codehilight code"><pre><span></span><span class="o">/</span><span class="n">project_root</span>
+    <span class="o">/</span><span class="n">mymodule</span>
+        <span class="n">__init__</span><span class="p">.</span><span class="n">py</span>
+        <span class="n">mymodule</span><span class="p">.</span><span class="n">py</span>
+    <span class="n">__init__</span><span class="p">.</span><span class="n">py</span>
 </pre></div>
 <p>This was close to the end goal, but lacked some files in the <code>project_root</code> that were needed for a proper install via <code>pip</code>. The important file that was missing was <code>setup.py</code>. I needed this file to ensure that everything would install with a simple <code>pip install stackapi</code> </p>
 <h3 id="setuppy">setup.py<a class="headerlink" href="#setuppy" title="Permanent link">¶</a></h3>
@@ -140,31 +140,31 @@
 <p>To make running <code>bumpversion</code> a bit easier, I utilized a Fabric routine I found <a href="https://gist.github.com/jbarratt/85c91d7b904462702892">online</a> and adjusted it for my purposes. When I run <code>fab release</code>, all of the <code>bumpversion</code> 'stuff' occurs. Then I just have to push the commit (and new tag) to GitHub.</p>
 <h3 id="final-project-layout">Final Project Layout<a class="headerlink" href="#final-project-layout" title="Permanent link">¶</a></h3>
 <p>The final project layout I settled on was this:</p>
-<div class="codehilight code"><pre><span></span>/stackapi
-    /docs
-        ...
-    /stackapi
-        __init__.py
-        stackapi.py
-    /tests
-    .gitignore
-    .travis.yml
-    fabfile.py
-    setup.cfg
-    setup.py
+<div class="codehilight code"><pre><span></span><span class="o">/</span><span class="n">stackapi</span>
+    <span class="o">/</span><span class="n">docs</span>
+        <span class="p">...</span>
+    <span class="o">/</span><span class="n">stackapi</span>
+        <span class="n">__init__</span><span class="p">.</span><span class="n">py</span>
+        <span class="n">stackapi</span><span class="p">.</span><span class="n">py</span>
+    <span class="o">/</span><span class="n">tests</span>
+    <span class="p">.</span><span class="n">gitignore</span>
+    <span class="p">.</span><span class="n">travis</span><span class="p">.</span><span class="n">yml</span>
+    <span class="n">fabfile</span><span class="p">.</span><span class="n">py</span>
+    <span class="n">setup</span><span class="p">.</span><span class="n">cfg</span>
+    <span class="n">setup</span><span class="p">.</span><span class="n">py</span>
 </pre></div>
 <h2 id="read-the-docs">Read the Docs<a class="headerlink" href="#read-the-docs" title="Permanent link">¶</a></h2>
 <h3 id="configure-the-project">Configure the project<a class="headerlink" href="#configure-the-project" title="Permanent link">¶</a></h3>
 <p>In the final project layout, you can see there is a <code>docs</code> directory. One of my goals was to make this library usable and understandable by other developers. A good part of that means having decent documentation. I spent way more time than I expected cleaning the documentation in the code and creating documentation with examples. Most of that time was spent learning the sphinx documentation style and ReStructuredText, which Read the Docs utilizes.</p>
 <p>The first step in this process was installing and setting up the initial configuration for the documentation:</p>
-<div class="codehilight code"><pre><span></span>pip install sphinx sphinx-autobuild
+<div class="codehilight code"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">autobuild</span>
 </pre></div>
 <p>Then, I created the <code>docs</code> directory and switched to it and ran:</p>
-<div class="codehilight code"><pre><span></span>sphinx-quickstart
+<div class="codehilight code"><pre><span></span><span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span>
 </pre></div>
 <p>This starts a short, interactive, wizard. Fill out the questions. At the end of this, it creates a <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/docs/conf.py"><code>conf.py</code></a> file in the <code>docs</code> directory. The rest of the <a href="https://github.com/AWegnerGitHub/stackapi/tree/master/docs">documentation</a> is ReStructuredText files.</p>
 <p>To see how the documentation looks, from the <code>docs</code> directory, run:</p>
-<div class="codehilight code"><pre><span></span>make html
+<div class="codehilight code"><pre><span></span><span class="n">make</span> <span class="n">html</span>
 </pre></div>
 <p>This creates a <code>_build</code> directory. If you open <code>_build/html/index.html</code>, the documentation can be browsed locally. I do not commit this directory to git, though. It is ignored in <code>.gitignore</code>, as a user can regenerate it at will.</p>
 <h3 id="configure-read-the-docs">Configure Read the Docs<a class="headerlink" href="#configure-read-the-docs" title="Permanent link">¶</a></h3>
@@ -186,7 +186,7 @@
 </pre></div>
 <h3 id="force-rebuild-of-docs">Force rebuild of docs<a class="headerlink" href="#force-rebuild-of-docs" title="Permanent link">¶</a></h3>
 <p>Toward the very end of this project, Read the Docs had a minor hiccup and failed on building my documentation. I didn't want to force a build by making a fake commit. Instead, Read the Docs provides the information needed to force a rebuild. It requires a very simple <code>POST</code> to the Post Commit Hook they provide. In my case, this was as simple as running this command (provided from the Dashboard):</p>
-<div class="codehilight code"><pre><span></span>curl -X POST https://readthedocs.org/build/stackapi
+<div class="codehilight code"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">readthedocs</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">stackapi</span>
 </pre></div>
 <h2 id="pypi">PyPI<a class="headerlink" href="#pypi" title="Permanent link">¶</a></h2>
 <p>Nearing the end of the journey, it was time to see what exactly PyPI required. The first step was setting up an account on both the Test and Production instances of PyPI.</p>
@@ -232,7 +232,7 @@
 </pre></div>
 <p>If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since <code>bumpversion</code> makes a new git tag with each new version, this works perfectly.</p>
 <p>This does require that my password be included in the yml file. To keep this secure, I utilized the <a href="https://blog.travis-ci.com/2013-01-14-new-client/">Travis Command Line Client</a> (<code>gem install travis</code>). In my local directory, I then ran:</p>
-<div class="codehilight code"><pre><span></span>travis encrypt --add deploy.password
+<div class="codehilight code"><pre><span></span><span class="n">travis</span> <span class="n">encrypt</span> <span class="c1">--add deploy.password</span>
 </pre></div>
 <p>This added the password to the YML file.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
@@ -277,7 +277,7 @@
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>33</span>
+                    <span>34</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

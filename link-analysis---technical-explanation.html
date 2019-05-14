@@ -102,9 +102,9 @@
 <h2 id="set-up">Set up<a class="headerlink" href="#set-up" title="Permanent link">¶</a></h2>
 <h3 id="the-database">The database<a class="headerlink" href="#the-database" title="Permanent link">¶</a></h3>
 <p>The process began by downloading the March 2013 <a href="https://archive.org/details/stackexchange">data dump</a>. I loaded the <code>posts</code> into a [MariaDB] instance on my local machine. This was accomplished with a very simple script and patience, as the script took a while to run.</p>
-<div class="codehilight code"><pre><span></span>load xml local infile '/path/to/posts.xml'
-into table posts
-rows identified by '&lt;row&gt;';
+<div class="codehilight code"><pre><span></span><span class="k">load</span> <span class="n">xml</span> <span class="k">local</span> <span class="n">infile</span> <span class="s1">'/path/to/posts.xml'</span>
+<span class="k">into</span> <span class="k">table</span> <span class="n">posts</span>
+<span class="k">rows</span> <span class="n">identified</span> <span class="k">by</span> <span class="s1">'&lt;row&gt;'</span><span class="p">;</span>
 </pre></div>
 <h3 id="the-data">The data<a class="headerlink" href="#the-data" title="Permanent link">¶</a></h3>
 <p>Once this was done, the next step was selecting my random sample of data. I did this by randomly selecting 25% of the days in a year and then pulling all posts for those days across all years of Stack Overflow's existence. The Python script I used to do this was fairly simple:</p>
@@ -126,40 +126,40 @@ rows identified by '&lt;row&gt;';
 <p>At the end of this run, the days that I cared about are in the <code>dayslist</code> variable. I used that to pull questions and answers from the database that were created on that month/day combination. In the end, this resulted in just over 25% of the total posts being selected. To ensure that I could replicate the results, I also saved the dates that were selected.</p>
 <h2 id="parsing-the-data">Parsing the data<a class="headerlink" href="#parsing-the-data" title="Permanent link">¶</a></h2>
 <p>The next step was to parse out links from the data. I used the following script to extract anchor text and links from a post. </p>
-<div class="codehilight code"><pre><span></span>def links_in_post(post):
-    """
-    Returns a list of all links found
-    :param posts: A list of dictionaries with a 'body' key containing HTML strings
+<div class="codehilight code"><pre><span></span><span class="nv">def</span> <span class="nv">links_in_post</span><span class="ss">(</span><span class="nv">post</span><span class="ss">)</span>:
+    <span class="s2">"""</span>
+    <span class="nv">Returns</span> <span class="nv">a</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">all</span> <span class="nv">links</span> <span class="nv">found</span>
+    :<span class="nv">param</span> <span class="nv">posts</span>: <span class="nv">A</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">dictionaries</span> <span class="nv">with</span> <span class="nv">a</span> <span class="s1">'</span><span class="s">body</span><span class="s1">'</span> <span class="nv">key</span> <span class="nv">containing</span> <span class="nv">HTML</span> <span class="nv">strings</span>
      [
         {
-            'body': "<span class="nt">&lt;b&gt;</span>This is HTML<span class="nt">&lt;/b&gt;</span>"
+            <span class="s1">'</span><span class="s">body</span><span class="s1">'</span>: <span class="s2">"</span><span class="s">&lt;b&gt;This is HTML&lt;/b&gt;</span><span class="s2">"</span>
         },
     ]
-    :return: A list of tuples containing anchor text and URL
+    :<span class="k">return</span>: <span class="nv">A</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">tuples</span> <span class="nv">containing</span> <span class="nv">anchor</span> <span class="nv">text</span> <span class="nv">and</span> <span class="nv">URL</span>
         [
-            ('Display Text', 'http://example.com')
+            <span class="ss">(</span><span class="s1">'</span><span class="s">Display Text</span><span class="s1">'</span>, <span class="s1">'</span><span class="s">http://example.com</span><span class="s1">'</span><span class="ss">)</span>
         ]
-    """
-    logging.debug("Extracting links...")
-    links = []
-    images = []
-    regexp = "<span class="ni">&amp;.+?;</span>"
-    list_of_html = re.findall(regexp, post)
-    for e in list_of_html:
-        if e in invalid_entities:
-            h = HTMLParser.HTMLParser()
-            unescaped = h.unescape(e) 
-            post = post.replace(e, unescaped)
+    <span class="s2">"""</span>
+    <span class="nv">logging</span>.<span class="nv">debug</span><span class="ss">(</span><span class="s2">"</span><span class="s">Extracting links...</span><span class="s2">"</span><span class="ss">)</span>
+    <span class="nv">links</span> <span class="o">=</span> []
+    <span class="nv">images</span> <span class="o">=</span> []
+    <span class="nv">regexp</span> <span class="o">=</span> <span class="s2">"</span><span class="s">&amp;.+?;</span><span class="s2">"</span>
+    <span class="nv">list_of_html</span> <span class="o">=</span> <span class="nv">re</span>.<span class="nv">findall</span><span class="ss">(</span><span class="nv">regexp</span>, <span class="nv">post</span><span class="ss">)</span>
+    <span class="k">for</span> <span class="nv">e</span> <span class="nv">in</span> <span class="nv">list_of_html</span>:
+        <span class="k">if</span> <span class="nv">e</span> <span class="nv">in</span> <span class="nv">invalid_entities</span>:
+            <span class="nv">h</span> <span class="o">=</span> <span class="nv">HTMLParser</span>.<span class="nv">HTMLParser</span><span class="ss">()</span>
+            <span class="nv">unescaped</span> <span class="o">=</span> <span class="nv">h</span>.<span class="nv">unescape</span><span class="ss">(</span><span class="nv">e</span><span class="ss">)</span> 
+            <span class="nv">post</span> <span class="o">=</span> <span class="nv">post</span>.<span class="nv">replace</span><span class="ss">(</span><span class="nv">e</span>, <span class="nv">unescaped</span><span class="ss">)</span>
 
-    doc = html.fromstring(post)
-    for link in doc.xpath('//a'):
-        links.append(Link(text=link.text_content(), link=link.get('href')))
-    for image in doc.xpath('//img'):
-        images.append(Link(text=image.get('alt'), link=image.get('src')))
-    all_items = links + images
-    seen = set()
-    unique_items = [item for item in all_items if item[1] not in seen and not seen.add(item[1])]
-    return unique_items
+    <span class="nv">doc</span> <span class="o">=</span> <span class="nv">html</span>.<span class="nv">fromstring</span><span class="ss">(</span><span class="nv">post</span><span class="ss">)</span>
+    <span class="k">for</span> <span class="nv">link</span> <span class="nv">in</span> <span class="nv">doc</span>.<span class="nv">xpath</span><span class="ss">(</span><span class="s1">'</span><span class="s">//a</span><span class="s1">'</span><span class="ss">)</span>:
+        <span class="nv">links</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">Link</span><span class="ss">(</span><span class="nv">text</span><span class="o">=</span><span class="nv">link</span>.<span class="nv">text_content</span><span class="ss">()</span>, <span class="nv">link</span><span class="o">=</span><span class="nv">link</span>.<span class="nv">get</span><span class="ss">(</span><span class="s1">'</span><span class="s">href</span><span class="s1">'</span><span class="ss">)))</span>
+    <span class="k">for</span> <span class="nv">image</span> <span class="nv">in</span> <span class="nv">doc</span>.<span class="nv">xpath</span><span class="ss">(</span><span class="s1">'</span><span class="s">//img</span><span class="s1">'</span><span class="ss">)</span>:
+        <span class="nv">images</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">Link</span><span class="ss">(</span><span class="nv">text</span><span class="o">=</span><span class="nv">image</span>.<span class="nv">get</span><span class="ss">(</span><span class="s1">'</span><span class="s">alt</span><span class="s1">'</span><span class="ss">)</span>, <span class="nv">link</span><span class="o">=</span><span class="nv">image</span>.<span class="nv">get</span><span class="ss">(</span><span class="s1">'</span><span class="s">src</span><span class="s1">'</span><span class="ss">)))</span>
+    <span class="nv">all_items</span> <span class="o">=</span> <span class="nv">links</span> <span class="o">+</span> <span class="nv">images</span>
+    <span class="nv">seen</span> <span class="o">=</span> <span class="nv">set</span><span class="ss">()</span>
+    <span class="nv">unique_items</span> <span class="o">=</span> [<span class="nv">item</span> <span class="k">for</span> <span class="nv">item</span> <span class="nv">in</span> <span class="nv">all_items</span> <span class="k">if</span> <span class="nv">item</span>[<span class="mi">1</span>] <span class="nv">not</span> <span class="nv">in</span> <span class="nv">seen</span> <span class="nv">and</span> <span class="nv">not</span> <span class="nv">seen</span>.<span class="nv">add</span><span class="ss">(</span><span class="nv">item</span>[<span class="mi">1</span>]<span class="ss">)</span>]
+    <span class="k">return</span> <span class="nv">unique_items</span>
 </pre></div>
 <p>The regular expression being utilized, is to strip out HTML entities. This was needed due to weird parsing issues with non-ASCII characters. Fortunately, I wasn't the <a href="http://stackoverflow.com/a/13939198/189134">first to encounter oddities like this</a>. The list comprehension at the end of the function is returning only unique tuples of anchor text/link. I was surprised how often I'd end up with tuples such as <code>('this', 'http://google.com')</code> in the same post. This uniqueness saved a lot of processing time later.</p>
 <p>After all links in a post had been extracted, this information and information about the post itself, was saved to the database. If a post had no links, it was not saved. The database consisted of three tables. </p>

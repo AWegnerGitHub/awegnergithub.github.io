@@ -126,15 +126,15 @@ would be useful for large team, not a single developer or very small team.</p>
 <p>Installing GitLab is pretty simple. There are a couple dependencies needed, but I already had both OpenSSH 
 and Postfix installed, so I was able to skip the first step in the <a href="https://about.gitlab.com/installation/#ubuntu">official installation guide</a>. I installed
 the Ubuntu Omnibus package.</p>
-<div class="codehilight code"><pre><span></span>sudo apt-get install -y curl openssh-server ca-certificates postfix
+<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">curl</span> <span class="n">openssh</span><span class="o">-</span><span class="n">server</span> <span class="n">ca</span><span class="o">-</span><span class="n">certificates</span> <span class="k">postfix</span>
 </pre></div>
 <h3 id="getting-the-package">Getting the package<a class="headerlink" href="#getting-the-package" title="Permanent link">¶</a></h3>
 <p>The GitLab repository needs to added and then installed. To add the repository, issue this command:</p>
-<div class="codehilight code"><pre><span></span>curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+<div class="codehilight code"><pre><span></span><span class="n">curl</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">packages</span><span class="p">.</span><span class="n">gitlab</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">install</span><span class="o">/</span><span class="n">repositories</span><span class="o">/</span><span class="n">gitlab</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">ee</span><span class="o">/</span><span class="n">script</span><span class="p">.</span><span class="n">deb</span><span class="p">.</span><span class="n">sh</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">bash</span>
 </pre></div>
 <p>To install the GitLab package, you need to provide an environment variable when you issue your
 <code>apt-get install</code> command. This will be the URL where you want to access your GitLab installation.</p>
-<div class="codehilight code"><pre><span></span>sudo EXTERNAL_URL="http://gitlab.example.com" apt-get install gitlab-ee
+<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">EXTERNAL_URL</span><span class="o">=</span><span class="ss">"http://gitlab.example.com"</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">gitlab</span><span class="o">-</span><span class="n">ee</span>
 </pre></div>
 <h3 id="complete-the-installation">Complete the installation<a class="headerlink" href="#complete-the-installation" title="Permanent link">¶</a></h3>
 <p>Once the install, above is complete, you need to log in to complete the process. In your browser,
@@ -153,16 +153,16 @@ already installed and the <code>www-data</code> user (on Ubuntu) added to the <c
 <li>Change the gitlab workhorse settings to the following (default) values. </li>
 </ul>
 <p>These may already be in the configuration file. If so, you probably don't need to modify them.</p>
-<div class="codehilight code"><pre><span></span>gitlab_workhorse['listen_network'] = "tcp"
-gitlab_workhorse['listen_addr'] = "127.0.0.1:8181"
+<div class="codehilight code"><pre><span></span><span class="n">gitlab_workhorse</span><span class="p">[</span><span class="s1">'listen_network'</span><span class="p">]</span> <span class="o">=</span> <span class="ss">"tcp"</span>
+<span class="n">gitlab_workhorse</span><span class="p">[</span><span class="s1">'listen_addr'</span><span class="p">]</span> <span class="o">=</span> <span class="ss">"127.0.0.1:8181"</span>
 </pre></div>
 <p>Finally, run <code>sudo gitlab-ctl reconfigure</code> for the settings to take effect.</p>
 <p>Now, you need to configure Apache's virtual host. GitLab provides <a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server/apache">example virtual hosts</a>. Since I installed
 the omnibus package and am using Apache 2.4, I selected the <a href="https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/web-server/apache/gitlab-omnibus-apache24.conf"><code>gitlab-omnibus-apache24.conf</code></a> file. Adjust all
 instances of <code>YOUR_SERVER_FQDN</code> to the fully qualified domain name of your server.</p>
 <p>This will go in <code>/etc/apache2/sites-available/</code> and a symlink in <code>/etc/apache2/sites-enabled/</code> will point to this file.</p>
-<div class="codehilight code"><pre><span></span>sudo touch /etc/apache2/sites-available/gitlab.conf
-sudo ln -s /etc/apache2/sites-available/gitlab.conf /etc/apache2/sites-enabled/gitlab.conf
+<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">touch</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">gitlab</span><span class="p">.</span><span class="n">conf</span>
+<span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">gitlab</span><span class="p">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">gitlab</span><span class="p">.</span><span class="n">conf</span>
 </pre></div>
 <h3 id="use-ssl-to-access-gitlab">Use SSL to access GitLab<a class="headerlink" href="#use-ssl-to-access-gitlab" title="Permanent link">¶</a></h3>
 <p>The example virtual host provided by GitLab uses HTTP only. I want to set up my instance to use HTTPS. I'll be 
@@ -198,10 +198,10 @@ in the web browser. It throws a <code>400 Bad Request</code> when trying to view
 regarding this problem. The developers are working on updating the samples in a way that is guaranteed to work through
 the whole system. </p>
 <p>For me, though, the first comment which suggests a minor <code>RewireRule</code> change works great. In the virtual host, fine the line</p>
-<div class="codehilight code"><pre><span></span>RewriteRule .* http://127.0.0.1:8181%{REQUEST_URI} [P,QSA,NE]
+<div class="codehilight code"><pre><span></span><span class="n">RewriteRule</span> <span class="p">.</span><span class="o">*</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mi">127</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">8181</span><span class="o">%</span><span class="err">{</span><span class="n">REQUEST_URI</span><span class="err">}</span> <span class="p">[</span><span class="n">P</span><span class="p">,</span><span class="n">QSA</span><span class="p">,</span><span class="n">NE</span><span class="p">]</span>
 </pre></div>
 <p>and remove the <code>NE</code> so that it reads</p>
-<div class="codehilight code"><pre><span></span>RewriteRule .* http://127.0.0.1:8181%{REQUEST_URI} [P,QSA]
+<div class="codehilight code"><pre><span></span><span class="n">RewriteRule</span> <span class="p">.</span><span class="o">*</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mi">127</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">8181</span><span class="o">%</span><span class="err">{</span><span class="n">REQUEST_URI</span><span class="err">}</span> <span class="p">[</span><span class="n">P</span><span class="p">,</span><span class="n">QSA</span><span class="p">]</span>
 </pre></div>
 <p>Restart Apache and you can navigate to the directory with a space.</p>
 <h3 id="setting-up-smtp">Setting up SMTP<a class="headerlink" href="#setting-up-smtp" title="Permanent link">¶</a></h3>
@@ -269,7 +269,7 @@ knowledge that I can expand what I do with GitLab.</p>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>33</span>
+                    <span>34</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

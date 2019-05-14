@@ -116,7 +116,7 @@ eliminate the need for me to perform the second step.</p>
 environment, there was also my local theme and a clone of the <a href="https://github.com/getpelican/pelican-plugins">Pelican plugins repository</a>, but I never formalized these
 into curated repositories. The generated HTML was a submodule of the source repository and was placed in the <code>output</code>
 directory. I used the following command to generate HTML each time I created a new post</p>
-<div class="codehilight code"><pre><span></span>pelican content --output output --settings publishconf.py
+<div class="codehilight code"><pre><span></span><span class="n">pelican</span> <span class="n">content</span> <span class="c1">--output output --settings publishconf.py</span>
 </pre></div>
 <p>Using my settings, this would generate my HTML in the output directory. After this was generated, I'd push the content repository
 which had a <code>.gitignore</code> rule to ignore the <code>output</code> directory, and then I'd push the output directory.</p>
@@ -194,7 +194,7 @@ an associated Travis CI email address. Change these as you wish. I didn't want t
 I did versus which ones were done automatically. The old commits in my name vs. the new automated commits look like this in GitHub.</p>
 <p><img alt="Blog commit differences" src="https://andrewwegner.com/images/build_blog_github_commits.png"/></p>
 <p>Another important line of code is this one in the deploy script:</p>
-<div class="codehilight code"><pre><span></span>git push -fq https://$GH_USERNAME:$GITHUB_API_KEY@github.com/$TARGET_REPO &amp;&gt;/dev/null || exit $?
+<div class="codehilight code"><pre><span></span><span class="nv">git</span> <span class="nv">push</span> <span class="o">-</span><span class="nv">fq</span> <span class="nv">https</span>:<span class="o">//</span>$<span class="nv">GH_USERNAME</span>:$<span class="nv">GITHUB_API_KEY</span>@<span class="nv">github</span>.<span class="nv">com</span><span class="o">/</span>$<span class="nv">TARGET_REPO</span> <span class="o">&amp;&gt;/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">null</span> <span class="o">||</span> <span class="k">exit</span> $?
 </pre></div>
 <p>This line pushes the generated site to the appropriate repository using the <code>GITHUB_API_KEY</code> we previously generated and told
 Travis CI about. It also sends all output of this command to <code>/dev/null</code> so that the secure key won't show up in the build log. If
@@ -210,15 +210,15 @@ no reason this blog wouldn't generate against 3.6 or 3.7. I'm pretty sure all of
 right now too.</p>
 <p>It will only build when I commit to the <code>master</code> branch. I don't use other branches right now, but if I ever do, they won't trigger a build.</p>
 <p>The important bits are in the <code>before_script</code> and <code>script</code> sections.</p>
-<div class="codehilight code"><pre><span></span>before_script:
-  - git clone https://github.com/AWegnerGithub/awegnergithub.github.io-source.git source
-  - mkdir source/content
-  - rsync -av --progress ./* source/content --exclude source
-  - cd source
-  - pip install --upgrade pip
-  - pip install -r requirements.txt
-script:
-  - pelican content --output output --settings publishconf.py --verbose
+<div class="codehilight code"><pre><span></span><span class="n">before_script</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">AWegnerGithub</span><span class="o">/</span><span class="n">awegnergithub</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="o">-</span><span class="k">source</span><span class="p">.</span><span class="n">git</span> <span class="k">source</span>
+  <span class="o">-</span> <span class="n">mkdir</span> <span class="k">source</span><span class="o">/</span><span class="n">content</span>
+  <span class="o">-</span> <span class="n">rsync</span> <span class="o">-</span><span class="n">av</span> <span class="c1">--progress ./* source/content --exclude source</span>
+  <span class="o">-</span> <span class="n">cd</span> <span class="k">source</span>
+  <span class="o">-</span> <span class="n">pip</span> <span class="n">install</span> <span class="c1">--upgrade pip</span>
+  <span class="o">-</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
+<span class="n">script</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">pelican</span> <span class="n">content</span> <span class="c1">--output output --settings publishconf.py --verbose</span>
 </pre></div>
 <p>In <code>before_script</code>, I clone my <code>source</code> repository containing all my Pelican settings into the <code>source</code> directory. Next, I add a <code>content</code>
 directory into this newly created <code>source</code> directory. I <code>rsync</code> my content to this directory and exclude <code>source</code> because you can't
@@ -283,7 +283,7 @@ testing any of those yet. This split will make it easier, I think, when or if I 
                     <span>3</span>
 </a></li>
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>33</span>
+                    <span>34</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

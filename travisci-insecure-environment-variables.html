@@ -130,7 +130,7 @@ it deployed to <em>my</em> AWS account using <em>my</em> AWS credentials. These 
 <p>The detailed steps taken to reproduce this issue show that Travis CI is simply looking for the environment variable values and scrubbing those from the build logs. Once transferred, an edit can be introduced to show these variables with minimal work.</p>
 <h3 id="create-a-repository">Create a repository<a class="headerlink" href="#create-a-repository" title="Permanent link">¶</a></h3>
 <p>Create a new repository and add something. For this test, I created a simple Python Hello World file, and named it <code>hello.py</code>.</p>
-<div class="codehilight code"><pre><span></span>print("Hello World")
+<div class="codehilight code"><pre><span></span><span class="n">print</span><span class="p">(</span><span class="ss">"Hello World"</span><span class="p">)</span>
 </pre></div>
 <p>Commit this change to your new repository.</p>
 <h3 id="enable-travis-ci-integration">Enable Travis CI integration<a class="headerlink" href="#enable-travis-ci-integration" title="Permanent link">¶</a></h3>
@@ -177,11 +177,11 @@ the log. We can see this with a small change to <code>hello.py</code>.</p>
 </pre></div>
 <p>In this example, we are splitting the values of the environment variables in half. For the <code>AWS_ACCESS_KEY_ID</code> value, you smash these two together. This will match the
 environment variable value, and will not be shown because the pattern still matches the value:</p>
-<div class="codehilight code"><pre><span></span>|{}{}|
+<div class="codehilight code"><pre><span></span><span class="o">|</span><span class="err">{}{}</span><span class="o">|</span>
 </pre></div>
 <p>For <code>AWS_SECRET_ACCESS_KEY</code>, we split the two halves with a space and print it out. This will be shown, because the extra space no longer matches the exact value of the
 environment variable.</p>
-<div class="codehilight code"><pre><span></span>|{} {}|
+<div class="codehilight code"><pre><span></span><span class="o">|</span><span class="err">{}</span> <span class="err">{}</span><span class="o">|</span>
 </pre></div>
 <p>Commit and push the change to GitHub. In Travis CI, we see the following in the build log:</p>
 <p><img alt="Accessing the values" src="https://andrewwegner.com/images/9-variables-filtered-by-match.png"/></p>
@@ -193,7 +193,7 @@ and going down to the red "danger area". Once you've entered the name of the cur
 <p><img alt="Transfer the repository" src="https://andrewwegner.com/images/10-transfer-repository.png"/></p>
 <h3 id="build-with-the-new-owner">Build with the new owner<a class="headerlink" href="#build-with-the-new-owner" title="Permanent link">¶</a></h3>
 <p>Make a change and commit it to the new repository. I simply modified the "Hello World" line:</p>
-<div class="codehilight code"><pre><span></span>print("Hello World from new owner!")
+<div class="codehilight code"><pre><span></span><span class="n">print</span><span class="p">(</span><span class="ss">"Hello World from new owner!"</span><span class="p">)</span>
 </pre></div>
 <p>A new build will kick off. You can see that the repository has transferred to the new owner in the build log. You can also see the environment variables were transfered to the
 new owner. Other than the new owner being listed, the build log shows the same output as before</p>
@@ -253,7 +253,7 @@ environment. This will break the builds, but it will also ensure that private va
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>33</span>
+                    <span>34</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

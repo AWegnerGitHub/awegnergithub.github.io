@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2019-01-23T10:00:00-06:00</updated><entry><title>Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course</title><link href="https://andrewwegner.com/sanic-webframework-review.html" rel="alternate"></link><published>2019-01-23T10:00:00-06:00</published><updated>2019-01-23T10:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-01-23:/sanic-webframework-review.html</id><summary type="html">&lt;p&gt;My review of the Sanic Web Framework fro Pythonistas course on Udemy.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2019-05-14T15:00:00-05:00</updated><entry><title>Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course</title><link href="https://andrewwegner.com/software-testing-masterclass.html" rel="alternate"></link><published>2019-05-14T15:00:00-05:00</published><updated>2019-05-14T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-05-14:/software-testing-masterclass.html</id><summary type="html">&lt;p&gt;My review of the Software Testing Masterclass course on Udemy.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I do QA work for my job and love learning new things, techniques or ways of doing
+my job better. The &lt;a href="https://ude.my/UC-1F1K67C9"&gt;Software Testing Masterclass (2019) - From Novice to Expert&lt;/a&gt;
+caught my eye during one of Udemy's many sales. This course is only five hours long
+so I figured it'd be a quick overview (and I'd be able to skip of the 'novice') part
+of the course. It was created by Ozan İlhan. Their Udemy biograph says they
+have been a professional software tester for the last 10 years.&lt;/p&gt;
+&lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;First things first, English is not the instructor's first language. In most of the
+course this is not a problem, but be aware that there are some grammatical things
+that may throw a native speaker. Normally, I wouldn't count this against the
+instructor, but they specifically call out in the course description:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;All videos have hand edited subtitles. We spent many hours to correct all the subtitles to help you to have a smooth learning experience.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Unfortunately, those subtitles are exactly what was said, so the grammar issues
+are even more glaring.&lt;/p&gt;
+&lt;p&gt;The "high-quality sound" that boasted about in the course description doesn't
+seem accurate. Sound from one lesson to the next varies wildly. In one lesson
+it is difficult to hear the instructor and in the next they are super loud.&lt;/p&gt;
+&lt;p&gt;OK, on to the actual content.&lt;/p&gt;
+&lt;p&gt;I felt this course did not take the "to Expert" part of the name to heart. Much
+of the content was power point slides being read to the student. The "Novice"
+portion of the course was laying a groundwork for students to understand the
+different types of testing, software development life cycle, how to report bugs,
+and how to build test cases.&lt;/p&gt;
+&lt;p&gt;The instructor provided a template for bug reporting and test case checklists. I
+cringe a little bit because these are Excel documents, but I've worked in the
+corporate world and Excel is the hammer used to pound every nail. I've seen and used
+templates that look very similar. It's not flashy or "an app", but it is what's
+used "in the real world", even if I hated using it at the time.&lt;/p&gt;
+&lt;p&gt;I think the "Expert" part of the course is labeled "Advance Testing Concepts",
+which covers different types of tests in more detail. This covers, black box testing,
+smoke and sanity testing, reggression testing, risk based testing and a few others.
+Unfortunately, this is presented as Power Point slides again.&lt;/p&gt;
+&lt;p&gt;The last real content in the course is covering how to sign up for various
+things like GitHub, JIRA, TestRail and TestLodge.&lt;/p&gt;
+&lt;p&gt;Finally, the course ends with what feels like a bunch of advertisements for
+freelance testing services. There are very brief overviews of uTest, Testlio,
+and BugFinders.&lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Overall, I am disappointed in this course. I was really hoping the "Expert" part
+covered a bit more or even new methods. Unfortunately, everything here I've heard
+of and used at one point or another.&lt;/p&gt;
+&lt;p&gt;Additionally, I'm really disappointed that so much of the course was being read
+a Power Point presentation. I was hoping to see some testing frameworks in action
+to compare/contrast the benefits of one over the other.&lt;/p&gt;
+&lt;p&gt;Due to the over use of Power Point though, and the last part of the course feeling
+like plugs for various services, I can't recommend this course.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ude.my/UC-1F1K67C9"&gt;&lt;img alt="Software Testing Masterclass (2019) - From Notice to Expert" src="https://andrewwegner.com/images/udemy-testing-masterclass.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course</title><link href="https://andrewwegner.com/sanic-webframework-review.html" rel="alternate"></link><published>2019-01-23T10:00:00-06:00</published><updated>2019-01-23T10:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-01-23:/sanic-webframework-review.html</id><summary type="html">&lt;p&gt;My review of the Sanic Web Framework fro Pythonistas course on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At work we are starting to write version 2 of our API. As part of this new version, we're migrating from PHP to Python (hooray!). There are various technical
 reasons for this, but I am excited. My technical skills are much (&lt;em&gt;much&lt;/em&gt;) better in Python. Part of this migration involved decided the framework we'd be using
@@ -143,7 +193,7 @@ even current!&lt;/p&gt;
 &lt;li&gt;Installation instructions are done using &lt;code&gt;easy_install&lt;/code&gt; not &lt;code&gt;pip&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In the &lt;code&gt;urls.py&lt;/code&gt; files that define URL routes, there are lines that look like this:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;url(r'^admin/', admin.site.urls)
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;'^admin/'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;admin&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The instructor attempts to describe the &lt;code&gt;r&lt;/code&gt; in front of &lt;code&gt;'^admin/'&lt;/code&gt; by saying:&lt;/p&gt;
 &lt;blockquote&gt;
