@@ -1,5 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2019-05-14T15:00:00-05:00</updated><entry><title>Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course</title><link href="https://andrewwegner.com/software-testing-masterclass.html" rel="alternate"></link><published>2019-05-14T15:00:00-05:00</published><updated>2019-05-14T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-05-14:/software-testing-masterclass.html</id><summary type="html">&lt;p&gt;My review of the Software Testing Masterclass course on Udemy.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2019-07-09T14:30:00-05:00</updated><entry><title>Review of Travis CI Tutorial Udemy course</title><link href="https://andrewwegner.com/travis-ci-tutorial-review.html" rel="alternate"></link><published>2019-07-09T14:30:00-05:00</published><updated>2019-07-09T14:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-07-09:/travis-ci-tutorial-review.html</id><summary type="html">&lt;p&gt;My review of the Travis CI Tutorial course on Udemy.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've written about Travis CI before. I've reported a bug that makes it fairly easy
+to see &lt;a href="https://andrewwegner.com/travisci-insecure-environment-variables.html"&gt;environment variables in Travis CI&lt;/a&gt; or even unintentionally transfer
+them if you transfer your repository. I &lt;a href="https://andrewwegner.com/autobuild-pelican-blog.html"&gt;build this blog using Travis CI&lt;/a&gt;. I've
+&lt;a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html"&gt;used Travis CI to set up an OpenShift application&lt;/a&gt;. &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; uses it to 
+manage it's blacklists. In short, I have experience with Travis CI.&lt;/p&gt;
+&lt;p&gt;I was surprised when I saw a course being offered for free recently on Udemy that
+deals with Travis CI. Since it was free and only a couple hours long, I figured I'd
+give it a shot. I enrolled in the course.&lt;/p&gt;
+&lt;p&gt;This is my review of &lt;a href="https://www.udemy.com/travis-ci-tutorial/"&gt;Travis CI Tutorial&lt;/a&gt; by Vaga Notes.&lt;/p&gt;
+&lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course starts with no instructor introduction, no explanation of what
+the course is about, or goals for the course. If you don't know what Travis CI is,
+don't expect to learn that here. You are expected to know what it is and what
+it does. Honestly, you should probably have used it before too.&lt;/p&gt;
+&lt;p&gt;All coding done for this course is gone in the GitHub web editor. This bothered
+me initially, but after thinking about it, not so much. Most of the "real code"
+needed for this course is simply editing the &lt;code&gt;.travis.yml&lt;/code&gt; file and the instructor
+saves a lot of time by &lt;em&gt;not&lt;/em&gt; dealing with git and GitHub more than necessary.&lt;/p&gt;
+&lt;p&gt;Unfortunately, I think that is going to be the last good thing I have to say
+about this course. The rest can be summed up with one word: Inconsistent.&lt;/p&gt;
+&lt;p&gt;The sound is inconsistent. From one lesson to another, the instructor goes from
+being whisper quiet at highest volume to so loud it hurts. The microphone being
+used picks up static and most annoyingly, the instructor keeps coughing into the
+mic. Sound &lt;em&gt;within&lt;/em&gt; a lesson is also inconsistent. In one lesson - Lesson 13 "Build Stages" -
+it went from quiet to loud and back multiple times.&lt;/p&gt;
+&lt;p&gt;Testing of the course material was inconsistent. The instructor recording their
+videos an hour after they had done it the first time, in some cases. This
+short time between doing it the first time and recording it for the tutorial
+is seen in how the instructor handles unexpected delays and failing builds.&lt;/p&gt;
+&lt;p&gt;The presentation is inconsistent. On several videos, the instructor obviously
+spent time making an intro and outro for the lecture. It's a few second animation
+and sound effect that encapsulates the lesson. On others, they jump right into the
+material or awkwardly end the lesson. If the instructor had spent more time
+giving the course a unified look and feel through the entire course, it'd come
+across as more polished. Instead, it looks like it was thrown together haphazardly.&lt;/p&gt;
+&lt;p&gt;Which brings me to the content. This is also inconsistent. There are points where
+the instructor didn't have a script at worse and only high level bullet points
+at best. They mumble their way through an explanation or series of interface
+options. They live code - with typos - their way through set up. They navigate to
+GitHub using Google Search, but accidentally click to quickly and get a previous
+search result (that could have been embarrassing).&lt;/p&gt;
+&lt;p&gt;Along with the live coded examples and an after thought of an explanation of
+what each step means, there is very bad advice given in some locations.&lt;/p&gt;
+&lt;p&gt;The first example of this is setting up environment variables (see my post
+on &lt;a href="https://andrewwegner.com/travisci-insecure-environment-variables.html"&gt;Travis CI environment variables&lt;/a&gt;). While setting up the GitHub token, so
+that Travis can deploy GitHub Pages, the advice given is to "just give it all
+the access". NO! NO NO NO NO NO! NO!. Especially when combined with the next
+step they took, which isn't even described.&lt;/p&gt;
+&lt;p&gt;The instructor moves over to Travis CI from GitHub to put in the environment variable.
+They put in the name of the variable and the value. Then they change the "Display
+this value in build log" from the default "Off" to "On" &lt;em&gt;and don't say why&lt;/em&gt;!.&lt;/p&gt;
+&lt;p&gt;Moments later a build is pushed, the Travis CI log is shown, and there is the
+GitHub token that had "all the access" displayed in the build log. Anyone can
+come along and use that token to do anything to your GitHub repository.&lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course is now listed for $20. It's not worth it. Go find something on YouTube,
+look at another repository that is already using Travis CI or Google for an example.
+Any of those options are going to be more useful to you - and more consistent - than
+this course. With the bad sound, half finished video introductions, and horrible
+advice on token generation the only thing you'll be doing if you take this course is
+play with your volume constantly and learn the wrong way to set up environment variables.&lt;/p&gt;
+&lt;p&gt;This course feels like it was recorded while the instructor was home sick with a
+minor cold and got bored with their video editing software.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ude.my/UC-IJRCAV24"&gt;&lt;img alt="Software Testing Masterclass (2019) - From Notice to Expert" src="https://andrewwegner.com/images/udemy-travis-ci.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course</title><link href="https://andrewwegner.com/software-testing-masterclass.html" rel="alternate"></link><published>2019-05-14T15:00:00-05:00</published><updated>2019-05-14T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-05-14:/software-testing-masterclass.html</id><summary type="html">&lt;p&gt;My review of the Software Testing Masterclass course on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I do QA work for my job and love learning new things, techniques or ways of doing
 my job better. The &lt;a href="https://ude.my/UC-1F1K67C9"&gt;Software Testing Masterclass (2019) - From Novice to Expert&lt;/a&gt;
