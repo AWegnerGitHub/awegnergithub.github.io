@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04 "/>
+<meta property="og:url" content="https://andrewwegner.com/updating-php-ubuntu-1804.html" />
+<meta property="og:description" content="A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2018-07-26T10:00:00-05:00" />
+<meta name="twitter:title" content="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04 ">
+<meta name="twitter:description" content="A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)">
+
+        <title>Updating PHP from 7.1 to 7.3 on Ubuntu 18.04  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+
+<script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("653100411");
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://andrewwegner.com">Home</a></li>
+                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<meta itemprop="headline" content="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04" />
+<time itemprop="datePublished" datetime="2018-07-26T10:00:00-05:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="https://andrewwegner.com/updating-php-ubuntu-1804.html" />
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://andrewwegner.com/updating-php-ubuntu-1804.html"> Updating PHP from 7.1 to 7.3 on Ubuntu 18.04  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid" id="table-of-contents">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#what-is-actually-running">What is actually running?</a></li>
+<li><a href="#verifying-whats-installed">Verifying what's installed</a></li>
+<li><a href="#updating-apache-php-module">Updating Apache PHP Module</a></li>
+<li><a href="#checking-nextcloud">Checking NextCloud</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <div itemprop="articleBody mainEntityOfPage">
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>The <a href="https://andrewwegner.com/new-house-server.html">new server</a> has been up and running for about a year and a half now. It's still
+working really well. The thing that I'm happiest with is <a href="https://andrewwegner.com/installing-nextcloud.html">my NextCloud install</a>. Having
+my pictures automatically backed up from the phones is a huge time saver. I no
+longer need to worry about whether or not I grabbed a set of pictures off the
+phone or which phone has which picture. It's all in one place in NextCloud. This
+makes it easy to find what I'm looking for (and easy to backup).</p>
+<p>NextCloud runs on PHP, which means I need to have PHP installed on the server
+for it to work. This isn't a huge problem, but the last time I really used PHP,
+it was during the transition between PHP 4 and PHP 5. So...a while ago. I set up PHP
+(and Apache) to host NextCloud and really just forgot about it.</p>
+<p>During a recent update of packages on the server - because I do like to keep
+everything updated. I noticed this line during the <code>apt-get</code> scroll:</p>
+<div class="codehilight code"><pre><span></span><span class="n">php7</span><span class="p">.</span><span class="mi">1</span> <span class="n">module</span> <span class="n">already</span> <span class="n">enabled</span><span class="p">,</span> <span class="k">not</span> <span class="n">enabling</span> <span class="n">PHP</span> <span class="mi">7</span><span class="p">.</span><span class="mi">3</span>
+</pre></div>
+<p>Time to figure out how to use that newly install/upgraded PHP 7.3</p>
+<h2 id="what-is-actually-running">What is actually running?<a class="headerlink" href="#what-is-actually-running" title="Permanent link">¶</a></h2>
+<p>The first thing I did was check which version of PHP was being used in the terminal:</p>
+<div class="codehilight code"><pre><span></span>$ php -v
+PHP <span class="m">7</span>.3.7-2+ubuntu18.04.1+deb.sury.org+1 <span class="o">(</span>cli<span class="o">)</span> <span class="o">(</span>built: Jul <span class="m">25</span> <span class="m">2019</span> <span class="m">11</span>:44:59<span class="o">)</span> <span class="o">(</span> NTS <span class="o">)</span>
+Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">1997</span>-2018 The PHP Group
+Zend Engine v3.3.7, Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">1998</span>-2018 Zend Technologies
+    with Zend OPcache v7.3.7-2+ubuntu18.04.1+deb.sury.org+1, Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">1999</span>-2018, by Zend Technologies
+</pre></div>
+<p>That's promising. The default version here is PHP 7.3.7.</p>
+<p>But, throwing a quick <code>phpinfo();</code> together and looking at what it running via
+Apache, shows something different:</p>
+<div class="codehilight code"><pre><span></span><span class="n">PHP</span> <span class="k">Version</span> <span class="mi">7</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">30</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">ubuntu18</span><span class="p">.</span><span class="mi">04</span><span class="p">.</span><span class="mi">1</span><span class="o">+</span><span class="n">deb</span><span class="p">.</span><span class="n">sury</span><span class="p">.</span><span class="n">org</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+<p>Ok. Now I know which module is out of date. It's the run that is configured to
+be used with Apache.</p>
+<h2 id="verifying-whats-installed">Verifying what's installed<a class="headerlink" href="#verifying-whats-installed" title="Permanent link">¶</a></h2>
+<p>I assumed I had PHP 7.3 installed, but I wanted to confirm before I just started
+disabling and enabling Apache modules.</p>
+<p>To confirm I had PHP 7.3 available, I ran this:</p>
+<div class="codehilight code"><pre><span></span>$ ls /etc/apache2/mods-available/php*
+/etc/apache2/mods-available/php7.1.conf
+/etc/apache2/mods-available/php7.1.load
+/etc/apache2/mods-available/php7.2.conf
+/etc/apache2/mods-available/php7.2.load
+/etc/apache2/mods-available/php7.3.conf
+/etc/apache2/mods-available/php7.3.load
+</pre></div>
+<p>And a quick check to see what's enabled:</p>
+<div class="codehilight code"><pre><span></span>$ ls /etc/apache2/mods-enabled/php*
+/etc/apache2/mods-enabled/php7.1.conf
+/etc/apache2/mods-enabled/php7.1.load
+</pre></div>
+<p>Excellent. I have PHP 7.3 available, and PHP 7.1 is enabled. This is exactly what
+I'm seeing.</p>
+<h2 id="updating-apache-php-module">Updating Apache PHP Module<a class="headerlink" href="#updating-apache-php-module" title="Permanent link">¶</a></h2>
+<p>With PHP 7.3 already installed, I just need to disable PHP 7.1 and enable PHP 7.3.</p>
+<div class="codehilight code"><pre><span></span>$ a2dismod php7.1
+$ a2enmod php7.3
+</pre></div>
+<p>Then restart Apache to use the new module.</p>
+<div class="codehilight code"><pre><span></span>$ service apache2 restart
+</pre></div>
+<p>Finally, validate the correct module is enabled:</p>
+<div class="codehilight code"><pre><span></span>$ ls /etc/apache2/mods-enabled/php*
+/etc/apache2/mods-enabled/php7.3.conf
+/etc/apache2/mods-enabled/php7.3.load
+</pre></div>
+<p>Another check of the <code>phpinfo();</code> page too:</p>
+<div class="codehilight code"><pre><span></span><span class="n">PHP</span> <span class="k">Version</span> <span class="mi">7</span><span class="p">.</span><span class="mi">3</span><span class="p">.</span><span class="mi">7</span><span class="o">-</span><span class="mi">2</span><span class="o">+</span><span class="n">ubuntu18</span><span class="p">.</span><span class="mi">04</span><span class="p">.</span><span class="mi">1</span><span class="o">+</span><span class="n">deb</span><span class="p">.</span><span class="n">sury</span><span class="p">.</span><span class="n">org</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+<p>This matches what <code>php -v</code> output.</p>
+<p>We're done! Right?</p>
+<h2 id="checking-nextcloud">Checking NextCloud<a class="headerlink" href="#checking-nextcloud" title="Permanent link">¶</a></h2>
+<p>With PHP updated, it was time to make sure the one PHP application I run still
+worked. I visited my <a href="https://andrewwegner.com/setup-lets-encrypt.html">NextCloud URL I set up CloudFlare</a>. There I was greeted
+with a blank page. Oddly, I couldn't find any errors in my server logs.</p>
+<p>Using the <code>a2dismod</code> and <code>a2enmod</code> commands from above, I downgraded back to
+PHP 7.1. NextCloud worked. I upgraded to PHP 7.2 and it worked. Going back to PHP
+7.3, and I was back to a blank page.</p>
+<p>Even without server logs, this indicated that either NextCloud doesn't support
+PHP 7.3 or I was missing modules. A check of the <a href="https://docs.nextcloud.com/server/15/admin_manual/installation/system_requirements.html">system requirements for NextCloud</a>
+shows that PHP 7.3 is supported. That just means I'm missing some modules.</p>
+<p>The documentation also includes a <a href="https://docs.nextcloud.com/server/15/admin_manual/installation/source_installation.html#prerequisites-for-manual-installation">list of all needed modules</a> and a nice
+<a href="https://github.com/nextcloud/vm/blob/master/nextcloud_install_production.sh/">shell script</a> for easy installation. Looking through that, I found the <code>apt</code>
+<a href="https://github.com/nextcloud/vm/blob/c469b3045c7405261a0d9f20fec7ef5f0f508efe/nextcloud_install_production.sh#L256-L272">packages I needed</a>.</p>
+<div class="codehilight code"><pre><span></span>$ apt-get install php7.3-fpm <span class="se">\</span>
+php7.3-intl <span class="se">\</span>
+php7.3-ldap <span class="se">\</span>
+php7.3-imap <span class="se">\</span>
+php7.3-gd <span class="se">\</span>
+php7.3-pgsql <span class="se">\</span>
+php7.3-curl <span class="se">\</span>
+php7.3-xml <span class="se">\</span>
+php7.3-zip <span class="se">\</span>
+php7.3-mbstring <span class="se">\</span>
+php7.3-soap <span class="se">\</span>
+php7.3-smbclient <span class="se">\</span>
+php7.3-json <span class="se">\</span>
+php7.3-gmp <span class="se">\</span>
+php7.3-bz2
+</pre></div>
+<p>A minute or so later, with those modules now installed, I restarted Apache again.</p>
+<div class="codehilight code"><pre><span></span>$ service apache2 restart
+</pre></div>
+<p>Then I went to my NextCloud URL. The page loaded as expected and my phone
+sync'd the one picture I took as a test to ensure it worked.</p>
+<p>Overall, this was a really simple process. The biggest issue I ran into was missing
+a module or two that NextCloud required. Simply installing everything it needed
+worked perfectly.</p>
+            </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+            </div>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://andrewwegner.com/slack-app-google-cloud.html" title="Previous: Deploying a Flask Slack app on Google Cloud Platform">Deploying a Flask Slack app on Google Cloud Platform</a></li>
+                <li class="next-article"><a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html" title="Next: Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch">Review of Udemy's Learn DaVinci Resolve 15 from scratch</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2018-07-26T10:00:00-05:00">Jul 26, 2018</time>
+<time itemprop="dateModified" datetime="2018-07-26T10:00:00-05:00">
+
+            <h4>Category</h4>
+            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>36</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam-square sidebar-social-links"></i></a>
+    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

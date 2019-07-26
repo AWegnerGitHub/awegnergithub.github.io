@@ -830,7 +830,112 @@ testing any of those yet. This split will make it easier, I think, when or if I 
 &lt;p&gt;This is a good overview of the DaVinci Resolve environment. I understand what each tab is and how I can use them for basic edits. I feel comfortable enough to make a very simple video with some home videos now.&lt;/p&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you are paying for the course, you should avoid it for a while. It's not complete. There is no guarantee that additional lectures will be added and the promise of "more to come" isn't worth the full price. If you are looking for an overview of the most important buttons in DaVinci Resolve, this is a good course. If you are looking for details on what every button or menu option is going to do, this course doesn't cover that. Finally, if you are really looking to "learn DaVinci Resolve" and not "learn the DaVinci Resolve interface", this isn't the best course either. There are some tutorials here, but they are not the majority of content. &lt;/p&gt;
-&lt;p&gt;&lt;a href="https://ude.my/UC-SMH6Q3ET"&gt;&lt;img alt="Completion Award" src="https://andrewwegner.com/images/udemy-learn-davinci-resolve-15-from-scratch.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Deploying a Flask Slack app on Google Cloud Platform</title><link href="https://andrewwegner.com/slack-app-google-cloud.html" rel="alternate"></link><published>2018-07-13T10:00:00-05:00</published><updated>2018-07-13T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-13:/slack-app-google-cloud.html</id><summary type="html">&lt;p&gt;Setup a Slack app using Flask and deploy it to Google's Cloud&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;&lt;a href="https://ude.my/UC-SMH6Q3ET"&gt;&lt;img alt="Completion Award" src="https://andrewwegner.com/images/udemy-learn-davinci-resolve-15-from-scratch.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Updating PHP from 7.1 to 7.3 on Ubuntu 18.04</title><link href="https://andrewwegner.com/updating-php-ubuntu-1804.html" rel="alternate"></link><published>2018-07-26T10:00:00-05:00</published><updated>2018-07-26T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-26:/updating-php-ubuntu-1804.html</id><summary type="html">&lt;p&gt;A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://andrewwegner.com/new-house-server.html"&gt;new server&lt;/a&gt; has been up and running for about a year and a half now. It's still
+working really well. The thing that I'm happiest with is &lt;a href="https://andrewwegner.com/installing-nextcloud.html"&gt;my NextCloud install&lt;/a&gt;. Having
+my pictures automatically backed up from the phones is a huge time saver. I no
+longer need to worry about whether or not I grabbed a set of pictures off the
+phone or which phone has which picture. It's all in one place in NextCloud. This
+makes it easy to find what I'm looking for (and easy to backup).&lt;/p&gt;
+&lt;p&gt;NextCloud runs on PHP, which means I need to have PHP installed on the server
+for it to work. This isn't a huge problem, but the last time I really used PHP,
+it was during the transition between PHP 4 and PHP 5. So...a while ago. I set up PHP
+(and Apache) to host NextCloud and really just forgot about it.&lt;/p&gt;
+&lt;p&gt;During a recent update of packages on the server - because I do like to keep
+everything updated. I noticed this line during the &lt;code&gt;apt-get&lt;/code&gt; scroll:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;php7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;already&lt;/span&gt; &lt;span class="n"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="n"&gt;enabling&lt;/span&gt; &lt;span class="n"&gt;PHP&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Time to figure out how to use that newly install/upgraded PHP 7.3&lt;/p&gt;
+&lt;h2 id="what-is-actually-running"&gt;What is actually running?&lt;a class="headerlink" href="#what-is-actually-running" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first thing I did was check which version of PHP was being used in the terminal:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ php -v
+PHP &lt;span class="m"&gt;7&lt;/span&gt;.3.7-2+ubuntu18.04.1+deb.sury.org+1 &lt;span class="o"&gt;(&lt;/span&gt;cli&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;built: Jul &lt;span class="m"&gt;25&lt;/span&gt; &lt;span class="m"&gt;2019&lt;/span&gt; &lt;span class="m"&gt;11&lt;/span&gt;:44:59&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt; NTS &lt;span class="o"&gt;)&lt;/span&gt;
+Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1997&lt;/span&gt;-2018 The PHP Group
+Zend Engine v3.3.7, Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1998&lt;/span&gt;-2018 Zend Technologies
+    with Zend OPcache v7.3.7-2+ubuntu18.04.1+deb.sury.org+1, Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1999&lt;/span&gt;-2018, by Zend Technologies
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That's promising. The default version here is PHP 7.3.7.&lt;/p&gt;
+&lt;p&gt;But, throwing a quick &lt;code&gt;phpinfo();&lt;/code&gt; together and looking at what it running via
+Apache, shows something different:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PHP&lt;/span&gt; &lt;span class="k"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;ubuntu18&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;04&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sury&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ok. Now I know which module is out of date. It's the run that is configured to
+be used with Apache.&lt;/p&gt;
+&lt;h2 id="verifying-whats-installed"&gt;Verifying what's installed&lt;a class="headerlink" href="#verifying-whats-installed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I assumed I had PHP 7.3 installed, but I wanted to confirm before I just started
+disabling and enabling Apache modules.&lt;/p&gt;
+&lt;p&gt;To confirm I had PHP 7.3 available, I ran this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ls /etc/apache2/mods-available/php*
+/etc/apache2/mods-available/php7.1.conf
+/etc/apache2/mods-available/php7.1.load
+/etc/apache2/mods-available/php7.2.conf
+/etc/apache2/mods-available/php7.2.load
+/etc/apache2/mods-available/php7.3.conf
+/etc/apache2/mods-available/php7.3.load
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And a quick check to see what's enabled:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ls /etc/apache2/mods-enabled/php*
+/etc/apache2/mods-enabled/php7.1.conf
+/etc/apache2/mods-enabled/php7.1.load
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Excellent. I have PHP 7.3 available, and PHP 7.1 is enabled. This is exactly what
+I'm seeing.&lt;/p&gt;
+&lt;h2 id="updating-apache-php-module"&gt;Updating Apache PHP Module&lt;a class="headerlink" href="#updating-apache-php-module" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With PHP 7.3 already installed, I just need to disable PHP 7.1 and enable PHP 7.3.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ a2dismod php7.1
+$ a2enmod php7.3
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then restart Apache to use the new module.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ service apache2 restart
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, validate the correct module is enabled:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ls /etc/apache2/mods-enabled/php*
+/etc/apache2/mods-enabled/php7.3.conf
+/etc/apache2/mods-enabled/php7.3.load
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Another check of the &lt;code&gt;phpinfo();&lt;/code&gt; page too:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PHP&lt;/span&gt; &lt;span class="k"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;ubuntu18&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;04&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sury&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This matches what &lt;code&gt;php -v&lt;/code&gt; output.&lt;/p&gt;
+&lt;p&gt;We're done! Right?&lt;/p&gt;
+&lt;h2 id="checking-nextcloud"&gt;Checking NextCloud&lt;a class="headerlink" href="#checking-nextcloud" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With PHP updated, it was time to make sure the one PHP application I run still
+worked. I visited my &lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;NextCloud URL I set up CloudFlare&lt;/a&gt;. There I was greeted
+with a blank page. Oddly, I couldn't find any errors in my server logs.&lt;/p&gt;
+&lt;p&gt;Using the &lt;code&gt;a2dismod&lt;/code&gt; and &lt;code&gt;a2enmod&lt;/code&gt; commands from above, I downgraded back to
+PHP 7.1. NextCloud worked. I upgraded to PHP 7.2 and it worked. Going back to PHP
+7.3, and I was back to a blank page.&lt;/p&gt;
+&lt;p&gt;Even without server logs, this indicated that either NextCloud doesn't support
+PHP 7.3 or I was missing modules. A check of the &lt;a href="https://docs.nextcloud.com/server/15/admin_manual/installation/system_requirements.html"&gt;system requirements for NextCloud&lt;/a&gt;
+shows that PHP 7.3 is supported. That just means I'm missing some modules.&lt;/p&gt;
+&lt;p&gt;The documentation also includes a &lt;a href="https://docs.nextcloud.com/server/15/admin_manual/installation/source_installation.html#prerequisites-for-manual-installation"&gt;list of all needed modules&lt;/a&gt; and a nice
+&lt;a href="https://github.com/nextcloud/vm/blob/master/nextcloud_install_production.sh/"&gt;shell script&lt;/a&gt; for easy installation. Looking through that, I found the &lt;code&gt;apt&lt;/code&gt;
+&lt;a href="https://github.com/nextcloud/vm/blob/c469b3045c7405261a0d9f20fec7ef5f0f508efe/nextcloud_install_production.sh#L256-L272"&gt;packages I needed&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ apt-get install php7.3-fpm &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-intl &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-ldap &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-imap &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-gd &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-pgsql &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-curl &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-xml &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-zip &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-mbstring &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-soap &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-smbclient &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-json &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-gmp &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-bz2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A minute or so later, with those modules now installed, I restarted Apache again.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ service apache2 restart
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then I went to my NextCloud URL. The page loaded as expected and my phone
+sync'd the one picture I took as a test to ensure it worked.&lt;/p&gt;
+&lt;p&gt;Overall, this was a really simple process. The biggest issue I ran into was missing
+a module or two that NextCloud required. Simply installing everything it needed
+worked perfectly.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Deploying a Flask Slack app on Google Cloud Platform</title><link href="https://andrewwegner.com/slack-app-google-cloud.html" rel="alternate"></link><published>2018-07-13T10:00:00-05:00</published><updated>2018-07-13T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-13:/slack-app-google-cloud.html</id><summary type="html">&lt;p&gt;Setup a Slack app using Flask and deploy it to Google's Cloud&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="background-and-goals"&gt;Background and goals&lt;a class="headerlink" href="#background-and-goals" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At work I am the software QA team lead (I haven't given myself a fancy title, but I should). As such, I spend a lot of time in JIRA tracking our bug and feature requests and in Slack working with every aspect of the company to ensure the new features work as expected and bugs as appropriately squashed. As new releases approach their release date, I start running more queries to ensure everything will be done on time.&lt;/p&gt;
 &lt;p&gt;Mini-rant: I hate JIRA's UI. It's slow, clunky and makes rolling things up as I need them unnecessarily complicated.&lt;/p&gt;
