@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="Installing InvoiceNinja on Ubuntu 18.04 "/>
+<meta property="og:url" content="https://andrewwegner.com/invoiceninja-ubuntu-1804.html" />
+<meta property="og:description" content="A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2018-07-30T13:00:00-05:00" />
+<meta name="twitter:title" content="Installing InvoiceNinja on Ubuntu 18.04 ">
+<meta name="twitter:description" content="A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04">
+
+        <title>Installing InvoiceNinja on Ubuntu 18.04  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+
+<script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("653100411");
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://andrewwegner.com">Home</a></li>
+                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<meta itemprop="headline" content="Installing InvoiceNinja on Ubuntu 18.04" />
+<time itemprop="datePublished" datetime="2018-07-30T13:00:00-05:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html" />
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html"> Installing InvoiceNinja on Ubuntu 18.04  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid" id="table-of-contents">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#database-setup">Database setup</a></li>
+<li><a href="#configure-apache">Configure Apache</a></li>
+<li><a href="#completing-the-install">Completing the install</a></li>
+<li><a href="#updating">Updating</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <div itemprop="articleBody mainEntityOfPage">
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>It's been a several years since I really did a lot of freelance work. Mostly, I did it in the evening hours
+a few nights a week for some extra money. Over the last few years, that kind of work has
+slowed down for me. Mostly because I enjoy relaxing in the evenings and spending time off
+of my computer now. It's weird to type that, but "hobby coding" really hasn't had as much
+appeal to me since I started my <a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html">current job</a> a few years ago.</p>
+<p>I love my job. I love working from home 100% of the time and I love being home
+when the kids get off the bus, during summer breaks, and when the weather sucks. The
+one thing this job has done though, is remove my desire to sit in my office after
+everyone else has gone to bed and just code.</p>
+<p>But, that's ok. I've found other hobbies and am really excited about some up coming
+things I'm trying out. If they work out, I'll be able to combine my coding skills
+with other hobbies. I'm sure I'll write about it at some point.</p>
+<p>I say all of that, because, even though I don't actively take on freelance work any
+longer, I still have clients that I did work for that will reach out once and a while
+for help, consultations or a small project. When that happens, I need a way to bill them
+for my time.</p>
+<p>Previously, my invoices would have been whipped up in Word and converted to a PDF and sent
+off to the client. It worked for years. I was able to keep track of everything,
+properly report it (don't want to mess with the tax man) and I kept chugging along. The
+problem now, is that if I'm doing work for a client, I want to do the work and be done. I don't
+want to spent time making a presentable invoice in Word.</p>
+<p>So, I went hunting for some software. I found <a href="https://www.invoiceninja.com/">InvoiceNinja</a>. It's amazing.</p>
+<ul>
+<li>Hosted or self hosted version</li>
+<li>Create simple invoices</li>
+<li>Create full quotes</li>
+<li>API (which I will probably never use, but...it's there)</li>
+<li>Recurring billing</li>
+<li>Zapier integration</li>
+</ul>
+<p>I have this habit of self hosting my own software. See my posts on <a href="https://andrewwegner.com/installing-nextcloud.html">NextCloud</a>
+and <a href="https://andrewwegner.com/installing-gitlab.html">GitLab</a> for other examples.</p>
+<p>This rest of this post is going to walk through how I installed InvoiceNinja.</p>
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">¶</a></h2>
+<p>I'll be self hosting <a href="https://www.invoiceninja.org/">InvoiceNinja</a>. You can find that on their <code>.org</code> site
+or on <a href="https://github.com/invoiceninja/invoiceninja">GitHub</a>.</p>
+<p>In this, I'll be installing InvoiceNinja, setting up Apache to host it, and showing how
+to update it in the future.</p>
+<div class="codehilight code"><pre><span></span>$ wget https://download.invoiceninja.com/ninja-v4.5.13.zip
+$ unzip ninja-v4.5.13.zip
+</pre></div>
+<p>This downloads and unzips InvoiceNinja 4.5.14 to the current directory. Next,
+let's move it to it's final install location and set up appropriate owner and
+permissions.</p>
+<div class="codehilight code"><pre><span></span>$ sudo mv ninja /var/www/html
+$ <span class="nb">cd</span> /var/www/html
+$ sudo chown -R www-data:www-data ninja/
+$ sudo chmod -R <span class="m">755</span> ninja/storage
+</pre></div>
+<h2 id="database-setup">Database setup<a class="headerlink" href="#database-setup" title="Permanent link">¶</a></h2>
+<p>InvoiceNinja runs on MySQL (or MariaDB). We need to create the database, but
+the installer will do the rest of the work for us. Log into MySQL with a user
+that can create new databases, users and permissions.</p>
+<div class="codehilight code"><pre><span></span>$ mysql -u root -p
+</pre></div>
+<p>Now we'll run three commands. The first is to create the new database, the second
+is to create the user. The third is to set appropriate permissions for the
+new user and new password.</p>
+<p>!!! attention
+    Change the default password from <code>ninja</code> to something secure</p>
+<p>Our three commands:</p>
+<div class="codehilight code"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">ninja</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'ninja'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'ninja'</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="n">ninja</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">'ninja'</span><span class="o">@</span><span class="s1">'localhost'</span><span class="p">;</span>
+</pre></div>
+<p>Exit MySQL.</p>
+<h2 id="configure-apache">Configure Apache<a class="headerlink" href="#configure-apache" title="Permanent link">¶</a></h2>
+<p>Now we're going to set up a new virtualhost in Apache to serve InvoiceNinja.</p>
+<p>Create an entry in sites-available.</p>
+<div class="codehilight code"><pre><span></span><span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">invoiceninja</span><span class="p">.</span><span class="n">conf</span>
+</pre></div>
+<p>My entry looks like this:</p>
+<div class="codehilight code"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="err">*:80</span><span class="nt">&gt;</span>
+     DocumentRoot /var/www/html/ninja/public
+     ServerName invoice.example.com
+     Redirect permanent / https://invoice.example.com/
+
+     <span class="nt">&lt;Directory</span> <span class="err">/var/www/html/ninja/public</span><span class="nt">&gt;</span>
+        Options +FollowSymlinks
+        AllowOverride All
+        Require all granted
+     <span class="nt">&lt;/Directory&gt;</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
+
+<span class="nt">&lt;VirtualHost</span> <span class="err">*:443</span><span class="nt">&gt;</span>
+    ServerName invoice.example.com
+    DocumentRoot /var/www/html/ninja/public
+    SSLEngine on
+    SSLCertificateFile /path/to/dehydrated/certs/invoice.example.com/cert.pem
+    SSLCertificateKeyFile /path/to/dehydrated/certs/invoice.example.com/privkey.pem
+    SSLCertificateChainFile /path/to/dehydrated/certs/invoice.example.com/chain.pem
+    <span class="nt">&lt;IfModule</span> <span class="err">mod_headers.c</span><span class="nt">&gt;</span>
+        Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+    <span class="nt">&lt;/IfModule&gt;</span>
+
+    <span class="nt">&lt;Directory</span> <span class="err">/var/www/html/ninja</span><span class="nt">/&gt;</span>
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    <span class="nt">&lt;/Directory&gt;</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+<p>This sets up a direct from HTTP to HTTPS. Then it points to the SSL certificates I've
+created for this subdomain. I previously wrote about <a href="https://andrewwegner.com/setup-lets-encrypt.html">how I set up SSL</a>. I followed the
+same steps, using the new subdomain.</p>
+<p>With SSL and the subdomain set up in CloudFlare, it's time to enable the site:</p>
+<div class="codehilight code"><pre><span></span>$ sudo a2ensite invoiceninja.conf
+$ sudo systemctl reload apache2
+</pre></div>
+<h2 id="completing-the-install">Completing the install<a class="headerlink" href="#completing-the-install" title="Permanent link">¶</a></h2>
+<p>Navigate to the new subdomain, and fill out the form. Installation will be
+completed in a minute or so.</p>
+<h2 id="updating">Updating<a class="headerlink" href="#updating" title="Permanent link">¶</a></h2>
+<p>At some point, InvoiceNinja will come out with an update, and I'll want to update
+to get the newest features and security patches.</p>
+<p>To start with, we want to download the newest version:</p>
+<div class="codehilight code"><pre><span></span>$ wget https://download.invoiceninja.com/ninja-v4.5.14.zip
+$ unzip ninja-v4.5.14.zip
+</pre></div>
+<p>Next, <code>rsync</code> the files to the installed directory.</p>
+<div class="codehilight code"><pre><span></span>$ sudo rsync -tr ninja/ /var/www/html/ninja/
+</pre></div>
+<p>This messes up permissions, so reset those.</p>
+<div class="codehilight code"><pre><span></span>$ <span class="nb">cd</span> /var/www/html
+$ sudo chown -R www-data:www-data ninja/
+$ sudo chmod -R <span class="m">755</span> ninja/storage
+</pre></div>
+<p>Finally, hit the <code>/update</code> URL to complete the process</p>
+<div class="codehilight code"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">invoice</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="k">update</span>
+</pre></div>
+            </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+            </div>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://andrewwegner.com/updating-php-ubuntu-1804.html" title="Previous: Updating PHP from 7.1 to 7.3 on Ubuntu 18.04">Updating PHP from 7.1 to 7.3 on Ubuntu 18.04</a></li>
+                <li class="next-article"><a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html" title="Next: Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch">Review of Udemy's Learn DaVinci Resolve 15 from scratch</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2018-07-30T13:00:00-05:00">Jul 30, 2018</time>
+<time itemprop="dateModified" datetime="2018-07-30T13:00:00-05:00">
+
+            <h4>Category</h4>
+            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>37</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam-square sidebar-social-links"></i></a>
+    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

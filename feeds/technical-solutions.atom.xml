@@ -397,7 +397,139 @@ testing any of those yet. This split will make it easier, I think, when or if I 
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Once I confirmed this worked, I added it to my user's crontab on the laptop. It will run once a day now.&lt;/p&gt;
 &lt;h2 id="next-steps"&gt;Next steps&lt;a class="headerlink" href="#next-steps" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The next steps I'll take be taking are to restrict the new SSH key on the server to only allow it to perform &lt;code&gt;rsync&lt;/code&gt; tasks. This can be done by slightly modifying the appropriate line in &lt;code&gt;authorized_keys&lt;/code&gt;. I'll see how this daily, single, back up works for a while. If I need to, I may change it to a rotating weekly backup. I don't forsee that right now, but I need a few weeks of seeing how this works and if the single day is good enough.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Updating PHP from 7.1 to 7.3 on Ubuntu 18.04</title><link href="https://andrewwegner.com/updating-php-ubuntu-1804.html" rel="alternate"></link><published>2018-07-26T10:00:00-05:00</published><updated>2018-07-26T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-26:/updating-php-ubuntu-1804.html</id><summary type="html">&lt;p&gt;A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;The next steps I'll take be taking are to restrict the new SSH key on the server to only allow it to perform &lt;code&gt;rsync&lt;/code&gt; tasks. This can be done by slightly modifying the appropriate line in &lt;code&gt;authorized_keys&lt;/code&gt;. I'll see how this daily, single, back up works for a while. If I need to, I may change it to a rotating weekly backup. I don't forsee that right now, but I need a few weeks of seeing how this works and if the single day is good enough.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Installing InvoiceNinja on Ubuntu 18.04</title><link href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html" rel="alternate"></link><published>2018-07-30T13:00:00-05:00</published><updated>2018-07-30T13:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-30:/invoiceninja-ubuntu-1804.html</id><summary type="html">&lt;p&gt;A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's been a several years since I really did a lot of freelance work. Mostly, I did it in the evening hours
+a few nights a week for some extra money. Over the last few years, that kind of work has
+slowed down for me. Mostly because I enjoy relaxing in the evenings and spending time off
+of my computer now. It's weird to type that, but "hobby coding" really hasn't had as much
+appeal to me since I started my &lt;a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html"&gt;current job&lt;/a&gt; a few years ago.&lt;/p&gt;
+&lt;p&gt;I love my job. I love working from home 100% of the time and I love being home
+when the kids get off the bus, during summer breaks, and when the weather sucks. The
+one thing this job has done though, is remove my desire to sit in my office after
+everyone else has gone to bed and just code.&lt;/p&gt;
+&lt;p&gt;But, that's ok. I've found other hobbies and am really excited about some up coming
+things I'm trying out. If they work out, I'll be able to combine my coding skills
+with other hobbies. I'm sure I'll write about it at some point.&lt;/p&gt;
+&lt;p&gt;I say all of that, because, even though I don't actively take on freelance work any
+longer, I still have clients that I did work for that will reach out once and a while
+for help, consultations or a small project. When that happens, I need a way to bill them
+for my time.&lt;/p&gt;
+&lt;p&gt;Previously, my invoices would have been whipped up in Word and converted to a PDF and sent
+off to the client. It worked for years. I was able to keep track of everything,
+properly report it (don't want to mess with the tax man) and I kept chugging along. The
+problem now, is that if I'm doing work for a client, I want to do the work and be done. I don't
+want to spent time making a presentable invoice in Word.&lt;/p&gt;
+&lt;p&gt;So, I went hunting for some software. I found &lt;a href="https://www.invoiceninja.com/"&gt;InvoiceNinja&lt;/a&gt;. It's amazing.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hosted or self hosted version&lt;/li&gt;
+&lt;li&gt;Create simple invoices&lt;/li&gt;
+&lt;li&gt;Create full quotes&lt;/li&gt;
+&lt;li&gt;API (which I will probably never use, but...it's there)&lt;/li&gt;
+&lt;li&gt;Recurring billing&lt;/li&gt;
+&lt;li&gt;Zapier integration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have this habit of self hosting my own software. See my posts on &lt;a href="https://andrewwegner.com/installing-nextcloud.html"&gt;NextCloud&lt;/a&gt;
+and &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;GitLab&lt;/a&gt; for other examples.&lt;/p&gt;
+&lt;p&gt;This rest of this post is going to walk through how I installed InvoiceNinja.&lt;/p&gt;
+&lt;h2 id="getting-started"&gt;Getting Started&lt;a class="headerlink" href="#getting-started" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I'll be self hosting &lt;a href="https://www.invoiceninja.org/"&gt;InvoiceNinja&lt;/a&gt;. You can find that on their &lt;code&gt;.org&lt;/code&gt; site
+or on &lt;a href="https://github.com/invoiceninja/invoiceninja"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In this, I'll be installing InvoiceNinja, setting up Apache to host it, and showing how
+to update it in the future.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wget https://download.invoiceninja.com/ninja-v4.5.13.zip
+$ unzip ninja-v4.5.13.zip
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This downloads and unzips InvoiceNinja 4.5.14 to the current directory. Next,
+let's move it to it's final install location and set up appropriate owner and
+permissions.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo mv ninja /var/www/html
+$ &lt;span class="nb"&gt;cd&lt;/span&gt; /var/www/html
+$ sudo chown -R www-data:www-data ninja/
+$ sudo chmod -R &lt;span class="m"&gt;755&lt;/span&gt; ninja/storage
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="database-setup"&gt;Database setup&lt;a class="headerlink" href="#database-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;InvoiceNinja runs on MySQL (or MariaDB). We need to create the database, but
+the installer will do the rest of the work for us. Log into MySQL with a user
+that can create new databases, users and permissions.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mysql -u root -p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we'll run three commands. The first is to create the new database, the second
+is to create the user. The third is to set appropriate permissions for the
+new user and new password.&lt;/p&gt;
+&lt;p&gt;!!! attention
+    Change the default password from &lt;code&gt;ninja&lt;/code&gt; to something secure&lt;/p&gt;
+&lt;p&gt;Our three commands:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;DATABASE&lt;/span&gt; &lt;span class="n"&gt;ninja&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;USER&lt;/span&gt; &lt;span class="s1"&gt;'ninja'&lt;/span&gt;&lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="s1"&gt;'localhost'&lt;/span&gt; &lt;span class="n"&gt;IDENTIFIED&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="s1"&gt;'ninja'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;GRANT&lt;/span&gt; &lt;span class="k"&gt;ALL&lt;/span&gt; &lt;span class="k"&gt;PRIVILEGES&lt;/span&gt; &lt;span class="k"&gt;ON&lt;/span&gt; &lt;span class="n"&gt;ninja&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;TO&lt;/span&gt; &lt;span class="s1"&gt;'ninja'&lt;/span&gt;&lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="s1"&gt;'localhost'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Exit MySQL.&lt;/p&gt;
+&lt;h2 id="configure-apache"&gt;Configure Apache&lt;a class="headerlink" href="#configure-apache" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now we're going to set up a new virtualhost in Apache to serve InvoiceNinja.&lt;/p&gt;
+&lt;p&gt;Create an entry in sites-available.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;nano&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apache2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sites&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;invoiceninja&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;My entry looks like this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:80&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+     DocumentRoot /var/www/html/ninja/public
+     ServerName invoice.example.com
+     Redirect permanent / https://invoice.example.com/
+
+     &lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="err"&gt;/var/www/html/ninja/public&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        Options +FollowSymlinks
+        AllowOverride All
+        Require all granted
+     &lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:443&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    ServerName invoice.example.com
+    DocumentRoot /var/www/html/ninja/public
+    SSLEngine on
+    SSLCertificateFile /path/to/dehydrated/certs/invoice.example.com/cert.pem
+    SSLCertificateKeyFile /path/to/dehydrated/certs/invoice.example.com/privkey.pem
+    SSLCertificateChainFile /path/to/dehydrated/certs/invoice.example.com/chain.pem
+    &lt;span class="nt"&gt;&amp;lt;IfModule&lt;/span&gt; &lt;span class="err"&gt;mod_headers.c&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+    &lt;span class="nt"&gt;&amp;lt;/IfModule&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="err"&gt;/var/www/html/ninja&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    &lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This sets up a direct from HTTP to HTTPS. Then it points to the SSL certificates I've
+created for this subdomain. I previously wrote about &lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;how I set up SSL&lt;/a&gt;. I followed the
+same steps, using the new subdomain.&lt;/p&gt;
+&lt;p&gt;With SSL and the subdomain set up in CloudFlare, it's time to enable the site:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo a2ensite invoiceninja.conf
+$ sudo systemctl reload apache2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="completing-the-install"&gt;Completing the install&lt;a class="headerlink" href="#completing-the-install" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Navigate to the new subdomain, and fill out the form. Installation will be
+completed in a minute or so.&lt;/p&gt;
+&lt;h2 id="updating"&gt;Updating&lt;a class="headerlink" href="#updating" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At some point, InvoiceNinja will come out with an update, and I'll want to update
+to get the newest features and security patches.&lt;/p&gt;
+&lt;p&gt;To start with, we want to download the newest version:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wget https://download.invoiceninja.com/ninja-v4.5.14.zip
+$ unzip ninja-v4.5.14.zip
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next, &lt;code&gt;rsync&lt;/code&gt; the files to the installed directory.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo rsync -tr ninja/ /var/www/html/ninja/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This messes up permissions, so reset those.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;cd&lt;/span&gt; /var/www/html
+$ sudo chown -R www-data:www-data ninja/
+$ sudo chmod -R &lt;span class="m"&gt;755&lt;/span&gt; ninja/storage
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, hit the &lt;code&gt;/update&lt;/code&gt; URL to complete the process&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;invoice&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;update&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="technical"></category></entry><entry><title>Updating PHP from 7.1 to 7.3 on Ubuntu 18.04</title><link href="https://andrewwegner.com/updating-php-ubuntu-1804.html" rel="alternate"></link><published>2018-07-26T10:00:00-05:00</published><updated>2018-07-26T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-26:/updating-php-ubuntu-1804.html</id><summary type="html">&lt;p&gt;A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The &lt;a href="https://andrewwegner.com/new-house-server.html"&gt;new server&lt;/a&gt; has been up and running for about a year and a half now. It's still
 working really well. The thing that I'm happiest with is &lt;a href="https://andrewwegner.com/installing-nextcloud.html"&gt;my NextCloud install&lt;/a&gt;. Having
@@ -1013,13 +1145,13 @@ environment. This will break the builds, but it will also ensure that private va
 &lt;/ul&gt;</content><category term="technical"></category></entry><entry><title>Installing NextCloud</title><link href="https://andrewwegner.com/installing-nextcloud.html" rel="alternate"></link><published>2018-03-27T23:30:00-05:00</published><updated>2018-03-27T23:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-03-27:/installing-nextcloud.html</id><summary type="html">&lt;p&gt;The ZFS pool is set up. It's time to use all that storage space and install NextCloud.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the last post, I described how I &lt;a href="https://andrewwegner.com/zfs-pool-on-ubuntu.html"&gt;set up ZFS on the new server&lt;/a&gt;. With a newly configured operating system and tons of space, it's time to start using it. One of the goals
-I &lt;a href="https://andrewwegner.com/new-house-server.html"&gt;mentioned&lt;/a&gt; when I set up this server was the ability to: &lt;/p&gt;
+I &lt;a href="https://andrewwegner.com/new-house-server.html"&gt;mentioned&lt;/a&gt; when I set up this server was the ability to:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Back up data from all devices in the house automatically. As camera phones have gotten better, we've found that we carry our bulky digital camera less and less. The problem
- with the phone camera is that we need to get the pictures to the computer. I don't want to hunt down a data cable or email the pictures to myself. I'm also not a fan of 
+ with the phone camera is that we need to get the pictures to the computer. I don't want to hunt down a data cable or email the pictures to myself. I'm also not a fan of
  posting everything to social media. I want my phone to send the pictures to a backup location automatically.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I'm going to accomplish that by hosting an instance of &lt;a href="https://nextcloud.com/"&gt;NextCloud&lt;/a&gt; on this new server. Fortunately, the install process is pretty simple for this one. NextCloud provides 
+&lt;p&gt;I'm going to accomplish that by hosting an instance of &lt;a href="https://nextcloud.com/"&gt;NextCloud&lt;/a&gt; on this new server. Fortunately, the install process is pretty simple for this one. NextCloud provides
 &lt;a href="https://nextcloud.com/install/"&gt;installation instructions&lt;/a&gt;. When I installed it in mid-February 2018, it was on version 12.x. As of this post, in late March 2018, it's on version 13.x. I'll cover install
 and upgrade processes in this post.&lt;/p&gt;
 &lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -1049,19 +1181,19 @@ that as needed. If you do so, the virtual host will need to be modified slightly
 &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;unzip&lt;/span&gt; &lt;span class="n"&gt;nextcloud&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zip&lt;/span&gt;
 &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;mv&lt;/span&gt; &lt;span class="n"&gt;nextcloud&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;We need to adjust ownership of the files so that Apache can read them. The default user and group, in this case is &lt;code&gt;www-data&lt;/code&gt;. If you have configured your server to use a 
+&lt;p&gt;We need to adjust ownership of the files so that Apache can read them. The default user and group, in this case is &lt;code&gt;www-data&lt;/code&gt;. If you have configured your server to use a
 different user or group, adjust this command accordingly.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;chown&lt;/span&gt; &lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;data&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nextcloud&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="create-the-virtual-host"&gt;Create the Virtual Host&lt;a class="headerlink" href="#create-the-virtual-host" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;I'll be exposing this to the internet and I'll be accessing it via the internet. That means I really don't want to send data unencrypted to or from NextCloud. I'll be setting
-up the standard port 80 web server traffic to redirect to the secure port of 443. I cover &lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;generating SSL certificates&lt;/a&gt; in another post. I use &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;. The keys 
+up the standard port 80 web server traffic to redirect to the secure port of 443. I cover &lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;generating SSL certificates&lt;/a&gt; in another post. I use &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;. The keys
 referenced in the virtual host configuration file below created by that process.&lt;/p&gt;
 &lt;p&gt;Create a new virtual host.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;touch&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apache2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sites&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nextcloud&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
 &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apache2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sites&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nextcloud&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apache2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sites&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;enabled&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nextcloud&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now you need to edit this newly created file &lt;/p&gt;
+&lt;p&gt;Now you need to edit this newly created file&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;nano&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apache2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sites&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nextcloud&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Paste the following:&lt;/p&gt;
@@ -1106,11 +1238,11 @@ referenced in the virtual host configuration file below created by that process.
     CustomLog /var/log/apache2/nas.example.com-access_log common
  &lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;There are two separate virtual host configurations being created here. The first one, on port 80, is setting up the permanent redirect to the HTTPS site. &lt;/p&gt;
+&lt;p&gt;There are two separate virtual host configurations being created here. The first one, on port 80, is setting up the permanent redirect to the HTTPS site.&lt;/p&gt;
 &lt;p&gt;In the secure virtual host configuration, we're setting a small rewrite rule to provide nicer URLs and configuring the SSL certificates to use. The &lt;code&gt;DocumentRoot&lt;/code&gt; variables
 should match the path you installed NextCloud into in the previous step.&lt;/p&gt;
 &lt;h3 id="application-configuration"&gt;Application Configuration&lt;a class="headerlink" href="#application-configuration" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;There are a few settings that you need to change in the NextCloud configuration. Do this by editing &lt;code&gt;/var/www/html/nextcloud/config/config.php&lt;/code&gt;. If this file doesn't exist, 
+&lt;p&gt;There are a few settings that you need to change in the NextCloud configuration. Do this by editing &lt;code&gt;/var/www/html/nextcloud/config/config.php&lt;/code&gt;. If this file doesn't exist,
 you need to copy &lt;code&gt;/var/www/html/nextcloud/config/config.sample.php&lt;/code&gt; to &lt;code&gt;/var/www/html/nextcloud/config/config.php&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The important settings to check are:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="ss"&gt;`datadirectory`&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;In&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt; &lt;span class="k"&gt;case&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="n"&gt;pointed&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;dataset&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="n"&gt;created&lt;/span&gt; &lt;span class="k"&gt;when&lt;/span&gt; &lt;span class="n"&gt;I&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;set&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt; &lt;span class="n"&gt;ZFS&lt;/span&gt; &lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -1120,12 +1252,13 @@ you need to copy &lt;code&gt;/var/www/html/nextcloud/config/config.sample.php&lt
 &lt;p&gt;Restart Apache and the navigate to the domain you've set up for your NextCloud installation. I am assuming that you know how to set up a DNS record for the server name
 you specified in your virtual host configuration.&lt;/p&gt;
 &lt;p&gt;Once you've reached the domain in your web browser, follow the instructions on screen. You'll need the database username and password you created above. You'll also create an
-administration user. &lt;/p&gt;
+administration user.&lt;/p&gt;
 &lt;h3 id="upgrading"&gt;Upgrading&lt;a class="headerlink" href="#upgrading" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;After some time, NextCloud will update. You should apply these updates, as they'll include new features and security patches. Log into NextCloud using your administration user.
 Click on the Gear icon in the upper right and pick "Settings". On the left hand side, select "Basic settings". Half way down the page you'll see the version you are currently
 running and whether or not there is an update available. If there is, you can begin the update from here.&lt;/p&gt;
-&lt;p&gt;NextCloud does not support skipping versions when updating. This means if you are on version 12, you can upgrade to version 13. You can not, however, upgrade directly from 12 to 14. &lt;/p&gt;
+&lt;p&gt;NextCloud does not support skipping versions when updating. This means if you are on version 12, you can upgrade to version 13. You can not, however, upgrade directly from 12 to 14.&lt;/p&gt;
+&lt;p&gt;Additionally, there was a very minor hiccup when I upgraded the underlying PHP version. I covered that process in a &lt;a href="https://andrewwegner.com/updating-php-ubuntu-1804.html"&gt;later post&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="syncing-data"&gt;Syncing data&lt;a class="headerlink" href="#syncing-data" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;NextCloud provides client applications that allow you to automatically sync data to your install. There are clients for both computers and mobile devices. My use case only
 requires the mobile clients right now, but that may change in the future. From the &lt;a href="https://nextcloud.com/install/"&gt;install page&lt;/a&gt;, you can find the clients for Android, iOS and Windows devices. Select
@@ -1135,8 +1268,8 @@ uploads of new pictures from my devices only when I'm on a wireless connection (
 doesn't let me whitelist uploading from specific networks. I'd prefer I don't send my pictures unencrypted.&lt;/p&gt;
 &lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've been using NextCloud for almost three months so far. I love it. Previously, I'd have to find a data cable and remember to manually backup my pictures once and a while. Now,
-it "just happens". If I take a picture at home, it's backed up within seconds. If I take a bunch of pictures while I'm out of the house, my pictures are backed up within 
-minutes of me getting home. &lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Setting up a ZFS pool on Ubuntu 16.04</title><link href="https://andrewwegner.com/zfs-pool-on-ubuntu.html" rel="alternate"></link><published>2018-02-15T22:30:00-06:00</published><updated>2018-02-15T22:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-15:/zfs-pool-on-ubuntu.html</id><summary type="html">&lt;p&gt;With the backup server assembled, it's time to start configuring it. This post covers setting up the ZFS pool for all the data&lt;/p&gt;</summary><content type="html">
+it "just happens". If I take a picture at home, it's backed up within seconds. If I take a bunch of pictures while I'm out of the house, my pictures are backed up within
+minutes of me getting home.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Setting up a ZFS pool on Ubuntu 16.04</title><link href="https://andrewwegner.com/zfs-pool-on-ubuntu.html" rel="alternate"></link><published>2018-02-15T22:30:00-06:00</published><updated>2018-02-15T22:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-15:/zfs-pool-on-ubuntu.html</id><summary type="html">&lt;p&gt;With the backup server assembled, it's time to start configuring it. This post covers setting up the ZFS pool for all the data&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://andrewwegner.com/new-house-server.html"&gt;Previously&lt;/a&gt; in this series, the new NAS was assembled. Ubuntu 16.04 has been installed and updated. It's time to do something with all those hard drives! &lt;/p&gt;
 &lt;p&gt;I'll be setting the seven 4TB drives in a single &lt;a href="https://en.wikipedia.org/wiki/ZFS"&gt;ZFS&lt;/a&gt; pool. I'm using ZFS for protection against data corruption. It offers several other &lt;a href="https://wiki.ubuntu.com/ZFS"&gt;features&lt;/a&gt; too. I'll
