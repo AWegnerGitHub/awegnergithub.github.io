@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="Setting up GitLab runners "/>
+<meta property="og:url" content="https://andrewwegner.com/setting-up-gitlab-runners.html" />
+<meta property="og:description" content="How I set up a GitLab runner" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2018-10-22T11:00:00-05:00" />
+<meta name="twitter:title" content="Setting up GitLab runners ">
+<meta name="twitter:description" content="How I set up a GitLab runner">
+
+        <title>Setting up GitLab runners  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+
+<script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("653100411");
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://andrewwegner.com">Home</a></li>
+                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<meta itemprop="headline" content="Setting up GitLab runners" />
+<time itemprop="datePublished" datetime="2018-10-22T11:00:00-05:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="https://andrewwegner.com/setting-up-gitlab-runners.html" />
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://andrewwegner.com/setting-up-gitlab-runners.html"> Setting up GitLab runners  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid" id="table-of-contents">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#set-up">Set up</a><ul>
+<li><a href="#docker">Docker</a></li>
+<li><a href="#gitlab-runner">GitLab Runner</a></li>
+</ul>
+</li>
+<li><a href="#using-the-cicd-pipeline">Using the CI/CD pipeline</a><ul>
+<li><a href="#static-analysis">Static Analysis</a></li>
+<li><a href="#test">Test</a></li>
+<li><a href="#deploy-testing">Deploy Testing</a></li>
+<li><a href="#deploy-production">Deploy Production</a></li>
+</ul>
+</li>
+<li><a href="#environment-set-up">Environment set up</a><ul>
+<li><a href="#gitlab-ciyml">.gitlab-ci.yml</a></li>
+</ul>
+</li>
+<li><a href="#gitlab-ciyml-explanation">.gitlab-ci.yml explanation</a><ul>
+<li><a href="#tags">Tags</a></li>
+<li><a href="#allow-failures">Allow failures</a></li>
+<li><a href="#manual-deployment">Manual deployment</a></li>
+</ul>
+</li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <div itemprop="articleBody mainEntityOfPage">
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>It's been a year and a half since I set up GitLab. In that time I've used to it
+store my personal code, keep track of features I want to add to my own projects,
+and generally loved it. One thing I haven't done though, is play with the CI/CD
+features. I've been wanting to, but never got around to it.</p>
+<p>To utilize the CI/CD features, you need to set up a <a href="https://docs.gitlab.com/runner/">GitLab runner</a></p>
+<h2 id="set-up">Set up<a class="headerlink" href="#set-up" title="Permanent link">¶</a></h2>
+<h3 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">¶</a></h3>
+<p>I'll be running my runners in <a href="https://www.docker.com/">Docker</a> containers. There are other options,
+but for my home environment, this is easiest to set up and maintain.</p>
+<p>Let's start by installing Docker:</p>
+<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span> <span class="n">ca</span><span class="o">-</span><span class="n">certificates</span> <span class="n">curl</span> <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">fsSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="p">.</span><span class="n">docker</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">gpg</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="k">key</span> <span class="k">add</span> <span class="o">-</span>
+<span class="n">sudo</span> <span class="k">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="ss">"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="k">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span> <span class="o">-</span><span class="n">y</span>
+</pre></div>
+<p>This is going to add the Docker repository and install the community edition.</p>
+<h3 id="gitlab-runner">GitLab Runner<a class="headerlink" href="#gitlab-runner" title="Permanent link">¶</a></h3>
+<p>Once Docker is installed and working, we can install the GitLab runner.</p>
+<div class="codehilight code"><pre><span></span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="o">-</span><span class="n">downloads</span><span class="p">.</span><span class="n">s3</span><span class="p">.</span><span class="n">amazonaws</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">binaries</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">amd64</span>
+<span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span>
+<span class="n">useradd</span> <span class="c1">--comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash</span>
+<span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span> <span class="n">install</span> <span class="c1">--user=gitlab-runner --working-directory=/home/gitlab-runner</span>
+<span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span> <span class="k">start</span>
+</pre></div>
+<p>This is downloading the install package. Then it adds a new user, that the runner will run as. This is a nice security precaution to limit what the runner has access to on the system. It's not full security, but it does all me to restrict what that particular user has access to on the server.</p>
+<p>Then the run is started.</p>
+<p>Next the runner needs to be registered. Log into GitLab, and navigate to
+the project that will be using this runner. It should be available at this link:</p>
+<div class="codehilight code"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">url</span><span class="p">.</span><span class="k">to</span><span class="p">.</span><span class="n">your</span><span class="p">.</span><span class="n">gitlab</span><span class="p">.</span><span class="n">install</span><span class="o">/&lt;</span><span class="n">account</span><span class="o">&gt;/&lt;</span><span class="n">repo</span><span class="o">&gt;/</span><span class="n">settings</span><span class="o">/</span><span class="n">ci_cd</span>
+</pre></div>
+<p>Grab the GitLab CI token. That is needed in the next step. Run the <code>gitlab-runner register</code> command, and fill in your values as required.</p>
+<div class="codehilight code"><pre><span></span>$ <span class="nv">gitlab</span><span class="o">-</span><span class="nv">runner</span> <span class="nv">register</span>
+<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">gitlab</span><span class="o">-</span><span class="nv">ci</span> <span class="nv">coordinator</span> <span class="nv">URL</span> <span class="ss">(</span><span class="nv">e</span>.<span class="nv">g</span>. <span class="nv">https</span>:<span class="o">//</span><span class="nv">gitlab</span>.<span class="nv">com</span><span class="o">/</span><span class="ss">)</span>:
+<span class="nv">https</span>:<span class="o">//</span><span class="nv">url</span>.<span class="nv">to</span>.<span class="nv">your</span>.<span class="nv">gitlab</span>.<span class="nv">install</span><span class="o">/</span>
+
+<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">gitlab</span><span class="o">-</span><span class="nv">ci</span> <span class="nv">token</span> <span class="k">for</span> <span class="nv">this</span> <span class="nv">runner</span>:
+[<span class="nv">redacted</span>]]
+
+<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">gitlab</span><span class="o">-</span><span class="nv">ci</span> <span class="nv">description</span> <span class="k">for</span> <span class="nv">this</span> <span class="nv">runner</span>:
+[<span class="nv">my</span><span class="o">-</span><span class="nv">runner</span>]: <span class="nv">python</span><span class="o">-</span><span class="nv">runner</span>
+
+<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">gitlab</span><span class="o">-</span><span class="nv">ci</span> <span class="nv">tags</span> <span class="k">for</span> <span class="nv">this</span> <span class="nv">runner</span> <span class="ss">(</span><span class="nv">comma</span> <span class="nv">separated</span><span class="ss">)</span>:
+<span class="nv">python</span>
+<span class="nv">Registering</span> <span class="nv">runner</span>... <span class="nv">succeeded</span>                     <span class="nv">runner</span><span class="o">=</span><span class="mi">66</span><span class="nv">m_339h</span>
+
+<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">executor</span>: <span class="nv">docker</span><span class="o">-</span><span class="nv">ssh</span><span class="o">+</span><span class="nv">machine</span>, <span class="nv">docker</span>, <span class="nv">docker</span><span class="o">-</span><span class="nv">ssh</span>, <span class="nv">parallels</span>, <span class="nv">shell</span>, <span class="nv">ssh</span>, <span class="nv">virtualbox</span>, <span class="nv">docker</span><span class="o">+</span><span class="nv">machine</span>, <span class="nv">kubernetes</span>:
+<span class="nv">docker</span>
+
+<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">default</span> <span class="nv">Docker</span> <span class="nv">image</span> <span class="ss">(</span><span class="nv">e</span>.<span class="nv">g</span>. <span class="nv">ruby</span>:<span class="mi">2</span>.<span class="mi">1</span><span class="ss">)</span>:
+<span class="nv">alpine</span>:<span class="nv">latest</span>
+
+<span class="nv">Runner</span> <span class="nv">registered</span> <span class="nv">successfully</span>. <span class="nv">Feel</span> <span class="nv">free</span> <span class="nv">to</span> <span class="nv">start</span> <span class="nv">it</span>, <span class="nv">but</span> <span class="k">if</span> <span class="nv">it</span><span class="s1">'</span><span class="s">s running already the config should be automatically reloaded!</span>
+</pre></div>
+<p>My experience with Docker is limited, so I am using the latest alpine version. I'm sure there are better ones to use for a simple Python application, but this works for me and I'm not concerned about the absolute fastest CI/CD pipeline on my server.</p>
+<h2 id="using-the-cicd-pipeline">Using the CI/CD pipeline<a class="headerlink" href="#using-the-cicd-pipeline" title="Permanent link">¶</a></h2>
+<p>At this point, the GitLab runner is registered to a single project and is ready to use. You can enable your project to use this pipeline by adding a <code>.gitlab-ci.yml</code> file to the root of your repository.</p>
+<p>I used it to set up the following pipeline.</p>
+<p><img alt="Python - GitLab Pipeline" src="{attach}images/gitlab-python-pipeline.png.jpg"/></p>
+<p>This pipeline has 4 stages.</p>
+<h3 id="static-analysis">Static Analysis<a class="headerlink" href="#static-analysis" title="Permanent link">¶</a></h3>
+<p>In the Static Analysis phase, I run various analysis tools over my code. The goal here is to ensure that my code, YAML documents, and documentation are easy to read and use.</p>
+<p>You'll notice the the xenon task has a warning in the image. I have the settings pretty strict in this pipeline, where I allow a very low <a href="https://radon.readthedocs.io/en/latest/intro.html#cyclomatic-complexity">Cyclomatic Complexity</a>. In this project, I have one function that is just barely failing my strict settings. I have allowed the pipeline to continue if this one particular task fails.</p>
+<p>I could either increase the allowed complexity in the code base to ignore the warning. Alternatively, I could not allow the pipeline to proceed until I fix this function. This was one of those instances where it hasn't been worth it to refactor the code, but I want to be reminded I <em>should</em> fix it, so I allow the pipeline to proceed and show me the error.</p>
+<h3 id="test">Test<a class="headerlink" href="#test" title="Permanent link">¶</a></h3>
+<p>The Test phase should be fairly self explanatory. It's the stage where I run my test suite. It will only run if the Static Analysis phase completes successfully (or I allow a specific job to fail, in the case of the xenon task).</p>
+<h3 id="deploy-testing">Deploy Testing<a class="headerlink" href="#deploy-testing" title="Permanent link">¶</a></h3>
+<p>Once the test suite has completed successfully, I deploy the package to the test instance of PyPI. This ensures that I have a successful build and deploy.</p>
+<h3 id="deploy-production">Deploy Production<a class="headerlink" href="#deploy-production" title="Permanent link">¶</a></h3>
+<p>Deployment to production is a manual step. I did this because I don't always want to push changes to production PyPI. This is especially true if I'm only making small fixes - such as white space changes. I don't want to skip the entire CI process, but I also don't want to push out to production for something so minor.</p>
+<h2 id="environment-set-up">Environment set up<a class="headerlink" href="#environment-set-up" title="Permanent link">¶</a></h2>
+<p>One of my biggest complaints about the Travis CI integration with GitHub is how you <a href="https://andrewwegner.com/travisci-insecure-environment-variables.html">can't trust environment variables in Travis CI</a>. Since I control the server that this runner is connected to, I have no problem adding environment variables into GitLab.</p>
+<p>In the project, I was able to add these by going to Settings-&gt;CI/CD and expanding the Variables section. I needed to store credentials for both the test and production instances of PyPI.</p>
+<p><img alt="GitLab Environment Variables" src="{attach}images/gitlab-env-variables.png.jpg"/></p>
+<p>With these added, they are now accessible by my <code>.gitlab-ci.yml</code> file.</p>
+<h3 id="gitlab-ciyml">.gitlab-ci.yml<a class="headerlink" href="#gitlab-ciyml" title="Permanent link">¶</a></h3>
+<p>The script I use to build the pipeline is as follows:</p>
+<div class="codehilight code"><pre><span></span><span class="nc">image</span><span class="err">:</span><span class="w"> </span><span class="ss">"python:3.7"</span><span class="w"></span>
+
+<span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="nl">tag</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">tags</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"></span>
+
+<span class="nl">before_script</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="c1">--version</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="p">.</span><span class="o">[</span><span class="n">dev</span><span class="o">]</span><span class="w"></span>
+
+<span class="nl">stages</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Test</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Testing</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Production</span><span class="w"></span>
+
+<span class="nl">flake8</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stage</span><span class="p">:</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
+<span class="w">  </span><span class="nl">extends</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
+<span class="w">  </span><span class="nl">script</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">flake8</span><span class="w"> </span><span class="c1">--max-line-length=120</span>
+
+<span class="nl">doc8</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stage</span><span class="p">:</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
+<span class="w">  </span><span class="nl">extends</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
+<span class="w">  </span><span class="nl">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
+<span class="w">  </span><span class="nl">script</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">doc8</span><span class="w"> </span><span class="c1">--max-line-length=100 --ignore-path=docs/_build/* docs/</span>
+
+<span class="nl">yamllint</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stage</span><span class="p">:</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
+<span class="w">  </span><span class="nl">extends</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
+<span class="w">  </span><span class="nl">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
+<span class="w">  </span><span class="nl">script</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">yamllint</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+
+<span class="nl">bandit</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stage</span><span class="p">:</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
+<span class="w">  </span><span class="nl">extends</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
+<span class="w">  </span><span class="nl">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
+<span class="w">  </span><span class="nl">script</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">bandit</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">B101</span><span class="w"> </span><span class="n">my_package</span><span class="w"></span>
+
+<span class="nl">radon</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stage</span><span class="p">:</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
+<span class="w">  </span><span class="nl">extends</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
+<span class="w">  </span><span class="nl">script</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">radon</span><span class="w"> </span><span class="n">cc</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">-</span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="n">nb</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">radon</span><span class="w"> </span><span class="n">mi</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">-</span><span class="n">nb</span><span class="w"></span>
+
+<span class="nl">xenon</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stage</span><span class="p">:</span><span class="w"> </span><span class="k">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
+<span class="w">  </span><span class="nl">extends</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
+<span class="w">  </span><span class="nl">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
+<span class="w">  </span><span class="nl">script</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">xenon</span><span class="w"> </span><span class="c1">--max-absolute B --max-modules B --max-average B my_package/</span>
+
+<span class="nl">pytest</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Test</span><span class="w"></span>
+<span class="w">  </span><span class="nl">extends</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
+<span class="w">  </span><span class="nl">script</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">pytest</span><span class="w"></span>
+
+<span class="nl">deploy_testing</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Testing</span><span class="w"></span>
+<span class="w">  </span><span class="nl">extends</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
+<span class="w">  </span><span class="nl">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nl">TWINE_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="n">PYPI_TEST_USERNAME</span><span class="w"></span>
+<span class="w">    </span><span class="nl">TWINE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="n">PYPI_TEST_PASSWORD</span><span class="w"></span>
+<span class="w">  </span><span class="nl">script</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">setup</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">sdist</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">twine</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="c1">--repository-url $PYPI_TEST_URL dist/*</span>
+
+<span class="nl">deploy_production</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Production</span><span class="w"></span>
+<span class="w">  </span><span class="nl">extends</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
+<span class="w">  </span><span class="k">when</span><span class="err">:</span><span class="w"> </span><span class="n">manual</span><span class="w"></span>
+<span class="w">  </span><span class="nl">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nl">TWINE_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="n">PYPI_PROD_USERNAME</span><span class="w"></span>
+<span class="w">    </span><span class="nl">TWINE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="n">PYPI_PROD_PASSWORD</span><span class="w"></span>
+<span class="w">  </span><span class="nl">script</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">setup</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">sdist</span><span class="w"></span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">twine</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">dist</span><span class="cm">/*</span>
+</pre></div>
+<h2 id="gitlab-ciyml-explanation">.gitlab-ci.yml explanation<a class="headerlink" href="#gitlab-ciyml-explanation" title="Permanent link">¶</a></h2>
+<p>There are a few areas that I feel need to be explained in the script above.</p>
+<h3 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">¶</a></h3>
+<div class="codehilight code"><pre><span></span><span class="nl">.python-tag:</span>
+  <span class="nl">tags:</span>
+    <span class="err">-</span> <span class="nf">python</span>
+</pre></div>
+<p>This section is a template that is used to add the <code>python</code> tag to a job step. The Runner will only run tasks that have a tag you assigned to it. This is useful if you are building across multiple operating systems or across multiple languages. You don't want a runner set up to test against a Windows environment picking up tasks for a Linux environment. In my case, everything is being run for a single runner.</p>
+<p>In each step, I need to add this:</p>
+<div class="codehilight code"><pre><span></span><span class="n">extends</span><span class="p">:</span>
+  <span class="o">-</span> <span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+</pre></div>
+<p>With this, the <code>python</code> tag will be automatically applied to the task. For a simple pipeline like mine, it may seem like overkill, but it's useful if I want to force other tags or steps.</p>
+<h3 id="allow-failures">Allow failures<a class="headerlink" href="#allow-failures" title="Permanent link">¶</a></h3>
+<div class="codehilight code"><pre><span></span><span class="n">xenon</span><span class="o">:</span>
+  <span class="n">stage</span><span class="o">:</span> <span class="n">Static</span> <span class="n">Analysis</span>
+  <span class="kd">extends</span><span class="o">:</span>
+    <span class="o">-</span> <span class="o">.</span><span class="na">python</span><span class="o">-</span><span class="n">tag</span>
+  <span class="n">allow_failure</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="n">script</span><span class="o">:</span>
+    <span class="o">-</span> <span class="n">xenon</span> <span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">absolute</span> <span class="n">B</span> <span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">modules</span> <span class="n">B</span> <span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">average</span> <span class="n">B</span> <span class="n">my_package</span><span class="o">/</span>
+</pre></div>
+<p>I previously mentioned that I allowed the xenon step to fail. This is accomplished with the <code>allow_failue: true</code> setting you see here. Since this setting is in place, the pipeline will proceed even if this single task fails.</p>
+<h3 id="manual-deployment">Manual deployment<a class="headerlink" href="#manual-deployment" title="Permanent link">¶</a></h3>
+<div class="codehilight code"><pre><span></span><span class="n">deploy_production</span><span class="o">:</span>
+  <span class="n">stage</span><span class="o">:</span> <span class="n">Deploy</span> <span class="n">Production</span>
+  <span class="kd">extends</span><span class="o">:</span>
+    <span class="o">-</span> <span class="o">.</span><span class="na">python</span><span class="o">-</span><span class="n">tag</span>
+  <span class="n">when</span><span class="o">:</span> <span class="n">manual</span>
+  <span class="n">variables</span><span class="o">:</span>
+    <span class="n">TWINE_USERNAME</span><span class="o">:</span> <span class="n">$PYPI_PROD_USERNAME</span>
+    <span class="n">TWINE_PASSWORD</span><span class="o">:</span> <span class="n">$PYPI_PROD_PASSWORD</span>
+  <span class="n">script</span><span class="o">:</span>
+    <span class="o">-</span> <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="na">py</span> <span class="n">sdist</span>
+    <span class="o">-</span> <span class="n">twine</span> <span class="n">upload</span> <span class="n">dist</span><span class="o">/*</span>
+</pre></div>
+<p>The deploy to production is a manual step. I use <code>when: manual</code> to ensure this step doesn't occur automatically. At some point in the future, this project will be stable and won't have minor fixes any longer and I'll want to automatically deploy to production without interaction. When I reach that point, I'll just need to remove this line. As long as the preceding steps succeed, this one will be performed as well.</p>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">¶</a></h2>
+<p>Now that I've set this up and come to rely on it, I think my next steps will be converting my home Minecraft Server to use the GitLab pipelines to automatically deploy updates. Look for that post in the future.</p>
+            </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+            </div>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://andrewwegner.com/git-45-minute-crash-course.html" title="Previous: Review of Udemy&#39;s renamed The 2018 Git Complete: 45 minute crash course using Angular.">Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.</a></li>
+                <li class="next-article"><a href="https://andrewwegner.com/docker-essentials-course.html" title="Next: Review of Udemy&#39;s Docker and Containers: The Essentials">Review of Udemy's Docker and Containers: The Essentials</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2018-10-22T11:00:00-05:00">Oct 22, 2018</time>
+<time itemprop="dateModified" datetime="2018-10-22T11:00:00-05:00">
+
+            <h4>Category</h4>
+            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>38</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam-square sidebar-social-links"></i></a>
+    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
