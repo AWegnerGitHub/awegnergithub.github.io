@@ -1,5 +1,452 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2019-03-13T11:30:00-05:00</updated><entry><title>Upgrading the home network to use Ubiquiti products</title><link href="https://andrewwegner.com/ubiquiti-home-network.html" rel="alternate"></link><published>2019-03-13T11:30:00-05:00</published><updated>2019-03-13T11:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-03-13:/ubiquiti-home-network.html</id><summary type="html">&lt;p&gt;My home network received a major upgrade. This post covers the new hardware and impressions a month after the upgrade.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2019-10-22T11:00:00-05:00</updated><entry><title>Setting up GitLab runners</title><link href="https://andrewwegner.com/setting-up-gitlab-runners.html" rel="alternate"></link><published>2019-10-22T11:00:00-05:00</published><updated>2019-10-22T11:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-10-22:/setting-up-gitlab-runners.html</id><summary type="html">&lt;p&gt;How I set up a GitLab runner&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's been a year and a half since I set up GitLab. In that time I've used to it
+store my personal code, keep track of features I want to add to my own projects,
+and generally loved it. One thing I haven't done though, is play with the CI/CD
+features. I've been wanting to, but never got around to it.&lt;/p&gt;
+&lt;p&gt;To utilize the CI/CD features, you need to set up a &lt;a href="https://docs.gitlab.com/runner/"&gt;GitLab runner&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="set-up"&gt;Set up&lt;a class="headerlink" href="#set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="docker"&gt;Docker&lt;a class="headerlink" href="#docker" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I'll be running my runners in &lt;a href="https://www.docker.com/"&gt;Docker&lt;/a&gt; containers. There are other options,
+but for my home environment, this is easiest to set up and maintain.&lt;/p&gt;
+&lt;p&gt;Let's start by installing Docker:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;transport&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt; &lt;span class="n"&gt;ca&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;certificates&lt;/span&gt; &lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="n"&gt;software&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;properties&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;
+&lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fsSL&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gpg&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;key&lt;/span&gt; &lt;span class="k"&gt;add&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="k"&gt;add&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;repository&lt;/span&gt; &lt;span class="ss"&gt;"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="k"&gt;update&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ce&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is going to add the Docker repository and install the community edition.&lt;/p&gt;
+&lt;h3 id="gitlab-runner"&gt;GitLab Runner&lt;a class="headerlink" href="#gitlab-runner" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once Docker is installed and working, we can install the GitLab runner.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;downloads&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amazonaws&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;latest&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;binaries&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;amd64&lt;/span&gt;
+&lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;
+&lt;span class="n"&gt;useradd&lt;/span&gt; &lt;span class="c1"&gt;--comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash&lt;/span&gt;
+&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="c1"&gt;--user=gitlab-runner --working-directory=/home/gitlab-runner&lt;/span&gt;
+&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt; &lt;span class="k"&gt;start&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is downloading the install package. Then it adds a new user, that the runner will run as. This is a nice security precaution to limit what the runner has access to on the system. It's not full security, but it does all me to restrict what that particular user has access to on the server.&lt;/p&gt;
+&lt;p&gt;Then the run is started.&lt;/p&gt;
+&lt;p&gt;Next the runner needs to be registered. Log into GitLab, and navigate to
+the project that will be using this runner. It should be available at this link:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="o"&gt;/&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;account&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ci_cd&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Grab the GitLab CI token. That is needed in the next step. Run the &lt;code&gt;gitlab-runner register&lt;/code&gt; command, and fill in your values as required.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nv"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;runner&lt;/span&gt; &lt;span class="nv"&gt;register&lt;/span&gt;
+&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ci&lt;/span&gt; &lt;span class="nv"&gt;coordinator&lt;/span&gt; &lt;span class="nv"&gt;URL&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;e&lt;/span&gt;.&lt;span class="nv"&gt;g&lt;/span&gt;. &lt;span class="nv"&gt;https&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;gitlab&lt;/span&gt;.&lt;span class="nv"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
+&lt;span class="nv"&gt;https&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;url&lt;/span&gt;.&lt;span class="nv"&gt;to&lt;/span&gt;.&lt;span class="nv"&gt;your&lt;/span&gt;.&lt;span class="nv"&gt;gitlab&lt;/span&gt;.&lt;span class="nv"&gt;install&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+
+&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ci&lt;/span&gt; &lt;span class="nv"&gt;token&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;runner&lt;/span&gt;:
+[&lt;span class="nv"&gt;redacted&lt;/span&gt;]]
+
+&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ci&lt;/span&gt; &lt;span class="nv"&gt;description&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;runner&lt;/span&gt;:
+[&lt;span class="nv"&gt;my&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;runner&lt;/span&gt;]: &lt;span class="nv"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;runner&lt;/span&gt;
+
+&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ci&lt;/span&gt; &lt;span class="nv"&gt;tags&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;runner&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;comma&lt;/span&gt; &lt;span class="nv"&gt;separated&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
+&lt;span class="nv"&gt;python&lt;/span&gt;
+&lt;span class="nv"&gt;Registering&lt;/span&gt; &lt;span class="nv"&gt;runner&lt;/span&gt;... &lt;span class="nv"&gt;succeeded&lt;/span&gt;                     &lt;span class="nv"&gt;runner&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="nv"&gt;m_339h&lt;/span&gt;
+
+&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;executor&lt;/span&gt;: &lt;span class="nv"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nv"&gt;machine&lt;/span&gt;, &lt;span class="nv"&gt;docker&lt;/span&gt;, &lt;span class="nv"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ssh&lt;/span&gt;, &lt;span class="nv"&gt;parallels&lt;/span&gt;, &lt;span class="nv"&gt;shell&lt;/span&gt;, &lt;span class="nv"&gt;ssh&lt;/span&gt;, &lt;span class="nv"&gt;virtualbox&lt;/span&gt;, &lt;span class="nv"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nv"&gt;machine&lt;/span&gt;, &lt;span class="nv"&gt;kubernetes&lt;/span&gt;:
+&lt;span class="nv"&gt;docker&lt;/span&gt;
+
+&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;default&lt;/span&gt; &lt;span class="nv"&gt;Docker&lt;/span&gt; &lt;span class="nv"&gt;image&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;e&lt;/span&gt;.&lt;span class="nv"&gt;g&lt;/span&gt;. &lt;span class="nv"&gt;ruby&lt;/span&gt;:&lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
+&lt;span class="nv"&gt;alpine&lt;/span&gt;:&lt;span class="nv"&gt;latest&lt;/span&gt;
+
+&lt;span class="nv"&gt;Runner&lt;/span&gt; &lt;span class="nv"&gt;registered&lt;/span&gt; &lt;span class="nv"&gt;successfully&lt;/span&gt;. &lt;span class="nv"&gt;Feel&lt;/span&gt; &lt;span class="nv"&gt;free&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;start&lt;/span&gt; &lt;span class="nv"&gt;it&lt;/span&gt;, &lt;span class="nv"&gt;but&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;it&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;s running already the config should be automatically reloaded!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;My experience with Docker is limited, so I am using the latest alpine version. I'm sure there are better ones to use for a simple Python application, but this works for me and I'm not concerned about the absolute fastest CI/CD pipeline on my server.&lt;/p&gt;
+&lt;h2 id="using-the-cicd-pipeline"&gt;Using the CI/CD pipeline&lt;a class="headerlink" href="#using-the-cicd-pipeline" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At this point, the GitLab runner is registered to a single project and is ready to use. You can enable your project to use this pipeline by adding a &lt;code&gt;.gitlab-ci.yml&lt;/code&gt; file to the root of your repository.&lt;/p&gt;
+&lt;p&gt;I used it to set up the following pipeline.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Python - GitLab Pipeline" src="{attach}images/gitlab-python-pipeline.png.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;This pipeline has 4 stages.&lt;/p&gt;
+&lt;h3 id="static-analysis"&gt;Static Analysis&lt;a class="headerlink" href="#static-analysis" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In the Static Analysis phase, I run various analysis tools over my code. The goal here is to ensure that my code, YAML documents, and documentation are easy to read and use.&lt;/p&gt;
+&lt;p&gt;You'll notice the the xenon task has a warning in the image. I have the settings pretty strict in this pipeline, where I allow a very low &lt;a href="https://radon.readthedocs.io/en/latest/intro.html#cyclomatic-complexity"&gt;Cyclomatic Complexity&lt;/a&gt;. In this project, I have one function that is just barely failing my strict settings. I have allowed the pipeline to continue if this one particular task fails.&lt;/p&gt;
+&lt;p&gt;I could either increase the allowed complexity in the code base to ignore the warning. Alternatively, I could not allow the pipeline to proceed until I fix this function. This was one of those instances where it hasn't been worth it to refactor the code, but I want to be reminded I &lt;em&gt;should&lt;/em&gt; fix it, so I allow the pipeline to proceed and show me the error.&lt;/p&gt;
+&lt;h3 id="test"&gt;Test&lt;a class="headerlink" href="#test" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Test phase should be fairly self explanatory. It's the stage where I run my test suite. It will only run if the Static Analysis phase completes successfully (or I allow a specific job to fail, in the case of the xenon task).&lt;/p&gt;
+&lt;h3 id="deploy-testing"&gt;Deploy Testing&lt;a class="headerlink" href="#deploy-testing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once the test suite has completed successfully, I deploy the package to the test instance of PyPI. This ensures that I have a successful build and deploy.&lt;/p&gt;
+&lt;h3 id="deploy-production"&gt;Deploy Production&lt;a class="headerlink" href="#deploy-production" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Deployment to production is a manual step. I did this because I don't always want to push changes to production PyPI. This is especially true if I'm only making small fixes - such as white space changes. I don't want to skip the entire CI process, but I also don't want to push out to production for something so minor.&lt;/p&gt;
+&lt;h2 id="environment-set-up"&gt;Environment set up&lt;a class="headerlink" href="#environment-set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One of my biggest complaints about the Travis CI integration with GitHub is how you &lt;a href="https://andrewwegner.com/travisci-insecure-environment-variables.html"&gt;can't trust environment variables in Travis CI&lt;/a&gt;. Since I control the server that this runner is connected to, I have no problem adding environment variables into GitLab.&lt;/p&gt;
+&lt;p&gt;In the project, I was able to add these by going to Settings-&amp;gt;CI/CD and expanding the Variables section. I needed to store credentials for both the test and production instances of PyPI.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="GitLab Environment Variables" src="{attach}images/gitlab-env-variables.png.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;With these added, they are now accessible by my &lt;code&gt;.gitlab-ci.yml&lt;/code&gt; file.&lt;/p&gt;
+&lt;h3 id="gitlab-ciyml"&gt;.gitlab-ci.yml&lt;a class="headerlink" href="#gitlab-ciyml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The script I use to build the pipeline is as follows:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nc"&gt;image&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;"python:3.7"&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nl"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nl"&gt;before_script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--version&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nl"&gt;stages&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Testing&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Production&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nl"&gt;flake8&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flake8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--max-line-length=120&lt;/span&gt;
+
+&lt;span class="nl"&gt;doc8&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;true&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;doc8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--max-line-length=100 --ignore-path=docs/_build/* docs/&lt;/span&gt;
+
+&lt;span class="nl"&gt;yamllint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;true&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;yamllint&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nl"&gt;bandit&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;true&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bandit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B101&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nl"&gt;radon&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;radon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nb&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;radon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mi&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nb&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nl"&gt;xenon&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;true&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--max-absolute B --max-modules B --max-average B my_package/&lt;/span&gt;
+
+&lt;span class="nl"&gt;pytest&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pytest&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nl"&gt;deploy_testing&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Testing&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;variables&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;TWINE_USERNAME&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_TEST_USERNAME&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;TWINE_PASSWORD&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_TEST_PASSWORD&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sdist&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;twine&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--repository-url $PYPI_TEST_URL dist/*&lt;/span&gt;
+
+&lt;span class="nl"&gt;deploy_production&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Production&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;when&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;manual&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;variables&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;TWINE_USERNAME&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_PROD_USERNAME&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;TWINE_PASSWORD&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_PROD_PASSWORD&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sdist&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;twine&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dist&lt;/span&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="gitlab-ciyml-explanation"&gt;.gitlab-ci.yml explanation&lt;a class="headerlink" href="#gitlab-ciyml-explanation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There are a few areas that I feel need to be explained in the script above.&lt;/p&gt;
+&lt;h3 id="tags"&gt;Tags&lt;a class="headerlink" href="#tags" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;.python-tag:&lt;/span&gt;
+  &lt;span class="nl"&gt;tags:&lt;/span&gt;
+    &lt;span class="err"&gt;-&lt;/span&gt; &lt;span class="nf"&gt;python&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This section is a template that is used to add the &lt;code&gt;python&lt;/code&gt; tag to a job step. The Runner will only run tasks that have a tag you assigned to it. This is useful if you are building across multiple operating systems or across multiple languages. You don't want a runner set up to test against a Windows environment picking up tasks for a Linux environment. In my case, everything is being run for a single runner.&lt;/p&gt;
+&lt;p&gt;In each step, I need to add this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With this, the &lt;code&gt;python&lt;/code&gt; tag will be automatically applied to the task. For a simple pipeline like mine, it may seem like overkill, but it's useful if I want to force other tags or steps.&lt;/p&gt;
+&lt;h3 id="allow-failures"&gt;Allow failures&lt;a class="headerlink" href="#allow-failures" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Static&lt;/span&gt; &lt;span class="n"&gt;Analysis&lt;/span&gt;
+  &lt;span class="kd"&gt;extends&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+  &lt;span class="n"&gt;allow_failure&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+  &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;xenon&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;absolute&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;average&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I previously mentioned that I allowed the xenon step to fail. This is accomplished with the &lt;code&gt;allow_failue: true&lt;/code&gt; setting you see here. Since this setting is in place, the pipeline will proceed even if this single task fails.&lt;/p&gt;
+&lt;h3 id="manual-deployment"&gt;Manual deployment&lt;a class="headerlink" href="#manual-deployment" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;deploy_production&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Deploy&lt;/span&gt; &lt;span class="n"&gt;Production&lt;/span&gt;
+  &lt;span class="kd"&gt;extends&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+  &lt;span class="n"&gt;when&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;manual&lt;/span&gt;
+  &lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;TWINE_USERNAME&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;$PYPI_PROD_USERNAME&lt;/span&gt;
+    &lt;span class="n"&gt;TWINE_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;$PYPI_PROD_PASSWORD&lt;/span&gt;
+  &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;py&lt;/span&gt; &lt;span class="n"&gt;sdist&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;twine&lt;/span&gt; &lt;span class="n"&gt;upload&lt;/span&gt; &lt;span class="n"&gt;dist&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The deploy to production is a manual step. I use &lt;code&gt;when: manual&lt;/code&gt; to ensure this step doesn't occur automatically. At some point in the future, this project will be stable and won't have minor fixes any longer and I'll want to automatically deploy to production without interaction. When I reach that point, I'll just need to remove this line. As long as the preceding steps succeed, this one will be performed as well.&lt;/p&gt;
+&lt;h2 id="next-steps"&gt;Next Steps&lt;a class="headerlink" href="#next-steps" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now that I've set this up and come to rely on it, I think my next steps will be converting my home Minecraft Server to use the GitLab pipelines to automatically deploy updates. Look for that post in the future.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Installing InvoiceNinja on Ubuntu 18.04</title><link href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html" rel="alternate"></link><published>2019-07-30T13:00:00-05:00</published><updated>2019-07-30T13:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-07-30:/invoiceninja-ubuntu-1804.html</id><summary type="html">&lt;p&gt;A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's been a several years since I really did a lot of freelance work. Mostly, I did it in the evening hours
+a few nights a week for some extra money. Over the last few years, that kind of work has
+slowed down for me. Mostly because I enjoy relaxing in the evenings and spending time off
+of my computer now. It's weird to type that, but "hobby coding" really hasn't had as much
+appeal to me since I started my &lt;a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html"&gt;current job&lt;/a&gt; a few years ago.&lt;/p&gt;
+&lt;p&gt;I love my job. I love working from home 100% of the time and I love being home
+when the kids get off the bus, during summer breaks, and when the weather sucks. The
+one thing this job has done though, is remove my desire to sit in my office after
+everyone else has gone to bed and just code.&lt;/p&gt;
+&lt;p&gt;But, that's ok. I've found other hobbies and am really excited about some up coming
+things I'm trying out. If they work out, I'll be able to combine my coding skills
+with other hobbies. I'm sure I'll write about it at some point.&lt;/p&gt;
+&lt;p&gt;I say all of that, because, even though I don't actively take on freelance work any
+longer, I still have clients that I did work for that will reach out once and a while
+for help, consultations or a small project. When that happens, I need a way to bill them
+for my time.&lt;/p&gt;
+&lt;p&gt;Previously, my invoices would have been whipped up in Word and converted to a PDF and sent
+off to the client. It worked for years. I was able to keep track of everything,
+properly report it (don't want to mess with the tax man) and I kept chugging along. The
+problem now, is that if I'm doing work for a client, I want to do the work and be done. I don't
+want to spent time making a presentable invoice in Word.&lt;/p&gt;
+&lt;p&gt;So, I went hunting for some software. I found &lt;a href="https://www.invoiceninja.com/"&gt;InvoiceNinja&lt;/a&gt;. It's amazing.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hosted or self hosted version&lt;/li&gt;
+&lt;li&gt;Create simple invoices&lt;/li&gt;
+&lt;li&gt;Create full quotes&lt;/li&gt;
+&lt;li&gt;API (which I will probably never use, but...it's there)&lt;/li&gt;
+&lt;li&gt;Recurring billing&lt;/li&gt;
+&lt;li&gt;Zapier integration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have this habit of self hosting my own software. See my posts on &lt;a href="https://andrewwegner.com/installing-nextcloud.html"&gt;NextCloud&lt;/a&gt;
+and &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;GitLab&lt;/a&gt; for other examples.&lt;/p&gt;
+&lt;p&gt;This rest of this post is going to walk through how I installed InvoiceNinja.&lt;/p&gt;
+&lt;h2 id="getting-started"&gt;Getting Started&lt;a class="headerlink" href="#getting-started" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I'll be self hosting &lt;a href="https://www.invoiceninja.org/"&gt;InvoiceNinja&lt;/a&gt;. You can find that on their &lt;code&gt;.org&lt;/code&gt; site
+or on &lt;a href="https://github.com/invoiceninja/invoiceninja"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In this, I'll be installing InvoiceNinja, setting up Apache to host it, and showing how
+to update it in the future.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wget https://download.invoiceninja.com/ninja-v4.5.13.zip
+$ unzip ninja-v4.5.13.zip
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This downloads and unzips InvoiceNinja 4.5.14 to the current directory. Next,
+let's move it to it's final install location and set up appropriate owner and
+permissions.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo mv ninja /var/www/html
+$ &lt;span class="nb"&gt;cd&lt;/span&gt; /var/www/html
+$ sudo chown -R www-data:www-data ninja/
+$ sudo chmod -R &lt;span class="m"&gt;755&lt;/span&gt; ninja/storage
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="database-setup"&gt;Database setup&lt;a class="headerlink" href="#database-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;InvoiceNinja runs on MySQL (or MariaDB). We need to create the database, but
+the installer will do the rest of the work for us. Log into MySQL with a user
+that can create new databases, users and permissions.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mysql -u root -p
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we'll run three commands. The first is to create the new database, the second
+is to create the user. The third is to set appropriate permissions for the
+new user and new password.&lt;/p&gt;
+&lt;p&gt;!!! attention
+    Change the default password from &lt;code&gt;ninja&lt;/code&gt; to something secure&lt;/p&gt;
+&lt;p&gt;Our three commands:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;DATABASE&lt;/span&gt; &lt;span class="n"&gt;ninja&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;USER&lt;/span&gt; &lt;span class="s1"&gt;'ninja'&lt;/span&gt;&lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="s1"&gt;'localhost'&lt;/span&gt; &lt;span class="n"&gt;IDENTIFIED&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="s1"&gt;'ninja'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;GRANT&lt;/span&gt; &lt;span class="k"&gt;ALL&lt;/span&gt; &lt;span class="k"&gt;PRIVILEGES&lt;/span&gt; &lt;span class="k"&gt;ON&lt;/span&gt; &lt;span class="n"&gt;ninja&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;TO&lt;/span&gt; &lt;span class="s1"&gt;'ninja'&lt;/span&gt;&lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="s1"&gt;'localhost'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Exit MySQL.&lt;/p&gt;
+&lt;h2 id="configure-apache"&gt;Configure Apache&lt;a class="headerlink" href="#configure-apache" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now we're going to set up a new virtualhost in Apache to serve InvoiceNinja.&lt;/p&gt;
+&lt;p&gt;Create an entry in sites-available.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;nano&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apache2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sites&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;invoiceninja&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;My entry looks like this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:80&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+     DocumentRoot /var/www/html/ninja/public
+     ServerName invoice.example.com
+     Redirect permanent / https://invoice.example.com/
+
+     &lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="err"&gt;/var/www/html/ninja/public&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        Options +FollowSymlinks
+        AllowOverride All
+        Require all granted
+     &lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:443&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    ServerName invoice.example.com
+    DocumentRoot /var/www/html/ninja/public
+    SSLEngine on
+    SSLCertificateFile /path/to/dehydrated/certs/invoice.example.com/cert.pem
+    SSLCertificateKeyFile /path/to/dehydrated/certs/invoice.example.com/privkey.pem
+    SSLCertificateChainFile /path/to/dehydrated/certs/invoice.example.com/chain.pem
+    &lt;span class="nt"&gt;&amp;lt;IfModule&lt;/span&gt; &lt;span class="err"&gt;mod_headers.c&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+    &lt;span class="nt"&gt;&amp;lt;/IfModule&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="err"&gt;/var/www/html/ninja&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    &lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This sets up a direct from HTTP to HTTPS. Then it points to the SSL certificates I've
+created for this subdomain. I previously wrote about &lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;how I set up SSL&lt;/a&gt;. I followed the
+same steps, using the new subdomain.&lt;/p&gt;
+&lt;p&gt;With SSL and the subdomain set up in CloudFlare, it's time to enable the site:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo a2ensite invoiceninja.conf
+$ sudo systemctl reload apache2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="completing-the-install"&gt;Completing the install&lt;a class="headerlink" href="#completing-the-install" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Navigate to the new subdomain, and fill out the form. Installation will be
+completed in a minute or so.&lt;/p&gt;
+&lt;h2 id="updating"&gt;Updating&lt;a class="headerlink" href="#updating" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At some point, InvoiceNinja will come out with an update, and I'll want to update
+to get the newest features and security patches.&lt;/p&gt;
+&lt;p&gt;To start with, we want to download the newest version:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wget https://download.invoiceninja.com/ninja-v4.5.14.zip
+$ unzip ninja-v4.5.14.zip
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next, &lt;code&gt;rsync&lt;/code&gt; the files to the installed directory.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo rsync -tr ninja/ /var/www/html/ninja/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This messes up permissions, so reset those.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;cd&lt;/span&gt; /var/www/html
+$ sudo chown -R www-data:www-data ninja/
+$ sudo chmod -R &lt;span class="m"&gt;755&lt;/span&gt; ninja/storage
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, hit the &lt;code&gt;/update&lt;/code&gt; URL to complete the process&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;invoice&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;update&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="technical"></category></entry><entry><title>Updating PHP from 7.1 to 7.3 on Ubuntu 18.04</title><link href="https://andrewwegner.com/updating-php-ubuntu-1804.html" rel="alternate"></link><published>2019-07-26T10:00:00-05:00</published><updated>2019-07-26T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-07-26:/updating-php-ubuntu-1804.html</id><summary type="html">&lt;p&gt;A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://andrewwegner.com/new-house-server.html"&gt;new server&lt;/a&gt; has been up and running for about a year and a half now. It's still
+working really well. The thing that I'm happiest with is &lt;a href="https://andrewwegner.com/installing-nextcloud.html"&gt;my NextCloud install&lt;/a&gt;. Having
+my pictures automatically backed up from the phones is a huge time saver. I no
+longer need to worry about whether or not I grabbed a set of pictures off the
+phone or which phone has which picture. It's all in one place in NextCloud. This
+makes it easy to find what I'm looking for (and easy to backup).&lt;/p&gt;
+&lt;p&gt;NextCloud runs on PHP, which means I need to have PHP installed on the server
+for it to work. This isn't a huge problem, but the last time I really used PHP,
+it was during the transition between PHP 4 and PHP 5. So...a while ago. I set up PHP
+(and Apache) to host NextCloud and really just forgot about it.&lt;/p&gt;
+&lt;p&gt;During a recent update of packages on the server - because I do like to keep
+everything updated. I noticed this line during the &lt;code&gt;apt-get&lt;/code&gt; scroll:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;php7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;already&lt;/span&gt; &lt;span class="n"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="n"&gt;enabling&lt;/span&gt; &lt;span class="n"&gt;PHP&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Time to figure out how to use that newly install/upgraded PHP 7.3&lt;/p&gt;
+&lt;h2 id="what-is-actually-running"&gt;What is actually running?&lt;a class="headerlink" href="#what-is-actually-running" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first thing I did was check which version of PHP was being used in the terminal:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ php -v
+PHP &lt;span class="m"&gt;7&lt;/span&gt;.3.7-2+ubuntu18.04.1+deb.sury.org+1 &lt;span class="o"&gt;(&lt;/span&gt;cli&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;built: Jul &lt;span class="m"&gt;25&lt;/span&gt; &lt;span class="m"&gt;2019&lt;/span&gt; &lt;span class="m"&gt;11&lt;/span&gt;:44:59&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt; NTS &lt;span class="o"&gt;)&lt;/span&gt;
+Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1997&lt;/span&gt;-2018 The PHP Group
+Zend Engine v3.3.7, Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1998&lt;/span&gt;-2018 Zend Technologies
+    with Zend OPcache v7.3.7-2+ubuntu18.04.1+deb.sury.org+1, Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1999&lt;/span&gt;-2018, by Zend Technologies
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That's promising. The default version here is PHP 7.3.7.&lt;/p&gt;
+&lt;p&gt;But, throwing a quick &lt;code&gt;phpinfo();&lt;/code&gt; together and looking at what it running via
+Apache, shows something different:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PHP&lt;/span&gt; &lt;span class="k"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;ubuntu18&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;04&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sury&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ok. Now I know which module is out of date. It's the run that is configured to
+be used with Apache.&lt;/p&gt;
+&lt;h2 id="verifying-whats-installed"&gt;Verifying what's installed&lt;a class="headerlink" href="#verifying-whats-installed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I assumed I had PHP 7.3 installed, but I wanted to confirm before I just started
+disabling and enabling Apache modules.&lt;/p&gt;
+&lt;p&gt;To confirm I had PHP 7.3 available, I ran this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ls /etc/apache2/mods-available/php*
+/etc/apache2/mods-available/php7.1.conf
+/etc/apache2/mods-available/php7.1.load
+/etc/apache2/mods-available/php7.2.conf
+/etc/apache2/mods-available/php7.2.load
+/etc/apache2/mods-available/php7.3.conf
+/etc/apache2/mods-available/php7.3.load
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And a quick check to see what's enabled:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ls /etc/apache2/mods-enabled/php*
+/etc/apache2/mods-enabled/php7.1.conf
+/etc/apache2/mods-enabled/php7.1.load
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Excellent. I have PHP 7.3 available, and PHP 7.1 is enabled. This is exactly what
+I'm seeing.&lt;/p&gt;
+&lt;h2 id="updating-apache-php-module"&gt;Updating Apache PHP Module&lt;a class="headerlink" href="#updating-apache-php-module" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With PHP 7.3 already installed, I just need to disable PHP 7.1 and enable PHP 7.3.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ a2dismod php7.1
+$ a2enmod php7.3
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then restart Apache to use the new module.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ service apache2 restart
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, validate the correct module is enabled:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ls /etc/apache2/mods-enabled/php*
+/etc/apache2/mods-enabled/php7.3.conf
+/etc/apache2/mods-enabled/php7.3.load
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Another check of the &lt;code&gt;phpinfo();&lt;/code&gt; page too:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PHP&lt;/span&gt; &lt;span class="k"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;ubuntu18&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;04&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sury&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This matches what &lt;code&gt;php -v&lt;/code&gt; output.&lt;/p&gt;
+&lt;p&gt;We're done! Right?&lt;/p&gt;
+&lt;h2 id="checking-nextcloud"&gt;Checking NextCloud&lt;a class="headerlink" href="#checking-nextcloud" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With PHP updated, it was time to make sure the one PHP application I run still
+worked. I visited my &lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;NextCloud URL I set up CloudFlare&lt;/a&gt;. There I was greeted
+with a blank page. Oddly, I couldn't find any errors in my server logs.&lt;/p&gt;
+&lt;p&gt;Using the &lt;code&gt;a2dismod&lt;/code&gt; and &lt;code&gt;a2enmod&lt;/code&gt; commands from above, I downgraded back to
+PHP 7.1. NextCloud worked. I upgraded to PHP 7.2 and it worked. Going back to PHP
+7.3, and I was back to a blank page.&lt;/p&gt;
+&lt;p&gt;Even without server logs, this indicated that either NextCloud doesn't support
+PHP 7.3 or I was missing modules. A check of the &lt;a href="https://docs.nextcloud.com/server/15/admin_manual/installation/system_requirements.html"&gt;system requirements for NextCloud&lt;/a&gt;
+shows that PHP 7.3 is supported. That just means I'm missing some modules.&lt;/p&gt;
+&lt;p&gt;The documentation also includes a &lt;a href="https://docs.nextcloud.com/server/15/admin_manual/installation/source_installation.html#prerequisites-for-manual-installation"&gt;list of all needed modules&lt;/a&gt; and a nice
+&lt;a href="https://github.com/nextcloud/vm/blob/master/nextcloud_install_production.sh/"&gt;shell script&lt;/a&gt; for easy installation. Looking through that, I found the &lt;code&gt;apt&lt;/code&gt;
+&lt;a href="https://github.com/nextcloud/vm/blob/c469b3045c7405261a0d9f20fec7ef5f0f508efe/nextcloud_install_production.sh#L256-L272"&gt;packages I needed&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ apt-get install php7.3-fpm &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-intl &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-ldap &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-imap &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-gd &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-pgsql &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-curl &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-xml &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-zip &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-mbstring &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-soap &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-smbclient &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-json &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-gmp &lt;span class="se"&gt;\&lt;/span&gt;
+php7.3-bz2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A minute or so later, with those modules now installed, I restarted Apache again.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ service apache2 restart
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then I went to my NextCloud URL. The page loaded as expected and my phone
+sync'd the one picture I took as a test to ensure it worked.&lt;/p&gt;
+&lt;p&gt;Overall, this was a really simple process. The biggest issue I ran into was missing
+a module or two that NextCloud required. Simply installing everything it needed
+worked perfectly.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Upgrading the home network to use Ubiquiti products</title><link href="https://andrewwegner.com/ubiquiti-home-network.html" rel="alternate"></link><published>2019-03-13T11:30:00-05:00</published><updated>2019-03-13T11:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-03-13:/ubiquiti-home-network.html</id><summary type="html">&lt;p&gt;My home network received a major upgrade. This post covers the new hardware and impressions a month after the upgrade.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="routers-past"&gt;Routers past&lt;a class="headerlink" href="#routers-past" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I am not known for being gentle with routers at my house. I have pushed many consumer
 grade routers to their limits and ended up replacing them for newer models or
@@ -370,217 +817,7 @@ automation!&lt;/p&gt;
 &lt;p&gt;One other thing this split may have done is make it easier to eventually add comments to the blog. That's been a long term
 goal and one that I've investigated off and on over the past three years. Since I host everything via GitHub Pages and
 don't have a database, comments would probably need to be done via GitHub comments somehow. I have ideas, but haven't started
-testing any of those yet. This split will make it easier, I think, when or if I investigate further.&lt;/p&gt;</content><category term="technical"></category><category term="Pelican"></category></entry><entry><title>Setting up GitLab runners</title><link href="https://andrewwegner.com/setting-up-gitlab-runners.html" rel="alternate"></link><published>2018-10-22T11:00:00-05:00</published><updated>2018-10-22T11:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-10-22:/setting-up-gitlab-runners.html</id><summary type="html">&lt;p&gt;How I set up a GitLab runner&lt;/p&gt;</summary><content type="html">
-&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;It's been a year and a half since I set up GitLab. In that time I've used to it
-store my personal code, keep track of features I want to add to my own projects,
-and generally loved it. One thing I haven't done though, is play with the CI/CD
-features. I've been wanting to, but never got around to it.&lt;/p&gt;
-&lt;p&gt;To utilize the CI/CD features, you need to set up a &lt;a href="https://docs.gitlab.com/runner/"&gt;GitLab runner&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="set-up"&gt;Set up&lt;a class="headerlink" href="#set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id="docker"&gt;Docker&lt;a class="headerlink" href="#docker" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;I'll be running my runners in &lt;a href="https://www.docker.com/"&gt;Docker&lt;/a&gt; containers. There are other options,
-but for my home environment, this is easiest to set up and maintain.&lt;/p&gt;
-&lt;p&gt;Let's start by installing Docker:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;transport&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt; &lt;span class="n"&gt;ca&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;certificates&lt;/span&gt; &lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="n"&gt;software&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;properties&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;
-&lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fsSL&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gpg&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;key&lt;/span&gt; &lt;span class="k"&gt;add&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="k"&gt;add&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;repository&lt;/span&gt; &lt;span class="ss"&gt;"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="k"&gt;update&lt;/span&gt;
-&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ce&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This is going to add the Docker repository and install the community edition.&lt;/p&gt;
-&lt;h3 id="gitlab-runner"&gt;GitLab Runner&lt;a class="headerlink" href="#gitlab-runner" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Once Docker is installed and working, we can install the GitLab runner.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;downloads&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amazonaws&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;latest&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;binaries&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;amd64&lt;/span&gt;
-&lt;span class="n"&gt;chmod&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;
-&lt;span class="n"&gt;useradd&lt;/span&gt; &lt;span class="c1"&gt;--comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash&lt;/span&gt;
-&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="c1"&gt;--user=gitlab-runner --working-directory=/home/gitlab-runner&lt;/span&gt;
-&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt; &lt;span class="k"&gt;start&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This is downloading the install package. Then it adds a new user, that the runner will run as. This is a nice security precaution to limit what the runner has access to on the system. It's not full security, but it does all me to restrict what that particular user has access to on the server.&lt;/p&gt;
-&lt;p&gt;Then the run is started.&lt;/p&gt;
-&lt;p&gt;Next the runner needs to be registered. Log into GitLab, and navigate to
-the project that will be using this runner. It should be available at this link:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="o"&gt;/&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;account&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;repo&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ci_cd&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Grab the GitLab CI token. That is needed in the next step. Run the &lt;code&gt;gitlab-runner register&lt;/code&gt; command, and fill in your values as required.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nv"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;runner&lt;/span&gt; &lt;span class="nv"&gt;register&lt;/span&gt;
-&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ci&lt;/span&gt; &lt;span class="nv"&gt;coordinator&lt;/span&gt; &lt;span class="nv"&gt;URL&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;e&lt;/span&gt;.&lt;span class="nv"&gt;g&lt;/span&gt;. &lt;span class="nv"&gt;https&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;gitlab&lt;/span&gt;.&lt;span class="nv"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
-&lt;span class="nv"&gt;https&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;url&lt;/span&gt;.&lt;span class="nv"&gt;to&lt;/span&gt;.&lt;span class="nv"&gt;your&lt;/span&gt;.&lt;span class="nv"&gt;gitlab&lt;/span&gt;.&lt;span class="nv"&gt;install&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-
-&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ci&lt;/span&gt; &lt;span class="nv"&gt;token&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;runner&lt;/span&gt;:
-[&lt;span class="nv"&gt;redacted&lt;/span&gt;]]
-
-&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ci&lt;/span&gt; &lt;span class="nv"&gt;description&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;runner&lt;/span&gt;:
-[&lt;span class="nv"&gt;my&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;runner&lt;/span&gt;]: &lt;span class="nv"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;runner&lt;/span&gt;
-
-&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ci&lt;/span&gt; &lt;span class="nv"&gt;tags&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;runner&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;comma&lt;/span&gt; &lt;span class="nv"&gt;separated&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
-&lt;span class="nv"&gt;python&lt;/span&gt;
-&lt;span class="nv"&gt;Registering&lt;/span&gt; &lt;span class="nv"&gt;runner&lt;/span&gt;... &lt;span class="nv"&gt;succeeded&lt;/span&gt;                     &lt;span class="nv"&gt;runner&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="nv"&gt;m_339h&lt;/span&gt;
-
-&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;executor&lt;/span&gt;: &lt;span class="nv"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nv"&gt;machine&lt;/span&gt;, &lt;span class="nv"&gt;docker&lt;/span&gt;, &lt;span class="nv"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ssh&lt;/span&gt;, &lt;span class="nv"&gt;parallels&lt;/span&gt;, &lt;span class="nv"&gt;shell&lt;/span&gt;, &lt;span class="nv"&gt;ssh&lt;/span&gt;, &lt;span class="nv"&gt;virtualbox&lt;/span&gt;, &lt;span class="nv"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nv"&gt;machine&lt;/span&gt;, &lt;span class="nv"&gt;kubernetes&lt;/span&gt;:
-&lt;span class="nv"&gt;docker&lt;/span&gt;
-
-&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;enter&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;default&lt;/span&gt; &lt;span class="nv"&gt;Docker&lt;/span&gt; &lt;span class="nv"&gt;image&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;e&lt;/span&gt;.&lt;span class="nv"&gt;g&lt;/span&gt;. &lt;span class="nv"&gt;ruby&lt;/span&gt;:&lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
-&lt;span class="nv"&gt;alpine&lt;/span&gt;:&lt;span class="nv"&gt;latest&lt;/span&gt;
-
-&lt;span class="nv"&gt;Runner&lt;/span&gt; &lt;span class="nv"&gt;registered&lt;/span&gt; &lt;span class="nv"&gt;successfully&lt;/span&gt;. &lt;span class="nv"&gt;Feel&lt;/span&gt; &lt;span class="nv"&gt;free&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;start&lt;/span&gt; &lt;span class="nv"&gt;it&lt;/span&gt;, &lt;span class="nv"&gt;but&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;it&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;s running already the config should be automatically reloaded!&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;My experience with Docker is limited, so I am using the latest alpine version. I'm sure there are better ones to use for a simple Python application, but this works for me and I'm not concerned about the absolute fastest CI/CD pipeline on my server.&lt;/p&gt;
-&lt;h2 id="using-the-cicd-pipeline"&gt;Using the CI/CD pipeline&lt;a class="headerlink" href="#using-the-cicd-pipeline" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;At this point, the GitLab runner is registered to a single project and is ready to use. You can enable your project to use this pipeline by adding a &lt;code&gt;.gitlab-ci.yml&lt;/code&gt; file to the root of your repository.&lt;/p&gt;
-&lt;p&gt;I used it to set up the following pipeline.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Python - GitLab Pipeline" src="{attach}images/gitlab-python-pipeline.png.jpg"/&gt;&lt;/p&gt;
-&lt;p&gt;This pipeline has 4 stages.&lt;/p&gt;
-&lt;h3 id="static-analysis"&gt;Static Analysis&lt;a class="headerlink" href="#static-analysis" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;In the Static Analysis phase, I run various analysis tools over my code. The goal here is to ensure that my code, YAML documents, and documentation are easy to read and use.&lt;/p&gt;
-&lt;p&gt;You'll notice the the xenon task has a warning in the image. I have the settings pretty strict in this pipeline, where I allow a very low &lt;a href="https://radon.readthedocs.io/en/latest/intro.html#cyclomatic-complexity"&gt;Cyclomatic Complexity&lt;/a&gt;. In this project, I have one function that is just barely failing my strict settings. I have allowed the pipeline to continue if this one particular task fails.&lt;/p&gt;
-&lt;p&gt;I could either increase the allowed complexity in the code base to ignore the warning. Alternatively, I could not allow the pipeline to proceed until I fix this function. This was one of those instances where it hasn't been worth it to refactor the code, but I want to be reminded I &lt;em&gt;should&lt;/em&gt; fix it, so I allow the pipeline to proceed and show me the error.&lt;/p&gt;
-&lt;h3 id="test"&gt;Test&lt;a class="headerlink" href="#test" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The Test phase should be fairly self explanatory. It's the stage where I run my test suite. It will only run if the Static Analysis phase completes successfully (or I allow a specific job to fail, in the case of the xenon task).&lt;/p&gt;
-&lt;h3 id="deploy-testing"&gt;Deploy Testing&lt;a class="headerlink" href="#deploy-testing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Once the test suite has completed successfully, I deploy the package to the test instance of PyPI. This ensures that I have a successful build and deploy.&lt;/p&gt;
-&lt;h3 id="deploy-production"&gt;Deploy Production&lt;a class="headerlink" href="#deploy-production" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Deployment to production is a manual step. I did this because I don't always want to push changes to production PyPI. This is especially true if I'm only making small fixes - such as white space changes. I don't want to skip the entire CI process, but I also don't want to push out to production for something so minor.&lt;/p&gt;
-&lt;h2 id="environment-set-up"&gt;Environment set up&lt;a class="headerlink" href="#environment-set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;One of my biggest complaints about the Travis CI integration with GitHub is how you &lt;a href="https://andrewwegner.com/travisci-insecure-environment-variables.html"&gt;can't trust environment variables in Travis CI&lt;/a&gt;. Since I control the server that this runner is connected to, I have no problem adding environment variables into GitLab.&lt;/p&gt;
-&lt;p&gt;In the project, I was able to add these by going to Settings-&amp;gt;CI/CD and expanding the Variables section. I needed to store credentials for both the test and production instances of PyPI.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="GitLab Environment Variables" src="{attach}images/gitlab-env-variables.png.jpg"/&gt;&lt;/p&gt;
-&lt;p&gt;With these added, they are now accessible by my &lt;code&gt;.gitlab-ci.yml&lt;/code&gt; file.&lt;/p&gt;
-&lt;h3 id="gitlab-ciyml"&gt;.gitlab-ci.yml&lt;a class="headerlink" href="#gitlab-ciyml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The script I use to build the pipeline is as follows:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nc"&gt;image&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;"python:3.7"&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nl"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="nl"&gt;before_script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--version&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="nl"&gt;stages&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Testing&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Production&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="nl"&gt;flake8&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flake8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--max-line-length=120&lt;/span&gt;
-
-&lt;span class="nl"&gt;doc8&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;true&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;doc8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--max-line-length=100 --ignore-path=docs/_build/* docs/&lt;/span&gt;
-
-&lt;span class="nl"&gt;yamllint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;true&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;yamllint&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="nl"&gt;bandit&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;true&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bandit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B101&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="nl"&gt;radon&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;radon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nb&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;radon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mi&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nb&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="nl"&gt;xenon&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;true&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--max-absolute B --max-modules B --max-average B my_package/&lt;/span&gt;
-
-&lt;span class="nl"&gt;pytest&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pytest&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-
-&lt;span class="nl"&gt;deploy_testing&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Testing&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;variables&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;TWINE_USERNAME&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_TEST_USERNAME&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;TWINE_PASSWORD&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_TEST_PASSWORD&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sdist&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;twine&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--repository-url $PYPI_TEST_URL dist/*&lt;/span&gt;
-
-&lt;span class="nl"&gt;deploy_production&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Production&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;when&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;manual&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;variables&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;TWINE_USERNAME&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_PROD_USERNAME&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nl"&gt;TWINE_PASSWORD&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_PROD_PASSWORD&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sdist&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;twine&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dist&lt;/span&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id="gitlab-ciyml-explanation"&gt;.gitlab-ci.yml explanation&lt;a class="headerlink" href="#gitlab-ciyml-explanation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;There are a few areas that I feel need to be explained in the script above.&lt;/p&gt;
-&lt;h3 id="tags"&gt;Tags&lt;a class="headerlink" href="#tags" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nl"&gt;.python-tag:&lt;/span&gt;
-  &lt;span class="nl"&gt;tags:&lt;/span&gt;
-    &lt;span class="err"&gt;-&lt;/span&gt; &lt;span class="nf"&gt;python&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This section is a template that is used to add the &lt;code&gt;python&lt;/code&gt; tag to a job step. The Runner will only run tasks that have a tag you assigned to it. This is useful if you are building across multiple operating systems or across multiple languages. You don't want a runner set up to test against a Windows environment picking up tasks for a Linux environment. In my case, everything is being run for a single runner.&lt;/p&gt;
-&lt;p&gt;In each step, I need to add this:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-  &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;With this, the &lt;code&gt;python&lt;/code&gt; tag will be automatically applied to the task. For a simple pipeline like mine, it may seem like overkill, but it's useful if I want to force other tags or steps.&lt;/p&gt;
-&lt;h3 id="allow-failures"&gt;Allow failures&lt;a class="headerlink" href="#allow-failures" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-  &lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Static&lt;/span&gt; &lt;span class="n"&gt;Analysis&lt;/span&gt;
-  &lt;span class="kd"&gt;extends&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
-  &lt;span class="n"&gt;allow_failure&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
-  &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;xenon&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;absolute&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;average&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I previously mentioned that I allowed the xenon step to fail. This is accomplished with the &lt;code&gt;allow_failue: true&lt;/code&gt; setting you see here. Since this setting is in place, the pipeline will proceed even if this single task fails.&lt;/p&gt;
-&lt;h3 id="manual-deployment"&gt;Manual deployment&lt;a class="headerlink" href="#manual-deployment" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;deploy_production&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-  &lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Deploy&lt;/span&gt; &lt;span class="n"&gt;Production&lt;/span&gt;
-  &lt;span class="kd"&gt;extends&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
-  &lt;span class="n"&gt;when&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;manual&lt;/span&gt;
-  &lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;TWINE_USERNAME&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;$PYPI_PROD_USERNAME&lt;/span&gt;
-    &lt;span class="n"&gt;TWINE_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;$PYPI_PROD_PASSWORD&lt;/span&gt;
-  &lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;py&lt;/span&gt; &lt;span class="n"&gt;sdist&lt;/span&gt;
-    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;twine&lt;/span&gt; &lt;span class="n"&gt;upload&lt;/span&gt; &lt;span class="n"&gt;dist&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The deploy to production is a manual step. I use &lt;code&gt;when: manual&lt;/code&gt; to ensure this step doesn't occur automatically. At some point in the future, this project will be stable and won't have minor fixes any longer and I'll want to automatically deploy to production without interaction. When I reach that point, I'll just need to remove this line. As long as the preceding steps succeed, this one will be performed as well.&lt;/p&gt;
-&lt;h2 id="next-steps"&gt;Next Steps&lt;a class="headerlink" href="#next-steps" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Now that I've set this up and come to rely on it, I think my next steps will be converting my home Minecraft Server to use the GitLab pipelines to automatically deploy updates. Look for that post in the future.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync</title><link href="https://andrewwegner.com/ubuntu-backup-rsync.html" rel="alternate"></link><published>2018-09-26T12:30:00-05:00</published><updated>2018-09-26T12:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-09-26:/ubuntu-backup-rsync.html</id><summary type="html">&lt;p&gt;The server has been running and the laptop needs to be backed up. This walks through how I did it.&lt;/p&gt;</summary><content type="html">
+testing any of those yet. This split will make it easier, I think, when or if I investigate further.&lt;/p&gt;</content><category term="technical"></category><category term="Pelican"></category></entry><entry><title>Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync</title><link href="https://andrewwegner.com/ubuntu-backup-rsync.html" rel="alternate"></link><published>2018-09-26T12:30:00-05:00</published><updated>2018-09-26T12:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-09-26:/ubuntu-backup-rsync.html</id><summary type="html">&lt;p&gt;The server has been running and the laptop needs to be backed up. This walks through how I did it.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The server has been running for almost nine months. It's been backing up family data and pictures from phones without any problems. Now it's time to back up the laptop because I have the space and really should make sure the stuff that isn't work related (ie. the stuff that is in the work git repositories) is also backed up.&lt;/p&gt;
 &lt;p&gt;Enter &lt;a href="https://rsync.samba.org/"&gt;&lt;code&gt;rsync&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
@@ -607,244 +844,7 @@ the project that will be using this runner. It should be available at this link:
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Once I confirmed this worked, I added it to my user's crontab on the laptop. It will run once a day now.&lt;/p&gt;
 &lt;h2 id="next-steps"&gt;Next steps&lt;a class="headerlink" href="#next-steps" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The next steps I'll take be taking are to restrict the new SSH key on the server to only allow it to perform &lt;code&gt;rsync&lt;/code&gt; tasks. This can be done by slightly modifying the appropriate line in &lt;code&gt;authorized_keys&lt;/code&gt;. I'll see how this daily, single, back up works for a while. If I need to, I may change it to a rotating weekly backup. I don't forsee that right now, but I need a few weeks of seeing how this works and if the single day is good enough.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Installing InvoiceNinja on Ubuntu 18.04</title><link href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html" rel="alternate"></link><published>2018-07-30T13:00:00-05:00</published><updated>2018-07-30T13:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-30:/invoiceninja-ubuntu-1804.html</id><summary type="html">&lt;p&gt;A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04&lt;/p&gt;</summary><content type="html">
-&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;It's been a several years since I really did a lot of freelance work. Mostly, I did it in the evening hours
-a few nights a week for some extra money. Over the last few years, that kind of work has
-slowed down for me. Mostly because I enjoy relaxing in the evenings and spending time off
-of my computer now. It's weird to type that, but "hobby coding" really hasn't had as much
-appeal to me since I started my &lt;a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html"&gt;current job&lt;/a&gt; a few years ago.&lt;/p&gt;
-&lt;p&gt;I love my job. I love working from home 100% of the time and I love being home
-when the kids get off the bus, during summer breaks, and when the weather sucks. The
-one thing this job has done though, is remove my desire to sit in my office after
-everyone else has gone to bed and just code.&lt;/p&gt;
-&lt;p&gt;But, that's ok. I've found other hobbies and am really excited about some up coming
-things I'm trying out. If they work out, I'll be able to combine my coding skills
-with other hobbies. I'm sure I'll write about it at some point.&lt;/p&gt;
-&lt;p&gt;I say all of that, because, even though I don't actively take on freelance work any
-longer, I still have clients that I did work for that will reach out once and a while
-for help, consultations or a small project. When that happens, I need a way to bill them
-for my time.&lt;/p&gt;
-&lt;p&gt;Previously, my invoices would have been whipped up in Word and converted to a PDF and sent
-off to the client. It worked for years. I was able to keep track of everything,
-properly report it (don't want to mess with the tax man) and I kept chugging along. The
-problem now, is that if I'm doing work for a client, I want to do the work and be done. I don't
-want to spent time making a presentable invoice in Word.&lt;/p&gt;
-&lt;p&gt;So, I went hunting for some software. I found &lt;a href="https://www.invoiceninja.com/"&gt;InvoiceNinja&lt;/a&gt;. It's amazing.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Hosted or self hosted version&lt;/li&gt;
-&lt;li&gt;Create simple invoices&lt;/li&gt;
-&lt;li&gt;Create full quotes&lt;/li&gt;
-&lt;li&gt;API (which I will probably never use, but...it's there)&lt;/li&gt;
-&lt;li&gt;Recurring billing&lt;/li&gt;
-&lt;li&gt;Zapier integration&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I have this habit of self hosting my own software. See my posts on &lt;a href="https://andrewwegner.com/installing-nextcloud.html"&gt;NextCloud&lt;/a&gt;
-and &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;GitLab&lt;/a&gt; for other examples.&lt;/p&gt;
-&lt;p&gt;This rest of this post is going to walk through how I installed InvoiceNinja.&lt;/p&gt;
-&lt;h2 id="getting-started"&gt;Getting Started&lt;a class="headerlink" href="#getting-started" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I'll be self hosting &lt;a href="https://www.invoiceninja.org/"&gt;InvoiceNinja&lt;/a&gt;. You can find that on their &lt;code&gt;.org&lt;/code&gt; site
-or on &lt;a href="https://github.com/invoiceninja/invoiceninja"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In this, I'll be installing InvoiceNinja, setting up Apache to host it, and showing how
-to update it in the future.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wget https://download.invoiceninja.com/ninja-v4.5.13.zip
-$ unzip ninja-v4.5.13.zip
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This downloads and unzips InvoiceNinja 4.5.14 to the current directory. Next,
-let's move it to it's final install location and set up appropriate owner and
-permissions.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo mv ninja /var/www/html
-$ &lt;span class="nb"&gt;cd&lt;/span&gt; /var/www/html
-$ sudo chown -R www-data:www-data ninja/
-$ sudo chmod -R &lt;span class="m"&gt;755&lt;/span&gt; ninja/storage
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id="database-setup"&gt;Database setup&lt;a class="headerlink" href="#database-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;InvoiceNinja runs on MySQL (or MariaDB). We need to create the database, but
-the installer will do the rest of the work for us. Log into MySQL with a user
-that can create new databases, users and permissions.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ mysql -u root -p
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now we'll run three commands. The first is to create the new database, the second
-is to create the user. The third is to set appropriate permissions for the
-new user and new password.&lt;/p&gt;
-&lt;p&gt;!!! attention
-    Change the default password from &lt;code&gt;ninja&lt;/code&gt; to something secure&lt;/p&gt;
-&lt;p&gt;Our three commands:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;DATABASE&lt;/span&gt; &lt;span class="n"&gt;ninja&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;USER&lt;/span&gt; &lt;span class="s1"&gt;'ninja'&lt;/span&gt;&lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="s1"&gt;'localhost'&lt;/span&gt; &lt;span class="n"&gt;IDENTIFIED&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="s1"&gt;'ninja'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;GRANT&lt;/span&gt; &lt;span class="k"&gt;ALL&lt;/span&gt; &lt;span class="k"&gt;PRIVILEGES&lt;/span&gt; &lt;span class="k"&gt;ON&lt;/span&gt; &lt;span class="n"&gt;ninja&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;TO&lt;/span&gt; &lt;span class="s1"&gt;'ninja'&lt;/span&gt;&lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="s1"&gt;'localhost'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Exit MySQL.&lt;/p&gt;
-&lt;h2 id="configure-apache"&gt;Configure Apache&lt;a class="headerlink" href="#configure-apache" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Now we're going to set up a new virtualhost in Apache to serve InvoiceNinja.&lt;/p&gt;
-&lt;p&gt;Create an entry in sites-available.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;nano&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;apache2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sites&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;invoiceninja&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;My entry looks like this:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:80&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-     DocumentRoot /var/www/html/ninja/public
-     ServerName invoice.example.com
-     Redirect permanent / https://invoice.example.com/
-
-     &lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="err"&gt;/var/www/html/ninja/public&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-        Options +FollowSymlinks
-        AllowOverride All
-        Require all granted
-     &lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
-
-&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class="err"&gt;*:443&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-    ServerName invoice.example.com
-    DocumentRoot /var/www/html/ninja/public
-    SSLEngine on
-    SSLCertificateFile /path/to/dehydrated/certs/invoice.example.com/cert.pem
-    SSLCertificateKeyFile /path/to/dehydrated/certs/invoice.example.com/privkey.pem
-    SSLCertificateChainFile /path/to/dehydrated/certs/invoice.example.com/chain.pem
-    &lt;span class="nt"&gt;&amp;lt;IfModule&lt;/span&gt; &lt;span class="err"&gt;mod_headers.c&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-        Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
-    &lt;span class="nt"&gt;&amp;lt;/IfModule&amp;gt;&lt;/span&gt;
-
-    &lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="err"&gt;/var/www/html/ninja&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
-        Options FollowSymLinks
-        AllowOverride All
-        Order allow,deny
-        allow from all
-    &lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This sets up a direct from HTTP to HTTPS. Then it points to the SSL certificates I've
-created for this subdomain. I previously wrote about &lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;how I set up SSL&lt;/a&gt;. I followed the
-same steps, using the new subdomain.&lt;/p&gt;
-&lt;p&gt;With SSL and the subdomain set up in CloudFlare, it's time to enable the site:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo a2ensite invoiceninja.conf
-$ sudo systemctl reload apache2
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id="completing-the-install"&gt;Completing the install&lt;a class="headerlink" href="#completing-the-install" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Navigate to the new subdomain, and fill out the form. Installation will be
-completed in a minute or so.&lt;/p&gt;
-&lt;h2 id="updating"&gt;Updating&lt;a class="headerlink" href="#updating" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;At some point, InvoiceNinja will come out with an update, and I'll want to update
-to get the newest features and security patches.&lt;/p&gt;
-&lt;p&gt;To start with, we want to download the newest version:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wget https://download.invoiceninja.com/ninja-v4.5.14.zip
-$ unzip ninja-v4.5.14.zip
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Next, &lt;code&gt;rsync&lt;/code&gt; the files to the installed directory.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo rsync -tr ninja/ /var/www/html/ninja/
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This messes up permissions, so reset those.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;cd&lt;/span&gt; /var/www/html
-$ sudo chown -R www-data:www-data ninja/
-$ sudo chmod -R &lt;span class="m"&gt;755&lt;/span&gt; ninja/storage
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Finally, hit the &lt;code&gt;/update&lt;/code&gt; URL to complete the process&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;invoice&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;update&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content><category term="technical"></category></entry><entry><title>Updating PHP from 7.1 to 7.3 on Ubuntu 18.04</title><link href="https://andrewwegner.com/updating-php-ubuntu-1804.html" rel="alternate"></link><published>2018-07-26T10:00:00-05:00</published><updated>2018-07-26T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-26:/updating-php-ubuntu-1804.html</id><summary type="html">&lt;p&gt;A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)&lt;/p&gt;</summary><content type="html">
-&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The &lt;a href="https://andrewwegner.com/new-house-server.html"&gt;new server&lt;/a&gt; has been up and running for about a year and a half now. It's still
-working really well. The thing that I'm happiest with is &lt;a href="https://andrewwegner.com/installing-nextcloud.html"&gt;my NextCloud install&lt;/a&gt;. Having
-my pictures automatically backed up from the phones is a huge time saver. I no
-longer need to worry about whether or not I grabbed a set of pictures off the
-phone or which phone has which picture. It's all in one place in NextCloud. This
-makes it easy to find what I'm looking for (and easy to backup).&lt;/p&gt;
-&lt;p&gt;NextCloud runs on PHP, which means I need to have PHP installed on the server
-for it to work. This isn't a huge problem, but the last time I really used PHP,
-it was during the transition between PHP 4 and PHP 5. So...a while ago. I set up PHP
-(and Apache) to host NextCloud and really just forgot about it.&lt;/p&gt;
-&lt;p&gt;During a recent update of packages on the server - because I do like to keep
-everything updated. I noticed this line during the &lt;code&gt;apt-get&lt;/code&gt; scroll:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;php7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;already&lt;/span&gt; &lt;span class="n"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="n"&gt;enabling&lt;/span&gt; &lt;span class="n"&gt;PHP&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Time to figure out how to use that newly install/upgraded PHP 7.3&lt;/p&gt;
-&lt;h2 id="what-is-actually-running"&gt;What is actually running?&lt;a class="headerlink" href="#what-is-actually-running" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The first thing I did was check which version of PHP was being used in the terminal:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ php -v
-PHP &lt;span class="m"&gt;7&lt;/span&gt;.3.7-2+ubuntu18.04.1+deb.sury.org+1 &lt;span class="o"&gt;(&lt;/span&gt;cli&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;built: Jul &lt;span class="m"&gt;25&lt;/span&gt; &lt;span class="m"&gt;2019&lt;/span&gt; &lt;span class="m"&gt;11&lt;/span&gt;:44:59&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt; NTS &lt;span class="o"&gt;)&lt;/span&gt;
-Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1997&lt;/span&gt;-2018 The PHP Group
-Zend Engine v3.3.7, Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1998&lt;/span&gt;-2018 Zend Technologies
-    with Zend OPcache v7.3.7-2+ubuntu18.04.1+deb.sury.org+1, Copyright &lt;span class="o"&gt;(&lt;/span&gt;c&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="m"&gt;1999&lt;/span&gt;-2018, by Zend Technologies
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;That's promising. The default version here is PHP 7.3.7.&lt;/p&gt;
-&lt;p&gt;But, throwing a quick &lt;code&gt;phpinfo();&lt;/code&gt; together and looking at what it running via
-Apache, shows something different:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PHP&lt;/span&gt; &lt;span class="k"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;ubuntu18&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;04&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sury&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Ok. Now I know which module is out of date. It's the run that is configured to
-be used with Apache.&lt;/p&gt;
-&lt;h2 id="verifying-whats-installed"&gt;Verifying what's installed&lt;a class="headerlink" href="#verifying-whats-installed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I assumed I had PHP 7.3 installed, but I wanted to confirm before I just started
-disabling and enabling Apache modules.&lt;/p&gt;
-&lt;p&gt;To confirm I had PHP 7.3 available, I ran this:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ls /etc/apache2/mods-available/php*
-/etc/apache2/mods-available/php7.1.conf
-/etc/apache2/mods-available/php7.1.load
-/etc/apache2/mods-available/php7.2.conf
-/etc/apache2/mods-available/php7.2.load
-/etc/apache2/mods-available/php7.3.conf
-/etc/apache2/mods-available/php7.3.load
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And a quick check to see what's enabled:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ls /etc/apache2/mods-enabled/php*
-/etc/apache2/mods-enabled/php7.1.conf
-/etc/apache2/mods-enabled/php7.1.load
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Excellent. I have PHP 7.3 available, and PHP 7.1 is enabled. This is exactly what
-I'm seeing.&lt;/p&gt;
-&lt;h2 id="updating-apache-php-module"&gt;Updating Apache PHP Module&lt;a class="headerlink" href="#updating-apache-php-module" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;With PHP 7.3 already installed, I just need to disable PHP 7.1 and enable PHP 7.3.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ a2dismod php7.1
-$ a2enmod php7.3
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Then restart Apache to use the new module.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ service apache2 restart
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Finally, validate the correct module is enabled:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ls /etc/apache2/mods-enabled/php*
-/etc/apache2/mods-enabled/php7.3.conf
-/etc/apache2/mods-enabled/php7.3.load
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Another check of the &lt;code&gt;phpinfo();&lt;/code&gt; page too:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PHP&lt;/span&gt; &lt;span class="k"&gt;Version&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;ubuntu18&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;04&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sury&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This matches what &lt;code&gt;php -v&lt;/code&gt; output.&lt;/p&gt;
-&lt;p&gt;We're done! Right?&lt;/p&gt;
-&lt;h2 id="checking-nextcloud"&gt;Checking NextCloud&lt;a class="headerlink" href="#checking-nextcloud" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;With PHP updated, it was time to make sure the one PHP application I run still
-worked. I visited my &lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;NextCloud URL I set up CloudFlare&lt;/a&gt;. There I was greeted
-with a blank page. Oddly, I couldn't find any errors in my server logs.&lt;/p&gt;
-&lt;p&gt;Using the &lt;code&gt;a2dismod&lt;/code&gt; and &lt;code&gt;a2enmod&lt;/code&gt; commands from above, I downgraded back to
-PHP 7.1. NextCloud worked. I upgraded to PHP 7.2 and it worked. Going back to PHP
-7.3, and I was back to a blank page.&lt;/p&gt;
-&lt;p&gt;Even without server logs, this indicated that either NextCloud doesn't support
-PHP 7.3 or I was missing modules. A check of the &lt;a href="https://docs.nextcloud.com/server/15/admin_manual/installation/system_requirements.html"&gt;system requirements for NextCloud&lt;/a&gt;
-shows that PHP 7.3 is supported. That just means I'm missing some modules.&lt;/p&gt;
-&lt;p&gt;The documentation also includes a &lt;a href="https://docs.nextcloud.com/server/15/admin_manual/installation/source_installation.html#prerequisites-for-manual-installation"&gt;list of all needed modules&lt;/a&gt; and a nice
-&lt;a href="https://github.com/nextcloud/vm/blob/master/nextcloud_install_production.sh/"&gt;shell script&lt;/a&gt; for easy installation. Looking through that, I found the &lt;code&gt;apt&lt;/code&gt;
-&lt;a href="https://github.com/nextcloud/vm/blob/c469b3045c7405261a0d9f20fec7ef5f0f508efe/nextcloud_install_production.sh#L256-L272"&gt;packages I needed&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ apt-get install php7.3-fpm &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-intl &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-ldap &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-imap &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-gd &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-pgsql &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-curl &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-xml &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-zip &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-mbstring &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-soap &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-smbclient &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-json &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-gmp &lt;span class="se"&gt;\&lt;/span&gt;
-php7.3-bz2
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;A minute or so later, with those modules now installed, I restarted Apache again.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ service apache2 restart
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Then I went to my NextCloud URL. The page loaded as expected and my phone
-sync'd the one picture I took as a test to ensure it worked.&lt;/p&gt;
-&lt;p&gt;Overall, this was a really simple process. The biggest issue I ran into was missing
-a module or two that NextCloud required. Simply installing everything it needed
-worked perfectly.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Deploying a Flask Slack app on Google Cloud Platform</title><link href="https://andrewwegner.com/slack-app-google-cloud.html" rel="alternate"></link><published>2018-07-13T10:00:00-05:00</published><updated>2018-07-13T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-13:/slack-app-google-cloud.html</id><summary type="html">&lt;p&gt;Setup a Slack app using Flask and deploy it to Google's Cloud&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;The next steps I'll take be taking are to restrict the new SSH key on the server to only allow it to perform &lt;code&gt;rsync&lt;/code&gt; tasks. This can be done by slightly modifying the appropriate line in &lt;code&gt;authorized_keys&lt;/code&gt;. I'll see how this daily, single, back up works for a while. If I need to, I may change it to a rotating weekly backup. I don't forsee that right now, but I need a few weeks of seeing how this works and if the single day is good enough.&lt;/p&gt;</content><category term="technical"></category></entry><entry><title>Deploying a Flask Slack app on Google Cloud Platform</title><link href="https://andrewwegner.com/slack-app-google-cloud.html" rel="alternate"></link><published>2018-07-13T10:00:00-05:00</published><updated>2018-07-13T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-13:/slack-app-google-cloud.html</id><summary type="html">&lt;p&gt;Setup a Slack app using Flask and deploy it to Google's Cloud&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="background-and-goals"&gt;Background and goals&lt;a class="headerlink" href="#background-and-goals" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At work I am the software QA team lead (I haven't given myself a fancy title, but I should). As such, I spend a lot of time in JIRA tracking our bug and feature requests and in Slack working with every aspect of the company to ensure the new features work as expected and bugs as appropriately squashed. As new releases approach their release date, I start running more queries to ensure everything will be done on time.&lt;/p&gt;
 &lt;p&gt;Mini-rant: I hate JIRA's UI. It's slow, clunky and makes rolling things up as I need them unnecessarily complicated.&lt;/p&gt;
