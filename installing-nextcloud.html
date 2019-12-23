@@ -114,44 +114,44 @@ and upgrade processes in this post.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">¶</a></h2>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h3>
 <p>For NextCloud you'll need either MySQL or MariaDB. I host it via Apache2, so we'll have that installed too. NextCloud is written in PHP, meaning we need that too.</p>
-<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">apache2</span> <span class="n">mariadb</span><span class="o">-</span><span class="n">server</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span> <span class="n">libapache2</span><span class="o">-</span><span class="k">mod</span><span class="o">-</span><span class="n">php7</span><span class="p">.</span><span class="mi">0</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">mbstring</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">curl</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">zip</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">gd</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">mysql</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">mcrypt</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">bcmath</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">xml</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">json</span> <span class="n">php7</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="n">tidy</span>
+<div class="codehilight code"><pre><span></span><span class="err">sudo apt-get install apache2 mariadb-server php7.0 libapache2-mod-php7.0 php7.0-mbstring php7.0-curl php7.0-zip php7.0-gd php7.0-mysql php7.0-mcrypt php7.0-bcmath php7.0-xml php7.0-json php7.0-tidy</span>
 </pre></div>
 <p>Enable the Apache2 rewrite module and restart the web server.</p>
-<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">a2enmod</span> <span class="n">rewrite</span>
-<span class="n">sudo</span> <span class="n">service</span> <span class="n">apache2</span> <span class="k">restart</span>
+<div class="codehilight code"><pre><span></span><span class="err">sudo a2enmod rewrite</span>
+<span class="err">sudo service apache2 restart</span>
 </pre></div>
 <h3 id="set-up-the-database">Set up the database<a class="headerlink" href="#set-up-the-database" title="Permanent link">¶</a></h3>
 <p>You'll need to create a database for NextCloud. Log into your database using credentials that can create new users and databases. <code>root</code> will work.</p>
-<div class="codehilight code"><pre><span></span><span class="n">mysql</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p</span>
+<div class="codehilight code"><pre><span></span><span class="err">mysql -uroot -p</span>
 </pre></div>
 <p>Next, execute a couple SQL statements to create a database and create a user that can access the database. Make sure you use a secure password.</p>
-<div class="codehilight code"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">nextcloud</span><span class="p">;</span>
-<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="n">nextcloud</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">'nextclouduser'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">'YOURSECUREPASSWORDHERE'</span><span class="p">;</span>
-<span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
-<span class="err">\</span><span class="n">q</span>
+<div class="codehilight code"><pre><span></span><span class="err">CREATE DATABASE nextcloud;</span>
+<span class="err">GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextclouduser'@'localhost' IDENTIFIED BY 'YOURSECUREPASSWORDHERE';</span>
+<span class="err">FLUSH PRIVILEGES;</span>
+<span class="err">\q</span>
 </pre></div>
 <h3 id="download-nextcloud">Download NextCloud<a class="headerlink" href="#download-nextcloud" title="Permanent link">¶</a></h3>
 <p>As I mentioned above, I initially installed version 12 of NextCloud. The latest version can be found on the <a href="https://nextcloud.com/install/">NextCloud install page</a>. The URL from that page should be
 used instead of the version 12 link in the following code block. The code block below will be putting NextCloud in the default location Ubuntu has Apache look. You can modify
 that as needed. If you do so, the virtual host will need to be modified slightly.</p>
-<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">cd</span> <span class="o">/</span><span class="n">tmp</span> <span class="o">&amp;&amp;</span> <span class="n">wget</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="p">.</span><span class="n">nextcloud</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">server</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">nextcloud</span><span class="o">-</span><span class="mi">12</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="p">.</span><span class="n">zip</span>
-<span class="n">sudo</span> <span class="n">unzip</span> <span class="n">nextcloud</span><span class="o">-</span><span class="mi">12</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="p">.</span><span class="n">zip</span>
-<span class="n">sudo</span> <span class="n">mv</span> <span class="n">nextcloud</span><span class="o">/</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span>
+<div class="codehilight code"><pre><span></span><span class="err">sudo cd /tmp &amp;&amp; wget wget https://download.nextcloud.com/server/releases/nextcloud-12.0.2.zip</span>
+<span class="err">sudo unzip nextcloud-12.0.2.zip</span>
+<span class="err">sudo mv nextcloud/ /var/www/html</span>
 </pre></div>
 <p>We need to adjust ownership of the files so that Apache can read them. The default user and group, in this case is <code>www-data</code>. If you have configured your server to use a
 different user or group, adjust this command accordingly.</p>
-<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">chown</span> <span class="n">www</span><span class="o">-</span><span class="k">data</span><span class="p">:</span><span class="n">www</span><span class="o">-</span><span class="k">data</span> <span class="o">-</span><span class="n">R</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">nextcloud</span>
+<div class="codehilight code"><pre><span></span><span class="err">sudo chown www-data:www-data -R /var/www/html/nextcloud</span>
 </pre></div>
 <h3 id="create-the-virtual-host">Create the Virtual Host<a class="headerlink" href="#create-the-virtual-host" title="Permanent link">¶</a></h3>
 <p>I'll be exposing this to the internet and I'll be accessing it via the internet. That means I really don't want to send data unencrypted to or from NextCloud. I'll be setting
 up the standard port 80 web server traffic to redirect to the secure port of 443. I cover <a href="https://andrewwegner.com/setup-lets-encrypt.html">generating SSL certificates</a> in another post. I use <a href="https://letsencrypt.org/">Let's Encrypt</a>. The keys
 referenced in the virtual host configuration file below created by that process.</p>
 <p>Create a new virtual host.</p>
-<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">touch</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">nextcloud</span><span class="p">.</span><span class="n">conf</span>
-<span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">nextcloud</span><span class="p">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">nextcloud</span><span class="p">.</span><span class="n">conf</span>
+<div class="codehilight code"><pre><span></span><span class="err">sudo touch /etc/apache2/sites-available/nextcloud.conf</span>
+<span class="err">sudo ln -s /etc/apache2/sites-available/nextcloud.conf /etc/apache2/sites-enabled/nextcloud.conf</span>
 </pre></div>
 <p>Now you need to edit this newly created file</p>
-<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">nextcloud</span><span class="p">.</span><span class="n">conf</span>
+<div class="codehilight code"><pre><span></span><span class="err">sudo nano /etc/apache2/sites-available/nextcloud.conf</span>
 </pre></div>
 <p>Paste the following:</p>
 <div class="codehilight code"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="err">*:80</span><span class="nt">&gt;</span>
@@ -280,7 +280,7 @@ minutes of me getting home.</p>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>38</span>
+                    <span>39</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

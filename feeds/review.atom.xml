@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2019-07-09T14:30:00-05:00</updated><entry><title>Review of Travis CI Tutorial Udemy course</title><link href="https://andrewwegner.com/travis-ci-tutorial-review.html" rel="alternate"></link><published>2019-07-09T14:30:00-05:00</published><updated>2019-07-09T14:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-07-09:/travis-ci-tutorial-review.html</id><summary type="html">&lt;p&gt;My review of the Travis CI Tutorial course on Udemy.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2019-12-23T10:00:00-06:00</updated><entry><title>Review of Ultimate AWS Certified Developer Associate 2019 course</title><link href="https://andrewwegner.com/aws-certified-developer-review.html" rel="alternate"></link><published>2019-12-23T10:00:00-06:00</published><updated>2019-12-23T10:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-12-23:/aws-certified-developer-review.html</id><summary type="html">&lt;p&gt;My review of the Ultimate AWS Certified Developer Associate course.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One of my personal and professional goals for 2019 was to get a certification of some kind. That's a
+fairly broad requirement with no real reasoning behind it. I wanted to learn something and I wanted it
+to be helpful at work. As the year rapidly entered the last few months, I realized I not done anything
+to reach the goal.&lt;/p&gt;
+&lt;p&gt;After a brief talk with my management, it was decided that I should get an AWS certification. It'd help
+the company out with some work we are doing to become an AWS partner, and I'd get a certification that would
+be useful.&lt;/p&gt;
+&lt;p&gt;With a read goal, I set out to learn something. I started by finding &lt;a href="https://www.udemy.com/course/aws-certified-developer-associate-dva-c01/"&gt;Ultimate AWS Certified Developer Associate 2019&lt;/a&gt;
+on Udemy. At the time I'm posting this entry, the course has been updated to be useful for 2020. It's always a good sign
+that the creator is continuously updating their materials. This course was created by Stephane Maarek, who also
+holds the certification that is being taught about.&lt;/p&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course is a 19 hour overview of most of AWS. At first I thought that length was excessive, but it turns out
+that 19 hours isn't enough. This course is focused only on the AWS products that you need to know for the DVA-C01
+certification. There is...a lot to know.&lt;/p&gt;
+&lt;p&gt;The materials go through how to use AWS's free tier for almost all of the work needed for the course. The very few
+areas that can't utilize the free tier are explicitly called out, so you don't end up with surprise AWS bills.&lt;/p&gt;
+&lt;p&gt;I highly recommend you set aside the time to go through this course and the practice tests. Then, I recommend
+that you do it again. AWS has a &lt;em&gt;ton&lt;/em&gt; of services with three letter names. You need to know how those work
+and interact with one another. You need to know how to troubleshoot them, set them up, and scale them.&lt;/p&gt;
+&lt;p&gt;One pass through this course wasn't enough for me. I don't blame the instructor though. I blame the expansiveness of
+the test.&lt;/p&gt;
+&lt;p&gt;The practice questions were very similar to what questions looked like on the real exam. The concepts that were
+covered were helpful in answering a few others.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If (when?) I go for the next level of certifications in Amazon, I'll be looking for more courses from this creator.
+The course is very well built, very hands on, and obviously updated to stay relevant.&lt;/p&gt;
+&lt;p&gt;In November, I took my exam and passed on the first try.&lt;/p&gt;
+&lt;p&gt;I have other professional goals for next year, but if I decide to go for another AWS certification, I'll
+be looking for another course by Stephane Maarek.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ude.my/UC-CAXZ5N6F"&gt;&lt;img alt="Ultimate AWS Certified Developer Associate 2019" src="https://andrewwegner.com/images/udemy-aws-developer-certification.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="AWS Certified Developer - J2WR9QVC314Q1FSY" src="{attach}images/aws_certified_developer.jpg"/&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Review of Travis CI Tutorial Udemy course</title><link href="https://andrewwegner.com/travis-ci-tutorial-review.html" rel="alternate"></link><published>2019-07-09T14:30:00-05:00</published><updated>2019-07-09T14:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-07-09:/travis-ci-tutorial-review.html</id><summary type="html">&lt;p&gt;My review of the Travis CI Tutorial course on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've written about Travis CI before. I've reported a bug that makes it fairly easy
 to see &lt;a href="https://andrewwegner.com/travisci-insecure-environment-variables.html"&gt;environment variables in Travis CI&lt;/a&gt; or even unintentionally transfer
@@ -258,7 +291,7 @@ even current!&lt;/p&gt;
 &lt;li&gt;Installation instructions are done using &lt;code&gt;easy_install&lt;/code&gt; not &lt;code&gt;pip&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In the &lt;code&gt;urls.py&lt;/code&gt; files that define URL routes, there are lines that look like this:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;'^admin/'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;admin&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;url(r'^admin/', admin.site.urls)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The instructor attempts to describe the &lt;code&gt;r&lt;/code&gt; in front of &lt;code&gt;'^admin/'&lt;/code&gt; by saying:&lt;/p&gt;
 &lt;blockquote&gt;

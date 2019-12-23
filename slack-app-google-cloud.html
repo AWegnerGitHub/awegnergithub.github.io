@@ -200,7 +200,7 @@
 <p>Now it's time to get to the real work. <code>hello_world</code> and <code>command_hello_world</code>. If you've used Flask before, you can see that <code>command_hello_world</code> will be the function associated with a user hitting <code>http:\\server.tld\hello-world</code> with a <code>POST</code> request. Slack only sends <code>POST</code> requests, so I care about <code>GET</code> methods. In <code>command_hello_world</code>, we send a call to the command worker thread, telling it to call <code>hello_world</code> and then pass the <code>response_url</code> as a parameter. The function immediately returns a response to Slack telling the user to wait.</p>
 <p>In <code>hello_world</code>, the function sleeps for a few seconds before sending a response back to the passed <code>response_url</code>. This <code>sleep</code> is to emulate "real work" being done. In my case, it's five seconds of queries to JIRA to gather and format all of the data I want to return.</p>
 <p>Finally, this can run locally by firing up Flask. I tested with this command:</p>
-<div class="codehilight code"><pre><span></span><span class="n">FLASK_APP</span><span class="o">=</span><span class="n">jira</span><span class="o">-</span><span class="n">slack</span><span class="o">-</span><span class="n">integration</span><span class="p">.</span><span class="n">py</span> <span class="n">flask</span> <span class="n">run</span>
+<div class="codehilight code"><pre><span></span><span class="err">FLASK_APP=jira-slack-integration.py flask run</span>
 </pre></div>
 <p>When deploying to Google App Engine, the <code>main</code> function won't be utilized. I cover that below.</p>
 <h2 id="testing-the-application">Testing the application<a class="headerlink" href="#testing-the-application" title="Permanent link">¶</a></h2>
@@ -272,7 +272,7 @@
 <p>Other than the <code>entrypoint</code> line, this is the example <code>app.yaml</code> provided by Google. <code>example-script</code> is the name of the file that contains the Flask application.</p>
 <h3 id="deploy-to-google">Deploy to Google<a class="headerlink" href="#deploy-to-google" title="Permanent link">¶</a></h3>
 <p>Finally, it's time to deploy this application to Google. From within the same directory where <code>example-script.py</code> resides, run:</p>
-<div class="codehilight code"><pre><span></span><span class="n">gcloud</span> <span class="n">app</span> <span class="n">deploy</span>
+<div class="codehilight code"><pre><span></span><span class="err">gcloud app deploy</span>
 </pre></div>
 <p>Wait a few minutes for the deployment to occur. When it's complete, the command prompt will say so and provide a URL where the application is accessible.</p>
 <p>The last thing that needs to be done, is repointing the slash commands to this new location. With it deployed to Google's Cloud Platform, the <code>ngrok</code> provided URLs need to be changed. The endpoints remain the same though.</p>
@@ -309,7 +309,7 @@
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>38</span>
+                    <span>39</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

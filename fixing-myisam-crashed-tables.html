@@ -78,7 +78,7 @@
             
             <div itemprop="articleBody mainEntityOfPage">
             <p>For various reasons, MyISAM tables are known to crash. When this happens, the following message will be displayed:</p>
-<div class="codehilight code"><pre><span></span><span class="n">INVALID</span> <span class="k">SQL</span><span class="p">:</span> <span class="mi">145</span> <span class="p">:</span> <span class="k">Table</span> <span class="s1">&#39;{something}&#39;</span> <span class="k">is</span> <span class="n">marked</span> <span class="k">as</span> <span class="n">crashed</span> <span class="k">and</span> <span class="n">should</span> <span class="n">be</span> <span class="n">repaired</span>
+<div class="codehilight code"><pre><span></span><span class="err">INVALID SQL: 145 : Table &#39;{something}&#39; is marked as crashed and should be repaired</span>
 </pre></div>
 
 
@@ -87,34 +87,34 @@ if MySQL itself has issues and you use the <code>kill</code> command to stop it.
 are being used, do not make MyISAM tables happy.</p>
 <p>To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files 
 are stored.</p>
-<div class="codehilight code"><pre><span></span><span class="n">locate</span> <span class="o">*</span><span class="p">.</span><span class="n">MYI</span>
+<div class="codehilight code"><pre><span></span><span class="err">locate *.MYI</span>
 </pre></div>
 
 
 <p>This will return where all the MYI files are stored. In this example, I am using</p>
-<div class="codehilight code"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span>
+<div class="codehilight code"><pre><span></span><span class="err">/var/lib/mysql/mysql/</span>
 </pre></div>
 
 
 <p>Go to the directory of the crashed table using the <code>cd</code> command. Next, stop MySQL. This is to ensure the tables are not 
 accessed while we perform our repair functions. If you don't perform this step, the repair may not succeed.</p>
-<div class="codehilight code"><pre><span></span><span class="n">service</span> <span class="n">mysqld</span> <span class="n">stop</span>
+<div class="codehilight code"><pre><span></span><span class="err">service mysqld stop</span>
 </pre></div>
 
 
 <p>Next we are going to perform two repair functions. The first one may take a while depending on the size of your tables.</p>
-<div class="codehilight code"><pre><span></span><span class="n">myisamchk</span> <span class="o">-</span><span class="n">r</span> <span class="c1">--force --safe-recover *.MYI</span>
+<div class="codehilight code"><pre><span></span><span class="err">myisamchk -r --force --safe-recover *.MYI</span>
 </pre></div>
 
 
 <p>The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It 
 is likely that this step is not needed after performing the previous step, but it should only take a few seconds now.</p>
-<div class="codehilight code"><pre><span></span><span class="n">myisamchk</span> <span class="c1">--force --fast --update-state *.MYI</span>
+<div class="codehilight code"><pre><span></span><span class="err">myisamchk --force --fast --update-state *.MYI</span>
 </pre></div>
 
 
 <p>Finally, restart MySQL</p>
-<div class="codehilight code"><pre><span></span><span class="n">service</span> <span class="n">mysqld</span> <span class="k">start</span>
+<div class="codehilight code"><pre><span></span><span class="err">service mysqld start</span>
 </pre></div>
             </div>
             <hr />
@@ -148,7 +148,7 @@ is likely that this step is not needed after performing the previous step, but i
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>38</span>
+                    <span>39</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

@@ -179,7 +179,7 @@ I ran <code>sudo update-grub</code></p>
 <h2 id="final-thoughts">Final thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
 <p>With the XPS working again, I have decided to stay on BIOS 2.9.0 for now. I also haven't re-updated the kernel to the <code>-44</code> version. In fact, I purged that one
 for the time being with this command:</p>
-<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">purge</span> <span class="o">-</span><span class="n">f</span> <span class="n">linux</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="mi">4</span><span class="p">.</span><span class="mi">15</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="mi">44</span><span class="o">-</span><span class="n">generic</span>
+<div class="codehilight code"><pre><span></span><span class="err">sudo apt-get purge -f linux-image-4.15.0-44-generic</span>
 </pre></div>
 <p>This is a <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1813663">known bug</a> with 4.15.0-44 and a fix is being worked on. It also seems to impact more than just Dell products. It looks like
 4.15.0-45 will fix the issue. We'll see.</p>
@@ -216,7 +216,7 @@ for the time being with this command:</p>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>38</span>
+                    <span>39</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

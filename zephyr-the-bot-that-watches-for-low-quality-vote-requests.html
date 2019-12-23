@@ -148,12 +148,12 @@ SmokeDetector to watch for commonly spammed domains.</p>
 <h3 id="upgrade-from-sqlite-to-mariadb">Upgrade from SQLite to MariaDB<a class="headerlink" href="#upgrade-from-sqlite-to-mariadb" title="Permanent link">¶</a></h3>
 <p>Zephyr was originally built against an SQLite database. This worked, but was getting slower as more data was being added. This slow down
 was beginning to affect performance. I started seeing this error more and more frequently:</p>
-<div class="codehilight code"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="k">call</span> <span class="k">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="ss">"H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">255</span><span class="p">,</span> <span class="k">in</span> <span class="n">_close_connection</span>
-    <span class="k">self</span><span class="p">.</span><span class="n">_dialect</span><span class="p">.</span><span class="n">do_close</span><span class="p">(</span><span class="k">connection</span><span class="p">)</span>
-  <span class="n">File</span> <span class="ss">"H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">418</span><span class="p">,</span> <span class="k">in</span> <span class="n">do_close</span>
-    <span class="n">dbapi_connection</span><span class="p">.</span><span class="k">close</span><span class="p">()</span>
-<span class="n">ProgrammingError</span><span class="p">:</span> <span class="n">SQLite</span> <span class="n">objects</span> <span class="n">created</span> <span class="k">in</span> <span class="n">a</span> <span class="n">thread</span> <span class="n">can</span> <span class="k">only</span> <span class="n">be</span> <span class="n">used</span> <span class="k">in</span> <span class="n">that</span> <span class="n">same</span> <span class="n">thread</span><span class="p">.</span><span class="n">The</span> <span class="k">object</span> <span class="n">was</span> <span class="n">created</span> <span class="k">in</span> <span class="n">thread</span> <span class="n">id</span> <span class="mi">4824</span> <span class="k">and</span> <span class="n">this</span> <span class="k">is</span> <span class="n">thread</span> <span class="n">id</span> <span class="mi">4660</span>
+<div class="codehilight code"><pre><span></span><span class="err">Traceback (most recent call last):</span>
+<span class="err">  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py", line 255, in _close_connection</span>
+<span class="err">    self._dialect.do_close(connection)</span>
+<span class="err">  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py", line 418, in do_close</span>
+<span class="err">    dbapi_connection.close()</span>
+<span class="c">ProgrammingError: SQLite objects created in a thread can only be used in that same thread.The object was created in thread id 4824 and this is thread id 4660</span>
 </pre></div>
 <p>After spending a lot of time troubleshooting and not resolving it to my satisfaction, I decided to upgrade to a more robust database. I'd used
 MySQL/MariaDB before and I happened to have another application utilizing MariaDB at the moment so that is the solution I picked. </p>

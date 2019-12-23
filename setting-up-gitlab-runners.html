@@ -122,49 +122,49 @@ features. I've been wanting to, but never got around to it.</p>
 <p>I'll be running my runners in <a href="https://www.docker.com/">Docker</a> containers. There are other options,
 but for my home environment, this is easiest to set up and maintain.</p>
 <p>Let's start by installing Docker:</p>
-<div class="codehilight code"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span> <span class="n">ca</span><span class="o">-</span><span class="n">certificates</span> <span class="n">curl</span> <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span> <span class="o">-</span><span class="n">y</span>
-<span class="n">curl</span> <span class="o">-</span><span class="n">fsSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="p">.</span><span class="n">docker</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">gpg</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="k">key</span> <span class="k">add</span> <span class="o">-</span>
-<span class="n">sudo</span> <span class="k">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="ss">"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</span>
-<span class="n">sudo</span> <span class="n">apt</span> <span class="k">update</span>
-<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span> <span class="o">-</span><span class="n">y</span>
+<div class="codehilight code"><pre><span></span><span class="err">sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y</span>
+<span class="err">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span>
+<span class="err">sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</span>
+<span class="err">sudo apt update</span>
+<span class="err">sudo apt install docker-ce -y</span>
 </pre></div>
 <p>This is going to add the Docker repository and install the community edition.</p>
 <h3 id="gitlab-runner">GitLab Runner<a class="headerlink" href="#gitlab-runner" title="Permanent link">¶</a></h3>
 <p>Once Docker is installed and working, we can install the GitLab runner.</p>
-<div class="codehilight code"><pre><span></span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="o">-</span><span class="n">downloads</span><span class="p">.</span><span class="n">s3</span><span class="p">.</span><span class="n">amazonaws</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">binaries</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">amd64</span>
-<span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span>
-<span class="n">useradd</span> <span class="c1">--comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash</span>
-<span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span> <span class="n">install</span> <span class="c1">--user=gitlab-runner --working-directory=/home/gitlab-runner</span>
-<span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span> <span class="k">start</span>
+<div class="codehilight code"><pre><span></span><span class="err">wget -O /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64</span>
+<span class="err">chmod +x /usr/local/bin/gitlab-runner</span>
+<span class="err">useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash</span>
+<span class="err">gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner</span>
+<span class="err">gitlab-runner start</span>
 </pre></div>
 <p>This is downloading the install package. Then it adds a new user, that the runner will run as. This is a nice security precaution to limit what the runner has access to on the system. It's not full security, but it does all me to restrict what that particular user has access to on the server.</p>
 <p>Then the run is started.</p>
 <p>Next the runner needs to be registered. Log into GitLab, and navigate to
 the project that will be using this runner. It should be available at this link:</p>
-<div class="codehilight code"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">url</span><span class="p">.</span><span class="k">to</span><span class="p">.</span><span class="n">your</span><span class="p">.</span><span class="n">gitlab</span><span class="p">.</span><span class="n">install</span><span class="o">/&lt;</span><span class="n">account</span><span class="o">&gt;/&lt;</span><span class="n">repo</span><span class="o">&gt;/</span><span class="n">settings</span><span class="o">/</span><span class="n">ci_cd</span>
+<div class="codehilight code"><pre><span></span><span class="c">https://url.to.your.gitlab.install/&lt;account&gt;/&lt;repo&gt;/settings/ci_cd</span>
 </pre></div>
 <p>Grab the GitLab CI token. That is needed in the next step. Run the <code>gitlab-runner register</code> command, and fill in your values as required.</p>
-<div class="codehilight code"><pre><span></span>$ <span class="nv">gitlab</span><span class="o">-</span><span class="nv">runner</span> <span class="nv">register</span>
-<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">gitlab</span><span class="o">-</span><span class="nv">ci</span> <span class="nv">coordinator</span> <span class="nv">URL</span> <span class="ss">(</span><span class="nv">e</span>.<span class="nv">g</span>. <span class="nv">https</span>:<span class="o">//</span><span class="nv">gitlab</span>.<span class="nv">com</span><span class="o">/</span><span class="ss">)</span>:
-<span class="nv">https</span>:<span class="o">//</span><span class="nv">url</span>.<span class="nv">to</span>.<span class="nv">your</span>.<span class="nv">gitlab</span>.<span class="nv">install</span><span class="o">/</span>
+<div class="codehilight code"><pre><span></span><span class="err">$</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="n">register</span><span class="w"></span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">coordinator</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">gitlab</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">url</span><span class="p">.</span><span class="k">to</span><span class="p">.</span><span class="n">your</span><span class="p">.</span><span class="n">gitlab</span><span class="p">.</span><span class="n">install</span><span class="o">/</span><span class="w"></span>
 
-<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">gitlab</span><span class="o">-</span><span class="nv">ci</span> <span class="nv">token</span> <span class="k">for</span> <span class="nv">this</span> <span class="nv">runner</span>:
-[<span class="nv">redacted</span>]]
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="nl">runner</span><span class="p">:</span><span class="w"></span>
+<span class="o">[</span><span class="n">redacted</span><span class="o">]</span><span class="err">]</span><span class="w"></span>
 
-<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">gitlab</span><span class="o">-</span><span class="nv">ci</span> <span class="nv">description</span> <span class="k">for</span> <span class="nv">this</span> <span class="nv">runner</span>:
-[<span class="nv">my</span><span class="o">-</span><span class="nv">runner</span>]: <span class="nv">python</span><span class="o">-</span><span class="nv">runner</span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="nl">runner</span><span class="p">:</span><span class="w"></span>
+<span class="o">[</span><span class="n">my-runner</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">runner</span><span class="w"></span>
 
-<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">gitlab</span><span class="o">-</span><span class="nv">ci</span> <span class="nv">tags</span> <span class="k">for</span> <span class="nv">this</span> <span class="nv">runner</span> <span class="ss">(</span><span class="nv">comma</span> <span class="nv">separated</span><span class="ss">)</span>:
-<span class="nv">python</span>
-<span class="nv">Registering</span> <span class="nv">runner</span>... <span class="nv">succeeded</span>                     <span class="nv">runner</span><span class="o">=</span><span class="mi">66</span><span class="nv">m_339h</span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">tags</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">runner</span><span class="w"> </span><span class="p">(</span><span class="n">comma</span><span class="w"> </span><span class="n">separated</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="n">python</span><span class="w"></span>
+<span class="n">Registering</span><span class="w"> </span><span class="n">runner</span><span class="p">...</span><span class="w"> </span><span class="n">succeeded</span><span class="w">                     </span><span class="n">runner</span><span class="o">=</span><span class="mi">66</span><span class="n">m_339h</span><span class="w"></span>
 
-<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">executor</span>: <span class="nv">docker</span><span class="o">-</span><span class="nv">ssh</span><span class="o">+</span><span class="nv">machine</span>, <span class="nv">docker</span>, <span class="nv">docker</span><span class="o">-</span><span class="nv">ssh</span>, <span class="nv">parallels</span>, <span class="nv">shell</span>, <span class="nv">ssh</span>, <span class="nv">virtualbox</span>, <span class="nv">docker</span><span class="o">+</span><span class="nv">machine</span>, <span class="nv">kubernetes</span>:
-<span class="nv">docker</span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nl">executor</span><span class="p">:</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">ssh</span><span class="o">+</span><span class="n">machine</span><span class="p">,</span><span class="w"> </span><span class="n">docker</span><span class="p">,</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">ssh</span><span class="p">,</span><span class="w"> </span><span class="n">parallels</span><span class="p">,</span><span class="w"> </span><span class="n">shell</span><span class="p">,</span><span class="w"> </span><span class="n">ssh</span><span class="p">,</span><span class="w"> </span><span class="n">virtualbox</span><span class="p">,</span><span class="w"> </span><span class="n">docker</span><span class="o">+</span><span class="n">machine</span><span class="p">,</span><span class="w"> </span><span class="nl">kubernetes</span><span class="p">:</span><span class="w"></span>
+<span class="n">docker</span><span class="w"></span>
 
-<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">the</span> <span class="nv">default</span> <span class="nv">Docker</span> <span class="nv">image</span> <span class="ss">(</span><span class="nv">e</span>.<span class="nv">g</span>. <span class="nv">ruby</span>:<span class="mi">2</span>.<span class="mi">1</span><span class="ss">)</span>:
-<span class="nv">alpine</span>:<span class="nv">latest</span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="nc">image</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="nl">ruby</span><span class="p">:</span><span class="mf">2.1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="nl">alpine</span><span class="p">:</span><span class="n">latest</span><span class="w"></span>
 
-<span class="nv">Runner</span> <span class="nv">registered</span> <span class="nv">successfully</span>. <span class="nv">Feel</span> <span class="nv">free</span> <span class="nv">to</span> <span class="nv">start</span> <span class="nv">it</span>, <span class="nv">but</span> <span class="k">if</span> <span class="nv">it</span><span class="s1">'</span><span class="s">s running already the config should be automatically reloaded!</span>
+<span class="n">Runner</span><span class="w"> </span><span class="n">registered</span><span class="w"> </span><span class="n">successfully</span><span class="p">.</span><span class="w"> </span><span class="n">Feel</span><span class="w"> </span><span class="k">free</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="err">'</span><span class="n">s</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">automatically</span><span class="w"> </span><span class="n">reloaded</span><span class="err">!</span><span class="w"></span>
 </pre></div>
 <p>My experience with Docker is limited, so I am using the latest alpine version. I'm sure there are better ones to use for a simple Python application, but this works for me and I'm not concerned about the absolute fastest CI/CD pipeline on my server.</p>
 <h2 id="using-the-cicd-pipeline">Using the CI/CD pipeline<a class="headerlink" href="#using-the-cicd-pipeline" title="Permanent link">¶</a></h2>
@@ -291,8 +291,8 @@ the project that will be using this runner. It should be available at this link:
 </pre></div>
 <p>This section is a template that is used to add the <code>python</code> tag to a job step. The Runner will only run tasks that have a tag you assigned to it. This is useful if you are building across multiple operating systems or across multiple languages. You don't want a runner set up to test against a Windows environment picking up tasks for a Linux environment. In my case, everything is being run for a single runner.</p>
 <p>In each step, I need to add this:</p>
-<div class="codehilight code"><pre><span></span><span class="n">extends</span><span class="p">:</span>
-  <span class="o">-</span> <span class="p">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<div class="codehilight code"><pre><span></span><span class="c">extends:</span>
+<span class="c">  - .python-tag</span>
 </pre></div>
 <p>With this, the <code>python</code> tag will be automatically applied to the task. For a simple pipeline like mine, it may seem like overkill, but it's useful if I want to force other tags or steps.</p>
 <h3 id="allow-failures">Allow failures<a class="headerlink" href="#allow-failures" title="Permanent link">¶</a></h3>
@@ -337,6 +337,7 @@ the project that will be using this runner. It should be available at this link:
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html" title="Previous: Installing InvoiceNinja on Ubuntu 18.04">Installing InvoiceNinja on Ubuntu 18.04</a></li>
+                <li class="next-article"><a href="https://andrewwegner.com/aws-certified-developer-review.html" title="Next: Review of Ultimate AWS Certified Developer Associate 2019 course">Review of Ultimate AWS Certified Developer Associate 2019 course</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -352,7 +353,7 @@ the project that will be using this runner. It should be available at this link:
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>38</span>
+                    <span>39</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
