@@ -59,7 +59,7 @@ the project that will be using this runner. It should be available at this link:
 &lt;h2 id="using-the-cicd-pipeline"&gt;Using the CI/CD pipeline&lt;a class="headerlink" href="#using-the-cicd-pipeline" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At this point, the GitLab runner is registered to a single project and is ready to use. You can enable your project to use this pipeline by adding a &lt;code&gt;.gitlab-ci.yml&lt;/code&gt; file to the root of your repository.&lt;/p&gt;
 &lt;p&gt;I used it to set up the following pipeline.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Python - GitLab Pipeline" src="{attach}images/gitlab-python-pipeline.png.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Python - GitLab Pipeline" src="https://andrewwegner.com/images/gitlab-python-pipeline.png"/&gt;&lt;/p&gt;
 &lt;p&gt;This pipeline has 4 stages.&lt;/p&gt;
 &lt;h3 id="static-analysis"&gt;Static Analysis&lt;a class="headerlink" href="#static-analysis" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;In the Static Analysis phase, I run various analysis tools over my code. The goal here is to ensure that my code, YAML documents, and documentation are easy to read and use.&lt;/p&gt;
@@ -74,7 +74,7 @@ the project that will be using this runner. It should be available at this link:
 &lt;h2 id="environment-set-up"&gt;Environment set up&lt;a class="headerlink" href="#environment-set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One of my biggest complaints about the Travis CI integration with GitHub is how you &lt;a href="https://andrewwegner.com/travisci-insecure-environment-variables.html"&gt;can't trust environment variables in Travis CI&lt;/a&gt;. Since I control the server that this runner is connected to, I have no problem adding environment variables into GitLab.&lt;/p&gt;
 &lt;p&gt;In the project, I was able to add these by going to Settings-&amp;gt;CI/CD and expanding the Variables section. I needed to store credentials for both the test and production instances of PyPI.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="GitLab Environment Variables" src="{attach}images/gitlab-env-variables.png.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="GitLab Environment Variables" src="https://andrewwegner.com/images/gitlab-env-variables.png"/&gt;&lt;/p&gt;
 &lt;p&gt;With these added, they are now accessible by my &lt;code&gt;.gitlab-ci.yml&lt;/code&gt; file.&lt;/p&gt;
 &lt;h3 id="gitlab-ciyml"&gt;.gitlab-ci.yml&lt;a class="headerlink" href="#gitlab-ciyml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The script I use to build the pipeline is as follows:&lt;/p&gt;
