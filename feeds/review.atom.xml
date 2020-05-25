@@ -1,5 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2020-05-05T10:00:00-05:00</updated><entry><title>Rise Gardens physical improvements suggestions</title><link href="https://andrewwegner.com/rise-garden-suggestions-physical.html" rel="alternate"></link><published>2020-05-05T10:00:00-05:00</published><updated>2020-05-05T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-05:/rise-garden-suggestions-physical.html</id><summary type="html">&lt;p&gt;Everything is set up and sprouting. While I'm waiting for a harvest, I have some thoughts on how to make the new garden even better.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2020-05-24T23:45:00-05:00</updated><entry><title>Rise Gardens App/Subscription Improvement suggestions</title><link href="https://andrewwegner.com/rise-garden-suggestions-software.html" rel="alternate"></link><published>2020-05-24T23:45:00-05:00</published><updated>2020-05-24T23:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-24:/rise-garden-suggestions-software.html</id><summary type="html">&lt;p&gt;Several suggestion for the Rise Gardens app, their subscription service and product as a whole.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The [garden has been opened][unboxgarden]. The &lt;a href="https://andrewwegner.com/rise-garden-assembly.html"&gt;garden has been assembled&lt;/a&gt;. The &lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;nurseries were
+opened&lt;/a&gt;. The [first plants have sprouted][planting]. I've had my first lecture harvest (more on
+this next time). While waiting for that harvest, I offered suggestion on how to [improve the hardware][physicalsuggestions].&lt;/p&gt;
+&lt;p&gt;Today, after about a month of growing, monitoring and watching the sprout go from seed to plate, I've been
+using the application almost daily. I have thoughts on how to make it even better. I have thoughts on how to make
+the subscription service better. I'll share those below.&lt;/p&gt;
+&lt;h2 id="mobile-application"&gt;Mobile Application&lt;a class="headerlink" href="#mobile-application" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One of the selling points of the &lt;a href="https://risegardens.com/"&gt;Rise Gardens&lt;/a&gt; is the mobile application. It's built to
+help you maintain your garden. For the most part, it works well. But there are some warts that need to
+be ironed out of it.&lt;/p&gt;
+&lt;p&gt;I am using the Android application.&lt;/p&gt;
+&lt;h3 id="loading-screen"&gt;Loading Screen&lt;a class="headerlink" href="#loading-screen" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Launching the application presents you with the Rise Gardens splash screen.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Rise Garden App splash screen" src="https://andrewwegner.com/images/garden/6_app_suggestions/riseapp-loading.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Learn to love this splash screen. On a good day, it will show for a few seconds. On a bad day, the application will
+hang forever. There is a simple work around, force close the application and relaunch it, but that's rather annoying.
+I estimate that I encounter this problem every three to four times I launch the application.&lt;/p&gt;
+&lt;h3 id="login-screen"&gt;Login Screen&lt;a class="headerlink" href="#login-screen" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once I've made it past the loading screen, I find that every four to five days my log in information is forgotten.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Rise Garden App login" src="https://andrewwegner.com/images/garden/6_app_suggestions/riseapp-login.png"/&gt;&lt;/p&gt;
+&lt;p&gt;So, every few days I have to log back in. It's also important to point out here that this log in is not
+the same as the login you use on their website. My login on the website contains a &lt;code&gt;+&lt;/code&gt;. The application
+rejects that form of email address. Since I usually use &lt;code&gt;+servicename&lt;/code&gt; to keep my login information easier
+to remember, this is rather annoying.&lt;/p&gt;
+&lt;p&gt;I can stay logged into Slack, Hangouts, Gmail, NextCloud, and countless other applications on my phone
+indefinitely. I should be able to do that same here too.&lt;/p&gt;
+&lt;h3 id="plant-information"&gt;Plant Information&lt;a class="headerlink" href="#plant-information" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One of the nice things about the application, in addition to it's ability to tell me how many and what kind
+of nutrients to add, is suggestions on how when to harvest your plants. Unfortunately, I don't think it's
+very accurate.&lt;/p&gt;
+&lt;p&gt;This accuracy is something I'm aware of and am keeping in mind as I add nutrients too. If I can't trust one
+area, can I really trust the other? So far, with four different types of lettuce harvested, I don't see a
+reason not to trust it, but that thought is still in my head.&lt;/p&gt;
+&lt;p&gt;Why is it inaccurate?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Red Oak Harvest Day Suggestion" src="https://andrewwegner.com/images/garden/6_app_suggestions/redoak-harvest-day-app.png"/&gt;&lt;/p&gt;
+&lt;p&gt;On harvest day, this is the information presented by the application. There are a few things to
+notice in this screen shot. First, "0 days to harvest", yet still showing the "Mid-growth" data.
+Second, this didn't change to "harvest" until a full day later. Thinking about it now, I suspect
+the datetime of when I added the plant to a nursery was recorded, not just the day and it's going
+by "hours since planted", to display the stage information.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Red Oak on Harvest Day" src="https://andrewwegner.com/images/garden/6_app_suggestions/redoak-harvest-day.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;This is the red oak lettuce on harvest day. This...is not ready. I will fully admit that I am not
+an experienced gardener, but this is a tiny little plant. I waited almost two full weeks after this
+picture was taken to actually harvest the plant. It had grown much larger by then.&lt;/p&gt;
+&lt;p&gt;I found the same type of problem with all of my lettuces. They all reached "Harvest day", but
+were not ready to be harvested. The other plants I have in the garden at the moment are
+longer growing and aren't to the flowering stages yet, so I'll watch for those stages in the
+application versus reality.&lt;/p&gt;
+&lt;h2 id="subscription-service"&gt;Subscription Service&lt;a class="headerlink" href="#subscription-service" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One of the things I really like about Rise Gardens so far is the monthly subscription service,
+which sends plants that I've selected and nutrients to grow them. My shipping date for May
+just missed their newest plants, but I'm looking forward to getting a few of those in June.&lt;/p&gt;
+&lt;p&gt;That said, I do have a few suggestions for how to make the subscription service amazing.&lt;/p&gt;
+&lt;h3 id="multipacks"&gt;Multipacks&lt;a class="headerlink" href="#multipacks" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One of the things that I was sent during the shipping delays was variety packs of seeds.
+I covered these in my post where I &lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;opened the nurseries&lt;/a&gt;. The subscription
+service doesn't allow this type of package. Instead, it ships four pods of an identical
+plant.&lt;/p&gt;
+&lt;p&gt;I'd like to try mint, or cat nip or a couple herbs that I haven't had or use very infrequently,
+but I don't need four pods of these plants. Instead, if I could create my own
+variety packs I'd be more willing to try some newer plants. This is how I got the
+red oak lettuce and the kale that is in the garden now. I wouldn't have gotten four
+pods of either of those, since that's just not what I need (or want, in the case of kale). But a
+single pod...sure. Might as well, and the kids can try something new.&lt;/p&gt;
+&lt;h3 id="plan-out-multiple-months"&gt;Plan out multiple months&lt;a class="headerlink" href="#plan-out-multiple-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Plants are shipped out once a month. About ten days before that, I receive an email saying
+that my shipment is coming up. Five days before shipping I have the ability to go pick the
+plants I want and they are immediately locked in.&lt;/p&gt;
+&lt;p&gt;I'd love if this flow could go out multiple months. Instead of worrying about making sure
+I hit that five day window to make selections, let me pick the plants I want for the next three
+months or so and allow me to change those until a few days before shipping. Then I know what I'm going
+to be getting and if I decide that I don't like something or want to try something else in a
+few months I can still go change it.&lt;/p&gt;
+&lt;h2 id="wishlist"&gt;Wishlist&lt;a class="headerlink" href="#wishlist" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I have two items that I really think would make Rise Gardens fantastic and both are software!&lt;/p&gt;
+&lt;h3 id="access-to-old-water-readings"&gt;Access to old water readings&lt;a class="headerlink" href="#access-to-old-water-readings" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I know the application sending my water readings somewhere. I have to log in, and the
+application doesn't work when the internet is down (tried...doesn't load). Give us the ability
+to pull those old readings via an API call so that I can plot them. I love data and I love
+visualizing date. More information via an API call would be even better. Things like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How long the lights were on&lt;/li&gt;
+&lt;li&gt;Water level&lt;/li&gt;
+&lt;li&gt;Suggested nutrients to add&lt;/li&gt;
+&lt;li&gt;Suggested pH balance to add&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Maybe if enough people can see and play with their old data we can even make some suggestions
+on what would work better. As it stands though, we don't have access to it. We put in water readings
+and that's it. It's gone.&lt;/p&gt;
+&lt;p&gt;I'd really love the ability to pull that old data back.&lt;/p&gt;
+&lt;h3 id="allow-better-light-control"&gt;Allow better light control&lt;a class="headerlink" href="#allow-better-light-control" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Right now light control is pretty limited. You pick a time for them to turn on and a number
+of hours for them to stay on. That's it. (The hour thing is why I thought about when the
+plant status shifted from "Mid-growth" to "Harvest" as well)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Light control" src="https://andrewwegner.com/images/garden/6_app_suggestions/light-schedule.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I'd like the ability to be able to turn these lights on and off through out the day. As the sun
+crosses the sky, there are hours where the plants are in direct sunlight. I could turn the lights
+down to 50% intensity during those hours or off all together.&lt;/p&gt;
+&lt;p&gt;There are two open ports on the controller. A piece of hardware that can detect light level
+could be used to control on/off or light intensity level. Obviously you couldn't put there right next
+to a plant, because the LEDs would affect the sensor, but put it on a post and it could tell if you if
+the sun was shining on the garden.&lt;/p&gt;
+&lt;p&gt;This type of thing could also be used in different seasons to determine when to turn the lights on
+or off automatically. I can use natural light for part of the day, but when the days get shorter, I need the
+lights to stay on longer.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I'm nearly done with this series. I am only planning one last post - a final summary of everything
+so far and a quick summary of first harvests (I think it'll only be lettuce at that point).&lt;/p&gt;
+&lt;p&gt;Here I've covered the things that have frustrated me (application loading/login), things that
+can be improved (plant information) and offered a few suggestions to make the software and subscription better.&lt;/p&gt;
+&lt;p&gt;Overall, I think everything I've mentioned is do able with some development time. I am looking forward to
+how Rise Gardens continues to improve the product.&lt;/p&gt;</content><category term="review"></category><category term="garden"></category><category term="hydroponics"></category></entry><entry><title>Rise Gardens physical improvements suggestions</title><link href="https://andrewwegner.com/rise-garden-suggestions-physical.html" rel="alternate"></link><published>2020-05-05T10:00:00-05:00</published><updated>2020-05-05T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-05:/rise-garden-suggestions-physical.html</id><summary type="html">&lt;p&gt;Everything is set up and sprouting. While I'm waiting for a harvest, I have some thoughts on how to make the new garden even better.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've &lt;a href="https://andrewwegner.com/rise-gardens-unboxing.html"&gt;opened the garden&lt;/a&gt;, &lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;opened the nurseries&lt;/a&gt; and &lt;a href="https://andrewwegner.com/rise-garden-assembly.html"&gt;assembled the garden&lt;/a&gt;.
 I've &lt;a href="https://andrewwegner.com/rise-garden-planting.html"&gt;planted my first pods&lt;/a&gt; and am now eagerly awaiting a harvest from the new &lt;a href="https://risegardens.com/"&gt;Rise Gardens&lt;/a&gt; garden.
@@ -91,8 +204,8 @@ expected when I assembled it.&lt;/p&gt;
 level. The packaging could be improved to reduce some of the cosmetic complaints I have.&lt;/p&gt;
 &lt;p&gt;This is a great design. Rise Gardens has clearly put in the time to design something that works as expected,
 but is easy to set up, maintain, and use.&lt;/p&gt;
-&lt;p&gt;In my next post, I'm going to cover some more improvement ideas focused on the mobile application and
-subscription service.&lt;/p&gt;</content><category term="review"></category><category term="garden"></category><category term="hydroponics"></category></entry><entry><title>Planting the first crop in the Rise Garden</title><link href="https://andrewwegner.com/rise-garden-planting.html" rel="alternate"></link><published>2020-05-01T10:00:00-05:00</published><updated>2020-05-01T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-01:/rise-garden-planting.html</id><summary type="html">&lt;p&gt;Planting the first crop in the garden&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;In my next post, I'm going to cover some more &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;improvement ideas focused on the mobile application and
+subscription service&lt;/a&gt;.&lt;/p&gt;</content><category term="review"></category><category term="garden"></category><category term="hydroponics"></category></entry><entry><title>Planting the first crop in the Rise Garden</title><link href="https://andrewwegner.com/rise-garden-planting.html" rel="alternate"></link><published>2020-05-01T10:00:00-05:00</published><updated>2020-05-01T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-01:/rise-garden-planting.html</id><summary type="html">&lt;p&gt;Planting the first crop in the garden&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've &lt;a href="https://andrewwegner.com/rise-gardens-unboxing.html"&gt;opened the garden&lt;/a&gt;, &lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;opened the nurseries&lt;/a&gt; and &lt;a href="https://andrewwegner.com/rise-garden-assembly.html"&gt;assembled the garden&lt;/a&gt;.
 In this post, we plant the first round of seeds, set them in the nursery and wait for them to grow. Let's
