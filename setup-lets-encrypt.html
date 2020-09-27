@@ -149,7 +149,7 @@ name of your domain. For example:</p>
 
 # <span class="n">This</span> <span class="n">is</span> <span class="n">the</span> <span class="n">method</span> <span class="n">used</span> <span class="n">to</span> <span class="n">discover</span> <span class="n">the</span> <span class="n">server</span><span class="o">'</span><span class="n">s</span> <span class="n">IP</span> <span class="n">address</span>
 # <span class="n">The</span> <span class="n">faster</span> <span class="n">one</span> <span class="n">is</span> <span class="s">'dig'</span> <span class="n">but</span> <span class="n">it</span> <span class="n">may</span> <span class="n">not</span> <span class="n">be</span> <span class="n">available</span> <span class="n">on</span> <span class="n">your</span> <span class="n">system</span>
-# <span class="n">Available</span> <span class="k">methods</span><span class="p">:</span> <span class="s">'http'</span> <span class="n">or</span> <span class="s">'dig'</span>
+# <span class="n">Available</span> <span class="n">methods</span><span class="p">:</span> <span class="s">'http'</span> <span class="n">or</span> <span class="s">'dig'</span>
 <span class="n">cf_resolving_method</span><span class="p">:</span> <span class="s">'dig'</span>
 </pre></div>
 <p>In this case, I am updating two subdomains (<code>nas</code> and <code>gitlab</code>) that are part of the <code>example.com</code> domain. Those should be changed to reflect your set up.</p>
@@ -175,9 +175,9 @@ because it provides my DNS services, I use a hook in Let's Encrypt's ACME client
 <div class="codehilight code"><pre><span></span><span class="err">nano dehydrated/config</span>
 </pre></div>
 <p>Add the following three lines</p>
-<div class="codehilight code"><pre><span></span><span class="err">export CF_EMAIL=YOUR_CLOUDFLARE_EMAILADDRESS</span>
-<span class="err">export CF_KEY=YOUR_CLOUDFLARE_API</span>
-<span class="err">export CF_DEBUG=true</span>
+<div class="codehilight code"><pre><span></span><span class="k">export</span> <span class="n">CF_EMAIL</span><span class="o">=</span><span class="n">YOUR_CLOUDFLARE_EMAILADDRESS</span>
+<span class="k">export</span> <span class="n">CF_KEY</span><span class="o">=</span><span class="n">YOUR_CLOUDFLARE_API</span>
+<span class="k">export</span> <span class="n">CF_DEBUG</span><span class="o">=</span><span class="bp">true</span>
 </pre></div>
 <p>Substitute your CloudFlare login email and API key as appropriate. The <code>CF_DEBUG</code> line can be set to <code>false</code> if you don't wish debugging information to be printed to <code>logs/</code>.</p>
 <p>Register with Let's Encrypt and accept their terms of service:</p>

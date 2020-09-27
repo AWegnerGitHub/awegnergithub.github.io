@@ -127,18 +127,18 @@ be used with Apache.</p>
 <p>I assumed I had PHP 7.3 installed, but I wanted to confirm before I just started
 disabling and enabling Apache modules.</p>
 <p>To confirm I had PHP 7.3 available, I ran this:</p>
-<div class="codehilight code"><pre><span></span>$ ls /etc/apache2/mods-available/php*
-/etc/apache2/mods-available/php7.1.conf
-/etc/apache2/mods-available/php7.1.load
-/etc/apache2/mods-available/php7.2.conf
-/etc/apache2/mods-available/php7.2.load
-/etc/apache2/mods-available/php7.3.conf
-/etc/apache2/mods-available/php7.3.load
+<div class="codehilight code"><pre><span></span><span class="o">$</span> <span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php</span><span class="o">*</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">load</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span>
 </pre></div>
 <p>And a quick check to see what's enabled:</p>
-<div class="codehilight code"><pre><span></span>$ ls /etc/apache2/mods-enabled/php*
-/etc/apache2/mods-enabled/php7.1.conf
-/etc/apache2/mods-enabled/php7.1.load
+<div class="codehilight code"><pre><span></span><span class="o">$</span> <span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span>
 </pre></div>
 <p>Excellent. I have PHP 7.3 available, and PHP 7.1 is enabled. This is exactly what
 I'm seeing.</p>
@@ -151,9 +151,9 @@ $ a2enmod php7.3
 <div class="codehilight code"><pre><span></span>$ service apache2 restart
 </pre></div>
 <p>Finally, validate the correct module is enabled:</p>
-<div class="codehilight code"><pre><span></span>$ ls /etc/apache2/mods-enabled/php*
-/etc/apache2/mods-enabled/php7.3.conf
-/etc/apache2/mods-enabled/php7.3.load
+<div class="codehilight code"><pre><span></span><span class="o">$</span> <span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span>
 </pre></div>
 <p>Another check of the <code>phpinfo();</code> page too:</p>
 <div class="codehilight code"><pre><span></span><span class="err">PHP Version 7.3.7-2+ubuntu18.04.1+deb.sury.org+1</span>

@@ -102,9 +102,9 @@
 <h2 id="set-up">Set up<a class="headerlink" href="#set-up" title="Permanent link">¶</a></h2>
 <h3 id="the-database">The database<a class="headerlink" href="#the-database" title="Permanent link">¶</a></h3>
 <p>The process began by downloading the March 2013 <a href="https://archive.org/details/stackexchange">data dump</a>. I loaded the <code>posts</code> into a [MariaDB] instance on my local machine. This was accomplished with a very simple script and patience, as the script took a while to run.</p>
-<div class="codehilight code"><pre><span></span><span class="err">load xml local infile '/path/to/posts.xml'</span>
-<span class="err">into table posts</span>
-<span class="err">rows identified by '&lt;row&gt;';</span>
+<div class="codehilight code"><pre><span></span><span class="nb">load</span> <span class="n">xml</span> <span class="n">local</span> <span class="n">infile</span> <span class="s1">'/path/to/posts.xml'</span>
+<span class="n">into</span> <span class="n">table</span> <span class="n">posts</span>
+<span class="n">rows</span> <span class="n">identified</span> <span class="n">by</span> <span class="s1">'&lt;row&gt;'</span><span class="p">;</span>
 </pre></div>
 <h3 id="the-data">The data<a class="headerlink" href="#the-data" title="Permanent link">¶</a></h3>
 <p>Once this was done, the next step was selecting my random sample of data. I did this by randomly selecting 25% of the days in a year and then pulling all posts for those days across all years of Stack Overflow's existence. The Python script I used to do this was fairly simple:</p>
