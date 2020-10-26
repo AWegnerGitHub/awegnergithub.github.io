@@ -10,16 +10,16 @@
 
 <meta name="keywords" content="review, technical, learning, Review, " />
 
-<meta property="og:title" content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course "/>
-<meta property="og:url" content="https://andrewwegner.com/aws-serverless-apis-apps-review.html" />
-<meta property="og:description" content="My review of the AWS Serverless APIs &amp; Apps course on Udemy." />
+<meta property="og:title" content="Review of GitLab&#39;s &#34;How to Manage a Remote Team&#34; Coursera course "/>
+<meta property="og:url" content="https://andrewwegner.com/gitlab-manage-remote-team.html" />
+<meta property="og:description" content="My review of Gitlab&#39;s Coursera course on managing a remote team and workforce" />
 <meta property="og:site_name" content="Ponderings of an Andy" />
 <meta property="og:article:author" content="Andy Wegner" />
-<meta property="og:article:published_time" content="2017-10-20T11:17:00-05:00" />
-<meta name="twitter:title" content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course ">
-<meta name="twitter:description" content="My review of the AWS Serverless APIs &amp; Apps course on Udemy.">
+<meta property="og:article:published_time" content="2020-10-26T09:30:00-05:00" />
+<meta name="twitter:title" content="Review of GitLab&#39;s &#34;How to Manage a Remote Team&#34; Coursera course ">
+<meta name="twitter:description" content="My review of Gitlab&#39;s Coursera course on managing a remote team and workforce">
 
-        <title>Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course  · Ponderings of an Andy
+        <title>Review of GitLab&#39;s &#34;How to Manage a Remote Team&#34; Coursera course  · Ponderings of an Andy
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
@@ -62,13 +62,13 @@
                 <div class="span1"></div>
                 <div class="span10">
 <section itemscope itemtype="https://schema.org/Review">
-<meta itemprop="headline" content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course" />
-<time itemprop="datePublished" datetime="2017-10-20T11:17:00-05:00">
+<meta itemprop="headline" content="Review of GitLab&#39;s &#34;How to Manage a Remote Team&#34; Coursera course" />
+<time itemprop="datePublished" datetime="2020-10-26T09:30:00-05:00">
 <meta itemprop="publisher" content="Andy Wegner" />
-<link rel="canonical" href="https://andrewwegner.com/aws-serverless-apis-apps-review.html" />
+<link rel="canonical" href="https://andrewwegner.com/gitlab-manage-remote-team.html" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://andrewwegner.com/aws-serverless-apis-apps-review.html"> Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course  </a></h1>
+    <h1><a href="https://andrewwegner.com/gitlab-manage-remote-team.html"> Review of GitLab's "How to Manage a Remote Team" Coursera course  </a></h1>
     </header>
 </div>
 
@@ -79,8 +79,8 @@
         <div class="toc">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#thoughts-on-the-course">Thoughts on the course</a></li>
-<li><a href="#final-thoughts">Final Thoughts</a></li>
+<li><a href="#course-overview">Course Overview</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
 </ul>
 </div>
         </nav>
@@ -91,48 +91,43 @@
             <div itemprop="reviewBody mainEntityOfPage">
             
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>I've been involved with the <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">SmokeDetector</a> spam hunting project for several years. In that time It's grown from
-a small Python script to a large combination of Python, Ruby and user scripts. The infrastructure hasn't really changed
-in that time, though, and it's starting to show. SmokeDetector, the Python script, is run by multiple users so that
-random network problems that kill the instance don't take the entire system off line. Arguably, the project should
-work on fixing this instability, but the alternative that we came up with works too.</p>
-<p>At least it did. Now this distributed way of running is starting to cause issues. Keeping each instance in sync
-with one another is a very difficult problem. We've built a decent solution to this for handling spam patterns,
-but we've failed to replicate this for other things like permission sets or notifications. Adding this involves
-integration with GitHub and a series of new commands. It's painful.</p>
-<p>One of the recent discussions to solve this problem was a centralized database. That brings me to this course.</p>
-<p>The <a href="https://ude.my/UC-1ESFUC2V">AWS Serverless APIs &amp; Apps - A Complete Introduction</a> by Maximilian Schwarzmüller on Udemy
-looked like a good overview for AWS lambda and DynamoDB, two solutions the SmokeDetector project was looking
-into using.</p>
-<h2 id="thoughts-on-the-course">Thoughts on the course<a class="headerlink" href="#thoughts-on-the-course" title="Permanent link">¶</a></h2>
-<p>This course provides a good overview of Amazon's API Gateway, AWS Lambda and several other Amazon services. There
-is a little bit of coding involved - using NodeJS - but a large majority is dedicated to working in the various Amazon
-consoles. Except for one optional lecture, the entire course can be completed using Amazon's free tier. This is
-great for a course and one of the factors I used to determine if I really wanted to take the course. The instructor
-is very clear, throughout the course, which aspects cost additional money so that no unexpected charges show up
-from Amazon.</p>
-<p>The course covers the API Gateway, AWS permissions, AWS Lambda, body mapping templates, DynamoDB, authentication with
-Cognito and hosting a serverless SPA. At first glance this seems like a lot to cover in an 8 hour course. The instructor
-has broken these into small digestible lectures that do a good job of introducing each new service, explaining the theory
-behind each and then using the service to implement functionality into the course long project.</p>
-<p>A course long project is a good way to show how each of these Amazon services are useful to a larger project. Instead of
-focusing on a small example project where it is difficult to expand the course work into the real world, a real world
-project with various requirements is used. This project uses each of the services I mentioned above in a natural way.
-Implementing new functionality doesn't feel forced, instead it is something that users would expect from a modern application.</p>
-<p>I am very happy with this course. Everything was very well presented. The project was useful because I can easily understand
-how each of the Amazon services function. I also have a good idea how the console works and how to troubleshoot problems
-because of the work that was done in this course.</p>
-<p>My only complaint with regard to this course is that the video lectures are interrupted with text based lectures consisting
-of more details and links to documentation. I appreciate these links and used several of them, but the interruption of the
-videos to present these broke the nice flow of the lectures. Presenting these links at the end of the section, I think would be
-less of an interruption. This was a minor thing, though, and doesn't take away from how much I enjoyed the course.</p>
-<h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
-<p>I feel that I have a decent understanding of Amazon's services at this point. I am looking forward to applying this new
-knowledge and, hopefully, improving the SmokeDetector infrastructure at the same time. I highly recommend this course
-if you are thinking of migrating anything to Amazon. I feel much more comfortable about moving aspects of a project
-to this new solution.</p>
-<hr/>
-<p><a href="https://ude.my/UC-1ESFUC2V"><img alt="AWS Serverless APIs and Apps Completion" src="https://andrewwegner.com/images/udemy-aws-serverless-apis-apps.jpg"/></a></p>
+<p>I am a huge fan of <a href="https://about.gitlab.com/blog/">GitLab</a> - both the product and the company. As the largest all remote workforce,
+they are in an enviable position of being an expert on how to manage a team of over 1000 global employees without
+having an office. My current position puts me in charge of managing a global, remote, workforce as well but on a
+smaller scale.</p>
+<p>When GitLab announced they were releasing a course on <a href="https://www.coursera.org/learn/remote-team-management">How to Manage a Remote Team</a> on Coursera, I jobbed at the
+opportunity to take it. I want to expand my skill set as a manager of remote employees and the chance to learn some
+best practices from GitLab in this area was a good place to start.</p>
+<h2 id="course-overview">Course Overview<a class="headerlink" href="#course-overview" title="Permanent link">¶</a></h2>
+<p>The course is split up in to a four week set of lessons and covers about 11-12 hours of material.</p>
+<ul>
+<li>Week 1 covers Remote Best Practices.</li>
+<li>Week 2 covers Managing Remote Teams.</li>
+<li>Week 3 covers Remote Adaption Processes for Organizations</li>
+<li>Week 4 covers Culture and Values for Distributed Teams</li>
+</ul>
+<p>The final task then is building a remote transition plan for an organization.</p>
+<p>Overall, these were well done. The videos are presented by various GitLab employees and cover a variety
+of different aspects in each section. There are various readings assigned too. These provide a ton of information,
+especially <a href="https://learn.gitlab.com/coursera-remote-work">The Remote Playbook</a>.</p>
+<p>There is some GitLab centric information provided and back patting, but it is done in a way that helps to
+show <em>why</em> certain things are needed - like open and transparent documentation. By the end of the course, you will
+know that GitLab has an open handbook for everyone to read and you will know why you should as well. This type
+of thing is expected and knowing that the instructors will do some back patting is important too.</p>
+<p>The final project - building a remote transition plan - is peer reviewed. You are presented with a series of questions,
+which you answer with a short essay for each and using information presented during the course. When you are done, the last
+task you have is to peer review three of your cohort's projects.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>This course was information dense and useful. The time estimate is off as the videos take only about an hour each week. Either
+I am a faster reader than I thought or they have overestimated the time it would take to read the weekly material. In either
+case, I estimate that I spent about 6 hours. It was also nice that, although the course is split into weeks, everything is
+available immediately upon completing the previous tasks.</p>
+<p>I recommend this course to anyone who manages a team remotely or who is in the process of transitioning to remote work. COVID
+has given the entire world a crash course in remote work, but this course is a good way to handle and manage those newly remote
+workers effectively. It is also a good course to take if your company is planning on extending the work remote environment that
+2020 has thrust upon you to last beyond this current pandemic.</p>
+<p>GitLab has done a good job with this course.</p>
+<p><a href="http://coursera.org/verify/23C6VDATPJMN"><img alt="How to Manage a Remote Team Certificate" src="https://andrewwegner.com/images/coursera-remote-manage.png"/></a></p>
             </div>
             <hr />
             <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
@@ -148,31 +143,30 @@ to this new solution.</p>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html" title="Previous: Collecting Diamonds on Stack Exchange">Collecting Diamonds on Stack Exchange</a></li>
-                <li class="next-article"><a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html" title="Next: How I found an awesome remote only job">How I found an awesome remote only job</a> »</li>
+                <li class="previous-article">« <a href="https://andrewwegner.com/rise-garden-final-review.html" title="Previous: Rise Gardens Review">Rise Gardens Review</a></li>
             </ul>
             </nav>
             </aside>
         </div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
-            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Course" content="AWS Serverless APIs &amp; Apps - A Complete Introduction" >
-                <meta itemprop="name" content="AWS Serverless APIs &amp; Apps - A Complete Introduction" />
-                <meta itemprop="description" content="AWS Serverless APIs &amp; Apps - A Complete Introduction" />
+            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Course" content="How to Manage a Remote Team" >
+                <meta itemprop="name" content="How to Manage a Remote Team" />
+                <meta itemprop="description" content="How to Manage a Remote Team" />
                 <meta itemprop="provider" content="Udemy" />
             </div>
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2017-10-20T11:17:00-05:00">Oct 20, 2017</time>
+            <time itemprop="dateCreated" datetime="2020-10-26T09:30:00-05:00">Oct 26, 2020</time>
             <h4>Score</h4>
             <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-              <span itemprop="ratingValue">8.5</span>
+              <span itemprop="ratingValue">9.0</span>
               <div class="stars-outer">
                 <div class="stars-inner"></div>
               </div>
               <meta itemprop="bestRating" content="10" />
               <meta itemprop="worstRating" content="0" />
             </div>
-<time itemprop="dateModified" datetime="2017-10-20T11:17:00-05:00">
+<time itemprop="dateModified" datetime="2020-10-26T09:30:00-05:00">
 
         <h4>Course Reviews</h4>
     <ul class="multi-parts-list" id="series-parts">
@@ -194,8 +188,8 @@ to this new solution.</p>
             <li >
             <a href="https://andrewwegner.com/django-fullstack-bootcamp-course-review.html" title="Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course">Part 6: Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course</a>
             </li>
-            <li  class="active-part">
-            Part 7: Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course
+            <li >
+            <a href="https://andrewwegner.com/aws-serverless-apis-apps-review.html" title="Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course">Part 7: Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course</a>
             </li>
             <li >
             <a href="https://andrewwegner.com/django-course-basic-to-advance.html" title="Review of Udemy's Django Course from Basics to Advance">Part 8: Review of Udemy's Django Course from Basics to Advance</a>
@@ -224,8 +218,8 @@ to this new solution.</p>
             <li >
             <a href="https://andrewwegner.com/aws-certified-developer-review.html" title="Review of Ultimate AWS Certified Developer Associate 2019 course">Part 16: Review of Ultimate AWS Certified Developer Associate 2019 course</a>
             </li>
-            <li >
-            <a href="https://andrewwegner.com/gitlab-manage-remote-team.html" title="Review of GitLab's "How to Manage a Remote Team" Coursera course">Part 17: Review of GitLab's "How to Manage a Remote Team" Coursera course</a>
+            <li  class="active-part">
+            Part 17: Review of GitLab's "How to Manage a Remote Team" Coursera course
             </li>
     </ul>
             <h4>Category</h4>
@@ -255,7 +249,7 @@ to this new solution.</p>
 </section>
 <script type="text/javascript">
   const starTotal = 10;
-  rating = 8.5;
+  rating = 9.0;
   starPercentage = `${((rating / starTotal) * 100)}%`;
   document.querySelector(`.stars-inner`).style.width = starPercentage;
 </script>

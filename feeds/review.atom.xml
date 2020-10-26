@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2020-05-29T10:00:00-05:00</updated><entry><title>Rise Gardens Review</title><link href="https://andrewwegner.com/rise-garden-final-review.html" rel="alternate"></link><published>2020-05-29T10:00:00-05:00</published><updated>2020-05-29T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-29:/rise-garden-final-review.html</id><summary type="html">&lt;p&gt;The end of the series about Rise Gardens. What is my final opinion?&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2020-10-26T09:30:00-05:00</updated><entry><title>Review of GitLab's "How to Manage a Remote Team" Coursera course</title><link href="https://andrewwegner.com/gitlab-manage-remote-team.html" rel="alternate"></link><published>2020-10-26T09:30:00-05:00</published><updated>2020-10-26T09:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-10-26:/gitlab-manage-remote-team.html</id><summary type="html">&lt;p&gt;My review of Gitlab's Coursera course on managing a remote team and workforce&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I am a huge fan of &lt;a href="https://about.gitlab.com/blog/"&gt;GitLab&lt;/a&gt; - both the product and the company. As the largest all remote workforce,
+they are in an enviable position of being an expert on how to manage a team of over 1000 global employees without
+having an office. My current position puts me in charge of managing a global, remote, workforce as well but on a
+smaller scale.&lt;/p&gt;
+&lt;p&gt;When GitLab announced they were releasing a course on &lt;a href="https://www.coursera.org/learn/remote-team-management"&gt;How to Manage a Remote Team&lt;/a&gt; on Coursera, I jobbed at the
+opportunity to take it. I want to expand my skill set as a manager of remote employees and the chance to learn some
+best practices from GitLab in this area was a good place to start.&lt;/p&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The course is split up in to a four week set of lessons and covers about 11-12 hours of material.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Week 1 covers Remote Best Practices.&lt;/li&gt;
+&lt;li&gt;Week 2 covers Managing Remote Teams.&lt;/li&gt;
+&lt;li&gt;Week 3 covers Remote Adaption Processes for Organizations&lt;/li&gt;
+&lt;li&gt;Week 4 covers Culture and Values for Distributed Teams&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The final task then is building a remote transition plan for an organization.&lt;/p&gt;
+&lt;p&gt;Overall, these were well done. The videos are presented by various GitLab employees and cover a variety
+of different aspects in each section. There are various readings assigned too. These provide a ton of information,
+especially &lt;a href="https://learn.gitlab.com/coursera-remote-work"&gt;The Remote Playbook&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There is some GitLab centric information provided and back patting, but it is done in a way that helps to
+show &lt;em&gt;why&lt;/em&gt; certain things are needed - like open and transparent documentation. By the end of the course, you will
+know that GitLab has an open handbook for everyone to read and you will know why you should as well. This type
+of thing is expected and knowing that the instructors will do some back patting is important too.&lt;/p&gt;
+&lt;p&gt;The final project - building a remote transition plan - is peer reviewed. You are presented with a series of questions,
+which you answer with a short essay for each and using information presented during the course. When you are done, the last
+task you have is to peer review three of your cohort's projects.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course was information dense and useful. The time estimate is off as the videos take only about an hour each week. Either
+I am a faster reader than I thought or they have overestimated the time it would take to read the weekly material. In either
+case, I estimate that I spent about 6 hours. It was also nice that, although the course is split into weeks, everything is
+available immediately upon completing the previous tasks.&lt;/p&gt;
+&lt;p&gt;I recommend this course to anyone who manages a team remotely or who is in the process of transitioning to remote work. COVID
+has given the entire world a crash course in remote work, but this course is a good way to handle and manage those newly remote
+workers effectively. It is also a good course to take if your company is planning on extending the work remote environment that
+2020 has thrust upon you to last beyond this current pandemic.&lt;/p&gt;
+&lt;p&gt;GitLab has done a good job with this course.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://coursera.org/verify/23C6VDATPJMN"&gt;&lt;img alt="How to Manage a Remote Team Certificate" src="https://andrewwegner.com/images/coursera-remote-manage.png"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Rise Gardens Review</title><link href="https://andrewwegner.com/rise-garden-final-review.html" rel="alternate"></link><published>2020-05-29T10:00:00-05:00</published><updated>2020-05-29T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-29:/rise-garden-final-review.html</id><summary type="html">&lt;p&gt;The end of the series about Rise Gardens. What is my final opinion?&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Before I close out this series with a quick run down of everything, I want to
 congratulate &lt;a href="https://techcrunch.com/2020/05/27/rise-gardens-raises-seed-funding-for-a-indoor-hydroponic-gardening-system/"&gt;Rise Gardens on closing a round of funding&lt;/a&gt; to the tune of $2.6M this
