@@ -119,16 +119,16 @@ encourage you to visit the <a href="http://meta.stackoverflow.com/q/280546/18913
 <li>Had variations of the following phrases:</li>
 </ul>
 <p>Phrases</p>
-<div class="codehilight code"><pre><span></span><span class="err">'%mark%answer%'</span>
-<span class="err">'%mark%accept%'</span>
-<span class="err">'%accept%answer%'</span>
-<span class="err">'%lease%accept%'</span>
-<span class="err">'%mark%answer%'</span>
-<span class="err">'%thank%you%'</span>
-<span class="err">'%thx%you%'</span>
-<span class="err">'%.....'</span>
-<span class="err">'+1%'</span>
-<span class="err">'-1%'</span>
+<div class="codehilight code"><pre><span></span>'%mark%answer%'
+'%mark%accept%'
+'%accept%answer%'
+'%lease%accept%'
+'%mark%answer%'
+'%thank%you%'
+'%thx%you%'
+'%.....'
+'+1%'
+'-1%'
 </pre></div>
 <p>"Good Comments" were assumed, initially, to be anything that didn't fall into the above criteria</p>
 <p>This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.</p>
@@ -144,14 +144,14 @@ good comment    | 0.9999        | False
 <hr/>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">¶</a></h2>
 <p>What have the results of this experiment been? From my point of view, I'd venture that it's been successful. I have automatically flagged over 17,000 comments. As of December 17, 2014, the process has been running for 173 days. My comment flagging stats are currently:</p>
-<div class="codehilight code"><pre><span></span><span class="err">26885   comments flagged</span>
-<span class="err">26714   deemed helpful</span>
-<span class="err">171     declined</span>
+<div class="codehilight code"><pre><span></span><span class="mf">26885</span><span class="w">   </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span><span class="w"></span>
+<span class="mf">26714</span><span class="w">   </span><span class="n">deemed</span><span class="w"> </span><span class="n">helpful</span><span class="w"></span>
+<span class="mf">171</span><span class="w">     </span><span class="n">declined</span><span class="w"></span>
 </pre></div>
 <p>Started at (approximately):</p>
-<div class="codehilight code"><pre><span></span><span class="err">9885    comments flagged</span>
-<span class="err">9847    deemed helpful</span>
-<span class="err">38      declined</span>
+<div class="codehilight code"><pre><span></span><span class="mf">9885</span><span class="w">    </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span><span class="w"></span>
+<span class="mf">9847</span><span class="w">    </span><span class="n">deemed</span><span class="w"> </span><span class="n">helpful</span><span class="w"></span>
+<span class="mf">38</span><span class="w">      </span><span class="n">declined</span><span class="w"></span>
 </pre></div>
 <p>This gives me an overall accuracy of 99.36%. Down from 99.61% when no automated process was involved.</p>
 <hr/>
@@ -227,9 +227,9 @@ This is, by far, the largest number of declined flags the process has generated 
 <p>The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.</p>
 <h3 id="may-2015-11-months">May 2015 (11 Months)<a class="headerlink" href="#may-2015-11-months" title="Permanent link">¶</a></h3>
 <p>After nearly a year of running, these are my flagging statistics:</p>
-<div class="codehilight code"><pre><span></span><span class="err">39938   comments flagged</span>
-<span class="err">39659   deemed helpful</span>
-<span class="err">279     declined</span>
+<div class="codehilight code"><pre><span></span><span class="mf">39938</span><span class="w">   </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span><span class="w"></span>
+<span class="mf">39659</span><span class="w">   </span><span class="n">deemed</span><span class="w"> </span><span class="n">helpful</span><span class="w"></span>
+<span class="mf">279</span><span class="w">     </span><span class="n">declined</span><span class="w"></span>
 </pre></div>
 <p>This provides a helpful rate of 99.3%. This is down <em>just</em> slightly from 99.36% in December. I attribute a large part of the dip to the issue mentioned above.</p>
 <hr/>
@@ -239,9 +239,9 @@ This is, by far, the largest number of declined flags the process has generated 
 <p><img alt="Flags per day with rolling 10 day average - 90 day window" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/></p>
 <h3 id="sept-2015-15-months">Sept 2015 (15 Months)<a class="headerlink" href="#sept-2015-15-months" title="Permanent link">¶</a></h3>
 <p>It has been almost 15 months since the process started. In that time, the model has gotten more accurate. Since the last update in May, I've had only 3 declined comment flags:</p>
-<div class="codehilight code"><pre><span></span><span class="err">52351   comments flagged</span>
-<span class="err">52069   deemed helpful</span>
-<span class="err">282     declined</span>
+<div class="codehilight code"><pre><span></span><span class="mf">52351</span><span class="w">   </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span><span class="w"></span>
+<span class="mf">52069</span><span class="w">   </span><span class="n">deemed</span><span class="w"> </span><span class="n">helpful</span><span class="w"></span>
+<span class="mf">282</span><span class="w">     </span><span class="n">declined</span><span class="w"></span>
 </pre></div>
 <p>This provides a helpful rate of 99.46%. Here is an updated chart showing the rolling 10 day average for number of declined flags. The 90 day window is not even worth showing. It has three days where a single flag was declined.</p>
 <p><img alt="Flags per day with rolling 10 day average - 15 Months of data training" src="https://andrewwegner.com/images/declined_per_day_15_months.png"/></p>
@@ -302,8 +302,8 @@ This is, by far, the largest number of declined flags the process has generated 
     <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
     <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
         </div>
         </section>
 </div>

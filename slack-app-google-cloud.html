@@ -177,7 +177,7 @@
                            <span class="n">response_text</span><span class="o">=</span><span class="s2">"Hello World!"</span><span class="p">)</span>
 
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/hello-world'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'POST'</span><span class="p">])</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/hello-world'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'POST'</span><span class="p">])</span>
 <span class="nd">@validate_request</span>
 <span class="k">def</span> <span class="nf">command_hello_world</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">command_loop</span><span class="o">.</span><span class="n">call_soon_threadsafe</span><span class="p">(</span><span class="n">hello_world</span><span class="p">,</span>
@@ -190,7 +190,7 @@
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
     <span class="c1"># This is used when running locally. Gunicorn is used to run the</span>
     <span class="c1"># application on Google App Engine. See entrypoint in app.yaml.</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 <h3 id="sample-application-walkthrough">Sample Application Walkthrough<a class="headerlink" href="#sample-application-walkthrough" title="Permanent link">¶</a></h3>
 <p>The only interesting thing in the imports here is the inclusion of <code>asyncio</code>. Since I need to fire off an immediate response and then do the "real work", I'll funnel that work into worker threads. I'm also including <code>functools.wraps</code> because I'm making a decorator for validating a request is coming from Slack. For a single command, this type of decorator isn't needed, but I have multiple Slack slash commands in the real application. I figured it'd be helpful to show here too. This application will also need the <a href="http://docs.python-requests.org/en/master/">requests</a> library.</p>
@@ -200,7 +200,7 @@
 <p>Now it's time to get to the real work. <code>hello_world</code> and <code>command_hello_world</code>. If you've used Flask before, you can see that <code>command_hello_world</code> will be the function associated with a user hitting <code>http:\\server.tld\hello-world</code> with a <code>POST</code> request. Slack only sends <code>POST</code> requests, so I care about <code>GET</code> methods. In <code>command_hello_world</code>, we send a call to the command worker thread, telling it to call <code>hello_world</code> and then pass the <code>response_url</code> as a parameter. The function immediately returns a response to Slack telling the user to wait.</p>
 <p>In <code>hello_world</code>, the function sleeps for a few seconds before sending a response back to the passed <code>response_url</code>. This <code>sleep</code> is to emulate "real work" being done. In my case, it's five seconds of queries to JIRA to gather and format all of the data I want to return.</p>
 <p>Finally, this can run locally by firing up Flask. I tested with this command:</p>
-<div class="codehilight code"><pre><span></span><span class="err">FLASK_APP=jira-slack-integration.py flask run</span>
+<div class="codehilight code"><pre><span></span>FLASK_APP=jira-slack-integration.py flask run
 </pre></div>
 <p>When deploying to Google App Engine, the <code>main</code> function won't be utilized. I cover that below.</p>
 <h2 id="testing-the-application">Testing the application<a class="headerlink" href="#testing-the-application" title="Permanent link">¶</a></h2>
@@ -255,24 +255,24 @@
 <h3 id="set-up-appyaml">Set up app.yaml<a class="headerlink" href="#set-up-appyaml" title="Permanent link">¶</a></h3>
 <p>With <code>gcloud</code> set up on your development machine, there is one last step to do: Configuring the <code>app.yaml</code> file.</p>
 <p>This file contains information on the type of environment you'll be deploying to. Create and save an <code>app.yaml</code> file in the same directory as the Flask application. For this example, the Flask application is in a file saved as <code>example-script.py</code></p>
-<div class="codehilight code"><pre><span></span><span class="n">runtime</span><span class="o">:</span> <span class="n">python</span>
-<span class="n">env</span><span class="o">:</span> <span class="n">flex</span>
-<span class="n">entrypoint</span><span class="o">:</span> <span class="n">gunicorn</span> <span class="o">-</span><span class="n">b</span> <span class="o">:</span><span class="n">$PORT</span> <span class="n">example</span><span class="o">-</span><span class="n">script</span><span class="o">:</span><span class="n">app</span>
+<div class="codehilight code"><pre><span></span><span class="n">runtime</span><span class="o">:</span><span class="w"> </span><span class="n">python</span><span class="w"></span>
+<span class="n">env</span><span class="o">:</span><span class="w"> </span><span class="n">flex</span><span class="w"></span>
+<span class="n">entrypoint</span><span class="o">:</span><span class="w"> </span><span class="n">gunicorn</span><span class="w"> </span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="n">$PORT</span><span class="w"> </span><span class="n">example</span><span class="o">-</span><span class="n">script</span><span class="o">:</span><span class="n">app</span><span class="w"></span>
 
-<span class="n">runtime_config</span><span class="o">:</span>
-  <span class="n">python_version</span><span class="o">:</span> <span class="mi">3</span>
+<span class="n">runtime_config</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">python_version</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
 
-<span class="n">manual_scaling</span><span class="o">:</span>
-  <span class="n">instances</span><span class="o">:</span> <span class="mi">1</span>
-<span class="n">resources</span><span class="o">:</span>
-  <span class="n">cpu</span><span class="o">:</span> <span class="mi">1</span>
-  <span class="n">memory_gb</span><span class="o">:</span> <span class="mf">0.5</span>
-  <span class="n">disk_size_gb</span><span class="o">:</span> <span class="mi">10</span>
+<span class="n">manual_scaling</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">instances</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">resources</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">cpu</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">  </span><span class="n">memory_gb</span><span class="o">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w"></span>
+<span class="w">  </span><span class="n">disk_size_gb</span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
 </pre></div>
 <p>Other than the <code>entrypoint</code> line, this is the example <code>app.yaml</code> provided by Google. <code>example-script</code> is the name of the file that contains the Flask application.</p>
 <h3 id="deploy-to-google">Deploy to Google<a class="headerlink" href="#deploy-to-google" title="Permanent link">¶</a></h3>
 <p>Finally, it's time to deploy this application to Google. From within the same directory where <code>example-script.py</code> resides, run:</p>
-<div class="codehilight code"><pre><span></span><span class="err">gcloud app deploy</span>
+<div class="codehilight code"><pre><span></span>gcloud app deploy
 </pre></div>
 <p>Wait a few minutes for the deployment to occur. When it's complete, the command prompt will say so and provide a URL where the application is accessible.</p>
 <p>The last thing that needs to be done, is repointing the slash commands to this new location. With it deployed to Google's Cloud Platform, the <code>ngrok</code> provided URLs need to be changed. The endpoints remain the same though.</p>
@@ -309,7 +309,7 @@
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>40</span>
+                    <span>41</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
@@ -317,8 +317,8 @@
     <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
     <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
         </div>
         </section>
 </div>

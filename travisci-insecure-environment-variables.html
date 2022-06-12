@@ -130,7 +130,7 @@ it deployed to <em>my</em> AWS account using <em>my</em> AWS credentials. These 
 <p>The detailed steps taken to reproduce this issue show that Travis CI is simply looking for the environment variable values and scrubbing those from the build logs. Once transferred, an edit can be introduced to show these variables with minimal work.</p>
 <h3 id="create-a-repository">Create a repository<a class="headerlink" href="#create-a-repository" title="Permanent link">¶</a></h3>
 <p>Create a new repository and add something. For this test, I created a simple Python Hello World file, and named it <code>hello.py</code>.</p>
-<div class="codehilight code"><pre><span></span><span class="err">print("Hello World")</span>
+<div class="codehilight code"><pre><span></span>print("Hello World")
 </pre></div>
 <p>Commit this change to your new repository.</p>
 <h3 id="enable-travis-ci-integration">Enable Travis CI integration<a class="headerlink" href="#enable-travis-ci-integration" title="Permanent link">¶</a></h3>
@@ -138,11 +138,11 @@ it deployed to <em>my</em> AWS account using <em>my</em> AWS credentials. These 
 <p><img alt="Enable Integration" src="https://andrewwegner.com/images/1-travis-enable-repository.png"/></p>
 <h3 id="create-a-travisyml-file">Create a .travis.yml file<a class="headerlink" href="#create-a-travisyml-file" title="Permanent link">¶</a></h3>
 <p>With the integration now in place, set up a basic build script by adding a <code>.travis.yml</code> file to the repository.</p>
-<div class="codehilight code"><pre><span></span><span class="n">language</span><span class="o">:</span> <span class="n">python</span>
-<span class="n">python</span><span class="o">:</span>
-  <span class="o">-</span> <span class="s2">"3.5"</span>
-<span class="n">script</span><span class="o">:</span>
-  <span class="o">-</span> <span class="n">python</span> <span class="n">hello</span><span class="o">.</span><span class="na">py</span>
+<div class="codehilight code"><pre><span></span><span class="n">language</span><span class="o">:</span><span class="w"> </span><span class="n">python</span><span class="w"></span>
+<span class="n">python</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="s2">"3.5"</span><span class="w"></span>
+<span class="n">script</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">hello</span><span class="o">.</span><span class="na">py</span><span class="w"></span>
 </pre></div>
 <p>This script will set up a build task and run your <code>hello.py</code> file, using Python 3.5. You will see that "Hello World!" is printed in the build console.</p>
 <p><img alt="First Build" src="https://andrewwegner.com/images/2-travis-first-build.png"/></p>
@@ -169,19 +169,19 @@ value in the build log. Finally click "Add".</p>
 the log. We can see this with a small change to <code>hello.py</code>.</p>
 <div class="codehilight code"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">"Hello World!"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Hello World!"</span><span class="p">)</span>
 <span class="n">aws_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'AWS_ACCESS_KEY_ID'</span><span class="p">]</span>
 <span class="n">aws_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'AWS_SECRET_ACCESS_KEY'</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">"AWS KEY ID: |{}{}|"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aws_id</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">aws_id</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">aws_id</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">aws_id</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:]))</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">"AWS SECRET KEY: |{} {}|"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aws_secret</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">aws_secret</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">aws_secret</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">aws_secret</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"AWS KEY ID: |</span><span class="si">{}{}</span><span class="s2">|"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aws_id</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">aws_id</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">aws_id</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">aws_id</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"AWS SECRET KEY: |</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">|"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aws_secret</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">aws_secret</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">aws_secret</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">aws_secret</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:]))</span>
 </pre></div>
 <p>In this example, we are splitting the values of the environment variables in half. For the <code>AWS_ACCESS_KEY_ID</code> value, you smash these two together. This will match the
 environment variable value, and will not be shown because the pattern still matches the value:</p>
-<div class="codehilight code"><pre><span></span><span class="err">|{}{}|</span>
+<div class="codehilight code"><pre><span></span>|{}{}|
 </pre></div>
 <p>For <code>AWS_SECRET_ACCESS_KEY</code>, we split the two halves with a space and print it out. This will be shown, because the extra space no longer matches the exact value of the
 environment variable.</p>
-<div class="codehilight code"><pre><span></span><span class="err">|{} {}|</span>
+<div class="codehilight code"><pre><span></span>|{} {}|
 </pre></div>
 <p>Commit and push the change to GitHub. In Travis CI, we see the following in the build log:</p>
 <p><img alt="Accessing the values" src="https://andrewwegner.com/images/9-variables-filtered-by-match.png"/></p>
@@ -193,7 +193,7 @@ and going down to the red "danger area". Once you've entered the name of the cur
 <p><img alt="Transfer the repository" src="https://andrewwegner.com/images/10-transfer-repository.png"/></p>
 <h3 id="build-with-the-new-owner">Build with the new owner<a class="headerlink" href="#build-with-the-new-owner" title="Permanent link">¶</a></h3>
 <p>Make a change and commit it to the new repository. I simply modified the "Hello World" line:</p>
-<div class="codehilight code"><pre><span></span><span class="err">print("Hello World from new owner!")</span>
+<div class="codehilight code"><pre><span></span>print("Hello World from new owner!")
 </pre></div>
 <p>A new build will kick off. You can see that the repository has transferred to the new owner in the build log. You can also see the environment variables were transfered to the
 new owner. Other than the new owner being listed, the build log shows the same output as before</p>
@@ -253,7 +253,7 @@ environment. This will break the builds, but it will also ensure that private va
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>40</span>
+                    <span>41</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
@@ -261,8 +261,8 @@ environment. This will break the builds, but it will also ensure that private va
     <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
     <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
         </div>
         </section>
 </div>

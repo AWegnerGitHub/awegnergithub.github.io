@@ -105,7 +105,7 @@ it was during the transition between PHP 4 and PHP 5. So...a while ago. I set up
 (and Apache) to host NextCloud and really just forgot about it.</p>
 <p>During a recent update of packages on the server - because I do like to keep
 everything updated. I noticed this line during the <code>apt-get</code> scroll:</p>
-<div class="codehilight code"><pre><span></span><span class="err">php7.1 module already enabled, not enabling PHP 7.3</span>
+<div class="codehilight code"><pre><span></span>php7.1 module already enabled, not enabling PHP 7.3
 </pre></div>
 <p>Time to figure out how to use that newly install/upgraded PHP 7.3</p>
 <h2 id="what-is-actually-running">What is actually running?<a class="headerlink" href="#what-is-actually-running" title="Permanent link">¶</a></h2>
@@ -119,7 +119,7 @@ Zend Engine v3.3.7, Copyright <span class="o">(</span>c<span class="o">)</span> 
 <p>That's promising. The default version here is PHP 7.3.7.</p>
 <p>But, throwing a quick <code>phpinfo();</code> together and looking at what it running via
 Apache, shows something different:</p>
-<div class="codehilight code"><pre><span></span><span class="err">PHP Version 7.1.30-1+ubuntu18.04.1+deb.sury.org+1</span>
+<div class="codehilight code"><pre><span></span>PHP Version 7.1.30-1+ubuntu18.04.1+deb.sury.org+1
 </pre></div>
 <p>Ok. Now I know which module is out of date. It's the run that is configured to
 be used with Apache.</p>
@@ -127,18 +127,18 @@ be used with Apache.</p>
 <p>I assumed I had PHP 7.3 installed, but I wanted to confirm before I just started
 disabling and enabling Apache modules.</p>
 <p>To confirm I had PHP 7.3 available, I ran this:</p>
-<div class="codehilight code"><pre><span></span><span class="o">$</span> <span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php</span><span class="o">*</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">conf</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">load</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span>
+<div class="codehilight code"><pre><span></span><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">conf</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">load</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span><span class="w"></span>
 </pre></div>
 <p>And a quick check to see what's enabled:</p>
-<div class="codehilight code"><pre><span></span><span class="o">$</span> <span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span>
+<div class="codehilight code"><pre><span></span><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span><span class="w"></span>
 </pre></div>
 <p>Excellent. I have PHP 7.3 available, and PHP 7.1 is enabled. This is exactly what
 I'm seeing.</p>
@@ -151,12 +151,12 @@ $ a2enmod php7.3
 <div class="codehilight code"><pre><span></span>$ service apache2 restart
 </pre></div>
 <p>Finally, validate the correct module is enabled:</p>
-<div class="codehilight code"><pre><span></span><span class="o">$</span> <span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span>
+<div class="codehilight code"><pre><span></span><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span><span class="w"></span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span><span class="w"></span>
 </pre></div>
 <p>Another check of the <code>phpinfo();</code> page too:</p>
-<div class="codehilight code"><pre><span></span><span class="err">PHP Version 7.3.7-2+ubuntu18.04.1+deb.sury.org+1</span>
+<div class="codehilight code"><pre><span></span>PHP Version 7.3.7-2+ubuntu18.04.1+deb.sury.org+1
 </pre></div>
 <p>This matches what <code>php -v</code> output.</p>
 <p>We're done! Right?</p>
@@ -229,7 +229,7 @@ worked perfectly.</p>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>40</span>
+                    <span>41</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
@@ -237,8 +237,8 @@ worked perfectly.</p>
     <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
     <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
         </div>
         </section>
 </div>

@@ -103,21 +103,21 @@
 <h3 id="ssh-key">SSH Key<a class="headerlink" href="#ssh-key" title="Permanent link">¶</a></h3>
 <p>The first step is setting up an SSH key so that I don't have to manually provide a password. I can, in the future, add restrictions on the server side as to what this particular key will be able to do too. I'm not doing that today though, because I don't open SSH to the outside world.</p>
 <p>The first thing to do is generate a new key. I already have an SSH key configured, but it has a password. On the laptop, run the following:</p>
-<div class="codehilight code"><pre><span></span><span class="err">ssh-keygen -t rsa -b 2048 -f ~/.ssh/laptop-rsync-key</span>
+<div class="codehilight code"><pre><span></span>ssh-keygen -t rsa -b 2048 -f ~/.ssh/laptop-rsync-key
 </pre></div>
 <p>When asked to enter a passphrase, simply press enter and then enter again to confirm the empty passphrase.</p>
 <p>This will put <code>laptop-rsync-key</code> and <code>laptop-rsync-key.pub</code> in my user's <code>.ssh/</code> directory.</p>
 <h3 id="copy-the-public-key-to-the-server">Copy the public key to the server<a class="headerlink" href="#copy-the-public-key-to-the-server" title="Permanent link">¶</a></h3>
 <p>Next, we need to copy the public key that was just generated to the server.</p>
-<div class="codehilight code"><pre><span></span><span class="n">scp</span> <span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">laptop</span><span class="o">-</span><span class="n">rsync</span><span class="o">-</span><span class="n">key</span><span class="p">.</span><span class="n">pub</span> <span class="n">andy</span><span class="mf">@192.168.140.187</span><span class="o">:~/</span><span class="p">.</span><span class="n">ssh</span>
+<div class="codehilight code"><pre><span></span><span class="n">scp</span><span class="w"> </span><span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">laptop</span><span class="o">-</span><span class="n">rsync</span><span class="o">-</span><span class="n">key</span><span class="p">.</span><span class="n">pub</span><span class="w"> </span><span class="n">andy</span><span class="mf">@192.168.140.187</span><span class="o">:~/</span><span class="p">.</span><span class="n">ssh</span><span class="w"></span>
 </pre></div>
 <p>Once it's been copied, log into the server. Now you need to add this key to the <code>authorized_keys</code>.</p>
-<div class="codehilight code"><pre><span></span><span class="err">cd ~/.ssh</span>
-<span class="err">cat laptop-rsync-key.pub &gt;&gt; authorized_keys</span>
+<div class="codehilight code"><pre><span></span>cd ~/.ssh
+cat laptop-rsync-key.pub &gt;&gt; authorized_keys
 </pre></div>
 <h3 id="rsync-command">rsync command<a class="headerlink" href="#rsync-command" title="Permanent link">¶</a></h3>
 <p>The final command to back up my home directory is pretty simple. This command is going to tell <code>rsync</code> to use the new SSH key that was just created, to exclude all dot files and directories, and to delete anything that has been removed on the laptop from the server. The backup will go in <code>~/backup/laptop</code> on the server.</p>
-<div class="codehilight code"><pre><span></span><span class="err">rsync -a -e "ssh -i ~/.ssh/laptop-rsync-key" ~/ andy@nas:~/backup/laptop --exclude=".*" --exclude=".*/" --delete</span>
+<div class="codehilight code"><pre><span></span><span class="n">rsync</span><span class="w"> </span><span class="o">-</span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="ss">"ssh -i ~/.ssh/laptop-rsync-key"</span><span class="w"> </span><span class="o">~/</span><span class="w"> </span><span class="n">andy</span><span class="nv">@nas</span><span class="err">:</span><span class="o">~/</span><span class="k">backup</span><span class="o">/</span><span class="n">laptop</span><span class="w"> </span><span class="c1">--exclude=".*" --exclude=".*/" --delete</span>
 </pre></div>
 <p>Once I confirmed this worked, I added it to my user's crontab on the laptop. It will run once a day now.</p>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">¶</a></h2>
@@ -154,7 +154,7 @@
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>40</span>
+                    <span>41</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
@@ -162,8 +162,8 @@
     <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
     <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
         </div>
         </section>
 </div>

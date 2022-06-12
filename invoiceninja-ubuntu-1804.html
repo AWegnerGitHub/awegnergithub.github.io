@@ -132,8 +132,8 @@ and <a href="https://andrewwegner.com/installing-gitlab.html">GitLab</a> for oth
 or on <a href="https://github.com/invoiceninja/invoiceninja">GitHub</a>.</p>
 <p>In this, I'll be installing InvoiceNinja, setting up Apache to host it, and showing how
 to update it in the future.</p>
-<div class="codehilight code"><pre><span></span><span class="o">$</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span>
-<span class="o">$</span> <span class="n">unzip</span> <span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span>
+<div class="codehilight code"><pre><span></span><span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span><span class="w"></span>
+<span class="o">$</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span><span class="w"></span>
 </pre></div>
 <p>This downloads and unzips InvoiceNinja 4.5.14 to the current directory. Next,
 let's move it to it's final install location and set up appropriate owner and
@@ -155,15 +155,15 @@ new user and new password.</p>
 <p>!!! attention
     Change the default password from <code>ninja</code> to something secure</p>
 <p>Our three commands:</p>
-<div class="codehilight code"><pre><span></span><span class="err">CREATE DATABASE ninja;</span>
-<span class="err">CREATE USER 'ninja'@'localhost' IDENTIFIED BY 'ninja';</span>
-<span class="err">GRANT ALL PRIVILEGES ON ninja.* TO 'ninja'@'localhost';</span>
+<div class="codehilight code"><pre><span></span>CREATE DATABASE ninja;
+CREATE USER 'ninja'@'localhost' IDENTIFIED BY 'ninja';
+GRANT ALL PRIVILEGES ON ninja.* TO 'ninja'@'localhost';
 </pre></div>
 <p>Exit MySQL.</p>
 <h2 id="configure-apache">Configure Apache<a class="headerlink" href="#configure-apache" title="Permanent link">¶</a></h2>
 <p>Now we're going to set up a new virtualhost in Apache to serve InvoiceNinja.</p>
 <p>Create an entry in sites-available.</p>
-<div class="codehilight code"><pre><span></span><span class="err">nano /etc/apache2/sites-available/invoiceninja.conf</span>
+<div class="codehilight code"><pre><span></span>nano /etc/apache2/sites-available/invoiceninja.conf
 </pre></div>
 <p>My entry looks like this:</p>
 <div class="codehilight code"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="err">*:80</span><span class="nt">&gt;</span>
@@ -201,8 +201,8 @@ new user and new password.</p>
 created for this subdomain. I previously wrote about <a href="https://andrewwegner.com/setup-lets-encrypt.html">how I set up SSL</a>. I followed the
 same steps, using the new subdomain.</p>
 <p>With SSL and the subdomain set up in CloudFlare, it's time to enable the site:</p>
-<div class="codehilight code"><pre><span></span><span class="o">$</span> <span class="n">sudo</span> <span class="n">a2ensite</span> <span class="n">invoiceninja</span><span class="o">.</span><span class="n">conf</span>
-<span class="o">$</span> <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">reload</span> <span class="n">apache2</span>
+<div class="codehilight code"><pre><span></span><span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">a2ensite</span><span class="w"> </span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">conf</span><span class="w"></span>
+<span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">reload</span><span class="w"> </span><span class="n">apache2</span><span class="w"></span>
 </pre></div>
 <h2 id="completing-the-install">Completing the install<a class="headerlink" href="#completing-the-install" title="Permanent link">¶</a></h2>
 <p>Navigate to the new subdomain, and fill out the form. Installation will be
@@ -211,8 +211,8 @@ completed in a minute or so.</p>
 <p>At some point, InvoiceNinja will come out with an update, and I'll want to update
 to get the newest features and security patches.</p>
 <p>To start with, we want to download the newest version:</p>
-<div class="codehilight code"><pre><span></span><span class="o">$</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span>
-<span class="o">$</span> <span class="n">unzip</span> <span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span>
+<div class="codehilight code"><pre><span></span><span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span><span class="w"></span>
+<span class="o">$</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span><span class="w"></span>
 </pre></div>
 <p>Next, <code>rsync</code> the files to the installed directory.</p>
 <div class="codehilight code"><pre><span></span>$ sudo rsync -tr ninja/ /var/www/html/ninja/
@@ -223,7 +223,7 @@ $ sudo chown -R www-data:www-data ninja/
 $ sudo chmod -R <span class="m">755</span> ninja/storage
 </pre></div>
 <p>Finally, hit the <code>/update</code> URL to complete the process</p>
-<div class="codehilight code"><pre><span></span><span class="err">wget https://invoice.example.com/update</span>
+<div class="codehilight code"><pre><span></span>wget https://invoice.example.com/update
 </pre></div>
             </div>
             <hr />
@@ -257,7 +257,7 @@ $ sudo chmod -R <span class="m">755</span> ninja/storage
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>40</span>
+                    <span>41</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
@@ -265,8 +265,8 @@ $ sudo chmod -R <span class="m">755</span> ninja/storage
     <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
     <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
         </div>
         </section>
 </div>

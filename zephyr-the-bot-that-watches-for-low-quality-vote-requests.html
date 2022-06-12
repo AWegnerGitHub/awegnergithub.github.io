@@ -148,12 +148,12 @@ SmokeDetector to watch for commonly spammed domains.</p>
 <h3 id="upgrade-from-sqlite-to-mariadb">Upgrade from SQLite to MariaDB<a class="headerlink" href="#upgrade-from-sqlite-to-mariadb" title="Permanent link">¶</a></h3>
 <p>Zephyr was originally built against an SQLite database. This worked, but was getting slower as more data was being added. This slow down
 was beginning to affect performance. I started seeing this error more and more frequently:</p>
-<div class="codehilight code"><pre><span></span><span class="err">Traceback (most recent call last):</span>
-<span class="err">  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py", line 255, in _close_connection</span>
-<span class="err">    self._dialect.do_close(connection)</span>
-<span class="err">  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py", line 418, in do_close</span>
-<span class="err">    dbapi_connection.close()</span>
-<span class="c">ProgrammingError: SQLite objects created in a thread can only be used in that same thread.The object was created in thread id 4824 and this is thread id 4660</span>
+<div class="codehilight code"><pre><span></span>Traceback (most recent call last):
+  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py", line 255, in _close_connection
+    self._dialect.do_close(connection)
+  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py", line 418, in do_close
+    dbapi_connection.close()
+ProgrammingError: SQLite objects created in a thread can only be used in that same thread.The object was created in thread id 4824 and this is thread id 4660
 </pre></div>
 <p>After spending a lot of time troubleshooting and not resolving it to my satisfaction, I decided to upgrade to a more robust database. I'd used
 MySQL/MariaDB before and I happened to have another application utilizing MariaDB at the moment so that is the solution I picked. </p>
@@ -221,8 +221,8 @@ web sockets go down. This saves a lot of restarts to get everything up and runni
     <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
     <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
         </div>
         </section>
 </div>

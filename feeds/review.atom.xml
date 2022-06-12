@@ -976,7 +976,7 @@ even current!&lt;/p&gt;
 &lt;li&gt;Installation instructions are done using &lt;code&gt;easy_install&lt;/code&gt; not &lt;code&gt;pip&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In the &lt;code&gt;urls.py&lt;/code&gt; files that define URL routes, there are lines that look like this:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;url(r'^admin/', admin.site.urls)&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;url(r'^admin/', admin.site.urls)
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The instructor attempts to describe the &lt;code&gt;r&lt;/code&gt; in front of &lt;code&gt;'^admin/'&lt;/code&gt; by saying:&lt;/p&gt;
 &lt;blockquote&gt;

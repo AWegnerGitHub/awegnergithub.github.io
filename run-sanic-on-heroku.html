@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andy Wegner" />
+
+        <meta property="og:type" content="article" />
+
+<meta name="keywords" content="technical, Technical Solutions, " />
+
+<meta property="og:title" content="Run Sanic on Heroku "/>
+<meta property="og:url" content="https://andrewwegner.com/run-sanic-on-heroku.html" />
+<meta property="og:description" content="A quick guide on how to launch a small Sanic application on Heroku" />
+<meta property="og:site_name" content="Ponderings of an Andy" />
+<meta property="og:article:author" content="Andy Wegner" />
+<meta property="og:article:published_time" content="2022-05-19T08:00:00-05:00" />
+<meta name="twitter:title" content="Run Sanic on Heroku ">
+<meta name="twitter:description" content="A quick guide on how to launch a small Sanic application on Heroku">
+
+        <title>Run Sanic on Heroku  · Ponderings of an Andy
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
+        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+
+<script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("653100411");
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://andrewwegner.com">Home</a></li>
+                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
+                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
+                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<meta itemprop="headline" content="Run Sanic on Heroku" />
+<time itemprop="datePublished" datetime="2022-05-19T08:00:00-05:00">
+<meta itemprop="publisher" content="Andy Wegner" />
+<link rel="canonical" href="https://andrewwegner.com/run-sanic-on-heroku.html" />
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://andrewwegner.com/run-sanic-on-heroku.html"> Run Sanic on Heroku  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid" id="table-of-contents">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#problem">Problem</a></li>
+<li><a href="#toy-sanic-app">Toy Sanic App</a></li>
+<li><a href="#the-quick-solution">The quick solution</a></li>
+<li><a href="#more-details">More details</a></li>
+<li><a href="#finishing-up">Finishing up</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <div itemprop="articleBody mainEntityOfPage">
+            
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>Recently I needed to set up a very simple proof of concept (POC) to demonstrate to myself and eventually my team that an idea would work. A POC isn't production ready, it doesn't need to be robust and in my case wasn't even going to be written using the same framework we use in production. I just needed to see if the integration would work as I thought it would. If it did, I'd work with my team to build a production ready version. If it didn't work, no problem. I expected this POC to take about two hours of my time, including initial research around the integration itself.</p>
+<p>My background is utilizing Python. I've been using it for nearly 15 years now. In my previous role I utilized <a href="https://sanic.dev/en/">Sanic</a> to build our API. I've also used Django and Flask in the path, but it had been five or more years so I was rusty in those. Plus, I have a fancy new book written by Adam Hopkins, the core developer of Sanic and an amazing former colleague, called <a href="https://www.packtpub.com/product/python-web-development-with-sanic/9781801814416">Python Web Development with Sanic</a> that I wanted to work through. I've been meaning to get to this, and haven't had a lot of time with my recent job change. This small POC won't get far, but I've found that if I start following a long tutorial or course or book, I'll dedicate more time so that I can finish it.</p>
+<p>By the way, highly recommend the book if you are utilizing Sanic.</p>
+<p>Onward!</p>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">¶</a></h2>
+<p>The problem I encounted during this POC wasn't the integration, like I expected. Instead, the problem I ran into was figuring out where I could deploy this POC at no cost. I considered <a href="https://ngrok.com/">ngrok</a>, but that meant leaving something running on my machine until my team had a chance to play with the POC. Instead, I turned to <a href="https://www.heroku.com/">Heroku</a>. The next problem I ran into was determining how to deploy a Sanic application to Heroku. Google returned 5 year old articles, forum posts that don't have answers (<a href="https://xkcd.com/979/">denvercoder9</a>, is that you?), and Flask tutorials.</p>
+<h2 id="toy-sanic-app">Toy Sanic App<a class="headerlink" href="#toy-sanic-app" title="Permanent link">¶</a></h2>
+<p>Before I get to the solution, here is a toy Sanic app that simply prints <code>Ok!</code> when you hit the root endpoint. Save this in a file called <code>server.py</code></p>
+<div class="codehilight code"><pre><span></span><span class="kn">from</span> <span class="nn">sanic</span> <span class="kn">import</span> <span class="n">Sanic</span>
+<span class="kn">from</span> <span class="nn">sanic.response</span> <span class="kn">import</span> <span class="n">text</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Sanic</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root_path</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">text</span><span class="p">(</span><span class="s2">"Ok!"</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">"0.0.0.0"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"PORT"</span><span class="p">],</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">access_log</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+<p>The one important thing to notice is that <code>port</code> parameter in <code>app.run()</code>. Heroku supplies the port it is listening on on an environment variable, and this is needed for Sanic.</p>
+<h2 id="the-quick-solution">The quick solution<a class="headerlink" href="#the-quick-solution" title="Permanent link">¶</a></h2>
+<p>In Adam's book, in the "Organizing a Project" chapter, he shows that running an application uses a command like:</p>
+<div class="codehilight code"><pre><span></span>sanic src.server:app -p 7777 --debug --workers=2
+</pre></div>
+<p>Simplifying that command a bit and setting up the Heroku <code>Procfile</code> (capitization matters and no extension) I have a single line in my <code>Procfile</code> that reads:</p>
+<div class="codehilight code"><pre><span></span><span class="n">web</span><span class="o">:</span><span class="w"> </span><span class="n">sanic</span><span class="w"> </span><span class="n">server</span><span class="o">:</span><span class="n">app</span><span class="w"></span>
+</pre></div>
+<p>Creating a <code>requirements.txt</code> file with Sanic as an item was also required. If you're using a virtualenv, you can simply <code>pip freeze &gt; requirements.txt</code> to get everything in your environment into the file.</p>
+<p>Thus, my directory looks like this:</p>
+<div class="codehilight code"><pre><span></span>./poc
+    Procfile
+    requirements.txt
+    server.py
+</pre></div>
+<p>Push this to Heroku and the application fires right up.</p>
+<h2 id="more-details">More details<a class="headerlink" href="#more-details" title="Permanent link">¶</a></h2>
+<p>I did not have a personal Heroku account or the CLI installed on my machine before starting. That was easily resolved by creating an account at <a href="https://www.heroku.com/">Heroku</a>. For the <code>heroku-cli</code>, I followed the <a href="https://devcenter.heroku.com/articles/heroku-cli#standalone-installation-with-a-tarball">documentation</a> to get that set up. Namely:</p>
+<div class="codehilight code"><pre><span></span>curl https://cli-assets.heroku.com/install.sh | sh
+</pre></div>
+<p><strong>Note</strong>: This does require <code>sudo</code>.</p>
+<p>Once that's done, I verified the installation:</p>
+<div class="codehilight code"><pre><span></span>$ heroku --version
+heroku/7.60.2 linux-x64 node-v14.19.0
+</pre></div>
+<p>Set up the new application in your Heroku account by logging in. Then click <code>New</code> then <code>Create new app</code>.</p>
+<p><img alt="Create new heroku app - New / Create new app" src="https://andrewwegner.com/images/sanic-heroku-new-app.png"/></p>
+<p>Enter a unique application name.</p>
+<p>Then add Python to the build path. Do this by going to <code>Settings</code> -&gt; <code>Add buildpack</code> -&gt; Selecting Python and clicking save.</p>
+<p><img alt="Add Python buildpack - Settings / Add buildpack / Python" src="https://andrewwegner.com/images/sanic-heroku-buildpack.png"/></p>
+<p>The next step is setting up the two files I mentioned earlier - <code>Procfile</code> and <code>requirements.txt</code>. Since the <code>Procfile</code> is a single line for this simple proof of concept, that can been done in a single line from the shell.</p>
+<div class="codehilight code"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">"web: sanic server:app"</span> &gt; Procfile
+</pre></div>
+<p>Assuming you've been using a virtualenv - because you <em>should</em> be using a virtualenv - the <code>requirements.txt</code> file is just as easy.</p>
+<div class="codehilight code"><pre><span></span>$ pip freeze &gt; requirements.txt
+</pre></div>
+<p>Everything is setup and ready to be loaded to Heroku. Next, login in your terminal. I used the browser based method, but you can do this entirely in the command line if you wish. My command was:</p>
+<div class="codehilight code"><pre><span></span>heroku login
+</pre></div>
+<p>Last, I set up a heroku git remote endpoint so that I could push</p>
+<div class="codehilight code"><pre><span></span>heroku git:remote -a NAME_OF_YOUR_HEROKU_APP
+git add .
+git commit -m "Deployment commit"
+git push heroku master
+</pre></div>
+<p>Change <code>NAME_OF_YOUR_HEROKU_APP</code> to match the name you input in the UI when setting it up.</p>
+<p>Wait a minute or so, and then navigate to <code>NAME_OF_YOUR_HEROKU_APP.herokuapp.com</code> and see <code>Ok!</code></p>
+<h2 id="finishing-up">Finishing up<a class="headerlink" href="#finishing-up" title="Permanent link">¶</a></h2>
+<p>With the steps above, I got a very simple Sanic proof of concept running on Heroku in a matter of minutes. This was very helpful as I was able to easily show my team that the work we're thinking of doing can be accomplished. All told, my proof of concept took two hours of time. The next step will be building a production version.</p>
+            </div>
+            <hr />
+            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
+                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+            </div>
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://andrewwegner.com/gitlab-manage-remote-team.html" title="Previous: Review of GitLab&#39;s &#34;How to Manage a Remote Team&#34; Coursera course">Review of GitLab's "How to Manage a Remote Team" Coursera course</a></li>
+                <li class="next-article"><a href="https://andrewwegner.com/woven-client-to-woven-employee.html" title="Next: The Other Side of the Mirror: How I Went from Woven Client to Woven Employee">The Other Side of the Mirror: How I Went from Woven Client to Woven Employee</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2022-05-19T08:00:00-05:00">May 19, 2022</time>
+<time itemprop="dateModified" datetime="2022-05-19T08:00:00-05:00">
+
+            <h4>Category</h4>
+            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
+                    <span>41</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-steam-square sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

@@ -82,35 +82,35 @@ network card. To associate these IP addresses with the server some manipulation 
 performed. The steps outlined in this walk-through are for RedHat based systems. This tutorial is for statically assigned 
 IP Addresses (as a server generally will have).
 For this walk through we are going to add one additional IP address to <code>eth0</code>. Navigate to</p>
-<div class="codehilight code"><pre><span></span><span class="err">cd /etc/sysconfig/network-scripts</span>
+<div class="codehilight code"><pre><span></span>cd /etc/sysconfig/network-scripts
 </pre></div>
 
 
 <p>Copy <code>ifcfg-eth0</code> to <code>ifcfg-eth0:0</code></p>
-<div class="codehilight code"><pre><span></span><span class="err">cp ifcfg-eth0 ifcfg-eth0:0</span>
+<div class="codehilight code"><pre><span></span>cp ifcfg-eth0 ifcfg-eth0:0
 </pre></div>
 
 
 <p>Now we need to modify the new file slightly so that it gets it's own IP address. Open <code>ifcfg-eth0:0</code> in your favorite editor</p>
-<div class="codehilight code"><pre><span></span><span class="err">DEVICE=eth0:0           &lt;-- Change this to match the new eth0:0 file we just created</span>
-<span class="err">BOOTPROTO=none</span>
-<span class="err">BROADCAST=x.x.x.x       &lt;-- This is the broad cast address for the subnet the new IP is on</span>
-<span class="err">DNS1=x.x.x.x            &lt;-- This is the main DNS server you are using (example: 64.120.14.26)</span>
-<span class="err">GATEWAY=x.x.x.x         &lt;-- This is the gateway address for the subnet the new IP is on</span>
-<span class="err">HWADDR=&lt;DO NOT CHANGE&gt;  &lt;-- Don&#39;t change this from what is existing. The Hardware address is the same as the physical one</span>
-<span class="err">IPADDR=x.x.x.x          &lt;-- This is your new IP address</span>
-<span class="err">NETMASK=x.x.x.x         &lt;-- This is the netmask for the subnet the new IP is on</span>
-<span class="err">ONBOOT=yes              &lt;-- Leave to yes</span>
-<span class="err">OPTIONS=layer2=1</span>
-<span class="err">TYPE=Ethernet</span>
-<span class="err">PREFIX=29</span>
-<span class="err">DEFROUTE=yes</span>
-<span class="err">NAME=&quot;System eth0:0&quot;    &lt;-- Change to reflect new name of device</span>
+<div class="codehilight code"><pre><span></span><span class="nv">DEVICE</span><span class="o">=</span><span class="nv">eth0</span>:<span class="mi">0</span>           <span class="o">&lt;--</span> <span class="nv">Change</span> <span class="nv">this</span> <span class="nv">to</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">new</span> <span class="nv">eth0</span>:<span class="mi">0</span> <span class="nv">file</span> <span class="nv">we</span> <span class="nv">just</span> <span class="nv">created</span>
+<span class="nv">BOOTPROTO</span><span class="o">=</span><span class="nv">none</span>
+<span class="nv">BROADCAST</span><span class="o">=</span><span class="nv">x</span>.<span class="nv">x</span>.<span class="nv">x</span>.<span class="nv">x</span>       <span class="o">&lt;--</span> <span class="nv">This</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">broad</span> <span class="nv">cast</span> <span class="nv">address</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">subnet</span> <span class="nv">the</span> <span class="nv">new</span> <span class="nv">IP</span> <span class="nv">is</span> <span class="nv">on</span>
+<span class="nv">DNS1</span><span class="o">=</span><span class="nv">x</span>.<span class="nv">x</span>.<span class="nv">x</span>.<span class="nv">x</span>            <span class="o">&lt;--</span> <span class="nv">This</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">main</span> <span class="nv">DNS</span> <span class="nv">server</span> <span class="nv">you</span> <span class="nv">are</span> <span class="nv">using</span> <span class="ss">(</span><span class="nv">example</span>: <span class="mi">64</span>.<span class="mi">120</span>.<span class="mi">14</span>.<span class="mi">26</span><span class="ss">)</span>
+<span class="nv">GATEWAY</span><span class="o">=</span><span class="nv">x</span>.<span class="nv">x</span>.<span class="nv">x</span>.<span class="nv">x</span>         <span class="o">&lt;--</span> <span class="nv">This</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">gateway</span> <span class="nv">address</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">subnet</span> <span class="nv">the</span> <span class="nv">new</span> <span class="nv">IP</span> <span class="nv">is</span> <span class="nv">on</span>
+<span class="nv">HWADDR</span><span class="o">=&lt;</span><span class="k">DO</span> <span class="nv">NOT</span> <span class="nv">CHANGE</span><span class="o">&gt;</span>  <span class="o">&lt;--</span> <span class="nv">Don</span><span class="s1">&#39;</span><span class="s">t change this from what is existing. The Hardware address is the same as the physical one</span>
+<span class="nv">IPADDR</span><span class="o">=</span><span class="nv">x</span>.<span class="nv">x</span>.<span class="nv">x</span>.<span class="nv">x</span>          <span class="o">&lt;--</span> <span class="nv">This</span> <span class="nv">is</span> <span class="nv">your</span> <span class="nv">new</span> <span class="nv">IP</span> <span class="nv">address</span>
+<span class="nv">NETMASK</span><span class="o">=</span><span class="nv">x</span>.<span class="nv">x</span>.<span class="nv">x</span>.<span class="nv">x</span>         <span class="o">&lt;--</span> <span class="nv">This</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">netmask</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">subnet</span> <span class="nv">the</span> <span class="nv">new</span> <span class="nv">IP</span> <span class="nv">is</span> <span class="nv">on</span>
+<span class="nv">ONBOOT</span><span class="o">=</span><span class="nv">yes</span>              <span class="o">&lt;--</span> <span class="nv">Leave</span> <span class="nv">to</span> <span class="nv">yes</span>
+<span class="nv">OPTIONS</span><span class="o">=</span><span class="nv">layer2</span><span class="o">=</span><span class="mi">1</span>
+<span class="nv">TYPE</span><span class="o">=</span><span class="nv">Ethernet</span>
+<span class="nv">PREFIX</span><span class="o">=</span><span class="mi">29</span>
+<span class="nv">DEFROUTE</span><span class="o">=</span><span class="nv">yes</span>
+<span class="nv">NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">System eth0:0</span><span class="s2">&quot;</span>    <span class="o">&lt;--</span> <span class="nv">Change</span> <span class="nv">to</span> <span class="nv">reflect</span> <span class="nv">new</span> <span class="nv">name</span> <span class="nv">of</span> <span class="nv">device</span>
 </pre></div>
 
 
 <p>Save your file with the new settings. Now we need to restart the networking service:</p>
-<div class="codehilight code"><pre><span></span><span class="err">service network restart</span>
+<div class="codehilight code"><pre><span></span>service network restart
 </pre></div>
 
 
@@ -148,7 +148,7 @@ copy and replace values as specified above.</p>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>40</span>
+                    <span>41</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
@@ -156,8 +156,8 @@ copy and replace values as specified above.</p>
     <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
     <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://stackoverflow.com/cv/andrewwegner" title="My Stack Overflow Jobs Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
         </div>
         </section>
 </div>

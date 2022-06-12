@@ -154,12 +154,12 @@ SmokeDetector to watch for commonly spammed domains.&lt;/p&gt;
 &lt;h3 id="upgrade-from-sqlite-to-mariadb"&gt;Upgrade from SQLite to MariaDB&lt;a class="headerlink" href="#upgrade-from-sqlite-to-mariadb" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Zephyr was originally built against an SQLite database. This worked, but was getting slower as more data was being added. This slow down
 was beginning to affect performance. I started seeing this error more and more frequently:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;Traceback (most recent call last):&lt;/span&gt;
-&lt;span class="err"&gt;  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py", line 255, in _close_connection&lt;/span&gt;
-&lt;span class="err"&gt;    self._dialect.do_close(connection)&lt;/span&gt;
-&lt;span class="err"&gt;  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py", line 418, in do_close&lt;/span&gt;
-&lt;span class="err"&gt;    dbapi_connection.close()&lt;/span&gt;
-&lt;span class="c"&gt;ProgrammingError: SQLite objects created in a thread can only be used in that same thread.The object was created in thread id 4824 and this is thread id 4660&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Traceback (most recent call last):
+  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py", line 255, in _close_connection
+    self._dialect.do_close(connection)
+  File "H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py", line 418, in do_close
+    dbapi_connection.close()
+ProgrammingError: SQLite objects created in a thread can only be used in that same thread.The object was created in thread id 4824 and this is thread id 4660
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After spending a lot of time troubleshooting and not resolving it to my satisfaction, I decided to upgrade to a more robust database. I'd used
 MySQL/MariaDB before and I happened to have another application utilizing MariaDB at the moment so that is the solution I picked. &lt;/p&gt;
@@ -195,16 +195,16 @@ encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/280546/18
 &lt;li&gt;Had variations of the following phrases:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Phrases&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;'%mark%answer%'&lt;/span&gt;
-&lt;span class="err"&gt;'%mark%accept%'&lt;/span&gt;
-&lt;span class="err"&gt;'%accept%answer%'&lt;/span&gt;
-&lt;span class="err"&gt;'%lease%accept%'&lt;/span&gt;
-&lt;span class="err"&gt;'%mark%answer%'&lt;/span&gt;
-&lt;span class="err"&gt;'%thank%you%'&lt;/span&gt;
-&lt;span class="err"&gt;'%thx%you%'&lt;/span&gt;
-&lt;span class="err"&gt;'%.....'&lt;/span&gt;
-&lt;span class="err"&gt;'+1%'&lt;/span&gt;
-&lt;span class="err"&gt;'-1%'&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;'%mark%answer%'
+'%mark%accept%'
+'%accept%answer%'
+'%lease%accept%'
+'%mark%answer%'
+'%thank%you%'
+'%thx%you%'
+'%.....'
+'+1%'
+'-1%'
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;"Good Comments" were assumed, initially, to be anything that didn't fall into the above criteria&lt;/p&gt;
 &lt;p&gt;This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.&lt;/p&gt;
@@ -220,14 +220,14 @@ good comment    | 0.9999        | False
 &lt;hr/&gt;
 &lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;What have the results of this experiment been? From my point of view, I'd venture that it's been successful. I have automatically flagged over 17,000 comments. As of December 17, 2014, the process has been running for 173 days. My comment flagging stats are currently:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;26885   comments flagged&lt;/span&gt;
-&lt;span class="err"&gt;26714   deemed helpful&lt;/span&gt;
-&lt;span class="err"&gt;171     declined&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mf"&gt;26885&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="mf"&gt;26714&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="mf"&gt;171&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Started at (approximately):&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;9885    comments flagged&lt;/span&gt;
-&lt;span class="err"&gt;9847    deemed helpful&lt;/span&gt;
-&lt;span class="err"&gt;38      declined&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mf"&gt;9885&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="mf"&gt;9847&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="mf"&gt;38&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This gives me an overall accuracy of 99.36%. Down from 99.61% when no automated process was involved.&lt;/p&gt;
 &lt;hr/&gt;
@@ -303,9 +303,9 @@ This is, by far, the largest number of declined flags the process has generated 
 &lt;p&gt;The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.&lt;/p&gt;
 &lt;h3 id="may-2015-11-months"&gt;May 2015 (11 Months)&lt;a class="headerlink" href="#may-2015-11-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;After nearly a year of running, these are my flagging statistics:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;39938   comments flagged&lt;/span&gt;
-&lt;span class="err"&gt;39659   deemed helpful&lt;/span&gt;
-&lt;span class="err"&gt;279     declined&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mf"&gt;39938&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="mf"&gt;39659&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="mf"&gt;279&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This provides a helpful rate of 99.3%. This is down &lt;em&gt;just&lt;/em&gt; slightly from 99.36% in December. I attribute a large part of the dip to the issue mentioned above.&lt;/p&gt;
 &lt;hr/&gt;
@@ -315,9 +315,9 @@ This is, by far, the largest number of declined flags the process has generated 
 &lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 90 day window" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/&gt;&lt;/p&gt;
 &lt;h3 id="sept-2015-15-months"&gt;Sept 2015 (15 Months)&lt;a class="headerlink" href="#sept-2015-15-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;It has been almost 15 months since the process started. In that time, the model has gotten more accurate. Since the last update in May, I've had only 3 declined comment flags:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;52351   comments flagged&lt;/span&gt;
-&lt;span class="err"&gt;52069   deemed helpful&lt;/span&gt;
-&lt;span class="err"&gt;282     declined&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mf"&gt;52351&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="mf"&gt;52069&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="mf"&gt;282&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This provides a helpful rate of 99.46%. Here is an updated chart showing the rolling 10 day average for number of declined flags. The 90 day window is not even worth showing. It has three days where a single flag was declined.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 15 Months of data training" src="https://andrewwegner.com/images/declined_per_day_15_months.png"/&gt;&lt;/p&gt;
