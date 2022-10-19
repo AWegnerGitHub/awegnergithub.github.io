@@ -1,40 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2022-10-03T10:00:00-05:00</updated><entry><title>Unreal Engine 5: The Complete Beginner's Course</title><link href="https://andrewwegner.com/ue5-complete-beginners-course.html" rel="alternate"></link><published>2022-10-03T10:00:00-05:00</published><updated>2022-10-03T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-10-03:/ue5-complete-beginners-course.html</id><summary type="html">&lt;p&gt;My review of the Unreal Engine 5: The Complete Beginner's Course Udemy course&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2022-10-18T23:00:00-05:00</updated><entry><title>Review of Unreal Engine 5 Beginners Guide to Building an Environment</title><link href="https://andrewwegner.com/ue5-beginners-building-environment-review.html" rel="alternate"></link><published>2022-10-18T23:00:00-05:00</published><updated>2022-10-18T23:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-10-18:/ue5-beginners-building-environment-review.html</id><summary type="html">&lt;p&gt;My review of the Unreal Engine 5 Beginners Guide to Building an Environment Udemy course&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Continuing on my journey to learn a little bit about &lt;a href="https://www.unrealengine.com/en-US/unreal-engine-5"&gt;Unreal Engine 5&lt;/a&gt;, I turned to Udemy again for a 
-course I could take that would help to learn some more.&lt;/p&gt;
-&lt;p&gt;I settled on &lt;a href="https://www.udemy.com/course/unreal-engine-5-the-complete-beginners-course/"&gt;Unreal Engine 5: The Complete Beginner's Course&lt;/a&gt; by David Nixon. I wanted to learn more than 
-landscaping (like I did in the &lt;a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html"&gt;last course&lt;/a&gt;). This was a ten hour course and covered much more of Unreal 
-Engine. &lt;/p&gt;
+&lt;p&gt;In my third adventure into learning little bit about &lt;a href="https://www.unrealengine.com/en-US/unreal-engine-5"&gt;Unreal Engine 5&lt;/a&gt;, I set out to learn a little
+bit more about modeling water. This was kind of brushed over in the &lt;a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html"&gt;first course&lt;/a&gt; I took, and not touched
+at all in the &lt;a href="https://andrewwegner.com/ue5-complete-beginners-course.html"&gt;second course&lt;/a&gt;. I was hoping to learn about real time water simulation based on a couple of the
+course content section headers.&lt;/p&gt;
+&lt;p&gt;Spoiler: That's not in this course. However, I was not disappointed in the course.&lt;/p&gt;
+&lt;p&gt;I settled on &lt;a href="https://www.udemy.com/course/unreal-engine-5-beginners-guide-building-environment/"&gt;Unreal Engine 5 Beginners Guide to Building an Environment&lt;/a&gt; by 3D Tudor.&lt;/p&gt;
 &lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The end goal of the course was to create a very basic game. This would demonstrate building a level, adding 
-materials, enemies, puzzles, victory conditions, and more. To me, this course was really two courses mashed into 
+&lt;p&gt;Udemy says this is an 18.5 hour course. Plan on more than that. The instructor does a great job at explaining what the goal of the
+section is, how it will be accomplished, and then showing how it's done. The end goal of the course is building a little cabin in
+the mountains along a lake. You go from nothing, to basic blocking out the cabin, to setting up the landscape. From there you build the cabin, set up foliage, adding textures and details, to setting up the water material.&lt;/p&gt;
+&lt;p&gt;I mentioned earlier that I was hoping for a real time water simulation. You don't get that here, but you do spend some time building
+and setting up a water material that can be customized extensively. There are lessons on setting up a waterfall, building and animating birds
+in the background, and adding fireflies. Time is spent building a fire pit and simulating the fire and smoke. Finally it ends with
+setting up a camera and rendering the scene.&lt;/p&gt;
+&lt;p&gt;Overall, this course covers a LOT and the instructor takes the time to explain what is happening and setting up the course very logically.
+The time spent going through the entire workflow is helpful to see how to go from an empty grey box, to a very nice looking cabin.&lt;/p&gt;
+&lt;p&gt;Plan on spending more than the allocated time in several lessons. Multiple times in the course, I found myself just playing with how
+the scene looked. This became my painting canvas. The end goal was a cabin by the lake, but it wasn't to be identical to the
+instructors (and mine is not). I found knowledge provided was wonderful to spark new ideas in how I could make the scene my own.&lt;/p&gt;
+&lt;h2 id="future-learning-goal"&gt;Future learning Goal&lt;a class="headerlink" href="#future-learning-goal" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I did find that I need to learn more about rendering a scene in the future. My initial output was grainy. It looked compressed and I was
+a little saddened to see that environment that I spend so much time in look so...2005 in how it was output. I did manage to make it a little
+better. This is a three camera clip of my result.&lt;/p&gt;
+&lt;p&gt;
+&lt;iframe allowfullscreen="true" frameborder="0" height="315" src="//www.youtube.com/embed/l4i1V2OMnUs" width="560"&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p&gt;The first 20 seconds is just a static shot from the side of the cabin. This shows off the fire pit, the background birds, fireflies
+and waterfall as well as the nice lighting from the sky. The other 40 seconds are split to show a few different areas in a quick flyby.
+I did this on my own because I wanted more than just a static shot.&lt;/p&gt;
+&lt;h3 id="high-quality-renders"&gt;High quality renders&lt;a class="headerlink" href="#high-quality-renders" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One thing I did find is that by default, Unreal Engine renders with compression. I tried turning that off to see the results. I quickly learned
+that a 20 second clip will reach almost 4.5GB of storage space. I'm still new at this...but ouch. That's a lot of space for a longer cinematic.
+I'm not sure how to get a super high quality without that much space though.&lt;/p&gt;
+&lt;p&gt;I also couldn't figure out how to render it as a 4K video, instead of 1080p.&lt;/p&gt;
+&lt;p&gt;The first clip in high quality (1080p):&lt;/p&gt;
+&lt;p&gt;
+&lt;iframe allowfullscreen="true" frameborder="0" height="315" src="//www.youtube.com/embed/myBTHdU694c" width="560"&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p&gt;I'm happy with this one. Everything looks good. Even those birds. I learned during this course that I do NOT have the skill set of 3D sculpt.
+However, that's ok. Those birds are in the background. The animation on the wings works perfectly and they look like they belong.&lt;/p&gt;
+&lt;p&gt;The next clip is flying from the side, over the island that I put in the lake to break up the water. In this shot you get a better look at the
+waterfalls in the distance, the chance to see all four sides of the house and some more details on the roof and dock. If you look closely
+around the 12 second mark you can also see some floating rocks. This looks like some foliage that is "touching" the landscaping - in the very
+back - and didn't stay attached the the side of the landscape going into the water.&lt;/p&gt;
+&lt;p&gt;
+&lt;iframe allowfullscreen="true" frameborder="0" height="315" src="//www.youtube.com/embed/uvEKQTpy32o" width="560"&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p&gt;Finally the last clip in high quality is a fly over the lake. It starts by getting a good look at the waterfall (and some more floating rocks). It then flies through the fireflies crossing the river, and gives another look at the cabin and firepit. Finally it pulls back along the river to give a wide shot of the entire scene. A few things to point out - around the 14 second mark, you can see the mountain in the background floating above the landscape. I should have caught that, but I was more focused on keeping the cabin in the shot that I let the camera go to high and you can see a bit of level design that wasn't meant to be shown. Around the 16 second mark, as the camera pulls back, you can see the water texture start to change. I'm not sure what is causing that, but my guess is because of the lighting angles. I don't know how to fix it though.&lt;/p&gt;
+&lt;p&gt;
+&lt;iframe allowfullscreen="true" frameborder="0" height="315" src="//www.youtube.com/embed/4x7yg7FSAUA" width="560"&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I really liked this course. I went into it hoping to learn some water simulation, and instead learned about a whole lot more. I also made a
+pretty good water material.&lt;/p&gt;
+&lt;p&gt;I found the course to be well paced, excellently explained, and almost like an art class at times. The instructor taught you the techniques
+you should use to build the end result but didn't want you to copy. You made it your own.&lt;/p&gt;
+&lt;p&gt;If you have the time to spare (one of the downsides to this course is the length), as a beginner, you'll learn a lot. &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ude.my/UC-c877a178-0922-4c1b-9ae2-d77295704107"&gt;&lt;img alt="Unreal Engine 5: The Complete Beginner's Course" src="https://andrewwegner.com/images/UC-ue5-beginner-environment-course.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="review"></category><category term="technical"></category><category term="learning"></category><category term="unreal engine"></category></entry><entry><title>Review of Unreal Engine 5: The Complete Beginner's Course</title><link href="https://andrewwegner.com/ue5-complete-beginners-course.html" rel="alternate"></link><published>2022-10-03T10:00:00-05:00</published><updated>2022-10-03T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-10-03:/ue5-complete-beginners-course.html</id><summary type="html">&lt;p&gt;My review of the Unreal Engine 5: The Complete Beginner's Course Udemy course&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Continuing on my journey to learn a little bit about &lt;a href="https://www.unrealengine.com/en-US/unreal-engine-5"&gt;Unreal Engine 5&lt;/a&gt;, I turned to Udemy again for a
+course I could take that would help to learn some more.&lt;/p&gt;
+&lt;p&gt;I settled on &lt;a href="https://www.udemy.com/course/unreal-engine-5-the-complete-beginners-course/"&gt;Unreal Engine 5: The Complete Beginner's Course&lt;/a&gt; by David Nixon. I wanted to learn more than
+landscaping (like I did in the &lt;a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html"&gt;last course&lt;/a&gt;). This was a ten hour course and covered much more of Unreal
+Engine.&lt;/p&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The end goal of the course was to create a very basic game. This would demonstrate building a level, adding
+materials, enemies, puzzles, victory conditions, and more. To me, this course was really two courses mashed into
 one.&lt;/p&gt;
 &lt;h3 id="course-one-overview"&gt;Course One - Overview&lt;a class="headerlink" href="#course-one-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The first part of the course and the majority of the content, was the practical overview of how everything works in 
-Unreal Engine. The instructor went over individual sections - designing a level, setting up the player, collisions, audio and 
-most importantly, blue prints. &lt;/p&gt;
+&lt;p&gt;The first part of the course and the majority of the content, was the practical overview of how everything works in
+Unreal Engine. The instructor went over individual sections - designing a level, setting up the player, collisions, audio and
+most importantly, blue prints.&lt;/p&gt;
 &lt;p&gt;These sections of the course were detailed and demonstrated how various settings would impact the overall project. Additionally,
 the instructor injected just enough (bad) puns to keep the content from getting boring. This portion of the course I found very useful.&lt;/p&gt;
 &lt;h3 id="course-two-the-tutorials"&gt;Course Two - The Tutorials&lt;a class="headerlink" href="#course-two-the-tutorials" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The other part of the course was the hands on tutorials. At the start of the course, this is what I was looking forward to the most. Unfortunately,
 this is where I felt the course fell flat. The tutorials did their job and my video below demonstrates it was effective - I have a completed game
-(and I was cool to the kids for the minute and half it took them to beat it). &lt;/p&gt;
+(and I was cool to the kids for the minute and half it took them to beat it).&lt;/p&gt;
 &lt;p&gt;However, the tutorials are rushed. On the better laid out ones, its obvious that the voice over was recorded after the video because the vocal instructions
-get 2-3 steps ahead of what the video is showing. This makes following along difficult when these are literally just "click here, change this value" 
-rapid fire instructions. &lt;/p&gt;
-&lt;p&gt;Additionally, many of the instructions provided are to set exact object dimensions or locations, with no explaination of why or how these were found. 
-The end result is a project that works...but I am left wondering &lt;em&gt;how&lt;/em&gt; certain dimensions were found. Was this done via guess and check? Did the 
-instructor do fancy math to figure out where to place walls? Is there a systematic way that these could have been placed? &lt;/p&gt;
+get 2-3 steps ahead of what the video is showing. This makes following along difficult when these are literally just "click here, change this value"
+rapid fire instructions.&lt;/p&gt;
+&lt;p&gt;Additionally, many of the instructions provided are to set exact object dimensions or locations, with no explaination of why or how these were found.
+The end result is a project that works...but I am left wondering &lt;em&gt;how&lt;/em&gt; certain dimensions were found. Was this done via guess and check? Did the
+instructor do fancy math to figure out where to place walls? Is there a systematic way that these could have been placed?&lt;/p&gt;
 &lt;p&gt;Unfortunately, I don't know the answer to those questions. Instead, to follow along with the rushed tutorials, I typed in the same numbers as the instructor
 and have literally the same project as they do because of it.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This course was better than the previous one, but I still feel like it could have been so much better. The overview portions of the course were 
-really good. Unfortunately, they didn't translate as well into the tutorial lectures. While the tutorials accomplished the goal of building a 
-simple game, they left out so much content that would be useful to know. The tutorials moved quickly and felt more like checking off boxes to 
+&lt;p&gt;This course was better than the previous one, but I still feel like it could have been so much better. The overview portions of the course were
+really good. Unfortunately, they didn't translate as well into the tutorial lectures. While the tutorials accomplished the goal of building a
+simple game, they left out so much content that would be useful to know. The tutorials moved quickly and felt more like checking off boxes to
 make a game instead of designing, debugging, or even just providing a little explaination on how or why certain decisions were made.&lt;/p&gt;
-&lt;p&gt;I recommend this course for the overviews provided. If you know going into it that the tutorials will get you the game I have below, without a lot 
-of the design decisions behind it, then all the better. However, don't take this just for the tutorials. They are quick and lack context on why 
+&lt;p&gt;I recommend this course for the overviews provided. If you know going into it that the tutorials will get you the game I have below, without a lot
+of the design decisions behind it, then all the better. However, don't take this just for the tutorials. They are quick and lack context on why
 certain things are being done.&lt;/p&gt;
 &lt;p&gt;My game:&lt;/p&gt;
 &lt;p&gt;

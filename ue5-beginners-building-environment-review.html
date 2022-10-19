@@ -8,18 +8,18 @@
 
         <meta property="og:type" content="article" />
 
-<meta name="keywords" content="review, technical, learning, Review, " />
+<meta name="keywords" content="review, technical, learning, unreal engine, Review, " />
 
-<meta property="og:title" content="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course "/>
-<meta property="og:url" content="https://andrewwegner.com/sanic-webframework-review.html" />
-<meta property="og:description" content="My review of the Sanic Web Framework fro Pythonistas course on Udemy." />
+<meta property="og:title" content="Review of Unreal Engine 5 Beginners Guide to Building an Environment "/>
+<meta property="og:url" content="https://andrewwegner.com/ue5-beginners-building-environment-review.html" />
+<meta property="og:description" content="My review of the Unreal Engine 5 Beginners Guide to Building an Environment Udemy course" />
 <meta property="og:site_name" content="Ponderings of an Andy" />
 <meta property="og:article:author" content="Andy Wegner" />
-<meta property="og:article:published_time" content="2019-01-23T10:00:00-06:00" />
-<meta name="twitter:title" content="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course ">
-<meta name="twitter:description" content="My review of the Sanic Web Framework fro Pythonistas course on Udemy.">
+<meta property="og:article:published_time" content="2022-10-18T23:00:00-05:00" />
+<meta name="twitter:title" content="Review of Unreal Engine 5 Beginners Guide to Building an Environment ">
+<meta name="twitter:description" content="My review of the Unreal Engine 5 Beginners Guide to Building an Environment Udemy course">
 
-        <title>Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course  · Ponderings of an Andy
+        <title>Review of Unreal Engine 5 Beginners Guide to Building an Environment  · Ponderings of an Andy
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
@@ -62,13 +62,13 @@
                 <div class="span1"></div>
                 <div class="span10">
 <section itemscope itemtype="https://schema.org/Review">
-<meta itemprop="headline" content="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course" />
-<time itemprop="datePublished" datetime="2019-01-23T10:00:00-06:00">
+<meta itemprop="headline" content="Review of Unreal Engine 5 Beginners Guide to Building an Environment" />
+<time itemprop="datePublished" datetime="2022-10-18T23:00:00-05:00">
 <meta itemprop="publisher" content="Andy Wegner" />
-<link rel="canonical" href="https://andrewwegner.com/sanic-webframework-review.html" />
+<link rel="canonical" href="https://andrewwegner.com/ue5-beginners-building-environment-review.html" />
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://andrewwegner.com/sanic-webframework-review.html"> Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course  </a></h1>
+    <h1><a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html"> Review of Unreal Engine 5 Beginners Guide to Building an Environment  </a></h1>
     </header>
 </div>
 
@@ -79,9 +79,12 @@
         <div class="toc">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#course">Course</a></li>
-<li><a href="#thoughts-on-the-lessons">Thoughts on the lessons</a></li>
-<li><a href="#final-thoughts">Final Thoughts</a></li>
+<li><a href="#course-overview">Course Overview</a></li>
+<li><a href="#future-learning-goal">Future learning Goal</a><ul>
+<li><a href="#high-quality-renders">High quality renders</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
 </ul>
 </div>
         </nav>
@@ -92,64 +95,64 @@
             <div itemprop="reviewBody mainEntityOfPage">
             
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>At work we are starting to write version 2 of our API. As part of this new version, we're migrating from PHP to Python (hooray!). There are various technical
-reasons for this, but I am excited. My technical skills are much (<em>much</em>) better in Python. Part of this migration involved decided the framework we'd be using
-and after several internal discussions, we settled on <a href="https://sanic.readthedocs.io/en/latest/">Sanic</a>. The first line of the documentation reads:</p>
-<blockquote>
-<p>Sanic is a Flask-like Python 3.5+ web server that’s written to go fast.</p>
-</blockquote>
-<p>Great! I used Flask at my previous job. To be clear, Sanic is not <em>based on</em> Flask, but it's API is <em>Flask-like</em>. Good enjoy to start with. With the framework
-set, and previous experience with a similar framework, I wanted to go through how Sanic works.</p>
-<p>I turned to Udemy and the <a href="https://www.udemy.com/sanic-an-asynchronous-web-framework-for-pythonistas/">Sanic - an asynchronous web framework for Pythonistas</a> course, created by Szabó Dániel Ernő.</p>
-<h2 id="course">Course<a class="headerlink" href="#course" title="Permanent link">¶</a></h2>
-<p>The course is roughly two hours long and consists of 20 tutorial videos. Each one is less than 10 minutes long. It covers a wide range of features available in
-Sanic. The instructor made their code available on <a href="https://github.com/r3ap3rpy/sanic-web-framework">GitHub</a>. I never actually used the GitHub repository though. Instead, I followed along with the brief
-tutorials.</p>
-<p>For me, this speaks to the instructor's ability to keep the lessons and code short and simple yet effectively show how a single feature works. By making the
-code easy enough to type and follow along, the lesson was more effective because I was <em>doing</em> instead of just reading code.</p>
-<p>The first few lessons are a little rough, because the recordings stutter like the machine that was doing the recording wasn't powerful enough. After 5-6 lessons
-this clears up. It's a minor thing but I do feel it's something that should have been fixed before the course was posted. One other annoyance was that each
-lesson contains the same boiler plate code:</p>
-<div class="codehilight code"><pre><span></span><span class="kn">import</span> <span class="nn">sanic</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">sanic</span><span class="o">.</span><span class="n">Sanic</span><span class="p">()</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
-</pre></div>
-<p>The lesson code will then go after the <code>app</code> variable is defined. The problem with this boiler plate code is that the instructor types it out every single lesson.
-Again, this is minor and it makes each lesson self contained, but I think having this code already written and adding in the important, lesson specific code,
-would have made the lesson more succinct. It also would have prevented a few typos that the instructor made and had to spend time correcting.</p>
-<h2 id="thoughts-on-the-lessons">Thoughts on the lessons<a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link">¶</a></h2>
-<p>The lessons themselves were effective at teaching a single Sanic feature. Some were a little short and almost all of them lacked any complexity you'd find in
-a real application, but they were quick ways to show how a feature worked and didn't spend a lot of time doing more than that. Lessons covered a variety of
-things you'd expect a web framework to handle:</p>
-<ul>
-<li>Request Parameters</li>
-<li>Aliases</li>
-<li>Listeners</li>
-<li>Configuration</li>
-<li>Middleware</li>
-<li>Cookies</li>
-<li>Streaming files</li>
-<li>Logging</li>
-<li>Class methodology</li>
-<li>Blueprints</li>
-<li>Request Types</li>
-<li>Error handling</li>
-</ul>
-<p>Ironically, in the error handling lesson, the instructor had an error in their code. This is great, because it helps to see how to troubleshoot errors that Sanic
-can throw. My issue is that the instructor left the time where he's looking at another monitor (probably reading documentation) in the video. I feel this time
-could have been removed and the troubleshooting steps still been effectively shown.</p>
-<h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
-<p>Overall, I was happy with this course. It's about two hours long and does a good job of showing various aspects of Sanic. I don't recall ever being pointed
-to the documentation, which is a little surprising, but it was easy enough to find. The course provides a good foundation of knowing what Sanic can handle. As
-of the time of this post, Udemy says there have been ten students that signed up for the course. That is low and the lack of Q&amp;A is also a bit concerning. I
-don't know how responsive the instructor is to student questions.</p>
-<p>If you have a few hours (and dollars, during a Udemy sale) to spare and wish to learn some basics about Sanic, this is a good course to take. If not, the
-<a href="https://github.com/r3ap3rpy/sanic-web-framework">GitHub repository</a> contains all of the lessons you go over.</p>
-<p><a href="https://ude.my/UC-LYP0VLF7"><img alt="Sanic - An Asynchronous Web Framework for Pythonistas Completion" src="https://andrewwegner.com/images/udemy-sanic.jpg"/></a></p>
+<p>In my third adventure into learning little bit about <a href="https://www.unrealengine.com/en-US/unreal-engine-5">Unreal Engine 5</a>, I set out to learn a little
+bit more about modeling water. This was kind of brushed over in the <a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html">first course</a> I took, and not touched
+at all in the <a href="https://andrewwegner.com/ue5-complete-beginners-course.html">second course</a>. I was hoping to learn about real time water simulation based on a couple of the
+course content section headers.</p>
+<p>Spoiler: That's not in this course. However, I was not disappointed in the course.</p>
+<p>I settled on <a href="https://www.udemy.com/course/unreal-engine-5-beginners-guide-building-environment/">Unreal Engine 5 Beginners Guide to Building an Environment</a> by 3D Tudor.</p>
+<h2 id="course-overview">Course Overview<a class="headerlink" href="#course-overview" title="Permanent link">¶</a></h2>
+<p>Udemy says this is an 18.5 hour course. Plan on more than that. The instructor does a great job at explaining what the goal of the
+section is, how it will be accomplished, and then showing how it's done. The end goal of the course is building a little cabin in
+the mountains along a lake. You go from nothing, to basic blocking out the cabin, to setting up the landscape. From there you build the cabin, set up foliage, adding textures and details, to setting up the water material.</p>
+<p>I mentioned earlier that I was hoping for a real time water simulation. You don't get that here, but you do spend some time building
+and setting up a water material that can be customized extensively. There are lessons on setting up a waterfall, building and animating birds
+in the background, and adding fireflies. Time is spent building a fire pit and simulating the fire and smoke. Finally it ends with
+setting up a camera and rendering the scene.</p>
+<p>Overall, this course covers a LOT and the instructor takes the time to explain what is happening and setting up the course very logically.
+The time spent going through the entire workflow is helpful to see how to go from an empty grey box, to a very nice looking cabin.</p>
+<p>Plan on spending more than the allocated time in several lessons. Multiple times in the course, I found myself just playing with how
+the scene looked. This became my painting canvas. The end goal was a cabin by the lake, but it wasn't to be identical to the
+instructors (and mine is not). I found knowledge provided was wonderful to spark new ideas in how I could make the scene my own.</p>
+<h2 id="future-learning-goal">Future learning Goal<a class="headerlink" href="#future-learning-goal" title="Permanent link">¶</a></h2>
+<p>I did find that I need to learn more about rendering a scene in the future. My initial output was grainy. It looked compressed and I was
+a little saddened to see that environment that I spend so much time in look so...2005 in how it was output. I did manage to make it a little
+better. This is a three camera clip of my result.</p>
+<p>
+<iframe allowfullscreen="true" frameborder="0" height="315" src="//www.youtube.com/embed/l4i1V2OMnUs" width="560"></iframe>
+</p>
+<p>The first 20 seconds is just a static shot from the side of the cabin. This shows off the fire pit, the background birds, fireflies
+and waterfall as well as the nice lighting from the sky. The other 40 seconds are split to show a few different areas in a quick flyby.
+I did this on my own because I wanted more than just a static shot.</p>
+<h3 id="high-quality-renders">High quality renders<a class="headerlink" href="#high-quality-renders" title="Permanent link">¶</a></h3>
+<p>One thing I did find is that by default, Unreal Engine renders with compression. I tried turning that off to see the results. I quickly learned
+that a 20 second clip will reach almost 4.5GB of storage space. I'm still new at this...but ouch. That's a lot of space for a longer cinematic.
+I'm not sure how to get a super high quality without that much space though.</p>
+<p>I also couldn't figure out how to render it as a 4K video, instead of 1080p.</p>
+<p>The first clip in high quality (1080p):</p>
+<p>
+<iframe allowfullscreen="true" frameborder="0" height="315" src="//www.youtube.com/embed/myBTHdU694c" width="560"></iframe>
+</p>
+<p>I'm happy with this one. Everything looks good. Even those birds. I learned during this course that I do NOT have the skill set of 3D sculpt.
+However, that's ok. Those birds are in the background. The animation on the wings works perfectly and they look like they belong.</p>
+<p>The next clip is flying from the side, over the island that I put in the lake to break up the water. In this shot you get a better look at the
+waterfalls in the distance, the chance to see all four sides of the house and some more details on the roof and dock. If you look closely
+around the 12 second mark you can also see some floating rocks. This looks like some foliage that is "touching" the landscaping - in the very
+back - and didn't stay attached the the side of the landscape going into the water.</p>
+<p>
+<iframe allowfullscreen="true" frameborder="0" height="315" src="//www.youtube.com/embed/uvEKQTpy32o" width="560"></iframe>
+</p>
+<p>Finally the last clip in high quality is a fly over the lake. It starts by getting a good look at the waterfall (and some more floating rocks). It then flies through the fireflies crossing the river, and gives another look at the cabin and firepit. Finally it pulls back along the river to give a wide shot of the entire scene. A few things to point out - around the 14 second mark, you can see the mountain in the background floating above the landscape. I should have caught that, but I was more focused on keeping the cabin in the shot that I let the camera go to high and you can see a bit of level design that wasn't meant to be shown. Around the 16 second mark, as the camera pulls back, you can see the water texture start to change. I'm not sure what is causing that, but my guess is because of the lighting angles. I don't know how to fix it though.</p>
+<p>
+<iframe allowfullscreen="true" frameborder="0" height="315" src="//www.youtube.com/embed/4x7yg7FSAUA" width="560"></iframe>
+</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>I really liked this course. I went into it hoping to learn some water simulation, and instead learned about a whole lot more. I also made a
+pretty good water material.</p>
+<p>I found the course to be well paced, excellently explained, and almost like an art class at times. The instructor taught you the techniques
+you should use to build the end result but didn't want you to copy. You made it your own.</p>
+<p>If you have the time to spare (one of the downsides to this course is the length), as a beginner, you'll learn a lot. </p>
+<p><a href="https://ude.my/UC-c877a178-0922-4c1b-9ae2-d77295704107"><img alt="Unreal Engine 5: The Complete Beginner's Course" src="https://andrewwegner.com/images/UC-ue5-beginner-environment-course.jpg"/></a></p>
             </div>
             <hr />
             <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
@@ -165,31 +168,30 @@ don't know how responsive the instructor is to student questions.</p>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://andrewwegner.com/autobuild-pelican-blog.html" title="Previous: Autobuild and Deploy this Pelican Blog">Autobuild and Deploy this Pelican Blog</a></li>
-                <li class="next-article"><a href="https://andrewwegner.com/xps-tb16-bios-fix.html" title="Next: Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update">Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update</a> »</li>
+                <li class="previous-article">« <a href="https://andrewwegner.com/ue5-complete-beginners-course.html" title="Previous: Review of Unreal Engine 5: The Complete Beginner&#39;s Course">Review of Unreal Engine 5: The Complete Beginner's Course</a></li>
             </ul>
             </nav>
             </aside>
         </div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
-            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Course" content="Sanic - An Asynchronous Web Framework for Pythonista" >
-                <meta itemprop="name" content="Sanic - An Asynchronous Web Framework for Pythonista" />
-                <meta itemprop="description" content="Sanic - An Asynchronous Web Framework for Pythonista" />
+            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Course" content="Unreal Engine 5 Beginners Guide to Building an Environment" >
+                <meta itemprop="name" content="Unreal Engine 5 Beginners Guide to Building an Environment" />
+                <meta itemprop="description" content="Unreal Engine 5 Beginners Guide to Building an Environment" />
                 <meta itemprop="provider" content="Udemy" />
             </div>
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-01-23T10:00:00-06:00">Jan 23, 2019</time>
+            <time itemprop="dateCreated" datetime="2022-10-18T23:00:00-05:00">Oct 18, 2022</time>
             <h4>Score</h4>
             <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-              <span itemprop="ratingValue">7.0</span>
+              <span itemprop="ratingValue">8.5</span>
               <div class="stars-outer">
                 <div class="stars-inner"></div>
               </div>
               <meta itemprop="bestRating" content="10" />
               <meta itemprop="worstRating" content="0" />
             </div>
-<time itemprop="dateModified" datetime="2019-01-23T10:00:00-06:00">
+<time itemprop="dateModified" datetime="2022-10-18T23:00:00-05:00">
 
         <h4>Course Reviews</h4>
     <ul class="multi-parts-list" id="series-parts">
@@ -229,8 +231,8 @@ don't know how responsive the instructor is to student questions.</p>
             <li >
             <a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html" title="Review of Udemy's Docker Swarm: Beginner + Advanced">Part 12: Review of Udemy's Docker Swarm: Beginner + Advanced</a>
             </li>
-            <li  class="active-part">
-            Part 13: Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course
+            <li >
+            <a href="https://andrewwegner.com/sanic-webframework-review.html" title="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course">Part 13: Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course</a>
             </li>
             <li >
             <a href="https://andrewwegner.com/software-testing-masterclass.html" title="Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course">Part 14: Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course</a>
@@ -253,8 +255,8 @@ don't know how responsive the instructor is to student questions.</p>
             <li >
             <a href="https://andrewwegner.com/ue5-complete-beginners-course.html" title="Review of Unreal Engine 5: The Complete Beginner's Course">Part 20: Review of Unreal Engine 5: The Complete Beginner's Course</a>
             </li>
-            <li >
-            <a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html" title="Review of Unreal Engine 5 Beginners Guide to Building an Environment">Part 21: Review of Unreal Engine 5 Beginners Guide to Building an Environment</a>
+            <li  class="active-part">
+            Part 21: Review of Unreal Engine 5 Beginners Guide to Building an Environment
             </li>
     </ul>
             <h4>Category</h4>
@@ -270,6 +272,9 @@ don't know how responsive the instructor is to student questions.</p>
                 <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
                     <span>45</span>
 </a></li>
+                <li><a href="https://andrewwegner.com/tags.html#unreal-engine-ref">unreal engine
+                    <span>3</span>
+</a></li>
             </ul>
 <h4>Contact</h4>
     <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
@@ -284,7 +289,7 @@ don't know how responsive the instructor is to student questions.</p>
 </section>
 <script type="text/javascript">
   const starTotal = 10;
-  rating = 7.0;
+  rating = 8.5;
   starPercentage = `${((rating / starTotal) * 100)}%`;
   document.querySelector(`.stars-inner`).style.width = starPercentage;
 </script>
