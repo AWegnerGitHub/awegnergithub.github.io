@@ -1,82 +1,121 @@
+
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Andy Wegner" />
+<html lang="en">
 
-        <meta property="og:type" content="article" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta name="keywords" content="technical, Technical Solutions, " />
 
-<meta property="og:title" content="Deploying a Flask Slack app on Google Cloud Platform "/>
-<meta property="og:url" content="https://andrewwegner.com/slack-app-google-cloud.html" />
-<meta property="og:description" content="Setup a Slack app using Flask and deploy it to Google&#39;s Cloud" />
-<meta property="og:site_name" content="Ponderings of an Andy" />
-<meta property="og:article:author" content="Andy Wegner" />
-<meta property="og:article:published_time" content="2018-07-13T10:00:00-05:00" />
-<meta name="twitter:title" content="Deploying a Flask Slack app on Google Cloud Platform ">
-<meta name="twitter:description" content="Setup a Slack app using Flask and deploy it to Google&#39;s Cloud">
+  <link rel="canonical" href="https://andrewwegner.com/slack-app-google-cloud.html" />
 
-        <title>Deploying a Flask Slack app on Google Cloud Platform  · Ponderings of an Andy
-</title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
-        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+  <meta name="robots" content="" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
 
 <script type="text/javascript">
-    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
-      heap.load("653100411");
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
 </script>
-    </head>
-    <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://andrewwegner.com">Home</a></li>
-                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
-                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
-                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article itemscope itemtype="https://schema.org/BlogPosting">
-<meta itemprop="headline" content="Deploying a Flask Slack app on Google Cloud Platform" />
-<time itemprop="datePublished" datetime="2018-07-13T10:00:00-05:00">
-<meta itemprop="publisher" content="Andy Wegner" />
-<link rel="canonical" href="https://andrewwegner.com/slack-app-google-cloud.html" />
-<div class="row-fluid">
-    <header class="page-header span10 offset2">
-    <h1><a href="https://andrewwegner.com/slack-app-google-cloud.html"> Deploying a Flask Slack app on Google Cloud Platform  </a></h1>
-    </header>
-</div>
 
-<div class="row-fluid" id="table-of-contents">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="toc">
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="Setup a Slack app using Flask and deploy it to Google&#39;s Cloud" />
+<meta name="keywords" content="technical">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Deploying a Flask Slack app on Google Cloud Platform"/>
+  <meta property="og:description" content="Setup a Slack app using Flask and deploy it to Google&#39;s Cloud"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/slack-app-google-cloud.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2018-07-13 10:00:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/author/andy-wegner.html">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Deploying a Flask Slack app on Google Cloud Platform  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h1>Article Contents</h1>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
 <ul>
 <li><a href="#background-and-goals">Background and goals</a></li>
 <li><a href="#writing-the-flask-app">Writing the Flask app</a><ul>
@@ -99,13 +138,119 @@
 </li>
 </ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
+    </nav>
 
-            
-            <div itemprop="articleBody mainEntityOfPage">
-            
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/slack-app-google-cloud.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Deploying a Flask Slack app on Google Cloud Platform</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/slack-app-google-cloud.html",
+      "name": "https://andrewwegner.com/slack-app-google-cloud.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="slack-app-google-cloud">Deploying a Flask Slack app on Google Cloud Platform</h1>
+    <p>
+      Posted on Fri 13 July 2018 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
 <h2 id="background-and-goals">Background and goals<a class="headerlink" href="#background-and-goals" title="Permanent link">¶</a></h2>
 <p>At work I am the software QA team lead (I haven't given myself a fancy title, but I should). As such, I spend a lot of time in JIRA tracking our bug and feature requests and in Slack working with every aspect of the company to ensure the new features work as expected and bugs as appropriately squashed. As new releases approach their release date, I start running more queries to ensure everything will be done on time.</p>
 <p>Mini-rant: I hate JIRA's UI. It's slow, clunky and makes rolling things up as I need them unnecessarily complicated.</p>
@@ -118,7 +263,7 @@
 <p>The first pitfall that I encountered was before I even started writing code. Slack only allows a slash command 3000 milliseconds to respond, before it times out. Unfortunately, connecting to JIRA and running the series of queries I need takes a minimum of 5 seconds. Fortunately, the workaround for this was simple: Use <a href="https://api.slack.com/slash-commands#responding_response_url">delayed responses</a> by responding to the initial command with a confirmation message of some kind, then perform the work and respond again using the Slack passed <code>response_url</code>.</p>
 <h3 id="sample-application">Sample Application<a class="headerlink" href="#sample-application" title="Permanent link">¶</a></h3>
 <p>The application code below is a simple toy example. It will respond to the command "/hello-world" and then reply again after a few seconds, to simulate the delayed responses I needed.</p>
-<div class="codehilight code"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<div class="codehilight code"><pre><span></span><code><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
 <span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
@@ -191,7 +336,7 @@
     <span class="c1"># This is used when running locally. Gunicorn is used to run the</span>
     <span class="c1"># application on Google App Engine. See entrypoint in app.yaml.</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 <h3 id="sample-application-walkthrough">Sample Application Walkthrough<a class="headerlink" href="#sample-application-walkthrough" title="Permanent link">¶</a></h3>
 <p>The only interesting thing in the imports here is the inclusion of <code>asyncio</code>. Since I need to fire off an immediate response and then do the "real work", I'll funnel that work into worker threads. I'm also including <code>functools.wraps</code> because I'm making a decorator for validating a request is coming from Slack. For a single command, this type of decorator isn't needed, but I have multiple Slack slash commands in the real application. I figured it'd be helpful to show here too. This application will also need the <a href="http://docs.python-requests.org/en/master/">requests</a> library.</p>
 <p>Speaking of that decorator, the first function encountered in the code is <code>validate_request</code>. This will be the decorator that ensures a request came from Slack. It calls <code>is_request_valid</code>, which compares the passed <code>token</code> and <code>team_id</code> to the values we've previously saved. If they match, the request is valid. If they don't match, the request is invalid. This application is only for my team and won't be distributed elsewhere.</p>
@@ -200,8 +345,8 @@
 <p>Now it's time to get to the real work. <code>hello_world</code> and <code>command_hello_world</code>. If you've used Flask before, you can see that <code>command_hello_world</code> will be the function associated with a user hitting <code>http:\\server.tld\hello-world</code> with a <code>POST</code> request. Slack only sends <code>POST</code> requests, so I care about <code>GET</code> methods. In <code>command_hello_world</code>, we send a call to the command worker thread, telling it to call <code>hello_world</code> and then pass the <code>response_url</code> as a parameter. The function immediately returns a response to Slack telling the user to wait.</p>
 <p>In <code>hello_world</code>, the function sleeps for a few seconds before sending a response back to the passed <code>response_url</code>. This <code>sleep</code> is to emulate "real work" being done. In my case, it's five seconds of queries to JIRA to gather and format all of the data I want to return.</p>
 <p>Finally, this can run locally by firing up Flask. I tested with this command:</p>
-<div class="codehilight code"><pre><span></span>FLASK_APP=jira-slack-integration.py flask run
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>FLASK_APP=jira-slack-integration.py flask run
+</code></pre></div>
 <p>When deploying to Google App Engine, the <code>main</code> function won't be utilized. I cover that below.</p>
 <h2 id="testing-the-application">Testing the application<a class="headerlink" href="#testing-the-application" title="Permanent link">¶</a></h2>
 <p>Now it's time for everyone's favorite part of development: TESTING!</p>
@@ -255,7 +400,7 @@
 <h3 id="set-up-appyaml">Set up app.yaml<a class="headerlink" href="#set-up-appyaml" title="Permanent link">¶</a></h3>
 <p>With <code>gcloud</code> set up on your development machine, there is one last step to do: Configuring the <code>app.yaml</code> file.</p>
 <p>This file contains information on the type of environment you'll be deploying to. Create and save an <code>app.yaml</code> file in the same directory as the Flask application. For this example, the Flask application is in a file saved as <code>example-script.py</code></p>
-<div class="codehilight code"><pre><span></span><span class="n">runtime</span><span class="o">:</span><span class="w"> </span><span class="n">python</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">runtime</span><span class="o">:</span><span class="w"> </span><span class="n">python</span><span class="w"></span>
 <span class="n">env</span><span class="o">:</span><span class="w"> </span><span class="n">flex</span><span class="w"></span>
 <span class="n">entrypoint</span><span class="o">:</span><span class="w"> </span><span class="n">gunicorn</span><span class="w"> </span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="n">$PORT</span><span class="w"> </span><span class="n">example</span><span class="o">-</span><span class="n">script</span><span class="o">:</span><span class="n">app</span><span class="w"></span>
 
@@ -268,84 +413,92 @@
 <span class="w">  </span><span class="n">cpu</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
 <span class="w">  </span><span class="n">memory_gb</span><span class="o">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w"></span>
 <span class="w">  </span><span class="n">disk_size_gb</span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <p>Other than the <code>entrypoint</code> line, this is the example <code>app.yaml</code> provided by Google. <code>example-script</code> is the name of the file that contains the Flask application.</p>
 <h3 id="deploy-to-google">Deploy to Google<a class="headerlink" href="#deploy-to-google" title="Permanent link">¶</a></h3>
 <p>Finally, it's time to deploy this application to Google. From within the same directory where <code>example-script.py</code> resides, run:</p>
-<div class="codehilight code"><pre><span></span>gcloud app deploy
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>gcloud app deploy
+</code></pre></div>
 <p>Wait a few minutes for the deployment to occur. When it's complete, the command prompt will say so and provide a URL where the application is accessible.</p>
 <p>The last thing that needs to be done, is repointing the slash commands to this new location. With it deployed to Google's Cloud Platform, the <code>ngrok</code> provided URLs need to be changed. The endpoints remain the same though.</p>
 <p>Once the slash commands are changed and saved, test them out and enjoy the new slash commands hosted on Google's App Engine.</p>
-            </div>
-            <hr />
-            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
-                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/setup-lets-encrypt.html"
+    title="Set up Dynamic CloudFlare IP with Let's Encrypt">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+  <a class="btn float-right" href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html"
+    title="Review of Udemy's Learn DaVinci Resolve 15 from scratch">
+    Next Post <i class="fa fa-angle-right"></i>
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
              is a father, an engineer and a computer scientist. He is interested in online
             community building, tinkering with new code and building new applications.
             He writes about his experiences with each of these.</span>
 
-            </div>
-            
-            
-            <hr/>
-            <aside>
-            <nav>
-            <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://andrewwegner.com/setup-lets-encrypt.html" title="Previous: Set up Dynamic CloudFlare IP with Let&#39;s Encrypt">Set up Dynamic CloudFlare IP with Let's Encrypt</a></li>
-                <li class="next-article"><a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html" title="Next: Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch">Review of Udemy's Learn DaVinci Resolve 15 from scratch</a> »</li>
-            </ul>
-            </nav>
-            </aside>
-        </div>
-        <section>
-        <div class="span2" style="float:right;font-size:0.9em;">
-            <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2018-07-13T10:00:00-05:00">Jul 13, 2018</time>
-<time itemprop="dateModified" datetime="2018-07-13T10:00:00-05:00">
+  </div>
 
-            <h4>Category</h4>
-            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
-            <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>45</span>
-</a></li>
-            </ul>
-<h4>Contact</h4>
-    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
-    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-linkedin sidebar-social-links"></i></a>
-        </div>
-        </section>
-</div>
+
 </article>
-                </div>
-                <div class="span1"></div>
-            </div>
-        </div>
-        <div id="push"></div>
-    </div>
-<footer>
-<div id="footer">
-    <ul class="footer-content">
-    </ul>
-</div>
-</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-        <script>
-            function validateForm(query)
-            {
-                return (query.length > 0);
-            }
-        </script>
 
-    
-    </body>
-    <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Deploying a Flask Slack app on Google Cloud Platform",
+  "headline": "Deploying a Flask Slack app on Google Cloud Platform",
+  "dateCreated": "2018-07-13 10:00:00-05:00",
+  "datePublished": "2018-07-13 10:00:00-05:00",
+  "dateModified": "",
+  "copyrightYear": "2018",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/slack-app-google-cloud.html",
+  "description": "Setup a Slack app using Flask and deploy it to Google's Cloud",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2022 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": ""
+}
+</script>
+</body>
+
 </html>

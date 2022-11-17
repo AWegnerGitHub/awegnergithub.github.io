@@ -1,796 +1,909 @@
+
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Andy Wegner" />
+<html lang="en">
 
-        <meta property="og:type" content="article" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="All Posts · Ponderings of an Andy"/>
-<meta name="twitter:title" content="All Posts · Ponderings of an Andy">
-<meta property="og:url" content="https://andrewwegner.com/archives.html" />
-<meta property="og:description" content="Full archives of Ponderings of an Andy blog" />
-<meta name="twitter:description" content="Full archives of Ponderings of an Andy blog">
-<meta property="og:site_name" content="Ponderings of an Andy" />
-<meta property="og:article:author" content="Andy Wegner" />
-        <title>All Posts · Ponderings of an Andy
-</title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
-        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+
+
+  <meta name="robots" content="" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
 
 <script type="text/javascript">
-    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
-      heap.load("653100411");
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
 </script>
-    </head>
-    <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://andrewwegner.com">Home</a></li>
-                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
-                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
-                            <li  class="active"><a href="https://andrewwegner.com/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
 
-<div class="row-fluid">
-    <header class="page-header span10 offset2">
-    <h1><a href="https://andrewwegner.com/archives.html">All Posts</a></h1>
-    </header>
-</div>
-<div class="row-fluid">
-    <div class="span10 offset2">
-        <div class="blog-archives">
-                    <h2 id="2022"><a href="#2022">2022</a></h2>
 
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/job-search-rejections.html">Talking about rejection in job searches  </a>
-                <time itemprop="dateCreated" datetime="2022-10-24T12:45:00-05:00">Mon 24 October 2022</time>
-                <meta itemprop="headline" content="Talking about rejection in job searches" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html">Review of Unreal Engine 5 Beginners Guide to Building an Environment  </a>
-                <time itemprop="dateCreated" datetime="2022-10-18T23:00:00-05:00">Tue 18 October 2022</time>
-                <meta itemprop="headline" content="Review of Unreal Engine 5 Beginners Guide to Building an Environment" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/ue5-complete-beginners-course.html">Review of Unreal Engine 5: The Complete Beginner's Course  </a>
-                <time itemprop="dateCreated" datetime="2022-10-03T10:00:00-05:00">Mon 03 October 2022</time>
-                <meta itemprop="headline" content="Review of Unreal Engine 5: The Complete Beginner&#39;s Course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html">Review of Unreal Engine 5 - Realistic Environment Design for Beginners course  </a>
-                <time itemprop="dateCreated" datetime="2022-09-20T11:45:00-05:00">Tue 20 September 2022</time>
-                <meta itemprop="headline" content="Review of Unreal Engine 5 - Realistic Environment Design for Beginners course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/upload-resume-reenter-resume.html">Upload your resume, then re-enter it to apply for this job  </a>
-                <time itemprop="dateCreated" datetime="2022-09-13T08:45:00-05:00">Tue 13 September 2022</time>
-                <meta itemprop="headline" content="Upload your resume, then re-enter it to apply for this job" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/what-job-source-uses-which-ats.html">What Job Source is using which ATS?  </a>
-                <time itemprop="dateCreated" datetime="2022-09-06T08:00:00-05:00">Tue 06 September 2022</time>
-                <meta itemprop="headline" content="What Job Source is using which ATS?" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/golang-complete-developer-guide-review.html">Review of Go: The Complete Developer's Guide (Golang) course  </a>
-                <time itemprop="dateCreated" datetime="2022-08-28T12:00:00-05:00">Sun 28 August 2022</time>
-                <meta itemprop="headline" content="Review of Go: The Complete Developer&#39;s Guide (Golang) course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/looking-for-new-role.html">I am looking for an engineering leadership role  </a>
-                <time itemprop="dateCreated" datetime="2022-08-18T08:00:00-05:00">Thu 18 August 2022</time>
-                <meta itemprop="headline" content="I am looking for an engineering leadership role" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/top-soft-skills-senior-developers-need.html">10 Soft Skills to Look For in Senior Software Developers  </a>
-                <time itemprop="dateCreated" datetime="2022-06-26T09:00:00-05:00">Sun 26 June 2022</time>
-                <meta itemprop="headline" content="10 Soft Skills to Look For in Senior Software Developers" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/time-gas-saved-with-remote-work.html">Time and Gas saved by switching to remote work  </a>
-                <time itemprop="dateCreated" datetime="2022-06-12T01:00:00-05:00">Sun 12 June 2022</time>
-                <meta itemprop="headline" content="Time and Gas saved by switching to remote work" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/woven-client-to-woven-employee.html">The Other Side of the Mirror: How I Went from Woven Client to Woven Employee  </a>
-                <time itemprop="dateCreated" datetime="2022-06-04T08:00:00-05:00">Sat 04 June 2022</time>
-                <meta itemprop="headline" content="The Other Side of the Mirror: How I Went from Woven Client to Woven Employee" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/run-sanic-on-heroku.html">Run Sanic on Heroku  </a>
-                <time itemprop="dateCreated" datetime="2022-05-19T08:00:00-05:00">Thu 19 May 2022</time>
-                <meta itemprop="headline" content="Run Sanic on Heroku" />
-                </article>
-                        <h2 id="2020"><a href="#2020">2020</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/gitlab-manage-remote-team.html">Review of GitLab's "How to Manage a Remote Team" Coursera course  </a>
-                <time itemprop="dateCreated" datetime="2020-10-26T09:30:00-05:00">Mon 26 October 2020</time>
-                <meta itemprop="headline" content="Review of GitLab&#39;s &#34;How to Manage a Remote Team&#34; Coursera course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/rise-garden-final-review.html">Rise Gardens Review  </a>
-                <time itemprop="dateCreated" datetime="2020-05-29T10:00:00-05:00">Fri 29 May 2020</time>
-                <meta itemprop="headline" content="Rise Gardens Review" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/rise-garden-suggestions-software.html">Rise Gardens App/Subscription Improvement suggestions  </a>
-                <time itemprop="dateCreated" datetime="2020-05-24T23:45:00-05:00">Sun 24 May 2020</time>
-                <meta itemprop="headline" content="Rise Gardens App/Subscription Improvement suggestions" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/rise-garden-suggestions-physical.html">Rise Gardens physical improvements suggestions  </a>
-                <time itemprop="dateCreated" datetime="2020-05-05T10:00:00-05:00">Tue 05 May 2020</time>
-                <meta itemprop="headline" content="Rise Gardens physical improvements suggestions" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/rise-garden-planting.html">Planting the first crop in the Rise Garden  </a>
-                <time itemprop="dateCreated" datetime="2020-05-01T10:00:00-05:00">Fri 01 May 2020</time>
-                <meta itemprop="headline" content="Planting the first crop in the Rise Garden" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/rise-garden-assembly.html">Assembling the Rise Garden  </a>
-                <time itemprop="dateCreated" datetime="2020-04-26T01:10:00-05:00">Sun 26 April 2020</time>
-                <meta itemprop="headline" content="Assembling the Rise Garden" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/nursery-unboxing.html">Unboxing garden nurseries  </a>
-                <time itemprop="dateCreated" datetime="2020-04-24T10:00:00-05:00">Fri 24 April 2020</time>
-                <meta itemprop="headline" content="Unboxing garden nurseries" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/rise-gardens-unboxing.html">Unboxing and reviewing the new indoor Rise Gardens hydroponic garden  </a>
-                <time itemprop="dateCreated" datetime="2020-04-22T10:00:00-05:00">Wed 22 April 2020</time>
-                <meta itemprop="headline" content="Unboxing and reviewing the new indoor Rise Gardens hydroponic garden" />
-                </article>
-                        <h2 id="2019"><a href="#2019">2019</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/aws-certified-developer-review.html">Review of Ultimate AWS Certified Developer Associate 2019 course  </a>
-                <time itemprop="dateCreated" datetime="2019-12-23T10:00:00-06:00">Mon 23 December 2019</time>
-                <meta itemprop="headline" content="Review of Ultimate AWS Certified Developer Associate 2019 course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/setting-up-gitlab-runners.html">Setting up GitLab runners  </a>
-                <time itemprop="dateCreated" datetime="2019-10-22T11:00:00-05:00">Tue 22 October 2019</time>
-                <meta itemprop="headline" content="Setting up GitLab runners" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html">Installing InvoiceNinja on Ubuntu 18.04  </a>
-                <time itemprop="dateCreated" datetime="2019-07-30T13:00:00-05:00">Tue 30 July 2019</time>
-                <meta itemprop="headline" content="Installing InvoiceNinja on Ubuntu 18.04" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/updating-php-ubuntu-1804.html">Updating PHP from 7.1 to 7.3 on Ubuntu 18.04  </a>
-                <time itemprop="dateCreated" datetime="2019-07-26T10:00:00-05:00">Fri 26 July 2019</time>
-                <meta itemprop="headline" content="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/travis-ci-tutorial-review.html">Review of Travis CI Tutorial Udemy course  </a>
-                <time itemprop="dateCreated" datetime="2019-07-09T14:30:00-05:00">Tue 09 July 2019</time>
-                <meta itemprop="headline" content="Review of Travis CI Tutorial Udemy course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/software-testing-masterclass.html">Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course  </a>
-                <time itemprop="dateCreated" datetime="2019-05-14T15:00:00-05:00">Tue 14 May 2019</time>
-                <meta itemprop="headline" content="Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html">Stack Overflow still has issues and it's getting worse  </a>
-                <time itemprop="dateCreated" datetime="2019-03-29T10:34:00-05:00">Fri 29 March 2019</time>
-                <meta itemprop="headline" content="Stack Overflow still has issues and it&#39;s getting worse" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/ubiquiti-home-network.html">Upgrading the home network to use Ubiquiti products  </a>
-                <time itemprop="dateCreated" datetime="2019-03-13T11:30:00-05:00">Wed 13 March 2019</time>
-                <meta itemprop="headline" content="Upgrading the home network to use Ubiquiti products" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/xps-tb16-bios-fix.html">Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update  </a>
-                <time itemprop="dateCreated" datetime="2019-01-31T10:30:00-06:00">Thu 31 January 2019</time>
-                <meta itemprop="headline" content="Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/sanic-webframework-review.html">Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course  </a>
-                <time itemprop="dateCreated" datetime="2019-01-23T10:00:00-06:00">Wed 23 January 2019</time>
-                <meta itemprop="headline" content="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course" />
-                </article>
-                        <h2 id="2018"><a href="#2018">2018</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/autobuild-pelican-blog.html">Autobuild and Deploy this Pelican Blog  </a>
-                <time itemprop="dateCreated" datetime="2018-11-15T08:30:00-06:00">Thu 15 November 2018</time>
-                <meta itemprop="headline" content="Autobuild and Deploy this Pelican Blog" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html">Review of Udemy's Docker Swarm: Beginner + Advanced  </a>
-                <time itemprop="dateCreated" datetime="2018-10-31T15:00:00-05:00">Wed 31 October 2018</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s Docker Swarm: Beginner + Advanced" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/docker-essentials-course.html">Review of Udemy's Docker and Containers: The Essentials  </a>
-                <time itemprop="dateCreated" datetime="2018-10-29T09:45:00-05:00">Mon 29 October 2018</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s Docker and Containers: The Essentials" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/git-45-minute-crash-course.html">Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.  </a>
-                <time itemprop="dateCreated" datetime="2018-10-01T09:45:00-05:00">Mon 01 October 2018</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s renamed The 2018 Git Complete: 45 minute crash course using Angular." />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/ubuntu-backup-rsync.html">Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync  </a>
-                <time itemprop="dateCreated" datetime="2018-09-26T12:30:00-05:00">Wed 26 September 2018</time>
-                <meta itemprop="headline" content="Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html">Review of Udemy's Learn DaVinci Resolve 15 from scratch  </a>
-                <time itemprop="dateCreated" datetime="2018-09-21T09:45:00-05:00">Fri 21 September 2018</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/slack-app-google-cloud.html">Deploying a Flask Slack app on Google Cloud Platform  </a>
-                <time itemprop="dateCreated" datetime="2018-07-13T10:00:00-05:00">Fri 13 July 2018</time>
-                <meta itemprop="headline" content="Deploying a Flask Slack app on Google Cloud Platform" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/setup-lets-encrypt.html">Set up Dynamic CloudFlare IP with Let's Encrypt  </a>
-                <time itemprop="dateCreated" datetime="2018-04-25T09:30:00-05:00">Wed 25 April 2018</time>
-                <meta itemprop="headline" content="Set up Dynamic CloudFlare IP with Let&#39;s Encrypt" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/installing-gitlab.html">Setting up GitLab on the new server  </a>
-                <time itemprop="dateCreated" datetime="2018-04-13T08:30:00-05:00">Fri 13 April 2018</time>
-                <meta itemprop="headline" content="Setting up GitLab on the new server" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/travisci-insecure-environment-variables.html">Travis CI doesn't keep your environment variable secure  </a>
-                <time itemprop="dateCreated" datetime="2018-04-02T12:30:00-05:00">Mon 02 April 2018</time>
-                <meta itemprop="headline" content="Travis CI doesn&#39;t keep your environment variable secure" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/installing-nextcloud.html">Installing NextCloud  </a>
-                <time itemprop="dateCreated" datetime="2018-03-27T23:30:00-05:00">Tue 27 March 2018</time>
-                <meta itemprop="headline" content="Installing NextCloud" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/django-course-basic-to-advance.html">Review of Udemy's Django Course from Basics to Advance  </a>
-                <time itemprop="dateCreated" datetime="2018-02-20T22:45:00-06:00">Tue 20 February 2018</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s Django Course from Basics to Advance" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/zfs-pool-on-ubuntu.html">Setting up a ZFS pool on Ubuntu 16.04  </a>
-                <time itemprop="dateCreated" datetime="2018-02-15T22:30:00-06:00">Thu 15 February 2018</time>
-                <meta itemprop="headline" content="Setting up a ZFS pool on Ubuntu 16.04" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/new-house-server.html">...and then there was a backup server  </a>
-                <time itemprop="dateCreated" datetime="2018-02-12T15:15:00-06:00">Mon 12 February 2018</time>
-                <meta itemprop="headline" content="...and then there was a backup server" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/backup-your-data.html">Well, there goes my data...  </a>
-                <time itemprop="dateCreated" datetime="2018-01-27T00:04:00-06:00">Sat 27 January 2018</time>
-                <meta itemprop="headline" content="Well, there goes my data..." />
-                </article>
-                        <h2 id="2017"><a href="#2017">2017</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html">How I found an awesome remote only job  </a>
-                <time itemprop="dateCreated" datetime="2017-11-28T09:01:00-06:00">Tue 28 November 2017</time>
-                <meta itemprop="headline" content="How I found an awesome remote only job" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/aws-serverless-apis-apps-review.html">Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course  </a>
-                <time itemprop="dateCreated" datetime="2017-10-20T11:17:00-05:00">Fri 20 October 2017</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html">Collecting Diamonds on Stack Exchange  </a>
-                <time itemprop="dateCreated" datetime="2017-08-18T10:06:00-05:00">Fri 18 August 2017</time>
-                <meta itemprop="headline" content="Collecting Diamonds on Stack Exchange" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/a-decade-at-caterpillar.html">A reflection on my decade at Caterpillar  </a>
-                <time itemprop="dateCreated" datetime="2017-07-31T12:00:00-05:00">Mon 31 July 2017</time>
-                <meta itemprop="headline" content="A reflection on my decade at Caterpillar" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/django-fullstack-bootcamp-course-review.html">Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course  </a>
-                <time itemprop="dateCreated" datetime="2017-06-28T06:16:00-05:00">Wed 28 June 2017</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s Python and Django Full Stack Web Developer Bootcamp course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">Stack Overflow's Problem - Feedback from an experienced user  </a>
-                <time itemprop="dateCreated" datetime="2017-05-22T23:45:00-05:00">Mon 22 May 2017</time>
-                <meta itemprop="headline" content="Stack Overflow&#39;s Problem - Feedback from an experienced user" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/deep-learning-prereq-linear-logistic-regression.html">Review of Udemy's Deep Learning Prerequisites - Linear and Logistic Regression courses  </a>
-                <time itemprop="dateCreated" datetime="2017-05-03T10:00:00-05:00">Wed 03 May 2017</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s Deep Learning Prerequisites - Linear and Logistic Regression courses" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/choosing-orm-library.html">Choosing an ORM library for a new project  </a>
-                <time itemprop="dateCreated" datetime="2017-04-26T14:30:00-05:00">Wed 26 April 2017</time>
-                <meta itemprop="headline" content="Choosing an ORM library for a new project" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/deep-learning-prereq-numpy.html">Review of Udemy's 'Deep Learning Prerequisites: The Numpy Stack in Python' course  </a>
-                <time itemprop="dateCreated" datetime="2017-04-20T22:30:00-05:00">Thu 20 April 2017</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s &#39;Deep Learning Prerequisites: The Numpy Stack in Python&#39; course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/become-a-product-manager-review.html">Review of Udemy's 'Become a Product Manager  | Learn the Skills & Get the job' course  </a>
-                <time itemprop="dateCreated" datetime="2017-04-20T07:40:00-05:00">Thu 20 April 2017</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s &#39;Become a Product Manager  | Learn the Skills &amp; Get the job&#39; course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">Can a machine be taught to flag spam automatically  </a>
-                <time itemprop="dateCreated" datetime="2017-02-19T22:51:00-06:00">Sun 19 February 2017</time>
-                <meta itemprop="headline" content="Can a machine be taught to flag spam automatically" />
-                </article>
-                        <h2 id="2016"><a href="#2016">2016</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/loony-corn-machine-learning-review.html">Review of Udemy's 'From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase' course  </a>
-                <time itemprop="dateCreated" datetime="2016-12-28T20:10:00-06:00">Wed 28 December 2016</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s &#39;From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase&#39; course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/data-analysis-with-pandas-review.html">Review of Udemy's 'Data Analysis with Pandas' course  </a>
-                <time itemprop="dateCreated" datetime="2016-12-09T22:54:00-06:00">Fri 09 December 2016</time>
-                <meta itemprop="headline" content="Review of Udemy&#39;s &#39;Data Analysis with Pandas&#39; course" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/third-times-the-charm.html">Third time's the charm?  </a>
-                <time itemprop="dateCreated" datetime="2016-11-06T22:54:00-06:00">Sun 06 November 2016</time>
-                <meta itemprop="headline" content="Third time&#39;s the charm?" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html">My experiences releasing a package to PyPI  </a>
-                <time itemprop="dateCreated" datetime="2016-03-15T12:26:00-05:00">Tue 15 March 2016</time>
-                <meta itemprop="headline" content="My experiences releasing a package to PyPI" />
-                </article>
-                        <h2 id="2015"><a href="#2015">2015</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html">How I built a Flask application that integrates with Travis CI and OpenShift  </a>
-                <time itemprop="dateCreated" datetime="2015-12-11T09:15:00-06:00">Fri 11 December 2015</time>
-                <meta itemprop="headline" content="How I built a Flask application that integrates with Travis CI and OpenShift" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html">I'm running for moderator on Stack Overflow again  </a>
-                <time itemprop="dateCreated" datetime="2015-11-18T09:38:00-06:00">Wed 18 November 2015</time>
-                <meta itemprop="headline" content="I&#39;m running for moderator on Stack Overflow again" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/how-not-to-recruit-me.html">How not to recruit me  </a>
-                <time itemprop="dateCreated" datetime="2015-10-10T14:20:00-05:00">Sat 10 October 2015</time>
-                <meta itemprop="headline" content="How not to recruit me" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/link-analysis---technical-explanation.html">Link Analysis - Technical Explanation  </a>
-                <time itemprop="dateCreated" datetime="2015-08-10T23:41:00-05:00">Mon 10 August 2015</time>
-                <meta itemprop="headline" content="Link Analysis - Technical Explanation" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html">A proposal to fix broken links on Stack Overflow  </a>
-                <time itemprop="dateCreated" datetime="2015-08-07T07:34:00-05:00">Fri 07 August 2015</time>
-                <meta itemprop="headline" content="A proposal to fix broken links on Stack Overflow" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html">Analysis of links posted to Stack Overflow  </a>
-                <time itemprop="dateCreated" datetime="2015-08-06T07:35:00-05:00">Thu 06 August 2015</time>
-                <meta itemprop="headline" content="Analysis of links posted to Stack Overflow" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html">How I set up this site with GitHub Pages and CloudFlare  </a>
-                <time itemprop="dateCreated" datetime="2015-07-09T11:26:00-05:00">Thu 09 July 2015</time>
-                <meta itemprop="headline" content="How I set up this site with GitHub Pages and CloudFlare" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html">Why I moved from Wordpress to Pelican  </a>
-                <time itemprop="dateCreated" datetime="2015-05-03T22:41:00-05:00">Sun 03 May 2015</time>
-                <meta itemprop="headline" content="Why I moved from Wordpress to Pelican" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html">I'm running to be a moderator of Stack Overflow  </a>
-                <time itemprop="dateCreated" datetime="2015-04-06T22:00:00-05:00">Mon 06 April 2015</time>
-                <meta itemprop="headline" content="I&#39;m running to be a moderator of Stack Overflow" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html">Zephyr - The bot that watches for low quality vote requests  </a>
-                <time itemprop="dateCreated" datetime="2015-03-12T23:34:00-05:00">Thu 12 March 2015</time>
-                <meta itemprop="headline" content="Zephyr - The bot that watches for low quality vote requests" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/thanks-for-all-the-fish.html">Thanks for all the fish  </a>
-                <time itemprop="dateCreated" datetime="2015-01-08T15:38:00-06:00">Thu 08 January 2015</time>
-                <meta itemprop="headline" content="Thanks for all the fish" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html">Can a machine be taught to flag comments automatically  </a>
-                <time itemprop="dateCreated" datetime="2015-01-02T08:47:00-06:00">Fri 02 January 2015</time>
-                <meta itemprop="headline" content="Can a machine be taught to flag comments automatically" />
-                </article>
-                        <h2 id="2014"><a href="#2014">2014</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/moderation-postion-on-moderators.html">Moderation postion on Moderators  </a>
-                <time itemprop="dateCreated" datetime="2014-07-02T10:51:00-05:00">Wed 02 July 2014</time>
-                <meta itemprop="headline" content="Moderation postion on Moderators" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/how-to-appeal-a-ban-effectively.html">How to appeal a ban effectively  </a>
-                <time itemprop="dateCreated" datetime="2014-04-22T22:26:00-05:00">Tue 22 April 2014</time>
-                <meta itemprop="headline" content="How to appeal a ban effectively" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/how-not-to-appeal-a-ban.html">How NOT to appeal a ban  </a>
-                <time itemprop="dateCreated" datetime="2014-04-14T22:26:00-05:00">Mon 14 April 2014</time>
-                <meta itemprop="headline" content="How NOT to appeal a ban" />
-                </article>
-                        <h2 id="2013"><a href="#2013">2013</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/mann-vs-vipers-beaten.html">Mann Vs Vipers Beaten!  </a>
-                <time itemprop="dateCreated" datetime="2013-12-05T09:00:00-06:00">Thu 05 December 2013</time>
-                <meta itemprop="headline" content="Mann Vs Vipers Beaten!" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html">I had a secret addiction to the TF2 idling economy but I'm better now (honest)  </a>
-                <time itemprop="dateCreated" datetime="2013-08-13T00:01:00-05:00">Tue 13 August 2013</time>
-                <meta itemprop="headline" content="I had a secret addiction to the TF2 idling economy but I&#39;m better now (honest)" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/give-some-refined-win-some-prizes.html">Give some refined, Win some prizes  </a>
-                <time itemprop="dateCreated" datetime="2013-02-25T09:00:00-06:00">Mon 25 February 2013</time>
-                <meta itemprop="headline" content="Give some refined, Win some prizes" />
-                </article>
-                        <h2 id="2012"><a href="#2012">2012</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/homing-projectiles-are-awesome!.html">Homing projectiles are awesome!  </a>
-                <time itemprop="dateCreated" datetime="2012-06-30T08:02:00-05:00">Sat 30 June 2012</time>
-                <meta itemprop="headline" content="Homing projectiles are awesome!" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/monitoring-language-on-the-game-servers.html">Monitoring Language on the game servers  </a>
-                <time itemprop="dateCreated" datetime="2012-04-22T12:13:00-05:00">Sun 22 April 2012</time>
-                <meta itemprop="headline" content="Monitoring Language on the game servers" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/connect-python-to-osi-soft-pi.html">Connect Python to OSI Soft PI  </a>
-                <time itemprop="dateCreated" datetime="2012-02-07T12:45:00-06:00">Tue 07 February 2012</time>
-                <meta itemprop="headline" content="Connect Python to OSI Soft PI" />
-                </article>
-                        <h2 id="2011"><a href="#2011">2011</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/a-new-more-fair-rtd.html">A new, more fair, RTD  </a>
-                <time itemprop="dateCreated" datetime="2011-02-04T20:01:00-06:00">Fri 04 February 2011</time>
-                <meta itemprop="headline" content="A new, more fair, RTD" />
-                </article>
-                        <h2 id="2010"><a href="#2010">2010</a></h2>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/a-special-kind-of-troll.html">A special kind of troll  </a>
-                <time itemprop="dateCreated" datetime="2010-12-28T16:04:00-06:00">Tue 28 December 2010</time>
-                <meta itemprop="headline" content="A special kind of troll" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog">
-
-                <a href="https://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html">Multiple IP addresses on the same physical network card  </a>
-                <time itemprop="dateCreated" datetime="2010-11-17T12:54:00-06:00">Wed 17 November 2010</time>
-                <meta itemprop="headline" content="Multiple IP addresses on the same physical network card" />
-                </article>
-
-
-                        <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/fixing-myisam-crashed-tables.html">Fixing MYISAM Crashed Tables  </a>
-                <time itemprop="dateCreated" datetime="2010-05-14T10:08:00-05:00">Fri 14 May 2010</time>
-                <meta itemprop="headline" content="Fixing MYISAM Crashed Tables" />
-                </article>
-                        <h2 id="2009"><a href="#2009">2009</a></h2>
-
-                    <article itemscope itemtype="https://schema.org/Blog" class="last-entry-of-year">
-
-                <a href="https://andrewwegner.com/automated-template-for-membership-applications.html">Automated template for membership applications  </a>
-                <time itemprop="dateCreated" datetime="2009-10-30T22:30:00-05:00">Fri 30 October 2009</time>
-                <meta itemprop="headline" content="Automated template for membership applications" />
-                </article>
-        </div>
-    </div>
-</div>
-
-                </div>
-                <div class="span1"></div>
-            </div>
-        </div>
-        <div id="push"></div>
-    </div>
-<footer>
-<div id="footer">
-    <ul class="footer-content">
+  <meta name="author" content="Andy Wegner" />
+  <meta name="description" content="" />
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:title" content="Ponderings of an Andy"/>
+  <meta property="og:description" content=""/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Archives · Ponderings of an Andy</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
     </ul>
-</div>
-</footer>        <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-        <script>
-            function validateForm(query)
-            {
-                return (query.length > 0);
-            }
-        </script>
-    </body>
-    <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+  </div>
+
+</aside>
+  <main>
+
+<article class="single">
+    <header>
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/archives.html">Archives</a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/archives.html",
+      "name": "Archives"
+    }
+  }
+  ]
+}
+</script>        <h1 id="archives">Archives</h1>
+    </header>
+    <div class="blog-archives">
+        <h2 id="2022"><a href="#2022">2022</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/relaunch-personal-site.html">Updating the design of the site  </a>
+                    <time datetime="2022-11-17T10:00:00-06:00">November 17, 2022</time>
+                    <meta content="Updating the design of the site" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/job-search-rejections.html">Talking about rejection in job searches  </a>
+                    <time datetime="2022-10-24T12:45:00-05:00">October 24, 2022</time>
+                    <meta content="Talking about rejection in job searches" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html">Review of Unreal Engine 5 Beginners Guide to Building an Environment  </a>
+                    <time datetime="2022-10-18T23:00:00-05:00">October 18, 2022</time>
+                    <meta content="Review of Unreal Engine 5 Beginners Guide to Building an Environment" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/ue5-complete-beginners-course.html">Review of Unreal Engine 5: The Complete Beginner's Course  </a>
+                    <time datetime="2022-10-03T10:00:00-05:00">October 03, 2022</time>
+                    <meta content="Review of Unreal Engine 5: The Complete Beginner&#39;s Course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html">Review of Unreal Engine 5 - Realistic Environment Design for Beginners course  </a>
+                    <time datetime="2022-09-20T11:45:00-05:00">September 20, 2022</time>
+                    <meta content="Review of Unreal Engine 5 - Realistic Environment Design for Beginners course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/upload-resume-reenter-resume.html">Upload your resume, then re-enter it to apply for this job  </a>
+                    <time datetime="2022-09-13T08:45:00-05:00">September 13, 2022</time>
+                    <meta content="Upload your resume, then re-enter it to apply for this job" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/what-job-source-uses-which-ats.html">What Job Source is using which ATS?  </a>
+                    <time datetime="2022-09-06T08:00:00-05:00">September 06, 2022</time>
+                    <meta content="What Job Source is using which ATS?" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/golang-complete-developer-guide-review.html">Review of Go: The Complete Developer's Guide (Golang) course  </a>
+                    <time datetime="2022-08-28T12:00:00-05:00">August 28, 2022</time>
+                    <meta content="Review of Go: The Complete Developer&#39;s Guide (Golang) course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/looking-for-new-role.html">I am looking for an engineering leadership role  </a>
+                    <time datetime="2022-08-18T08:00:00-05:00">August 18, 2022</time>
+                    <meta content="I am looking for an engineering leadership role" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/top-soft-skills-senior-developers-need.html">10 Soft Skills to Look For in Senior Software Developers  </a>
+                    <time datetime="2022-06-26T09:00:00-05:00">June 26, 2022</time>
+                    <meta content="10 Soft Skills to Look For in Senior Software Developers" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/time-gas-saved-with-remote-work.html">Time and Gas saved by switching to remote work  </a>
+                    <time datetime="2022-06-12T01:00:00-05:00">June 12, 2022</time>
+                    <meta content="Time and Gas saved by switching to remote work" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/woven-client-to-woven-employee.html">The Other Side of the Mirror: How I Went from Woven Client to Woven Employee  </a>
+                    <time datetime="2022-06-04T08:00:00-05:00">June 04, 2022</time>
+                    <meta content="The Other Side of the Mirror: How I Went from Woven Client to Woven Employee" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/run-sanic-on-heroku.html">Run Sanic on Heroku  </a>
+                    <time datetime="2022-05-19T08:00:00-05:00">May 19, 2022</time>
+                    <meta content="Run Sanic on Heroku" />
+                </article>
+        <h2 id="2020"><a href="#2020">2020</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/gitlab-manage-remote-team.html">Review of GitLab's "How to Manage a Remote Team" Coursera course  </a>
+                    <time datetime="2020-10-26T09:30:00-05:00">October 26, 2020</time>
+                    <meta content="Review of GitLab&#39;s &#34;How to Manage a Remote Team&#34; Coursera course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/rise-garden-final-review.html">Rise Gardens Review  </a>
+                    <time datetime="2020-05-29T10:00:00-05:00">May 29, 2020</time>
+                    <meta content="Rise Gardens Review" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/rise-garden-suggestions-software.html">Rise Gardens App/Subscription Improvement suggestions  </a>
+                    <time datetime="2020-05-24T23:45:00-05:00">May 24, 2020</time>
+                    <meta content="Rise Gardens App/Subscription Improvement suggestions" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/rise-garden-suggestions-physical.html">Rise Gardens physical improvements suggestions  </a>
+                    <time datetime="2020-05-05T10:00:00-05:00">May 05, 2020</time>
+                    <meta content="Rise Gardens physical improvements suggestions" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/rise-garden-planting.html">Planting the first crop in the Rise Garden  </a>
+                    <time datetime="2020-05-01T10:00:00-05:00">May 01, 2020</time>
+                    <meta content="Planting the first crop in the Rise Garden" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/rise-garden-assembly.html">Assembling the Rise Garden  </a>
+                    <time datetime="2020-04-26T01:10:00-05:00">April 26, 2020</time>
+                    <meta content="Assembling the Rise Garden" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/nursery-unboxing.html">Unboxing garden nurseries  </a>
+                    <time datetime="2020-04-24T10:00:00-05:00">April 24, 2020</time>
+                    <meta content="Unboxing garden nurseries" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/rise-gardens-unboxing.html">Unboxing and reviewing the new indoor Rise Gardens hydroponic garden  </a>
+                    <time datetime="2020-04-22T10:00:00-05:00">April 22, 2020</time>
+                    <meta content="Unboxing and reviewing the new indoor Rise Gardens hydroponic garden" />
+                </article>
+        <h2 id="2019"><a href="#2019">2019</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/aws-certified-developer-review.html">Review of Ultimate AWS Certified Developer Associate 2019 course  </a>
+                    <time datetime="2019-12-23T10:00:00-06:00">December 23, 2019</time>
+                    <meta content="Review of Ultimate AWS Certified Developer Associate 2019 course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/setting-up-gitlab-runners.html">Setting up GitLab runners  </a>
+                    <time datetime="2019-10-22T11:00:00-05:00">October 22, 2019</time>
+                    <meta content="Setting up GitLab runners" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html">Installing InvoiceNinja on Ubuntu 18.04  </a>
+                    <time datetime="2019-07-30T13:00:00-05:00">July 30, 2019</time>
+                    <meta content="Installing InvoiceNinja on Ubuntu 18.04" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/updating-php-ubuntu-1804.html">Updating PHP from 7.1 to 7.3 on Ubuntu 18.04  </a>
+                    <time datetime="2019-07-26T10:00:00-05:00">July 26, 2019</time>
+                    <meta content="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/travis-ci-tutorial-review.html">Review of Travis CI Tutorial Udemy course  </a>
+                    <time datetime="2019-07-09T14:30:00-05:00">July 09, 2019</time>
+                    <meta content="Review of Travis CI Tutorial Udemy course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/software-testing-masterclass.html">Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course  </a>
+                    <time datetime="2019-05-14T15:00:00-05:00">May 14, 2019</time>
+                    <meta content="Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html">Stack Overflow still has issues and it's getting worse  </a>
+                    <time datetime="2019-03-29T10:34:00-05:00">March 29, 2019</time>
+                    <meta content="Stack Overflow still has issues and it&#39;s getting worse" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/ubiquiti-home-network.html">Upgrading the home network to use Ubiquiti products  </a>
+                    <time datetime="2019-03-13T11:30:00-05:00">March 13, 2019</time>
+                    <meta content="Upgrading the home network to use Ubiquiti products" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/xps-tb16-bios-fix.html">Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update  </a>
+                    <time datetime="2019-01-31T10:30:00-06:00">January 31, 2019</time>
+                    <meta content="Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/sanic-webframework-review.html">Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course  </a>
+                    <time datetime="2019-01-23T10:00:00-06:00">January 23, 2019</time>
+                    <meta content="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course" />
+                </article>
+        <h2 id="2018"><a href="#2018">2018</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/autobuild-pelican-blog.html">Autobuild and Deploy this Pelican Blog  </a>
+                    <time datetime="2018-11-15T08:30:00-06:00">November 15, 2018</time>
+                    <meta content="Autobuild and Deploy this Pelican Blog" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html">Review of Udemy's Docker Swarm: Beginner + Advanced  </a>
+                    <time datetime="2018-10-31T15:00:00-05:00">October 31, 2018</time>
+                    <meta content="Review of Udemy&#39;s Docker Swarm: Beginner + Advanced" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/docker-essentials-course.html">Review of Udemy's Docker and Containers: The Essentials  </a>
+                    <time datetime="2018-10-29T09:45:00-05:00">October 29, 2018</time>
+                    <meta content="Review of Udemy&#39;s Docker and Containers: The Essentials" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/git-45-minute-crash-course.html">Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.  </a>
+                    <time datetime="2018-10-01T09:45:00-05:00">October 01, 2018</time>
+                    <meta content="Review of Udemy&#39;s renamed The 2018 Git Complete: 45 minute crash course using Angular." />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/ubuntu-backup-rsync.html">Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync  </a>
+                    <time datetime="2018-09-26T12:30:00-05:00">September 26, 2018</time>
+                    <meta content="Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html">Review of Udemy's Learn DaVinci Resolve 15 from scratch  </a>
+                    <time datetime="2018-09-21T09:45:00-05:00">September 21, 2018</time>
+                    <meta content="Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/slack-app-google-cloud.html">Deploying a Flask Slack app on Google Cloud Platform  </a>
+                    <time datetime="2018-07-13T10:00:00-05:00">July 13, 2018</time>
+                    <meta content="Deploying a Flask Slack app on Google Cloud Platform" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/setup-lets-encrypt.html">Set up Dynamic CloudFlare IP with Let's Encrypt  </a>
+                    <time datetime="2018-04-25T09:30:00-05:00">April 25, 2018</time>
+                    <meta content="Set up Dynamic CloudFlare IP with Let&#39;s Encrypt" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/installing-gitlab.html">Setting up GitLab on the new server  </a>
+                    <time datetime="2018-04-13T08:30:00-05:00">April 13, 2018</time>
+                    <meta content="Setting up GitLab on the new server" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/travisci-insecure-environment-variables.html">Travis CI doesn't keep your environment variable secure  </a>
+                    <time datetime="2018-04-02T12:30:00-05:00">April 02, 2018</time>
+                    <meta content="Travis CI doesn&#39;t keep your environment variable secure" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/installing-nextcloud.html">Installing NextCloud  </a>
+                    <time datetime="2018-03-27T23:30:00-05:00">March 27, 2018</time>
+                    <meta content="Installing NextCloud" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/django-course-basic-to-advance.html">Review of Udemy's Django Course from Basics to Advance  </a>
+                    <time datetime="2018-02-20T22:45:00-06:00">February 20, 2018</time>
+                    <meta content="Review of Udemy&#39;s Django Course from Basics to Advance" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/zfs-pool-on-ubuntu.html">Setting up a ZFS pool on Ubuntu 16.04  </a>
+                    <time datetime="2018-02-15T22:30:00-06:00">February 15, 2018</time>
+                    <meta content="Setting up a ZFS pool on Ubuntu 16.04" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/new-house-server.html">...and then there was a backup server  </a>
+                    <time datetime="2018-02-12T15:15:00-06:00">February 12, 2018</time>
+                    <meta content="...and then there was a backup server" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/backup-your-data.html">Well, there goes my data...  </a>
+                    <time datetime="2018-01-27T00:04:00-06:00">January 27, 2018</time>
+                    <meta content="Well, there goes my data..." />
+                </article>
+        <h2 id="2017"><a href="#2017">2017</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html">How I found an awesome remote only job  </a>
+                    <time datetime="2017-11-28T09:01:00-06:00">November 28, 2017</time>
+                    <meta content="How I found an awesome remote only job" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/aws-serverless-apis-apps-review.html">Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course  </a>
+                    <time datetime="2017-10-20T11:17:00-05:00">October 20, 2017</time>
+                    <meta content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html">Collecting Diamonds on Stack Exchange  </a>
+                    <time datetime="2017-08-18T10:06:00-05:00">August 18, 2017</time>
+                    <meta content="Collecting Diamonds on Stack Exchange" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/a-decade-at-caterpillar.html">A reflection on my decade at Caterpillar  </a>
+                    <time datetime="2017-07-31T12:00:00-05:00">July 31, 2017</time>
+                    <meta content="A reflection on my decade at Caterpillar" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/django-fullstack-bootcamp-course-review.html">Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course  </a>
+                    <time datetime="2017-06-28T06:16:00-05:00">June 28, 2017</time>
+                    <meta content="Review of Udemy&#39;s Python and Django Full Stack Web Developer Bootcamp course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">Stack Overflow's Problem - Feedback from an experienced user  </a>
+                    <time datetime="2017-05-22T23:45:00-05:00">May 22, 2017</time>
+                    <meta content="Stack Overflow&#39;s Problem - Feedback from an experienced user" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/deep-learning-prereq-linear-logistic-regression.html">Review of Udemy's Deep Learning Prerequisites - Linear and Logistic Regression courses  </a>
+                    <time datetime="2017-05-03T10:00:00-05:00">May 03, 2017</time>
+                    <meta content="Review of Udemy&#39;s Deep Learning Prerequisites - Linear and Logistic Regression courses" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/choosing-orm-library.html">Choosing an ORM library for a new project  </a>
+                    <time datetime="2017-04-26T14:30:00-05:00">April 26, 2017</time>
+                    <meta content="Choosing an ORM library for a new project" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/deep-learning-prereq-numpy.html">Review of Udemy's 'Deep Learning Prerequisites: The Numpy Stack in Python' course  </a>
+                    <time datetime="2017-04-20T22:30:00-05:00">April 20, 2017</time>
+                    <meta content="Review of Udemy&#39;s &#39;Deep Learning Prerequisites: The Numpy Stack in Python&#39; course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/become-a-product-manager-review.html">Review of Udemy's 'Become a Product Manager  | Learn the Skills & Get the job' course  </a>
+                    <time datetime="2017-04-20T07:40:00-05:00">April 20, 2017</time>
+                    <meta content="Review of Udemy&#39;s &#39;Become a Product Manager  | Learn the Skills &amp; Get the job&#39; course" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">Can a machine be taught to flag spam automatically  </a>
+                    <time datetime="2017-02-19T22:51:00-06:00">February 19, 2017</time>
+                    <meta content="Can a machine be taught to flag spam automatically" />
+                </article>
+        <h2 id="2016"><a href="#2016">2016</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/loony-corn-machine-learning-review.html">Review of Udemy's 'From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase' course  </a>
+                    <time datetime="2016-12-28T20:10:00-06:00">December 28, 2016</time>
+                    <meta content="Review of Udemy&#39;s &#39;From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase&#39; course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/data-analysis-with-pandas-review.html">Review of Udemy's 'Data Analysis with Pandas' course  </a>
+                    <time datetime="2016-12-09T22:54:00-06:00">December 09, 2016</time>
+                    <meta content="Review of Udemy&#39;s &#39;Data Analysis with Pandas&#39; course" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/third-times-the-charm.html">Third time's the charm?  </a>
+                    <time datetime="2016-11-06T22:54:00-06:00">November 06, 2016</time>
+                    <meta content="Third time&#39;s the charm?" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html">My experiences releasing a package to PyPI  </a>
+                    <time datetime="2016-03-15T12:26:00-05:00">March 15, 2016</time>
+                    <meta content="My experiences releasing a package to PyPI" />
+                </article>
+        <h2 id="2015"><a href="#2015">2015</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html">How I built a Flask application that integrates with Travis CI and OpenShift  </a>
+                    <time datetime="2015-12-11T09:15:00-06:00">December 11, 2015</time>
+                    <meta content="How I built a Flask application that integrates with Travis CI and OpenShift" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html">I'm running for moderator on Stack Overflow again  </a>
+                    <time datetime="2015-11-18T09:38:00-06:00">November 18, 2015</time>
+                    <meta content="I&#39;m running for moderator on Stack Overflow again" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/how-not-to-recruit-me.html">How not to recruit me  </a>
+                    <time datetime="2015-10-10T14:20:00-05:00">October 10, 2015</time>
+                    <meta content="How not to recruit me" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/link-analysis---technical-explanation.html">Link Analysis - Technical Explanation  </a>
+                    <time datetime="2015-08-10T23:41:00-05:00">August 10, 2015</time>
+                    <meta content="Link Analysis - Technical Explanation" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html">A proposal to fix broken links on Stack Overflow  </a>
+                    <time datetime="2015-08-07T07:34:00-05:00">August 07, 2015</time>
+                    <meta content="A proposal to fix broken links on Stack Overflow" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html">Analysis of links posted to Stack Overflow  </a>
+                    <time datetime="2015-08-06T07:35:00-05:00">August 06, 2015</time>
+                    <meta content="Analysis of links posted to Stack Overflow" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html">How I set up this site with GitHub Pages and CloudFlare  </a>
+                    <time datetime="2015-07-09T11:26:00-05:00">July 09, 2015</time>
+                    <meta content="How I set up this site with GitHub Pages and CloudFlare" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html">Why I moved from Wordpress to Pelican  </a>
+                    <time datetime="2015-05-03T22:41:00-05:00">May 03, 2015</time>
+                    <meta content="Why I moved from Wordpress to Pelican" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html">I'm running to be a moderator of Stack Overflow  </a>
+                    <time datetime="2015-04-06T22:00:00-05:00">April 06, 2015</time>
+                    <meta content="I&#39;m running to be a moderator of Stack Overflow" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html">Zephyr - The bot that watches for low quality vote requests  </a>
+                    <time datetime="2015-03-12T23:34:00-05:00">March 12, 2015</time>
+                    <meta content="Zephyr - The bot that watches for low quality vote requests" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/thanks-for-all-the-fish.html">Thanks for all the fish  </a>
+                    <time datetime="2015-01-08T15:38:00-06:00">January 08, 2015</time>
+                    <meta content="Thanks for all the fish" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html">Can a machine be taught to flag comments automatically  </a>
+                    <time datetime="2015-01-02T08:47:00-06:00">January 02, 2015</time>
+                    <meta content="Can a machine be taught to flag comments automatically" />
+                </article>
+        <h2 id="2014"><a href="#2014">2014</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/moderation-postion-on-moderators.html">Moderation postion on Moderators  </a>
+                    <time datetime="2014-07-02T10:51:00-05:00">July 02, 2014</time>
+                    <meta content="Moderation postion on Moderators" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/how-to-appeal-a-ban-effectively.html">How to appeal a ban effectively  </a>
+                    <time datetime="2014-04-22T22:26:00-05:00">April 22, 2014</time>
+                    <meta content="How to appeal a ban effectively" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/how-not-to-appeal-a-ban.html">How NOT to appeal a ban  </a>
+                    <time datetime="2014-04-14T22:26:00-05:00">April 14, 2014</time>
+                    <meta content="How NOT to appeal a ban" />
+                </article>
+        <h2 id="2013"><a href="#2013">2013</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/mann-vs-vipers-beaten.html">Mann Vs Vipers Beaten!  </a>
+                    <time datetime="2013-12-05T09:00:00-06:00">December 05, 2013</time>
+                    <meta content="Mann Vs Vipers Beaten!" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html">I had a secret addiction to the TF2 idling economy but I'm better now (honest)  </a>
+                    <time datetime="2013-08-13T00:01:00-05:00">August 13, 2013</time>
+                    <meta content="I had a secret addiction to the TF2 idling economy but I&#39;m better now (honest)" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/give-some-refined-win-some-prizes.html">Give some refined, Win some prizes  </a>
+                    <time datetime="2013-02-25T09:00:00-06:00">February 25, 2013</time>
+                    <meta content="Give some refined, Win some prizes" />
+                </article>
+        <h2 id="2012"><a href="#2012">2012</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/homing-projectiles-are-awesome!.html">Homing projectiles are awesome!  </a>
+                    <time datetime="2012-06-30T08:02:00-05:00">June 30, 2012</time>
+                    <meta content="Homing projectiles are awesome!" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/monitoring-language-on-the-game-servers.html">Monitoring Language on the game servers  </a>
+                    <time datetime="2012-04-22T12:13:00-05:00">April 22, 2012</time>
+                    <meta content="Monitoring Language on the game servers" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/connect-python-to-osi-soft-pi.html">Connect Python to OSI Soft PI  </a>
+                    <time datetime="2012-02-07T12:45:00-06:00">February 07, 2012</time>
+                    <meta content="Connect Python to OSI Soft PI" />
+                </article>
+        <h2 id="2011"><a href="#2011">2011</a></h2>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/a-new-more-fair-rtd.html">A new, more fair, RTD  </a>
+                    <time datetime="2011-02-04T20:01:00-06:00">February 04, 2011</time>
+                    <meta content="A new, more fair, RTD" />
+                </article>
+        <h2 id="2010"><a href="#2010">2010</a></h2>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/a-special-kind-of-troll.html">A special kind of troll  </a>
+                    <time datetime="2010-12-28T16:04:00-06:00">December 28, 2010</time>
+                    <meta content="A special kind of troll" />
+                </article>
+
+
+                <article>
+
+                    <a href="https://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html">Multiple IP addresses on the same physical network card  </a>
+                    <time datetime="2010-11-17T12:54:00-06:00">November 17, 2010</time>
+                    <meta content="Multiple IP addresses on the same physical network card" />
+                </article>
+
+
+            <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/fixing-myisam-crashed-tables.html">Fixing MYISAM Crashed Tables  </a>
+                    <time datetime="2010-05-14T10:08:00-05:00">May 14, 2010</time>
+                    <meta content="Fixing MYISAM Crashed Tables" />
+                </article>
+        <h2 id="2009"><a href="#2009">2009</a></h2>
+
+        <article class="last-entry-of-year">
+
+                    <a href="https://andrewwegner.com/automated-template-for-membership-applications.html">Automated template for membership applications  </a>
+                    <time datetime="2009-10-30T22:30:00-05:00">October 30, 2009</time>
+                    <meta content="Automated template for membership applications" />
+                </article>
+    </div>
+</article>
+
+<footer>
+<p>&copy; 2022 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": ""
+}
+</script>
+</body>
+
 </html>

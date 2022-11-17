@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/relaunch-personal-site.html" />
+
+  <meta name="robots" content="" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="I&#39;ve updated this site with a new theme and some under the hood improvements. This article covers those updates and what I hope to accomplish." />
+<meta name="keywords" content="technical, Pelican, meta">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Updating the design of the site"/>
+  <meta property="og:description" content="I&#39;ve updated this site with a new theme and some under the hood improvements. This article covers those updates and what I hope to accomplish."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/relaunch-personal-site.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-11-17 10:00:00-06:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/author/andy-wegner.html">
+  <meta property="article:section" content="Side Activities"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="article:tag" content="Pelican"/>
+  <meta property="article:tag" content="meta"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Updating the design of the site  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h1>Article Contents</h1>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#welcome-to-the-update">Welcome to the update!</a><ul>
+<li><a href="#look-feel">Look &amp; Feel</a></li>
+<li><a href="#toc">ToC</a></li>
+<li><a href="#tagscategories">Tags/Categories</a></li>
+<li><a href="#seo">SEO</a></li>
+</ul>
+</li>
+<li><a href="#goals-of-the-update">Goals of the update</a></li>
+<li><a href="#where-the-site-was">Where the site was</a></li>
+</ul>
+</div>
+    </nav>
+
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/relaunch-personal-site.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Updating the design of the site</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/side-activities.html",
+      "name": "Side Activities"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/relaunch-personal-site.html",
+      "name": "https://andrewwegner.com/relaunch-personal-site.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="relaunch-personal-site">Updating the design of the site</h1>
+    <p>
+      Posted on Thu 17 November 2022 in <a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+        <a href="https://andrewwegner.com/tag/pelican.html">Pelican</a>
+        <a href="https://andrewwegner.com/tag/meta.html">meta</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="welcome-to-the-update">Welcome to the update!<a class="headerlink" href="#welcome-to-the-update" title="Permanent link">¶</a></h2>
+<p>I have a new theme for the site, and I think it looks great! This is a heavily modified 
+<a href="https://github.com/alexandrevicenzi/Flex">Flex</a> theme. I talk about the changes I made to the theme below, as well as my goals 
+for the site going forward. A new theme isn't going be responsible for hitting all of those goals, but I think it will help. The
+site was pretty bland before. It did what it needed to do, but it didn't look the best doing it. My skillset is <em>not</em> front end
+development, but I am rather proud of the new theme and the changes I put in place.</p>
+<p>If you're curious about what the site used to look like, jump down to the <a href="#where-the-site-was">Where the site was</a> section.</p>
+<p>The default version of the Flex theme can be seen on it's <a href="https://flex.alxd.me/">demo site</a>, to give you an idea of the changes I've
+made to my instance.</p>
+<h3 id="look-feel">Look &amp; Feel<a class="headerlink" href="#look-feel" title="Permanent link">¶</a></h3>
+<p>The logo is perhaps the most subtle change. It's designed, intentionally, to not be a circle (to common on other sites )or a square (to boring).
+It's an off shape blob. Take a look at it. It very slowly shifts too. You can see it along the bottom of the shirt most clearly. It's designed
+to move only a little and pretty slowly, so that it's not distracting. It's just active enough to catch your eye if you are looking but not 
+designed to pull focus from the article you are reading.</p>
+<p>The default flex theme is very...neat. There are nice crisp lines. It's very clinical. I changed this just a little with splash of a curved
+red border between the side bar and the main article. It's not a major change, but it adds a little personality. Combined with the 
+blob/animated head shot, it makes it feel unique among the flex theme'd blogs I looked at to evaluate if I liked the theme.</p>
+<p>A favicon is such a little thing, but I didn't have one with the old theme. Having one now adds just a little bit more of a 
+professional touch and it was so easy to do. The color of the favicon, the side bar, and the responsive bars from the tag and 
+category pages all match.</p>
+<h3 id="toc">ToC<a class="headerlink" href="#toc" title="Permanent link">¶</a></h3>
+<p>The table on contents on the side bar is an addition I made, because I dislike when the table of contents scrolls off the screen. It's the same 
+reason I froze the table of contents to the side bar on the previous iteration of the site. When I'm reading, I like to know how far I am in 
+and article and be able to easily jump to another section. Since I am also a reader of my site (especially on the technical posts), I try
+to make it easy for myself too.</p>
+<h3 id="tagscategories">Tags/Categories<a class="headerlink" href="#tagscategories" title="Permanent link">¶</a></h3>
+<p>The tags and category pages on my old site where bad. They were a giant list of meta-data and a link to a post. It was messy. I didn't like
+it, but I also didn't use it so I spent very little time trying to make it work better. With a new theme, I wanted to make the pages more 
+useful, at least to me. I found an excellent post by <a href="https://johnpaton.net/posts/responsive-bar-chart/">John Paton</a> on how to make a responsive bar chart for these pages.</p>
+<p>Take look at my <a href="/tags.html">tags</a> or <a href="/categories.html">categories</a> pages. To me, that looks wonderful. I can get a quick look at how many articles 
+are in each section and clicking on one brings me to a page specifically for articles in that slice of meta-data. </p>
+<h3 id="seo">SEO<a class="headerlink" href="#seo" title="Permanent link">¶</a></h3>
+<p>Before you run away...this is a good thing, and I've been doing it for a while. All of my <a href="https://andrewwegner.com/tag/review.html">reviews</a>, have been sporting Schema.org
+Review microdata for years. My blog posts have been sporting Article microdata. This was all hard coded into my template. It was beyond time to
+update to utilize JSON+LD and provide even more context to the topics I write about. </p>
+<p>Initially, I selected Flex because it claims to support Rich Snippets. My results on that are fuzzy, at best. The snippets provided are not full
+rich snippets. However, they provided a great base. I've updated my instance to support JSON+LD for Person (click view source on my 
+<a href="{page}about">About Me</a> to see it), Article, Review and Breadcrumbs (see the navigation bar at the top of this page). Search engines use all 
+of that to get a better idea of what's on the site. I have a few more I want to implement too, but this gets me beyond parity with my old theme. </p>
+<p>I've also made sure that canonical links are included in my articles. I have a couple that Google sees as duplicates due to UTM tags I stuck on
+links a while ago. Having cononical links in place should resolve some annoying errors and warnings I see in my search console.</p>
+<h2 id="goals-of-the-update">Goals of the update<a class="headerlink" href="#goals-of-the-update" title="Permanent link">¶</a></h2>
+<p>I have a few goals with this newly updated site. A couple relate directly to the theme, and a few are general site goals. </p>
+<ul>
+<li>Updated Tool set - I was running an old version of Pelican and missed out on some new features. By updating, I'm hoping that I 
+can remain closer to the current release. I like to get the newest features, and that alone feels better.</li>
+<li>A useful tags and categories page. Like I mentioned above, they used to be useless. Now, there is more than just a list of 1-2 
+work phrases sitting on my site across two pages. If I start another series - I believe I have two right now total, I may add a 
+similar series page.</li>
+<li>Site face lift. As you can see below, the old version was pretty bland. This update adds some color, makes a few things more accessible,
+and generally feels less like reading a sheet of paper on a screen. It's not the flashiest thing on the internet, but you can see 
+by my social media links to the left, that I'm not that type of person anyway.</li>
+<li>Better SEO. Obviously a template doesn't immediately solve this problem, but it will help. Plus some other plans to add more content (gasp!)
+and it should help. Right now, though, "Andrew Wegner" returns this page 9th on Google. It's behind someone with a different last name spelling,
+someone with a different first name, and a few other "Andrew Wegners". While search for a job, I couldn't depend on my site being the one that 
+was clicked. </li>
+<li>Lastly, a vanity goal, is to get a Knowledge Graph when searching for my name. It'll take a while before I can get there, but some of the 
+SEO work I'm putting in now will, hopefully, pay off. </li>
+</ul>
+<h2 id="where-the-site-was">Where the site was<a class="headerlink" href="#where-the-site-was" title="Permanent link">¶</a></h2>
+<p>One last trip down memory lane, as the template that has served as the base of the site since the intial <a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html">migration from Wordpress in 2015</a> is retired. The old template was using <a href="https://elegant.oncrashreboot.com/">Elegant</a>. I am the <a href="https://github.com/Pelican-Elegant/elegant/graphs/contributors">#7 contributor to the theme</a> at the time of publishing 
+this. That's not saying a whole lot, with my brief spurt of activity in 2019, but it was a contribution that I hope others using the theme 
+are able to utilize. </p>
+<p>I was stuck on the Pelican 3.0 branch. I really don't remember why. I remember attempting to upgrade to Pelican 4.0 and everything broke. At the 
+time I was unable to spend a significant time to fix it, so I rolled back and stuck with the latest version that ran. </p>
+<p>Going through this revamp, I upgraded to the latest Pelican, the newest Markdown and go all the new fancy things. We'll see if they actually 
+improve my experience. From a user stand point, not much should change other than a visual overhual. It's a static site and is designed to be
+pretty non-interactive. On my side though, I'm hoping things are a little less brittle. </p>
+<p>On to the last pictures of the old template. </p>
+<p>The Old Home Page:</p>
+<p><img alt='AndrewWegner.com Old "Elegant Theme" homepage design' src="https://andrewwegner.com/images/andrewwegner-elegant-homepage.png"/></p>
+<p>A few other screenshots of the old site sit here:</p>
+<ul>
+<li><a href="https://andrewwegner.com/images/andrewwegner-elegant-archives.png">The Archives</a></li>
+<li><a href="https://andrewwegner.com/images/andrewwegner-elegant-review.png">Review article</a></li>
+<li><a href="https://andrewwegner.com/images/andrewwegner-elegant-article.png">Standard article</a></li>
+<li><a href="https://andrewwegner.com/images/andrewwegner-elegant-tags.png">Tags page</a></li>
+<li><a href="https://andrewwegner.com/images/andrewwegner-elegant-categories.png">Category page</a></li>
+</ul>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/job-search-rejections.html"
+    title="Talking about rejection in job searches">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Updating the design of the site",
+  "headline": "Updating the design of the site",
+  "dateCreated": "2022-11-17 10:00:00-06:00",
+  "datePublished": "2022-11-17 10:00:00-06:00",
+  "dateModified": "",
+  "copyrightYear": "2022",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/relaunch-personal-site.html",
+  "description": "I've updated this site with a new theme and some under the hood improvements. This article covers those updates and what I hope to accomplish.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Side Activities"
+}
+</script>
+<footer>
+<p>&copy; 2022 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": ""
+}
+</script>
+</body>
+
+</html>

@@ -1,82 +1,121 @@
+
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Andy Wegner" />
+<html lang="en">
 
-        <meta property="og:type" content="article" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta name="keywords" content="technical, Technical Solutions, " />
 
-<meta property="og:title" content="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04 "/>
-<meta property="og:url" content="https://andrewwegner.com/updating-php-ubuntu-1804.html" />
-<meta property="og:description" content="A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)" />
-<meta property="og:site_name" content="Ponderings of an Andy" />
-<meta property="og:article:author" content="Andy Wegner" />
-<meta property="og:article:published_time" content="2019-07-26T10:00:00-05:00" />
-<meta name="twitter:title" content="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04 ">
-<meta name="twitter:description" content="A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)">
+  <link rel="canonical" href="https://andrewwegner.com/updating-php-ubuntu-1804.html" />
 
-        <title>Updating PHP from 7.1 to 7.3 on Ubuntu 18.04  · Ponderings of an Andy
-</title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
-        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+  <meta name="robots" content="" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
 
 <script type="text/javascript">
-    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
-      heap.load("653100411");
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
 </script>
-    </head>
-    <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://andrewwegner.com">Home</a></li>
-                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
-                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
-                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article itemscope itemtype="https://schema.org/BlogPosting">
-<meta itemprop="headline" content="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04" />
-<time itemprop="datePublished" datetime="2019-07-26T10:00:00-05:00">
-<meta itemprop="publisher" content="Andy Wegner" />
-<link rel="canonical" href="https://andrewwegner.com/updating-php-ubuntu-1804.html" />
-<div class="row-fluid">
-    <header class="page-header span10 offset2">
-    <h1><a href="https://andrewwegner.com/updating-php-ubuntu-1804.html"> Updating PHP from 7.1 to 7.3 on Ubuntu 18.04  </a></h1>
-    </header>
-</div>
 
-<div class="row-fluid" id="table-of-contents">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="toc">
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)" />
+<meta name="keywords" content="technical">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04"/>
+  <meta property="og:description" content="A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/updating-php-ubuntu-1804.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2019-07-26 10:00:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/author/andy-wegner.html">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Updating PHP from 7.1 to 7.3 on Ubuntu 18.04  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h1>Article Contents</h1>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#what-is-actually-running">What is actually running?</a></li>
@@ -85,13 +124,119 @@
 <li><a href="#checking-nextcloud">Checking NextCloud</a></li>
 </ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
+    </nav>
 
-            
-            <div itemprop="articleBody mainEntityOfPage">
-            
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/updating-php-ubuntu-1804.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Updating PHP from 7.1 to 7.3 on Ubuntu 18.04</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/updating-php-ubuntu-1804.html",
+      "name": "https://andrewwegner.com/updating-php-ubuntu-1804.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="updating-php-ubuntu-1804">Updating PHP from 7.1 to 7.3 on Ubuntu 18.04</h1>
+    <p>
+      Posted on Fri 26 July 2019 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
 <p>The <a href="https://andrewwegner.com/new-house-server.html">new server</a> has been up and running for about a year and a half now. It's still
 working really well. The thing that I'm happiest with is <a href="https://andrewwegner.com/installing-nextcloud.html">my NextCloud install</a>. Having
@@ -105,59 +250,59 @@ it was during the transition between PHP 4 and PHP 5. So...a while ago. I set up
 (and Apache) to host NextCloud and really just forgot about it.</p>
 <p>During a recent update of packages on the server - because I do like to keep
 everything updated. I noticed this line during the <code>apt-get</code> scroll:</p>
-<div class="codehilight code"><pre><span></span>php7.1 module already enabled, not enabling PHP 7.3
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>php7.1 module already enabled, not enabling PHP 7.3
+</code></pre></div>
 <p>Time to figure out how to use that newly install/upgraded PHP 7.3</p>
 <h2 id="what-is-actually-running">What is actually running?<a class="headerlink" href="#what-is-actually-running" title="Permanent link">¶</a></h2>
 <p>The first thing I did was check which version of PHP was being used in the terminal:</p>
-<div class="codehilight code"><pre><span></span>$ php -v
+<div class="codehilight code"><pre><span></span><code>$ php -v
 PHP <span class="m">7</span>.3.7-2+ubuntu18.04.1+deb.sury.org+1 <span class="o">(</span>cli<span class="o">)</span> <span class="o">(</span>built: Jul <span class="m">25</span> <span class="m">2019</span> <span class="m">11</span>:44:59<span class="o">)</span> <span class="o">(</span> NTS <span class="o">)</span>
 Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">1997</span>-2018 The PHP Group
 Zend Engine v3.3.7, Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">1998</span>-2018 Zend Technologies
     with Zend OPcache v7.3.7-2+ubuntu18.04.1+deb.sury.org+1, Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">1999</span>-2018, by Zend Technologies
-</pre></div>
+</code></pre></div>
 <p>That's promising. The default version here is PHP 7.3.7.</p>
 <p>But, throwing a quick <code>phpinfo();</code> together and looking at what it running via
 Apache, shows something different:</p>
-<div class="codehilight code"><pre><span></span>PHP Version 7.1.30-1+ubuntu18.04.1+deb.sury.org+1
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>PHP Version 7.1.30-1+ubuntu18.04.1+deb.sury.org+1
+</code></pre></div>
 <p>Ok. Now I know which module is out of date. It's the run that is configured to
 be used with Apache.</p>
 <h2 id="verifying-whats-installed">Verifying what's installed<a class="headerlink" href="#verifying-whats-installed" title="Permanent link">¶</a></h2>
 <p>I assumed I had PHP 7.3 installed, but I wanted to confirm before I just started
 disabling and enabling Apache modules.</p>
 <p>To confirm I had PHP 7.3 available, I ran this:</p>
-<div class="codehilight code"><pre><span></span><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span><span class="w"></span>
 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span><span class="w"></span>
 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">conf</span><span class="w"></span>
 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">load</span><span class="w"></span>
 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span><span class="w"></span>
 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <p>And a quick check to see what's enabled:</p>
-<div class="codehilight code"><pre><span></span><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span><span class="w"></span>
 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <p>Excellent. I have PHP 7.3 available, and PHP 7.1 is enabled. This is exactly what
 I'm seeing.</p>
 <h2 id="updating-apache-php-module">Updating Apache PHP Module<a class="headerlink" href="#updating-apache-php-module" title="Permanent link">¶</a></h2>
 <p>With PHP 7.3 already installed, I just need to disable PHP 7.1 and enable PHP 7.3.</p>
-<div class="codehilight code"><pre><span></span>$ a2dismod php7.1
+<div class="codehilight code"><pre><span></span><code>$ a2dismod php7.1
 $ a2enmod php7.3
-</pre></div>
+</code></pre></div>
 <p>Then restart Apache to use the new module.</p>
-<div class="codehilight code"><pre><span></span>$ service apache2 restart
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>$ service apache2 restart
+</code></pre></div>
 <p>Finally, validate the correct module is enabled:</p>
-<div class="codehilight code"><pre><span></span><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span><span class="w"></span>
 <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <p>Another check of the <code>phpinfo();</code> page too:</p>
-<div class="codehilight code"><pre><span></span>PHP Version 7.3.7-2+ubuntu18.04.1+deb.sury.org+1
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>PHP Version 7.3.7-2+ubuntu18.04.1+deb.sury.org+1
+</code></pre></div>
 <p>This matches what <code>php -v</code> output.</p>
 <p>We're done! Right?</p>
 <h2 id="checking-nextcloud">Checking NextCloud<a class="headerlink" href="#checking-nextcloud" title="Permanent link">¶</a></h2>
@@ -173,7 +318,7 @@ shows that PHP 7.3 is supported. That just means I'm missing some modules.</p>
 <p>The documentation also includes a <a href="https://docs.nextcloud.com/server/15/admin_manual/installation/source_installation.html#prerequisites-for-manual-installation">list of all needed modules</a> and a nice
 <a href="https://github.com/nextcloud/vm/blob/master/nextcloud_install_production.sh/">shell script</a> for easy installation. Looking through that, I found the <code>apt</code>
 <a href="https://github.com/nextcloud/vm/blob/c469b3045c7405261a0d9f20fec7ef5f0f508efe/nextcloud_install_production.sh#L256-L272">packages I needed</a>.</p>
-<div class="codehilight code"><pre><span></span>$ apt-get install php7.3-fpm <span class="se">\</span>
+<div class="codehilight code"><pre><span></span><code>$ apt-get install php7.3-fpm <span class="se">\</span>
 php7.3-intl <span class="se">\</span>
 php7.3-ldap <span class="se">\</span>
 php7.3-imap <span class="se">\</span>
@@ -188,84 +333,92 @@ php7.3-smbclient <span class="se">\</span>
 php7.3-json <span class="se">\</span>
 php7.3-gmp <span class="se">\</span>
 php7.3-bz2
-</pre></div>
+</code></pre></div>
 <p>A minute or so later, with those modules now installed, I restarted Apache again.</p>
-<div class="codehilight code"><pre><span></span>$ service apache2 restart
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>$ service apache2 restart
+</code></pre></div>
 <p>Then I went to my NextCloud URL. The page loaded as expected and my phone
 sync'd the one picture I took as a test to ensure it worked.</p>
 <p>Overall, this was a really simple process. The biggest issue I ran into was missing
 a module or two that NextCloud required. Simply installing everything it needed
 worked perfectly.</p>
-            </div>
-            <hr />
-            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
-                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/travis-ci-tutorial-review.html"
+    title="Review of Travis CI Tutorial Udemy course">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+  <a class="btn float-right" href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html"
+    title="Installing InvoiceNinja on Ubuntu 18.04">
+    Next Post <i class="fa fa-angle-right"></i>
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
              is a father, an engineer and a computer scientist. He is interested in online
             community building, tinkering with new code and building new applications.
             He writes about his experiences with each of these.</span>
 
-            </div>
-            
-            
-            <hr/>
-            <aside>
-            <nav>
-            <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://andrewwegner.com/travis-ci-tutorial-review.html" title="Previous: Review of Travis CI Tutorial Udemy course">Review of Travis CI Tutorial Udemy course</a></li>
-                <li class="next-article"><a href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html" title="Next: Installing InvoiceNinja on Ubuntu 18.04">Installing InvoiceNinja on Ubuntu 18.04</a> »</li>
-            </ul>
-            </nav>
-            </aside>
-        </div>
-        <section>
-        <div class="span2" style="float:right;font-size:0.9em;">
-            <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-07-26T10:00:00-05:00">Jul 26, 2019</time>
-<time itemprop="dateModified" datetime="2019-07-26T10:00:00-05:00">
+  </div>
 
-            <h4>Category</h4>
-            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
-            <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>45</span>
-</a></li>
-            </ul>
-<h4>Contact</h4>
-    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
-    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-linkedin sidebar-social-links"></i></a>
-        </div>
-        </section>
-</div>
+
 </article>
-                </div>
-                <div class="span1"></div>
-            </div>
-        </div>
-        <div id="push"></div>
-    </div>
-<footer>
-<div id="footer">
-    <ul class="footer-content">
-    </ul>
-</div>
-</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-        <script>
-            function validateForm(query)
-            {
-                return (query.length > 0);
-            }
-        </script>
 
-    
-    </body>
-    <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Updating PHP from 7.1 to 7.3 on Ubuntu 18.04",
+  "headline": "Updating PHP from 7.1 to 7.3 on Ubuntu 18.04",
+  "dateCreated": "2019-07-26 10:00:00-05:00",
+  "datePublished": "2019-07-26 10:00:00-05:00",
+  "dateModified": "",
+  "copyrightYear": "2019",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/updating-php-ubuntu-1804.html",
+  "description": "A brief walkthrough on how to upgrade PHP to 7.3 (and make sure NextCloud still works)",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2022 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": ""
+}
+</script>
+</body>
+
 </html>

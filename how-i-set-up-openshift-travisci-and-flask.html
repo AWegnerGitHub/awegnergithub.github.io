@@ -1,83 +1,121 @@
+
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Andy Wegner" />
+<html lang="en">
 
-        <meta property="og:type" content="article" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta name="keywords" content="technical, Technical Solutions, " />
 
-<meta property="og:title" content="How I built a Flask application that integrates with Travis CI and OpenShift "/>
-<meta property="og:url" content="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" />
-<meta property="og:description" content="A walkthrough on how I set up a Flask application on OpenShift and used TravisCI to deploy it" />
-<meta property="og:site_name" content="Ponderings of an Andy" />
-<meta property="og:article:author" content="Andy Wegner" />
-<meta property="og:article:published_time" content="2015-12-11T09:15:00-06:00" />
-<meta property="" content="2015-12-12T00:00:00-06:00" />
-<meta name="twitter:title" content="How I built a Flask application that integrates with Travis CI and OpenShift ">
-<meta name="twitter:description" content="A walkthrough on how I set up a Flask application on OpenShift and used TravisCI to deploy it">
+  <link rel="canonical" href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" />
 
-        <title>How I built a Flask application that integrates with Travis CI and OpenShift  · Ponderings of an Andy
-</title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
-        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+  <meta name="robots" content="" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
 
 <script type="text/javascript">
-    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
-      heap.load("653100411");
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
 </script>
-    </head>
-    <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://andrewwegner.com">Home</a></li>
-                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
-                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
-                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article itemscope itemtype="https://schema.org/BlogPosting">
-<meta itemprop="headline" content="How I built a Flask application that integrates with Travis CI and OpenShift" />
-<time itemprop="datePublished" datetime="2015-12-11T09:15:00-06:00">
-<meta itemprop="publisher" content="Andy Wegner" />
-<link rel="canonical" href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" />
-<div class="row-fluid">
-    <header class="page-header span10 offset2">
-    <h1><a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html"> How I built a Flask application that integrates with Travis CI and OpenShift  </a></h1>
-    </header>
-</div>
 
-<div class="row-fluid" id="table-of-contents">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="toc">
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="A walkthrough on how I set up a Flask application on OpenShift and used TravisCI to deploy it" />
+<meta name="keywords" content="technical">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="How I built a Flask application that integrates with Travis CI and OpenShift"/>
+  <meta property="og:description" content="A walkthrough on how I set up a Flask application on OpenShift and used TravisCI to deploy it"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2015-12-11 09:15:00-06:00"/>
+  <meta property="article:modified_time" content="2015-12-12 00:00:00-06:00"/>
+  <meta property="article:author" content="https://andrewwegner.com/author/andy-wegner.html">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>How I built a Flask application that integrates with Travis CI and OpenShift  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h1>Article Contents</h1>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
 <ul>
 <li><a href="#motivation">Motivation</a></li>
 <li><a href="#openshift-set-up">OpenShift set up</a></li>
@@ -93,13 +131,120 @@
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
+    </nav>
 
-            
-            <div itemprop="articleBody mainEntityOfPage">
-            
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">How I built a Flask application that integrates with Travis CI and OpenShift</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html",
+      "name": "https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="how-i-set-up-openshift-travisci-and-flask">How I built a Flask application that integrates with Travis CI and OpenShift</h1>
+    <p>
+      Posted on Fri 11 December 2015 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+      <br />Updated on Sat 12 Dec 2015
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
 <h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">¶</a></h2>
 <p>Since I <a href="https://andrewwegner.com/thanks-for-all-the-fish.html">shut down</a> Vipers early this year, I've been itching to do <em>something</em> web related. Web technologies aren't my best technical skill, but I like trying out new things and learning something in the process. I use Python at work. I like Python a lot. With Christmas and New Years coming up, I want to have a project during my down time. My goal is to get a <a href="http://flask.pocoo.org/">Flask</a> application built and then deployed to <a href="https://www.openshift.com/">OpenShift</a>. Part of this deployment is to utilize <a href="https://travis-ci.org/">TravisCI</a>. I'm planning on using <a href="http://pytest.org/latest/">pytest</a> and <a href="https://hypothesis.readthedocs.org/en/latest/">hypothesis</a> for my test suite. Finally, I want to use my own (sub)domain, instead of the provided <code>rhcloud</code> one.</p>
 <p>Of these three technologies, I've used only Flask before. The <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html">comment flagging bot</a> I built has a dashboard built in Flask. I've never used OpenShift or TravisCI. I selected OpenShift because it has a couple <a href="http://www.paasify.it/compare/heroku-vs-openshift%20online">features</a> I want that Heroku doesn't. The biggest one, according to the previous link, was that OpenShift has support for MySQL and Heroku doesn't (surprisingly). I want to use TravisCI and automated testing, because one of my goals for next year at work is to introduce automated tested to our development. (I work with Engineers, not coders...that's my excuse and it's a bad excuse, so I'm going to try and fix it.) To get ready for that goal, I want to test out a system that does continuous integration/automated testing. Both OpenShift and Travis CI provide me with free services. Hypothesis and py.test provide me with a way to generate comprehensive test conditions. </p>
@@ -110,16 +255,16 @@
 <p>OpenShift rhc can be run on any operating system with Ruby 1.8.7 or higher assuming you have the requisite user permissions to install programs. Instructions for specific operating systems are provided below. </p>
 </blockquote>
 <p>Based on that, I figured I'd install the latest version of <a href="http://rubyinstaller.org/downloads/">Ruby</a>. At the time I tested this, that was 2.2.3. Unfortunately, when I ran the command to install the <code>rhc</code> tools, I received an error. After a bit of Googling, I found that it doesn't like 2.2x. So, I installed 2.1.7 instead. Next, I ran:</p>
-<div class="codehilight code"><pre><span></span>gem install rhc
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>gem install rhc
+</code></pre></div>
 <p>This installs several gems and took a few minutes to complete. Next,</p>
-<div class="codehilight code"><pre><span></span>rhc setup
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>rhc setup
+</code></pre></div>
 <p>This started the OpenShift setup wizard. It consisted of filling out the few prompts and letting it generate an SSH key and then connecting to my account. Remember the Namespace you select. Again, this took a few minutes.</p>
 <h2 id="flask-setup">Flask setup<a class="headerlink" href="#flask-setup" title="Permanent link">¶</a></h2>
 <p>The next step was to set up my first "Gear". This would be the Flask application. I'll work on the database next. First, I just want Python and Flask to function properly. Fortunately, this is very easy, as OpenShift has a Flask template.</p>
-<div class="codehilight code"><pre><span></span>rhc app create testapp python-2.7 --from-code=https://github.com/openshift-quickstart/flask-base.git
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>rhc app create testapp python-2.7 --from-code=https://github.com/openshift-quickstart/flask-base.git
+</code></pre></div>
 <p>A few notes:</p>
 <ul>
 <li>I am utilizing Python 2.7, because that is the recommendation from the Flask team.</li>
@@ -127,38 +272,38 @@
 <li>The <code>--from-code</code> parameter will download that repository and use it as the base of your application. </li>
 </ul>
 <p>At this point, Flask can be run locally using:</p>
-<div class="codehilight code"><pre><span></span>python app.py
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>python app.py
+</code></pre></div>
 <p>The application can be pushed back to OpenShift at this point and there should be a functional page on your OpenShift domain. In your command line, from the directory of your project:</p>
-<div class="codehilight code"><pre><span></span>git add --all
+<div class="codehilight code"><pre><span></span><code>git add --all
 git commit -m "Adding Flask application"
 git push
-</pre></div>
+</code></pre></div>
 <p>This will take a moment. At the end, you should see these lines in your command prompt:</p>
-<div class="codehilight code"><pre><span></span><span class="n">remote</span><span class="o">:</span><span class="w"> </span><span class="n">Git</span><span class="w"> </span><span class="n">Post</span><span class="o">-</span><span class="n">Receive</span><span class="w"> </span><span class="n">Result</span><span class="o">:</span><span class="w"> </span><span class="n">success</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">remote</span><span class="o">:</span><span class="w"> </span><span class="n">Git</span><span class="w"> </span><span class="n">Post</span><span class="o">-</span><span class="n">Receive</span><span class="w"> </span><span class="n">Result</span><span class="o">:</span><span class="w"> </span><span class="n">success</span><span class="w"></span>
 <span class="n">remote</span><span class="o">:</span><span class="w"> </span><span class="n">Activation</span><span class="w"> </span><span class="n">status</span><span class="o">:</span><span class="w"> </span><span class="n">success</span><span class="w"></span>
 <span class="n">remote</span><span class="o">:</span><span class="w"> </span><span class="n">Deployment</span><span class="w"> </span><span class="n">completed</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">status</span><span class="o">:</span><span class="w"> </span><span class="n">success</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <p>If all three are a success, then you should be able to visit your URL. Your URL is a combination of your selected Namespace and the application name you created.</p>
-<div class="codehilight code"><pre><span></span>http://&lt;namespace&gt;-&lt;testapp&gt;.rhcloud.com/
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>http://&lt;namespace&gt;-&lt;testapp&gt;.rhcloud.com/
+</code></pre></div>
 <p>This should show a "Welcome to Flask on OpenShift" page. If you append <code>/test</code> to your URL, you'll get a message that says "It's Alive!"</p>
 <p>If it doesn't, you can check your error logs by running:</p>
-<div class="codehilight code"><pre><span></span>rhc tail -a &lt;testapp&gt;
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>rhc tail -a &lt;testapp&gt;
+</code></pre></div>
 <h2 id="mysql-setup">MySQL setup<a class="headerlink" href="#mysql-setup" title="Permanent link">¶</a></h2>
 <p>Next, I set up my application to utilize MySQL. It's the database I have the most experience with, so I decided to keep that aspect of this project simple for myself. The first step was to add a MySQL 5.5 cartridge to my test gear (OpenShift terminology). I did this in the OpenShift web console. The UI provided me with the option to install various databases and one of those was MySQL. Clicking the link caused a few second delay as it was set up, and then I was presented with login credentials to my database. Step one...done.</p>
 <p>The next step is installing the correct Python modules to utilize MySQL. I selected <a href="http://www.pymysql.org/">PyMySQL</a> (again, experience) and <a href="http://www.sqlalchemy.org/">SQLAlchemy</a>. I added these to both <code>requirements.txt</code> and <code>setup.py</code>. The idea behind doing it in both places is to make life easy for myself in the future. Additionally, the quick tutorials I've looked at for TravisCI encourage the usage of <code>requirements.txt</code>, while it seems OpenShift uses the <code>setup.py</code>. I'll fix that eventually, but getting it set up initially, this will be fastest.</p>
 <p>Add these to <code>requirements.txt</code></p>
-<div class="codehilight code"><pre><span></span>sqlalchemy==1.0.9
+<div class="codehilight code"><pre><span></span><code>sqlalchemy==1.0.9
 pymysql==0.6.7
 Flask-SQLAlchemy==2.1
-</pre></div>
+</code></pre></div>
 <p>Add this to the <code>install_requires</code> list in <code>setup.py</code></p>
-<div class="codehilight code"><pre><span></span>'sqlalchemy==1.0.9','pymysql==0.6.7','Flask-SQLAlchemy==2.1'
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>'sqlalchemy==1.0.9','pymysql==0.6.7','Flask-SQLAlchemy==2.1'
+</code></pre></div>
 <p>The nice thing about OpenShift is that the credentials to the database are placed in <a href="https://developers.openshift.com/en/managing-environment-variables.html#database-variables">environment variables</a>, so I don't need to embed the passwords, connections strings, or anything potentially sensitive in my code. For MySQL these are available as:</p>
-<div class="codehilight code"><pre><span></span><span class="nv">Variable</span><span class="w"> </span><span class="nv">Name</span><span class="w">               </span><span class="o">|</span><span class="w">   </span><span class="nv">Purpose</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="nv">Variable</span><span class="w"> </span><span class="nv">Name</span><span class="w">               </span><span class="o">|</span><span class="w">   </span><span class="nv">Purpose</span><span class="w"></span>
 <span class="o">------------------------------------------------</span><span class="w"></span>
 <span class="nv">OPENSHIFT_MYSQL_DB_HOST</span><span class="w">     </span><span class="o">|</span><span class="w">   </span><span class="nv">The</span><span class="w"> </span><span class="nv">host</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span><span class="nv">IP</span><span class="w"> </span><span class="nv">address</span><span class="w"> </span><span class="nv">used</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">database</span>.<span class="w"></span>
 <span class="nv">OPENSHIFT_MYSQL_DB_PORT</span><span class="w">     </span><span class="o">|</span><span class="w">   </span><span class="nv">The</span><span class="w"> </span><span class="nv">port</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">database</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">listening</span><span class="w"> </span><span class="nv">on</span>.<span class="w"></span>
@@ -166,25 +311,25 @@ Flask-SQLAlchemy==2.1
 <span class="nv">OPENSHIFT_MYSQL_DB_PASSWORD</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="nv">The</span><span class="w"> </span><span class="nv">database</span><span class="w"> </span><span class="nv">administrative</span><span class="w"> </span><span class="nv">user</span>’<span class="nv">s</span><span class="w"> </span><span class="nv">password</span>.<span class="w"></span>
 <span class="nv">OPENSHIFT_MYSQL_DB_SOCKET</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="nv">An</span><span class="w"> </span><span class="nv">AF</span><span class="w"> </span><span class="nv">socket</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">connecting</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">database</span><span class="w"> </span><span class="ss">(</span><span class="k">for</span><span class="w"> </span><span class="nv">non</span><span class="o">-</span><span class="nv">scaled</span><span class="w"> </span><span class="nv">apps</span><span class="w"> </span><span class="nv">only</span><span class="ss">)</span>.<span class="w"></span>
 <span class="nv">OPENSHIFT_MYSQL_DB_URL</span><span class="w">      </span><span class="o">|</span><span class="w">   </span><span class="nv">Database</span><span class="w"> </span><span class="nv">connection</span><span class="w"> </span><span class="nv">URL</span>.<span class="w"></span>
-</pre></div>
+</code></pre></div>
 <h3 id="utilizing-the-database">Utilizing the database<a class="headerlink" href="#utilizing-the-database" title="Permanent link">¶</a></h3>
 <p>Setting up SQLAlchemy and MySQL is fairly easy. I tested this with a simple table and ensured that it appeared in the database as expected.</p>
-<div class="codehilight code"><pre><span></span><span class="k">class</span> <span class="n">User</span>(<span class="n">db</span>.<span class="n">Model</span>):
+<div class="codehilight code"><pre><span></span><code><span class="k">class</span> <span class="n">User</span>(<span class="n">db</span>.<span class="n">Model</span>):
     <span class="n">__tablename__</span> = <span class="s">'users'</span>
     <span class="nb">id</span> = <span class="n">db</span>.<span class="n">Column</span>(<span class="s">'user_id'</span>, <span class="n">db</span>.<span class="n">Integer</span>, <span class="n">primary_key</span>=<span class="nb">True</span>)
     <span class="nb">name</span> = <span class="n">db</span>.<span class="n">Column</span>(<span class="n">db</span>.<span class="n">String</span>(<span class="mi">60</span>))
-</pre></div>
+</code></pre></div>
 <p>A few adjustments were made to the import statements of the Flask application:</p>
-<div class="codehilight code"><pre><span></span><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
-</pre></div>
+<div class="codehilight code"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+</code></pre></div>
 <p>A couple variables were created and loaded:</p>
-<div class="codehilight code"><pre><span></span>app.config.from_pyfile('flaskapp.cfg')
+<div class="codehilight code"><pre><span></span><code>app.config.from_pyfile('flaskapp.cfg')
 db = SQLAlchemy(app)
-</pre></div>
+</code></pre></div>
 <p>Finally, the <code>flaskapp.cfg</code> file was modified to include these two lines:</p>
-<div class="codehilight code"><pre><span></span>SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_MYSQL_DB_URL'] + os.environ['OPENSHIFT_APP_NAME]
+<div class="codehilight code"><pre><span></span><code>SQLALCHEMY_DATABASE_URI = os.environ['OPENSHIFT_MYSQL_DB_URL'] + os.environ['OPENSHIFT_APP_NAME]
 SQLALCHEMY_ECHO = False
-</pre></div>
+</code></pre></div>
 <h3 id="remote-mysql-access">Remote MySQL Access<a class="headerlink" href="#remote-mysql-access" title="Permanent link">¶</a></h3>
 <p>I like to use <a href="https://www.mysql.com/products/workbench/">MySQL Workbench</a> while building and testing to watch what's happening in the database. To use that with OpenShift, I had to jump through a few small hoops. </p>
 <ul>
@@ -203,46 +348,46 @@ SQLALCHEMY_ECHO = False
 <p>Travis CI integrates with GitHub, so what I'm going to do in reality is push to GitHub and let Travis CI pick up the changes. From there, it will perform it's tests. If the tests pass, it will push the commit to OpenShift.</p>
 <p>On GitHub, create a new repository for your source. This is where you will be pushing your code for Travis CI to pick up.</p>
 <p>From your OpenShift directory (which is already a git repository):</p>
-<div class="codehilight code"><pre><span></span>git remote rename origin openshift
+<div class="codehilight code"><pre><span></span><code>git remote rename origin openshift
 git remote add origin https://github.com/&lt;USER&gt;/&lt;repositoryname&gt;.git
 git push -u origin master
-</pre></div>
+</code></pre></div>
 <p>This resets the origin to point to your new GitHub repository and sets up a new remote. Then it pushes the changes to GitHub.</p>
 <p>Log into your <a href="https://travis-ci.org/profile">Travis CI profile page</a>. Make sure you are logged into GitHub first, as this will create the profile automatically. Press the "Sync now" button at the top of the page to pull a list of all of your repositories. Once that is done, find the repository you just set up, and enable integration with that repository.</p>
 <p>Next you need to set up Travis CI and the <code>.travis.yml</code> file. </p>
-<div class="codehilight code"><pre><span></span>gem install travis
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>gem install travis
+</code></pre></div>
 <p>This will install a Ruby script that assists in this process. If you get an error when running this, you need to create an empty <code>.travis.yml</code> file first and then run the command again.</p>
-<div class="codehilight code"><pre><span></span>travis setup openshift
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>travis setup openshift
+</code></pre></div>
 <p>Fill out the prompts. Defaults should be fine in most cases, but do pay attention to "OpenShift application name". If your GitHub repository is named differently than your OpenShift application name, the default for this prompt will be incorrect.</p>
 <p>One last note, for a quick test you can change the <code>script</code> section to </p>
-<div class="codehilight code"><pre><span></span><span class="n">script</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-</pre></div>
+<div class="codehilight code"><pre><span></span><code><span class="n">script</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+</code></pre></div>
 <p>This forces the tests to pass. Once you've written tests, you can do something like:</p>
-<div class="codehilight code"><pre><span></span>script:
+<div class="codehilight code"><pre><span></span><code>script:
     - py.test
-</pre></div>
+</code></pre></div>
 <p>This will run your test scripts, utilizing <code>py.test</code></p>
 <p>Deploy these changes to GitHub:</p>
-<div class="codehilight code"><pre><span></span>git add .travis.yml
+<div class="codehilight code"><pre><span></span><code>git add .travis.yml
 git commit -m "Deploying Travis"
 git push origin master
-</pre></div>
+</code></pre></div>
 <p>This will commit and push the changes to GitHub. A few seconds later, if you are watching Travis CI, you'll see it notices the new commit and starts running tests. If you tests complete with a status code of <code>0</code> (successful), it will deploy the changes to OpenShift. If the tests fail (any other status code), it will not deploy to OpenShift.</p>
 <h2 id="pytest-setup">py.test setup<a class="headerlink" href="#pytest-setup" title="Permanent link">¶</a></h2>
 <p>Setting up the testing frame work involves a few Python modules. These need to be added to both <code>requirements.txt</code> and <code>setup.py</code>.</p>
-<div class="codehilight code"><pre><span></span>pytest&gt;=2.8.0
+<div class="codehilight code"><pre><span></span><code>pytest&gt;=2.8.0
 hypothesis==1.16.0
 pytest-runner==2.6.2
-</pre></div>
+</code></pre></div>
 <p>The next step is setting up some quick integration with <code>setup.py</code>, so that users can run <code>python setup.py test</code> and execute your tests.</p>
 <p>In <code>setup.py</code>, add (or edit) the <code>setup_requires</code> list to include <code>pytest-runner</code>. Add (or edit) the <code>tests_require</code> list to include <code>pytest</code>. I also added the following to my <code>setup.cfg</code></p>
-<div class="codehilight code"><pre><span></span><span class="k">[aliases]</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="k">[aliases]</span><span class="w"></span>
 <span class="na">test</span><span class="o">=</span><span class="s">pytest</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <p>I modified my <code>setup_requires</code> list a bit, so that it's conditional. Since this would install the <code>pytest-runner</code> on every call to <code>setup.py</code>, even when the module wouldn't be called, I wanted the runner to only be required when <code>pytest</code> is utilized.</p>
-<div class="codehilight code"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="codehilight code"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">needs_pytest</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'pytest'</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">,</span> <span class="s1">'ptr'</span><span class="p">}</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
 <span class="n">pytest_runner</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'pytest-runner'</span><span class="p">]</span> <span class="k">if</span> <span class="n">needs_pytest</span> <span class="k">else</span> <span class="p">[]</span>
 
@@ -251,21 +396,21 @@ pytest-runner==2.6.2
         <span class="c1">#... Other requirements here</span>
     <span class="p">]</span> <span class="o">+</span> <span class="n">pytest_runner</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
+</code></pre></div>
 <p>I wanted to test that my tests were working correctly. I created a <code>tests</code> directory, which is where I plan on storing all of my test cases. <code>pytest</code> will find any files that start or end with <code>test</code> and execute them. I created a very simple <code>test_tests.py</code> file with the following simple test (taken from the <a href="https://hypothesis.readthedocs.org/en/latest/quickstart.html#writing-tests">Hypothesis Quickstart</a>)</p>
-<div class="codehilight code"><pre><span></span><span class="nv">@given</span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">integers</span><span class="p">(),</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">integers</span><span class="p">())</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="nv">@given</span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">integers</span><span class="p">(),</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">integers</span><span class="p">())</span><span class="w"></span>
 <span class="n">def</span><span class="w"> </span><span class="n">test_ints_are_commutative</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
 <span class="w">    </span><span class="n">assert</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <p>Finally, Travis CI needs to be told what to do. Modify the <code>script</code> key to include <code>py.test</code></p>
-<div class="codehilight code"><pre><span></span>script:
+<div class="codehilight code"><pre><span></span><code>script:
    - py.test
-</pre></div>
+</code></pre></div>
 <p>After a successful run through Travis, you'll see something like this:</p>
-<div class="codehilight code"><pre><span></span>tests/test_tests.py .
+<div class="codehilight code"><pre><span></span><code>tests/test_tests.py .
 =========================== 1 passed in 0.26 seconds ===========================
 The command "py.test" exited with 0.
-</pre></div>
+</code></pre></div>
 <h2 id="custom-domain">Custom Domain<a class="headerlink" href="#custom-domain" title="Permanent link">¶</a></h2>
 <p>I have my own domain name. I want to utilize OpenShift with one of those domains, instead of the default one provided. Since I've using the free tier, that will rule out using the SSL certificate that is wildcarded to the whole <code>rhcloud.com</code> domain. I can live with this. If I need SSL on my domain, I'll upgrade.</p>
 <p>To set up OpenShift to use your domain, log into the web console. Go to the gear you are configuring. At the top, where the full domain is displayed, is the option to "Change". Select that option. Input the full domain (and subdomain) you want to utilize and click "Save". After a few seconds, you'll get a notification that the alias was created.</p>
@@ -275,77 +420,83 @@ The command "py.test" exited with 0.
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
 <p>With this, the set up is complete. You have a Flask application, connected to MySQL, that is integrated with a CI system which automatically deploys to OpenShift when all tests pass and uses CloudFlare (because I already was doing so), to provide a CDN. </p>
 <p>On to building something!</p>
-            </div>
-            <hr />
-            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
-                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html"
+    title="I'm running for moderator on Stack Overflow again">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+  <a class="btn float-right" href="https://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html"
+    title="My experiences releasing a package to PyPI">
+    Next Post <i class="fa fa-angle-right"></i>
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
              is a father, an engineer and a computer scientist. He is interested in online
             community building, tinkering with new code and building new applications.
             He writes about his experiences with each of these.</span>
 
-            </div>
-            
-            
-            <hr/>
-            <aside>
-            <nav>
-            <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html" title="Previous: I&#39;m running for moderator on Stack Overflow again">I'm running for moderator on Stack Overflow again</a></li>
-                <li class="next-article"><a href="https://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html" title="Next: My experiences releasing a package to PyPI">My experiences releasing a package to PyPI</a> »</li>
-            </ul>
-            </nav>
-            </aside>
-        </div>
-        <section>
-        <div class="span2" style="float:right;font-size:0.9em;">
-            <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2015-12-11T09:15:00-06:00">Dec 11, 2015</time>
+  </div>
 
-<h4>Last Updated</h4>
-<time datetime="2015-12-12T00:00:00-06:00">Dec 12, 2015</time>
-<time itemprop="dateModified" datetime="2015-12-12T00:00:00-06:00">
-            <h4>Category</h4>
-            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
-            <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>45</span>
-</a></li>
-            </ul>
-<h4>Contact</h4>
-    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
-    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-linkedin sidebar-social-links"></i></a>
-        </div>
-        </section>
-</div>
+
 </article>
-                </div>
-                <div class="span1"></div>
-            </div>
-        </div>
-        <div id="push"></div>
-    </div>
-<footer>
-<div id="footer">
-    <ul class="footer-content">
-    </ul>
-</div>
-</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-        <script>
-            function validateForm(query)
-            {
-                return (query.length > 0);
-            }
-        </script>
 
-    
-    </body>
-    <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "How I built a Flask application that integrates with Travis CI and OpenShift",
+  "headline": "How I built a Flask application that integrates with Travis CI and OpenShift",
+  "dateCreated": "2015-12-11 09:15:00-06:00",
+  "datePublished": "2015-12-11 09:15:00-06:00",
+  "dateModified": "2015-12-12 00:00:00-06:00",
+  "copyrightYear": "2015",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html",
+  "description": "A walkthrough on how I set up a Flask application on OpenShift and used TravisCI to deploy it",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2022 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": ""
+}
+</script>
+</body>
+
 </html>

@@ -1,180 +1,258 @@
+
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Andy Wegner" />
+<html lang="en">
 
-        <meta property="og:type" content="article" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="Can that be automated?"/>
-<meta name="twitter:title" content="Can that be automated?">
-<meta property="og:url" content="https://andrewwegner.com" />
-<meta property="og:site_name" content="Ponderings of an Andy" />
-<meta property="og:article:author" content="Andy Wegner" />
-        <title>Ponderings of an Andy
-</title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
-        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+
+
+  <meta name="robots" content="" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
 
 <script type="text/javascript">
-    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
-      heap.load("653100411");
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
 </script>
-    </head>
-    <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://andrewwegner.com">Home</a></li>
-                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
-                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
-                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<div class="row-fluid">
-    <header class="page-header span12">
-    <h1><a href="https://andrewwegner.com">Can that be automated?</a></h1>
-    </header>
 
-    <div class="row-fluid">
-        <div class="span8">
-            <header>
-            <h1 id="about-me">About me</h1>
-            </header>
-            <div class="article-content">
-                <div itemscope itemtype="https://schema.org/Person"><p>My name
-        is <span itemprop="name">Andy Wegner</span>. </p><p>I am the Director of Engineering at a small company leading a
-        team of developers helping to improve the hiring process for other developers.
-        I've also worked as VP of Software Engineering at a telecommunications company and as an individual contributor at a large manuafacturing company.
-        I've built global teams of engineers and delivered solutions that impact customers worldwide.
-        I've personally built software that covers much every aspect of a product's lifecycle in multiple industries.</p>
-        <p>I was the community owner of Team Vipers for 5 years. Vipers was a gaming community, focused mainly around
-        Team Fortress 2, but we dabbled in other games for brief periods of time. I helped the community prosper. I also
-        built a lot of software to help me in managing the community. </p>
-        <p>I am an elected Moderator on <a href="https://stackoverflow.com/users/189134/andy">Stack Overflow</a> and participate across the rest of the
-        Stack Exchange network. I moderate <a href="https://communitybuilding.stackexchange.com/">Community Building</a> and
-        <a href="https://hardwarerecs.stackexchange.com/">Hardware Recommendations</a> as well. I've also
-        built a few tools to help keep the low quality content off the Stack Exchange network.</p></div>
-            </div>
-        </div>
 
-        <div class="span4">
-            <header>
-            <h1 id="my-projects">My Projects</h1>
-            </header>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/AWegnerGitHub/stackapi" title="StackAPI">StackAPI</a> <span class="proj-desc">A Python wrapper for the Stack Exchange API.</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot" title="Zephyr - Vote Request Bot">Zephyr - Vote Request Bot</a> <span class="proj-desc">Zephyr is a headless chatbot that monitors chat rooms on the Stack Exchange network for vote requests from other users and posts them to a specified room.</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/AWegnerGitHub/IRVING" title="IRVING">IRVING</a> <span class="proj-desc">IRVING is a system built to integrate directly with end user systems. Users know their data and they know the conditions that are abnormal and worth monitoring. IRVING allows users to set up a customized dashboard to monitor their important data points through multiple systems.</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source" title="AndrewWegner.com">AndrewWegner.com</a> <span class="proj-desc">The source for this blog</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins" title="Team Vipers Game Server Plugins">Team Vipers Game Server Plugins</a> <span class="proj-desc">Custom SourceMod plugins built for the Team Vipers community</span>
-                </li>
-            </ul>
-        </div>
-    </div>
+  <meta name="author" content="Andy Wegner" />
+  <meta name="description" content="" />
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:title" content="Ponderings of an Andy"/>
+  <meta property="og:description" content=""/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
 
-    <div class="row-fluid">
-        <div class="span12">
-            <header>
-            <h1 id="recent-posts">Recent Posts <a id="allposts" href="https://andrewwegner.com/archives.html">all posts</a></h1>
-            </header>
-        <div class="recent-posts">
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">Can a machine be taught to flag spam automatically</a>  <small> <p>Description of how a group of people helped completely eliminate spam on the Stack Exchange network</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#programming-projects-ref">Programming Projects</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2017-02-19T22:51:00-06:00">Sun 19 February 2017</time>
-                <meta itemprop="headline" content="Can a machine be taught to flag spam automatically" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html">Zephyr - The bot that watches for low quality vote requests</a>  <small> <p>Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#programming-projects-ref">Programming Projects</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2015-03-12T23:34:00-05:00">Thu 12 March 2015</time>
-                <meta itemprop="headline" content="Zephyr - The bot that watches for low quality vote requests" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html">Can a machine be taught to flag comments automatically</a>  <small> <p>Description of how I automatically flag comments on Stack Overflow</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#programming-projects-ref">Programming Projects</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2015-01-02T08:47:00-06:00">Fri 02 January 2015</time>
-                <meta itemprop="headline" content="Can a machine be taught to flag comments automatically" />
-                </div>
-                </section>
-            </article>
-        </div>
-        </div>
-    </div>
-</div>
-                </div>
-                <div class="span1"></div>
-            </div>
-        </div>
-        <div id="push"></div>
-    </div>
-<footer>
-<div id="footer">
-    <ul class="footer-content">
+  <title> Category Programming Projects · Ponderings of an Andy</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
     </ul>
-</div>
-</footer>        <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-        <script>
-            function validateForm(query)
-            {
-                return (query.length > 0);
-            }
-        </script>
-    </body>
-    <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+  </div>
+
+</aside>
+  <main>
+
+<article>
+  <header>
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/programming-projects.html">Programming Projects</a>
+        </li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/programming-projects.html",
+      "name": "Programming Projects"
+    }
+  }
+  ]
+}
+</script>  </header>
+</article>
+<h2 class="center-header">Recent Posts</h2>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">Can a machine be taught to flag spam automatically</a></h2>
+    <p>
+      Posted on Sun 19 February 2017 in <a href="https://andrewwegner.com/category/programming-projects.html">Programming Projects</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/stack-exchange.html">Stack Exchange</a>,      <a href="https://andrewwegner.com/tag/machine-learning.html">machine learning</a>,      <a href="https://andrewwegner.com/tag/automation.html">automation</a>,      <a href="https://andrewwegner.com/tag/programming.html">programming</a>
+    </p>
+  </header>
+  <div>
+    <div><p>Description of how a group of people helped completely eliminate spam on the Stack Exchange network</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html">Zephyr - The bot that watches for low quality vote requests</a></h2>
+    <p>
+      Posted on Thu 12 March 2015 in <a href="https://andrewwegner.com/category/programming-projects.html">Programming Projects</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/stack-exchange.html">Stack Exchange</a>,      <a href="https://andrewwegner.com/tag/automation.html">automation</a>,      <a href="https://andrewwegner.com/tag/programming.html">programming</a>
+    </p>
+  </header>
+  <div>
+    <div><p>Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html">Can a machine be taught to flag comments automatically</a></h2>
+    <p>
+      Posted on Fri 02 January 2015 in <a href="https://andrewwegner.com/category/programming-projects.html">Programming Projects</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/stack-exchange.html">Stack Exchange</a>,      <a href="https://andrewwegner.com/tag/machine-learning.html">machine learning</a>,      <a href="https://andrewwegner.com/tag/automation.html">automation</a>,      <a href="https://andrewwegner.com/tag/programming.html">programming</a>
+    </p>
+  </header>
+  <div>
+    <div><p>Description of how I automatically flag comments on Stack Overflow</p></div>
+  </div>
+</article>
+
+  <div class="pagination">
+  </div>
+
+
+<footer>
+<p>&copy; 2022 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": ""
+}
+</script>
+</body>
+
 </html>

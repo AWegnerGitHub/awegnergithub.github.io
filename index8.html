@@ -1,75 +1,155 @@
+
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Andy Wegner" />
+<html lang="en">
 
-        <meta property="og:type" content="article" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="Can that be automated?"/>
-<meta name="twitter:title" content="Can that be automated?">
-<meta property="og:url" content="https://andrewwegner.com" />
-<meta property="og:site_name" content="Ponderings of an Andy" />
-<meta property="og:article:author" content="Andy Wegner" />
-        <title>Ponderings of an Andy
-</title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
-        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+
+
+  <meta name="robots" content="" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
 
 <script type="text/javascript">
-    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
-      heap.load("653100411");
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
 </script>
-    </head>
-    <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li  class="active"><a href="https://andrewwegner.com">Home</a></li>
-                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
-                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
-                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<div class="row-fluid">
-    <header class="page-header span12">
-    <h1><a href="https://andrewwegner.com">Can that be automated?</a></h1>
-    </header>
 
-    <div class="row-fluid">
-        <div class="span8">
-            <header>
-            <h1 id="about-me">About me</h1>
-            </header>
-            <div class="article-content">
-                <div itemscope itemtype="https://schema.org/Person"><p>My name
-        is <span itemprop="name">Andy Wegner</span>. </p><p>I am the Director of Engineering at a small company leading a
-        team of developers helping to improve the hiring process for other developers.
-        I've also worked as VP of Software Engineering at a telecommunications company and as an individual contributor at a large manuafacturing company.
+
+  <meta name="author" content="Andy Wegner" />
+  <meta name="description" content="" />
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:title" content="Ponderings of an Andy"/>
+  <meta property="og:description" content=""/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Ponderings of an Andy</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<header>
+  <h1 class="center-header" id="about-me-header">Who am I?</h1>
+</header>
+<div id="about-me" class="article-content">
+  <div><p>My name
+        is <span class="itsme">Andy Wegner</span>.</p><p>I lead, grow and mentor engineering teams in many industries. 
+        I've worked as VP of Software Engineering at a telecommunications company, Director of Engineering at a transportation
+        logistics company and at a company working to improve the hiring process for engineers. I've been an individual contributor 
+        at a large manuafacturing company.
         I've built global teams of engineers and delivered solutions that impact customers worldwide.
         I've personally built software that covers much every aspect of a product's lifecycle in multiple industries.</p>
         <p>I was the community owner of Team Vipers for 5 years. Vipers was a gaming community, focused mainly around
@@ -79,172 +159,183 @@
         Stack Exchange network. I moderate <a href="https://communitybuilding.stackexchange.com/">Community Building</a> and
         <a href="https://hardwarerecs.stackexchange.com/">Hardware Recommendations</a> as well. I've also
         built a few tools to help keep the low quality content off the Stack Exchange network.</p></div>
-            </div>
-        </div>
-
-        <div class="span4">
-            <header>
-            <h1 id="my-projects">My Projects</h1>
-            </header>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/AWegnerGitHub/stackapi" title="StackAPI">StackAPI</a> <span class="proj-desc">A Python wrapper for the Stack Exchange API.</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot" title="Zephyr - Vote Request Bot">Zephyr - Vote Request Bot</a> <span class="proj-desc">Zephyr is a headless chatbot that monitors chat rooms on the Stack Exchange network for vote requests from other users and posts them to a specified room.</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/AWegnerGitHub/IRVING" title="IRVING">IRVING</a> <span class="proj-desc">IRVING is a system built to integrate directly with end user systems. Users know their data and they know the conditions that are abnormal and worth monitoring. IRVING allows users to set up a customized dashboard to monitor their important data points through multiple systems.</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source" title="AndrewWegner.com">AndrewWegner.com</a> <span class="proj-desc">The source for this blog</span>
-                </li>
-            </ul>
-            <ul class="list-all-articles">
-                <li>
-                <a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins" title="Team Vipers Game Server Plugins">Team Vipers Game Server Plugins</a> <span class="proj-desc">Custom SourceMod plugins built for the Team Vipers community</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="row-fluid">
-        <div class="span12">
-            <header>
-            <h1 id="recent-posts">Recent Posts <a id="allposts" href="https://andrewwegner.com/archives.html">all posts</a></h1>
-            </header>
-        <div class="recent-posts">
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/job-search-rejections.html">Talking about rejection in job searches</a>  <small> <p>Rejection is part of the job search. But, it's done so poorly that candidates have awful experiences. What does a current job search look like?</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#jobs-ref">Jobs</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2022-10-24T12:45:00-05:00">Mon 24 October 2022</time>
-                <meta itemprop="headline" content="Talking about rejection in job searches" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html">Review of Unreal Engine 5 Beginners Guide to Building an Environment</a>  <small> <p>My review of the Unreal Engine 5 Beginners Guide to Building an Environment Udemy course</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#review-ref">Review</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2022-10-18T23:00:00-05:00">Tue 18 October 2022</time>
-                <meta itemprop="headline" content="Review of Unreal Engine 5 Beginners Guide to Building an Environment" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/ue5-complete-beginners-course.html">Review of Unreal Engine 5: The Complete Beginner's Course</a>  <small> <p>My review of the Unreal Engine 5: The Complete Beginner's Course Udemy course</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#review-ref">Review</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2022-10-03T10:00:00-05:00">Mon 03 October 2022</time>
-                <meta itemprop="headline" content="Review of Unreal Engine 5: The Complete Beginner&#39;s Course" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html">Review of Unreal Engine 5 - Realistic Environment Design for Beginners course</a>  <small> <p>My review of the Unreal Engine 5 - Realistic Environment Design for Beginners Udemy course</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#review-ref">Review</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2022-09-20T11:45:00-05:00">Tue 20 September 2022</time>
-                <meta itemprop="headline" content="Review of Unreal Engine 5 - Realistic Environment Design for Beginners course" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/upload-resume-reenter-resume.html">Upload your resume, then re-enter it to apply for this job</a>  <small> <p>Talking through my current role search - How often do I need to re-enter my resume information after uploading?</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#jobs-ref">Jobs</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2022-09-13T08:45:00-05:00">Tue 13 September 2022</time>
-                <meta itemprop="headline" content="Upload your resume, then re-enter it to apply for this job" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/what-job-source-uses-which-ats.html">What Job Source is using which ATS?</a>  <small> <p>Talking through my current role search - Which Job Source is using which ATS?</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#jobs-ref">Jobs</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2022-09-06T08:00:00-05:00">Tue 06 September 2022</time>
-                <meta itemprop="headline" content="What Job Source is using which ATS?" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/golang-complete-developer-guide-review.html">Review of Go: The Complete Developer's Guide (Golang) course</a>  <small> <p>My review of The Complete Developer's guide course for Golang</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#review-ref">Review</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2022-08-28T12:00:00-05:00">Sun 28 August 2022</time>
-                <meta itemprop="headline" content="Review of Go: The Complete Developer&#39;s Guide (Golang) course" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/looking-for-new-role.html">I am looking for an engineering leadership role</a>  <small> <p>After a recent layoff, I'm looking for a new role</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#jobs-ref">Jobs</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2022-08-18T08:00:00-05:00">Thu 18 August 2022</time>
-                <meta itemprop="headline" content="I am looking for an engineering leadership role" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/top-soft-skills-senior-developers-need.html">10 Soft Skills to Look For in Senior Software Developers</a>  <small> <p>My thoughts on the top soft skills senior software developers need to be successful, republished from Woven</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#jobs-ref">Jobs</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2022-06-26T09:00:00-05:00">Sun 26 June 2022</time>
-                <meta itemprop="headline" content="10 Soft Skills to Look For in Senior Software Developers" />
-                </div>
-                </section>
-            </article>
-            <article itemscope itemtype="https://schema.org/Blog">
-                <a href="https://andrewwegner.com/time-gas-saved-with-remote-work.html">Time and Gas saved by switching to remote work</a>  <small> <p>Nearing 5 years of full time remote, a look back on what this has saved me in terms of time commuting and gas</p> </small>                 <section>
-                    posted in
-                <a href="https://andrewwegner.com/categories.html#jobs-ref">Jobs</a>
-                <div class="recent-posts-time">
-                <time itemprop="dateCreated" datetime="2022-06-12T01:00:00-05:00">Sun 12 June 2022</time>
-                <meta itemprop="headline" content="Time and Gas saved by switching to remote work" />
-                </div>
-                </section>
-            </article>
-        </div>
-        </div>
-    </div>
 </div>
-                </div>
-                <div class="span1"></div>
-            </div>
-        </div>
-        <div id="push"></div>
-    </div>
+<hr />
+<h2 class="center-header">Recent Posts</h2>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html">Zephyr - The bot that watches for low quality vote requests</a></h2>
+    <p>
+      Posted on Thu 12 March 2015 in <a href="https://andrewwegner.com/category/programming-projects.html">Programming Projects</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/stack-exchange.html">Stack Exchange</a>,      <a href="https://andrewwegner.com/tag/automation.html">automation</a>,      <a href="https://andrewwegner.com/tag/programming.html">programming</a>
+    </p>
+  </header>
+  <div>
+    <div><p>Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/thanks-for-all-the-fish.html">Thanks for all the fish</a></h2>
+    <p>
+      Posted on Thu 08 January 2015 in <a href="https://andrewwegner.com/category/vipers.html">Vipers</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/team-vipers.html">team vipers</a>
+    </p>
+  </header>
+  <div>
+    <div><p>Good bye, Team Vipers, it's been a great 6 years</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html">Can a machine be taught to flag comments automatically</a></h2>
+    <p>
+      Posted on Fri 02 January 2015 in <a href="https://andrewwegner.com/category/programming-projects.html">Programming Projects</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/stack-exchange.html">Stack Exchange</a>,      <a href="https://andrewwegner.com/tag/machine-learning.html">machine learning</a>,      <a href="https://andrewwegner.com/tag/automation.html">automation</a>,      <a href="https://andrewwegner.com/tag/programming.html">programming</a>
+    </p>
+  </header>
+  <div>
+    <div><p>Description of how I automatically flag comments on Stack Overflow</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/moderation-postion-on-moderators.html">Moderation postion on Moderators</a></h2>
+    <p>
+      Posted on Wed 02 July 2014 in <a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/stack-exchange.html">Stack Exchange</a>,      <a href="https://andrewwegner.com/tag/moderation.html">moderation</a>
+    </p>
+  </header>
+  <div>
+    <div><p>I've thrown my hat into the ring for a moderation position on Stack Exchange's newest site: Moderators</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/how-to-appeal-a-ban-effectively.html">How to appeal a ban effectively</a></h2>
+    <p>
+      Posted on Tue 22 April 2014 in <a href="https://andrewwegner.com/category/vipers.html">Vipers</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/team-vipers.html">team vipers</a>,      <a href="https://andrewwegner.com/tag/moderation.html">moderation</a>
+    </p>
+  </header>
+  <div>
+    <div><p>Following up on last week's post about improper ways to appeal, this post shows effective appeals and why they worked</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/how-not-to-appeal-a-ban.html">How NOT to appeal a ban</a></h2>
+    <p>
+      Posted on Mon 14 April 2014 in <a href="https://andrewwegner.com/category/vipers.html">Vipers</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/team-vipers.html">team vipers</a>,      <a href="https://andrewwegner.com/tag/moderation.html">moderation</a>
+    </p>
+  </header>
+  <div>
+    <div><p>I'm reasonable. The other Vipers admins are reasonable. We'll listen to your ban appeal, unless you do some of this...</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/mann-vs-vipers-beaten.html">Mann Vs Vipers Beaten!</a></h2>
+    <p>
+      Posted on Thu 05 December 2013 in <a href="https://andrewwegner.com/category/vipers.html">Vipers</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/team-vipers.html">team vipers</a>,      <a href="https://andrewwegner.com/tag/community.html">community</a>
+    </p>
+  </header>
+  <div>
+    <div><p>It took months and endless hours of trying, but it's been done. Wave 9 has been beaten.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html">I had a secret addiction to the TF2 idling economy but I'm better now (honest)</a></h2>
+    <p>
+      Posted on Tue 13 August 2013 in <a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/automation.html">automation</a>,      <a href="https://andrewwegner.com/tag/programming.html">programming</a>,      <a href="https://andrewwegner.com/tag/gaming.html">gaming</a>
+    </p>
+  </header>
+  <div>
+    <div><p>Hi everyone, I'm Andy, and I used to idle.</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/give-some-refined-win-some-prizes.html">Give some refined, Win some prizes</a></h2>
+    <p>
+      Posted on Mon 25 February 2013 in <a href="https://andrewwegner.com/category/vipers.html">Vipers</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/team-vipers.html">team vipers</a>,      <a href="https://andrewwegner.com/tag/automation.html">automation</a>,      <a href="https://andrewwegner.com/tag/community.html">community</a>,      <a href="https://andrewwegner.com/tag/programming.html">programming</a>
+    </p>
+  </header>
+  <div>
+    <div><p>The new raffle bot is introduced to the community</p></div>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://andrewwegner.com/homing-projectiles-are-awesome!.html">Homing projectiles are awesome!</a></h2>
+    <p>
+      Posted on Sat 30 June 2012 in <a href="https://andrewwegner.com/category/vipers.html">Vipers</a>
+
+      &#8226; Tagged with
+      <a href="https://andrewwegner.com/tag/team-vipers.html">team vipers</a>,      <a href="https://andrewwegner.com/tag/programming.html">programming</a>
+    </p>
+  </header>
+  <div>
+    <div><p>Pyro is an under utilized class on the Crit server. This post explains how I've fixed that.</p></div>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn float-left" href="https://andrewwegner.com/index9.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+    <a class="btn float-right" href="https://andrewwegner.com/index7.html">
+      Newer Posts <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-    </ul>
-</div>
-</footer>        <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-        <script>
-            function validateForm(query)
-            {
-                return (query.length > 0);
-            }
-        </script>
-    </body>
-    <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+<p>&copy; 2022 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": ""
+}
+</script>
+</body>
+
 </html>

@@ -1,82 +1,122 @@
+
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Andy Wegner" />
+<html lang="en">
 
-        <meta property="og:type" content="article" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta name="keywords" content="technical, Pelican, Technical Solutions, " />
 
-<meta property="og:title" content="Autobuild and Deploy this Pelican Blog "/>
-<meta property="og:url" content="https://andrewwegner.com/autobuild-pelican-blog.html" />
-<meta property="og:description" content="It&#39;s time to automate the deployment of this Pelican blog. This is a walkthrough of how I set it up." />
-<meta property="og:site_name" content="Ponderings of an Andy" />
-<meta property="og:article:author" content="Andy Wegner" />
-<meta property="og:article:published_time" content="2018-11-15T08:30:00-06:00" />
-<meta name="twitter:title" content="Autobuild and Deploy this Pelican Blog ">
-<meta name="twitter:description" content="It&#39;s time to automate the deployment of this Pelican blog. This is a walkthrough of how I set it up.">
+  <link rel="canonical" href="https://andrewwegner.com/autobuild-pelican-blog.html" />
 
-        <title>Autobuild and Deploy this Pelican Blog  · Ponderings of an Andy
-</title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/custom.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/css/keys.css" media="screen">
-        <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy - Full Atom Feed" />
+  <meta name="robots" content="" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
 
 <script type="text/javascript">
-    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
-      heap.load("653100411");
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
 </script>
-    </head>
-    <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://andrewwegner.com/"><span class=site-name>Ponderings of an Andy</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://andrewwegner.com">Home</a></li>
-                            <li ><a href="https://andrewwegner.com/categories.html">Categories</a></li>
-                            <li ><a href="https://andrewwegner.com/tags.html">Tags</a></li>
-                            <li ><a href="https://andrewwegner.com/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://andrewwegner.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article itemscope itemtype="https://schema.org/BlogPosting">
-<meta itemprop="headline" content="Autobuild and Deploy this Pelican Blog" />
-<time itemprop="datePublished" datetime="2018-11-15T08:30:00-06:00">
-<meta itemprop="publisher" content="Andy Wegner" />
-<link rel="canonical" href="https://andrewwegner.com/autobuild-pelican-blog.html" />
-<div class="row-fluid">
-    <header class="page-header span10 offset2">
-    <h1><a href="https://andrewwegner.com/autobuild-pelican-blog.html"> Autobuild and Deploy this Pelican Blog  </a></h1>
-    </header>
-</div>
 
-<div class="row-fluid" id="table-of-contents">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="toc">
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="It&#39;s time to automate the deployment of this Pelican blog. This is a walkthrough of how I set it up." />
+<meta name="keywords" content="technical, Pelican">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Autobuild and Deploy this Pelican Blog"/>
+  <meta property="og:description" content="It&#39;s time to automate the deployment of this Pelican blog. This is a walkthrough of how I set it up."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/autobuild-pelican-blog.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2018-11-15 08:30:00-06:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/author/andy-wegner.html">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="article:tag" content="Pelican"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Autobuild and Deploy this Pelican Blog  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h1>Article Contents</h1>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#previously-on-this-blog">Previously on this blog</a></li>
@@ -97,13 +137,120 @@
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
+    </nav>
 
-            
-            <div itemprop="articleBody mainEntityOfPage">
-            
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/autobuild-pelican-blog.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Autobuild and Deploy this Pelican Blog</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/autobuild-pelican-blog.html",
+      "name": "https://andrewwegner.com/autobuild-pelican-blog.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="autobuild-pelican-blog">Autobuild and Deploy this Pelican Blog</h1>
+    <p>
+      Posted on Thu 15 November 2018 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+        <a href="https://andrewwegner.com/tag/pelican.html">Pelican</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
 <p>Several years ago, I <a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html">migrated from Wordpress to Pelican</a> for this blog. I set it up to <a href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html">run on GitHub Pages</a>. I've
 been happy with that set up. I can modify my template as needed (which is infrequent), I can publish a post relatively easily
@@ -116,8 +263,8 @@ eliminate the need for me to perform the second step.</p>
 environment, there was also my local theme and a clone of the <a href="https://github.com/getpelican/pelican-plugins">Pelican plugins repository</a>, but I never formalized these
 into curated repositories. The generated HTML was a submodule of the source repository and was placed in the <code>output</code>
 directory. I used the following command to generate HTML each time I created a new post</p>
-<div class="codehilight code"><pre><span></span>pelican content --output output --settings publishconf.py
-</pre></div>
+<div class="codehilight code"><pre><span></span><code>pelican content --output output --settings publishconf.py
+</code></pre></div>
 <p>Using my settings, this would generate my HTML in the output directory. After this was generated, I'd push the content repository
 which had a <code>.gitignore</code> rule to ignore the <code>output</code> directory, and then I'd push the output directory.</p>
 <p>With all of this, I had a <code>requirements.txt</code> document so that I could theoretically generate a post from anywhere, but I failed to keep
@@ -194,8 +341,8 @@ an associated Travis CI email address. Change these as you wish. I didn't want t
 I did versus which ones were done automatically. The old commits in my name vs. the new automated commits look like this in GitHub.</p>
 <p><img alt="Blog commit differences" src="https://andrewwegner.com/images/build_blog_github_commits.png"/></p>
 <p>Another important line of code is this one in the deploy script:</p>
-<div class="codehilight code"><pre><span></span><span class="n">git</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="o">-</span><span class="n">fq</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="nl">GH_USERNAME</span><span class="p">:</span><span class="err">$</span><span class="n">GITHUB_API_KEY</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="err">$</span><span class="n">TARGET_REPO</span><span class="w"> </span><span class="o">&amp;&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="k">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">exit</span><span class="w"> </span><span class="err">$</span><span class="vm">?</span><span class="w"></span>
-</pre></div>
+<div class="codehilight code"><pre><span></span><code><span class="n">git</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="o">-</span><span class="n">fq</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="nl">GH_USERNAME</span><span class="p">:</span><span class="err">$</span><span class="n">GITHUB_API_KEY</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="err">$</span><span class="n">TARGET_REPO</span><span class="w"> </span><span class="o">&amp;&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="k">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">exit</span><span class="w"> </span><span class="err">$</span><span class="vm">?</span><span class="w"></span>
+</code></pre></div>
 <p>This line pushes the generated site to the appropriate repository using the <code>GITHUB_API_KEY</code> we previously generated and told
 Travis CI about. It also sends all output of this command to <code>/dev/null</code> so that the secure key won't show up in the build log. If
 this isn't done, Travis CI will print out the command and may or may not properly obscure it (see my previous warning, above).</p>
@@ -210,7 +357,7 @@ no reason this blog wouldn't generate against 3.6 or 3.7. I'm pretty sure all of
 right now too.</p>
 <p>It will only build when I commit to the <code>master</code> branch. I don't use other branches right now, but if I ever do, they won't trigger a build.</p>
 <p>The important bits are in the <code>before_script</code> and <code>script</code> sections.</p>
-<div class="codehilight code"><pre><span></span>before_script:
+<div class="codehilight code"><pre><span></span><code>before_script:
   - git clone https://github.com/AWegnerGithub/awegnergithub.github.io-source.git source
   - mkdir source/content
   - rsync -av --progress ./* source/content --exclude source
@@ -219,20 +366,20 @@ right now too.</p>
   - pip install -r requirements.txt
 script:
   - pelican content --output output --settings publishconf.py --verbose
-</pre></div>
+</code></pre></div>
 <p>In <code>before_script</code>, I clone my <code>source</code> repository containing all my Pelican settings into the <code>source</code> directory. Next, I add a <code>content</code>
 directory into this newly created <code>source</code> directory. I <code>rsync</code> my content to this directory and exclude <code>source</code> because you can't
 recursively copy a directory into itself.</p>
 <p>Then, I get my dependancies installed. I update <code>pip</code> and install my <code>requirements.txt</code>. Finally, I execute the same <code>pelican</code> command I
 previously used and add on the <code>verbose</code> flag, just in case I need to troubleshoot a failed build.</p>
 <p>Deployment is done via the <code>deploy</code> block, but all it is doing is calling my <code>deploy.sh</code> script that I covered above.</p>
-<div class="codehilight code"><pre><span></span><span class="n">deploy</span><span class="o">:</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">deploy</span><span class="o">:</span><span class="w"></span>
 <span class="w">  </span><span class="n">provider</span><span class="o">:</span><span class="w"> </span><span class="n">script</span><span class="w"></span>
 <span class="w">  </span><span class="n">skip_cleanup</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
 <span class="w">  </span><span class="n">script</span><span class="o">:</span><span class="w"> </span><span class="n">bash</span><span class="w"> </span><span class="n">deploy</span><span class="o">.</span><span class="na">sh</span><span class="w"></span>
 <span class="w">  </span><span class="n">on</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="n">branch</span><span class="o">:</span><span class="w"> </span><span class="n">master</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <p><code>skip_cleanup</code> is important to leave as <code>true</code> so that the output from the <code>script</code> block isn't cleaned up before we deploy.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
 <p>This post should be the first one that is automatically deployed. I'm sure there are improvements I can and will make to my
@@ -248,78 +395,83 @@ automation!</p>
 goal and one that I've investigated off and on over the past three years. Since I host everything via GitHub Pages and
 don't have a database, comments would probably need to be done via GitHub comments somehow. I have ideas, but haven't started
 testing any of those yet. This split will make it easier, I think, when or if I investigate further.</p>
-            </div>
-            <hr />
-            <div itemprop="author creator" itemscope itemtype="https://schema.org/Person">
-                    <span class="author_blurb"><a itemprop="url" href="https://andrewwegner.com/" rel="author"><span class="author_name" itemprop="name">Andy Wegner</span></a> -
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/docker-swarm-beginner-advanced.html"
+    title="Review of Udemy's Docker Swarm: Beginner + Advanced">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+  <a class="btn float-right" href="https://andrewwegner.com/sanic-webframework-review.html"
+    title="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course">
+    Next Post <i class="fa fa-angle-right"></i>
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
              is a father, an engineer and a computer scientist. He is interested in online
             community building, tinkering with new code and building new applications.
             He writes about his experiences with each of these.</span>
 
-            </div>
-            
-            
-            <hr/>
-            <aside>
-            <nav>
-            <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html" title="Previous: Review of Udemy&#39;s Docker Swarm: Beginner + Advanced">Review of Udemy's Docker Swarm: Beginner + Advanced</a></li>
-                <li class="next-article"><a href="https://andrewwegner.com/sanic-webframework-review.html" title="Next: Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course">Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course</a> »</li>
-            </ul>
-            </nav>
-            </aside>
-        </div>
-        <section>
-        <div class="span2" style="float:right;font-size:0.9em;">
-            <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2018-11-15T08:30:00-06:00">Nov 15, 2018</time>
-<time itemprop="dateModified" datetime="2018-11-15T08:30:00-06:00">
+  </div>
 
-            <h4>Category</h4>
-            <a class="category-link" href="https://andrewwegner.com/categories.html#technical-solutions-ref">Technical Solutions</a>
-            <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="https://andrewwegner.com/tags.html#pelican-ref">Pelican
-                    <span>3</span>
-</a></li>
-                <li><a href="https://andrewwegner.com/tags.html#technical-ref">technical
-                    <span>45</span>
-</a></li>
-            </ul>
-<h4>Contact</h4>
-    <a href="https://stackoverflow.com/users/189134/andy" title="My Stack Overflow Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-stack-overflow sidebar-social-links"></i></a>
-    <a href="http://steamcommunity.com/id/InsaneMosquito/" title="My Steam Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-steam-square sidebar-social-links"></i></a>
-    <a href="https://www.linkedin.com/in/andrew-wegner/" title="My LinkedIn Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-linkedin sidebar-social-links"></i></a>
-        </div>
-        </section>
-</div>
+
 </article>
-                </div>
-                <div class="span1"></div>
-            </div>
-        </div>
-        <div id="push"></div>
-    </div>
-<footer>
-<div id="footer">
-    <ul class="footer-content">
-    </ul>
-</div>
-</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="https://use.fontawesome.com/e4a49a2d36.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-        <script>
-            function validateForm(query)
-            {
-                return (query.length > 0);
-            }
-        </script>
 
-    
-    </body>
-    <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Autobuild and Deploy this Pelican Blog",
+  "headline": "Autobuild and Deploy this Pelican Blog",
+  "dateCreated": "2018-11-15 08:30:00-06:00",
+  "datePublished": "2018-11-15 08:30:00-06:00",
+  "dateModified": "",
+  "copyrightYear": "2018",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/autobuild-pelican-blog.html",
+  "description": "It's time to automate the deployment of this Pelican blog. This is a walkthrough of how I set it up.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2022 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": ""
+}
+</script>
+</body>
+
 </html>
