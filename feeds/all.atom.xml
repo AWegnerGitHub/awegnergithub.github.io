@@ -37,7 +37,7 @@ Review microdata for years. My blog posts have been sporting Article microdata. 
 update to utilize JSON+LD and provide even more context to the topics I write about. &lt;/p&gt;
 &lt;p&gt;Initially, I selected Flex because it claims to support Rich Snippets. My results on that are fuzzy, at best. The snippets provided are not full
 rich snippets. However, they provided a great base. I've updated my instance to support JSON+LD for Person (click view source on my 
-&lt;a href="{page}about"&gt;About Me&lt;/a&gt; to see it), Article, Review and Breadcrumbs (see the navigation bar at the top of this page). Search engines use all 
+&lt;a href="about"&gt;About Me&lt;/a&gt; to see it), Article, Review and Breadcrumbs (see the navigation bar at the top of this page). Search engines use all 
 of that to get a better idea of what's on the site. I have a few more I want to implement too, but this gets me beyond parity with my old theme. &lt;/p&gt;
 &lt;p&gt;I've also made sure that canonical links are included in my articles. I have a couple that Google sees as duplicates due to UTM tags I stuck on
 links a while ago. Having cononical links in place should resolve some annoying errors and warnings I see in my search console.&lt;/p&gt;
