@@ -1,5 +1,3 @@
 # robotstxt.org/
 Sitemap: https://andrewwegner.com/sitemap.xml
 User-agent: *
-Disallow: /category/*
-Disallow: /tag/*
