@@ -373,7 +373,6 @@ it have more room to grow and less competition.</p>
 </script>
 
 
-
 <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
@@ -391,9 +390,29 @@ it have more room to grow and less competition.</p>
         "url": "https://andrewwegner.com"
       },
       "itemReviewed": {
-        "@type": "Thing",
+        "@type": "Product",
         "name": "Rise Gardens",
         "description": "Rise Gardens"
+        ,
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "8.5",
+            "bestRating": "10"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Andy Wegner",
+            "sameAs": [
+              "https://www.andrewwegner.com/about/"
+              ],
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://www.andrewwegner.com/about/"
+              }
+          }
+        }
       },
       "reviewRating": {
         "@type": "Rating",
@@ -422,8 +441,8 @@ it have more room to grow and less competition.</p>
       },
       "provider": {
         "@type": "Organization",
-        "name": "Udemy",
-        "sameAs": "https://www.udemy.com/"
+        "name": "Rise Gardens",
+        "sameAs": "https://risegardens.com/"
       },
       "mainEntityOfPage": "True"
     }
