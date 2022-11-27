@@ -98,7 +98,7 @@
           <a target="_self" href="/">Home</a>
         </li>
         <li>
-          <a target="_self" href="/about">About Me</a>
+          <a target="_self" href="/about/">About Me</a>
         </li>
         <li>
           <a target="_self" href="/archives.html">Archives</a>
@@ -244,7 +244,7 @@
   <div>
     
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>In my last two posts, I've discussed the number of <a href="http://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html">rotten links</a> on Stack Overflow and a <a href="http://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html">proposal to fix said links</a>. In this post, I'm going to discuss how I performed this analysis. </p>
+<p>In my last two posts, I've discussed the number of <a href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html">rotten links</a> on Stack Overflow and a <a href="{filename}}2015_08_07_a-proposal-to-fix-broken-links-on-stack-overflow.md">proposal to fix said links</a>. In this post, I'm going to discuss how I performed this analysis. </p>
 <h2 id="set-up">Set up<a class="headerlink" href="#set-up" title="Permanent link">¶</a></h2>
 <h3 id="the-database">The database<a class="headerlink" href="#the-database" title="Permanent link">¶</a></h3>
 <p>The process began by downloading the March 2013 <a href="https://archive.org/details/stackexchange">data dump</a>. I loaded the <code>posts</code> into a [MariaDB] instance on my local machine. This was accomplished with a very simple script and patience, as the script took a while to run.</p>
@@ -321,7 +321,7 @@
 <p>With those kinks worked out, every link was sent a <code>GET</code> request that looked to be from a Firefox browser. The process would allow 20 seconds per link. If the link didn't respond in that time limit, it was declared inaccessible. </p>
 <p>A week later, I repeated the process with anything that hadn't returned a status code less than 400. Once more, on the third week, I repeated this with the failed links. At the end of three weeks, I had a list of sites that were inaccessible to me - on a residential connection - three times over a period of three weeks.</p>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">¶</a></h2>
-<p>The <a href="http://andrewwegner.com/images/status_codes.svg">SVG image</a> that I created for the write up was generated with Pygal. The tables were the result of various break downs of the data via queries to the status results. </p>
+<p>The <a href="https://andrewwegner.com/images/status_codes.svg">SVG image</a> that I created for the write up was generated with Pygal. The tables were the result of various break downs of the data via queries to the status results. </p>
 <h2 id="wrap-up">Wrap up<a class="headerlink" href="#wrap-up" title="Permanent link">¶</a></h2>
 <p>I am rather proud of how the results turned out for this project. I went into it expecting about 15% of links to be broken, but I didn't really realize what the meant. Fifteen percent of 21 million total posts is over 3 million. That's a large number. BUT, it also ignored that a large percentage of posts don't contain links. I failed to consider that in my original hypothesis. </p>
 <p>Less than half of my sample had links (2.3M out of 5.6M). Of the 2.3M with links, only 1.5M were unique links. The final result of 10% failed links makes much more sense in this context. Ten percent of 1.5M links means that there are 150K links that are bad. </p>
