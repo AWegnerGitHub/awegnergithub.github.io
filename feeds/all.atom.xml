@@ -1,5 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2022-12-06T00:00:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Overflow bans ChatGPT temporarily</title><link href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html" rel="alternate"></link><published>2022-12-05T14:45:00-06:00</published><updated>2022-12-06T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-05:/stackoverflow-bans-chatgpt.html</id><summary type="html">&lt;p&gt;Today Stack Overflow moderators banned ChatGPT on the site. This is my reflection on why we went this route.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today Stack Overflow moderators (&lt;a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html"&gt;myself included&lt;/a&gt;), have implemented a &lt;a href="https://meta.stackoverflow.com/q/421831/189134"&gt;temporary ban on ChatGPT on the site&lt;/a&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2022-12-07T08:45:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Rise Garden Two Year Follow Up</title><link href="https://andrewwegner.com/rise-garden-two-year-review.html" rel="alternate"></link><published>2022-12-07T08:45:00-06:00</published><updated>2022-12-07T08:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-07:/rise-garden-two-year-review.html</id><summary type="html">&lt;p&gt;After two and half years of using the Rise Garden product, how is it holding up? This article provides an update.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When I last talked about the [Rise Garden][risegarden] my family is using, it was during my first harvest two and a half years ago.
+I said &lt;a href="https://andrewwegner.com/rise-garden-final-review.html"&gt;I'd get the garden again&lt;/a&gt;. During the posts at the time, I also covered some
+&lt;a href="https://andrewwegner.com/rise-garden-suggestions-physical.html"&gt;physical changes that would be helpful&lt;/a&gt; and
+some &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;application suggestions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It's been two and a half years since I first assembled the garden and two years since my last update at the end of the previous article. Let's
+review and see how the garden has held up.&lt;/p&gt;
+&lt;p&gt;I mentioned above that I provided a few suggestions, and raised a few concerns. Here's a quick summary of those, so that we can easily see what
+I'm looking to address here based on concerns then.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Application&lt;/li&gt;
+&lt;li&gt;Number of plants the garden supports&lt;/li&gt;
+&lt;li&gt;Few fruiting plants&lt;/li&gt;
+&lt;li&gt;The number of pods that don't sprout&lt;/li&gt;
+&lt;li&gt;Subscription service item availability&lt;/li&gt;
+&lt;li&gt;Physical improvements&lt;/li&gt;
+&lt;li&gt;Nutrient build up&lt;/li&gt;
+&lt;li&gt;Pump&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="application"&gt;Application&lt;a class="headerlink" href="#application" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Let's start with the application itself. In my &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;previous post&lt;/a&gt;, I raised a couple
+concerns I had about the mobile application.&lt;/p&gt;
+&lt;p&gt;In good news, the splash screen issue has been resolved. The log in issue has also been resolved. I do still need to occassionally re-login, but
+overall, the application remembers me a lot longer than the handful of days it did at the time.&lt;/p&gt;
+&lt;p&gt;The lighting options have also been updated.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Lighting options are updated to include sunrise/sunset options" src="https://andrewwegner.com/images/2022-garden-lights.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I have more than a simple time and duration option. The sunrise and sunset options aren't exactly what I asked for two years ago, but
+this is a nice compromise. It's winter, so I've moved my garden inside to a warmer location, which unfortunately places it out of direct
+sunlight. However, during the rest of the year, this gradual lighting is nice, because I was able to time it to when the sun
+hits the garden and when it does not. This allowed me to use less than 100% lighting through out the day.&lt;/p&gt;
+&lt;p&gt;I do have a complaint about this new screen though. Look back at my &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;screen shot of the previous lighting page&lt;/a&gt;. Previously,
+I could select any time for the lights to come on, and it was a pretty intuitive hour/minute selector. Now, it is a single slider with 15 minute
+increments. It is really hard to hit exactly what you want with a slider. It takes a lot of small adjustments to get the time I want my
+lights to come on with this slider. I think moving to a slider from the hour/minute selector was a bad user experience choice.&lt;/p&gt;
+&lt;p&gt;Unfortunately, that wasn't the only bad user experience change.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Garden plants screen" src="https://andrewwegner.com/images/2022-garden-plants.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This new page showing my garden is awful. The previous version showed an overview of the entire garden, and then allowed me to click a plant to
+get more details. This version shows a single tray on a single level and involves both vertical and horizontal scrolling to see all of my plants.
+I do not like this change. There is a lot more tapping and dragging around the screen to find specific plants.&lt;/p&gt;
+&lt;p&gt;The last application problem I'm still seeing is that plant information is wildly inaccurate. This is my current pea plant, that the application
+says is past harvest. It hasn't even started flowering yet. In two years, this page has not been accurate for a single plant.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="No Flowers on this pea plant yet, despite the app saying it's past harvest time" src="https://andrewwegner.com/images/2022-garden-peaplant.jpg"/&gt;&lt;/p&gt;
+&lt;h2 id="plants"&gt;Plants&lt;a class="headerlink" href="#plants" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The marketing images show very full gardens. When I've attempted full gardens and followed the application's recommendations, I get sub-optimal
+harvests. The large plants crowd out one another, even with aggressive pruning. The vines will take over an entire level and smother others, without
+aggressive pruning.&lt;/p&gt;
+&lt;p&gt;The plants that I can get to grow most consistently are lettuces and herbs. Fortunately, we use a lot of both. But, it'd be nice to get a consistent
+pepper, tomato, cucumber or pea plant each harvest too. Unfortunately, adding more than a couple of those plants to the entire garden results in a
+plant that doesn't produce.&lt;/p&gt;
+&lt;p&gt;Combining this with the sprouting failure rate I mentioned 2 years ago, that hasn't improved, it becomes a gamble on what to grow sometimes. The
+sprouting problems continue to plague each harvest, with approximately 1 out of 10 seeds across all plants not sprouting. Unfortunately, on my
+latest batch, I had 3 lettuce and 1 pea plant that didn't sprout. This was my highest failure rate so far.&lt;/p&gt;
+&lt;p&gt;I did notice, while writing this post, that Rise Gardens &lt;a href="https://risegardens.com/products/indoor-garden-nursery"&gt;released a new nursery&lt;/a&gt;. It only supports 4 pods though, compared to the 12 pods one of
+my current nurseries holds. I'd have to replan how and when I plant certain plants (or buy extra of these small nurseries). I like to get two
+sets of lettuce in for 1 tomatato plant due to their different growth cycles. Fewer nursery spots would enforce more staggered growing. This isn't bad
+just something I'd need to adapt to.&lt;/p&gt;
+&lt;h2 id="seed-subscriptions"&gt;Seed Subscriptions&lt;a class="headerlink" href="#seed-subscriptions" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I complained two years ago about the &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;lack of variety packs&lt;/a&gt;. The garden came with a
+&lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;salad mix and a variety pack of plants&lt;/a&gt;. Those aren't offered as part of the subscription service. I don't need 4 tomato pods, because
+I can't get them all to grow at once, like I mentioned above. But, if I could get a tomato, a pepper and a couple other plants, I have a nice set
+of plants that I could use all at once. That is assuming that they all sprout.&lt;/p&gt;
+&lt;p&gt;I keep looking for this. Until then, I turn my subscription on and off for about three months at a time, because otherwise I just get to many
+seeds to utilize and I don't need to buy a subscription for seeds that have an increasingly common failure rate.&lt;/p&gt;
+&lt;h2 id="garden-hardware"&gt;Garden Hardware&lt;a class="headerlink" href="#garden-hardware" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The garden hardware has held up really well. I did replace the original DC30 pump with the upgraded DC40 pump about six months ago. I did this
+because I kept getting nutrient build up in my tubing and along the bottom of my trays. Theorectically, the more powerful pump should solve
+this problem. At the end of my current harvest I'll have a better idea of how well it's worked, but I haven't had to do an emergency tube
+cleaning because the water couldn't get past the build up, so that is a positive.&lt;/p&gt;
+&lt;p&gt;I also installed chicken wire around the garden to give my climbing plants something to climb. This has been great at keeping the vine plants -
+peas and cucumbers - under control. It also has allowed a couple spots on the level they sit on to remain open because they don't completely
+overwhelm a tray. I have been able to utilize that to grow a faster plant on the level of these vine plants before they have spread all over.&lt;/p&gt;
+&lt;p&gt;The one physical concern I mentioned two years ago was the inability to easily level the garden. This still remains a problem because the garden
+needs to be level to ensure the water flows correctly. When I have the garden in my sunroom - which is less level than other areas of my house, I
+have a small wooden splint built to keep the garden leveled correctly.&lt;/p&gt;
+&lt;p&gt;I still highly recommend that Rise Garden make adjustable footings in their next iteration.&lt;/p&gt;
+&lt;h2 id="summary-review"&gt;Summary Review&lt;a class="headerlink" href="#summary-review" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The question now: Would I get it again. Previously, I said that I &lt;a href="https://andrewwegner.com/rise-garden-final-review.html"&gt;absolutely would&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I would still do this again, but I think I'd get a smaller garden. This isn't because I don't want to grow plants indoors and year round. It's
+because I can't utilize all of the space I have now. A completely full garden hasn't been productive for me. I leave space open every time I plants.
+It's also due to the number of seeds that I've had not sprout. If I have less space to plant, I'll be a little more choosey on what I plants
+versus "I have some space available and might as well use it if these sprout". Additionally, the application changes have been very off
+putting. The new tray page is unusable and the inaccurate plant pages continue to be unhelpful.&lt;/p&gt;
+&lt;p&gt;This said, I am still enjoying growing my own food. It's still not sustainable, but that was never my goal. It's a fun activity. The kids enjoy
+planting and harvesting. They glance at it once and a while and provide updates on how they think things are growing or what we can harvest
+for a meal.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Garden Stats - 107 pounds of produce, 2800 gallons of water saved, 190,000 food miles saved" src="https://andrewwegner.com/images/2022-garden-stats.png"/&gt;&lt;/p&gt;
+&lt;p&gt;These stats fall into the same category as the plant stats. I'm not sure how reliable they actually are, but it is nice to see
+numbers. Saving nearly 3,000 gallons of water over two and a half years is drop in the bucket, but it's still good to see an impact.
+Rise Gardens describes it's &lt;a href="https://risegardens.com/blogs/communitygarden/earth-day-transforming-the-food-system-one-garden-at-a-time"&gt;"Food Miles" equation&lt;/a&gt; on their blog. Going with my &lt;a href="https://andrewwegner.com/time-gas-saved-with-remote-work.html"&gt;calculations from this summer on gasoline savings&lt;/a&gt; and CO2 not
+produced due to remote work, I've made another tiny positive impact.&lt;/p&gt;
+&lt;p&gt;Finally, Rise Gardens: Add strawberries as a plant you provide in your subscriptions. I'd still like that API I talked about before, but I'd be much happier with strawberries.&lt;/p&gt;
+&lt;p&gt;Oh, and do something about the seeds not sprouting.&lt;/p&gt;</content><category term="Review"></category><category term="review"></category><category term="garden"></category><category term="hydroponics"></category></entry><entry><title>Stack Overflow bans ChatGPT temporarily</title><link href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html" rel="alternate"></link><published>2022-12-05T14:45:00-06:00</published><updated>2022-12-06T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-05:/stackoverflow-bans-chatgpt.html</id><summary type="html">&lt;p&gt;Today Stack Overflow moderators banned ChatGPT on the site. This is my reflection on why we went this route.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today Stack Overflow moderators (&lt;a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html"&gt;myself included&lt;/a&gt;), have implemented a &lt;a href="https://meta.stackoverflow.com/q/421831/189134"&gt;temporary ban on ChatGPT on the site&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Use of ChatGPT generated text for posts on Stack Overflow is temporarily banned.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -393,7 +485,7 @@ things are done (declare variable, function syntax, etc) and instead focuses on 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This gets an average gas price of &lt;code&gt;$3.21&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;It's probably important to note that if I run this again in August at the full 5 year mark that gas cost is going to be much higher. &lt;a href="https://www.cnbc.com/2022/06/10/consumer-price-index-may-2022.html"&gt;Inflation was 8.6% in May 2022&lt;/a&gt;, with &lt;a href="https://www.cnn.com/2022/06/11/business/gas-prices-five-dollars-national-june/index.html"&gt;average gas prices hitting $5.00 nationwide&lt;/a&gt;. In my area, it's been above $5 for over a month. This is also part of the reason I wanted to run these numbers.&lt;/p&gt;
-&lt;p&gt;Lastly, I wanted to see if I could figure out how much CO2 I had not produced based on how much gasoline I hadn't used. I was expecting a complicated formulate. Turns out that &lt;a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle#burning"&gt;1 Gallon of Gas = 19.59 pounds of CO2&lt;/a&gt; (8,887 grams of CO2 per gallon).&lt;/p&gt;
+&lt;p&gt;Lastly, I wanted to see if I could figure out how much CO2 I had not produced based on how much gasoline I hadn't used. I was expecting a complicated formula. Turns out that &lt;a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle#burning"&gt;1 Gallon of Gas = 19.59 pounds of CO2&lt;/a&gt; (8,887 grams of CO2 per gallon).&lt;/p&gt;
 &lt;h2 id="the-calculations"&gt;The calculations&lt;a class="headerlink" href="#the-calculations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With my initial numbers determined, the calculations are pretty easy.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Total Miles Not Driven = Miles per day * Total number of work days
