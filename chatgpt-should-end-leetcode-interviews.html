@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="ChatGPT&#39;s availability and ability to answer basic questions should end LeetCode use in software engineering interviews. Right?" />
+<meta name="keywords" content="job, meta, leadership, job search">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="ChatGPT is here - Use that to stop asking LeetCode questions during interviews"/>
+  <meta property="og:description" content="ChatGPT&#39;s availability and ability to answer basic questions should end LeetCode use in software engineering interviews. Right?"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2022-12-15 23:45:00-06:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/author/andy-wegner.html">
+  <meta property="article:section" content="Jobs"/>
+  <meta property="article:tag" content="job"/>
+  <meta property="article:tag" content="meta"/>
+  <meta property="article:tag" content="leadership"/>
+  <meta property="article:tag" content="job search"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>ChatGPT is here - Use that to stop asking LeetCode questions during interviews  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h1>Article Contents</h1>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#chatgpt-vs-leetcode">ChatGPT vs LeetCode</a><ul>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#the-response">The response</a></li>
+<li><a href="#the-result">The result</a></li>
+</ul>
+</li>
+<li><a href="#can-we-please-stop-using-leetcode-now">Can we please stop using LeetCode now?</a></li>
+</ul>
+</div>
+    </nav>
+
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/jobs.html">Jobs</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">ChatGPT is here - Use that to stop asking LeetCode questions during interviews</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/jobs.html",
+      "name": "Jobs"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html",
+      "name": "https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="chatgpt-should-end-leetcode-interviews">ChatGPT is here - Use that to stop asking LeetCode questions during interviews</h1>
+    <p>
+      Posted on Thu 15 December 2022 in <a href="https://andrewwegner.com/category/jobs.html">Jobs</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/job.html">job</a>
+        <a href="https://andrewwegner.com/tag/meta.html">meta</a>
+        <a href="https://andrewwegner.com/tag/leadership.html">leadership</a>
+        <a href="https://andrewwegner.com/tag/job-search.html">job search</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>I have interviewed a lot of software engineers looking for a new position. I've talked with college students looking for
+an internship, junior engineers just getting started, staff engineers looking for a new role, managers and directors to
+lead these teams. In every one of those interviews, I'd told the candidate that I <em>hate</em> puzzle questions (ie.
+"How many windows are in Seattle?") and I hate LeetCode style questions.</p>
+<p>It turns out that <a href="https://openai.com/blog/chatgpt/">ChatGPT</a> is good at solving these problems.</p>
+<p>Good. Maybe that will kill LeetCode interview questions once and for all. There are so many better ways to determine if an
+engineer is the right fit.</p>
+<h2 id="chatgpt-vs-leetcode">ChatGPT vs LeetCode<a class="headerlink" href="#chatgpt-vs-leetcode" title="Permanent link">¶</a></h2>
+<p>We have <a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html">temporarily banned ChatGPT over on Stack Overflow</a>, because it can and does provide subtly incorrect answers.
+It's been so bad that we called up two new moderators from the previous election today. One of my mod <a href="https://meta.stackoverflow.com/questions/421619/2022-community-moderator-election-results-now-with-two-more-mods#comment939591_421619">colleagues provided some
+context</a> around this today too.</p>
+<blockquote>
+<p>We get a few hundred CGPT flags per day, leading to hundreds or even thousands of post deletions per day. There's often one flag per user (not accounting overlap from several users), but each flag can lead to anywhere between a couple and tens of deletions per user.</p>
+</blockquote>
+<p>LeetCode, however, checks your answer right away. They don't have the same problem as Stack Overflow. I wanted to see just how good 
+this new chatbot was, and took it for a spin against a random LeetCode problem.</p>
+<p>I randomly selected a medium difficulty problem with a 58% acceptance rate. My victim question:
+<a href="https://leetcode.com/problems/longest-common-subsequence/description/">1143. Longest Common Subsequence</a></p>
+<h3 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">¶</a></h3>
+<p>The first step in passing this test, is selecting the entire prompt, copying it and pasting it directly into LeetCode's UI. I didn't read
+the prompt and I didn't format it. Just a blind copy and paste. I also provided one instruction:</p>
+<blockquote>
+<p>Provide python code</p>
+</blockquote>
+<p>Press enter and wait 30 seconds or so.</p>
+<h3 id="the-response">The response<a class="headerlink" href="#the-response" title="Permanent link">¶</a></h3>
+<p>Within seconds I was provided this block of code</p>
+<p>```
+def longestCommonSubsequence(text1: str, text2: str) -&gt; int:
+    # Convert text1 and text2 to lists of characters
+    s1 = list(text1)
+    s2 = list(text2)</p>
+<div class="codehilight code"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="k">Initialize</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">dynamic</span><span class="w"> </span><span class="n">programming</span><span class="w"> </span><span class="nc">table</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span><span class="w"></span>
+<span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span><span class="w"></span>
+<span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">[0</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="err">]</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Fill</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">dynamic</span><span class="w"> </span><span class="n">programming</span><span class="w"> </span><span class="nc">table</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">s1</span><span class="o">[</span><span class="n">i-1</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">s2</span><span class="o">[</span><span class="n">j-1</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i-1</span><span class="o">][</span><span class="n">j-1</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i-1</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j-1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="k">Return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">longest</span><span class="w"> </span><span class="n">common</span><span class="w"> </span><span class="n">subsequence</span><span class="w"></span>
+<span class="k">return</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">n</span><span class="o">][</span><span class="n">m</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
+<p>```</p>
+<p>It likes the phrase <a href="https://guides.codepath.com/compsci/DP-Table">"dynamic programming table"</a>. Along with this code, it even explains its reasoning for going this route. Maybe 
+our intrepid AI can teach a junior dev a new trick or two while doing this puzzle. </p>
+<p><img alt="ChatGPT explains its code" src="https://andrewwegner.com/images/leetcode-response1-1.png"/>
+<img alt="ChatGPT explains its algorithm" src="https://andrewwegner.com/images/leetcode-response1-2.png"/></p>
+<p>Then it shows that tests pass...very confidently.</p>
+<blockquote>
+<p>All the tests passed, so this implementation is correct</p>
+</blockquote>
+<h3 id="the-result">The result<a class="headerlink" href="#the-result" title="Permanent link">¶</a></h3>
+<p>I'm trying to show that ChatGPT can do this, so at this point I haven't read the prose above. I copy and pasted the code it returned
+and clicked "Submit".</p>
+<p>I waited a few seconds for all tests to run and got my results.</p>
+<p><img alt="ChatGPT beats over 96% of other implementations in runtime performance and 71% in memory performance" src="https://andrewwegner.com/images/leetcode-implementation.png"/></p>
+<p>ChatGPT crushed this. It performs better than 96% of other submissions in terms of run time performance. It uses less memory than 71% of
+other submissions.</p>
+<h2 id="can-we-please-stop-using-leetcode-now">Can we please stop using LeetCode now?<a class="headerlink" href="#can-we-please-stop-using-leetcode-now" title="Permanent link">¶</a></h2>
+<p>The total time it took to perform this test was under 5 minutes. I randomly selected a problem, copy and pasted the prompt, waited for a response
+from the chatbot, copy and pasted the code response, waited for the tests to run. Complete.</p>
+<p>As a hiring manager, I'd have wasted my time and the candidates time having them do this problem now. Instead, we can talk about 
+an actual problem they will be solving. We can do a real world problem instead this. There are better ways to interview an engineer
+and I'm hoping ChatGPT makes that abundantly clear to hiring managers everywhere. </p>
+<p>We're going to have to adapt our hiring processes, but that's a good thing. My recent experience shows that at most companies, it's bad anyway.
+Now we have an opportunity to shine some sunlight on it and make it better.</p>
+<p>In the meantime, if you continue to use LeetCode or something similar to evaluate your candidate's technical skills, your are doing your 
+team a huge diservice. Candidates know about this tool, and they know that the easiest way to get an interview is to play the game. There 
+have been tens of thousands of layoffs in the tech industry in the last six months. I guarentee candidates are looking for every advantage they can
+get, to move to their next role.</p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/rise-garden-two-year-review.html"
+    title="Rise Garden Two Year Follow Up">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "ChatGPT is here - Use that to stop asking LeetCode questions during interviews",
+  "headline": "ChatGPT is here - Use that to stop asking LeetCode questions during interviews",
+  "dateCreated": "2022-12-15 23:45:00-06:00",
+  "datePublished": "2022-12-15 23:45:00-06:00",
+  "dateModified": "",
+  "copyrightYear": "2022",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html",
+  "description": "ChatGPT's availability and ability to answer basic questions should end LeetCode use in software engineering interviews. Right?",
+  "mainEntityOfPage": "True",
+  "articleSection": "Jobs"
+}
+</script>
+<footer>
+<p>&copy; 2022 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>
