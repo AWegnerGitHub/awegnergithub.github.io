@@ -744,7 +744,7 @@ for the time being with this command:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This is a &lt;a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1813663"&gt;known bug&lt;/a&gt; with 4.15.0-44 and a fix is being worked on. It also seems to impact more than just Dell products. It looks like
 4.15.0-45 will fix the issue. We'll see.&lt;/p&gt;
-&lt;p&gt;Also, Dell support is less helpful than I thought it would be. &lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Autobuild and Deploy this Pelican Blog</title><link href="https://andrewwegner.com/autobuild-pelican-blog.html" rel="alternate"></link><published>2018-11-15T08:30:00-06:00</published><updated>2018-11-15T08:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-11-15:/autobuild-pelican-blog.html</id><summary type="html">&lt;p&gt;It's time to automate the deployment of this Pelican blog. This is a walkthrough of how I set it up.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;Also, Dell support is less helpful than I thought it would be.&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Autobuild and Deploy this Pelican Blog</title><link href="https://andrewwegner.com/autobuild-pelican-blog.html" rel="alternate"></link><published>2018-11-15T08:30:00-06:00</published><updated>2018-11-15T08:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-11-15:/autobuild-pelican-blog.html</id><summary type="html">&lt;p&gt;It's time to automate the deployment of this Pelican blog. This is a walkthrough of how I set it up.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Several years ago, I &lt;a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html"&gt;migrated from Wordpress to Pelican&lt;/a&gt; for this blog. I set it up to &lt;a href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html"&gt;run on GitHub Pages&lt;/a&gt;. I've
 been happy with that set up. I can modify my template as needed (which is infrequent), I can publish a post relatively easily
@@ -1552,15 +1552,15 @@ doesn't let me whitelist uploading from specific networks. I'd prefer I don't se
 it "just happens". If I take a picture at home, it's backed up within seconds. If I take a bunch of pictures while I'm out of the house, my pictures are backed up within
 minutes of me getting home.&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Setting up a ZFS pool on Ubuntu 16.04</title><link href="https://andrewwegner.com/zfs-pool-on-ubuntu.html" rel="alternate"></link><published>2018-02-15T22:30:00-06:00</published><updated>2018-02-15T22:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-15:/zfs-pool-on-ubuntu.html</id><summary type="html">&lt;p&gt;With the backup server assembled, it's time to start configuring it. This post covers setting up the ZFS pool for all the data&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://andrewwegner.com/new-house-server.html"&gt;Previously&lt;/a&gt; in this series, the new NAS was assembled. Ubuntu 16.04 has been installed and updated. It's time to do something with all those hard drives! &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/new-house-server.html"&gt;Previously&lt;/a&gt; in this series, the new NAS was assembled. Ubuntu 16.04 has been installed and updated. It's time to do something with all those hard drives!&lt;/p&gt;
 &lt;p&gt;I'll be setting the seven 4TB drives in a single &lt;a href="https://en.wikipedia.org/wiki/ZFS"&gt;ZFS&lt;/a&gt; pool. I'm using ZFS for protection against data corruption. It offers several other &lt;a href="https://wiki.ubuntu.com/ZFS"&gt;features&lt;/a&gt; too. I'll
 be using dual parity, which means I could lose two drives and be able to recover. The goal is never to test this, but I'd rather not go through a &lt;a href="https://andrewwegner.com/backup-your-data.html"&gt;data loss scare&lt;/a&gt; again.&lt;/p&gt;
 &lt;p&gt;Before we begin, it's a good idea to ensure Ubuntu has been updated.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;With the update complete, let's get started. &lt;/p&gt;
+&lt;p&gt;With the update complete, let's get started.&lt;/p&gt;
 &lt;h2 id="installing-zfs"&gt;Installing ZFS&lt;a class="headerlink" href="#installing-zfs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Installing the ZFS file system is simple on Ubuntu. &lt;/p&gt;
+&lt;p&gt;Installing the ZFS file system is simple on Ubuntu.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt-get install zfs parted
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Ta-da! Your system is now capable of setting up ZFS pools. The &lt;code&gt;parted&lt;/code&gt; package will be used to set up a ZFS pool shortly.&lt;/p&gt;
@@ -1695,7 +1695,7 @@ Bayesian algorithm. It wasn't needed and probably shouldn't have been added to t
 stayed in the repository for over a year and was finally &lt;a href="https://github.com/Charcoal-SE/SmokeDetector/commit/68d49ccc0b4981a4ebe91d993f42643542e44d80"&gt;removed&lt;/a&gt; in late 2015. This is the cause of the weird graph
 above, and why almost everything added in 2014 looks like it's missing in later years.&lt;/p&gt;
 &lt;h3 id="what-has-really-changed"&gt;What has really changed?&lt;a class="headerlink" href="#what-has-really-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;After eliminating that Bayesian directory from git history, you can get a much better idea of how much has changed. &lt;/p&gt;
+&lt;p&gt;After eliminating that Bayesian directory from git history, you can get a much better idea of how much has changed.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://andrewwegner.com/images/smokey-git-theseus-filtered.png"&gt;&lt;img alt="SmokeDetector - Git of Theseus - Filtered" src="https://andrewwegner.com/images/smokey-git-theseus-filtered.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Very little of the original code, written in 2014, remains untouched. The explosion in code after that is due to
 new detection patterns, chat commands (and a rewrite), integration with MetaSmoke and the introduction of blacklists.&lt;/p&gt;
@@ -1749,7 +1749,7 @@ community and better support.&lt;/p&gt;</content><category term="Technical Solut
         mymodule.py
     __init__.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This was close to the end goal, but lacked some files in the &lt;code&gt;project_root&lt;/code&gt; that were needed for a proper install via &lt;code&gt;pip&lt;/code&gt;. The important file that was missing was &lt;code&gt;setup.py&lt;/code&gt;. I needed this file to ensure that everything would install with a simple &lt;code&gt;pip install stackapi&lt;/code&gt; &lt;/p&gt;
+&lt;p&gt;This was close to the end goal, but lacked some files in the &lt;code&gt;project_root&lt;/code&gt; that were needed for a proper install via &lt;code&gt;pip&lt;/code&gt;. The important file that was missing was &lt;code&gt;setup.py&lt;/code&gt;. I needed this file to ensure that everything would install with a simple &lt;code&gt;pip install stackapi&lt;/code&gt;&lt;/p&gt;
 &lt;h3 id="setuppy"&gt;setup.py&lt;a class="headerlink" href="#setuppy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;My &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.py"&gt;&lt;code&gt;setup.py&lt;/code&gt;&lt;/a&gt; is pretty basic and available on GitHub. There are a couple important things though.&lt;/p&gt;
 &lt;ul&gt;
@@ -2047,20 +2047,20 @@ The command "py.test" exited with 0.
 &lt;p&gt;CloudFlare recognized this immediately and redirected me to my Flask application. Hooray!&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With this, the set up is complete. You have a Flask application, connected to MySQL, that is integrated with a CI system which automatically deploys to OpenShift when all tests pass and uses CloudFlare (because I already was doing so), to provide a CDN. &lt;/p&gt;
-&lt;p&gt;On to building something!&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Connect Python to OSI Soft PI</title><link href="https://andrewwegner.com/connect-python-to-osi-soft-pi.html" rel="alternate"></link><published>2012-02-07T12:45:00-06:00</published><updated>2012-04-16T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-02-07:/connect-python-to-osi-soft-pi.html</id><summary type="html">&lt;p&gt;How I connected Python to OSI Soft PI&lt;/p&gt;</summary><content type="html">&lt;p&gt;OSI PI is a historian database. I had a task to connect a python application to this database. I asked a question on 
+&lt;p&gt;On to building something!&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Connect Python to OSI Soft PI</title><link href="https://andrewwegner.com/connect-python-to-osi-soft-pi.html" rel="alternate"></link><published>2012-02-07T12:45:00-06:00</published><updated>2012-04-16T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-02-07:/connect-python-to-osi-soft-pi.html</id><summary type="html">&lt;p&gt;How I connected Python to OSI Soft PI&lt;/p&gt;</summary><content type="html">&lt;p&gt;OSI PI is a historian database. I had a task to connect a python application to this database. I asked a question on
 &lt;a href="http://stackoverflow.com/questions/8898114/how-can-i-connect-python-2-6-to-osi-pi"&gt;Stack Overflow&lt;/a&gt; about whether this was a simple problem to solve. After two weeks I still hadn't gotten a viable response,
 so I had to build by own solution.&lt;/p&gt;
-&lt;p&gt;I did reach out to the vendor first for help. Their response back was not helpful. &lt;/p&gt;
+&lt;p&gt;I did reach out to the vendor first for help. Their response back was not helpful.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Looks like pyodbc is written against ODBC 3.x.  The OSI PI ODBC driver is using ODBC 2.0.  The python ODBC driver manager 
-will convert most ODBC 3 calls on the fly to ODBC 2 ones. Anything added to 3, however, will obviously fail. You would 
-need to find some way to make sure that your only using 2.0 compliant ODBC calls.  Currently their is not a PI ODBC 
+&lt;p&gt;Looks like pyodbc is written against ODBC 3.x.  The OSI PI ODBC driver is using ODBC 2.0.  The python ODBC driver manager
+will convert most ODBC 3 calls on the fly to ODBC 2 ones. Anything added to 3, however, will obviously fail. You would
+need to find some way to make sure that your only using 2.0 compliant ODBC calls.  Currently their is not a PI ODBC
 driver that is compliant with ODBC 3.0.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;So, it looks like the vendor doesn't support Python (odd, they are named "PI", but I digress). Additionally, the drivers provided 
-by the company initially didn't work. &lt;/p&gt;
-&lt;p&gt;The code below shows how I was able to finally connect python to OSI PI. It may not be the most elegant, but it 
-functions for the purposes of my application. Initially I was attempting to connect using the &lt;a href="https://github.com/mkleehammer/pyodbc"&gt;pyodbc&lt;/a&gt; module. Unfortunately, 
+&lt;p&gt;So, it looks like the vendor doesn't support Python (odd, they are named "PI", but I digress). Additionally, the drivers provided
+by the company initially didn't work.&lt;/p&gt;
+&lt;p&gt;The code below shows how I was able to finally connect python to OSI PI. It may not be the most elegant, but it
+functions for the purposes of my application. Initially I was attempting to connect using the &lt;a href="https://github.com/mkleehammer/pyodbc"&gt;pyodbc&lt;/a&gt; module. Unfortunately,
 OSI PI would return a message like this:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;pyodbc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Error&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;IM002&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;[IM002] [OSI][PI ODBC][PI]PI-API Error &amp;lt;pilg_getdefserverinfo&amp;gt; 0 (0) (SQLDriverConnectW); [01000] [Microsoft][ODBC Driver Manager] The driver doesn&amp;#39;t support the version of ODBC behavior that the application requested (see SQLSetEnvAttr). (0)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2102,9 +2102,9 @@ python, but it seems to be very slow when I need to run a large number of querie
 open/close the database connection for each query, but OSI PI/ADODB complains if I do not. Performance has not reached a 
 point where I am forced to rewrite this yet. If/when I do I will follow up again. In the meantime others using this 
 solution should be aware that it is slow when running many queries.&lt;/p&gt;
-&lt;/blockquote&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Multiple IP addresses on the same physical network card</title><link href="https://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" rel="alternate"></link><published>2010-11-17T12:54:00-06:00</published><updated>2010-11-17T12:54:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-11-17:/multiple-ip-addresses-on-the-same-physical-network-card.html</id><summary type="html">&lt;p&gt;A quick walkthrough on how to configure a single network card to pull multiple IP addresses (RedHat based distribution)&lt;/p&gt;</summary><content type="html">&lt;p&gt;There are times when a server can be allocated more than one IP Address even though it contains only one physical 
-network card. To associate these IP addresses with the server some manipulation of networking settings will need to be 
-performed. The steps outlined in this walk-through are for RedHat based systems. This tutorial is for statically assigned 
+&lt;/blockquote&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Multiple IP addresses on the same physical network card</title><link href="https://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" rel="alternate"></link><published>2010-11-17T12:54:00-06:00</published><updated>2010-11-17T12:54:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-11-17:/multiple-ip-addresses-on-the-same-physical-network-card.html</id><summary type="html">&lt;p&gt;A quick walkthrough on how to configure a single network card to pull multiple IP addresses (RedHat based distribution)&lt;/p&gt;</summary><content type="html">&lt;p&gt;There are times when a server can be allocated more than one IP Address even though it contains only one physical
+network card. To associate these IP addresses with the server some manipulation of networking settings will need to be
+performed. The steps outlined in this walk-through are for RedHat based systems. This tutorial is for statically assigned
 IP Addresses (as a server generally will have).
 For this walk through we are going to add one additional IP address to &lt;code&gt;eth0&lt;/code&gt;. Navigate to&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cd /etc/sysconfig/network-scripts
@@ -2140,10 +2140,10 @@ copy and replace values as specified above.&lt;/p&gt;</content><category term="T
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;INVALID SQL: 145 : Table &amp;#39;{something}&amp;#39; is marked as crashed and should be repaired
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I've found this error occurs when MySQL is unexpectedly shut down - whether from a power failure to the entire server or 
-if MySQL itself has issues and you use the &lt;code&gt;kill&lt;/code&gt; command to stop it. Unexpected shut downs, especially while these tables 
+&lt;p&gt;I've found this error occurs when MySQL is unexpectedly shut down - whether from a power failure to the entire server or
+if MySQL itself has issues and you use the &lt;code&gt;kill&lt;/code&gt; command to stop it. Unexpected shut downs, especially while these tables
 are being used, do not make MyISAM tables happy.&lt;/p&gt;
-&lt;p&gt;To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files 
+&lt;p&gt;To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files
 are stored.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;locate *.MYI
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2152,7 +2152,7 @@ are stored.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Go to the directory of the crashed table using the &lt;code&gt;cd&lt;/code&gt; command. Next, stop MySQL. This is to ensure the tables are not 
+&lt;p&gt;Go to the directory of the crashed table using the &lt;code&gt;cd&lt;/code&gt; command. Next, stop MySQL. This is to ensure the tables are not
 accessed while we perform our repair functions. If you don't perform this step, the repair may not succeed.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;service mysqld stop
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2161,7 +2161,7 @@ accessed while we perform our repair functions. If you don't perform this step, 
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;myisamchk -r --force --safe-recover *.MYI
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It 
+&lt;p&gt;The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It
 is likely that this step is not needed after performing the previous step, but it should only take a few seconds now.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;myisamchk --force --fast --update-state *.MYI
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;

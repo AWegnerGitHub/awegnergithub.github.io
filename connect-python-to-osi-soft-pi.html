@@ -223,20 +223,20 @@
   </header>
 
   <div>
-    <p>OSI PI is a historian database. I had a task to connect a python application to this database. I asked a question on 
+    <p>OSI PI is a historian database. I had a task to connect a python application to this database. I asked a question on
 <a href="http://stackoverflow.com/questions/8898114/how-can-i-connect-python-2-6-to-osi-pi">Stack Overflow</a> about whether this was a simple problem to solve. After two weeks I still hadn't gotten a viable response,
 so I had to build by own solution.</p>
-<p>I did reach out to the vendor first for help. Their response back was not helpful. </p>
+<p>I did reach out to the vendor first for help. Their response back was not helpful.</p>
 <blockquote>
-<p>Looks like pyodbc is written against ODBC 3.x.  The OSI PI ODBC driver is using ODBC 2.0.  The python ODBC driver manager 
-will convert most ODBC 3 calls on the fly to ODBC 2 ones. Anything added to 3, however, will obviously fail. You would 
-need to find some way to make sure that your only using 2.0 compliant ODBC calls.  Currently their is not a PI ODBC 
+<p>Looks like pyodbc is written against ODBC 3.x.  The OSI PI ODBC driver is using ODBC 2.0.  The python ODBC driver manager
+will convert most ODBC 3 calls on the fly to ODBC 2 ones. Anything added to 3, however, will obviously fail. You would
+need to find some way to make sure that your only using 2.0 compliant ODBC calls.  Currently their is not a PI ODBC
 driver that is compliant with ODBC 3.0.</p>
 </blockquote>
-<p>So, it looks like the vendor doesn't support Python (odd, they are named "PI", but I digress). Additionally, the drivers provided 
-by the company initially didn't work. </p>
-<p>The code below shows how I was able to finally connect python to OSI PI. It may not be the most elegant, but it 
-functions for the purposes of my application. Initially I was attempting to connect using the <a href="https://github.com/mkleehammer/pyodbc">pyodbc</a> module. Unfortunately, 
+<p>So, it looks like the vendor doesn't support Python (odd, they are named "PI", but I digress). Additionally, the drivers provided
+by the company initially didn't work.</p>
+<p>The code below shows how I was able to finally connect python to OSI PI. It may not be the most elegant, but it
+functions for the purposes of my application. Initially I was attempting to connect using the <a href="https://github.com/mkleehammer/pyodbc">pyodbc</a> module. Unfortunately,
 OSI PI would return a message like this:</p>
 <div class="codehilight code"><pre><span></span><code><span class="n">pyodbc</span><span class="p">.</span><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="err">&#39;</span><span class="n">IM002</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;[IM002] [OSI][PI ODBC][PI]PI-API Error &lt;pilg_getdefserverinfo&gt; 0 (0) (SQLDriverConnectW); [01000] [Microsoft][ODBC Driver Manager] The driver doesn&#39;t support the version of ODBC behavior that the application requested (see SQLSetEnvAttr). (0)&quot;</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>

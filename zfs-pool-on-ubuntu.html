@@ -242,15 +242,15 @@
   <div>
     
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p><a href="https://andrewwegner.com/new-house-server.html">Previously</a> in this series, the new NAS was assembled. Ubuntu 16.04 has been installed and updated. It's time to do something with all those hard drives! </p>
+<p><a href="https://andrewwegner.com/new-house-server.html">Previously</a> in this series, the new NAS was assembled. Ubuntu 16.04 has been installed and updated. It's time to do something with all those hard drives!</p>
 <p>I'll be setting the seven 4TB drives in a single <a href="https://en.wikipedia.org/wiki/ZFS">ZFS</a> pool. I'm using ZFS for protection against data corruption. It offers several other <a href="https://wiki.ubuntu.com/ZFS">features</a> too. I'll
 be using dual parity, which means I could lose two drives and be able to recover. The goal is never to test this, but I'd rather not go through a <a href="https://andrewwegner.com/backup-your-data.html">data loss scare</a> again.</p>
 <p>Before we begin, it's a good idea to ensure Ubuntu has been updated.</p>
 <div class="codehilight code"><pre><span></span><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade
 </code></pre></div>
-<p>With the update complete, let's get started. </p>
+<p>With the update complete, let's get started.</p>
 <h2 id="installing-zfs">Installing ZFS<a class="headerlink" href="#installing-zfs" title="Permanent link">¶</a></h2>
-<p>Installing the ZFS file system is simple on Ubuntu. </p>
+<p>Installing the ZFS file system is simple on Ubuntu.</p>
 <div class="codehilight code"><pre><span></span><code>sudo apt-get install zfs parted
 </code></pre></div>
 <p>Ta-da! Your system is now capable of setting up ZFS pools. The <code>parted</code> package will be used to set up a ZFS pool shortly.</p>

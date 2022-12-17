@@ -323,7 +323,7 @@ encourage you to visit the <a href="http://meta.stackoverflow.com/q/300916/18913
 | 0     | 36.4087%                   |
 | 1     | 25.1674%                   |
 | 2     | 13.4089%                   |
-| 3     | 7.2806%                    | 
+| 3     | 7.2806%                    |
 | 4     | 4.2971%                    |
 | 5     | 2.7065%                    |
 | 6     | 1.8068%                    |
@@ -401,10 +401,10 @@ encourage you to visit the <a href="http://meta.stackoverflow.com/q/300916/18913
 <hr/>
 <h2 id="footnotes">Footnotes<a class="headerlink" href="#footnotes" title="Permanent link">¶</a></h2>
 <ol>
-<li>This is how it ultimately played out. Originally I sent <code>HEAD</code> requests, in an effort to save bandwidth. This turned out to waste a whole bunch of time because there are a whole bunch of sites around the internet that return a <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error"><code>405 Method Not Allowed</code></a> when sending a <code>HEAD</code> request. The next step was to sent <code>GET</code> requests, but utilize the default Python <a href="http://docs.python-requests.org/en/latest/">requests</a> user-agent. A lot of sites were returning <code>401</code> or <code>404</code> responses to this user agent. </li>
+<li>This is how it ultimately played out. Originally I sent <code>HEAD</code> requests, in an effort to save bandwidth. This turned out to waste a whole bunch of time because there are a whole bunch of sites around the internet that return a <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error"><code>405 Method Not Allowed</code></a> when sending a <code>HEAD</code> request. The next step was to sent <code>GET</code> requests, but utilize the default Python <a href="http://docs.python-requests.org/en/latest/">requests</a> user-agent. A lot of sites were returning <code>401</code> or <code>404</code> responses to this user agent.</li>
 <li>Links to Stack Exchange sites were not counted in the above results. The failures seen are almost 100% due to a question/answer/comment being deleted. The process ran as an anonymous user, thus didn't have any reputation and was served a 404. A user with appropriate permissions <em>can</em> still visit the link. I verified a number of 404'd links to Stack Overflow posts and this was the case.</li>
 <li>The 4th most common failure was to <code>localhost</code>. The 16th and 17th most common were <code>localhost</code> on ports other than 80. I removed these from the result table with the knowledge that these shouldn't be accessible from the internet.</li>
-<li>There where 7 total URLs that returned status codes in the <code>600</code> and <a href="https://github.com/joho/7XX-rfc"><code>700</code></a> range. One such site was <a href="http://learn.code.org/hoc/1">code.org</a> with a status code of 752. Sadly, this is not even defined the joke RFC. </li>
+<li>There where 7 total URLs that returned status codes in the <code>600</code> and <a href="https://github.com/joho/7XX-rfc"><code>700</code></a> range. One such site was <a href="http://learn.code.org/hoc/1">code.org</a> with a status code of 752. Sadly, this is not even defined the joke RFC.</li>
 </ol>
 <h2 id="follow-up">Follow up<a class="headerlink" href="#follow-up" title="Permanent link">¶</a></h2>
 <p>I <a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html">posted</a> a proposal on how I think this could be fixed.</p>

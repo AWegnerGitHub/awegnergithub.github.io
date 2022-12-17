@@ -226,10 +226,10 @@
 <div class="codehilight code"><pre><span></span><code>INVALID SQL: 145 : Table &#39;{something}&#39; is marked as crashed and should be repaired
 </code></pre></div>
 
-<p>I've found this error occurs when MySQL is unexpectedly shut down - whether from a power failure to the entire server or 
-if MySQL itself has issues and you use the <code>kill</code> command to stop it. Unexpected shut downs, especially while these tables 
+<p>I've found this error occurs when MySQL is unexpectedly shut down - whether from a power failure to the entire server or
+if MySQL itself has issues and you use the <code>kill</code> command to stop it. Unexpected shut downs, especially while these tables
 are being used, do not make MyISAM tables happy.</p>
-<p>To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files 
+<p>To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files
 are stored.</p>
 <div class="codehilight code"><pre><span></span><code>locate *.MYI
 </code></pre></div>
@@ -238,7 +238,7 @@ are stored.</p>
 <div class="codehilight code"><pre><span></span><code><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="w"></span>
 </code></pre></div>
 
-<p>Go to the directory of the crashed table using the <code>cd</code> command. Next, stop MySQL. This is to ensure the tables are not 
+<p>Go to the directory of the crashed table using the <code>cd</code> command. Next, stop MySQL. This is to ensure the tables are not
 accessed while we perform our repair functions. If you don't perform this step, the repair may not succeed.</p>
 <div class="codehilight code"><pre><span></span><code>service mysqld stop
 </code></pre></div>
@@ -247,7 +247,7 @@ accessed while we perform our repair functions. If you don't perform this step, 
 <div class="codehilight code"><pre><span></span><code>myisamchk -r --force --safe-recover *.MYI
 </code></pre></div>
 
-<p>The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It 
+<p>The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It
 is likely that this step is not needed after performing the previous step, but it should only take a few seconds now.</p>
 <div class="codehilight code"><pre><span></span><code>myisamchk --force --fast --update-state *.MYI
 </code></pre></div>

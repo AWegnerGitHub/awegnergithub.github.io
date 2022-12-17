@@ -251,7 +251,7 @@ content that is this site. I also set up a second <a href="https://github.com/AW
 and markdown version of the pages. The first repository was set up as submodule.</p>
 <div class="codehilight code"><pre><span></span><code>git submodule add https://github.com/AWegnerGitHub/awegnergithub.github.io.git output
 </code></pre></div>
-<p>I ignored the <code>output</code> directory in <code>.gitignore</code> on the source repository. Finally, I had to adjust <code>publishconf.py</code> slightly to  </p>
+<p>I ignored the <code>output</code> directory in <code>.gitignore</code> on the source repository. Finally, I had to adjust <code>publishconf.py</code> slightly to</p>
 <div class="codehilight code"><pre><span></span><code>DELETE_OUTPUT_DIRECTORY = False
 </code></pre></div>
 <p>Without this, I was constantly destroying the output repository and had to reinitialize it. This prevents that from occuring.</p>

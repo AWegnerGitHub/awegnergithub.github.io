@@ -482,7 +482,7 @@ led to a few IDE warnings, and a quick search to determine how to fix it. Once t
 to make the few changes needed locally.&lt;/p&gt;
 &lt;p&gt;My other small complaint is the relatively short lessons. I love bite sized lessons, but when a lesson is between 4 and 10 minutes and the first
 minute and last minute are spent summarizing the previous lesson and giving you and idea of what the next lesson will be,
-there is a lot of time spend reviewing.  &lt;/p&gt;
+there is a lot of time spend reviewing.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I have some down time right now and plan on learning a few more items on my back log. Stephen Grider has a nice library of courses
 and several of them cover topics I'm interested in learning about. If they are set up the same way as this course, I think I'll
@@ -592,7 +592,7 @@ CO2 Not produced = Gallons of Gas Not Used * 19.59
 &lt;p&gt;I didn't put over 4,300 gallons of gas in the vehicle and I didn't spend almost $14,000 on gasoline. That also prevented the production of 85,000 pounds of CO2. Sounds like a big number, but it's a passenger vehicle. It doesn't compare to the output of a large truck, an airplane, a tanker, or a factory. But, it's something.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;These are just the easily calculable numbers on what shifting to remote work has saved me. Things that I can't put a number on: time with family, flexible scheduling, ability to take the dogs for a walk when the sun is out, and more. I'm not spending hours in a car. I'm at home when the family gets home from school and work.&lt;/p&gt;
-&lt;p&gt;I hadn't tried to put hard numbers on this before, but now that I have, I am even more satisfied with my decision five years ago to start looking for a company that was 100% remote. &lt;/p&gt;</content><category term="Jobs"></category><category term="job"></category><category term="meta"></category></entry><entry><title>The Other Side of the Mirror: How I Went from Woven Client to Woven Employee</title><link href="https://andrewwegner.com/woven-client-to-woven-employee.html" rel="alternate"></link><published>2022-06-04T08:00:00-05:00</published><updated>2022-06-04T08:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-06-04:/woven-client-to-woven-employee.html</id><summary type="html">&lt;p&gt;My conversation with Woven on how I went from one of their customers to their Director of Engineering&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;I hadn't tried to put hard numbers on this before, but now that I have, I am even more satisfied with my decision five years ago to start looking for a company that was 100% remote.&lt;/p&gt;</content><category term="Jobs"></category><category term="job"></category><category term="meta"></category></entry><entry><title>The Other Side of the Mirror: How I Went from Woven Client to Woven Employee</title><link href="https://andrewwegner.com/woven-client-to-woven-employee.html" rel="alternate"></link><published>2022-06-04T08:00:00-05:00</published><updated>2022-06-04T08:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-06-04:/woven-client-to-woven-employee.html</id><summary type="html">&lt;p&gt;My conversation with Woven on how I went from one of their customers to their Director of Engineering&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="before-we-begin"&gt;Before we begin...&lt;a class="headerlink" href="#before-we-begin" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This post is republished from &lt;a href="https://www.woventeams.com/the-other-side-of-the-mirror-how-andy-wegner-went-from-woven-client-to-woven-employee/"&gt;Woven's blog&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Back in April 2022, I left my position at PacketFabric, which I've talked about a &lt;a href="https://andrewwegner.com/a-decade-at-caterpillar.html#the-new-job"&gt;handful of times&lt;/a&gt;, &lt;a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html"&gt;previously&lt;/a&gt;. At some point I'll do a post-mortem on the job and why it was time to move on, but that's not for today. This post is about how I went from a customer of &lt;a href="https://www.woventeams.com/"&gt;Woven&lt;/a&gt; to Woven's Director of Engineering.&lt;/p&gt;
@@ -1890,7 +1890,7 @@ worked perfectly.&lt;/p&gt;</content><category term="Technical Solutions"></cate
 &lt;p&gt;I've written about Travis CI before. I've reported a bug that makes it fairly easy
 to see &lt;a href="https://andrewwegner.com/travisci-insecure-environment-variables.html"&gt;environment variables in Travis CI&lt;/a&gt; or even unintentionally transfer
 them if you transfer your repository. I &lt;a href="https://andrewwegner.com/autobuild-pelican-blog.html"&gt;build this blog using Travis CI&lt;/a&gt;. I've
-&lt;a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html"&gt;used Travis CI to set up an OpenShift application&lt;/a&gt;. &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; uses it to 
+&lt;a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html"&gt;used Travis CI to set up an OpenShift application&lt;/a&gt;. &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; uses it to
 manage it's blacklists. In short, I have experience with Travis CI.&lt;/p&gt;
 &lt;p&gt;I was surprised when I saw a course being offered for free recently on Udemy that
 deals with Travis CI. Since it was free and only a couple hours long, I figured I'd
@@ -2431,7 +2431,7 @@ for the time being with this command:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This is a &lt;a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1813663"&gt;known bug&lt;/a&gt; with 4.15.0-44 and a fix is being worked on. It also seems to impact more than just Dell products. It looks like
 4.15.0-45 will fix the issue. We'll see.&lt;/p&gt;
-&lt;p&gt;Also, Dell support is less helpful than I thought it would be. &lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course</title><link href="https://andrewwegner.com/sanic-webframework-review.html" rel="alternate"></link><published>2019-01-23T10:00:00-06:00</published><updated>2019-01-23T10:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-01-23:/sanic-webframework-review.html</id><summary type="html">&lt;p&gt;My review of the Sanic Web Framework fro Pythonistas course on Udemy.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;Also, Dell support is less helpful than I thought it would be.&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course</title><link href="https://andrewwegner.com/sanic-webframework-review.html" rel="alternate"></link><published>2019-01-23T10:00:00-06:00</published><updated>2019-01-23T10:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-01-23:/sanic-webframework-review.html</id><summary type="html">&lt;p&gt;My review of the Sanic Web Framework fro Pythonistas course on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At work we are starting to write version 2 of our API. As part of this new version, we're migrating from PHP to Python (hooray!). There are various technical
 reasons for this, but I am excited. My technical skills are much (&lt;em&gt;much&lt;/em&gt;) better in Python. Part of this migration involved decided the framework we'd be using
@@ -2715,7 +2715,7 @@ cat laptop-rsync-key.pub &amp;gt;&amp;gt; authorized_keys
 &lt;p&gt;My final complaint is how incomplete the course is. There is one five second lecture that is just "This lecture will be uploaded very soon". The last bonus lecutre ends with "See you at the next lecture", but there are no more lectures. I realize the course was released this month, but it's incomplete. The full price of the course is $80. I expect more to be completed for that price.&lt;/p&gt;
 &lt;p&gt;This is a good overview of the DaVinci Resolve environment. I understand what each tab is and how I can use them for basic edits. I feel comfortable enough to make a very simple video with some home videos now.&lt;/p&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;If you are paying for the course, you should avoid it for a while. It's not complete. There is no guarantee that additional lectures will be added and the promise of "more to come" isn't worth the full price. If you are looking for an overview of the most important buttons in DaVinci Resolve, this is a good course. If you are looking for details on what every button or menu option is going to do, this course doesn't cover that. Finally, if you are really looking to "learn DaVinci Resolve" and not "learn the DaVinci Resolve interface", this isn't the best course either. There are some tutorials here, but they are not the majority of content. &lt;/p&gt;
+&lt;p&gt;If you are paying for the course, you should avoid it for a while. It's not complete. There is no guarantee that additional lectures will be added and the promise of "more to come" isn't worth the full price. If you are looking for an overview of the most important buttons in DaVinci Resolve, this is a good course. If you are looking for details on what every button or menu option is going to do, this course doesn't cover that. Finally, if you are really looking to "learn DaVinci Resolve" and not "learn the DaVinci Resolve interface", this isn't the best course either. There are some tutorials here, but they are not the majority of content.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://ude.my/UC-SMH6Q3ET"&gt;&lt;img alt="Completion Award" src="https://andrewwegner.com/images/udemy-learn-davinci-resolve-15-from-scratch.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"></category><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Deploying a Flask Slack app on Google Cloud Platform</title><link href="https://andrewwegner.com/slack-app-google-cloud.html" rel="alternate"></link><published>2018-07-13T10:00:00-05:00</published><updated>2018-07-13T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-07-13:/slack-app-google-cloud.html</id><summary type="html">&lt;p&gt;Setup a Slack app using Flask and deploy it to Google's Cloud&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="background-and-goals"&gt;Background and goals&lt;a class="headerlink" href="#background-and-goals" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At work I am the software QA team lead (I haven't given myself a fancy title, but I should). As such, I spend a lot of time in JIRA tracking our bug and feature requests and in Slack working with every aspect of the company to ensure the new features work as expected and bugs as appropriately squashed. As new releases approach their release date, I start running more queries to ensure everything will be done on time.&lt;/p&gt;
@@ -3403,15 +3403,15 @@ know they can get the same content elsewhere.&lt;/p&gt;
 &lt;p&gt;I still want to find a quick refresher. I'll have to go hunting for that later.&lt;/p&gt;
 &lt;hr/&gt;</content><category term="Review"></category><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Setting up a ZFS pool on Ubuntu 16.04</title><link href="https://andrewwegner.com/zfs-pool-on-ubuntu.html" rel="alternate"></link><published>2018-02-15T22:30:00-06:00</published><updated>2018-02-15T22:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-15:/zfs-pool-on-ubuntu.html</id><summary type="html">&lt;p&gt;With the backup server assembled, it's time to start configuring it. This post covers setting up the ZFS pool for all the data&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://andrewwegner.com/new-house-server.html"&gt;Previously&lt;/a&gt; in this series, the new NAS was assembled. Ubuntu 16.04 has been installed and updated. It's time to do something with all those hard drives! &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/new-house-server.html"&gt;Previously&lt;/a&gt; in this series, the new NAS was assembled. Ubuntu 16.04 has been installed and updated. It's time to do something with all those hard drives!&lt;/p&gt;
 &lt;p&gt;I'll be setting the seven 4TB drives in a single &lt;a href="https://en.wikipedia.org/wiki/ZFS"&gt;ZFS&lt;/a&gt; pool. I'm using ZFS for protection against data corruption. It offers several other &lt;a href="https://wiki.ubuntu.com/ZFS"&gt;features&lt;/a&gt; too. I'll
 be using dual parity, which means I could lose two drives and be able to recover. The goal is never to test this, but I'd rather not go through a &lt;a href="https://andrewwegner.com/backup-your-data.html"&gt;data loss scare&lt;/a&gt; again.&lt;/p&gt;
 &lt;p&gt;Before we begin, it's a good idea to ensure Ubuntu has been updated.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;With the update complete, let's get started. &lt;/p&gt;
+&lt;p&gt;With the update complete, let's get started.&lt;/p&gt;
 &lt;h2 id="installing-zfs"&gt;Installing ZFS&lt;a class="headerlink" href="#installing-zfs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Installing the ZFS file system is simple on Ubuntu. &lt;/p&gt;
+&lt;p&gt;Installing the ZFS file system is simple on Ubuntu.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt-get install zfs parted
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Ta-da! Your system is now capable of setting up ZFS pools. The &lt;code&gt;parted&lt;/code&gt; package will be used to set up a ZFS pool shortly.&lt;/p&gt;
@@ -3534,11 +3534,11 @@ digital data in the house. &lt;/p&gt;</content><category term="Technical Solutio
 is just, "when will it happen?". By mid-to-late January (three months later), I'd gotten everything back from &lt;a href="http://sertdatarecovery.com"&gt;SERT Data Recovery&lt;/a&gt; and
 was happy that everything was recovered. It was time to finally build that huge NAS.&lt;/p&gt;
 &lt;h2 id="server-goals"&gt;Server Goals&lt;a class="headerlink" href="#server-goals" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;A NAS for a home backup solution could be something as simple as a prebuilt device with a couple hard drives. I'm a bit of a geek and have a lot of digital data, not to 
-mention family pictures, years worth of programs I've written, and a digital music and movie collection. I'm a digital pack rat, but a well organized digital pack rat. 
-I also wanted to get more out of this server than "plug the device into the router". I ran game servers for &lt;a href="https://andrewwegner.com/thanks-for-all-the-fish.html"&gt;Vipers&lt;/a&gt; for five years. I did a little bit of server 
-work at Caterpillar. I've toyed with server virtual machines off and on for testing various packages and software over the years. Through all of this, though, I've 
-never had a server in the house that I could use to run some of my scripts on. Those always ran on my desktop because it was always on. This server was going to change that. &lt;/p&gt;
+&lt;p&gt;A NAS for a home backup solution could be something as simple as a prebuilt device with a couple hard drives. I'm a bit of a geek and have a lot of digital data, not to
+mention family pictures, years worth of programs I've written, and a digital music and movie collection. I'm a digital pack rat, but a well organized digital pack rat.
+I also wanted to get more out of this server than "plug the device into the router". I ran game servers for &lt;a href="https://andrewwegner.com/thanks-for-all-the-fish.html"&gt;Vipers&lt;/a&gt; for five years. I did a little bit of server
+work at Caterpillar. I've toyed with server virtual machines off and on for testing various packages and software over the years. Through all of this, though, I've
+never had a server in the house that I could use to run some of my scripts on. Those always ran on my desktop because it was always on. This server was going to change that.&lt;/p&gt;
 &lt;p&gt;I had several goals when building this thing:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Have more storage space than I needed for several years. I didn't want to rebuild this in 18 months because I was bad at planning. Years ago when I built my computer
@@ -3772,7 +3772,7 @@ a few decisions, but there were no wrong answers. Everyone was professional, yet
 personable.&lt;/p&gt;
 &lt;p&gt;After all of this, an offer was presented and after some last minute "do I really
 want to make a big change in my life" doubts were squashed, I accepted. I love the
-job. &lt;/p&gt;</content><category term="Jobs"></category><category term="job"></category><category term="technical"></category></entry><entry><title>Review of Udemy's AWS Serverless APIs &amp; Apps - A Complete Introduction course</title><link href="https://andrewwegner.com/aws-serverless-apis-apps-review.html" rel="alternate"></link><published>2017-10-20T11:17:00-05:00</published><updated>2017-10-20T11:17:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-10-20:/aws-serverless-apis-apps-review.html</id><summary type="html">&lt;p&gt;My review of the AWS Serverless APIs &amp;amp; Apps course on Udemy.&lt;/p&gt;</summary><content type="html">
+job.&lt;/p&gt;</content><category term="Jobs"></category><category term="job"></category><category term="technical"></category></entry><entry><title>Review of Udemy's AWS Serverless APIs &amp; Apps - A Complete Introduction course</title><link href="https://andrewwegner.com/aws-serverless-apis-apps-review.html" rel="alternate"></link><published>2017-10-20T11:17:00-05:00</published><updated>2017-10-20T11:17:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-10-20:/aws-serverless-apis-apps-review.html</id><summary type="html">&lt;p&gt;My review of the AWS Serverless APIs &amp;amp; Apps course on Udemy.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've been involved with the &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; spam hunting project for several years. In that time It's grown from
 a small Python script to a large combination of Python, Ruby and user scripts. The infrastructure hasn't really changed
@@ -3817,7 +3817,7 @@ to this new solution.&lt;/p&gt;
 &lt;hr/&gt;
 &lt;p&gt;&lt;a href="https://ude.my/UC-1ESFUC2V"&gt;&lt;img alt="AWS Serverless APIs and Apps Completion" src="https://andrewwegner.com/images/udemy-aws-serverless-apis-apps.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"></category><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Collecting Diamonds on Stack Exchange</title><link href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html" rel="alternate"></link><published>2017-08-18T10:06:00-05:00</published><updated>2017-08-18T10:06:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-08-18:/collecting-diamonds-on-stack-exchange.html</id><summary type="html">&lt;p&gt;I've picked up a couple moderation diamonds recently. A reflection on the Stack Overflow election.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;It's been over two years since I first ran for moderator on Stack Overflow. &lt;a href="https://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html"&gt;I've ran for moderator&lt;/a&gt; &lt;a href="https://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html"&gt;three times&lt;/a&gt;, &lt;a href="https://andrewwegner.com/third-times-the-charm.html"&gt;previously&lt;/a&gt; on Stack Overflow. 
+&lt;p&gt;It's been over two years since I first ran for moderator on Stack Overflow. &lt;a href="https://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html"&gt;I've run for moderator&lt;/a&gt; &lt;a href="https://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html"&gt;three times&lt;/a&gt;, &lt;a href="https://andrewwegner.com/third-times-the-charm.html"&gt;previously&lt;/a&gt; on Stack Overflow.
 In each election I've done better, coming in fifth in the third election. Well, it's been a little over 8 months since the last one and new moderators are needed
 again. I decided to run once more with the knowledge that if I lost, I probably wouldn't run again in the next election. &lt;/p&gt;
 &lt;h2 id="nomination-phase"&gt;Nomination Phase&lt;a class="headerlink" href="#nomination-phase" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -4080,7 +4080,7 @@ relatively basic one I have), be prepared to be bored during the first half of t
 &lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;My &lt;a href="https://andrewwegner.com/deep-learning-prereq-numpy.html"&gt;last review&lt;/a&gt; covered &lt;a href="https://www.udemy.com/user/lazy-programmer/"&gt;Lazy Programmer's&lt;/a&gt; &lt;a href="https://www.udemy.com/deep-learning-prerequisites-the-numpy-stack-in-python/learn/v4/overview"&gt;Numpy prerequisites course&lt;/a&gt; on Udemy. In my goal to learn more about NLP,
 I'm continuing through the courses this instructor has designed. To this end, that requires two additional prerequisites: &lt;a href="https://www.udemy.com/data-science-linear-regression-in-python/learn/v4/overview"&gt;Linear
-Regression&lt;/a&gt; and &lt;a href="https://www.udemy.com/data-science-logistic-regression-in-python/learn/v4/overview"&gt;Logistic Regression&lt;/a&gt;. This review covers those two separate courses.  &lt;/p&gt;
+Regression&lt;/a&gt; and &lt;a href="https://www.udemy.com/data-science-logistic-regression-in-python/learn/v4/overview"&gt;Logistic Regression&lt;/a&gt;. This review covers those two separate courses.&lt;/p&gt;
 &lt;h2 id="thoughts-on-the-lessons"&gt;Thoughts on the lessons&lt;a class="headerlink" href="#thoughts-on-the-lessons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;These two courses are each short three hour courses giving a crash course in how to perform linear regression analysis and logistic
 regression analysis. The courses cover both the theoretical math needed and the more practical Python code needed. The instructor
@@ -4122,7 +4122,7 @@ Bayesian algorithm. It wasn't needed and probably shouldn't have been added to t
 stayed in the repository for over a year and was finally &lt;a href="https://github.com/Charcoal-SE/SmokeDetector/commit/68d49ccc0b4981a4ebe91d993f42643542e44d80"&gt;removed&lt;/a&gt; in late 2015. This is the cause of the weird graph
 above, and why almost everything added in 2014 looks like it's missing in later years.&lt;/p&gt;
 &lt;h3 id="what-has-really-changed"&gt;What has really changed?&lt;a class="headerlink" href="#what-has-really-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;After eliminating that Bayesian directory from git history, you can get a much better idea of how much has changed. &lt;/p&gt;
+&lt;p&gt;After eliminating that Bayesian directory from git history, you can get a much better idea of how much has changed.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://andrewwegner.com/images/smokey-git-theseus-filtered.png"&gt;&lt;img alt="SmokeDetector - Git of Theseus - Filtered" src="https://andrewwegner.com/images/smokey-git-theseus-filtered.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Very little of the original code, written in 2014, remains untouched. The explosion in code after that is due to
 new detection patterns, chat commands (and a rewrite), integration with MetaSmoke and the introduction of blacklists.&lt;/p&gt;
@@ -4229,8 +4229,8 @@ to the question and resulted in some valuable feedback:&lt;/p&gt;
 &lt;p&gt;Charcoal is the &lt;a href="http://charcoal-se.org/people.html"&gt;organization&lt;/a&gt; behind the &lt;a href="https://github.com/Charcoal-SE/SmokeDetector"&gt;SmokeDetector&lt;/a&gt; bot and other &lt;a href="https://github.com/Charcoal-SE"&gt;nice things&lt;/a&gt;. This bot scans new 
 posts across the entire network for spam posts and reports them to &lt;a href="https://github.com/Charcoal-SE/SmokeDetector/wiki/Chat-Rooms"&gt;various chatrooms&lt;/a&gt; where people can act on them. 
 If a post has been created or edited, anywhere on the network, we've probably seen it. The bot utilizes our knowledge 
-of how spammers work and what they have previously posted to come up with common patterns and rules to detect spam in 
-the new and updated posts. You've likely seen the SmokeDetector bot if you visit chatrooms such as 
+of how spammers work and what they have previously posted to come up with common patterns and rules to detect spam in
+the new and updated posts. You've likely seen the SmokeDetector bot if you visit chatrooms such as
 &lt;a href="http://chat.meta.stackexchange.com/rooms/89/tavern-on-the-meta"&gt;Tavern on the Meta&lt;/a&gt;, &lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt;, &lt;a href="http://chat.stackoverflow.com/rooms/41570/so-close-vote-reviewers"&gt;SO Close Vote Reviewers&lt;/a&gt; and others across the network. Over time, the 
 bot has become very accurate. &lt;/p&gt;
 &lt;p&gt;Now we are leveraging the years of data and accuracy to automatically cast spam flags. With approximately 58,000 posts 
@@ -4473,17 +4473,17 @@ thought it was a great question, so I suggested it again:&lt;/p&gt;
 queue are and if we could incorporate some of his work permanently on the site. Better identification of flags is 
 something that would be very nice to have permanently.  - &lt;a href="http://stackoverflow.com/users/426671/bluefeet"&gt;bluefeet&lt;/a&gt; &lt;em&gt;Stack Overflow Community Manager&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;and &lt;/p&gt;
+&lt;p&gt;and&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;There are always some nominees for this position who are very active, some who have good judgment and cool heads, and 
 some who innovate with their approach to community moderation. Andy is the rare candidate who very clearly checks all 
 three boxes. As a user on SO for 3.5 years, a moderator pro tempore on Engineering SE for 1.7 years and an early 
 participant in the Community Building SE beta, I strongly support this nomination. - &lt;a href="http://stackoverflow.com/users/2359271/air"&gt;Air&lt;/a&gt; &lt;a href="http://engineering.stackexchange.com/"&gt;&lt;em&gt;Moderator on Engineering.SE&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;My candidate score this time is an impressive 39/40. This is up six from a year ago, and up ten from my first run. The 
+&lt;p&gt;My candidate score this time is an impressive 39/40. This is up six from a year ago, and up ten from my first run. The
 one missing point is due to missing the &lt;a href="http://stackoverflow.com/help/badges/4369/refiner"&gt;Refiner&lt;/a&gt; badge. I believe the reason for this is because of my workflow. I,
-generally, don't edit and answer questions at the same time. If I'm answering, I'm not in "edit" mode. If I'm editting, 
-I'm usually in "moderation" mode. It's something I'll work on. I'm 38 out of 50 questions there, so I'll get it soon 
+generally, don't edit and answer questions at the same time. If I'm answering, I'm not in "edit" mode. If I'm editting,
+I'm usually in "moderation" mode. It's something I'll work on. I'm 38 out of 50 questions there, so I'll get it soon
 enough.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Candidate Score" src="https://andrewwegner.com/images/november_2016_candidate_score.png"/&gt;&lt;/p&gt;
 &lt;h3 id="candidate-questions"&gt;Candidate questions&lt;a class="headerlink" href="#candidate-questions" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -4602,7 +4602,7 @@ it'll be a while. I'll consider running again then. &lt;/p&gt;</content><categor
         mymodule.py
     __init__.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This was close to the end goal, but lacked some files in the &lt;code&gt;project_root&lt;/code&gt; that were needed for a proper install via &lt;code&gt;pip&lt;/code&gt;. The important file that was missing was &lt;code&gt;setup.py&lt;/code&gt;. I needed this file to ensure that everything would install with a simple &lt;code&gt;pip install stackapi&lt;/code&gt; &lt;/p&gt;
+&lt;p&gt;This was close to the end goal, but lacked some files in the &lt;code&gt;project_root&lt;/code&gt; that were needed for a proper install via &lt;code&gt;pip&lt;/code&gt;. The important file that was missing was &lt;code&gt;setup.py&lt;/code&gt;. I needed this file to ensure that everything would install with a simple &lt;code&gt;pip install stackapi&lt;/code&gt;&lt;/p&gt;
 &lt;h3 id="setuppy"&gt;setup.py&lt;a class="headerlink" href="#setuppy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;My &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/setup.py"&gt;&lt;code&gt;setup.py&lt;/code&gt;&lt;/a&gt; is pretty basic and available on GitHub. There are a couple important things though.&lt;/p&gt;
 &lt;ul&gt;
@@ -4993,7 +4993,7 @@ The command "py.test" exited with 0.
 &lt;li&gt;Explanation which of my skills or experiences they are interested in. Are you interested in my Python answers on Stack Overflow? My projects on Github? My PHP experience from years ago? This is &lt;em&gt;important&lt;/em&gt; to know. If the company is looking to recruit me for knowledge I shared years ago (ie. PHP in my case), I'd probably be less useful right now because I haven't used PHP in years. I have not kept up with recent changes to the language or various frameworks.&lt;/li&gt;
 &lt;li&gt;Explanation of what the position will do, projects I'll be involved in, or challenges they are facing now that I'll help solve.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I did not respond to this position. &lt;/p&gt;
+&lt;p&gt;I did not respond to this position.&lt;/p&gt;
 &lt;h3 id="message-2"&gt;Message 2&lt;a class="headerlink" href="#message-2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="Message 2" src="https://andrewwegner.com/images/message2.png"/&gt;&lt;/p&gt;
 &lt;p&gt;This has the following useful elements:&lt;/p&gt;
@@ -5152,7 +5152,7 @@ encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/300916/18
 &lt;/ul&gt;
 &lt;p&gt;Example:
      - A post where X+% of the text is hyperlinks is very dependent on the links being active. If one or more of the links are broken, the post may no longer be relevant (or may be a link only post). One example I found while doing this was &lt;a href="http://stackoverflow.com/posts/4906230/revisions"&gt;this&lt;/a&gt; answer.&lt;/p&gt;
-&lt;p&gt;I don't think that this type of edit from the Community user should bump a post to the front page. Edits done in the broken link queue, though, &lt;em&gt;should&lt;/em&gt; bump the post just like a suggested edit does today. By preventing the automated Community posts from being bumped, we prevent the the front page from being flooded, daily, with old posts and these edits. I think that the exposure in the 10K tools and the broken link queue will provide the visibility needed to check the process is working correctly. &lt;/p&gt;
+&lt;p&gt;I don't think that this type of edit from the Community user should bump a post to the front page. Edits done in the broken link queue, though, &lt;em&gt;should&lt;/em&gt; bump the post just like a suggested edit does today. By preventing the automated Community posts from being bumped, we prevent the the front page from being flooded, daily, with old posts and these edits. I think that the exposure in the 10K tools and the broken link queue will provide the visibility needed to check the process is working correctly.&lt;/p&gt;
 &lt;h2 id="process-flows"&gt;Process flows&lt;a class="headerlink" href="#process-flows" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Queue Flow:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://andrewwegner.com/images/brokenqueueflow.png"&gt;&lt;img alt="Queue Flow" src="https://andrewwegner.com/images/brokenqueueflow.png"/&gt;&lt;/a&gt;&lt;/p&gt;
@@ -5244,7 +5244,7 @@ encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/300916/18
 | 0     | 36.4087%                   |
 | 1     | 25.1674%                   |
 | 2     | 13.4089%                   |
-| 3     | 7.2806%                    | 
+| 3     | 7.2806%                    |
 | 4     | 4.2971%                    |
 | 5     | 2.7065%                    |
 | 6     | 1.8068%                    |
@@ -5322,10 +5322,10 @@ encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/300916/18
 &lt;hr/&gt;
 &lt;h2 id="footnotes"&gt;Footnotes&lt;a class="headerlink" href="#footnotes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;This is how it ultimately played out. Originally I sent &lt;code&gt;HEAD&lt;/code&gt; requests, in an effort to save bandwidth. This turned out to waste a whole bunch of time because there are a whole bunch of sites around the internet that return a &lt;a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error"&gt;&lt;code&gt;405 Method Not Allowed&lt;/code&gt;&lt;/a&gt; when sending a &lt;code&gt;HEAD&lt;/code&gt; request. The next step was to sent &lt;code&gt;GET&lt;/code&gt; requests, but utilize the default Python &lt;a href="http://docs.python-requests.org/en/latest/"&gt;requests&lt;/a&gt; user-agent. A lot of sites were returning &lt;code&gt;401&lt;/code&gt; or &lt;code&gt;404&lt;/code&gt; responses to this user agent. &lt;/li&gt;
+&lt;li&gt;This is how it ultimately played out. Originally I sent &lt;code&gt;HEAD&lt;/code&gt; requests, in an effort to save bandwidth. This turned out to waste a whole bunch of time because there are a whole bunch of sites around the internet that return a &lt;a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error"&gt;&lt;code&gt;405 Method Not Allowed&lt;/code&gt;&lt;/a&gt; when sending a &lt;code&gt;HEAD&lt;/code&gt; request. The next step was to sent &lt;code&gt;GET&lt;/code&gt; requests, but utilize the default Python &lt;a href="http://docs.python-requests.org/en/latest/"&gt;requests&lt;/a&gt; user-agent. A lot of sites were returning &lt;code&gt;401&lt;/code&gt; or &lt;code&gt;404&lt;/code&gt; responses to this user agent.&lt;/li&gt;
 &lt;li&gt;Links to Stack Exchange sites were not counted in the above results. The failures seen are almost 100% due to a question/answer/comment being deleted. The process ran as an anonymous user, thus didn't have any reputation and was served a 404. A user with appropriate permissions &lt;em&gt;can&lt;/em&gt; still visit the link. I verified a number of 404'd links to Stack Overflow posts and this was the case.&lt;/li&gt;
 &lt;li&gt;The 4th most common failure was to &lt;code&gt;localhost&lt;/code&gt;. The 16th and 17th most common were &lt;code&gt;localhost&lt;/code&gt; on ports other than 80. I removed these from the result table with the knowledge that these shouldn't be accessible from the internet.&lt;/li&gt;
-&lt;li&gt;There where 7 total URLs that returned status codes in the &lt;code&gt;600&lt;/code&gt; and &lt;a href="https://github.com/joho/7XX-rfc"&gt;&lt;code&gt;700&lt;/code&gt;&lt;/a&gt; range. One such site was &lt;a href="http://learn.code.org/hoc/1"&gt;code.org&lt;/a&gt; with a status code of 752. Sadly, this is not even defined the joke RFC. &lt;/li&gt;
+&lt;li&gt;There where 7 total URLs that returned status codes in the &lt;code&gt;600&lt;/code&gt; and &lt;a href="https://github.com/joho/7XX-rfc"&gt;&lt;code&gt;700&lt;/code&gt;&lt;/a&gt; range. One such site was &lt;a href="http://learn.code.org/hoc/1"&gt;code.org&lt;/a&gt; with a status code of 752. Sadly, this is not even defined the joke RFC.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id="follow-up"&gt;Follow up&lt;a class="headerlink" href="#follow-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I &lt;a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html"&gt;posted&lt;/a&gt; a proposal on how I think this could be fixed.&lt;/p&gt;</content><category term="Side Activities"></category><category term="Stack Exchange"></category><category term="programming"></category></entry><entry><title>How I set up this site with GitHub Pages and CloudFlare</title><link href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html" rel="alternate"></link><published>2015-07-09T11:26:00-05:00</published><updated>2015-07-09T11:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-07-09:/how-i-set-up-this-site-with-github-pages-and-cloudflare.html</id><summary type="html">&lt;p&gt;This post provides a brief description of how I set up the web site to utilize GitHub Pages and CloudFlare and eliminated my self hosting&lt;/p&gt;</summary><content type="html">
@@ -5339,7 +5339,7 @@ content that is this site. I also set up a second &lt;a href="https://github.com
 and markdown version of the pages. The first repository was set up as submodule.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git submodule add https://github.com/AWegnerGitHub/awegnergithub.github.io.git output
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I ignored the &lt;code&gt;output&lt;/code&gt; directory in &lt;code&gt;.gitignore&lt;/code&gt; on the source repository. Finally, I had to adjust &lt;code&gt;publishconf.py&lt;/code&gt; slightly to  &lt;/p&gt;
+&lt;p&gt;I ignored the &lt;code&gt;output&lt;/code&gt; directory in &lt;code&gt;.gitignore&lt;/code&gt; on the source repository. Finally, I had to adjust &lt;code&gt;publishconf.py&lt;/code&gt; slightly to&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;DELETE_OUTPUT_DIRECTORY = False
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Without this, I was constantly destroying the output repository and had to reinitialize it. This prevents that from occuring.&lt;/p&gt;
@@ -5377,7 +5377,7 @@ enjoy your new GitHub Pages / CloudFlare web page for free.&lt;/p&gt;</content><
 &lt;p&gt;For years, I maintained a Wordpress blog covering various things I've done or created. Most of these revolved around
 things I created to make administering Team Vipers easier for me and for the rest of the admin team. It was my way
 of documenting what I'd done (in case I ever needed to do it again) and providing a way to update the Team Vipers community
-about new plugins or applications that would be deployed to the community. &lt;/p&gt;
+about new plugins or applications that would be deployed to the community.&lt;/p&gt;
 &lt;h2 id="my-issues-with-wordpress"&gt;My Issues with Wordpress&lt;a class="headerlink" href="#my-issues-with-wordpress" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The problem I had with Wordpress was that it was just to bulky for the simple posts I was making. I needed a database, a full web
 server (or a hosting provider), and either time to hunt for the "perfect" plugin(s) or PHP knowledge to do it myself. Early in my
@@ -5804,7 +5804,7 @@ This is, by far, the largest number of declined flags the process has generated 
 &lt;p&gt;I processed comments 359 days out of the year. I missed three in January due to stopping it after a mass decline of flags (more later), I can't account for a missed day in July and August. I don't recall stopping it, but I missed July 3rd and August 19. I also missed December 28th due to a power issue. I flagged 35,960 comments. Of that, 111 were declined.&lt;/p&gt;
 &lt;p&gt;By month, this is the break down of rejected flags.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="2015 Flag Summary" src="https://andrewwegner.com/images/2015-flag-summary.png"/&gt;&lt;/p&gt;
-&lt;p&gt;The blip at the end of November is due to new moderators being elected and adjusting to what other moderators consider "good" versus "bad" comments. I didn't see the spike in the April election which is interesting, but after a couple days in November it's back to normal. The January spike I mentioned above. &lt;/p&gt;
+&lt;p&gt;The blip at the end of November is due to new moderators being elected and adjusting to what other moderators consider "good" versus "bad" comments. I didn't see the spike in the April election which is interesting, but after a couple days in November it's back to normal. The January spike I mentioned above.&lt;/p&gt;
 &lt;p&gt;Interesting note: The longest stretch in the year with no declined flags was from August 13th through November 24th.&lt;/p&gt;</content><category term="Programming Projects"></category><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Moderation postion on Moderators</title><link href="https://andrewwegner.com/moderation-postion-on-moderators.html" rel="alternate"></link><published>2014-07-02T10:51:00-05:00</published><updated>2014-12-04T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2014-07-02:/moderation-postion-on-moderators.html</id><summary type="html">&lt;p&gt;I've thrown my hat into the ring for a moderation position on Stack Exchange's newest site: Moderators&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've been the owner of Vipers for almost 5 years. In that time I've help the community grown and get stronger. I've helped
@@ -6091,7 +6091,7 @@ you to all our players that entered!&lt;/p&gt;
 &lt;li&gt;Iamthebaron: Winner of 4 refined metal&lt;/li&gt;
 &lt;li&gt;That Guy From That Thing: Winner of 1 refined metal&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="First Raffle Bot Entries and Winners" src="https://andrewwegner.com/images/rafflebot-entries.png"/&gt; &lt;/p&gt;</content><category term="Vipers"></category><category term="team vipers"></category><category term="automation"></category><category term="community"></category><category term="programming"></category></entry><entry><title>Homing projectiles are awesome!</title><link href="https://andrewwegner.com/homing-projectiles-are-awesome!.html" rel="alternate"></link><published>2012-06-30T08:02:00-05:00</published><updated>2015-05-20T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-06-30:/homing-projectiles-are-awesome!.html</id><summary type="html">&lt;p&gt;Pyro is an under utilized class on the Crit server. This post explains how I've fixed that.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;&lt;img alt="First Raffle Bot Entries and Winners" src="https://andrewwegner.com/images/rafflebot-entries.png"/&gt;&lt;/p&gt;</content><category term="Vipers"></category><category term="team vipers"></category><category term="automation"></category><category term="community"></category><category term="programming"></category></entry><entry><title>Homing projectiles are awesome!</title><link href="https://andrewwegner.com/homing-projectiles-are-awesome!.html" rel="alternate"></link><published>2012-06-30T08:02:00-05:00</published><updated>2015-05-20T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-06-30:/homing-projectiles-are-awesome!.html</id><summary type="html">&lt;p&gt;Pyro is an under utilized class on the Crit server. This post explains how I've fixed that.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="stupid-soldier-spam"&gt;Stupid soldier spam&lt;a class="headerlink" href="#stupid-soldier-spam" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The appeal of the crit server is fast game play, overpowered shots, and nearly instant death if you aren't paying attention.
 The down side is the soldier spam. Lots of it. It's not unusual to have a team of soldiers spamming rockets. This is part
@@ -6173,7 +6173,7 @@ I've made a change to the logic in how long a ban will last. It provides a 4 str
 &lt;li&gt;Forth offence: Permanent removal from the game servers.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The community has been very enthusiastic about how quickly users of inappropriate terms are removed. I've seen a few minor
-complaints about the permanent removal of users on the forth offense. I've told the community that &lt;em&gt;if&lt;/em&gt; a user protests the 
+complaints about the permanent removal of users on the forth offense. I've told the community that &lt;em&gt;if&lt;/em&gt; a user protests the
 ban and &lt;em&gt;if&lt;/em&gt; they can show they've learned our rules, I will provide one additional chance after the user has waited a minimum
 of a month from from last time they were banned. If they return to their previous activities, they will be re-banned and
 they will not be able to return in the future.&lt;/p&gt;
@@ -6182,20 +6182,20 @@ they will not be able to return in the future.&lt;/p&gt;
 &lt;p&gt;In January 2015, Team Vipers &lt;a href="https://andrewwegner.com/thanks-for-all-the-fish.html"&gt;shut down&lt;/a&gt;. With that shutdown, all chat monitoring also shut down. The system was active
 from April 23, 2012 to January 4, 2015, for a total of 987 days. In that time, 4457 bans were issued for inappropriate
 language. That is over 4 users a day being removed from our player base because they couldn't maintain a respectful
-attitude. I consider that a success. I believe Viper community members did too.&lt;/p&gt;</content><category term="Vipers"></category><category term="team vipers"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Connect Python to OSI Soft PI</title><link href="https://andrewwegner.com/connect-python-to-osi-soft-pi.html" rel="alternate"></link><published>2012-02-07T12:45:00-06:00</published><updated>2012-04-16T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-02-07:/connect-python-to-osi-soft-pi.html</id><summary type="html">&lt;p&gt;How I connected Python to OSI Soft PI&lt;/p&gt;</summary><content type="html">&lt;p&gt;OSI PI is a historian database. I had a task to connect a python application to this database. I asked a question on 
+attitude. I consider that a success. I believe Viper community members did too.&lt;/p&gt;</content><category term="Vipers"></category><category term="team vipers"></category><category term="automation"></category><category term="programming"></category></entry><entry><title>Connect Python to OSI Soft PI</title><link href="https://andrewwegner.com/connect-python-to-osi-soft-pi.html" rel="alternate"></link><published>2012-02-07T12:45:00-06:00</published><updated>2012-04-16T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-02-07:/connect-python-to-osi-soft-pi.html</id><summary type="html">&lt;p&gt;How I connected Python to OSI Soft PI&lt;/p&gt;</summary><content type="html">&lt;p&gt;OSI PI is a historian database. I had a task to connect a python application to this database. I asked a question on
 &lt;a href="http://stackoverflow.com/questions/8898114/how-can-i-connect-python-2-6-to-osi-pi"&gt;Stack Overflow&lt;/a&gt; about whether this was a simple problem to solve. After two weeks I still hadn't gotten a viable response,
 so I had to build by own solution.&lt;/p&gt;
-&lt;p&gt;I did reach out to the vendor first for help. Their response back was not helpful. &lt;/p&gt;
+&lt;p&gt;I did reach out to the vendor first for help. Their response back was not helpful.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Looks like pyodbc is written against ODBC 3.x.  The OSI PI ODBC driver is using ODBC 2.0.  The python ODBC driver manager 
-will convert most ODBC 3 calls on the fly to ODBC 2 ones. Anything added to 3, however, will obviously fail. You would 
-need to find some way to make sure that your only using 2.0 compliant ODBC calls.  Currently their is not a PI ODBC 
+&lt;p&gt;Looks like pyodbc is written against ODBC 3.x.  The OSI PI ODBC driver is using ODBC 2.0.  The python ODBC driver manager
+will convert most ODBC 3 calls on the fly to ODBC 2 ones. Anything added to 3, however, will obviously fail. You would
+need to find some way to make sure that your only using 2.0 compliant ODBC calls.  Currently their is not a PI ODBC
 driver that is compliant with ODBC 3.0.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;So, it looks like the vendor doesn't support Python (odd, they are named "PI", but I digress). Additionally, the drivers provided 
-by the company initially didn't work. &lt;/p&gt;
-&lt;p&gt;The code below shows how I was able to finally connect python to OSI PI. It may not be the most elegant, but it 
-functions for the purposes of my application. Initially I was attempting to connect using the &lt;a href="https://github.com/mkleehammer/pyodbc"&gt;pyodbc&lt;/a&gt; module. Unfortunately, 
+&lt;p&gt;So, it looks like the vendor doesn't support Python (odd, they are named "PI", but I digress). Additionally, the drivers provided
+by the company initially didn't work.&lt;/p&gt;
+&lt;p&gt;The code below shows how I was able to finally connect python to OSI PI. It may not be the most elegant, but it
+functions for the purposes of my application. Initially I was attempting to connect using the &lt;a href="https://github.com/mkleehammer/pyodbc"&gt;pyodbc&lt;/a&gt; module. Unfortunately,
 OSI PI would return a message like this:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;pyodbc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Error&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;IM002&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;[IM002] [OSI][PI ODBC][PI]PI-API Error &amp;lt;pilg_getdefserverinfo&amp;gt; 0 (0) (SQLDriverConnectW); [01000] [Microsoft][ODBC Driver Manager] The driver doesn&amp;#39;t support the version of ODBC behavior that the application requested (see SQLSetEnvAttr). (0)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -6314,74 +6314,74 @@ nearly everything is one hit, one kill, it's very hard to build uber. Second, wh
 shot at getting a bad roll isn't good for the team. The low God Mode and Homing results are the same here as they were for the soldier.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="RTD Medic" src="https://andrewwegner.com/images/rtd-medic.png"/&gt; &lt;/p&gt;</content><category term="Vipers"></category><category term="team vipers"></category><category term="programming"></category></entry><entry><title>A special kind of troll</title><link href="https://andrewwegner.com/a-special-kind-of-troll.html" rel="alternate"></link><published>2010-12-28T16:04:00-06:00</published><updated>2011-07-07T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-12-28:/a-special-kind-of-troll.html</id><summary type="html">&lt;p&gt;Thoughts on Viper's most recent troll&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="what-happened"&gt;What happened?&lt;a class="headerlink" href="#what-happened" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Over the Christmas holiday, the Team Vipers forums were hit by "multiple" users who decided it was a good idea to use our community 
+&lt;p&gt;Over the Christmas holiday, the Team Vipers forums were hit by "multiple" users who decided it was a good idea to use our community
 as a battle ground. A Viper member stepped in to "help" resolve the problem by attempting to play mediator. (Notice the
-air quotes. These are important later) The battling users turned on this member and escalated the matter to threats of violence. 
-When the member stopped responding, the users got bored and began spamming the board. &lt;/p&gt;
+air quotes. These are important later) The battling users turned on this member and escalated the matter to threats of violence.
+When the member stopped responding, the users got bored and began spamming the board.&lt;/p&gt;
 &lt;p&gt;Due to a combination of it being Christmas and the admins doing Christmas-y things with their families, this went on for
-hours. There were several rounds of clean ups, but the battle continued over nearly a 48 hour period. &lt;/p&gt;
+hours. There were several rounds of clean ups, but the battle continued over nearly a 48 hour period.&lt;/p&gt;
 &lt;h2 id="why-is-this-troll-different"&gt;Why is this troll different?&lt;a class="headerlink" href="#why-is-this-troll-different" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;After Christmas festivities had ended and I had time to sit down in front of a computer to investigate what happened, I began
 piecing together a time line of events. It turns out that all of these "users" were coming from the same IP address.
 On top of that, they shared the same IP address as the member that attempted to "help". Odd...&lt;/p&gt;
 &lt;h3 id="a-little-more-background"&gt;A little more background&lt;a class="headerlink" href="#a-little-more-background" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The member that was "helping" had recently been approached by the admin team in an effort to clarify some questions about
-their age. One of the admins had been presented evidence that the user was under the age of 16, which we all know if the 
-minimum age to be a Vipers member. &lt;/p&gt;
-&lt;p&gt;The user took this as a threat that we were going to remove them from the community entirely via bans on the servers and 
+their age. One of the admins had been presented evidence that the user was under the age of 16, which we all know if the
+minimum age to be a Vipers member.&lt;/p&gt;
+&lt;p&gt;The user took this as a threat that we were going to remove them from the community entirely via bans on the servers and
 forums. They posted a rant on their "sub-community". To mean this seems much more like a place where people that didn't
 like our rules go to complain about us in an unproductive manner. I'm still not sure why they set up this community in
-the first place, because they have always expressed a very keen interest in Vipers. &lt;/p&gt;
+the first place, because they have always expressed a very keen interest in Vipers.&lt;/p&gt;
 &lt;h3 id="follow-up-with-the-member"&gt;Follow up with the member&lt;a class="headerlink" href="#follow-up-with-the-member" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;When I started seeing a pattern between the battling users and the member, I sent a Steam message to the member asking
 if they were around so that we could chat. The conversation began with me asking about the rant they posted and whether
 or not they were aware that we allowed players under 16 to play on the servers, but not be members. They said they were
 not aware of this and seemed pleased they'd still be around.&lt;/p&gt;
-&lt;p&gt;I thanked them for their attempt to help over the holiday. Then I mentioned that it was odd that all of the users were 
-coming from the same IP address. It was agreed that was odd. When I said that there was another user that used that IP in 
+&lt;p&gt;I thanked them for their attempt to help over the holiday. Then I mentioned that it was odd that all of the users were
+coming from the same IP address. It was agreed that was odd. When I said that there was another user that used that IP in
 the past, they stopped responding. A few hours later I got a message saying they were back and around to talk again but
 they'd closed the Steam chat window and lost the conversation.&lt;/p&gt;
 &lt;p&gt;A few minutes later they began complaining that their own forum had been spammed. I'll admit I was curious, so I went to
 take a look. There were multiple "users" having a very similar battle across the other forum. The member had posted messages
 as the voice of the community that it had to stop or they'd issue bans.&lt;/p&gt;
-&lt;p&gt;I was sick of the game at this point. I mentioned that I knew they were all of the users involved. I'd issued bans to the 
-user accounts on the forum. I revoked their Viper membership and banned their main account. I also made a note that they 
+&lt;p&gt;I was sick of the game at this point. I mentioned that I knew they were all of the users involved. I'd issued bans to the
+user accounts on the forum. I revoked their Viper membership and banned their main account. I also made a note that they
 could appeal the ban in 6 months time. I figured they'd forget about us.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;It takes a special kind of troll to spam their own site to try and convince someone you aren't a spammer.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id="after-effect-of-the-bans"&gt;After effect of the bans&lt;a class="headerlink" href="#after-effect-of-the-bans" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At this point the member was less than pleased. There were vague threats made against me, the server, and anything they
-could think of that would offend me. I simply ignored the user on Steam. &lt;/p&gt;
-&lt;p&gt;This didn't sit well, apparently. The user attempted a denial of service attack on the game servers, which our hosting 
-provider mitigated. Part of this mitigation involves sending me a list of IP addresses that were attempting to connect 
+could think of that would offend me. I simply ignored the user on Steam.&lt;/p&gt;
+&lt;p&gt;This didn't sit well, apparently. The user attempted a denial of service attack on the game servers, which our hosting
+provider mitigated. Part of this mitigation involves sending me a list of IP addresses that were attempting to connect
 to the server at the time of the attack, and part of the traffic that automatically triggered their counter measures.&lt;/p&gt;
 &lt;p&gt;Unsurprisingly, there were only a few IP addresses. Geolocation says they are all in the same city. One of those IP addresses
-is the IP of the user. &lt;/p&gt;
+is the IP of the user.&lt;/p&gt;
 &lt;h2 id="what-is-going-to-change"&gt;What is going to change?&lt;a class="headerlink" href="#what-is-going-to-change" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The biggest problem I see out of all of this is that we didn't have active admins during the initial wave of spam. I can't fault
 the admin team, after all it was Christmas. However, there have been a few requests recently for a couple more game server admins.
 I feel this incident just confirms that we need a couple more. In the coming days, we'll announce who our new admins will be.&lt;/p&gt;
 &lt;p&gt;The member that has been removed has been banned from the servers and the forums. We've also destroyed two new user accounts
-they created since the spam wave. This is business as usual. I did offer them the chance to appear at the end of June. 
+they created since the spam wave. This is business as usual. I did offer them the chance to appear at the end of June.
 I suspect they will not.&lt;/p&gt;
 &lt;h2 id="the-appeal"&gt;The appeal&lt;a class="headerlink" href="#the-appeal" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;This section was added on July 7th, 2011 after the user appealed their ban&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;It seems I was wrong. They filed an appeal to their ban. Of course it took place over another holiday (4th of July). Fortunately,
-our two European admins were still around while the rest of us were out enjoying some fireworks. &lt;/p&gt;
+our two European admins were still around while the rest of us were out enjoying some fireworks.&lt;/p&gt;
 &lt;p&gt;The appeal was filed on the forums, as is usual. Community members stepped in to experess their unhappiness that the user
 would consider returning after what they did over Christmas. One of the admins that were around put a message in the admin
-area and asked for feedback from other admins. &lt;/p&gt;
+area and asked for feedback from other admins.&lt;/p&gt;
 &lt;p&gt;When I returned home after some amazing fireworks, I found I had an email from our hosting provider. They'd blocked another
 attempted denial of service attack. I logged into the forums to see what was going on and noticed that the appeal thread
 was not going well. The user were getting more and more upset at the community members who were rallying against their
 return. It eventually ended with a note saying that they hope Vipers never recovers from the DDOS. At this point one of the
-other admins locked the thread. &lt;/p&gt;
+other admins locked the thread.&lt;/p&gt;
 &lt;p&gt;A check of the IP address the user was utilizing to post the messages and the list of IPs involved in the attempted DDOS
-showed that the IP was on the list, and again they were all in the same city (and the same city as in December). &lt;/p&gt;
+showed that the IP was on the list, and again they were all in the same city (and the same city as in December).&lt;/p&gt;
 &lt;p&gt;Their appeal was rejected. They were informed they would not be welcome back.&lt;/p&gt;
 &lt;p&gt;After this appeal, I don't believe anything will need to change on our side. The appeal process concluded faster than normal.
-Attempts to DDOS the community server makes the decision rather easy for the admins. &lt;/p&gt;</content><category term="Vipers"></category><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>Multiple IP addresses on the same physical network card</title><link href="https://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" rel="alternate"></link><published>2010-11-17T12:54:00-06:00</published><updated>2010-11-17T12:54:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-11-17:/multiple-ip-addresses-on-the-same-physical-network-card.html</id><summary type="html">&lt;p&gt;A quick walkthrough on how to configure a single network card to pull multiple IP addresses (RedHat based distribution)&lt;/p&gt;</summary><content type="html">&lt;p&gt;There are times when a server can be allocated more than one IP Address even though it contains only one physical 
-network card. To associate these IP addresses with the server some manipulation of networking settings will need to be 
-performed. The steps outlined in this walk-through are for RedHat based systems. This tutorial is for statically assigned 
+Attempts to DDOS the community server makes the decision rather easy for the admins.&lt;/p&gt;</content><category term="Vipers"></category><category term="team vipers"></category><category term="moderation"></category></entry><entry><title>Multiple IP addresses on the same physical network card</title><link href="https://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" rel="alternate"></link><published>2010-11-17T12:54:00-06:00</published><updated>2010-11-17T12:54:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2010-11-17:/multiple-ip-addresses-on-the-same-physical-network-card.html</id><summary type="html">&lt;p&gt;A quick walkthrough on how to configure a single network card to pull multiple IP addresses (RedHat based distribution)&lt;/p&gt;</summary><content type="html">&lt;p&gt;There are times when a server can be allocated more than one IP Address even though it contains only one physical
+network card. To associate these IP addresses with the server some manipulation of networking settings will need to be
+performed. The steps outlined in this walk-through are for RedHat based systems. This tutorial is for statically assigned
 IP Addresses (as a server generally will have).
 For this walk through we are going to add one additional IP address to &lt;code&gt;eth0&lt;/code&gt;. Navigate to&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cd /etc/sysconfig/network-scripts
@@ -6417,10 +6417,10 @@ copy and replace values as specified above.&lt;/p&gt;</content><category term="T
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;INVALID SQL: 145 : Table &amp;#39;{something}&amp;#39; is marked as crashed and should be repaired
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I've found this error occurs when MySQL is unexpectedly shut down - whether from a power failure to the entire server or 
-if MySQL itself has issues and you use the &lt;code&gt;kill&lt;/code&gt; command to stop it. Unexpected shut downs, especially while these tables 
+&lt;p&gt;I've found this error occurs when MySQL is unexpectedly shut down - whether from a power failure to the entire server or
+if MySQL itself has issues and you use the &lt;code&gt;kill&lt;/code&gt; command to stop it. Unexpected shut downs, especially while these tables
 are being used, do not make MyISAM tables happy.&lt;/p&gt;
-&lt;p&gt;To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files 
+&lt;p&gt;To fix this, you need the ability to stop MySQL in a controlled manner, and you need to know where the database files
 are stored.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;locate *.MYI
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -6429,7 +6429,7 @@ are stored.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Go to the directory of the crashed table using the &lt;code&gt;cd&lt;/code&gt; command. Next, stop MySQL. This is to ensure the tables are not 
+&lt;p&gt;Go to the directory of the crashed table using the &lt;code&gt;cd&lt;/code&gt; command. Next, stop MySQL. This is to ensure the tables are not
 accessed while we perform our repair functions. If you don't perform this step, the repair may not succeed.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;service mysqld stop
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -6438,7 +6438,7 @@ accessed while we perform our repair functions. If you don't perform this step, 
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;myisamchk -r --force --safe-recover *.MYI
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It 
+&lt;p&gt;The second repair step is used to ensure all table states are updated correctly and repair any minor indexing issues. It
 is likely that this step is not needed after performing the previous step, but it should only take a few seconds now.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;myisamchk --force --fast --update-state *.MYI
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;

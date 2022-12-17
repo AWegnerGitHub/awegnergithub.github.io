@@ -14,8 +14,8 @@ to the question and resulted in some valuable feedback:&lt;/p&gt;
 &lt;p&gt;Charcoal is the &lt;a href="http://charcoal-se.org/people.html"&gt;organization&lt;/a&gt; behind the &lt;a href="https://github.com/Charcoal-SE/SmokeDetector"&gt;SmokeDetector&lt;/a&gt; bot and other &lt;a href="https://github.com/Charcoal-SE"&gt;nice things&lt;/a&gt;. This bot scans new 
 posts across the entire network for spam posts and reports them to &lt;a href="https://github.com/Charcoal-SE/SmokeDetector/wiki/Chat-Rooms"&gt;various chatrooms&lt;/a&gt; where people can act on them. 
 If a post has been created or edited, anywhere on the network, we've probably seen it. The bot utilizes our knowledge 
-of how spammers work and what they have previously posted to come up with common patterns and rules to detect spam in 
-the new and updated posts. You've likely seen the SmokeDetector bot if you visit chatrooms such as 
+of how spammers work and what they have previously posted to come up with common patterns and rules to detect spam in
+the new and updated posts. You've likely seen the SmokeDetector bot if you visit chatrooms such as
 &lt;a href="http://chat.meta.stackexchange.com/rooms/89/tavern-on-the-meta"&gt;Tavern on the Meta&lt;/a&gt;, &lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt;, &lt;a href="http://chat.stackoverflow.com/rooms/41570/so-close-vote-reviewers"&gt;SO Close Vote Reviewers&lt;/a&gt; and others across the network. Over time, the 
 bot has become very accurate. &lt;/p&gt;
 &lt;p&gt;Now we are leveraging the years of data and accuracy to automatically cast spam flags. With approximately 58,000 posts 
@@ -325,5 +325,5 @@ This is, by far, the largest number of declined flags the process has generated 
 &lt;p&gt;I processed comments 359 days out of the year. I missed three in January due to stopping it after a mass decline of flags (more later), I can't account for a missed day in July and August. I don't recall stopping it, but I missed July 3rd and August 19. I also missed December 28th due to a power issue. I flagged 35,960 comments. Of that, 111 were declined.&lt;/p&gt;
 &lt;p&gt;By month, this is the break down of rejected flags.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="2015 Flag Summary" src="https://andrewwegner.com/images/2015-flag-summary.png"/&gt;&lt;/p&gt;
-&lt;p&gt;The blip at the end of November is due to new moderators being elected and adjusting to what other moderators consider "good" versus "bad" comments. I didn't see the spike in the April election which is interesting, but after a couple days in November it's back to normal. The January spike I mentioned above. &lt;/p&gt;
+&lt;p&gt;The blip at the end of November is due to new moderators being elected and adjusting to what other moderators consider "good" versus "bad" comments. I didn't see the spike in the April election which is interesting, but after a couple days in November it's back to normal. The January spike I mentioned above.&lt;/p&gt;
 &lt;p&gt;Interesting note: The longest stretch in the year with no declined flags was from August 13th through November 24th.&lt;/p&gt;</content><category term="Programming Projects"></category><category term="Stack Exchange"></category><category term="machine learning"></category><category term="automation"></category><category term="programming"></category></entry></feed>
