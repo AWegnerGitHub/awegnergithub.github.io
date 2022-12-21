@@ -1,5 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2022-08-30T00:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Run Sanic on Heroku</title><link href="https://andrewwegner.com/run-sanic-on-heroku.html" rel="alternate"></link><published>2022-05-19T08:00:00-05:00</published><updated>2022-08-30T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-05-19:/run-sanic-on-heroku.html</id><summary type="html">&lt;p&gt;A quick guide on how to launch a small Sanic application on Heroku&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2022-12-20T23:45:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Using ChatGPT to interact with an API</title><link href="https://andrewwegner.com/chatgpt-interact-with-external-api.html" rel="alternate"></link><published>2022-12-20T23:45:00-06:00</published><updated>2022-12-20T23:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-20:/chatgpt-interact-with-external-api.html</id><summary type="html">&lt;p&gt;I'm going to take ChatGPT for a spin against an API that I know. Let's see what it's capable of producing.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've played with &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; a lot since it was released publicly a few weeks ago. It's gotten a fair bit of media coverage (and I helped generate
+some of that with the &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;Stack Overflow ban of ChatGPT&lt;/a&gt;). In my last post, I talked about how 
+&lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;I hope that ChatGPT kills the LeetCode interview&lt;/a&gt; for Software Engineers. &lt;/p&gt;
+&lt;p&gt;Today, I want to test it out against an API that I know well. In April 2022, I left PacketFabric where I was Vice President of 
+Software Engineering. I played with the PacketFabric API &lt;em&gt;a lot&lt;/em&gt; during my tenure. I'm going to use that experience to see what ChatGPT 
+can whip up in a few minutes. &lt;/p&gt;
+&lt;h2 id="the-goal"&gt;The Goal&lt;a class="headerlink" href="#the-goal" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;My goal here is to ask ChatGPT for a quick script to interact with a portion of the API, test that output and see how I can extend it. My 
+thought is that this is how an engineer is going to go about their work. They have a task they need to accomplish (call this API end point),
+they need to make sure it works (test it), and then work on refining it to do what's needed.&lt;/p&gt;
+&lt;p&gt;Another goal that I have is to write as little code as possible during this test. I'd love to copy and paste all of this.&lt;/p&gt;
+&lt;h2 id="getting-started"&gt;Getting started&lt;a class="headerlink" href="#getting-started" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For this test, I'll be using the &lt;a href="https://docs.packetfabric.com/api/v2/redoc/#tag/Locations/operation/get_location_list"&gt;Get Locations List&lt;/a&gt; end point. It's unauthenticated so I don't need to sign up for a demo account to get an 
+API key. &lt;em&gt;Side Note: The documentation is wrong in that it states this end point requires a Bearer Token. This will be seen in the generated code and I don't fault ChatGPT for adding it into the code, because the documentation says it is required&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I started with a prompt:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Use PacketFabric's API (https://docs.packetfabric.com/api/v2/redoc/#tag/Locations/operation/get_location_list) to get a list of locations in California (&lt;code&gt;CA&lt;/code&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The code that I was provided:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+
+&lt;span class="n"&gt;api_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"YOUR_API_KEY"&lt;/span&gt;
+&lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"Authorization"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"Bearer &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;api_key&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;"Content-Type"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"application/json"&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s2"&gt;"https://api.packetfabric.com/v2/location?state=CA"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;locations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;locations&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"Request failed with status code &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As I mentioned above, the Bearer token isn't required for this end point. It's inclusion does not impact the functionality of this 
+script, and assuming I'm making more than calls to the &lt;code&gt;locations&lt;/code&gt; end point, it'll be needed anyway. I'll keep it here. &lt;/p&gt;
+&lt;p&gt;Now, there is a mistake in the code. For exactly the &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;same reason we banned ChatGPT on Stack Overflow&lt;/a&gt;, we see a subtle error here too. If
+you run the snippet above, you will get:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Request failed with status code 404&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Why? Because ChatGPT is hitting the &lt;code&gt;location&lt;/code&gt; not &lt;code&gt;locations&lt;/code&gt; (plural). The PacketFabric API uses plurals. This is a minor problem, and easily fixed,
+though it is explicitly stated in the documentation link which end points exist.&lt;/p&gt;
+&lt;p&gt;Moving on.&lt;/p&gt;
+&lt;h2 id="finding-all-us-locations"&gt;Finding All US Locations&lt;a class="headerlink" href="#finding-all-us-locations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Next, I wanted to get all US locations.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;How do I use this to get all US locations?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The correct way to do this would be to use the &lt;code&gt;region&lt;/code&gt; query parameter. ChatGPT had a different answer.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To get a list of all locations in the United States using PacketFabric's API, you can simply omit the state query parameter from the GET request. This will return a list of all locations across all states in the US.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The same code provided simply strips the &lt;code&gt;state=CA&lt;/code&gt; from the &lt;code&gt;requests.get()&lt;/code&gt; call. &lt;em&gt;This answer is wrong&lt;/em&gt;. It will, technically, return all 
+public locations in the United States. But it will also return locations outside of the United States too. This is a much larger result set than I was 
+looking for.&lt;/p&gt;
+&lt;p&gt;A developer should be able to catch this during testing and realize that the code is incorrect. However, ChatGPT has a tendancy to write responses in a 
+very confident manner. This one is no exception.&lt;/p&gt;
+&lt;h2 id="finding-a-specific-pop-location"&gt;Finding a specific POP location&lt;a class="headerlink" href="#finding-a-specific-pop-location" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Moving to the next test, I wanted to find locations just in a single point of presence (POP).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;How do I get all locations in the &lt;code&gt;ATL1&lt;/code&gt; pop?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The response returned seemed reasonable. There was a bit of prose with this explaination and a code snippet that adjusted the query parameters.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To get a list of all locations in the ATL1 pop (point of presence) using PacketFabric's API, you will need to send a GET request to the /location endpoint with the &lt;code&gt;pop_code&lt;/code&gt; query parameter set to ATL1.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;"https://api.packetfabric.com/v2/locations?pop_code=ATL1"
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Again, this is incorrect. &lt;code&gt;pop_code&lt;/code&gt; isn't a valid query parameter. It's not in the documentation and it doesn't return the expected result. &lt;/p&gt;
+&lt;p&gt;I attempted to explain this to the bot:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;pop_code&lt;/code&gt; isn't a parameter defined in the documentation. Is this an undocumented parameter?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I received an unexpected response, with a new code snippet. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I apologize for the mistake in my previous response. &lt;code&gt;pop_code&lt;/code&gt; is not a valid query parameter for the /location endpoint in PacketFabric's API.
+The documentation for the /location endpoint (https://docs.packetfabric.com/api/v2/redoc/#tag/Locations/operation/get_location_list) lists the valid query parameters as state, city, and zip_code. These parameters can be used to filter the locations returned by the API based on the state, city, and ZIP code of the location.
+For example, to get a list of all locations in Atlanta, Georgia (GA), you could use the following request:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+
+&lt;span class="n"&gt;api_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"YOUR_API_KEY"&lt;/span&gt;
+&lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"Authorization"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"Bearer &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;api_key&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;"Content-Type"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"application/json"&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s2"&gt;"https://api.packetfabric.com/v2/location?state=GA&amp;amp;city=Atlanta"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;locations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;locations&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"Request failed with status code &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This will send a GET request to the /location endpoint with the state query parameter set to GA and the city query parameter set to Atlanta, and will print the list of locations returned by the API.
+I apologize for any confusion my previous response may have caused. Please let me know if you have any further questions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is a better attempt - but still wrong. Going this route will return more POPs than expected. I'll receive everything in the city of Atlanta, instead
+of my original request, which was to only get locations in the &lt;code&gt;ATL1&lt;/code&gt; POP. This is another subtly wrong answer.&lt;/p&gt;
+&lt;p&gt;It's also interesting to note that ChatGPT says that only &lt;code&gt;state&lt;/code&gt;, &lt;code&gt;city&lt;/code&gt; and &lt;code&gt;ZIP code&lt;/code&gt; are valid query parameters here. &lt;code&gt;state&lt;/code&gt; and &lt;code&gt;city&lt;/code&gt; are defined 
+in the documentation. &lt;code&gt;ZIP Code&lt;/code&gt; is not. That's not a valid query parameter for the locations end point. Also notice that it's still using the singular
+&lt;code&gt;location&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;My impression of ChatGPT has not changed much since it was released at the end of November. It is a novel tool - much like Github's copilot, but 
+it's not going to take a developer's job. It can provide a good starting point for a problem, but if you are depending on it to write your code for you,
+you will find it's not going to work long term. &lt;/p&gt;
+&lt;p&gt;In this test, I learned that I don't know what it is doing about reading external documentation. I simply provided a link to the API documentation,
+when asking how to get locations. It parsed out the correct URL schema, including version code. But, at the same time, it couldn't parse out the 
+query parameters. It incorrectly added two parameters that don't exist (&lt;code&gt;pop_code&lt;/code&gt; and &lt;code&gt;zip_code&lt;/code&gt;). It also missed the plurality of the API end points.
+It introduced a subtle bug - omitting the &lt;code&gt;region&lt;/code&gt; to get US based locations, returns locations around the world.&lt;/p&gt;
+&lt;p&gt;Personally, I'd be upset if an engineer on my team committed code generated in this test. It's buggy, and has subtle inaccuracies. The code
+provided by ChatGPT is a good &lt;em&gt;skeleton&lt;/em&gt;. It is up to the developer to validate that it works as expected. Without the crucial step of developer testing,
+it is guarenteed that bugs will be committed to the code base because "the AI said it'd work".&lt;/p&gt;
+&lt;p&gt;If you are going to use ChatGPT (or Copilot or a system similar to either), it is vital that you verify the code you are running. Does it do what you 
+expect? Does it perform as you expect? The tools are there to help you build this, but that's just it. &lt;em&gt;Help&lt;/em&gt;, not do. The testing I did here took
+only a handful of minutes. For someone unfamiliar with the API they are interacting with, this quick turn around should mean they have a lot more time
+to do robust testing.&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Run Sanic on Heroku</title><link href="https://andrewwegner.com/run-sanic-on-heroku.html" rel="alternate"></link><published>2022-05-19T08:00:00-05:00</published><updated>2022-08-30T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-05-19:/run-sanic-on-heroku.html</id><summary type="html">&lt;p&gt;A quick guide on how to launch a small Sanic application on Heroku&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Recently I needed to set up a very simple proof of concept (POC) to demonstrate to myself and eventually my team that an idea would work. A POC isn't production ready, it doesn't need to be robust and in my case wasn't even going to be written using the same framework we use in production. I just needed to see if the integration would work as I thought it would. If it did, I'd work with my team to build a production ready version. If it didn't work, no problem. I expected this POC to take about two hours of my time, including initial research around the integration itself.&lt;/p&gt;
 &lt;p&gt;My background is utilizing Python. I've been using it for nearly 15 years now. In my previous role I utilized &lt;a href="https://sanic.dev/en/"&gt;Sanic&lt;/a&gt; to build our API. I've also used Django and Flask in the path, but it had been five or more years so I was rusty in those. Plus, I have a fancy new book written by Adam Hopkins, the core developer of Sanic and an amazing former colleague, called &lt;a href="https://www.packtpub.com/product/python-web-development-with-sanic/9781801814416"&gt;Python Web Development with Sanic&lt;/a&gt; that I wanted to work through. I've been meaning to get to this, and haven't had a lot of time with my recent job change. This small POC won't get far, but I've found that if I start following a long tutorial or course or book, I'll dedicate more time so that I can finish it.&lt;/p&gt;
