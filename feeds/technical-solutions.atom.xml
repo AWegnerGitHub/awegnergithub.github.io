@@ -1,5 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2022-12-20T23:45:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Using ChatGPT to interact with an API</title><link href="https://andrewwegner.com/chatgpt-interact-with-external-api.html" rel="alternate"></link><published>2022-12-20T23:45:00-06:00</published><updated>2022-12-20T23:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-20:/chatgpt-interact-with-external-api.html</id><summary type="html">&lt;p&gt;I'm going to take ChatGPT for a spin against an API that I know. Let's see what it's capable of producing.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2022-12-26T10:45:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Breaking interview questions with ChatGPT</title><link href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html" rel="alternate"></link><published>2022-12-26T10:45:00-06:00</published><updated>2022-12-26T10:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-26:/breaking-the-interview-with-chatgpt.html</id><summary type="html">&lt;p&gt;Using ChatGPT, I'm going to solve a couple interview questions quickly, easily and with nothing more than copying and pasting.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've written quiet a bit about &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; in the last month. As of this post, it is still &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;banned on Stack Overflow&lt;/a&gt;. I believe I showed
+why with my previous post. In it, I showed that &lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;ChatGPT is prone to adding subtle errors&lt;/a&gt; (and in some cases not so subtle), which is bad on
+Q&amp;amp;A site. &lt;/p&gt;
+&lt;p&gt;Today's post follows in the footsteps of my writing about how I hope ChatGPT inpires software engineering hiring managers to change their 
+hiring process. I wrote about how &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;ChatGPT can solve LeetCode&lt;/a&gt; problems. Today's post is going to focus on a company called &lt;a href="https://www.testgorilla.com/"&gt;TestGorilla&lt;/a&gt; and a 
+couple of their assessments.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, &lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I was a customer of Woven for over two years&lt;/a&gt;. 
+Woven is a competitor of TestGorilla. That said, I do not recall TestGorilla being discussed during my employment at Woven. 
+I only became aware of them during my job search this year. I'd be happy to do this same type of analysis on a Woven assessment, but as far 
+as I am aware, their prompts are not presented publicly. TestGorilla's prompts used in this article are taken directly from their website. I did not 
+speak with either company prior to writing this article.&lt;/p&gt;
+&lt;h2 id="assessment-one-php-arrays"&gt;Assessment One - PHP Arrays&lt;a class="headerlink" href="#assessment-one-php-arrays" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first assessment I want to look at is related to PHP Arrays. The &lt;a href="https://app.testgorilla.com/preview/105976?language=en"&gt;prompt&lt;/a&gt; itself if fairly simple.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="TestGorilla - PHP Array Sample Prompt" src="https://andrewwegner.com/images/testgorilla-php-array.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This is billed as:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PHP (coding): intermediate-level algorithms
+This PHP test evaluates candidates' coding skills through a short coding assignment. The test requires candidates to write code that meets certain requirements, and candidates can run their code to test if the result matches their expectations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The estimated time for this test is 30 minutes. &lt;/p&gt;
+&lt;p&gt;Well, let's see if ChatGPT is an intermediate level PHP programmer. Pasting the prompt into ChatGPT quickly spits out a result, in Python. I'm not
+surprised since almost all of my testing has been in Python. I provided one additional set of directions for ChatGPT to utilize, based on the boilerplate
+code provided.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Write this in PHP using the following as a template:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;sum_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nv"&gt;$no1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$no2&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+&lt;span class="nv"&gt;$array&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="c1"&gt;//Insert your code here &lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The result provided looks functional, based on very outdated PHP syntax knowledge.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;sum_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$no1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$no2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nv"&gt;$array&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$no1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nv"&gt;$no2&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$no1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;$no2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$sum&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;$i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="nb"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$array&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="nv"&gt;$no1&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nv"&gt;$array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="nv"&gt;$no2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$sum&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;$array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;$sum&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I copy and pasted that into TestGorilla's preview page and ran it to see how it'd do. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;Task executed successfully&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+
+&lt;span class="nb"&gt;---------------------------------&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;    Input parameters: ((int) 10&lt;/span&gt;&lt;span class="nt"&gt;,&lt;/span&gt;&lt;span class="c"&gt; (int) 20)&lt;/span&gt;
+&lt;span class="c"&gt;Result: (30)&lt;/span&gt;
+&lt;span class="c"&gt;OK&lt;/span&gt;
+&lt;span class="nb"&gt;---------------------------------&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;    Input parameters: ((int) 10&lt;/span&gt;&lt;span class="nt"&gt;,&lt;/span&gt;&lt;span class="c"&gt; (int) 30)&lt;/span&gt;
+&lt;span class="c"&gt;Result: (60)&lt;/span&gt;
+&lt;span class="c"&gt;OK&lt;/span&gt;
+&lt;span class="nb"&gt;---------------------------------&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;    Input parameters: ((int) 30&lt;/span&gt;&lt;span class="nt"&gt;,&lt;/span&gt;&lt;span class="c"&gt; (int) 50)&lt;/span&gt;
+&lt;span class="c"&gt;Result: (120)&lt;/span&gt;
+&lt;span class="c"&gt;OK&lt;/span&gt;
+&lt;span class="nb"&gt;---------------------------------&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;    Input parameters: ((int) 90&lt;/span&gt;&lt;span class="nt"&gt;,&lt;/span&gt;&lt;span class="c"&gt; (int) 100)&lt;/span&gt;
+&lt;span class="c"&gt;Result: (190)&lt;/span&gt;
+&lt;span class="c"&gt;OK&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Success! One intermediate PHP assessment completed. Total time taken: 2 minutes. &lt;/p&gt;
+&lt;h2 id="assessment-two-kotlin-arrays"&gt;Assessment Two - Kotlin Arrays&lt;a class="headerlink" href="#assessment-two-kotlin-arrays" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This &lt;a href="https://app.testgorilla.com/preview/788899?language=en"&gt;assessment&lt;/a&gt; is listed as a "New Test" by TestGorilla at the time of this post. The challenge here, if ChatGPT fails, is that I have never
+used Kotlin. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="TestGorilla - Kotlin Array Sample Prompt" src="https://andrewwegner.com/images/testgorilla-kotlin-array.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This is billed as:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Kotlin (Coding): Working with Arrays
+This Kotlin Coding test evaluates candidates’ ability to work with arrays. The test gives candidates 30 minutes to create a short algorithm involving arrays while taking into consideration all the requirements provided.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is billed as a 20 minute assessment. It is also billed as an intermediate level assessment. &lt;/p&gt;
+&lt;p&gt;I pasted the prompt into ChatGPT and also provided the boiler plate code block. The prompt doesn't explicitly say "Kotlin" anywhere, and I didn't mention
+it either. The only hint provided was the boiler plate code. ChatGPT picked up the language and returned a result.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;fun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;getUniqueStudentIds&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Array&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Array&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;.&lt;span class="nv"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;{&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;it&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;50000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;||&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;it&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;99999&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;}&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;arrayOf&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+}&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;.&lt;span class="nv"&gt;distinct&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;.&lt;span class="nv"&gt;toTypedArray&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+}&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Running this on TestGorilla's preview page passes the built in test cases:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Task executed successfully.
+
+---------------------------------
+Input parameters: (arrayOf(52311, 52311, 55125, 55125, 52128, 52130, 52128) )
+Result: (52311, 55125, 52128, 52130)
+OK
+---------------------------------
+Input parameters: (arrayOf(59100, 58200, 58200, 51190, 58200) )
+Result: (59100, 58200, 51190)
+OK
+---------------------------------
+Input parameters: (arrayOf(54321, 54321, 54321, 54321, 54321) )
+Result: (54321)
+OK
+---------------------------------
+Input parameters: (arrayOf(54321, 53421, 53241, 53214, 54231, 54213, 54312) )
+Result: (54321, 53421, 53241, 53214, 54231, 54213, 54312)
+OK
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Success! Total time: 1 Minute&lt;/p&gt;
+&lt;h2 id="evaluation"&gt;Evaluation&lt;a class="headerlink" href="#evaluation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Despite not knowing Kotlin, I can look at the code provided and see that improvements can be made to the code. The prompt says &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that all student IDs are 5-digit numbers beginning with the number 5. Return -1 as a single element in the array in the case of any invalid input.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;code&gt;if (a.any { it &amp;lt; 50000 || it &amp;gt; 99999 })&lt;/code&gt; statement can be adjusted to reflect the prompt's specification better. Additionally, there isn't a 
+built in test case for invalid data, but I suspect that it'll fail based on the expected return.&lt;/p&gt;
+&lt;p&gt;Depending on how TestGorilla is evaluating these edge cases on the paid version of this exam, this may be picked up. On the free preview version, though
+it is not. &lt;/p&gt;
+&lt;h2 id="hiring-process"&gt;Hiring process&lt;a class="headerlink" href="#hiring-process" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once again, the reader should be able to see that a simple technical evaluation of software engineers in the hiring process is no longer sufficient. It 
+took me longer to determine which prompts I wanted to evaluate for this post than it did to solve with a couple copy and pastes into ChatGPT. &lt;/p&gt;
+&lt;p&gt;The hiring process must be more than "solve this code challenge". Hiring managers need to move past code only assessments. Instead, focus on a 
+candidate's ability to technically assess and judge based on a context specific problem. These types of problems require a candidate to show their
+experience, versus their ability to Google, ask Stack Overflow or use ChatGPT to provide a problem prompt. Evaluate your candidates based on the 
+work you want them to actually do. &lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category><category term="job search"></category></entry><entry><title>Using ChatGPT to interact with an API</title><link href="https://andrewwegner.com/chatgpt-interact-with-external-api.html" rel="alternate"></link><published>2022-12-20T23:45:00-06:00</published><updated>2022-12-20T23:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-20:/chatgpt-interact-with-external-api.html</id><summary type="html">&lt;p&gt;I'm going to take ChatGPT for a spin against an API that I know. Let's see what it's capable of producing.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've played with &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; a lot since it was released publicly a few weeks ago. It's gotten a fair bit of media coverage (and I helped generate
 some of that with the &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;Stack Overflow ban of ChatGPT&lt;/a&gt;). In my last post, I talked about how 
