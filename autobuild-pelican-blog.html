@@ -340,7 +340,7 @@ an associated Travis CI email address. Change these as you wish. I didn't want t
 I did versus which ones were done automatically. The old commits in my name vs. the new automated commits look like this in GitHub.</p>
 <p><img alt="Blog commit differences" src="https://andrewwegner.com/images/build_blog_github_commits.png"/></p>
 <p>Another important line of code is this one in the deploy script:</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">git</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="o">-</span><span class="n">fq</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="nl">GH_USERNAME</span><span class="p">:</span><span class="err">$</span><span class="n">GITHUB_API_KEY</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="err">$</span><span class="n">TARGET_REPO</span><span class="w"> </span><span class="o">&amp;&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="k">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">exit</span><span class="w"> </span><span class="err">$</span><span class="vm">?</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">git</span><span class="w"> </span><span class="n">push</span><span class="w"> </span><span class="o">-</span><span class="n">fq</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="nl">GH_USERNAME</span><span class="p">:</span><span class="err">$</span><span class="n">GITHUB_API_KEY</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="err">$</span><span class="n">TARGET_REPO</span><span class="w"> </span><span class="o">&amp;&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="k">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">exit</span><span class="w"> </span><span class="err">$</span><span class="vm">?</span>
 </code></pre></div>
 <p>This line pushes the generated site to the appropriate repository using the <code>GITHUB_API_KEY</code> we previously generated and told
 Travis CI about. It also sends all output of this command to <code>/dev/null</code> so that the secure key won't show up in the build log. If
@@ -372,12 +372,12 @@ recursively copy a directory into itself.</p>
 <p>Then, I get my dependancies installed. I update <code>pip</code> and install my <code>requirements.txt</code>. Finally, I execute the same <code>pelican</code> command I
 previously used and add on the <code>verbose</code> flag, just in case I need to troubleshoot a failed build.</p>
 <p>Deployment is done via the <code>deploy</code> block, but all it is doing is calling my <code>deploy.sh</code> script that I covered above.</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">deploy</span><span class="o">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">provider</span><span class="o">:</span><span class="w"> </span><span class="n">script</span><span class="w"></span>
-<span class="w">  </span><span class="n">skip_cleanup</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="o">:</span><span class="w"> </span><span class="n">bash</span><span class="w"> </span><span class="n">deploy</span><span class="o">.</span><span class="na">sh</span><span class="w"></span>
-<span class="w">  </span><span class="n">on</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">branch</span><span class="o">:</span><span class="w"> </span><span class="n">master</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">deploy</span><span class="o">:</span>
+<span class="w">  </span><span class="n">provider</span><span class="o">:</span><span class="w"> </span><span class="n">script</span>
+<span class="w">  </span><span class="n">skip_cleanup</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="n">script</span><span class="o">:</span><span class="w"> </span><span class="n">bash</span><span class="w"> </span><span class="n">deploy</span><span class="o">.</span><span class="na">sh</span>
+<span class="w">  </span><span class="n">on</span><span class="o">:</span>
+<span class="w">    </span><span class="n">branch</span><span class="o">:</span><span class="w"> </span><span class="n">master</span>
 </code></pre></div>
 <p><code>skip_cleanup</code> is important to leave as <code>true</code> so that the output from the <code>script</code> block isn't cleaned up before we deploy.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
@@ -458,7 +458,7 @@ testing any of those yet. This split will make it easier, I think, when or if I 
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">

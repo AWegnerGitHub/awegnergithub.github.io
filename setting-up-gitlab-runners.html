@@ -266,20 +266,20 @@ features. I've been wanting to, but never got around to it.</p>
 <p>I'll be running my runners in <a href="https://www.docker.com/">Docker</a> containers. There are other options,
 but for my home environment, this is easiest to set up and maintain.</p>
 <p>Let's start by installing Docker:</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span><span class="w"> </span><span class="n">ca</span><span class="o">-</span><span class="n">certificates</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"></span>
-<span class="n">curl</span><span class="w"> </span><span class="o">-</span><span class="n">fsSL</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">gpg</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">key</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">-</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span><span class="w"> </span><span class="s2">"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="n">update</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">ce</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span><span class="w"> </span><span class="n">ca</span><span class="o">-</span><span class="n">certificates</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span><span class="w"> </span><span class="o">-</span><span class="n">y</span>
+<span class="n">curl</span><span class="w"> </span><span class="o">-</span><span class="n">fsSL</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">gpg</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">key</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">-</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span><span class="w"> </span><span class="s2">"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="n">update</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">ce</span><span class="w"> </span><span class="o">-</span><span class="n">y</span>
 </code></pre></div>
 <p>This is going to add the Docker repository and install the community edition.</p>
 <h3 id="gitlab-runner">GitLab Runner<a class="headerlink" href="#gitlab-runner" title="Permanent link">¶</a></h3>
 <p>Once Docker is installed and working, we can install the GitLab runner.</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">wget</span><span class="w"> </span><span class="o">-</span><span class="n">O</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="o">-</span><span class="n">downloads</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">binaries</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">amd64</span><span class="w"></span>
-<span class="n">chmod</span><span class="w"> </span><span class="o">+</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"></span>
-<span class="n">useradd</span><span class="w"> </span><span class="o">--</span><span class="n">comment</span><span class="w"> </span><span class="s1">'GitLab Runner'</span><span class="w"> </span><span class="o">--</span><span class="n">create</span><span class="o">-</span><span class="n">home</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="o">--</span><span class="n">shell</span><span class="w"> </span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span><span class="w"></span>
-<span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">--</span><span class="n">user</span><span class="o">=</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="o">--</span><span class="n">working</span><span class="o">-</span><span class="n">directory</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"></span>
-<span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="n">start</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">wget</span><span class="w"> </span><span class="o">-</span><span class="n">O</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="o">-</span><span class="n">downloads</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">binaries</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">amd64</span>
+<span class="n">chmod</span><span class="w"> </span><span class="o">+</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span>
+<span class="n">useradd</span><span class="w"> </span><span class="o">--</span><span class="n">comment</span><span class="w"> </span><span class="s1">'GitLab Runner'</span><span class="w"> </span><span class="o">--</span><span class="n">create</span><span class="o">-</span><span class="n">home</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="o">--</span><span class="n">shell</span><span class="w"> </span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span>
+<span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">--</span><span class="n">user</span><span class="o">=</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="o">--</span><span class="n">working</span><span class="o">-</span><span class="n">directory</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span>
+<span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="n">start</span>
 </code></pre></div>
 <p>This is downloading the install package. Then it adds a new user, that the runner will run as. This is a nice security precaution to limit what the runner has access to on the system. It's not full security, but it does all me to restrict what that particular user has access to on the server.</p>
 <p>Then the run is started.</p>
@@ -288,27 +288,27 @@ the project that will be using this runner. It should be available at this link:
 <div class="codehilight code"><pre><span></span><code>https://url.to.your.gitlab.install/&lt;account&gt;/&lt;repo&gt;/settings/ci_cd
 </code></pre></div>
 <p>Grab the GitLab CI token. That is needed in the next step. Run the <code>gitlab-runner register</code> command, and fill in your values as required.</p>
-<div class="codehilight code"><pre><span></span><code><span class="err">$</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="n">register</span><span class="w"></span>
-<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">coordinator</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">gitlab</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
-<span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">url</span><span class="p">.</span><span class="k">to</span><span class="p">.</span><span class="n">your</span><span class="p">.</span><span class="n">gitlab</span><span class="p">.</span><span class="n">install</span><span class="o">/</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="err">$</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">runner</span><span class="w"> </span><span class="n">register</span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">coordinator</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">gitlab</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="p">)</span><span class="err">:</span>
+<span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">url</span><span class="p">.</span><span class="k">to</span><span class="p">.</span><span class="n">your</span><span class="p">.</span><span class="n">gitlab</span><span class="p">.</span><span class="n">install</span><span class="o">/</span>
 
-<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="nl">runner</span><span class="p">:</span><span class="w"></span>
-<span class="o">[</span><span class="n">redacted</span><span class="o">]</span><span class="err">]</span><span class="w"></span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="nl">runner</span><span class="p">:</span>
+<span class="o">[</span><span class="n">redacted</span><span class="o">]</span><span class="err">]</span>
 
-<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="nl">runner</span><span class="p">:</span><span class="w"></span>
-<span class="o">[</span><span class="n">my-runner</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">runner</span><span class="w"></span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="nl">runner</span><span class="p">:</span>
+<span class="o">[</span><span class="n">my-runner</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">runner</span>
 
-<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">tags</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">runner</span><span class="w"> </span><span class="p">(</span><span class="n">comma</span><span class="w"> </span><span class="n">separated</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
-<span class="n">python</span><span class="w"></span>
-<span class="n">Registering</span><span class="w"> </span><span class="n">runner</span><span class="p">...</span><span class="w"> </span><span class="n">succeeded</span><span class="w">                     </span><span class="n">runner</span><span class="o">=</span><span class="mi">66</span><span class="n">m_339h</span><span class="w"></span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gitlab</span><span class="o">-</span><span class="n">ci</span><span class="w"> </span><span class="n">tags</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">runner</span><span class="w"> </span><span class="p">(</span><span class="n">comma</span><span class="w"> </span><span class="n">separated</span><span class="p">)</span><span class="err">:</span>
+<span class="n">python</span>
+<span class="n">Registering</span><span class="w"> </span><span class="n">runner</span><span class="p">...</span><span class="w"> </span><span class="n">succeeded</span><span class="w">                     </span><span class="n">runner</span><span class="o">=</span><span class="mi">66</span><span class="n">m_339h</span>
 
-<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nl">executor</span><span class="p">:</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">ssh</span><span class="o">+</span><span class="n">machine</span><span class="p">,</span><span class="w"> </span><span class="n">docker</span><span class="p">,</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">ssh</span><span class="p">,</span><span class="w"> </span><span class="n">parallels</span><span class="p">,</span><span class="w"> </span><span class="n">shell</span><span class="p">,</span><span class="w"> </span><span class="n">ssh</span><span class="p">,</span><span class="w"> </span><span class="n">virtualbox</span><span class="p">,</span><span class="w"> </span><span class="n">docker</span><span class="o">+</span><span class="n">machine</span><span class="p">,</span><span class="w"> </span><span class="nl">kubernetes</span><span class="p">:</span><span class="w"></span>
-<span class="n">docker</span><span class="w"></span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nl">executor</span><span class="p">:</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">ssh</span><span class="o">+</span><span class="n">machine</span><span class="p">,</span><span class="w"> </span><span class="n">docker</span><span class="p">,</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">ssh</span><span class="p">,</span><span class="w"> </span><span class="n">parallels</span><span class="p">,</span><span class="w"> </span><span class="n">shell</span><span class="p">,</span><span class="w"> </span><span class="n">ssh</span><span class="p">,</span><span class="w"> </span><span class="n">virtualbox</span><span class="p">,</span><span class="w"> </span><span class="n">docker</span><span class="o">+</span><span class="n">machine</span><span class="p">,</span><span class="w"> </span><span class="nl">kubernetes</span><span class="p">:</span>
+<span class="n">docker</span>
 
-<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="nc">image</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="nl">ruby</span><span class="p">:</span><span class="mf">2.1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
-<span class="nl">alpine</span><span class="p">:</span><span class="n">latest</span><span class="w"></span>
+<span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="nc">image</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="nl">ruby</span><span class="p">:</span><span class="mf">2.1</span><span class="p">)</span><span class="err">:</span>
+<span class="nl">alpine</span><span class="p">:</span><span class="n">latest</span>
 
-<span class="n">Runner</span><span class="w"> </span><span class="n">registered</span><span class="w"> </span><span class="n">successfully</span><span class="p">.</span><span class="w"> </span><span class="n">Feel</span><span class="w"> </span><span class="k">free</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="err">'</span><span class="n">s</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">automatically</span><span class="w"> </span><span class="n">reloaded</span><span class="err">!</span><span class="w"></span>
+<span class="n">Runner</span><span class="w"> </span><span class="n">registered</span><span class="w"> </span><span class="n">successfully</span><span class="p">.</span><span class="w"> </span><span class="n">Feel</span><span class="w"> </span><span class="k">free</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="err">'</span><span class="n">s</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">automatically</span><span class="w"> </span><span class="n">reloaded</span><span class="err">!</span>
 </code></pre></div>
 <p>My experience with Docker is limited, so I am using the latest alpine version. I'm sure there are better ones to use for a simple Python application, but this works for me and I'm not concerned about the absolute fastest CI/CD pipeline on my server.</p>
 <h2 id="using-the-cicd-pipeline">Using the CI/CD pipeline<a class="headerlink" href="#using-the-cicd-pipeline" title="Permanent link">¶</a></h2>
@@ -333,105 +333,105 @@ the project that will be using this runner. It should be available at this link:
 <p>With these added, they are now accessible by my <code>.gitlab-ci.yml</code> file.</p>
 <h3 id="gitlab-ciyml">.gitlab-ci.yml<a class="headerlink" href="#gitlab-ciyml" title="Permanent link">¶</a></h3>
 <p>The script I use to build the pipeline is as follows:</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="s2">"python:3.7"</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="s2">"python:3.7"</span>
 
-<span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">tags</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"></span>
+<span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="p">:</span>
+<span class="w">  </span><span class="n">tags</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span>
 
-<span class="n">before_script</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="o">--</span><span class="n">version</span><span class="w"></span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">.</span><span class="p">[</span><span class="n">dev</span><span class="p">]</span><span class="w"></span>
+<span class="n">before_script</span><span class="p">:</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="o">--</span><span class="n">version</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">.</span><span class="p">[</span><span class="n">dev</span><span class="p">]</span>
 
-<span class="n">stages</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Test</span><span class="w"></span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Testing</span><span class="w"></span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Production</span><span class="w"></span>
+<span class="n">stages</span><span class="p">:</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Test</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Testing</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Production</span>
 
-<span class="n">flake8</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
-<span class="w">  </span><span class="k">extends</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">flake8</span><span class="w"> </span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">line</span><span class="o">-</span><span class="n">length</span><span class="o">=</span><span class="mi">120</span><span class="w"></span>
+<span class="n">flake8</span><span class="p">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span>
+<span class="w">  </span><span class="k">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">flake8</span><span class="w"> </span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">line</span><span class="o">-</span><span class="n">length</span><span class="o">=</span><span class="mi">120</span>
 
-<span class="n">doc8</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
-<span class="w">  </span><span class="k">extends</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">doc8</span><span class="w"> </span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">line</span><span class="o">-</span><span class="n">length</span><span class="o">=</span><span class="mi">100</span><span class="w"> </span><span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">path</span><span class="o">=</span><span class="n">docs</span><span class="o">/</span><span class="n">_build</span><span class="o">/*</span><span class="w"> </span><span class="n">docs</span><span class="o">/</span><span class="w"></span>
+<span class="n">doc8</span><span class="p">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span>
+<span class="w">  </span><span class="k">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span>
+<span class="w">  </span><span class="n">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">doc8</span><span class="w"> </span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">line</span><span class="o">-</span><span class="n">length</span><span class="o">=</span><span class="mi">100</span><span class="w"> </span><span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">path</span><span class="o">=</span><span class="n">docs</span><span class="o">/</span><span class="n">_build</span><span class="o">/*</span><span class="w"> </span><span class="n">docs</span><span class="o">/</span>
 
-<span class="n">yamllint</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
-<span class="w">  </span><span class="k">extends</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">yamllint</span><span class="w"> </span><span class="o">.</span><span class="w"></span>
+<span class="n">yamllint</span><span class="p">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span>
+<span class="w">  </span><span class="k">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span>
+<span class="w">  </span><span class="n">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">yamllint</span><span class="w"> </span><span class="o">.</span>
 
-<span class="n">bandit</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
-<span class="w">  </span><span class="k">extends</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">bandit</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">B101</span><span class="w"> </span><span class="n">my_package</span><span class="w"></span>
+<span class="n">bandit</span><span class="p">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span>
+<span class="w">  </span><span class="k">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span>
+<span class="w">  </span><span class="n">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">bandit</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">B101</span><span class="w"> </span><span class="n">my_package</span>
 
-<span class="n">radon</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
-<span class="w">  </span><span class="k">extends</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">radon</span><span class="w"> </span><span class="n">cc</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">-</span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="n">nb</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">radon</span><span class="w"> </span><span class="n">mi</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">-</span><span class="n">nb</span><span class="w"></span>
+<span class="n">radon</span><span class="p">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span>
+<span class="w">  </span><span class="k">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">radon</span><span class="w"> </span><span class="n">cc</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">-</span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="n">nb</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">radon</span><span class="w"> </span><span class="n">mi</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="o">-</span><span class="n">nb</span>
 
-<span class="n">xenon</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
-<span class="w">  </span><span class="k">extends</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">xenon</span><span class="w"> </span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">absolute</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">modules</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">average</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span><span class="w"></span>
+<span class="n">xenon</span><span class="p">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span>
+<span class="w">  </span><span class="k">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="bp">true</span>
+<span class="w">  </span><span class="n">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">xenon</span><span class="w"> </span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">absolute</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">modules</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">average</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span>
 
-<span class="n">pytest</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Test</span><span class="w"></span>
-<span class="w">  </span><span class="k">extends</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">pytest</span><span class="w"></span>
+<span class="n">pytest</span><span class="p">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Test</span>
+<span class="w">  </span><span class="k">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">pytest</span>
 
-<span class="n">deploy_testing</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Testing</span><span class="w"></span>
-<span class="w">  </span><span class="k">extends</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">variables</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">TWINE_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_TEST_USERNAME</span><span class="w"></span>
-<span class="w">    </span><span class="n">TWINE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_TEST_PASSWORD</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">setup</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">sdist</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">twine</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="o">--</span><span class="n">repository</span><span class="o">-</span><span class="n">url</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_TEST_URL</span><span class="w"> </span><span class="n">dist</span><span class="o">/*</span><span class="w"></span>
+<span class="n">deploy_testing</span><span class="p">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Testing</span>
+<span class="w">  </span><span class="k">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">variables</span><span class="p">:</span>
+<span class="w">    </span><span class="n">TWINE_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_TEST_USERNAME</span>
+<span class="w">    </span><span class="n">TWINE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_TEST_PASSWORD</span>
+<span class="w">  </span><span class="n">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">setup</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">sdist</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">twine</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="o">--</span><span class="n">repository</span><span class="o">-</span><span class="n">url</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_TEST_URL</span><span class="w"> </span><span class="n">dist</span><span class="o">/*</span>
 
-<span class="n">deploy_production</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Production</span><span class="w"></span>
-<span class="w">  </span><span class="k">extends</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">when</span><span class="p">:</span><span class="w"> </span><span class="n">manual</span><span class="w"></span>
-<span class="w">  </span><span class="n">variables</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">TWINE_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_PROD_USERNAME</span><span class="w"></span>
-<span class="w">    </span><span class="n">TWINE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_PROD_PASSWORD</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">setup</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">sdist</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">twine</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">dist</span><span class="o">/*</span><span class="w"></span>
+<span class="n">deploy_production</span><span class="p">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Production</span>
+<span class="w">  </span><span class="k">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">when</span><span class="p">:</span><span class="w"> </span><span class="n">manual</span>
+<span class="w">  </span><span class="n">variables</span><span class="p">:</span>
+<span class="w">    </span><span class="n">TWINE_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_PROD_USERNAME</span>
+<span class="w">    </span><span class="n">TWINE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_PROD_PASSWORD</span>
+<span class="w">  </span><span class="n">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">setup</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">sdist</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">twine</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">dist</span><span class="o">/*</span>
 </code></pre></div>
 <h2 id="gitlab-ciyml-explanation">.gitlab-ci.yml explanation<a class="headerlink" href="#gitlab-ciyml-explanation" title="Permanent link">¶</a></h2>
 <p>There are a few areas that I feel need to be explained in the script above.</p>
 <h3 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">¶</a></h3>
-<div class="codehilight code"><pre><span></span><code><span class="nl">.python-tag:</span><span class="w"></span>
-<span class="w">  </span><span class="nl">tags:</span><span class="w"></span>
-<span class="w">    </span><span class="err">-</span><span class="w"> </span><span class="nf">python</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="nl">.python-tag:</span>
+<span class="w">  </span><span class="nl">tags:</span>
+<span class="w">    </span><span class="err">-</span><span class="w"> </span><span class="nf">python</span>
 </code></pre></div>
 <p>This section is a template that is used to add the <code>python</code> tag to a job step. The Runner will only run tasks that have a tag you assigned to it. This is useful if you are building across multiple operating systems or across multiple languages. You don't want a runner set up to test against a Windows environment picking up tasks for a Linux environment. In my case, everything is being run for a single runner.</p>
 <p>In each step, I need to add this:</p>
@@ -440,27 +440,27 @@ the project that will be using this runner. It should be available at this link:
 </code></pre></div>
 <p>With this, the <code>python</code> tag will be automatically applied to the task. For a simple pipeline like mine, it may seem like overkill, but it's useful if I want to force other tags or steps.</p>
 <h3 id="allow-failures">Allow failures<a class="headerlink" href="#allow-failures" title="Permanent link">¶</a></h3>
-<div class="codehilight code"><pre><span></span><code><span class="n">xenon</span><span class="o">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="o">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span><span class="w"></span>
-<span class="w">  </span><span class="kd">extends</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="na">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">allow_failure</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">xenon</span><span class="w"> </span><span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">absolute</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">modules</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">average</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">xenon</span><span class="o">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="o">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span>
+<span class="w">  </span><span class="kd">extends</span><span class="o">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="na">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">allow_failure</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="n">script</span><span class="o">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">xenon</span><span class="w"> </span><span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">absolute</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">modules</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">average</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span>
 </code></pre></div>
 <p>I previously mentioned that I allowed the xenon step to fail. This is accomplished with the <code>allow_failue: true</code> setting you see here. Since this setting is in place, the pipeline will proceed even if this single task fails.</p>
 <h3 id="manual-deployment">Manual deployment<a class="headerlink" href="#manual-deployment" title="Permanent link">¶</a></h3>
-<div class="codehilight code"><pre><span></span><code><span class="n">deploy_production</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Production</span><span class="w"></span>
-<span class="w">  </span><span class="k">extends</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span><span class="w"></span>
-<span class="w">  </span><span class="n">when</span><span class="p">:</span><span class="w"> </span><span class="n">manual</span><span class="w"></span>
-<span class="w">  </span><span class="n">variables</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">TWINE_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_PROD_USERNAME</span><span class="w"></span>
-<span class="w">    </span><span class="n">TWINE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_PROD_PASSWORD</span><span class="w"></span>
-<span class="w">  </span><span class="n">script</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">setup</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">sdist</span><span class="w"></span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">twine</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">dist</span><span class="o">/*</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">deploy_production</span><span class="p">:</span>
+<span class="w">  </span><span class="n">stage</span><span class="p">:</span><span class="w"> </span><span class="n">Deploy</span><span class="w"> </span><span class="n">Production</span>
+<span class="w">  </span><span class="k">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="n">python</span><span class="o">-</span><span class="n">tag</span>
+<span class="w">  </span><span class="n">when</span><span class="p">:</span><span class="w"> </span><span class="n">manual</span>
+<span class="w">  </span><span class="n">variables</span><span class="p">:</span>
+<span class="w">    </span><span class="n">TWINE_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_PROD_USERNAME</span>
+<span class="w">    </span><span class="n">TWINE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="o">$</span><span class="n">PYPI_PROD_PASSWORD</span>
+<span class="w">  </span><span class="n">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">setup</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">sdist</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">twine</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="n">dist</span><span class="o">/*</span>
 </code></pre></div>
 <p>The deploy to production is a manual step. I use <code>when: manual</code> to ensure this step doesn't occur automatically. At some point in the future, this project will be stable and won't have minor fixes any longer and I'll want to automatically deploy to production without interaction. When I reach that point, I'll just need to remove this line. As long as the preceding steps succeed, this one will be performed as well.</p>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">¶</a></h2>
@@ -529,7 +529,7 @@ the project that will be using this runner. It should be available at this link:
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">

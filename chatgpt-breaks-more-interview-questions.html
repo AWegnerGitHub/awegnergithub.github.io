@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="I am going to examine four sample CodeSignal questions and show how ChatGPT solves the problems." />
+<meta name="keywords" content="technical, job search">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Running CodeSignal questions through ChatGPT"/>
+  <meta property="og:description" content="I am going to examine four sample CodeSignal questions and show how ChatGPT solves the problems."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-01-01 17:00:00-06:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/author/andy-wegner.html">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="article:tag" content="job search"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Running CodeSignal questions through ChatGPT  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h2>Article Contents</h2>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#array-manipulation">Array Manipulation</a></li>
+<li><a href="#string-pattern-matching">String Pattern Matching</a></li>
+<li><a href="#two-dimensional-array-traversal">Two-Dimensional Array Traversal</a></li>
+<li><a href="#lookup-table">Lookup Table</a></li>
+<li><a href="#results">Results</a></li>
+<li><a href="#whats-this-mean">What's this mean?</a></li>
+</ul>
+</div>
+    </nav>
+
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Running CodeSignal questions through ChatGPT</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html",
+      "name": "https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="chatgpt-breaks-more-interview-questions">Running CodeSignal questions through ChatGPT</h1>
+    <p>
+      Posted on Sun 01 January 2023 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+        <a href="https://andrewwegner.com/tag/job-search.html">job search</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p><a href="https://openai.com/blog/chatgpt/">ChatGPT</a> has taken over a lot of technology news in the last month. Within days, <a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html">Stack Overflow banned ChatGPT</a>, due to 
+<a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html">subtle errors that the chatbot is prone to make</a>. I've also written about how I hope that ChatGPT's existance will change 
+the hiring processes in the technology industry, because of how easily it can solve <a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">LeetCode</a> and <a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html">TestGorilla</a> technical interview
+problems.</p>
+<p>Today, I'm going to turn my attention to another company that does interview tests: <a href="https://codesignal.com/developers/">CodeSignal</a>. CodeSignal sits on both sides of the 
+interview process, with a LeetCode style developer facing set of challenges. Solve problems, increase your score. It also sells services to
+companies looking to outsource a portion of their hiring process.</p>
+<p><em>First a disclaimer</em>: I was Director of Engineering at <a href="https://www.woventeams.com/">Woven Teams</a> in 2022. Prior to that, <a href="https://andrewwegner.com/woven-client-to-woven-employee.html">I was a customer of Woven for over two years</a>. 
+Woven is a competitor of CodeSignal. </p>
+<p>The questions in this post are taken from <a href="https://codesignal.com/blog/engineering/example-codesignal-questions/">CodeSignal's blog</a>, showing off four of their software engineering questions. CodeSignal provides an 
+explaination of the question, and a sample response with a quick analysis. </p>
+<h2 id="array-manipulation">Array Manipulation<a class="headerlink" href="#array-manipulation" title="Permanent link">¶</a></h2>
+<p>Surprise! Another array question. I suppose it wouldn't be a generic software engineering interview without a question related to arrays. </p>
+<p>Getting started...</p>
+<p><img alt="CodeSignal - Array Manipulation Prompt" src="https://andrewwegner.com/images/codesignal-array.png"/></p>
+<blockquote>
+<p>You can see that it covers a basic array traversal and manipulation</p>
+</blockquote>
+<p>A small nitpick - depending on the hirnig process, this sentence can come across as condicending. Depending on where a technical interview fits 
+in the process, it's possible that a non-engineer is the one that sees these results first. I would not count on my HR coworkers to understand
+"basic array traversal and manipulation", because it's not part of their skillset. </p>
+<p>Let's see how ChatGPT does. I copy and pasted the prompt into ChatGPT and waited a few seconds for a result.</p>
+<div class="codehilight code"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">solution</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="err">:</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">it</span><span class="s1">'s the first element, use 0 as the value for a[i - 1]</span>
+<span class="s1">        if i == 0:</span>
+<span class="s1">        b.append(0 + a[i] + a[i + 1])</span>
+<span class="s1">        # If it'</span><span class="n">s</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">last</span><span class="w"> </span><span class="k">element</span><span class="p">,</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">i + 1</span><span class="o">]</span>
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="err">:</span>
+<span class="w">        </span><span class="n">b</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="o">[</span><span class="n">i - 1</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">Otherwise</span><span class="p">,</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">i - 1</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">i + 1</span><span class="o">]</span>
+<span class="w">        </span><span class="k">else</span><span class="err">:</span>
+<span class="w">        </span><span class="n">b</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="o">[</span><span class="n">i - 1</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">i + 1</span><span class="o">]</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">b</span>
+</code></pre></div>
+<p>It doesn't match the exact response that CodeSignal provides, but it functions with their test case. I am count that as a pass.</p>
+<h2 id="string-pattern-matching">String Pattern Matching<a class="headerlink" href="#string-pattern-matching" title="Permanent link">¶</a></h2>
+<p>Another common theme in these recent tests I've run is pattern matching. This one, however, at least is more interesting that others. It still 
+doesn't seem to reflect a real world problem, and is just a puzzle, but at least it's more unique. </p>
+<p><img alt="CodeSignal - Pattern Matching" src="https://andrewwegner.com/images/codesignal-lookup.png"/></p>
+<blockquote>
+<p>It has the advantage of testing several fundamental programming skills at once: traversing multiple arrays with nested loops, working with subarrays, and performing basic collections/string operations.</p>
+</blockquote>
+<p>We're still sitting in the "basic" tier here, so I suspect that ChatGPT will have no problem. Time to check that assumption by pasting the prompt to the
+bot. One thing I did have to modify here is the exponents. They pasted as non-exponents, which would have messed up those constraints at the end. This 
+will be a similar problem with a later question. I adjusted those lines slightly to make the numbers exponents.</p>
+<p>And, the response back was: </p>
+<div class="codehilight code"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">solution</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">Initialize</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">count</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">matching</span><span class="w"> </span><span class="n">substrings</span>
+<span class="w">    </span><span class="nf">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">Iterate</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">substrings</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="n">equal</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">pattern</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">Initialize</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">track</span><span class="w"> </span><span class="n">whether</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">current</span><span class="w"> </span><span class="nf">substring</span><span class="w"> </span><span class="n">matches</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pattern</span>
+<span class="w">        </span><span class="k">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">True</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">Iterate</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">characters</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">corresponding</span><span class="w"> </span><span class="n">characters</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">substring</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">))</span><span class="err">:</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="n">vowel</span><span class="p">),</span><span class="w"> </span><span class="k">check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">corresponding</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">substring</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">vowel</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">pattern</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'0'</span><span class="err">:</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">source</span><span class="o">[</span><span class="n">i + j</span><span class="o">]</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="s1">'aeiouy'</span><span class="err">:</span>
+<span class="w">                    </span><span class="k">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">False</span>
+<span class="w">                    </span><span class="k">break</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">consonant</span><span class="p">),</span><span class="w"> </span><span class="k">check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">corresponding</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">substring</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">consonant</span>
+<span class="w">            </span><span class="k">else</span><span class="err">:</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">source</span><span class="o">[</span><span class="n">i + j</span><span class="o">]</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="s1">'aeiouy'</span><span class="err">:</span>
+<span class="w">                    </span><span class="k">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">False</span>
+<span class="w">                    </span><span class="k">break</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">substring</span><span class="w"> </span><span class="n">matches</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pattern</span><span class="p">,</span><span class="w"> </span><span class="n">increment</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">count</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="k">match</span><span class="err">:</span>
+<span class="w">            </span><span class="nf">count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nf">count</span>
+</code></pre></div>
+<p>A big difference between the response generated and the response provided, is that CodeSignal's response breaks out a portion of the code into
+a second function. The ChatGPT response does everything in a single, larger, loop. Personally, I'd take off a point for not breaking this into 
+another function. CodeSignal's response is better, but the ChatGPT one functions and passes the test. While the second function is a good idea,
+not having it is not a deal breaker for me. This is especially true of a "basic" test, which is probably being used for less senior roles.</p>
+<h2 id="two-dimensional-array-traversal">Two-Dimensional Array Traversal<a class="headerlink" href="#two-dimensional-array-traversal" title="Permanent link">¶</a></h2>
+<p>Now we're onto the harder questions. This is a long prompt, with multiple animated gifs, and is multiple pages of scrolling. I'm not going to 
+paste the prompt here because the animation is important to understanding the algorithm that needs to be implemented. The general goal though is 
+to build a very small scale Tetris board.</p>
+<blockquote>
+<p>This Tetris-inspired question is challenging. Candidates will have to traverse and manipulate two-dimensional arrays in a non-conventional way. As it’s an advanced question, it tests how well an engineer can understand a complex set of constraints and proceed with a non-trivial implementation.</p>
+</blockquote>
+<p>From my reading of the prompt, and looking at the solution logic, I agree. While this is still a puzzle type question, I don't recall seeing anything
+like this previously. The uniqueness, yet similarity to a game that most engineers will know, makes the question interesting to me. </p>
+<p>The animated gifs are useful for a human to see what is expected in the solution, but shouldn't be need by ChatGPT, provided the prompt is descriptive
+enough. Copying and pasted the text into ChatGPT, provides the following response:</p>
+<div class="codehilight code"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">solution</span><span class="p">(</span><span class="n">field</span><span class="p">,</span><span class="w"> </span><span class="n">figure</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">Get</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">field</span>
+<span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+<span class="w">    </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">field</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">)</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">Iterate</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">columns</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">field</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="err">:</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">Iterate</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">field</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="n">up</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="err">:</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">Check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">current</span><span class="w"> </span><span class="n">cell</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">occupied</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">field</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="err">:</span>
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">cell</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">occupied</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="n">checking</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">column</span>
+<span class="w">            </span><span class="k">break</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">figure</span><span class="w"> </span><span class="n">fits</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">current</span><span class="w"> </span><span class="k">position</span><span class="p">,</span><span class="w"> </span><span class="k">check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">formed</span>
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="ow">all</span><span class="p">(</span><span class="n">field</span><span class="o">[</span><span class="n">row + i</span><span class="o">][</span><span class="n">col + j</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">figure</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="err">:</span>
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">formed</span><span class="p">,</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">current</span><span class="w"> </span><span class="k">column</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="ow">any</span><span class="p">(</span><span class="ow">all</span><span class="p">(</span><span class="n">field</span><span class="o">[</span><span class="n">row + i</span><span class="o">][</span><span class="n">col + j</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="err">:</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">col</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">formed</span><span class="p">,</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+</code></pre></div>
+<p>Unfortunately, test cases aren't provided for this one. However, looking at the two responses, there are a couple obvious differences. ChatGPT doesn't
+handle the size of the board at all. CodeSignal uses this size in multiple places of their code. ChatGPT also uses <code>all()</code> and <code>any()</code> checks, where 
+CodeSignal uses longer and more complicated <code>if</code> statements. Personally, I'd prefer the simiple <code>if</code> statements for readability. </p>
+<p>I'm unsure how to score this one without the test cases, but will note that ChatGPT failed CodeSignal's first sentence in the solution explaination:</p>
+<blockquote>
+<p>This solution starts by defining some dimensions that will be important for the problem. </p>
+</blockquote>
+<p>I skeptical that without the size of the figure this will work as expected.</p>
+<h2 id="lookup-table">Lookup Table<a class="headerlink" href="#lookup-table" title="Permanent link">¶</a></h2>
+<p>Lastly, we get to a question with lookup tables. These types of problems can usually be solved via brute force, at the expense of performance. They
+make good questions for a more senior developer. Note that this prompt also has exponents that I needed to adjust when pasting to the chat bot.</p>
+<p><img alt="CodeSignal - Lookup Tables" src="https://andrewwegner.com/images/codesignal-lookup.png"/></p>
+<blockquote>
+<p>This question tests whether candidates have the problem-solving and data structures skills to use a lookup table (hash set/dictionary) in their programming language of choice. It also involves a bit of tricky logic to avoid double-counting pairs. Finally, this question asks candidates to pay close attention to constraints, testing a key skill for real-world development.</p>
+</blockquote>
+<p>After copying and pasting the prompt into ChatGPT, it spit out a response that attempted to brute force the problem. Depending on how CodeSignal 
+presents the problem to a candidate, this could easily be worked around by modifying the prompt to indicate you are looking for a problem with a 
+hash table. If that type of response isn't provided by CodeSignal though, ChatGPT would not have presented the expected solution, though it did 
+still return expected results. The time trade off would have been seen with different test cases.</p>
+<p>I modified the prompt slightly to indicate that I wanted a response with a hash table. ChatGPT complied.</p>
+<div class="codehilight code"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">solution</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="err">:</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">Initialize</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">hash</span><span class="w"> </span><span class="nc">table</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">numbers</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">seen</span>
+<span class="w">    </span><span class="n">seen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{}</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">Initialize</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nf">count</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">pairs</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="nf">sum</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nf">power</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="nf">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">Iterate</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">numbers</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">enumerate</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="err">:</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nf">power</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">increment</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">count</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span>
+<span class="w">            </span><span class="nf">count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">Check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nf">power</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">seen</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">seen</span><span class="p">:</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nf">power</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">increment</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">count</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span>
+<span class="w">                </span><span class="nf">count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">Add</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">hash</span><span class="w"> </span><span class="nc">table</span>
+<span class="w">        </span><span class="n">seen</span><span class="o">[</span><span class="n">x</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">True</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nf">count</span>
+</code></pre></div>
+<p>This passes the test cases as well. </p>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">¶</a></h2>
+<p>Of the four sample questions provided by CodeSignal, the "basic" two questions are solved without any difficulty. A third takes a little prompt 
+tweaking to indicate that we want a hashtable instead of a simple brute forced solution. The last one is difficult to evaluate without test cases. 
+So, of the 3 that can be evaluated all pass easily. Two with very little modification (converting exponents). The third needs a small nudge toward 
+the type of solution desired.</p>
+<h2 id="whats-this-mean">What's this mean?<a class="headerlink" href="#whats-this-mean" title="Permanent link">¶</a></h2>
+<p>I've looked at common interview questions from LeetCode, TestGorilla and now CodeSignal. As a hiring manager, I can see that a simple technical 
+assessment of skills isn't enough to evaluate a candidate. Fortunately, I knew that already, but I'm hoping that others in the industry are seeing that
+tools exist for developers to make their day to day lives easier. Those tools can, literally, do the work for them if you are presenting them with 
+basic puzzles during the interview process.</p>
+<p>I can already hear people saying that they do face to face coding, so this would never work in their process. You may be right, but ask yourselves this:
+do you developers do face to face coding in their day to day work? If not, why are you evaluating your candidates with that type of pressure? </p>
+<p>Adjust your interview process to reflect what you actually need your candidates to demonstrate. A puzzle isn't real work. Give them a real problem
+to talk through with your team. Evaluate their ability to solve a real problem so that you can learn about their thought processes, how they approach
+a problem, and what resources they utilize.</p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"
+    title="Breaking TestGorilla interview questions with ChatGPT">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+
+
+
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+  <div class="related-posts">
+    <h4>Part 5 of the ChatGPT Commentary series</h4>
+    <h5>Previous articles</h5>
+    <ul>
+      <li><a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html">Stack Overflow bans ChatGPT temporarily</a></li>
+      <li><a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">ChatGPT is here - Use that to stop asking LeetCode questions during interviews</a></li>
+      <li><a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html">Using ChatGPT to interact with an API</a></li>
+      <li><a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html">Breaking TestGorilla interview questions with ChatGPT</a></li>
+    </ul>
+  </div>
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Running CodeSignal questions through ChatGPT",
+  "headline": "Running CodeSignal questions through ChatGPT",
+  "dateCreated": "2023-01-01 17:00:00-06:00",
+  "datePublished": "2023-01-01 17:00:00-06:00",
+  "dateModified": "",
+  "copyrightYear": "2023",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html",
+  "description": "I am going to examine four sample CodeSignal questions and show how ChatGPT solves the problems.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2023 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>

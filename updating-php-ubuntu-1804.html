@@ -254,11 +254,11 @@ everything updated. I noticed this line during the <code>apt-get</code> scroll:<
 <p>Time to figure out how to use that newly install/upgraded PHP 7.3</p>
 <h2 id="what-is-actually-running">What is actually running?<a class="headerlink" href="#what-is-actually-running" title="Permanent link">¶</a></h2>
 <p>The first thing I did was check which version of PHP was being used in the terminal:</p>
-<div class="codehilight code"><pre><span></span><code>$ php -v
-PHP <span class="m">7</span>.3.7-2+ubuntu18.04.1+deb.sury.org+1 <span class="o">(</span>cli<span class="o">)</span> <span class="o">(</span>built: Jul <span class="m">25</span> <span class="m">2019</span> <span class="m">11</span>:44:59<span class="o">)</span> <span class="o">(</span> NTS <span class="o">)</span>
-Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">1997</span>-2018 The PHP Group
-Zend Engine v3.3.7, Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">1998</span>-2018 Zend Technologies
-    with Zend OPcache v7.3.7-2+ubuntu18.04.1+deb.sury.org+1, Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">1999</span>-2018, by Zend Technologies
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>php<span class="w"> </span>-v
+PHP<span class="w"> </span><span class="m">7</span>.3.7-2+ubuntu18.04.1+deb.sury.org+1<span class="w"> </span><span class="o">(</span>cli<span class="o">)</span><span class="w"> </span><span class="o">(</span>built:<span class="w"> </span>Jul<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">2019</span><span class="w"> </span><span class="m">11</span>:44:59<span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="w"> </span>NTS<span class="w"> </span><span class="o">)</span>
+Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">1997</span>-2018<span class="w"> </span>The<span class="w"> </span>PHP<span class="w"> </span>Group
+Zend<span class="w"> </span>Engine<span class="w"> </span>v3.3.7,<span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">1998</span>-2018<span class="w"> </span>Zend<span class="w"> </span>Technologies
+<span class="w">    </span>with<span class="w"> </span>Zend<span class="w"> </span>OPcache<span class="w"> </span>v7.3.7-2+ubuntu18.04.1+deb.sury.org+1,<span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">1999</span>-2018,<span class="w"> </span>by<span class="w"> </span>Zend<span class="w"> </span>Technologies
 </code></pre></div>
 <p>That's promising. The default version here is PHP 7.3.7.</p>
 <p>But, throwing a quick <code>phpinfo();</code> together and looking at what it running via
@@ -271,33 +271,33 @@ be used with Apache.</p>
 <p>I assumed I had PHP 7.3 installed, but I wanted to confirm before I just started
 disabling and enabling Apache modules.</p>
 <p>To confirm I had PHP 7.3 available, I ran this:</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span><span class="w"></span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span><span class="w"></span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">conf</span><span class="w"></span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">load</span><span class="w"></span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span><span class="w"></span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php</span><span class="o">*</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">load</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span>
 </code></pre></div>
 <p>And a quick check to see what's enabled:</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span><span class="w"></span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span>
 </code></pre></div>
 <p>Excellent. I have PHP 7.3 available, and PHP 7.1 is enabled. This is exactly what
 I'm seeing.</p>
 <h2 id="updating-apache-php-module">Updating Apache PHP Module<a class="headerlink" href="#updating-apache-php-module" title="Permanent link">¶</a></h2>
 <p>With PHP 7.3 already installed, I just need to disable PHP 7.1 and enable PHP 7.3.</p>
-<div class="codehilight code"><pre><span></span><code>$ a2dismod php7.1
-$ a2enmod php7.3
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>a2dismod<span class="w"> </span>php7.1
+$<span class="w"> </span>a2enmod<span class="w"> </span>php7.3
 </code></pre></div>
 <p>Then restart Apache to use the new module.</p>
-<div class="codehilight code"><pre><span></span><code>$ service apache2 restart
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>service<span class="w"> </span>apache2<span class="w"> </span>restart
 </code></pre></div>
 <p>Finally, validate the correct module is enabled:</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span><span class="w"></span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span><span class="w"></span>
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php</span><span class="o">*</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span>
 </code></pre></div>
 <p>Another check of the <code>phpinfo();</code> page too:</p>
 <div class="codehilight code"><pre><span></span><code>PHP Version 7.3.7-2+ubuntu18.04.1+deb.sury.org+1
@@ -317,24 +317,24 @@ shows that PHP 7.3 is supported. That just means I'm missing some modules.</p>
 <p>The documentation also includes a <a href="https://docs.nextcloud.com/server/15/admin_manual/installation/source_installation.html#prerequisites-for-manual-installation">list of all needed modules</a> and a nice
 <a href="https://github.com/nextcloud/vm/blob/master/nextcloud_install_production.sh/">shell script</a> for easy installation. Looking through that, I found the <code>apt</code>
 <a href="https://github.com/nextcloud/vm/blob/c469b3045c7405261a0d9f20fec7ef5f0f508efe/nextcloud_install_production.sh#L256-L272">packages I needed</a>.</p>
-<div class="codehilight code"><pre><span></span><code>$ apt-get install php7.3-fpm <span class="se">\</span>
-php7.3-intl <span class="se">\</span>
-php7.3-ldap <span class="se">\</span>
-php7.3-imap <span class="se">\</span>
-php7.3-gd <span class="se">\</span>
-php7.3-pgsql <span class="se">\</span>
-php7.3-curl <span class="se">\</span>
-php7.3-xml <span class="se">\</span>
-php7.3-zip <span class="se">\</span>
-php7.3-mbstring <span class="se">\</span>
-php7.3-soap <span class="se">\</span>
-php7.3-smbclient <span class="se">\</span>
-php7.3-json <span class="se">\</span>
-php7.3-gmp <span class="se">\</span>
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>php7.3-fpm<span class="w"> </span><span class="se">\</span>
+php7.3-intl<span class="w"> </span><span class="se">\</span>
+php7.3-ldap<span class="w"> </span><span class="se">\</span>
+php7.3-imap<span class="w"> </span><span class="se">\</span>
+php7.3-gd<span class="w"> </span><span class="se">\</span>
+php7.3-pgsql<span class="w"> </span><span class="se">\</span>
+php7.3-curl<span class="w"> </span><span class="se">\</span>
+php7.3-xml<span class="w"> </span><span class="se">\</span>
+php7.3-zip<span class="w"> </span><span class="se">\</span>
+php7.3-mbstring<span class="w"> </span><span class="se">\</span>
+php7.3-soap<span class="w"> </span><span class="se">\</span>
+php7.3-smbclient<span class="w"> </span><span class="se">\</span>
+php7.3-json<span class="w"> </span><span class="se">\</span>
+php7.3-gmp<span class="w"> </span><span class="se">\</span>
 php7.3-bz2
 </code></pre></div>
 <p>A minute or so later, with those modules now installed, I restarted Apache again.</p>
-<div class="codehilight code"><pre><span></span><code>$ service apache2 restart
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>service<span class="w"> </span>apache2<span class="w"> </span>restart
 </code></pre></div>
 <p>Then I went to my NextCloud URL. The page loaded as expected and my phone
 sync'd the one picture I took as a test to ensure it worked.</p>
@@ -405,7 +405,7 @@ worked perfectly.</p>
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">

@@ -266,7 +266,7 @@
 <div class="codehilight code"><pre><span></span><code>sanic src.server:app -p 7777 --debug --workers=2
 </code></pre></div>
 <p>Simplifying that command a bit and setting up the Heroku <code>Procfile</code> (capitization matters and no extension) I have a single line in my <code>Procfile</code> that reads:</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">web</span><span class="o">:</span><span class="w"> </span><span class="n">sanic</span><span class="w"> </span><span class="n">server</span><span class="o">:</span><span class="n">app</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">web</span><span class="o">:</span><span class="w"> </span><span class="n">sanic</span><span class="w"> </span><span class="n">server</span><span class="o">:</span><span class="n">app</span>
 </code></pre></div>
 <p>Creating a <code>requirements.txt</code> file with Sanic as an item was also required. If you're using a virtualenv, you can simply <code>pip freeze &gt; requirements.txt</code> to get everything in your environment into the file.</p>
 <p>Thus, my directory looks like this:</p>
@@ -282,8 +282,8 @@
 </code></pre></div>
 <p><strong>Note</strong>: This does require <code>sudo</code>.</p>
 <p>Once that's done, I verified the installation:</p>
-<div class="codehilight code"><pre><span></span><code>$ heroku --version
-heroku/7.60.2 linux-x64 node-v14.19.0
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>heroku<span class="w"> </span>--version
+heroku/7.60.2<span class="w"> </span>linux-x64<span class="w"> </span>node-v14.19.0
 </code></pre></div>
 <p>Set up the new application in your Heroku account by logging in. Then click <code>New</code> then <code>Create new app</code>.</p>
 <p><img alt="Create new heroku app - New / Create new app" src="https://andrewwegner.com/images/sanic-heroku-new-app.png"/></p>
@@ -291,10 +291,10 @@ heroku/7.60.2 linux-x64 node-v14.19.0
 <p>Then add Python to the build path. Do this by going to <code>Settings</code> -&gt; <code>Add buildpack</code> -&gt; Selecting Python and clicking save.</p>
 <p><img alt="Add Python buildpack - Settings / Add buildpack / Python" src="https://andrewwegner.com/images/sanic-heroku-buildpack.png"/></p>
 <p>The next step is setting up the two files I mentioned earlier - <code>Procfile</code> and <code>requirements.txt</code>. Since the <code>Procfile</code> is a single line for this simple proof of concept, that can been done in a single line from the shell.</p>
-<div class="codehilight code"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">"web: sanic server:app"</span> &gt; Procfile
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"web: sanic server:app"</span><span class="w"> </span>&gt;<span class="w"> </span>Procfile
 </code></pre></div>
 <p>Assuming you've been using a virtualenv - because you <em>should</em> be using a virtualenv - the <code>requirements.txt</code> file is just as easy.</p>
-<div class="codehilight code"><pre><span></span><code>$ pip freeze &gt; requirements.txt
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
 </code></pre></div>
 <p>Everything is setup and ready to be loaded to Heroku. Next, login in your terminal. I used the browser based method, but you can do this entirely in the command line if you wish. My command was:</p>
 <div class="codehilight code"><pre><span></span><code>heroku login
@@ -373,7 +373,7 @@ git push heroku master
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">

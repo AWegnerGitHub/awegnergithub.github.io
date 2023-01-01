@@ -238,7 +238,7 @@ by the company initially didn't work.</p>
 <p>The code below shows how I was able to finally connect python to OSI PI. It may not be the most elegant, but it
 functions for the purposes of my application. Initially I was attempting to connect using the <a href="https://github.com/mkleehammer/pyodbc">pyodbc</a> module. Unfortunately,
 OSI PI would return a message like this:</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">pyodbc</span><span class="p">.</span><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="err">&#39;</span><span class="n">IM002</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;[IM002] [OSI][PI ODBC][PI]PI-API Error &lt;pilg_getdefserverinfo&gt; 0 (0) (SQLDriverConnectW); [01000] [Microsoft][ODBC Driver Manager] The driver doesn&#39;t support the version of ODBC behavior that the application requested (see SQLSetEnvAttr). (0)&quot;</span><span class="p">)</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">pyodbc</span><span class="p">.</span><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="err">&#39;</span><span class="n">IM002</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;[IM002] [OSI][PI ODBC][PI]PI-API Error &lt;pilg_getdefserverinfo&gt; 0 (0) (SQLDriverConnectW); [01000] [Microsoft][ODBC Driver Manager] The driver doesn&#39;t support the version of ODBC behavior that the application requested (see SQLSetEnvAttr). (0)&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <p>They vendor mentioned that using OLEDB instead may prove more fruitful. Thus, the code below is how I got connected using 
@@ -343,7 +343,7 @@ solution should be aware that it is slow when running many queries.</p>
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">

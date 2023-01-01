@@ -248,9 +248,9 @@
 <h2 id="set-up">Set up<a class="headerlink" href="#set-up" title="Permanent link">¶</a></h2>
 <h3 id="the-database">The database<a class="headerlink" href="#the-database" title="Permanent link">¶</a></h3>
 <p>The process began by downloading the March 2013 <a href="https://archive.org/details/stackexchange">data dump</a>. I loaded the <code>posts</code> into a <a href="https://mariadb.org/">MariaDB</a> instance on my local machine. This was accomplished with a very simple script and patience, as the script took a while to run.</p>
-<div class="codehilight code"><pre><span></span><code><span class="nb">load</span><span class="w"> </span><span class="n">xml</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">'/path/to/posts.xml'</span><span class="w"></span>
-<span class="n">into</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">posts</span><span class="w"></span>
-<span class="n">rows</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="s1">'&lt;row&gt;'</span><span class="p">;</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="nb">load</span><span class="w"> </span><span class="n">xml</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="n">infile</span><span class="w"> </span><span class="s1">'/path/to/posts.xml'</span>
+<span class="n">into</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">posts</span>
+<span class="n">rows</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="s1">'&lt;row&gt;'</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="the-data">The data<a class="headerlink" href="#the-data" title="Permanent link">¶</a></h3>
 <p>Once this was done, the next step was selecting my random sample of data. I did this by randomly selecting 25% of the days in a year and then pulling all posts for those days across all years of Stack Overflow's existence. The Python script I used to do this was fairly simple:</p>
@@ -272,40 +272,40 @@
 <p>At the end of this run, the days that I cared about are in the <code>dayslist</code> variable. I used that to pull questions and answers from the database that were created on that month/day combination. In the end, this resulted in just over 25% of the total posts being selected. To ensure that I could replicate the results, I also saved the dates that were selected.</p>
 <h2 id="parsing-the-data">Parsing the data<a class="headerlink" href="#parsing-the-data" title="Permanent link">¶</a></h2>
 <p>The next step was to parse out links from the data. I used the following script to extract anchor text and links from a post. </p>
-<div class="codehilight code"><pre><span></span><code>def links_in_post(post):
-    """
-    Returns a list of all links found
-    :param posts: A list of dictionaries with a 'body' key containing HTML strings
-     [
-        {
-            'body': "<span class="nt">&lt;b&gt;</span>This is HTML<span class="nt">&lt;/b&gt;</span>"
-        },
-    ]
-    :return: A list of tuples containing anchor text and URL
-        [
-            ('Display Text', 'http://example.com')
-        ]
-    """
-    logging.debug("Extracting links...")
-    links = []
-    images = []
-    regexp = "<span class="ni">&amp;.+?;</span>"
-    list_of_html = re.findall(regexp, post)
-    for e in list_of_html:
-        if e in invalid_entities:
-            h = HTMLParser.HTMLParser()
-            unescaped = h.unescape(e) 
-            post = post.replace(e, unescaped)
+<div class="codehilight code"><pre><span></span><code>def<span class="w"> </span>links_in_post(post):
+<span class="w">    </span>"""
+<span class="w">    </span>Returns<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>all<span class="w"> </span>links<span class="w"> </span>found
+<span class="w">    </span>:param<span class="w"> </span>posts:<span class="w"> </span>A<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>dictionaries<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>'body'<span class="w"> </span>key<span class="w"> </span>containing<span class="w"> </span>HTML<span class="w"> </span>strings
+<span class="w">     </span>[
+<span class="w">        </span>{
+<span class="w">            </span>'body':<span class="w"> </span>"<span class="nt">&lt;b&gt;</span>This<span class="w"> </span>is<span class="w"> </span>HTML<span class="nt">&lt;/b&gt;</span>"
+<span class="w">        </span>},
+<span class="w">    </span>]
+<span class="w">    </span>:return:<span class="w"> </span>A<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>tuples<span class="w"> </span>containing<span class="w"> </span>anchor<span class="w"> </span>text<span class="w"> </span>and<span class="w"> </span>URL
+<span class="w">        </span>[
+<span class="w">            </span>('Display<span class="w"> </span>Text',<span class="w"> </span>'http://example.com')
+<span class="w">        </span>]
+<span class="w">    </span>"""
+<span class="w">    </span>logging.debug("Extracting<span class="w"> </span>links...")
+<span class="w">    </span>links<span class="w"> </span>=<span class="w"> </span>[]
+<span class="w">    </span>images<span class="w"> </span>=<span class="w"> </span>[]
+<span class="w">    </span>regexp<span class="w"> </span>=<span class="w"> </span>"<span class="ni">&amp;.+?;</span>"
+<span class="w">    </span>list_of_html<span class="w"> </span>=<span class="w"> </span>re.findall(regexp,<span class="w"> </span>post)
+<span class="w">    </span>for<span class="w"> </span>e<span class="w"> </span>in<span class="w"> </span>list_of_html:
+<span class="w">        </span>if<span class="w"> </span>e<span class="w"> </span>in<span class="w"> </span>invalid_entities:
+<span class="w">            </span>h<span class="w"> </span>=<span class="w"> </span>HTMLParser.HTMLParser()
+<span class="w">            </span>unescaped<span class="w"> </span>=<span class="w"> </span>h.unescape(e)<span class="w"> </span>
+<span class="w">            </span>post<span class="w"> </span>=<span class="w"> </span>post.replace(e,<span class="w"> </span>unescaped)
 
-    doc = html.fromstring(post)
-    for link in doc.xpath('//a'):
-        links.append(Link(text=link.text_content(), link=link.get('href')))
-    for image in doc.xpath('//img'):
-        images.append(Link(text=image.get('alt'), link=image.get('src')))
-    all_items = links + images
-    seen = set()
-    unique_items = [item for item in all_items if item[1] not in seen and not seen.add(item[1])]
-    return unique_items
+<span class="w">    </span>doc<span class="w"> </span>=<span class="w"> </span>html.fromstring(post)
+<span class="w">    </span>for<span class="w"> </span>link<span class="w"> </span>in<span class="w"> </span>doc.xpath('//a'):
+<span class="w">        </span>links.append(Link(text=link.text_content(),<span class="w"> </span>link=link.get('href')))
+<span class="w">    </span>for<span class="w"> </span>image<span class="w"> </span>in<span class="w"> </span>doc.xpath('//img'):
+<span class="w">        </span>images.append(Link(text=image.get('alt'),<span class="w"> </span>link=image.get('src')))
+<span class="w">    </span>all_items<span class="w"> </span>=<span class="w"> </span>links<span class="w"> </span>+<span class="w"> </span>images
+<span class="w">    </span>seen<span class="w"> </span>=<span class="w"> </span>set()
+<span class="w">    </span>unique_items<span class="w"> </span>=<span class="w"> </span>[item<span class="w"> </span>for<span class="w"> </span>item<span class="w"> </span>in<span class="w"> </span>all_items<span class="w"> </span>if<span class="w"> </span>item[1]<span class="w"> </span>not<span class="w"> </span>in<span class="w"> </span>seen<span class="w"> </span>and<span class="w"> </span>not<span class="w"> </span>seen.add(item[1])]
+<span class="w">    </span>return<span class="w"> </span>unique_items
 </code></pre></div>
 <p>The regular expression being utilized, is to strip out HTML entities. This was needed due to weird parsing issues with non-ASCII characters. Fortunately, I wasn't the <a href="http://stackoverflow.com/a/13939198/189134">first to encounter oddities like this</a>. The list comprehension at the end of the function is returning only unique tuples of anchor text/link. I was surprised how often I'd end up with tuples such as <code>('this', 'http://google.com')</code> in the same post. This uniqueness saved a lot of processing time later.</p>
 <p>After all links in a post had been extracted, this information and information about the post itself, was saved to the database. If a post had no links, it was not saved. The database consisted of three tables. </p>
@@ -396,7 +396,7 @@
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">

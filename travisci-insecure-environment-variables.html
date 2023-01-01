@@ -282,11 +282,11 @@ it deployed to <em>my</em> AWS account using <em>my</em> AWS credentials. These 
 <p><img alt="Enable Integration" src="https://andrewwegner.com/images/1-travis-enable-repository.png"/></p>
 <h3 id="create-a-travisyml-file">Create a .travis.yml file<a class="headerlink" href="#create-a-travisyml-file" title="Permanent link">¶</a></h3>
 <p>With the integration now in place, set up a basic build script by adding a <code>.travis.yml</code> file to the repository.</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">language</span><span class="o">:</span><span class="w"> </span><span class="n">python</span><span class="w"></span>
-<span class="n">python</span><span class="o">:</span><span class="w"></span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="s2">"3.5"</span><span class="w"></span>
-<span class="n">script</span><span class="o">:</span><span class="w"></span>
-<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">hello</span><span class="o">.</span><span class="na">py</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">language</span><span class="o">:</span><span class="w"> </span><span class="n">python</span>
+<span class="n">python</span><span class="o">:</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="s2">"3.5"</span>
+<span class="n">script</span><span class="o">:</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">hello</span><span class="o">.</span><span class="na">py</span>
 </code></pre></div>
 <p>This script will set up a build task and run your <code>hello.py</code> file, using Python 3.5. You will see that "Hello World!" is printed in the build console.</p>
 <p><img alt="First Build" src="https://andrewwegner.com/images/2-travis-first-build.png"/></p>
@@ -429,7 +429,7 @@ environment. This will break the builds, but it will also ensure that private va
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">

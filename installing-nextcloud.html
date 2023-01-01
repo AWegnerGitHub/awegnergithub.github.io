@@ -278,13 +278,13 @@ FLUSH PRIVILEGES;
 <p>As I mentioned above, I initially installed version 12 of NextCloud. The latest version can be found on the <a href="https://nextcloud.com/install/">NextCloud install page</a>. The URL from that page should be
 used instead of the version 12 link in the following code block. The code block below will be putting NextCloud in the default location Ubuntu has Apache look. You can modify
 that as needed. If you do so, the virtual host will need to be modified slightly.</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">nextcloud</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">server</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">nextcloud</span><span class="o">-</span><span class="mf">12.0</span><span class="o">.</span><span class="mf">2.</span><span class="n">zip</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">nextcloud</span><span class="o">-</span><span class="mf">12.0</span><span class="o">.</span><span class="mf">2.</span><span class="n">zip</span><span class="w"></span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">mv</span><span class="w"> </span><span class="n">nextcloud</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">nextcloud</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">server</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">nextcloud</span><span class="o">-</span><span class="mf">12.0</span><span class="o">.</span><span class="mf">2.</span><span class="n">zip</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">nextcloud</span><span class="o">-</span><span class="mf">12.0</span><span class="o">.</span><span class="mf">2.</span><span class="n">zip</span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">mv</span><span class="w"> </span><span class="n">nextcloud</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span>
 </code></pre></div>
 <p>We need to adjust ownership of the files so that Apache can read them. The default user and group, in this case is <code>www-data</code>. If you have configured your server to use a
 different user or group, adjust this command accordingly.</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">chown</span><span class="w"> </span><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="p">:</span><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="w"> </span><span class="o">-</span><span class="n">R</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">nextcloud</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">chown</span><span class="w"> </span><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="p">:</span><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="w"> </span><span class="o">-</span><span class="n">R</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">nextcloud</span>
 </code></pre></div>
 <h3 id="create-the-virtual-host">Create the Virtual Host<a class="headerlink" href="#create-the-virtual-host" title="Permanent link">¶</a></h3>
 <p>I'll be exposing this to the internet and I'll be accessing it via the internet. That means I really don't want to send data unencrypted to or from NextCloud. I'll be setting
@@ -298,46 +298,46 @@ sudo ln -s /etc/apache2/sites-available/nextcloud.conf /etc/apache2/sites-enable
 <div class="codehilight code"><pre><span></span><code>sudo nano /etc/apache2/sites-available/nextcloud.conf
 </code></pre></div>
 <p>Paste the following:</p>
-<div class="codehilight code"><pre><span></span><code><span class="nt">&lt;VirtualHost</span> <span class="err">*:80</span><span class="nt">&gt;</span>
-    ServerAdmin YOUR@EMAILADDRESS
-    DocumentRoot /var/www/html/nextcloud/
-    ServerName nas.example.com
-    Redirect permanent / https://nas.example.com/
+<div class="codehilight code"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*:80</span><span class="nt">&gt;</span>
+<span class="w">    </span>ServerAdmin<span class="w"> </span>YOUR@EMAILADDRESS
+<span class="w">    </span>DocumentRoot<span class="w"> </span>/var/www/html/nextcloud/
+<span class="w">    </span>ServerName<span class="w"> </span>nas.example.com
+<span class="w">    </span>Redirect<span class="w"> </span>permanent<span class="w"> </span>/<span class="w"> </span>https://nas.example.com/
 
-    <span class="nt">&lt;Directory</span> <span class="err">/var/www/html/nextcloud</span><span class="nt">/&gt;</span>
-        Options FollowSymLinks
-        AllowOverride All
-        Order allow,deny
-        allow from all
-    <span class="nt">&lt;/Directory&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="err">/var/www/html/nextcloud</span><span class="nt">/&gt;</span>
+<span class="w">        </span>Options<span class="w"> </span>FollowSymLinks
+<span class="w">        </span>AllowOverride<span class="w"> </span>All
+<span class="w">        </span>Order<span class="w"> </span>allow,deny
+<span class="w">        </span>allow<span class="w"> </span>from<span class="w"> </span>all
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
 
-    ErrorLog /var/log/apache2/nas.example.com-error_log
-    CustomLog /var/log/apache2/nas.example.com-access_log common
+<span class="w">    </span>ErrorLog<span class="w"> </span>/var/log/apache2/nas.example.com-error_log
+<span class="w">    </span>CustomLog<span class="w"> </span>/var/log/apache2/nas.example.com-access_log<span class="w"> </span>common
 <span class="nt">&lt;/VirtualHost&gt;</span>
 
-<span class="nt">&lt;VirtualHost</span> <span class="err">*:443</span><span class="nt">&gt;</span>
-    ServerName nas.example.com
-    DocumentRoot /var/www/html/nextcloud/
-    RewriteCond %{THE_REQUEST} ^.*/index\.php
-    RewriteRule ^(.*)index.php$ /$1 [R=301,L]
-    SSLEngine on
-    SSLCertificateFile /path/to/dehydrated/certs/nas.example.com/cert.pem
-    SSLCertificateKeyFile /path/to/dehydrated/certs/nas.example.com/privkey.pem
-    SSLCertificateChainFile /path/to/dehydrated/certs/nas.example.com/chain.pem
-    <span class="nt">&lt;IfModule</span> <span class="err">mod_headers.c</span><span class="nt">&gt;</span>
-        Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
-    <span class="nt">&lt;/IfModule&gt;</span>
+<span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*:443</span><span class="nt">&gt;</span>
+<span class="w">    </span>ServerName<span class="w"> </span>nas.example.com
+<span class="w">    </span>DocumentRoot<span class="w"> </span>/var/www/html/nextcloud/
+<span class="w">    </span>RewriteCond<span class="w"> </span>%{THE_REQUEST}<span class="w"> </span>^.*/index\.php
+<span class="w">    </span>RewriteRule<span class="w"> </span>^(.*)index.php$<span class="w"> </span>/$1<span class="w"> </span>[R=301,L]
+<span class="w">    </span>SSLEngine<span class="w"> </span>on
+<span class="w">    </span>SSLCertificateFile<span class="w"> </span>/path/to/dehydrated/certs/nas.example.com/cert.pem
+<span class="w">    </span>SSLCertificateKeyFile<span class="w"> </span>/path/to/dehydrated/certs/nas.example.com/privkey.pem
+<span class="w">    </span>SSLCertificateChainFile<span class="w"> </span>/path/to/dehydrated/certs/nas.example.com/chain.pem
+<span class="w">    </span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="err">mod_headers.c</span><span class="nt">&gt;</span>
+<span class="w">        </span>Header<span class="w"> </span>always<span class="w"> </span>set<span class="w"> </span>Strict-Transport-Security<span class="w"> </span>"max-age=15552000;<span class="w"> </span>includeSubDomains"
+<span class="w">    </span><span class="nt">&lt;/IfModule&gt;</span>
 
-    <span class="nt">&lt;Directory</span> <span class="err">/var/www/html/nextcloud</span><span class="nt">/&gt;</span>
-        Options FollowSymLinks
-        AllowOverride All
-        Order allow,deny
-        allow from all
-    <span class="nt">&lt;/Directory&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="err">/var/www/html/nextcloud</span><span class="nt">/&gt;</span>
+<span class="w">        </span>Options<span class="w"> </span>FollowSymLinks
+<span class="w">        </span>AllowOverride<span class="w"> </span>All
+<span class="w">        </span>Order<span class="w"> </span>allow,deny
+<span class="w">        </span>allow<span class="w"> </span>from<span class="w"> </span>all
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
 
-    ErrorLog /var/log/apache2/nas.example.com-error_log
-    CustomLog /var/log/apache2/nas.example.com-access_log common
- <span class="nt">&lt;/VirtualHost&gt;</span>
+<span class="w">    </span>ErrorLog<span class="w"> </span>/var/log/apache2/nas.example.com-error_log
+<span class="w">    </span>CustomLog<span class="w"> </span>/var/log/apache2/nas.example.com-access_log<span class="w"> </span>common
+<span class="w"> </span><span class="nt">&lt;/VirtualHost&gt;</span>
 </code></pre></div>
 <p>There are two separate virtual host configurations being created here. The first one, on port 80, is setting up the permanent redirect to the HTTPS site.</p>
 <p>In the secure virtual host configuration, we're setting a small rewrite rule to provide nicer URLs and configuring the SSL certificates to use. The <code>DocumentRoot</code> variables
@@ -346,8 +346,8 @@ should match the path you installed NextCloud into in the previous step.</p>
 <p>There are a few settings that you need to change in the NextCloud configuration. Do this by editing <code>/var/www/html/nextcloud/config/config.php</code>. If this file doesn't exist,
 you need to copy <code>/var/www/html/nextcloud/config/config.sample.php</code> to <code>/var/www/html/nextcloud/config/config.php</code>.</p>
 <p>The important settings to check are:</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`datadirectory`</span><span class="o">:</span><span class="w"> </span><span class="k">In</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="k">case</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">pointed</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">dataset</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="err">[</span><span class="k">set</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="n">ZFS</span><span class="w"> </span><span class="n">pool</span><span class="err">][</span><span class="mi">1</span><span class="err">]</span><span class="w"></span>
-<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`overwrite.cli.url`</span><span class="o">:</span><span class="w"> </span><span class="k">Changed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="kt">point</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">HTTPS</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`datadirectory`</span><span class="o">:</span><span class="w"> </span><span class="k">In</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="k">case</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">pointed</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">dataset</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="err">[</span><span class="k">set</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="n">ZFS</span><span class="w"> </span><span class="n">pool</span><span class="err">][</span><span class="mi">1</span><span class="err">]</span>
+<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`overwrite.cli.url`</span><span class="o">:</span><span class="w"> </span><span class="k">Changed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="kt">point</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">HTTPS</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span>
 </code></pre></div>
 <h3 id="complete-the-installation">Complete the installation<a class="headerlink" href="#complete-the-installation" title="Permanent link">¶</a></h3>
 <p>Restart Apache and the navigate to the domain you've set up for your NextCloud installation. I am assuming that you know how to set up a DNS record for the server name
@@ -452,7 +452,7 @@ minutes of me getting home.</p>
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">

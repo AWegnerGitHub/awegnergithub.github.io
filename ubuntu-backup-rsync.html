@@ -253,7 +253,7 @@
 <p>This will put <code>laptop-rsync-key</code> and <code>laptop-rsync-key.pub</code> in my user's <code>.ssh/</code> directory.</p>
 <h3 id="copy-the-public-key-to-the-server">Copy the public key to the server<a class="headerlink" href="#copy-the-public-key-to-the-server" title="Permanent link">¶</a></h3>
 <p>Next, we need to copy the public key that was just generated to the server.</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">scp</span><span class="w"> </span><span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">laptop</span><span class="o">-</span><span class="n">rsync</span><span class="o">-</span><span class="n">key</span><span class="p">.</span><span class="n">pub</span><span class="w"> </span><span class="n">andy</span><span class="mf">@192.168.140.187</span><span class="o">:~/</span><span class="p">.</span><span class="n">ssh</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="n">scp</span><span class="w"> </span><span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">laptop</span><span class="o">-</span><span class="n">rsync</span><span class="o">-</span><span class="n">key</span><span class="p">.</span><span class="n">pub</span><span class="w"> </span><span class="n">andy</span><span class="mf">@192.168.140.187</span><span class="o">:~/</span><span class="p">.</span><span class="n">ssh</span>
 </code></pre></div>
 <p>Once it's been copied, log into the server. Now you need to add this key to the <code>authorized_keys</code>.</p>
 <div class="codehilight code"><pre><span></span><code>cd ~/.ssh
@@ -330,7 +330,7 @@ cat laptop-rsync-key.pub &gt;&gt; authorized_keys
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">

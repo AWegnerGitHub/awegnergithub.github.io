@@ -315,25 +315,25 @@ doing this with <a href="https://letsencrypt.org/">Let's Encrypt</a>, like I did
 by that process. </p>
 <p>The first change to make is to redirect the HTTP version of your domain to HTTPS. The goal is that all traffic to
 GitLab will go over SSL. Adjust the <code>ServerName</code> variable as appropriate.</p>
-<div class="codehilight code"><pre><span></span><code><span class="nt">&lt;VirtualHost</span> <span class="err">*:80</span><span class="nt">&gt;</span>
-  ServerName gitlab.example.com
-  ServerSignature Off
+<div class="codehilight code"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*:80</span><span class="nt">&gt;</span>
+<span class="w">  </span>ServerName<span class="w"> </span>gitlab.example.com
+<span class="w">  </span>ServerSignature<span class="w"> </span>Off
 
-  RewriteEngine on
-  RewriteCond %{HTTPS} !=on
-  RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [NE,R,L]
+<span class="w">  </span>RewriteEngine<span class="w"> </span>on
+<span class="w">  </span>RewriteCond<span class="w"> </span>%{HTTPS}<span class="w"> </span>!=on
+<span class="w">  </span>RewriteRule<span class="w"> </span>.*<span class="w"> </span>https://%{SERVER_NAME}%{REQUEST_URI}<span class="w"> </span>[NE,R,L]
 <span class="nt">&lt;/VirtualHost&gt;</span>
 </code></pre></div>
 <p>Then, everything in the <a href="https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/web-server/apache/gitlab-omnibus-apache24.conf">sample</a> virtual host file can be put in the <code>&lt;VirtualHost *:443&gt;</code> block.</p>
 <p>At the top of this block, we need to reference the Let's Encrypt keys:</p>
-<div class="codehilight code"><pre><span></span><code><span class="nt">SSLProtocol</span><span class="w"> </span><span class="nt">all</span><span class="w"> </span><span class="nt">-SSLv2</span><span class="w"></span>
-<span class="nt">SSLHonorCipherOrder</span><span class="w"> </span><span class="nt">on</span><span class="w"></span>
-<span class="nt">SSLCipherSuite</span><span class="w"> </span><span class="s2">"ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS"</span><span class="w"></span>
-<span class="nt">Header</span><span class="w"> </span><span class="nt">add</span><span class="w"> </span><span class="nt">Strict-Transport-Security</span><span class="o">:</span><span class="w"> </span><span class="s2">"max-age=15768000;includeSubdomains"</span><span class="w"></span>
-<span class="nt">SSLCompression</span><span class="w"> </span><span class="nt">Off</span><span class="w"></span>
-<span class="nt">SSLCertificateFile</span><span class="w"> </span><span class="o">/</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">cert</span><span class="p">.</span><span class="nc">pem</span><span class="w"></span>
-<span class="nt">SSLCertificateKeyFile</span><span class="w"> </span><span class="o">/</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">privkey</span><span class="p">.</span><span class="nc">pem</span><span class="w"></span>
-<span class="nt">SSLCertificateChainFile</span><span class="w"> </span><span class="o">/</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">chain</span><span class="p">.</span><span class="nc">pem</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="nt">SSLProtocol</span><span class="w"> </span><span class="nt">all</span><span class="w"> </span><span class="nt">-SSLv2</span>
+<span class="nt">SSLHonorCipherOrder</span><span class="w"> </span><span class="nt">on</span>
+<span class="nt">SSLCipherSuite</span><span class="w"> </span><span class="s2">"ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS"</span>
+<span class="nt">Header</span><span class="w"> </span><span class="nt">add</span><span class="w"> </span><span class="nt">Strict-Transport-Security</span><span class="o">:</span><span class="w"> </span><span class="s2">"max-age=15768000;includeSubdomains"</span>
+<span class="nt">SSLCompression</span><span class="w"> </span><span class="nt">Off</span>
+<span class="nt">SSLCertificateFile</span><span class="w"> </span><span class="o">/</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">cert</span><span class="p">.</span><span class="nc">pem</span>
+<span class="nt">SSLCertificateKeyFile</span><span class="w"> </span><span class="o">/</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">privkey</span><span class="p">.</span><span class="nc">pem</span>
+<span class="nt">SSLCertificateChainFile</span><span class="w"> </span><span class="o">/</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">dehydrated</span><span class="o">/</span><span class="nt">certs</span><span class="o">/</span><span class="nt">gitlab</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">chain</span><span class="p">.</span><span class="nc">pem</span>
 </code></pre></div>
 <p>Save and restart Apache. You should be automatically redirected over HTTPS when you visit your GitLab URL.</p>
 <h3 id="allow-spaces-in-repository-names">Allow spaces in repository names<a class="headerlink" href="#allow-spaces-in-repository-names" title="Permanent link">¶</a></h3>
@@ -441,7 +441,7 @@ knowledge that I can expand what I do with GitLab.</p>
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">

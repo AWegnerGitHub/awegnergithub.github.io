@@ -276,22 +276,22 @@ and <a href="https://andrewwegner.com/installing-gitlab.html">GitLab</a> for oth
 or on <a href="https://github.com/invoiceninja/invoiceninja">GitHub</a>.</p>
 <p>In this, I'll be installing InvoiceNinja, setting up Apache to host it, and showing how
 to update it in the future.</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span><span class="w"></span>
-<span class="o">$</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span>
+<span class="o">$</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span>
 </code></pre></div>
 <p>This downloads and unzips InvoiceNinja 4.5.14 to the current directory. Next,
 let's move it to it's final install location and set up appropriate owner and
 permissions.</p>
-<div class="codehilight code"><pre><span></span><code>$ sudo mv ninja /var/www/html
-$ <span class="nb">cd</span> /var/www/html
-$ sudo chown -R www-data:www-data ninja/
-$ sudo chmod -R <span class="m">755</span> ninja/storage
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>mv<span class="w"> </span>ninja<span class="w"> </span>/var/www/html
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/www/html
+$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>www-data:www-data<span class="w"> </span>ninja/
+$<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">755</span><span class="w"> </span>ninja/storage
 </code></pre></div>
 <h2 id="database-setup">Database setup<a class="headerlink" href="#database-setup" title="Permanent link">¶</a></h2>
 <p>InvoiceNinja runs on MySQL (or MariaDB). We need to create the database, but
 the installer will do the rest of the work for us. Log into MySQL with a user
 that can create new databases, users and permissions.</p>
-<div class="codehilight code"><pre><span></span><code>$ mysql -u root -p
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
 </code></pre></div>
 <p>Now we'll run three commands. The first is to create the new database, the second
 is to create the user. The third is to set appropriate permissions for the
@@ -310,43 +310,43 @@ GRANT ALL PRIVILEGES ON ninja.* TO 'ninja'@'localhost';
 <div class="codehilight code"><pre><span></span><code>nano /etc/apache2/sites-available/invoiceninja.conf
 </code></pre></div>
 <p>My entry looks like this:</p>
-<div class="codehilight code"><pre><span></span><code><span class="nt">&lt;VirtualHost</span> <span class="err">*:80</span><span class="nt">&gt;</span>
-     DocumentRoot /var/www/html/ninja/public
-     ServerName invoice.example.com
-     Redirect permanent / https://invoice.example.com/
+<div class="codehilight code"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*:80</span><span class="nt">&gt;</span>
+<span class="w">     </span>DocumentRoot<span class="w"> </span>/var/www/html/ninja/public
+<span class="w">     </span>ServerName<span class="w"> </span>invoice.example.com
+<span class="w">     </span>Redirect<span class="w"> </span>permanent<span class="w"> </span>/<span class="w"> </span>https://invoice.example.com/
 
-     <span class="nt">&lt;Directory</span> <span class="err">/var/www/html/ninja/public</span><span class="nt">&gt;</span>
-        Options +FollowSymlinks
-        AllowOverride All
-        Require all granted
-     <span class="nt">&lt;/Directory&gt;</span>
+<span class="w">     </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="err">/var/www/html/ninja/public</span><span class="nt">&gt;</span>
+<span class="w">        </span>Options<span class="w"> </span>+FollowSymlinks
+<span class="w">        </span>AllowOverride<span class="w"> </span>All
+<span class="w">        </span>Require<span class="w"> </span>all<span class="w"> </span>granted
+<span class="w">     </span><span class="nt">&lt;/Directory&gt;</span>
 <span class="nt">&lt;/VirtualHost&gt;</span>
 
-<span class="nt">&lt;VirtualHost</span> <span class="err">*:443</span><span class="nt">&gt;</span>
-    ServerName invoice.example.com
-    DocumentRoot /var/www/html/ninja/public
-    SSLEngine on
-    SSLCertificateFile /path/to/dehydrated/certs/invoice.example.com/cert.pem
-    SSLCertificateKeyFile /path/to/dehydrated/certs/invoice.example.com/privkey.pem
-    SSLCertificateChainFile /path/to/dehydrated/certs/invoice.example.com/chain.pem
-    <span class="nt">&lt;IfModule</span> <span class="err">mod_headers.c</span><span class="nt">&gt;</span>
-        Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
-    <span class="nt">&lt;/IfModule&gt;</span>
+<span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*:443</span><span class="nt">&gt;</span>
+<span class="w">    </span>ServerName<span class="w"> </span>invoice.example.com
+<span class="w">    </span>DocumentRoot<span class="w"> </span>/var/www/html/ninja/public
+<span class="w">    </span>SSLEngine<span class="w"> </span>on
+<span class="w">    </span>SSLCertificateFile<span class="w"> </span>/path/to/dehydrated/certs/invoice.example.com/cert.pem
+<span class="w">    </span>SSLCertificateKeyFile<span class="w"> </span>/path/to/dehydrated/certs/invoice.example.com/privkey.pem
+<span class="w">    </span>SSLCertificateChainFile<span class="w"> </span>/path/to/dehydrated/certs/invoice.example.com/chain.pem
+<span class="w">    </span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="err">mod_headers.c</span><span class="nt">&gt;</span>
+<span class="w">        </span>Header<span class="w"> </span>always<span class="w"> </span>set<span class="w"> </span>Strict-Transport-Security<span class="w"> </span>"max-age=15552000;<span class="w"> </span>includeSubDomains"
+<span class="w">    </span><span class="nt">&lt;/IfModule&gt;</span>
 
-    <span class="nt">&lt;Directory</span> <span class="err">/var/www/html/ninja</span><span class="nt">/&gt;</span>
-        Options FollowSymLinks
-        AllowOverride All
-        Order allow,deny
-        allow from all
-    <span class="nt">&lt;/Directory&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="err">/var/www/html/ninja</span><span class="nt">/&gt;</span>
+<span class="w">        </span>Options<span class="w"> </span>FollowSymLinks
+<span class="w">        </span>AllowOverride<span class="w"> </span>All
+<span class="w">        </span>Order<span class="w"> </span>allow,deny
+<span class="w">        </span>allow<span class="w"> </span>from<span class="w"> </span>all
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
 <span class="nt">&lt;/VirtualHost&gt;</span>
 </code></pre></div>
 <p>This sets up a direct from HTTP to HTTPS. Then it points to the SSL certificates I've
 created for this subdomain. I previously wrote about <a href="https://andrewwegner.com/setup-lets-encrypt.html">how I set up SSL</a>. I followed the
 same steps, using the new subdomain.</p>
 <p>With SSL and the subdomain set up in CloudFlare, it's time to enable the site:</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">a2ensite</span><span class="w"> </span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">conf</span><span class="w"></span>
-<span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">reload</span><span class="w"> </span><span class="n">apache2</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">a2ensite</span><span class="w"> </span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">conf</span>
+<span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">reload</span><span class="w"> </span><span class="n">apache2</span>
 </code></pre></div>
 <h2 id="completing-the-install">Completing the install<a class="headerlink" href="#completing-the-install" title="Permanent link">¶</a></h2>
 <p>Navigate to the new subdomain, and fill out the form. Installation will be
@@ -355,16 +355,16 @@ completed in a minute or so.</p>
 <p>At some point, InvoiceNinja will come out with an update, and I'll want to update
 to get the newest features and security patches.</p>
 <p>To start with, we want to download the newest version:</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span><span class="w"></span>
-<span class="o">$</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span><span class="w"></span>
+<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span>
+<span class="o">$</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span>
 </code></pre></div>
 <p>Next, <code>rsync</code> the files to the installed directory.</p>
-<div class="codehilight code"><pre><span></span><code>$ sudo rsync -tr ninja/ /var/www/html/ninja/
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>rsync<span class="w"> </span>-tr<span class="w"> </span>ninja/<span class="w"> </span>/var/www/html/ninja/
 </code></pre></div>
 <p>This messes up permissions, so reset those.</p>
-<div class="codehilight code"><pre><span></span><code>$ <span class="nb">cd</span> /var/www/html
-$ sudo chown -R www-data:www-data ninja/
-$ sudo chmod -R <span class="m">755</span> ninja/storage
+<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/www/html
+$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>www-data:www-data<span class="w"> </span>ninja/
+$<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">755</span><span class="w"> </span>ninja/storage
 </code></pre></div>
 <p>Finally, hit the <code>/update</code> URL to complete the process</p>
 <div class="codehilight code"><pre><span></span><code>wget https://invoice.example.com/update
@@ -433,7 +433,7 @@ $ sudo chmod -R <span class="m">755</span> ninja/storage
 }
 </script>
 <footer>
-<p>&copy; 2022 Andrew Wegner</p>
+<p>&copy; 2023 Andrew Wegner</p>
 </footer>  </main>
 
 <script type="application/ld+json">
