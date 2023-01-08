@@ -50,7 +50,7 @@ of the list from the list itself.&lt;/p&gt;
 &lt;p&gt;However, the solution required taking input from STDIN, so I let ChatGPT know this by pasting in the only bit of information provided in the 
 code here:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;h1 id="enter-your-code-here-read-input-from-stdin-print-output-to-stdout"&gt;Enter your code here. Read input from STDIN. Print output to STDOUT&lt;a class="headerlink" href="#enter-your-code-here-read-input-from-stdin-print-output-to-stdout" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Enter your code here. Read input from STDIN. Print output to STDOUT&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;ChatGPT made the neccessary change and provided a new code block.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt;
