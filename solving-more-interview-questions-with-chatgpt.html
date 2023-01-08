@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="HackerRank is a common tool companies use in interviews. This post continues the series on how ChatGPT can solve these interview problems." />
+<meta name="keywords" content="technical, job search, chatgpt, ai interviews">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="ChatGPT easily solves HackerRank questions"/>
+  <meta property="og:description" content="HackerRank is a common tool companies use in interviews. This post continues the series on how ChatGPT can solve these interview problems."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-01-08 01:15:00-06:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/author/andy-wegner.html">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="article:tag" content="job search"/>
+  <meta property="article:tag" content="chatgpt"/>
+  <meta property="article:tag" content="ai interviews"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>ChatGPT easily solves HackerRank questions  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div>
+    <a href="https://andrewwegner.com/">
+      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+    </a>
+
+
+    <nav>
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h2>Article Contents</h2>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#triangle-quest">Triangle Quest</a></li>
+<li><a href="#iterables-and-iterators">Iterables and Iterators</a></li>
+<li><a href="#enter-your-code-here-read-input-from-stdin-print-output-to-stdout">Enter your code here. Read input from STDIN. Print output to STDOUT</a><ul>
+<li><a href="#validating-postal-codes">Validating Postal Codes</a></li>
+<li><a href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+</li>
+</ul>
+</div>
+    </nav>
+
+    <ul class="social">
+      <div class="itsmefooter">Andy Wegner</div>
+      <li>
+        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+          target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+          target="_blank">
+          <i class="fa-brands fa-stack-overflow"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+          target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+          target="_blank">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </li>
+      <li>
+        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+          target="_blank">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">ChatGPT easily solves HackerRank questions</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html",
+      "name": "https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="solving-more-interview-questions-with-chatgpt">ChatGPT easily solves HackerRank questions</h1>
+    <p>
+      Posted on Sun 08 January 2023 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+        <a href="https://andrewwegner.com/tag/job-search.html">job search</a>
+        <a href="https://andrewwegner.com/tag/chatgpt.html">chatgpt</a>
+        <a href="https://andrewwegner.com/tag/ai-interviews.html">ai interviews</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>It's important that companies evaluate their engineering candidates appropriately when they are hiring. Do other areas of your company 
+evaluate their potential hires by restricting access to tools they'll use to perform the job? I suspect not. Why do the same to 
+your software engineers?</p>
+<p>AI Tooling - things like GitHub's <a href="https://github.com/features/copilot">Copilot</a> and now <a href="https://openai.com/blog/chatgpt/">ChatGPT</a> - are <em>tools</em> that your engineers can use to do their job. During the hiring 
+process, engineers should be evaluated on the skills they have, and that includes the ability to utilize all available tools. I expect AI
+assistance to be come as common place as using Stack Overflow to solve a problem. ChatGPT, Copilot, and any future tools doing similar tasks are 
+going to be used frequently in the near future.</p>
+<p>In this article, I'm testing <a href="https://openai.com/blog/chatgpt/">ChatGPT</a> against one of the most popular coding assessment services: <a href="https://www.hackerrank.com/">HackerRank</a>. I've already covered other assessment services like <a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">LeetCode</a>, <a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html">TestGorilla</a>, <a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html">CodeSignal</a> and <a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html">Codility</a> in this series. I recommend taking a look at those too.</p>
+<p>To the engineers that have found this post and are looking for solutions to your coding assessments, I want to warn you, ChatGPT is an
+<em>assistant</em>. Think of it as a junior level engineer. You may need to check it's work. <a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html">ChatGPT is known to be inaccurate</a>, which is why 
+<a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html">it was banned on Stack Overflow</a>. Don't take it's responses as gospel. Evaluate the responses and make improvements as needed. You'll see I 
+had to do that a couple of times with the questions below.</p>
+<p><em>First a disclaimer</em>: I was Director of Engineering at <a href="https://www.woventeams.com/">Woven Teams</a> in 2022. Prior to that, <a href="https://andrewwegner.com/woven-client-to-woven-employee.html">I was a customer of Woven for over two years</a>. 
+HackerRank is mentioned multiple times in the Woven blog and is a competitor to Woven.</p>
+<p>Final note before I begin, HackerRank presented a couple annoyances during this test because they use LaTeX formatting in their prompts. Simply 
+copy and pasting prompts to ChatGPT was not possible, because key parts of the problem would be missing. This meant that I 
+spent several minutes per prompt cleaning it up and reinserting the LaTeX characters in plain text. This accounts for the higher solve 
+times compared to the competing services in other articles.</p>
+<h2 id="triangle-quest">Triangle Quest<a class="headerlink" href="#triangle-quest" title="Permanent link">¶</a></h2>
+<p>I selected a random Medium difficulty Python question for my first prompt: <a href="https://www.hackerrank.com/challenges/python-quest-1/problem?isFullScreen=true">Triangle Quest</a>. This one was unique in this series of tests. 
+The expected solution was to add only a single line of code and I could only use arithmetic operations, a single <code>for</code> loop and <code>print</code> statement.</p>
+<p><img alt="HackerRank - Triangle Quest Prompt" src="https://andrewwegner.com/images/hackerrank-triangle-prompt.png"/></p>
+<p>As previously mentioned, there were a few LaTeX things to clean up, but then ChatGPT returned a single line of code to add to the <code>for</code> loop provided.
+The whole code is:</p>
+<div class="codehilight code"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">range</span><span class="ss">(</span><span class="mi">1</span>,<span class="nv">int</span><span class="ss">(</span><span class="nv">input</span><span class="ss">()))</span>:<span class="w"> </span>#<span class="nv">More</span><span class="w"> </span><span class="nv">than</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="nv">lines</span><span class="w"> </span><span class="nv">will</span><span class="w"> </span><span class="nb">result</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nv">score</span>.<span class="w"> </span><span class="k">Do</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">leave</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">blank</span><span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="nv">also</span>
+<span class="w">    </span><span class="nv">print</span><span class="ss">((</span><span class="nv">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="ss">(</span><span class="mi">10</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="ss">))</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">9</span><span class="ss">)</span>
+</code></pre></div>
+<p>I submitted the code and passed all test cases.</p>
+<p><img alt="HackerRank - Triangle Quest Results" src="https://andrewwegner.com/images/hackerrank-triange-result.png"/></p>
+<p>I was surprised by this one. I was expecting to encounter some problems with the constraint of only being able to use arithemtic operations. It 
+turns out, ChatGPT caught that constraint and solved the problem without any issue.</p>
+<h2 id="iterables-and-iterators">Iterables and Iterators<a class="headerlink" href="#iterables-and-iterators" title="Permanent link">¶</a></h2>
+<p>I wanted to try another Medium difficulty problem, that added more than a single line of code. The constraints on the previous question put 
+the problem well into "puzzle" territory, and I am not a fan of puzzles in technical interviews. The second medium question selected was 
+<a href="https://www.hackerrank.com/challenges/iterables-and-iterators/problem?isFullScreen=true">Iterables and Iterators</a>.</p>
+<p><img alt="HackerRank - Iterables and Iterators Prompt" src="https://andrewwegner.com/images/hackerrank-iterables-prompt.png"/></p>
+<p>The first result returned didn't take input. Instead, it hard coded values like so:</p>
+<div class="codehilight code"><pre><span></span><code># given list of letters
+letters = ['a', 'a', 'c', 'd']
+
+# number of indices to select
+k = 2
+</code></pre></div>
+<p>The interesting thing with this solution was that it ignored the first input row - 
+"The first line contains the integer N, denoting the length of the list". I don't disagree with this change. We should be able to determine the length 
+of the list from the list itself.</p>
+<p>However, the solution required taking input from STDIN, so I let ChatGPT know this by pasting in the only bit of information provided in the 
+code here:</p>
+<blockquote>
+<h1 id="enter-your-code-here-read-input-from-stdin-print-output-to-stdout">Enter your code here. Read input from STDIN. Print output to STDOUT<a class="headerlink" href="#enter-your-code-here-read-input-from-stdin-print-output-to-stdout" title="Permanent link">¶</a></h1>
+</blockquote>
+<p>ChatGPT made the neccessary change and provided a new code block.</p>
+<div class="codehilight code"><pre><span></span><code><span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="c1"># read input from stdin</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">letters</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="c1"># number of combinations of indices</span>
+<span class="n">total_combinations</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">letters</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">k</span><span class="p">)))</span>
+
+<span class="c1"># number of combinations of indices that do not contain the letter 'a'</span>
+<span class="n">combinations_without_a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">'a'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">letters</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">],</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">letters</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">k</span><span class="p">)))</span>
+
+<span class="c1"># probability that none of the selected indices contain the letter 'a'</span>
+<span class="n">probability_without_a</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">combinations_without_a</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_combinations</span>
+
+<span class="c1"># probability that at least one of the selected indices contain the letter 'a'</span>
+<span class="n">probability_with_a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">probability_without_a</span>
+
+<span class="c1"># print the probability to three decimal places</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">probability_with_a</span><span class="p">))</span>
+</code></pre></div>
+<p>I submitted this code and it also passed each of the test cases. This solution also ignored using the <code>n</code> input, but did accept it as input.</p>
+<p><img alt="HackerRank - Iterables and Iterators Results" src="https://andrewwegner.com/images/hackerrank-iterables-result.png"/></p>
+<h2 id="validating-postal-codes">Validating Postal Codes<a class="headerlink" href="#validating-postal-codes" title="Permanent link">¶</a></h2>
+<p>At this point, I've shown that ChatGPT can do medium level problems. So, I selected a Hard problem: <a href="https://www.hackerrank.com/challenges/validating-postalcode/problem?isFullScreen=true">Validating Postal Codes</a>. 
+The intersting constraint on this one is that <code>if</code> statements aren't allowed. The goal here is to provide two regular expressions to solve the problem.</p>
+<p>I've built some nasty regular expressions over the years. I've talked about <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">SmokeDetector</a> in the past, and it's role in removing spam from 
+the Stack Exchange network. It is built on regular expressions. Lots and lots of regular expressions. So, I felt pretty comfortable with 
+this question and wanted to see how ChatGPT would handle it.</p>
+<p><img alt="HackerRank - Validating Postal Codes Prompt" src="https://andrewwegner.com/image/hackerrank-postal-prompt.png"/></p>
+<p>The second regular expression, the alternating repeating digit pair, didn't work the first time. </p>
+<div class="codehilight code"><pre><span></span><code><span class="n">regex_alternating_repetitive_digit_pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">'(</span><span class="n">\d)\d\1'</span>
+</code></pre></div>
+<p>For those that know regular expressions, that is not going to work. I pointed this out and it corrected itself, and explained the meaning of the
+new regular expression. The two final regular expressions are</p>
+<div class="codehilight code"><pre><span></span><code><span class="n">regex_integer_in_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="s">"^[1-9]\d{5}$"</span><span class="w">    </span><span class="p">#</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">delete</span><span class="w"> </span><span class="sc">'r'</span><span class="p">.</span>
+<span class="n">regex_alternating_repetitive_digit_pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="s">"(\d)(?=\d</span><span class="se">\1</span><span class="s">)"</span><span class="w">   </span><span class="p">#</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">delete</span><span class="w"> </span><span class="sc">'r'</span><span class="p">.</span>
+</code></pre></div>
+<p>This is using a positive lookahead assertion, which ChatGPT explains as:</p>
+<blockquote>
+<p>This regular expression will match any digit <code>(\d)</code> followed by another digit, with the same digit <code>(\1)</code> appearing immediately after that. The <code>(?=...)</code> syntax is a positive lookahead assertion, which means that it will only match a digit if it is followed by the specified pattern, but the pattern will not be included in the overall match. The parentheses around <code>\d</code> capture the digit so that it can be referred to as <code>\1</code> later on.</p>
+</blockquote>
+<p>I submitted the two regexes above, and passed the test cases.</p>
+<p><img alt="HackerRank - Validating Postal Codes Result" src="https://andrewwegner.com/image/hackerrank-postal-result.png"/></p>
+<h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
+<p>The majority of my time on these was spent cleaning up the LaTeX formatting. I mentioned a few prompt clarifications needed to solve problems in the 
+returned code too - one required accepting user input and the other was an invalid regular expression. Pointing this out to ChatGPT got the 
+problem resolved immediately.</p>
+<p>This is exactly the type of thing that I'd expect an engineer to need to do with the AI assistant (or more junior engineer). Hiring processes
+must adapt to the existance of AI assistants. Evaluate your candidates and their ability to do more than simply write code. </p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html"
+    title="Taking Codility's sample interview exam using ChatGPT">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+
+
+
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+  <div class="related-posts">
+    <h4>Part 7 of the ChatGPT Commentary series</h4>
+    <h5>Previous articles</h5>
+    <ul>
+      <li><a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html">Stack Overflow bans ChatGPT temporarily</a></li>
+      <li><a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">ChatGPT is here - Use that to stop asking LeetCode questions during interviews</a></li>
+      <li><a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html">Using ChatGPT to interact with an API</a></li>
+      <li><a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html">Breaking TestGorilla interview questions with ChatGPT</a></li>
+      <li><a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html">Running CodeSignal questions through ChatGPT</a></li>
+      <li><a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html">Taking Codility's sample interview exam using ChatGPT</a></li>
+    </ul>
+  </div>
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "ChatGPT easily solves HackerRank questions",
+  "headline": "ChatGPT easily solves HackerRank questions",
+  "dateCreated": "2023-01-08 01:15:00-06:00",
+  "datePublished": "2023-01-08 01:15:00-06:00",
+  "dateModified": "",
+  "copyrightYear": "2023",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html",
+  "description": "HackerRank is a common tool companies use in interviews. This post continues the series on how ChatGPT can solve these interview problems.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2023 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>
