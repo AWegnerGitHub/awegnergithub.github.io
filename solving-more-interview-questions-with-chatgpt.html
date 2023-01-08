@@ -328,7 +328,7 @@ The intersting constraint on this one is that <code>if</code> statements aren't 
 <p>I've built some nasty regular expressions over the years. I've talked about <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">SmokeDetector</a> in the past, and it's role in removing spam from 
 the Stack Exchange network. It is built on regular expressions. Lots and lots of regular expressions. So, I felt pretty comfortable with 
 this question and wanted to see how ChatGPT would handle it.</p>
-<p><img alt="HackerRank - Validating Postal Codes Prompt" src="https://andrewwegner.com/image/hackerrank-postal-prompt.png"/></p>
+<p><img alt="HackerRank - Validating Postal Codes Prompt" src="https://andrewwegner.com/images/hackerrank-postal-prompt.png"/></p>
 <p>The second regular expression, the alternating repeating digit pair, didn't work the first time. </p>
 <div class="codehilight code"><pre><span></span><code><span class="n">regex_alternating_repetitive_digit_pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">'(</span><span class="n">\d)\d\1'</span>
 </code></pre></div>
@@ -342,7 +342,7 @@ new regular expression. The two final regular expressions are</p>
 <p>This regular expression will match any digit <code>(\d)</code> followed by another digit, with the same digit <code>(\1)</code> appearing immediately after that. The <code>(?=...)</code> syntax is a positive lookahead assertion, which means that it will only match a digit if it is followed by the specified pattern, but the pattern will not be included in the overall match. The parentheses around <code>\d</code> capture the digit so that it can be referred to as <code>\1</code> later on.</p>
 </blockquote>
 <p>I submitted the two regexes above, and passed the test cases.</p>
-<p><img alt="HackerRank - Validating Postal Codes Result" src="https://andrewwegner.com/image/hackerrank-postal-result.png"/></p>
+<p><img alt="HackerRank - Validating Postal Codes Result" src="https://andrewwegner.com/images/hackerrank-postal-result.png"/></p>
 <h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
 <p>The majority of my time on these was spent cleaning up the LaTeX formatting. I mentioned a few prompt clarifications needed to solve problems in the 
 returned code too - one required accepting user input and the other was an invalid regular expression. Pointing this out to ChatGPT got the 

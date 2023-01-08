@@ -83,7 +83,7 @@ The intersting constraint on this one is that &lt;code&gt;if&lt;/code&gt; statem
 &lt;p&gt;I've built some nasty regular expressions over the years. I've talked about &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; in the past, and it's role in removing spam from 
 the Stack Exchange network. It is built on regular expressions. Lots and lots of regular expressions. So, I felt pretty comfortable with 
 this question and wanted to see how ChatGPT would handle it.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="HackerRank - Validating Postal Codes Prompt" src="https://andrewwegner.com/image/hackerrank-postal-prompt.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="HackerRank - Validating Postal Codes Prompt" src="https://andrewwegner.com/images/hackerrank-postal-prompt.png"/&gt;&lt;/p&gt;
 &lt;p&gt;The second regular expression, the alternating repeating digit pair, didn't work the first time. &lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;regex_alternating_repetitive_digit_pair&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;'(&lt;/span&gt;&lt;span class="n"&gt;\d)\d\1'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -97,7 +97,7 @@ new regular expression. The two final regular expressions are&lt;/p&gt;
 &lt;p&gt;This regular expression will match any digit &lt;code&gt;(\d)&lt;/code&gt; followed by another digit, with the same digit &lt;code&gt;(\1)&lt;/code&gt; appearing immediately after that. The &lt;code&gt;(?=...)&lt;/code&gt; syntax is a positive lookahead assertion, which means that it will only match a digit if it is followed by the specified pattern, but the pattern will not be included in the overall match. The parentheses around &lt;code&gt;\d&lt;/code&gt; capture the digit so that it can be referred to as &lt;code&gt;\1&lt;/code&gt; later on.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I submitted the two regexes above, and passed the test cases.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="HackerRank - Validating Postal Codes Result" src="https://andrewwegner.com/image/hackerrank-postal-result.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="HackerRank - Validating Postal Codes Result" src="https://andrewwegner.com/images/hackerrank-postal-result.png"/&gt;&lt;/p&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The majority of my time on these was spent cleaning up the LaTeX formatting. I mentioned a few prompt clarifications needed to solve problems in the 
 returned code too - one required accepting user input and the other was an invalid regular expression. Pointing this out to ChatGPT got the 
