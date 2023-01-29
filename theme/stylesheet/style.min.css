@@ -1,6 +1,6 @@
 body,
 html {
-    width: 100%;
+    min-width: 100%;
     height: 100%;
 }
 
@@ -74,9 +74,9 @@ aside {
     /* background-color: #333; */
     background-color: #080019;
     text-align: center;
-    border-radius: 0 15px 15px 0/15px 225px 255px 255px;
-    height: 110vh;
-    top: -15px
+    height: fit-content;
+    top: -15px; 
+    border-radius: 0 0 15px 15px/ 0 0 15px 15px;
 }
 
 aside nav .toc {
@@ -113,14 +113,40 @@ aside div p {
     font-size: 0.92em;
 }
 
+aside nav ul{
+    padding-inline-start: 2.5vw;
+    list-style-type: none;
+}
+
 aside nav ul li {
-    display: inline;
+    display: list-item;
+    line-height: 1.6em;
+}
+
+#nav-links {
+    display: list-item;
     line-height: 1.6em;
     font-size: 1.28em;
+    list-style-type: none;
+}
+aside .toc .toc{
+    display: inline-block;
 }
 
 aside nav .toc ul li {
-    font-size: 1.1em;
+    display: list-item;
+}
+
+aside nav .toc ul li ul {
+    list-style-type: none;
+}
+
+aside nav .toc ul li ul li ul{
+    list-style-type: none;
+}
+
+.backbtn{
+    display: none !important;
 }
 
 main nav {
@@ -226,7 +252,7 @@ main article kbd {
 
 main article :not(pre)>code {
     font-size: 0.8em;
-    white-space: nowrap;
+    white-space: normal;
     color: #c25;
     padding: 1px 3px;
     background-color: #f7f7f9;
@@ -396,11 +422,12 @@ ul.social {
 }
 
 ul.list {
-    padding: 1em 0;
+    padding: 0.8em 0;
 }
 
 ul.list li {
-    padding: 4px;
+    font-size: 1em;
+    padding: 2px;
 }
 
 ul.social {
@@ -545,7 +572,14 @@ ul.social a.sc-lastfm {
     margin-left: 5%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 950px) {
+    @media screen and (max-height: 660px){
+        aside{
+            font-size: 85%;
+        }
+    }
+
+
     aside {
         width: 20vw;
         height: 100vh;
@@ -553,11 +587,64 @@ ul.social a.sc-lastfm {
         z-index: 2;
         top: 0;
         left: 0;
+        border-radius: 0 15px 15px 0/15px 225px 255px 255px;
+    }
+
+    .aside-border {
+        border-right: solid 5px hsla(0, 95%, 35%, 1) !important;
+        border-bottom: none !important;
     }
 
     aside div {
         padding: 36px 18px;
     }
+
+    aside aside-cont{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background-color: #080019;
+        border-radius: 0 15px 15px 0/15px 225px 255px 255px;
+        z-index: -2;
+    }
+
+    aside .toc .content-cont{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        top: 0;
+        bottom: 0;
+        left: -24vw;
+        width: 22vw;
+        padding-right: 9px;
+        background-color: #080019;
+        border-radius: 0 15px 15px 0/15px 225px 255px 255px;
+        overflow-y: scroll;
+        direction: rtl;
+        z-index: 3;
+        transition-duration: 0.4s;
+    }
+
+
+    aside .toc .toc::-webkit-scrollbar {
+        width: 9px;
+        background-color: #080019;
+    }
+    
+    aside .toc .toc::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+        border-radius: 10px;
+    }
+    
+    aside .toc .toc::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    }
+    ​
+
 
     aside div nav ul li {
         padding: 0 !important;
@@ -571,6 +658,11 @@ ul.social a.sc-lastfm {
         position: absolute;
         left: 40%;
         transform: translate(-40%, -20%); */
+    }
+
+    aside .toc .toc ul{
+        direction: ltr;
+        padding-left: 1em;
     }
 
     main {
@@ -593,6 +685,25 @@ ul.social a.sc-lastfm {
 
     .ads-responsive {
         height: 90px;
+    }
+
+    .backbtn{
+        display: block !important;
+        list-style: none;
+        cursor: pointer;
+        color: hsla(0, 95%, 35%, 1);
+    }
+}
+
+@media screen and (max-width: 950px){
+    nav .article-breadcrumbs {
+        flex-direction: column !important;
+    }
+}
+
+@media screen and (max-width: 330px){
+    main article :not(pre)>code {
+        line-break: anywhere;
     }
 }
 
@@ -773,7 +884,12 @@ figure.align-right {
 }
 
 .aside-border {
-    border-right: solid 5px hsla(0, 95%, 35%, 1);
+    border-bottom: solid 5px hsla(0, 95%, 35%, 1);
+    border-right: none;
+}
+
+.content-cont.aside-border{
+    border: none;
 }
 
 .sitename {
@@ -785,10 +901,14 @@ figure.align-right {
 
 nav .article-breadcrumbs {
     list-style-type: none;
-    display: inline-flex;
+    padding-left: 0;
+    display: flex;
     text-transform: none;
     font-size: 12px;
     text-align: left;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 
@@ -923,6 +1043,14 @@ div.categorybar {
 .footerspacer {
     height: 112px
 }
+
+.backbtn-ul {
+    padding: 0;
+    margin: 0;
+}
+
+
+
 
 @-moz-keyframes morphing {
     0% {

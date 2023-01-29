@@ -82,13 +82,12 @@
 <body class="light-theme" >
 
 <aside class="aside-border">
-  <div>
-    <a href="https://andrewwegner.com/">
-      <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
-    </a>
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
 
-
-    <nav>
+    <nav id="nav-links">
       <ul class="list">
 
 
@@ -111,7 +110,7 @@
       </ul>
     </nav>
 
-    <h2>Article Contents</h2>
+    <h3>Article Contents</h3>
     <hr />
     <nav class="toc">
       <div class="toc">
@@ -131,41 +130,51 @@
 </div>
     </nav>
 
-    <ul class="social">
-      <div class="itsmefooter">Andy Wegner</div>
-      <li>
-        <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-          target="_blank">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
-      </li>
-      <li>
-        <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-          target="_blank">
-          <i class="fa-brands fa-stack-overflow"></i>
-        </a>
-      </li>
-      <li>
-        <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-          target="_blank">
-          <i class="fa-brands fa-github"></i>
-        </a>
-      </li>
-      <li>
-        <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-          target="_blank">
-          <i class="fa-solid fa-file-pdf"></i>
-        </a>
-      </li>
-      <li>
-        <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-          target="_blank">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
-      </li>
-    </ul>
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
   </div>
 
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
 </aside>
   <main>
 
