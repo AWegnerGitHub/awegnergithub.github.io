@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/update-php-and-nextcloud.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="Nearly five years ago I installed NextCloud. This article talks about the challenges I faced updating to a new version of PHP for a modern version of NextCloud." />
+<meta name="keywords" content="technical">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Updated PHP and NextCloud"/>
+  <meta property="og:description" content="Nearly five years ago I installed NextCloud. This article talks about the challenges I faced updating to a new version of PHP for a modern version of NextCloud."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/update-php-and-nextcloud.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-01-30 09:30:00-06:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/author/andy-wegner.html">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Updated PHP and NextCloud  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#disabling-php-73">Disabling PHP 7.3</a></li>
+<li><a href="#adjusting-php-80s-memory-limit">Adjusting PHP 8.0's memory limit</a></li>
+<li><a href="#fixing-the-stuck-updater">Fixing the stuck updater</a></li>
+<li><a href="#fix-missing-indexes">Fix missing indexes</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/update-php-and-nextcloud.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Updated PHP and NextCloud</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/update-php-and-nextcloud.html",
+      "name": "https://andrewwegner.com/update-php-and-nextcloud.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="update-php-and-nextcloud">Updated PHP and NextCloud</h1>
+    <p>
+      Posted on Mon 30 January 2023 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>Almost five years ago, after a <a href="https://andrewwegner.com/backup-your-data.html">personal data disaster</a>, I <a href="https://andrewwegner.com/new-house-server.html">set up a new server</a> and <a href="https://andrewwegner.com/installing-nextcloud.html">set up NextCloud on it</a>. Then later in the year
+I updated Ubuntu to 18.04 from 16.04. Since initial install, I had gone from version 12 to version 23 on PHP 7.3. I documented the steps I took 
+to <a href="https://andrewwegner.com/updating-php-ubuntu-1804.html">upgrade from PHP7.1 to PHP7.3 for NextCloud</a> in another article. With <a href="https://docs.nextcloud.com/server/24/admin_manual/installation/system_requirements.html">NextCloud version 24</a>, PHP7.3 was no longer supported. </p>
+<p>That meant it was time to update PHP again, and I had hoped to follow a similar process as before. It was pretty similar, as I tend to keep the 
+server updated.</p>
+<h2 id="disabling-php-73">Disabling PHP 7.3<a class="headerlink" href="#disabling-php-73" title="Permanent link">¶</a></h2>
+<p>The first step was to ensure I had at least PHP 7.4 installed. Since I'd be moving to <a href="https://docs.nextcloud.com/server/25/admin_manual/installation/system_requirements.html">NextCloud 25</a>, I wanted to ensure that I had at least PHP 8.0,
+as PHP 7.4 had been deprecated.</p>
+<p><code>$ ll /etc/apache2/mods-available/php*
+/etc/apache2/mods-available/php7.1.conf
+/etc/apache2/mods-available/php7.1.load
+/etc/apache2/mods-available/php7.2.conf
+/etc/apache2/mods-available/php7.2.load
+/etc/apache2/mods-available/php7.3.conf
+/etc/apache2/mods-available/php7.3.load
+/etc/apache2/mods-available/php7.4.conf
+/etc/apache2/mods-available/php7.4.load
+/etc/apache2/mods-available/php8.0.conf
+/etc/apache2/mods-available/php8.0.load
+/etc/apache2/mods-available/php8.2.conf
+/etc/apache2/mods-available/php8.2.load</code></p>
+<p>The interesting thing here is that I don't have PHP 8.1 installed. Not 100% sure why, but right now that doesn't bother me. Since the documentation
+doesn't mention PHP 8.2 support, I'll be using PHP 8.0 support, and cleaning up the old versions later.</p>
+<p>Disable Apache's PHP 7.3 module and enable the 8.0 one, then restart Apache:</p>
+<p><code>sudo a2dismod php7.3
+sudo a2enmod php8.0
+sudo service apache2 restart</code></p>
+<h2 id="adjusting-php-80s-memory-limit">Adjusting PHP 8.0's memory limit<a class="headerlink" href="#adjusting-php-80s-memory-limit" title="Permanent link">¶</a></h2>
+<p>NextCloud recommends a 512M PHP memory limit. I forgot to do this initially and got stuck in the web updater. Fortunately, this is an easy fix.</p>
+<p>Find your <code>php.ini</code> and adjust the <code>memory_limit</code> to be <code>512M</code>. Restart Apache once more.</p>
+<p>My <code>php.ini</code> was located here: <code>/etc/php/8.0/apache2/php.ini</code></p>
+<h2 id="fixing-the-stuck-updater">Fixing the stuck updater<a class="headerlink" href="#fixing-the-stuck-updater" title="Permanent link">¶</a></h2>
+<p>Since I started the update with a bad memory limit, the update wasn't able to complete. NextCloud failed the Verification step (Step 5) and 
+attempting to restart it resulted in <code>Step 5 is currently in process. Please reload this page later</code>. </p>
+<p>The solution to this, is to remove the <code>.step</code> file from your <code>data</code> directory. </p>
+<p><code>rm /nextcloud/data/updater-XXXXXXX/.step</code></p>
+<p>The <code>XXXXXXX</code> appears to be randomly generated, so you will need to see what yours is named. Once that file was removed, I was able to complete
+the updates through the web updater.</p>
+<h2 id="fix-missing-indexes">Fix missing indexes<a class="headerlink" href="#fix-missing-indexes" title="Permanent link">¶</a></h2>
+<p>The last step in this process - which is really part of all NextCloud updates - was to get indexes in place. This is easily accomplished by running
+the <code>occ</code> utility provide by NextCloud.</p>
+<p>From your NextCloud directory:</p>
+<p><code>sudo -u www-data php8.0 ./occ db:add-missing-indices</code></p>
+<p>I'm running this as the correct user. If you don't, it will warn you and fail to run.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>This update was pretty similar to the one I did several years ago. The important thing that I missed was setting up the <code>memory_limit</code>. A small 
+problem to resolve. I think between this upgrade and the <a href="https://andrewwegner.com/updating-php-ubuntu-1804.html">previous upgrade</a>, the future upgrade to PHP 8.2 when it's required will be even easier.</p>
+<p>After 5 years of using NextCloud to save family data, I continue to love it's simplicity and ability to "just work". Less technical family members 
+don't need to do anything complicated to have their data backed up to a location we control. This update will ensure it continues to work with the 
+newest versions.</p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html"
+    title="ChatGPT easily solves HackerRank questions">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Updated PHP and NextCloud",
+  "headline": "Updated PHP and NextCloud",
+  "dateCreated": "2023-01-30 09:30:00-06:00",
+  "datePublished": "2023-01-30 09:30:00-06:00",
+  "dateModified": "",
+  "copyrightYear": "2023",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/update-php-and-nextcloud.html",
+  "description": "Nearly five years ago I installed NextCloud. This article talks about the challenges I faced updating to a new version of PHP for a modern version of NextCloud.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2023 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>

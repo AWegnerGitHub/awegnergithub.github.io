@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-01-08T01:15:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>ChatGPT easily solves HackerRank questions</title><link href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html" rel="alternate"></link><published>2023-01-08T01:15:00-06:00</published><updated>2023-01-08T01:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-01-08:/solving-more-interview-questions-with-chatgpt.html</id><summary type="html">&lt;p&gt;HackerRank is a common tool companies use in interviews. This post continues the series on how ChatGPT can solve these interview problems.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-01-30T09:30:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Updated PHP and NextCloud</title><link href="https://andrewwegner.com/update-php-and-nextcloud.html" rel="alternate"></link><published>2023-01-30T09:30:00-06:00</published><updated>2023-01-30T09:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-01-30:/update-php-and-nextcloud.html</id><summary type="html">&lt;p&gt;Nearly five years ago I installed NextCloud. This article talks about the challenges I faced updating to a new version of PHP for a modern version of NextCloud.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Almost five years ago, after a &lt;a href="https://andrewwegner.com/backup-your-data.html"&gt;personal data disaster&lt;/a&gt;, I &lt;a href="https://andrewwegner.com/new-house-server.html"&gt;set up a new server&lt;/a&gt; and &lt;a href="https://andrewwegner.com/installing-nextcloud.html"&gt;set up NextCloud on it&lt;/a&gt;. Then later in the year
+I updated Ubuntu to 18.04 from 16.04. Since initial install, I had gone from version 12 to version 23 on PHP 7.3. I documented the steps I took 
+to &lt;a href="https://andrewwegner.com/updating-php-ubuntu-1804.html"&gt;upgrade from PHP7.1 to PHP7.3 for NextCloud&lt;/a&gt; in another article. With &lt;a href="https://docs.nextcloud.com/server/24/admin_manual/installation/system_requirements.html"&gt;NextCloud version 24&lt;/a&gt;, PHP7.3 was no longer supported. &lt;/p&gt;
+&lt;p&gt;That meant it was time to update PHP again, and I had hoped to follow a similar process as before. It was pretty similar, as I tend to keep the 
+server updated.&lt;/p&gt;
+&lt;h2 id="disabling-php-73"&gt;Disabling PHP 7.3&lt;a class="headerlink" href="#disabling-php-73" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first step was to ensure I had at least PHP 7.4 installed. Since I'd be moving to &lt;a href="https://docs.nextcloud.com/server/25/admin_manual/installation/system_requirements.html"&gt;NextCloud 25&lt;/a&gt;, I wanted to ensure that I had at least PHP 8.0,
+as PHP 7.4 had been deprecated.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ ll /etc/apache2/mods-available/php*
+/etc/apache2/mods-available/php7.1.conf
+/etc/apache2/mods-available/php7.1.load
+/etc/apache2/mods-available/php7.2.conf
+/etc/apache2/mods-available/php7.2.load
+/etc/apache2/mods-available/php7.3.conf
+/etc/apache2/mods-available/php7.3.load
+/etc/apache2/mods-available/php7.4.conf
+/etc/apache2/mods-available/php7.4.load
+/etc/apache2/mods-available/php8.0.conf
+/etc/apache2/mods-available/php8.0.load
+/etc/apache2/mods-available/php8.2.conf
+/etc/apache2/mods-available/php8.2.load&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The interesting thing here is that I don't have PHP 8.1 installed. Not 100% sure why, but right now that doesn't bother me. Since the documentation
+doesn't mention PHP 8.2 support, I'll be using PHP 8.0 support, and cleaning up the old versions later.&lt;/p&gt;
+&lt;p&gt;Disable Apache's PHP 7.3 module and enable the 8.0 one, then restart Apache:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo a2dismod php7.3
+sudo a2enmod php8.0
+sudo service apache2 restart&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="adjusting-php-80s-memory-limit"&gt;Adjusting PHP 8.0's memory limit&lt;a class="headerlink" href="#adjusting-php-80s-memory-limit" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;NextCloud recommends a 512M PHP memory limit. I forgot to do this initially and got stuck in the web updater. Fortunately, this is an easy fix.&lt;/p&gt;
+&lt;p&gt;Find your &lt;code&gt;php.ini&lt;/code&gt; and adjust the &lt;code&gt;memory_limit&lt;/code&gt; to be &lt;code&gt;512M&lt;/code&gt;. Restart Apache once more.&lt;/p&gt;
+&lt;p&gt;My &lt;code&gt;php.ini&lt;/code&gt; was located here: &lt;code&gt;/etc/php/8.0/apache2/php.ini&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="fixing-the-stuck-updater"&gt;Fixing the stuck updater&lt;a class="headerlink" href="#fixing-the-stuck-updater" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Since I started the update with a bad memory limit, the update wasn't able to complete. NextCloud failed the Verification step (Step 5) and 
+attempting to restart it resulted in &lt;code&gt;Step 5 is currently in process. Please reload this page later&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;The solution to this, is to remove the &lt;code&gt;.step&lt;/code&gt; file from your &lt;code&gt;data&lt;/code&gt; directory. &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;rm /nextcloud/data/updater-XXXXXXX/.step&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;XXXXXXX&lt;/code&gt; appears to be randomly generated, so you will need to see what yours is named. Once that file was removed, I was able to complete
+the updates through the web updater.&lt;/p&gt;
+&lt;h2 id="fix-missing-indexes"&gt;Fix missing indexes&lt;a class="headerlink" href="#fix-missing-indexes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The last step in this process - which is really part of all NextCloud updates - was to get indexes in place. This is easily accomplished by running
+the &lt;code&gt;occ&lt;/code&gt; utility provide by NextCloud.&lt;/p&gt;
+&lt;p&gt;From your NextCloud directory:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo -u www-data php8.0 ./occ db:add-missing-indices&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I'm running this as the correct user. If you don't, it will warn you and fail to run.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This update was pretty similar to the one I did several years ago. The important thing that I missed was setting up the &lt;code&gt;memory_limit&lt;/code&gt;. A small 
+problem to resolve. I think between this upgrade and the &lt;a href="https://andrewwegner.com/updating-php-ubuntu-1804.html"&gt;previous upgrade&lt;/a&gt;, the future upgrade to PHP 8.2 when it's required will be even easier.&lt;/p&gt;
+&lt;p&gt;After 5 years of using NextCloud to save family data, I continue to love it's simplicity and ability to "just work". Less technical family members 
+don't need to do anything complicated to have their data backed up to a location we control. This update will ensure it continues to work with the 
+newest versions.&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>ChatGPT easily solves HackerRank questions</title><link href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html" rel="alternate"></link><published>2023-01-08T01:15:00-06:00</published><updated>2023-01-08T01:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-01-08:/solving-more-interview-questions-with-chatgpt.html</id><summary type="html">&lt;p&gt;HackerRank is a common tool companies use in interviews. This post continues the series on how ChatGPT can solve these interview problems.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It's important that companies evaluate their engineering candidates appropriately when they are hiring. Do other areas of your company 
 evaluate their potential hires by restricting access to tools they'll use to perform the job? I suspect not. Why do the same to 
