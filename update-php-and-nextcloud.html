@@ -62,7 +62,7 @@
 
 
   <meta property="og:site_name" content="Ponderings of an Andy"/>
-  <meta property="og:title" content="Updated PHP and NextCloud"/>
+  <meta property="og:title" content="Updating PHP and NextCloud"/>
   <meta property="og:description" content="Nearly five years ago I installed NextCloud. This article talks about the challenges I faced updating to a new version of PHP for a modern version of NextCloud."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://andrewwegner.com/update-php-and-nextcloud.html"/>
@@ -74,7 +74,7 @@
   <meta property="article:tag" content="technical"/>
   <meta property="og:image" content="/images/wegner_headshot.png">
 
-  <title>Updated PHP and NextCloud  · Ponderings of an Andy
+  <title>Updating PHP and NextCloud  · Ponderings of an Andy
 </title>
 
 </head>
@@ -183,7 +183,7 @@
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
         </li>
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/update-php-and-nextcloud.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Updated PHP and NextCloud</span></li></a></li>
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Updating PHP and NextCloud</span></li></a></li>
     </ul>
 </nav>
 
@@ -231,7 +231,7 @@
   }
   ]
 }
-</script>    <h1 id="update-php-and-nextcloud">Updated PHP and NextCloud</h1>
+</script>    <h1 id="update-php-and-nextcloud">Updating PHP and NextCloud</h1>
     <p>
       Posted on Mon 30 January 2023 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
 
@@ -255,25 +255,27 @@ server updated.</p>
 <h2 id="disabling-php-73">Disabling PHP 7.3<a class="headerlink" href="#disabling-php-73" title="Permanent link">¶</a></h2>
 <p>The first step was to ensure I had at least PHP 7.4 installed. Since I'd be moving to <a href="https://docs.nextcloud.com/server/25/admin_manual/installation/system_requirements.html">NextCloud 25</a>, I wanted to ensure that I had at least PHP 8.0,
 as PHP 7.4 had been deprecated.</p>
-<p><code>$ ll /etc/apache2/mods-available/php*
-/etc/apache2/mods-available/php7.1.conf
-/etc/apache2/mods-available/php7.1.load
-/etc/apache2/mods-available/php7.2.conf
-/etc/apache2/mods-available/php7.2.load
-/etc/apache2/mods-available/php7.3.conf
-/etc/apache2/mods-available/php7.3.load
-/etc/apache2/mods-available/php7.4.conf
-/etc/apache2/mods-available/php7.4.load
-/etc/apache2/mods-available/php8.0.conf
-/etc/apache2/mods-available/php8.0.load
-/etc/apache2/mods-available/php8.2.conf
-/etc/apache2/mods-available/php8.2.load</code></p>
+<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php</span><span class="o">*</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">1.</span><span class="n">load</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">2.</span><span class="n">load</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">3.</span><span class="n">load</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">4.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mf">4.</span><span class="n">load</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php8</span><span class="o">.</span><span class="mf">0.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php8</span><span class="o">.</span><span class="mf">0.</span><span class="n">load</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php8</span><span class="o">.</span><span class="mf">2.</span><span class="n">conf</span>
+<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">php8</span><span class="o">.</span><span class="mf">2.</span><span class="n">load</span>
+</code></pre></div>
 <p>The interesting thing here is that I don't have PHP 8.1 installed. Not 100% sure why, but right now that doesn't bother me. Since the documentation
 doesn't mention PHP 8.2 support, I'll be using PHP 8.0 support, and cleaning up the old versions later.</p>
 <p>Disable Apache's PHP 7.3 module and enable the 8.0 one, then restart Apache:</p>
-<p><code>sudo a2dismod php7.3
+<div class="codehilight code"><pre><span></span><code>sudo a2dismod php7.3
 sudo a2enmod php8.0
-sudo service apache2 restart</code></p>
+sudo service apache2 restart
+</code></pre></div>
 <h2 id="adjusting-php-80s-memory-limit">Adjusting PHP 8.0's memory limit<a class="headerlink" href="#adjusting-php-80s-memory-limit" title="Permanent link">¶</a></h2>
 <p>NextCloud recommends a 512M PHP memory limit. I forgot to do this initially and got stuck in the web updater. Fortunately, this is an easy fix.</p>
 <p>Find your <code>php.ini</code> and adjust the <code>memory_limit</code> to be <code>512M</code>. Restart Apache once more.</p>
@@ -282,14 +284,16 @@ sudo service apache2 restart</code></p>
 <p>Since I started the update with a bad memory limit, the update wasn't able to complete. NextCloud failed the Verification step (Step 5) and 
 attempting to restart it resulted in <code>Step 5 is currently in process. Please reload this page later</code>. </p>
 <p>The solution to this, is to remove the <code>.step</code> file from your <code>data</code> directory. </p>
-<p><code>rm /nextcloud/data/updater-XXXXXXX/.step</code></p>
+<div class="codehilight code"><pre><span></span><code>rm /nextcloud/data/updater-XXXXXXX/.step
+</code></pre></div>
 <p>The <code>XXXXXXX</code> appears to be randomly generated, so you will need to see what yours is named. Once that file was removed, I was able to complete
 the updates through the web updater.</p>
 <h2 id="fix-missing-indexes">Fix missing indexes<a class="headerlink" href="#fix-missing-indexes" title="Permanent link">¶</a></h2>
 <p>The last step in this process - which is really part of all NextCloud updates - was to get indexes in place. This is easily accomplished by running
 the <code>occ</code> utility provide by NextCloud.</p>
 <p>From your NextCloud directory:</p>
-<p><code>sudo -u www-data php8.0 ./occ db:add-missing-indices</code></p>
+<div class="codehilight code"><pre><span></span><code>sudo -u www-data php8.0 ./occ db:add-missing-indices
+</code></pre></div>
 <p>I'm running this as the correct user. If you don't, it will warn you and fail to run.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
 <p>This update was pretty similar to the one I did several years ago. The important thing that I missed was setting up the <code>memory_limit</code>. A small 
@@ -320,8 +324,8 @@ newest versions.</p>
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "name": "Updated PHP and NextCloud",
-  "headline": "Updated PHP and NextCloud",
+  "name": "Updating PHP and NextCloud",
+  "headline": "Updating PHP and NextCloud",
   "dateCreated": "2023-01-30 09:30:00-06:00",
   "datePublished": "2023-01-30 09:30:00-06:00",
   "dateModified": "",
