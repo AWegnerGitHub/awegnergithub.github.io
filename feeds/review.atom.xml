@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2022-12-07T08:45:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Rise Garden Two Year Follow Up</title><link href="https://andrewwegner.com/rise-garden-two-year-review.html" rel="alternate"></link><published>2022-12-07T08:45:00-06:00</published><updated>2022-12-07T08:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-07:/rise-garden-two-year-review.html</id><summary type="html">&lt;p&gt;After two and half years of using the Rise Garden product, how is it holding up? This article provides an update.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Review</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/review.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-02-02T23:00:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Review of GitLab's 'TeamOps Certification' course</title><link href="https://andrewwegner.com/gitlab-teamops-certification.html" rel="alternate"></link><published>2023-02-02T23:00:00-06:00</published><updated>2023-02-02T23:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-02-02:/gitlab-teamops-certification.html</id><summary type="html">&lt;p&gt;I've passed GitLab's TeamOps certification course. This is a review of the course.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A little over two years ago, I took &lt;a href="https://andrewwegner.com/gitlab-manage-remote-team.html"&gt;GitLab's course on how to manage a remote team&lt;/a&gt;. That was a very useful course
+and I was able to apply several best practices from that course to my role at the time, plus roles I've held since then.
+I continue to manage global and remote teams, so I was excited to hear about GitLab's newest course covering their
+&lt;a href="https://about.gitlab.com/teamops/"&gt;"TeamOps"&lt;/a&gt; model of improving teams.&lt;/p&gt;
+&lt;p&gt;This course is hosted on &lt;a href="https://levelup.gitlab.com/catalog"&gt;LevelUp&lt;/a&gt;, and is one of 9 public course they have available right now. &lt;/p&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The TeamOps Certification course is split into 5 sections and covers about 2-3 hours of material. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The first section covers the foundations of TeamOps&lt;/li&gt;
+&lt;li&gt;The remaining four sections cover the 4 guiding principles of TeamOps&lt;ul&gt;
+&lt;li&gt;Shared Reality&lt;/li&gt;
+&lt;li&gt;Everyone Contributes&lt;/li&gt;
+&lt;li&gt;Decision Velocity&lt;/li&gt;
+&lt;li&gt;Measurement Clarity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Except for the welcome message in the first lesson, this course is entirely text based. I was surprised by this because of the 
+previous course from GitLab and the extensive use of video on how to manage a remote team. This course does have a 6-7 question 
+knowledge check at the end of each section and will not let you proceed if you score below an 80%. &lt;/p&gt;
+&lt;p&gt;Fortunately, the questions are easy - assuming you comprehend what you are reading and not just clicking through to the next page. 
+The course also provides access to the updated &lt;a href="https://learn.gitlab.com/allremote#page=1"&gt;The Remote Playbook&lt;/a&gt;, which is a great starting point for checking your company's
+remote processes.&lt;/p&gt;
+&lt;p&gt;TeamOps felt like a good extension and refresher from the &lt;a href="https://andrewwegner.com/gitlab-manage-remote-team.html"&gt;"How to Manage a Remote Team" course&lt;/a&gt;. Unfortunately, that's all it felt 
+like - a refresher. &lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The change from video to text based courses was surprising, and slightly unwelcome. The content of the course is good, and will definately 
+help teams improve how they operate. However, many of the same ideas were covered in the previous course. I suppose that if this continues
+to work for GitLab, it makes sense that they aren't trying to make sweeping changes, but I was hoping for...more, I suppose. &lt;/p&gt;
+&lt;p&gt;I recommend this course to anyone who manages a team remotely and needs a refresher from the previous course GitLab provided or doesn't have
+the recommended 11 hours for that course. This should take about an hour and a half to read through. If, however, you have more time I think the 
+&lt;a href="https://andrewwegner.com/gitlab-manage-remote-team.html"&gt;"How to Manage a Remote Team" course&lt;/a&gt; course has even more information that will be helpful.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ti-user-certificates.s3.amazonaws.com/72109ec1-52dd-4663-9df4-754a8a1d0bff/fdba849b-2387-4376-befa-526f6414790e-andrew-wegner-af934dab-5a67-4fc4-8f51-680a1304eea4-certificate.pdf"&gt;&lt;img alt="How to Manage a Remote Team Certificate" src="https://andrewwegner.com/images/gitlab-teamops-certificate.png"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"></category><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Rise Garden Two Year Follow Up</title><link href="https://andrewwegner.com/rise-garden-two-year-review.html" rel="alternate"></link><published>2022-12-07T08:45:00-06:00</published><updated>2022-12-07T08:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-07:/rise-garden-two-year-review.html</id><summary type="html">&lt;p&gt;After two and half years of using the Rise Garden product, how is it holding up? This article provides an update.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When I last talked about the [Rise Garden][risegarden] my family is using, it was during my first harvest two and a half years ago.
 I said &lt;a href="https://andrewwegner.com/rise-garden-final-review.html"&gt;I'd get the garden again&lt;/a&gt;. During the posts at the time, I also covered some
@@ -273,7 +307,7 @@ things are done (declare variable, function syntax, etc) and instead focuses on 
 they are in an enviable position of being an expert on how to manage a team of over 1000 global employees without
 having an office. My current position puts me in charge of managing a global, remote, workforce as well but on a
 smaller scale.&lt;/p&gt;
-&lt;p&gt;When GitLab announced they were releasing a course on &lt;a href="https://www.coursera.org/learn/remote-team-management"&gt;How to Manage a Remote Team&lt;/a&gt; on Coursera, I jobbed at the
+&lt;p&gt;When GitLab announced they were releasing a course on &lt;a href="https://www.coursera.org/learn/remote-team-management"&gt;How to Manage a Remote Team&lt;/a&gt; on Coursera, I jumped at the
 opportunity to take it. I want to expand my skill set as a manager of remote employees and the chance to learn some
 best practices from GitLab in this area was a good place to start.&lt;/p&gt;
 &lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
