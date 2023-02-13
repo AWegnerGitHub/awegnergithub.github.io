@@ -1614,7 +1614,7 @@ so that is what I'll use here too. Enter the variable name and the token GitHub 
 in build log" to &lt;code&gt;true&lt;/code&gt; and press "Add".&lt;/p&gt;
 &lt;p&gt;&lt;img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_envvariable.png"/&gt;&lt;/p&gt;
 &lt;h3 id="deploysh"&gt;deploy.sh&lt;a class="headerlink" href="#deploysh" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The next step is configuring the &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/deploy.sh"&gt;&lt;code&gt;deploy.sh&lt;/code&gt;&lt;/a&gt; script in the source repository. For my configuration, all that is needed is
+&lt;p&gt;The next step is configuring the &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/a24583e590b8a5ec8377433b953abff31fdbfabb/deploy.sh"&gt;&lt;code&gt;deploy.sh&lt;/code&gt;&lt;/a&gt; script in the source repository. For my configuration, all that is needed is
 changing the &lt;code&gt;GH_USERNAME&lt;/code&gt; variable to be the name of the user hosting the blog. Still, there is more to the script, if you
 find this and wish to make changes.&lt;/p&gt;
 &lt;p&gt;There are a few areas that may be important. The first is that pushes to the generated repository are done with the username "Travis CI" and
@@ -1632,7 +1632,7 @@ that the site has been updated and they should recheck the sitemap and reindex a
 crawl the site immediately, but it does let them know their is an update before their next scheduled crawl.&lt;/p&gt;
 &lt;h3 id="travisyml"&gt;.travis.yml&lt;a class="headerlink" href="#travisyml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Lastly, we need to tell Travis CI what to do when there is a commit made to the &lt;code&gt;content&lt;/code&gt; repository. The only non-content file
-in this repository is &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/blob/master/.travis.yml"&gt;&lt;code&gt;.travis.yml&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+in this repository is &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/blob/4cafca4c768a9eb291e84760ebeb0df576ab82c4/.travis.yml"&gt;&lt;code&gt;.travis.yml&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Right now, I have it building against Python 3.5 simply because that is the version I have installed and utilize most often. There is
 no reason this blog wouldn't generate against 3.6 or 3.7. I'm pretty sure all of the dependencies will also work against 2.7
 right now too.&lt;/p&gt;
@@ -2073,7 +2073,7 @@ GitLab will go over SSL. Adjust the &lt;code&gt;ServerName&lt;/code&gt; variable
 &lt;p&gt;Save and restart Apache. You should be automatically redirected over HTTPS when you visit your GitLab URL.&lt;/p&gt;
 &lt;h3 id="allow-spaces-in-repository-names"&gt;Allow spaces in repository names&lt;a class="headerlink" href="#allow-spaces-in-repository-names" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;One of the only problems I ran into with GitLab is that, by default, repositories with spaces in them can't be viewed
-in the web browser. It throws a &lt;code&gt;400 Bad Request&lt;/code&gt; when trying to view the directory. There is a &lt;a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/32585"&gt;bug report&lt;/a&gt; 
+in the web browser. It throws a &lt;code&gt;400 Bad Request&lt;/code&gt; when trying to view the directory. There is a &lt;a href="https://gitlab.com/gitlab-org/gitlab/-/issues/18213"&gt;bug report&lt;/a&gt; 
 regarding this problem. The developers are working on updating the samples in a way that is guaranteed to work through
 the whole system. &lt;/p&gt;
 &lt;p&gt;For me, though, the first comment which suggests a minor &lt;code&gt;RewireRule&lt;/code&gt; change works great. In the virtual host, fine the line&lt;/p&gt;
@@ -2853,7 +2853,7 @@ OSI PI would return a message like this:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;They vendor mentioned that using OLEDB instead may prove more fruitful. Thus, the code below is how I got connected using 
-the vendor provided OLDEB driver. The downside is that I also had to do this all through COM objects using &lt;a href="http://python.net/crew/skippy/win32/Downloads.html"&gt;win32com&lt;/a&gt;. 
+the vendor provided OLDEB driver. The downside is that I also had to do this all through COM objects using &lt;a href="https://github.com/mhammond/pywin32"&gt;win32com&lt;/a&gt;. 
 I'm not knocking the module, because it is extremely useful and I've done some great things with it.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;win32com.client&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Dispatch&lt;/span&gt;
 

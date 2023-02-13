@@ -32,7 +32,7 @@ project is an extension of that, and it's now well within reach to delete spam w
 &lt;h2 id="what-are-we-doing"&gt;What are we doing?&lt;a class="headerlink" href="#what-are-we-doing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For over 3 years, SmokeDetector has reported potential spam across the Stack Exchange network so that users can flag 
 the posts as appropriate. Users have provided feedback to inform the bot on whether the detection was correct or not 
-(referred to as "feedback"). This feedback is stored in our web dashboard, &lt;a href="https://metasmoke.charcoal-se.org"&gt;metasmoke&lt;/a&gt; (&lt;a href="https://github.com/Charcoal-SE/metasmoke"&gt;code&lt;/a&gt;). Over time, we've 
+(referred to as "feedback"). This feedback is stored in our web dashboard, &lt;a href="https://metasmoke.erwaysoftware.com/"&gt;metasmoke&lt;/a&gt; (&lt;a href="https://github.com/Charcoal-SE/metasmoke"&gt;code&lt;/a&gt;). Over time, we've 
 used this feedback to evaluate our patterns ("reasons") and improve our accuracy. &lt;a href="https://metasmoke.erwaysoftware.com/reason/106"&gt;Several&lt;/a&gt; of our &lt;a href="https://metasmoke.erwaysoftware.com/reason/21"&gt;reasons&lt;/a&gt; 
 are over 99.9% &lt;a href="https://metasmoke.erwaysoftware.com/reason/61"&gt;accurate&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Early last year, and after getting a baseline accuracy from &lt;a href="http://stackoverflow.com/users/1933347/jmac"&gt;jmac&lt;/a&gt; (thank you!), we realized we could use the 
@@ -49,7 +49,7 @@ selected from the pool of enabled users to cast a single flag each, up to a maxi
 unilaterally nuke something.&lt;/p&gt;
 &lt;h2 id="what-are-our-safety-checks"&gt;What are our safety checks?&lt;a class="headerlink" href="#what-are-our-safety-checks" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;We designed the entire system with accuracy and sanity checks in mind. Our design collaborations are available for 
-your browsing pleasure (&lt;a href="https://docs.google.com/document/d/1Bg0u4oY9W_skp79wSnyQWttUIBH8WV46JELDGJ7Bixo/edit"&gt;RFC 1&lt;/a&gt;, &lt;a href="https://docs.google.com/document/d/1voGyl3BUA1JHJ0pR2Mf9E5-wmIDUFC1G8HcThiS7B1k/edit"&gt;RFC 2&lt;/a&gt;, &lt;a href="https://docs.google.com/document/d/1Nu2U0uFbmHpb3v61WyBxjYNK34n5tFWAPYtvu13ZQCw/edit#heading=h.9nvcibv3gama"&gt;RFC 3&lt;/a&gt;). The major things that make this system safe and sane 
+your browsing pleasure (&lt;a href="https://docs.google.com/document/d/1Bg0u4oY9W_skp79wSnyQWttUIBH8WV46JELDGJ7Bixo/edit"&gt;RFC 1&lt;/a&gt;, &lt;a href="https://docs.google.com/document/d/1voGyl3BUA1JHJ0pR2Mf9E5-wmIDUFC1G8HcThiS7B1k/edit"&gt;RFC 2&lt;/a&gt;, RFC 3 (no longer available)). The major things that make this system safe and sane 
 are:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;We give users a choice as to how accurate they want to be with their automatic flags. Before casting any flags, we 
@@ -276,7 +276,7 @@ good comment    | 0.9999        | False
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://meta.stackoverflow.com/q/277314/189134"&gt;+/-1 has been discouraged&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The observation I made on my own that comments with this type of content were distracting has been noticed by others as well. This was actually a very nice validation of my own process and some of the &lt;a href="https://stackedit.io/viewer#!provider=gist&amp;amp;gistId=af9d8186690cb658aafe&amp;amp;filename=commentblacklistresults.md"&gt;results&lt;/a&gt; posted on that thread show many such comments continue to be noise. Of course, this change did also force users to modify their content and may have added new patterns that can be utilized in future training.&lt;/p&gt;
+&lt;p&gt;The observation I made on my own that comments with this type of content were distracting has been noticed by others as well. This was actually a very nice validation of my own process and some of the results posted on that thread show many such comments continue to be noise. Of course, this change did also force users to modify their content and may have added new patterns that can be utilized in future training.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Ability to &lt;a href="http://meta.stackexchange.com/q/245416/186281"&gt;automatically check flags&lt;/a&gt; would be great so that automated runs could be paused if it goes crazy&lt;/li&gt;
 &lt;/ul&gt;

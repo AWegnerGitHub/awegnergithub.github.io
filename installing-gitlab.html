@@ -347,7 +347,7 @@ GitLab will go over SSL. Adjust the <code>ServerName</code> variable as appropri
 <p>Save and restart Apache. You should be automatically redirected over HTTPS when you visit your GitLab URL.</p>
 <h3 id="allow-spaces-in-repository-names">Allow spaces in repository names<a class="headerlink" href="#allow-spaces-in-repository-names" title="Permanent link">¶</a></h3>
 <p>One of the only problems I ran into with GitLab is that, by default, repositories with spaces in them can't be viewed
-in the web browser. It throws a <code>400 Bad Request</code> when trying to view the directory. There is a <a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/32585">bug report</a> 
+in the web browser. It throws a <code>400 Bad Request</code> when trying to view the directory. There is a <a href="https://gitlab.com/gitlab-org/gitlab/-/issues/18213">bug report</a> 
 regarding this problem. The developers are working on updating the samples in a way that is guaranteed to work through
 the whole system. </p>
 <p>For me, though, the first comment which suggests a minor <code>RewireRule</code> change works great. In the virtual host, fine the line</p>

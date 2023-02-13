@@ -341,7 +341,7 @@ so that is what I'll use here too. Enter the variable name and the token GitHub 
 in build log" to <code>true</code> and press "Add".</p>
 <p><img alt="GitHub Token Selection" src="https://andrewwegner.com/images/build_blog_github_envvariable.png"/></p>
 <h3 id="deploysh">deploy.sh<a class="headerlink" href="#deploysh" title="Permanent link">¶</a></h3>
-<p>The next step is configuring the <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/deploy.sh"><code>deploy.sh</code></a> script in the source repository. For my configuration, all that is needed is
+<p>The next step is configuring the <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/a24583e590b8a5ec8377433b953abff31fdbfabb/deploy.sh"><code>deploy.sh</code></a> script in the source repository. For my configuration, all that is needed is
 changing the <code>GH_USERNAME</code> variable to be the name of the user hosting the blog. Still, there is more to the script, if you
 find this and wish to make changes.</p>
 <p>There are a few areas that may be important. The first is that pushes to the generated repository are done with the username "Travis CI" and
@@ -359,7 +359,7 @@ that the site has been updated and they should recheck the sitemap and reindex a
 crawl the site immediately, but it does let them know their is an update before their next scheduled crawl.</p>
 <h3 id="travisyml">.travis.yml<a class="headerlink" href="#travisyml" title="Permanent link">¶</a></h3>
 <p>Lastly, we need to tell Travis CI what to do when there is a commit made to the <code>content</code> repository. The only non-content file
-in this repository is <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/blob/master/.travis.yml"><code>.travis.yml</code></a>.</p>
+in this repository is <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/blob/4cafca4c768a9eb291e84760ebeb0df576ab82c4/.travis.yml"><code>.travis.yml</code></a>.</p>
 <p>Right now, I have it building against Python 3.5 simply because that is the version I have installed and utilize most often. There is
 no reason this blog wouldn't generate against 3.6 or 3.7. I'm pretty sure all of the dependencies will also work against 2.7
 right now too.</p>

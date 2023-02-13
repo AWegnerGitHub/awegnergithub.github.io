@@ -241,7 +241,7 @@ OSI PI would return a message like this:</p>
 </code></pre></div>
 
 <p>They vendor mentioned that using OLEDB instead may prove more fruitful. Thus, the code below is how I got connected using 
-the vendor provided OLDEB driver. The downside is that I also had to do this all through COM objects using <a href="http://python.net/crew/skippy/win32/Downloads.html">win32com</a>. 
+the vendor provided OLDEB driver. The downside is that I also had to do this all through COM objects using <a href="https://github.com/mhammond/pywin32">win32com</a>. 
 I'm not knocking the module, because it is extremely useful and I've done some great things with it.</p>
 <div class="codehilight code"><pre><span></span><code><span class="kn">from</span> <span class="nn">win32com.client</span> <span class="kn">import</span> <span class="n">Dispatch</span>
 
