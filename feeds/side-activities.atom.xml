@@ -1,5 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Side Activities</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2022-12-06T00:00:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Overflow bans ChatGPT temporarily</title><link href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html" rel="alternate"></link><published>2022-12-05T14:45:00-06:00</published><updated>2022-12-06T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-05:/stackoverflow-bans-chatgpt.html</id><summary type="html">&lt;p&gt;Today Stack Overflow moderators banned ChatGPT on the site. This is my reflection on why we went this route.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today Stack Overflow moderators (&lt;a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html"&gt;myself included&lt;/a&gt;), have implemented a &lt;a href="https://meta.stackoverflow.com/q/421831/189134"&gt;temporary ban on ChatGPT on the site&lt;/a&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Side Activities</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-02-13T16:30:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Automatically checking for broken links using Github Actions</title><link href="https://andrewwegner.com/find-broken-links-with-github-actions.html" rel="alternate"></link><published>2023-02-13T16:30:00-06:00</published><updated>2023-02-13T16:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-02-13:/find-broken-links-with-github-actions.html</id><summary type="html">&lt;p&gt;This blog is over a decade old with over 100 posts. This post covers my recent work to find links that have broken so that I can fix them quickly.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Over the past six months or so, I've been making changes to the site. This culminated in November with a theme update
+and &lt;a href="https://andrewwegner.com/relaunch-personal-site.html"&gt;site relaunch&lt;/a&gt;. I have a couple more articles planned about things I've learned from that relaunch, started with today's
+article. The site is &lt;a href="https://andrewwegner.com/archives.html"&gt;over a decade old&lt;/a&gt;, with the initial article in 2009, with over 100 posts since then.&lt;/p&gt;
+&lt;p&gt;A decade plus is a long time to assume that links will remain operational. I wrote a short series of articles about how 
+&lt;a href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html"&gt;broken links impacted Stack Overflow&lt;/a&gt; over 7 years ago, including a &lt;a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html"&gt;proposal to fix it&lt;/a&gt; and how I performed the 
+&lt;a href="https://andrewwegner.com/link-analysis---technical-explanation.html"&gt;link checking from a technical perspective&lt;/a&gt;. Now, I want to make sure that I don't have dead links all over &lt;em&gt;my&lt;/em&gt; site,
+especially because this is the site I give out in a professional context.&lt;/p&gt;
+&lt;h2 id="github-action"&gt;GitHub Action&lt;a class="headerlink" href="#github-action" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Github Action script, is &lt;a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-content/e701da303592695bc6300f155be56d79ca35957d/.github/workflows/check-broken-links.yml"&gt;available in the repository&lt;/a&gt; where the content of this blog is kept. It's in the &lt;code&gt;.github/workflow/&lt;/code&gt; directory.&lt;/p&gt;
+&lt;h3 id="scheduling"&gt;Scheduling&lt;a class="headerlink" href="#scheduling" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;My goal for this project was to check links for the entire site on a regular basis. I was hoping roughly once a week. Fortunately,
+GitHub Actions allow you to &lt;a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule"&gt;schedule your actions&lt;/a&gt;, using syntax like this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cron&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s1"&gt;'12 1 * * 5'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The important thing to note, which is called out in the docs, is that &lt;code&gt;*&lt;/code&gt; is a special character in YAML, so the string 
+has to be quoted. Using this schedule, my link checks will run every Friday at 1:12am. For me, timezone doesn't matter, but the
+documentation says this is going to be UTC time.&lt;/p&gt;
+&lt;h3 id="checking-links"&gt;Checking links&lt;a class="headerlink" href="#checking-links" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next thing that has to happen is the actual checking of the links. I use &lt;a href="https://www.npmjs.com/package/broken-link-checker"&gt;broken-link-checker&lt;/a&gt; for now. I picked this because 
+I'm familiar with it. It hasn't been updated since 2018, though, so in the future I may spend some time either looking for an 
+alternative or building an alternative. For the time being though, it works just fine.&lt;/p&gt;
+&lt;p&gt;I put this snippet into my actions file.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;steps&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Broken&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Links&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Checker&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;run&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;npx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;broken-link-checker&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;--ordered&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;--recursive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--user-agent&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;linkedin&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"udemy"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"ude.my"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"eia.gov"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"backpack.tf"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;hlsw&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;dell&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;supermicro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;mysql&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The quick break down:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$WEBSITE_URL&lt;/code&gt; is an &lt;code&gt;env&lt;/code&gt; variable that I define as &lt;code&gt;https://andrewwegner.com/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;I set up a &lt;code&gt;user-agent&lt;/code&gt; because several sites block the default one. I did something similar in my &lt;a href="https://andrewwegner.com/link-analysis---technical-explanation.html"&gt;Stack Overflow analysis 7 years ago&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;All of those &lt;code&gt;excludes&lt;/code&gt; are due to those specific domains still not allowing automatic scraping. It's a little disappointing that I need these, but excluding these few to ensure the rest are functional is more important to me than trying to figure out a work around.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="create-an-issue"&gt;Create an issue&lt;a class="headerlink" href="#create-an-issue" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If broken links are found, it doesn't do me any good to have that buried in a log somewhere without alerts. Perhaps unsurprisingly,
+I don't check Github every day. My goal was to create an issue on the repository if broken links were found. I did that using the following, and the &lt;a href="https://github.com/marketplace/actions/create-an-issue"&gt;Create an issue action&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;-&lt;span class="w"&gt; &lt;/span&gt;uses:&lt;span class="w"&gt; &lt;/span&gt;actions/checkout@v3
+&lt;span class="w"&gt;  &lt;/span&gt;if:&lt;span class="w"&gt; &lt;/span&gt;failure()
+
+-&lt;span class="w"&gt; &lt;/span&gt;uses:&lt;span class="w"&gt; &lt;/span&gt;JasonEtco/create-an-issue@v2
+&lt;span class="w"&gt;  &lt;/span&gt;env:
+&lt;span class="w"&gt;    &lt;/span&gt;GITHUB_TOKEN:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;secrets&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GITHUB_TOKEN&lt;/span&gt; &lt;span class="cp"&gt;}&lt;/span&gt;}
+&lt;span class="w"&gt;  &lt;/span&gt;with:
+&lt;span class="w"&gt;    &lt;/span&gt;filename:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt; &lt;span class="cp"&gt;}&lt;/span&gt;}
+&lt;span class="w"&gt;  &lt;/span&gt;if:&lt;span class="w"&gt; &lt;/span&gt;failure()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The important line here is the &lt;code&gt;filename:&lt;/code&gt; line. Using another environment variable, I defined a file with my issue template. 
+Everytime an issue is created by the action, it will have the same format.&lt;/p&gt;
+&lt;h3 id="issue-template"&gt;Issue Template&lt;a class="headerlink" href="#issue-template" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;My &lt;a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-content/master/.github/workflows/check-broken-links.md"&gt;template&lt;/a&gt; is defined in the same directory as my workflow and currently looks like this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;---&lt;/span&gt;
+&lt;span class="nl"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Website&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Contains&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Broken&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Links&lt;/span&gt;
+&lt;span class="nl"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;''&lt;/span&gt;
+&lt;span class="nl"&gt;assignees&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;''&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt;
+
+&lt;span class="cp"&gt;## Broken Links Detected&lt;/span&gt;
+
+&lt;span class="n"&gt;Broken&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Link&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Checker&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;found&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;broken&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;links&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//andrewwegner.com&lt;/span&gt;
+
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;View&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Results&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/AWegnerGitHub/awegnergithub.github.io-content/actions/workflows/check-broken-links.yml)&lt;/span&gt;
+
+&lt;span class="n"&gt;_Use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;`─&lt;/span&gt;&lt;span class="n"&gt;BROKEN&lt;/span&gt;&lt;span class="err"&gt;─`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;highlight&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;failures_&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The top metadata defines the issue title, and any labels or assignees I want to set up. I'll probably add myself as an assignee
+once I'm happy with the stability and reliablity of the checks.&lt;/p&gt;
+&lt;p&gt;You can see what an &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/issues/5"&gt;issue created with this template looks like in the repository&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="environment-variables"&gt;Environment Variables&lt;a class="headerlink" href="#environment-variables" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The last section, I've alluded to already - the environment variables. I have two currently defined. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://andrewwegner.com/"&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;".github/workflows/check-broken-links.md"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The first is to set the domain I'm scanning. Mine, obviously. The second is a link to the issue template that is utilized if broken links
+are discovered.&lt;/p&gt;
+&lt;h2 id="things-i-learned"&gt;Things I learned&lt;a class="headerlink" href="#things-i-learned" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;While setting this up there where a few things that I learned or desired that were not immediately obvious while reading documentation. The first
+was that GitHub actions aren't triggerable without setting up the appropriate &lt;code&gt;on&lt;/code&gt; event type. In this case, I want to occassionally
+run the link checker on command, instead of once a week. That means I need the &lt;code&gt;workflow_dispatch&lt;/code&gt; event and it needs to be empty. &lt;/p&gt;
+&lt;p&gt;on:
+    schedule:
+      - cron:  '12 1 * * 5'
+    workflow_dispatch:
+  env:
+    WEBSITE_URL: "https://andrewwegner.com/"
+    ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"&lt;/p&gt;
+&lt;p&gt;Notice that the empty &lt;code&gt;workflow_dispatch&lt;/code&gt; has no other parameters. It can accept some, if I wanted to provide input to the script at run time,
+but I have no need for that right now. So, mine remains empty.&lt;/p&gt;
+&lt;p&gt;A couple nice to haves, that I wasn't able to immediately figure out were how to retry a failed link "later" in the script. While testing
+the functionality, I had a run that failed because one image, in one article failed. Checking that article showed that it worked. Checking the 
+log showed that the link being checked worked. It was just the internet being the internet with a temporary blip. I'd love to be able to retry failed
+linked a little later in the run or X seconds later, etc. If it fails both times, assume it's broken and report it as normal. Without that retry,
+I'm a little worried this is going to be fragile, which is part of why I haven't populated the &lt;code&gt;assignee&lt;/code&gt; metadata in the template yet.&lt;/p&gt;
+&lt;p&gt;Another nice to have would be a way to embed the broken links (and page they appear on) in the issue itself. I couldn't find a way to accomplish
+that with the current tooling, so the template links to the log and you have to search for the appropriate string. &lt;/p&gt;
+&lt;p&gt;Like I mentioned earlier, I will likely look for a more up to date tool. Or build one my own. I'm interested in learning more about how GitHub actions 
+work and this may be a good usecase for myself.&lt;/p&gt;</content><category term="Side Activities"></category><category term="technical"></category><category term="Pelican"></category><category term="meta"></category></entry><entry><title>Stack Overflow bans ChatGPT temporarily</title><link href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html" rel="alternate"></link><published>2022-12-05T14:45:00-06:00</published><updated>2022-12-06T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-05:/stackoverflow-bans-chatgpt.html</id><summary type="html">&lt;p&gt;Today Stack Overflow moderators banned ChatGPT on the site. This is my reflection on why we went this route.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today Stack Overflow moderators (&lt;a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html"&gt;myself included&lt;/a&gt;), have implemented a &lt;a href="https://meta.stackoverflow.com/q/421831/189134"&gt;temporary ban on ChatGPT on the site&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Use of ChatGPT generated text for posts on Stack Overflow is temporarily banned.&lt;/p&gt;
 &lt;/blockquote&gt;

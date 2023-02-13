@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-  <link rel="canonical" href="https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html">
+  <link rel="canonical" href="https://andrewwegner.com/find-broken-links-with-github-actions.html">
 
   <meta name="robots" content="index, follow" />
 
@@ -65,9 +65,9 @@
   <meta property="og:title" content="Automatically checking for broken links using Github Actions"/>
   <meta property="og:description" content="This blog is over a decade old with over 100 posts. This post covers my recent work to find links that have broken so that I can fix them quickly."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html"/>
+  <meta property="og:url" content="https://andrewwegner.com/find-broken-links-with-github-actions.html"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2023-02-13 14:30:00-06:00"/>
+  <meta property="article:published_time" content="2023-02-13 16:30:00-06:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://andrewwegner.com/">
   <meta property="article:section" content="Side Activities"/>
@@ -126,7 +126,7 @@
 <li><a href="#environment-variables">Environment Variables</a></li>
 </ul>
 </li>
-<li><a href="#gotchas">Gotchas</a></li>
+<li><a href="#things-i-learned">Things I learned</a></li>
 </ul>
 </div>
     </nav>
@@ -188,7 +188,7 @@
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
         </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html"><i
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/find-broken-links-with-github-actions.html"><i
                     class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Automatically checking for broken links using Github Actions</span></li></a></li>
     </ul>
 </nav>
@@ -231,8 +231,8 @@
     "position": 4,
     "item": 
     {
-      "@id": "https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html",
-      "name": "https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html"
+      "@id": "https://andrewwegner.com/find-broken-links-with-github-actions.html",
+      "name": "https://andrewwegner.com/find-broken-links-with-github-actions.html"
     }
   }
   ]
@@ -263,6 +263,7 @@ article. The site is <a href="https://andrewwegner.com/archives.html">over a dec
 <a href="https://andrewwegner.com/link-analysis---technical-explanation.html">link checking from a technical perspective</a>. Now, I want to make sure that I don't have dead links all over <em>my</em> site,
 especially because this is the site I give out in a professional context.</p>
 <h2 id="github-action">GitHub Action<a class="headerlink" href="#github-action" title="Permanent link">¶</a></h2>
+<p>The Github Action script, is <a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-content/e701da303592695bc6300f155be56d79ca35957d/.github/workflows/check-broken-links.yml">available in the repository</a> where the content of this blog is kept. It's in the <code>.github/workflow/</code> directory.</p>
 <h3 id="scheduling">Scheduling<a class="headerlink" href="#scheduling" title="Permanent link">¶</a></h3>
 <p>My goal for this project was to check links for the entire site on a regular basis. I was hoping roughly once a week. Fortunately,
 GitHub Actions allow you to <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">schedule your actions</a>, using syntax like this:</p>
@@ -329,22 +330,45 @@ Everytime an issue is created by the action, it will have the same format.</p>
 
 <span class="n">_Use</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="err">`─</span><span class="n">BROKEN</span><span class="err">─`</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">highlight</span><span class="w"> </span><span class="n">failures_</span>
 </code></pre></div>
-<p>The top meta data defines the issue title, and any labels or assignees I want to set up. I'll probably add myself as an assignee
+<p>The top metadata defines the issue title, and any labels or assignees I want to set up. I'll probably add myself as an assignee
 once I'm happy with the stability and reliablity of the checks.</p>
+<p>You can see what an <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/issues/5">issue created with this template looks like in the repository</a>.</p>
 <h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">¶</a></h3>
-<p>What do these mean?</p>
+<p>The last section, I've alluded to already - the environment variables. I have two currently defined. </p>
 <div class="codehilight code"><pre><span></span><code><span class="n">env</span><span class="o">:</span>
 <span class="w">    </span><span class="n">WEBSITE_URL</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://andrewwegner.com/"</span>
 <span class="w">    </span><span class="n">ISSUE_TEMPLATE</span><span class="o">:</span><span class="w"> </span><span class="s2">".github/workflows/check-broken-links.md"</span>
 </code></pre></div>
-<h2 id="gotchas">Gotchas<a class="headerlink" href="#gotchas" title="Permanent link">¶</a></h2>
-<p>workflow_dispatch
-link-checker: Occassional failure of link causes problems. Uses weird DASH in output.
-Template: Would like to show broken links in the issue
-full script
-Nice to haves</p>
+<p>The first is to set the domain I'm scanning. Mine, obviously. The second is a link to the issue template that is utilized if broken links
+are discovered.</p>
+<h2 id="things-i-learned">Things I learned<a class="headerlink" href="#things-i-learned" title="Permanent link">¶</a></h2>
+<p>While setting this up there where a few things that I learned or desired that were not immediately obvious while reading documentation. The first
+was that GitHub actions aren't triggerable without setting up the appropriate <code>on</code> event type. In this case, I want to occassionally
+run the link checker on command, instead of once a week. That means I need the <code>workflow_dispatch</code> event and it needs to be empty. </p>
+<p>on:
+    schedule:
+      - cron:  '12 1 * * 5'
+    workflow_dispatch:
+  env:
+    WEBSITE_URL: "https://andrewwegner.com/"
+    ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"</p>
+<p>Notice that the empty <code>workflow_dispatch</code> has no other parameters. It can accept some, if I wanted to provide input to the script at run time,
+but I have no need for that right now. So, mine remains empty.</p>
+<p>A couple nice to haves, that I wasn't able to immediately figure out were how to retry a failed link "later" in the script. While testing
+the functionality, I had a run that failed because one image, in one article failed. Checking that article showed that it worked. Checking the 
+log showed that the link being checked worked. It was just the internet being the internet with a temporary blip. I'd love to be able to retry failed
+linked a little later in the run or X seconds later, etc. If it fails both times, assume it's broken and report it as normal. Without that retry,
+I'm a little worried this is going to be fragile, which is part of why I haven't populated the <code>assignee</code> metadata in the template yet.</p>
+<p>Another nice to have would be a way to embed the broken links (and page they appear on) in the issue itself. I couldn't find a way to accomplish
+that with the current tooling, so the template links to the log and you have to search for the appropriate string. </p>
+<p>Like I mentioned earlier, I will likely look for a more up to date tool. Or build one my own. I'm interested in learning more about how GitHub actions 
+work and this may be a good usecase for myself.</p>
   </div>
 <div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/chatgpt-beats-more-interview-assessments.html"
+    title="CoderByte assessments fall to ChatGPT">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
 </div>
   <hr />
   <div>
@@ -364,8 +388,8 @@ Nice to haves</p>
   "@type": "BlogPosting",
   "name": "Automatically checking for broken links using Github Actions",
   "headline": "Automatically checking for broken links using Github Actions",
-  "dateCreated": "2023-02-13 14:30:00-06:00",
-  "datePublished": "2023-02-13 14:30:00-06:00",
+  "dateCreated": "2023-02-13 16:30:00-06:00",
+  "datePublished": "2023-02-13 16:30:00-06:00",
   "dateModified": "",
   "copyrightYear": "2023",
   "copyrightHolder": {
@@ -392,7 +416,7 @@ Nice to haves</p>
       ]
   },
   "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html",
+  "url": "https://andrewwegner.com/find-broken-links-with-github-actions.html",
   "description": "This blog is over a decade old with over 100 posts. This post covers my recent work to find links that have broken so that I can fix them quickly.",
   "mainEntityOfPage": "True",
   "articleSection": "Side Activities"
