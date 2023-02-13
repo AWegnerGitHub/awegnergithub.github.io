@@ -1047,7 +1047,7 @@ and markdown version of the pages. The first repository was set up as submodule.
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;DELETE_OUTPUT_DIRECTORY = False
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Without this, I was constantly destroying the output repository and had to reinitialize it. This prevents that from occuring.&lt;/p&gt;
-&lt;p&gt;Now, a new post consists of writing up the &lt;a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-content/master/2015_07_09_how-i-set-up-this-site-with-github-pages-and-cloudflare.md"&gt;Markdown page&lt;/a&gt;, generating the page with the command below (or the &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/generate_content_production.bat"&gt;batch script&lt;/a&gt;) and then committing and
+&lt;p&gt;Now, a new post consists of writing up the &lt;a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-content/master/2015_07_09_how-i-set-up-this-site-with-github-pages-and-cloudflare.md"&gt;Markdown page&lt;/a&gt;, generating the page with the command below (or the &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/82625417e3a14db3cbeafcaa68728fd5fe9834b2/generate_content_production.bat"&gt;batch script&lt;/a&gt;) and then committing and
 pushing the changes to the submodule to GitHub.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# Generates HTML files without debugging information
 pelican content --output output --settings publishconf.py
@@ -1055,7 +1055,7 @@ pelican content --output output --settings publishconf.py
 &lt;p&gt;The new content is available immediately.&lt;/p&gt;
 &lt;h3 id="custom-domain"&gt;Custom Domain&lt;a class="headerlink" href="#custom-domain" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;You may notice that the URL for this site isn't &lt;code&gt;awegnergithub.github.io&lt;/code&gt;, but instead &lt;code&gt;andrewwegner.com&lt;/code&gt;. To accomplish this, I added a directory to the &lt;code&gt;content&lt;/code&gt;
-named &lt;code&gt;extra&lt;/code&gt;. In this directory is a single file named &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/content/extra/CNAME"&gt;&lt;code&gt;CNAME&lt;/code&gt;&lt;/a&gt; (no extension). In the file is my domain name.&lt;/p&gt;
+named &lt;code&gt;extra&lt;/code&gt;. In this directory is a single file named &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/82625417e3a14db3cbeafcaa68728fd5fe9834b2/content/extra/CNAME"&gt;&lt;code&gt;CNAME&lt;/code&gt;&lt;/a&gt; (no extension). In the file is my domain name.&lt;/p&gt;
 &lt;p&gt;Next, I had to modify &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/pelicanconf.py"&gt;&lt;code&gt;pelicanconf.py&lt;/code&gt;&lt;/a&gt; to add the &lt;code&gt;extra/CNAME&lt;/code&gt; to the static path and then on generation move the &lt;code&gt;CNAME&lt;/code&gt; file from this subdirectory to the root.
 I could have put it in the root of &lt;code&gt;content&lt;/code&gt; by default, but Pelican provides a way to do this and it keeps &lt;code&gt;content&lt;/code&gt; clean. &lt;strong&gt;One very important note&lt;/strong&gt;, the &lt;code&gt;EXTRA_PATH_METADATA&lt;/code&gt; is
 operating system sensitive. Since I am generating the content on a Windows machine, I had to use a backslash instead of the forward slash the documentation shows. I found this
