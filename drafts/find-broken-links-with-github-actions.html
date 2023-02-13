@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="This blog is over a decade old with over 100 posts. This post covers my recent work to find links that have broken so that I can fix them quickly." />
+<meta name="keywords" content="technical, Pelican, meta">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Automatically checking for broken links using Github Actions"/>
+  <meta property="og:description" content="This blog is over a decade old with over 100 posts. This post covers my recent work to find links that have broken so that I can fix them quickly."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-02-13 14:30:00-06:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Side Activities"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="article:tag" content="Pelican"/>
+  <meta property="article:tag" content="meta"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Automatically checking for broken links using Github Actions  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#github-action">GitHub Action</a><ul>
+<li><a href="#scheduling">Scheduling</a></li>
+<li><a href="#checking-links">Checking links</a></li>
+<li><a href="#create-an-issue">Create an issue</a></li>
+<li><a href="#issue-template">Issue Template</a></li>
+<li><a href="#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+<li><a href="#gotchas">Gotchas</a></li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Automatically checking for broken links using Github Actions</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/side-activities.html",
+      "name": "Side Activities"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html",
+      "name": "https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="find-broken-links-with-github-actions">Automatically checking for broken links using Github Actions</h1>
+    <p>
+      Posted on Mon 13 February 2023 in <a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+        <a href="https://andrewwegner.com/tag/pelican.html">Pelican</a>
+        <a href="https://andrewwegner.com/tag/meta.html">meta</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>Over the past six months or so, I've been making changes to the site. This culminated in November with a theme update
+and <a href="https://andrewwegner.com/relaunch-personal-site.html">site relaunch</a>. I have a couple more articles planned about things I've learned from that relaunch, started with today's
+article. The site is <a href="https://andrewwegner.com/archives.html">over a decade old</a>, with the initial article in 2009, with over 100 posts since then.</p>
+<p>A decade plus is a long time to assume that links will remain operational. I wrote a short series of articles about how 
+<a href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html">broken links impacted Stack Overflow</a> over 7 years ago, including a <a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html">proposal to fix it</a> and how I performed the 
+<a href="https://andrewwegner.com/link-analysis---technical-explanation.html">link checking from a technical perspective</a>. Now, I want to make sure that I don't have dead links all over <em>my</em> site,
+especially because this is the site I give out in a professional context.</p>
+<h2 id="github-action">GitHub Action<a class="headerlink" href="#github-action" title="Permanent link">¶</a></h2>
+<h3 id="scheduling">Scheduling<a class="headerlink" href="#scheduling" title="Permanent link">¶</a></h3>
+<p>My goal for this project was to check links for the entire site on a regular basis. I was hoping roughly once a week. Fortunately,
+GitHub Actions allow you to <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">schedule your actions</a>, using syntax like this:</p>
+<div class="codehilight code"><pre><span></span><code><span class="n">on</span><span class="o">:</span>
+<span class="w">    </span><span class="n">schedule</span><span class="o">:</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">cron</span><span class="o">:</span><span class="w">  </span><span class="s1">'12 1 * * 5'</span>
+</code></pre></div>
+<p>The important thing to note, which is called out in the docs, is that <code>*</code> is a special character in YAML, so the string 
+has to be quoted. Using this schedule, my link checks will run every Friday at 1:12am. For me, timezone doesn't matter, but the
+documentation says this is going to be UTC time.</p>
+<h3 id="checking-links">Checking links<a class="headerlink" href="#checking-links" title="Permanent link">¶</a></h3>
+<p>The next thing that has to happen is the actual checking of the links. I use <a href="https://www.npmjs.com/package/broken-link-checker">broken-link-checker</a> for now. I picked this because 
+I'm familiar with it. It hasn't been updated since 2018, though, so in the future I may spend some time either looking for an 
+alternative or building an alternative. For the time being though, it works just fine.</p>
+<p>I put this snippet into my actions file.</p>
+<div class="codehilight code"><pre><span></span><code><span class="nt">steps</span><span class="o">:</span>
+<span class="w">    </span><span class="nt">-</span><span class="w"> </span><span class="nt">name</span><span class="o">:</span><span class="w"> </span><span class="nt">Run</span><span class="w"> </span><span class="nt">Broken</span><span class="w"> </span><span class="nt">Links</span><span class="w"> </span><span class="nt">Checker</span>
+<span class="w">    </span><span class="nt">run</span><span class="o">:</span><span class="w"> </span><span class="nt">npx</span><span class="w"> </span><span class="nt">broken-link-checker</span><span class="w"> </span><span class="o">$</span><span class="nt">WEBSITE_URL</span><span class="w"> </span><span class="nt">--ordered</span><span class="w"> </span><span class="nt">--recursive</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nt">--user-agent</span><span class="w"> </span><span class="s2">"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0"</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nt">--exclude</span><span class="w"> </span><span class="nt">linkedin</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nt">--exclude</span><span class="w"> </span><span class="s2">"udemy"</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nt">--exclude</span><span class="w"> </span><span class="s2">"ude.my"</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nt">--exclude</span><span class="w"> </span><span class="s2">"eia.gov"</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nt">--exclude</span><span class="w"> </span><span class="s2">"backpack.tf"</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nt">--exclude</span><span class="w"> </span><span class="nt">hlsw</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nt">--exclude</span><span class="w"> </span><span class="nt">dell</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nt">--exclude</span><span class="w"> </span><span class="nt">supermicro</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nt">--exclude</span><span class="w"> </span><span class="nt">mysql</span>
+</code></pre></div>
+<p>The quick break down:</p>
+<ul>
+<li><code>$WEBSITE_URL</code> is an <code>env</code> variable that I define as <code>https://andrewwegner.com/</code></li>
+<li>I set up a <code>user-agent</code> because several sites block the default one. I did something similar in my <a href="https://andrewwegner.com/link-analysis---technical-explanation.html">Stack Overflow analysis 7 years ago</a>.</li>
+<li>All of those <code>excludes</code> are due to those specific domains still not allowing automatic scraping. It's a little disappointing that I need these, but excluding these few to ensure the rest are functional is more important to me than trying to figure out a work around.</li>
+</ul>
+<h3 id="create-an-issue">Create an issue<a class="headerlink" href="#create-an-issue" title="Permanent link">¶</a></h3>
+<p>If broken links are found, it doesn't do me any good to have that buried in a log somewhere without alerts. Perhaps unsurprisingly,
+I don't check Github every day. My goal was to create an issue on the repository if broken links were found. I did that using the following, and the <a href="https://github.com/marketplace/actions/create-an-issue">Create an issue action</a>.</p>
+<div class="codehilight code"><pre><span></span><code>-<span class="w"> </span>uses:<span class="w"> </span>actions/checkout@v3
+<span class="w">  </span>if:<span class="w"> </span>failure()
+
+-<span class="w"> </span>uses:<span class="w"> </span>JasonEtco/create-an-issue@v2
+<span class="w">  </span>env:
+<span class="w">    </span>GITHUB_TOKEN:<span class="w"> </span><span class="cp">${</span><span class="p">{</span> <span class="n">secrets</span><span class="o">.</span><span class="n">GITHUB_TOKEN</span> <span class="cp">}</span>}
+<span class="w">  </span>with:
+<span class="w">    </span>filename:<span class="w"> </span><span class="cp">${</span><span class="p">{</span> <span class="n">env</span><span class="o">.</span><span class="n">ISSUE_TEMPLATE</span> <span class="cp">}</span>}
+<span class="w">  </span>if:<span class="w"> </span>failure()
+</code></pre></div>
+<p>The important line here is the <code>filename:</code> line. Using another environment variable, I defined a file with my issue template. 
+Everytime an issue is created by the action, it will have the same format.</p>
+<h3 id="issue-template">Issue Template<a class="headerlink" href="#issue-template" title="Permanent link">¶</a></h3>
+<p>My <a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-content/master/.github/workflows/check-broken-links.md">template</a> is defined in the same directory as my workflow and currently looks like this:</p>
+<div class="codehilight code"><pre><span></span><code><span class="o">---</span>
+<span class="nl">title</span><span class="p">:</span><span class="w"> </span><span class="n">Website</span><span class="w"> </span><span class="n">Contains</span><span class="w"> </span><span class="n">Broken</span><span class="w"> </span><span class="n">Links</span>
+<span class="nl">labels</span><span class="p">:</span><span class="w"> </span><span class="err">''</span>
+<span class="nl">assignees</span><span class="p">:</span><span class="w"> </span><span class="err">''</span>
+<span class="o">---</span>
+
+<span class="cp">## Broken Links Detected</span>
+
+<span class="n">Broken</span><span class="w"> </span><span class="n">Link</span><span class="w"> </span><span class="n">Checker</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="n">broken</span><span class="w"> </span><span class="n">links</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">https</span><span class="o">:</span><span class="c1">//andrewwegner.com</span>
+
+<span class="p">[</span><span class="n">View</span><span class="w"> </span><span class="n">Results</span><span class="p">](</span><span class="n">https</span><span class="o">:</span><span class="c1">//github.com/AWegnerGitHub/awegnergithub.github.io-content/actions/workflows/check-broken-links.yml)</span>
+
+<span class="n">_Use</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="err">`─</span><span class="n">BROKEN</span><span class="err">─`</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">highlight</span><span class="w"> </span><span class="n">failures_</span>
+</code></pre></div>
+<p>The top meta data defines the issue title, and any labels or assignees I want to set up. I'll probably add myself as an assignee
+once I'm happy with the stability and reliablity of the checks.</p>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">¶</a></h3>
+<p>What do these mean?</p>
+<div class="codehilight code"><pre><span></span><code><span class="n">env</span><span class="o">:</span>
+<span class="w">    </span><span class="n">WEBSITE_URL</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://andrewwegner.com/"</span>
+<span class="w">    </span><span class="n">ISSUE_TEMPLATE</span><span class="o">:</span><span class="w"> </span><span class="s2">".github/workflows/check-broken-links.md"</span>
+</code></pre></div>
+<h2 id="gotchas">Gotchas<a class="headerlink" href="#gotchas" title="Permanent link">¶</a></h2>
+<p>workflow_dispatch
+link-checker: Occassional failure of link causes problems. Uses weird DASH in output.
+Template: Would like to show broken links in the issue
+full script
+Nice to haves</p>
+  </div>
+<div class="neighbors">
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Automatically checking for broken links using Github Actions",
+  "headline": "Automatically checking for broken links using Github Actions",
+  "dateCreated": "2023-02-13 14:30:00-06:00",
+  "datePublished": "2023-02-13 14:30:00-06:00",
+  "dateModified": "",
+  "copyrightYear": "2023",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/drafts/find-broken-links-with-github-actions.html",
+  "description": "This blog is over a decade old with over 100 posts. This post covers my recent work to find links that have broken so that I can fix them quickly.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Side Activities"
+}
+</script>
+<footer>
+<p>&copy; 2023 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>
