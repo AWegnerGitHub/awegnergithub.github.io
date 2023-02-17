@@ -4460,7 +4460,7 @@ like:&lt;/p&gt;
 digital data in the house. &lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>...and then there was a backup server</title><link href="https://andrewwegner.com/new-house-server.html" rel="alternate"></link><published>2018-02-12T15:15:00-06:00</published><updated>2018-02-12T15:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-02-12:/new-house-server.html</id><summary type="html">&lt;p&gt;Technical discussion about the new backup server&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In my &lt;a href="https://andrewwegner.com/backup-your-data.html"&gt;last post&lt;/a&gt;, I covered the events that lead to my data loss scare. Faulty, untested, backups will bite you every time. The question 
-is just, "when will it happen?". By mid-to-late January (three months later), I'd gotten everything back from &lt;a href="http://sertdatarecovery.com"&gt;SERT Data Recovery&lt;/a&gt; and
+is just, "when will it happen?". By mid-to-late January (three months later), I'd gotten everything back from &lt;a href="https://www.sertdatarecovery.com/"&gt;SERT Data Recovery&lt;/a&gt; and
 was happy that everything was recovered. It was time to finally build that huge NAS.&lt;/p&gt;
 &lt;h2 id="server-goals"&gt;Server Goals&lt;a class="headerlink" href="#server-goals" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A NAS for a home backup solution could be something as simple as a prebuilt device with a couple hard drives. I'm a bit of a geek and have a lot of digital data, not to
@@ -4471,10 +4471,10 @@ never had a server in the house that I could use to run some of my scripts on. T
 &lt;p&gt;I had several goals when building this thing:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Have more storage space than I needed for several years. I didn't want to rebuild this in 18 months because I was bad at planning. Years ago when I built my computer
- for college, I stuck two 120 gigabyte hard drives in the machine and thought I'd never fill that. When I came home that first summer, I already had to upgrade hard drives 
- because I was low on space. &lt;/li&gt;
-&lt;li&gt;Run a server version of Linux. I don't want to buy a license for a Microsoft server product and my Microsoft Academic Licenses expired a while ago. During my time with Vipers, I used a Red Hat variant of Linux. At Caterpillar we used Ubuntu. &lt;/li&gt;
-&lt;li&gt;Utilize &lt;a href="https://en.wikipedia.org/wiki/ZFS"&gt;ZFS&lt;/a&gt; for protection against data corruption. This combined with my more recent usage of Ubuntu lead me to decide on using Ubuntu Server for the operating system. 
+ for college, I stuck two 120 gigabyte hard drives in the machine and thought I'd never fill that. When I came home that first summer, I already had to upgrade hard drives
+ because I was low on space.&lt;/li&gt;
+&lt;li&gt;Run a server version of Linux. I don't want to buy a license for a Microsoft server product and my Microsoft Academic Licenses expired a while ago. During my time with Vipers, I used a Red Hat variant of Linux. At Caterpillar we used Ubuntu.&lt;/li&gt;
+&lt;li&gt;Utilize &lt;a href="https://en.wikipedia.org/wiki/ZFS"&gt;ZFS&lt;/a&gt; for protection against data corruption. This combined with my more recent usage of Ubuntu lead me to decide on using Ubuntu Server for the operating system.
  At the time of this post, I'll be using the 16.04 LTS version. I'll continue to upgrade to future LTS versions.&lt;/li&gt;
 &lt;li&gt;Back up data from all devices in the house automatically. As camera phones have gotten better, we've found that we carry our bulky digital camera less and less. The problem
  with the phone camera is that we need to get the pictures to the computer. I don't want to hunt down a data cable or email the pictures to myself. I'm also not a fan of 
@@ -4548,7 +4548,7 @@ progress. I ran software for almost two days as it tried to find anything for me
 &lt;p&gt;Nothing. Nothing at all. It looked like some how erased everything from the drive. I was back to my choices - lose the history or find a professional.&lt;/p&gt;
 &lt;p&gt;I went with a professional. I couldn't lose that much of my history. I still those projects for both personal and professional work.&lt;/p&gt;
 &lt;h2 id="sert-data-recovery"&gt;SERT Data Recovery&lt;a class="headerlink" href="#sert-data-recovery" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I went with &lt;a href="http://sertdatarecovery.com"&gt;SERT Data Recovery&lt;/a&gt;. The technician over the phone explained their process. They asked questions that made me confident in their
+&lt;p&gt;I went with &lt;a href="https://www.sertdatarecovery.com/"&gt;SERT Data Recovery&lt;/a&gt;. The technician over the phone explained their process. They asked questions that made me confident in their
 ability to at least diagnose the problem, and most importantly were thousands of dollars cheaper than a competitor I spoke with. They explained their pricing structure (they
 provide a quote and it won't be a giant range), and pricing for replacement parts and allowed me to either send in an empty drive or pay for one that my data would be returned
 to me on. They answered my questions.&lt;/p&gt;
