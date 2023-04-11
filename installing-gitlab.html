@@ -283,7 +283,7 @@ the Ubuntu Omnibus package.</p>
 </code></pre></div>
 <h3 id="getting-the-package">Getting the package<a class="headerlink" href="#getting-the-package" title="Permanent link">¶</a></h3>
 <p>The GitLab repository needs to added and then installed. To add the repository, issue this command:</p>
-<div class="codehilight code"><pre><span></span><code>curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+<div class="codehilight code"><pre><span></span><code><span class="nx">curl</span><span class="w"> </span><span class="nx">https</span><span class="p">:</span><span class="c1">//packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash</span>
 </code></pre></div>
 <p>To install the GitLab package, you need to provide an environment variable when you issue your
 <code>apt-get install</code> command. This will be the URL where you want to access your GitLab installation.</p>
@@ -306,8 +306,8 @@ already installed and the <code>www-data</code> user (on Ubuntu) added to the <c
 <li>Change the gitlab workhorse settings to the following (default) values. </li>
 </ul>
 <p>These may already be in the configuration file. If so, you probably don't need to modify them.</p>
-<div class="codehilight code"><pre><span></span><code>gitlab_workhorse['listen_network'] = "tcp"
-gitlab_workhorse['listen_addr'] = "127.0.0.1:8181"
+<div class="codehilight code"><pre><span></span><code><span class="nx">gitlab_workhorse</span><span class="p">[</span><span class="err">'</span><span class="nx">listen_network</span><span class="err">'</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"tcp"</span>
+<span class="nx">gitlab_workhorse</span><span class="p">[</span><span class="err">'</span><span class="nx">listen_addr</span><span class="err">'</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"127.0.0.1:8181"</span>
 </code></pre></div>
 <p>Finally, run <code>sudo gitlab-ctl reconfigure</code> for the settings to take effect.</p>
 <p>Now, you need to configure Apache's virtual host. GitLab provides <a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server/apache">example virtual hosts</a>. Since I installed
