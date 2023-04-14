@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-04-11T13:15:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Review of Learn How To Make A 2D Platformer In Unreal Engine 5 Course</title><link href="https://andrewwegner.com/make-unreal5-2d-platformer-review.html" rel="alternate"></link><published>2023-04-11T13:15:00-05:00</published><updated>2023-04-11T13:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-04-11:/make-unreal5-2d-platformer-review.html</id><summary type="html">&lt;p&gt;A review of the Udemy course: Learn How To Make A 2D Platformer In Unreal Engine 5&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-04-14T09:15:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Review of Unreal Engine 5 Generative Motion Graphics VFX Course</title><link href="https://andrewwegner.com/generative-motion-graphics-review.html" rel="alternate"></link><published>2023-04-14T09:15:00-05:00</published><updated>2023-04-14T09:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-04-14:/generative-motion-graphics-review.html</id><summary type="html">&lt;p&gt;A review of the Udemy course: Unreal Engine 5 | Generative Motion Graphics / VFX&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After my last venture into Unreal Engine where &lt;a href="https://andrewwegner.com/make-unreal5-2d-platformer-review.html"&gt;I built a simple 2D platformer&lt;/a&gt;, I wanted to continue learning about blue prints,
+but take a set of lessons that would be relatively quick. I found a great course for that in Yu Fujishiro's 
+&lt;a href="https://www.udemy.com/course/ue5-procedural-vfx-motion-graphics/"&gt;Unreal Engine 5 | Generative Motion Graphics / VFX&lt;/a&gt; course on Udemy.&lt;/p&gt;
+&lt;p&gt;The course is billed as an hour and a half course that will help the learner gain comfort in using the Unreal Engine as an art
+and design tool. Here's the result of my work from this course, and I am happy with the result.&lt;/p&gt;
+&lt;div class="videowrapper youtube"&gt;
+&lt;iframe src="https://www.youtube-nocookie.com/embed/vTW2w9IHRVE"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The hour and a half estimated time is slightly misleading, as the instructor is approaching the course expecting that the 
+student has some experience. Fortunately, the &lt;a href="https://andrewwegner.com/tag/unreal-engine.html"&gt;handful of Unreal Engine courses&lt;/a&gt; I've taken since last year were enough for 
+me to feel comfortable in this course.&lt;/p&gt;
+&lt;p&gt;The first "5 minute" section of the course depends on that knowledge (and your ability to Google) to set up and configure the project.
+It's not difficult. I will save you a bit of time on one step though. This minute and a half &lt;a href="https://www.youtube.com/watch?v=BBx0a6rNgvI"&gt;video on installing the DLSS plugin&lt;/a&gt; 
+was more useful than pages of text from NVidia. &lt;/p&gt;
+&lt;p&gt;With that out of the way, it's onto the course material. The instructor is clear about the what and the why we are doing things.
+I appreciated the explaination of small bits of logic and the migration from hard coded sections to more dynamic blue prints. It 
+was a good way to introduce a concept and the same type of thing I've done when teaching beginners. &lt;/p&gt;
+&lt;p&gt;I have one issue with my blue print logic that the instructor didn't seem to have. I'm not sure if it's due to different versions
+of the engine. I was using 5.1.1 and I believe they were using 5.0. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Cube Material Emission not equal to 0" src="https://andrewwegner.com/images/cube_material_emission.png"/&gt;&lt;/p&gt;
+&lt;p&gt;See that emission node down on the lower left? In the course, the instructor has this set to a default of &lt;code&gt;0.0&lt;/code&gt;. If I left this at 
+&lt;code&gt;0.0&lt;/code&gt;, my cubes were all black. They'd start with the color I selected, but on the first split the children would be black cubes
+instead of the expected shifting hue of colors. I couldn't figure out what I did wrong, but adjusting the default solved my
+problem.&lt;/p&gt;
+&lt;p&gt;The only other oddness - at least to me - was the process of exporting a high quality render. In a previous course I 
+&lt;a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html"&gt;exported a video as MP4&lt;/a&gt;, I learned that through Google and a plugin. This course exports as an EXR file format. I've never
+utilized this before so was initially confused by the giant dump of individual files I received. &lt;/p&gt;
+&lt;p&gt;Fortunately, &lt;a href="https://andrewwegner.com/davinci-resolve-beginner-advanced-review.html"&gt;DaVinci Resolve (and the course I took on it)&lt;/a&gt; can handle this without problems. This is how I created the 
+video show casing my work above.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course was short and sweet. It took me approximately two and a half hours to get through. This accounts for environment set up,
+playing around with various colors and values to make the composition unique, and the emission bug I mentioned above. I was looking 
+for a short course that focused on a single "thing" and was pleased with how this turned out.&lt;/p&gt;
+&lt;p&gt;There are few things that I didn't like were the assumption that the students had experience. Normally this wouldn't be a problem, but
+the instructor does reference "previous courses" a handful of times but they only have this course on Udemy at the time of publishing
+this post. Another negative was the instructor's push of a paid for Unreal Plugin. This was for electronic wires, versus the curvy 
+ones from the image above. The electronic wires allow for a more compact blue print - which I can see being valuable in a very large
+project like the 2D Platformer - but in a short course it does cause the wires the overlap and can be difficult to follow. It also
+costs an additional $13.&lt;/p&gt;
+&lt;p&gt;Overall, this was an entertaining course and I am happy with the output I produced. It was very satisfying the first time I pressed
+play and watched my cube split, flash, lauch a few small sparks, and repeat. I recommend this course for someone with a basic 
+Unreal Engine experience and a few hours to learn.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.udemy.com/certificate/UC-ce71bf81-06b7-41f4-bbbd-934670454295/"&gt;&lt;img alt="Unreal Engine 5 | Generative Motion Graphics / VFX Completion Certificate" src="https://andrewwegner.com/images/udemy-generative-motion-graphics.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"></category><category term="review"></category><category term="technical"></category><category term="learning"></category><category term="unreal engine"></category></entry><entry><title>Review of Learn How To Make A 2D Platformer In Unreal Engine 5 Course</title><link href="https://andrewwegner.com/make-unreal5-2d-platformer-review.html" rel="alternate"></link><published>2023-04-11T13:15:00-05:00</published><updated>2023-04-11T13:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-04-11:/make-unreal5-2d-platformer-review.html</id><summary type="html">&lt;p&gt;A review of the Udemy course: Learn How To Make A 2D Platformer In Unreal Engine 5&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I spent a portion of late summer/early fall 2022 learning a little bit about Unreal Engine 5. I reviewed a course 
 covering &lt;a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html"&gt;designing a realistic landscape environment&lt;/a&gt;, &lt;a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html"&gt;designing a realistic cabin&lt;/a&gt;, and &lt;a href="https://andrewwegner.com/ue5-complete-beginners-course.html"&gt;building a small game&lt;/a&gt;. 
@@ -51,7 +96,7 @@ walking away from this with more understanding of how blueprints work and that w
 &lt;div class="videowrapper youtube"&gt;
 &lt;iframe src="https://www.youtube-nocookie.com/embed/m64wxIoXtJo"&gt;&lt;/iframe&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;a href="https://www.udemy.com/certificate/UC-119fc59e-c3a0-48d2-bf43-c1377c054009/"&gt;&lt;img alt="Learn How To Make A 2D Platformer In Unreal Engine 5 Completion Certificate" src="https://andrewwegner.com/images/udemy-2d-platformer-completion.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"></category><category term="review"></category><category term="technical"></category><category term="learning"></category></entry><entry><title>Review of DaVinci Resolve 2022: Beginner to Advanced in DaVinci 18 Course</title><link href="https://andrewwegner.com/davinci-resolve-beginner-advanced-review.html" rel="alternate"></link><published>2023-03-03T23:45:00-06:00</published><updated>2023-03-03T23:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-03-03:/davinci-resolve-beginner-advanced-review.html</id><summary type="html">&lt;p&gt;A review of the Udemy course: DaVinci Resolve 2022 Beginner to Advanced in DaVinci 18&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;&lt;a href="https://www.udemy.com/certificate/UC-119fc59e-c3a0-48d2-bf43-c1377c054009/"&gt;&lt;img alt="Learn How To Make A 2D Platformer In Unreal Engine 5 Completion Certificate" src="https://andrewwegner.com/images/udemy-2d-platformer-completion.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"></category><category term="review"></category><category term="technical"></category><category term="learning"></category><category term="unreal engine"></category></entry><entry><title>Review of DaVinci Resolve 2022: Beginner to Advanced in DaVinci 18 Course</title><link href="https://andrewwegner.com/davinci-resolve-beginner-advanced-review.html" rel="alternate"></link><published>2023-03-03T23:45:00-06:00</published><updated>2023-03-03T23:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-03-03:/davinci-resolve-beginner-advanced-review.html</id><summary type="html">&lt;p&gt;A review of the Udemy course: DaVinci Resolve 2022 Beginner to Advanced in DaVinci 18&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In my two previous course reviews - the &lt;a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html"&gt;beginners Unreal Engine course&lt;/a&gt;, and the &lt;a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html"&gt;realistic environment course&lt;/a&gt; -
 I presented a short YouTube clip of what I'd built. For both of those, I used &lt;a href="https://www.blackmagicdesign.com/products/davinciresolve"&gt;DaVinci Resolve&lt;/a&gt; to quickly stitch together
