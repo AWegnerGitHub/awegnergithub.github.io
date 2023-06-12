@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Side Activities</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-06-12T09:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Exchange Strike - Week One</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-week-one.html" rel="alternate"></link><published>2023-06-12T09:00:00-05:00</published><updated>2023-06-12T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-12:/stackexchange-moderator-strike-week-one.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my my summary of the first week.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Side Activities</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-06-12T09:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Exchange Strike - Week One</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-week-one.html" rel="alternate"></link><published>2023-06-12T09:00:00-05:00</published><updated>2023-06-12T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-12:/stackexchange-moderator-strike-week-one.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my my summary of the first week.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A week ago, many &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike.html"&gt;Stack Exchange diamond moderators began a moderation strike&lt;/a&gt;. They have been joined by 
 power users and curators. At the time of this post, there are over 1200 users that have signed the &lt;a href="https://openletter.mousetail.nl/"&gt;open letter to Stack Exchange&lt;/a&gt;.&lt;/p&gt;
@@ -43,6 +43,16 @@ Despite what Stack Exchange has said in their messages to the press, &lt;a href=
 &lt;p&gt;The discovery that the data dumps were turned off has angered many people - those both already involved and others that learned of 
 it this week. The fact that these were turned off over two months ago and nothing was said to the community has made the situation
 even worse.&lt;/p&gt;
+&lt;h2 id="whats-stack-saying"&gt;What's Stack Saying?&lt;a class="headerlink" href="#whats-stack-saying" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This section was added after original publication&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Shortly after publishing my thoughts with this article, internal Stack Exchange emails were published. These show how 
+&lt;a href="https://web.archive.org/web/20230612155947/https://jlericson.com/2023/06/12/internal_messages.html"&gt;Stack Exchange is communicating this with their employees&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I highly encourage everyone to read &lt;em&gt;those&lt;/em&gt; too. There is a lot of reading scattered around to get the full scope
+of how unhappy the users of Stack Exchange are.&lt;/p&gt;
+&lt;p&gt;I think it's telling that the company managed to copy and paste from the &lt;a href="https://openletter.mousetail.nl/"&gt;strike letter&lt;/a&gt;, but at the same time managed 
+to completely ignore that this isn't about GPT detectors. Even worse, the company is spreading that falsehood to it's employees,
+and the press. On top of that, has two teams - Community Leadership and Marketing - working on communications, yet no progress
+has been made.&lt;/p&gt;
 &lt;h2 id="where-do-i-sit"&gt;Where do I sit?&lt;a class="headerlink" href="#where-do-i-sit" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I mentioned &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike.html"&gt;last week&lt;/a&gt; that I've been here for over 13 years. I've applied and interviewed at the company. I've 
 made friends with the employees and gotten recommendations during those interviews. I've built tooling to help &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;moderate comments&lt;/a&gt;
@@ -55,7 +65,15 @@ over these last three years and have been marginally successful. That's gone aga
 conditions above aren't hit. But, it's worth noting that I agree with all four of those conditions. This is my free time I'm donating
 and if the organization I'm donating that time to has changed their philosphy, I will take that into consideration as I reevaluate.&lt;/p&gt;
 &lt;p&gt;I think we are long past the point of "how it used to be" at Stack Exchange. The question I am asking my self is whether or not I
-agree with the new direction the platform is going.&lt;/p&gt;</content><category term="Side Activities"></category><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>Joining the Stack Exchange Moderator Strike</title><link href="https://andrewwegner.com/stackexchange-moderator-strike.html" rel="alternate"></link><published>2023-06-05T01:00:00-05:00</published><updated>2023-06-05T01:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-05:/stackexchange-moderator-strike.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my reasoning for why I'm joining.&lt;/p&gt;</summary><content type="html">
+agree with the new direction the platform is going.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Updated after the email publication, above&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Reading the email and FAQ that Stack Exchange sent to their employees, I am struck by how out of touch members of the company are.
+Not the people that don't interact with the community. The people that should know the pulse of the moderation teams, the 
+community opinions, and users in general - like the Vice President of Community. While I'm not surprised that they are 
+down playing the strike, I am surprised that they are flat out lying to their employees.&lt;/p&gt;
+&lt;p&gt;Stack Exchange should be called out on that and their employees should know that it's happening. Stack Exchange, Stack Overflow, Inc.,
+is lying to their employees. The email presented was written after the strike started and contains information about all of the 
+FAQ items mentioned.&lt;/p&gt;</content><category term="Side Activities"></category><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>Joining the Stack Exchange Moderator Strike</title><link href="https://andrewwegner.com/stackexchange-moderator-strike.html" rel="alternate"></link><published>2023-06-05T01:00:00-05:00</published><updated>2023-06-05T01:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-05:/stackexchange-moderator-strike.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my reasoning for why I'm joining.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I'm signing an open letter to Stack Exchange because those of us that volunteer our time and energy have 
 been put in an impossible situation. On Stack Overflow we &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;banned ChatGPT created content&lt;/a&gt; almost immediately
