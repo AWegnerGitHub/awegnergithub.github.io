@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Side Activities</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-06-05T01:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Joining the Stack Exchange Moderator Strike</title><link href="https://andrewwegner.com/stackexchange-moderator-strike.html" rel="alternate"></link><published>2023-06-05T01:00:00-05:00</published><updated>2023-06-05T01:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-05:/stackexchange-moderator-strike.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my reasoning for why I'm joining.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Side Activities</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-06-12T09:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Exchange Strike - Week One</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-week-one.html" rel="alternate"></link><published>2023-06-12T09:00:00-05:00</published><updated>2023-06-12T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-12:/stackexchange-moderator-strike-week-one.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my my summary of the first week.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A week ago, many &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike.html"&gt;Stack Exchange diamond moderators began a moderation strike&lt;/a&gt;. They have been joined by 
+power users and curators. At the time of this post, there are over 1200 users that have signed the &lt;a href="https://openletter.mousetail.nl/"&gt;open letter to Stack Exchange&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This strike has been covered in a few news articles, but I suspect this week's actions against Reddit and their new API pricing
+changes will overshadow Stack Overflow for a little while. That's fine with me. Perhaps cooler heads will prevail when there is 
+less public focus.&lt;/p&gt;
+&lt;p&gt;The Stack Exchange strike has been covered:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://gizmodo.com/ai-stack-overflow-content-moderation-chat-gpt-1850505609"&gt;On Gizmodo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.vice.com/en/article/4a33dj/stack-overflow-moderators-are-striking-to-stop-garbage-ai-content-from-flooding-the-site"&gt;On Vice&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://devclass.com/2023/06/05/stack-overflow-volunteer-moderators-down-tools-over-secret-new-policy-that-obstructs-removal-of-ai-generated-content/"&gt;On DevClass&lt;/a&gt; (with an inverview from a fellow Charcoal power user and Stack Overflow moderator)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The important thing in this set of articles is the public statement that was released by Philippe Beaudette, Vice President of Community (taken from the Vice article above).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A small number of moderators (11%) across the Stack Overflow network have stopped engaging in several activities, including moderating content. The primary reason for this action is dissatisfaction with our position on detection tools regarding AI-generated content. Stack Overflow ran an analysis and the ChatGPT detection tools that moderators were previously using have an alarmingly high rate of false positives.&lt;/p&gt;
+&lt;p&gt;We stand by our decision to require that moderators stop using the tools previously used. We are confident that we will find a path forward. We regret that actions have progressed to this point, and the Community Management team is evaluating the current situation as we work hard to stabilize things in the short term.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;They doubled down on this explaination in two meta posts. The &lt;a href="https://meta.stackexchange.com/q/389834/186281"&gt;initial statement&lt;/a&gt; and a &lt;a href="https://meta.stackexchange.com/q/389928/186281"&gt;post with "data"&lt;/a&gt;. I encourage readers 
+to spend a while reading through that second link and the answers. The community is skeptical of the conclusions drawn and 
+have counter arguments and data scattered in the answers.&lt;/p&gt;
+&lt;p&gt;Finally, during the week it was discovered that Stack Exchange stopped their quarterly data dump of all content. This was 
+&lt;a href="https://meta.stackexchange.com/a/390040/186281"&gt;announced&lt;/a&gt; after a former employee stated that the data dumps were turned off in March. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Stack Overflow senior leadership is working on a strategy to protect Stack Overflow data from being misused by companies building LLMs. While working on this strategy, we decided to stop the dump until we could put guardrails in place.&lt;/p&gt;
+&lt;p&gt;We are working on setting up the infrastructure to do this correctly in the age of LLMs --- where we continue to be open and share the data with our developer community but work to set up a formal framework for large AI companies that want to leverage the data.&lt;/p&gt;
+&lt;p&gt;We are looking for ways to gate access to the Dump, APIs, and SEDE, that will allow individuals access to the data while preventing misuse by organizations looking to profit from the work of our community. We are working to design and implement appropriate safeguards and still sorting out the details and timelines. We will provide regular updates on our progress to this group.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="where-are-we-now"&gt;Where are we now?&lt;a class="headerlink" href="#where-are-we-now" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With the summary out of the way, where do we sit now?&lt;/p&gt;
+&lt;p&gt;As of midnight today, the users that have stopped moderation activities have &lt;a href="https://meta.stackexchange.com/q/390106/186281"&gt;selected three representatives&lt;/a&gt; to be our voice
+in conversations with Stack Exchange and listed the conditions for ending the strike.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A retraction of the of the prohibition of moderating GPT content.&lt;/li&gt;
+&lt;li&gt;The private policy on GPT content that was issued to moderators must be revealed publicly.&lt;/li&gt;
+&lt;li&gt;The data dumps must be re-enabled and SEDE and API access guarenteed.&lt;/li&gt;
+&lt;li&gt;Stack Exchange, Inc. must communicate, gather feedback, and act on that feedback before making major policy or software changes to the public platform.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I want to point out that there is nothing here about GPT detection tools. That's because this isn't the reasong for the strike. 
+Despite what Stack Exchange has said in their messages to the press, &lt;a href="https://meta.stackexchange.com/a/389856/186281"&gt;this isn't about detection tools&lt;/a&gt;. (I also have 
+&lt;a href="https://meta.stackexchange.com/a/389825/186281"&gt;an answer&lt;/a&gt; on that question about the policy's origination.)&lt;/p&gt;
+&lt;p&gt;The discovery that the data dumps were turned off has angered many people - those both already involved and others that learned of 
+it this week. The fact that these were turned off over two months ago and nothing was said to the community has made the situation
+even worse.&lt;/p&gt;
+&lt;h2 id="where-do-i-sit"&gt;Where do I sit?&lt;a class="headerlink" href="#where-do-i-sit" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I mentioned &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike.html"&gt;last week&lt;/a&gt; that I've been here for over 13 years. I've applied and interviewed at the company. I've 
+made friends with the employees and gotten recommendations during those interviews. I've built tooling to help &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"&gt;moderate comments&lt;/a&gt;
+and &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;eliminate spam&lt;/a&gt; on the network. I've been here a long time.&lt;/p&gt;
+&lt;p&gt;In 2019, I reevaluated my role on the network during Stack Exchange's last screw up. In that one, they managed to libel a moderator,
+by name, to the press. This event still reverberates through the network today and serves as a brick that this current situation is
+built with. Stack Exchange destroyed 10 years worth of trust and community relationships in that event. They've tried to rebuild it
+over these last three years and have been marginally successful. That's gone again.&lt;/p&gt;
+&lt;p&gt;Now I'm reevaluating how I utilize my free time again. It's not constructive to say I'll hand in my diamonds and walk away if the
+conditions above aren't hit. But, it's worth noting that I agree with all four of those conditions. This is my free time I'm donating
+and if the organization I'm donating that time to has changed their philosphy, I will take that into consideration as I reevaluate.&lt;/p&gt;
+&lt;p&gt;I think we are long past the point of "how it used to be" at Stack Exchange. The question I am asking my self is whether or not I
+agree with the new direction the platform is going.&lt;/p&gt;</content><category term="Side Activities"></category><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>Joining the Stack Exchange Moderator Strike</title><link href="https://andrewwegner.com/stackexchange-moderator-strike.html" rel="alternate"></link><published>2023-06-05T01:00:00-05:00</published><updated>2023-06-05T01:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-05:/stackexchange-moderator-strike.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my reasoning for why I'm joining.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I'm signing an open letter to Stack Exchange because those of us that volunteer our time and energy have 
 been put in an impossible situation. On Stack Overflow we &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;banned ChatGPT created content&lt;/a&gt; almost immediately
