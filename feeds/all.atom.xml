@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-06-12T09:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Exchange Strike - Week One</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-week-one.html" rel="alternate"></link><published>2023-06-12T09:00:00-05:00</published><updated>2023-06-12T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-12:/stackexchange-moderator-strike-week-one.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my my summary of the first week.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-06-13T23:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Exchange Strike Update 2</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-update.html" rel="alternate"></link><published>2023-06-13T23:00:00-05:00</published><updated>2023-06-13T23:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-13:/stackexchange-moderator-strike-update.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. My update and impression of the last day.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Yesterday's update summarized the &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike-week-one.html"&gt;first week of the Stack Exchange Moderator strike&lt;/a&gt;. The &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike.html"&gt;strike began last Monday&lt;/a&gt;
+with an &lt;a href="https://openletter.mousetail.nl/"&gt;open letter to Stack Exchange&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Over the weekend the moderators, and community curators elected three representatives to talk with Stack Exchange. Those talks started this week.
+They went into these discussions to reiterate the four conditions to end the strike.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A retraction of the of the prohibition of moderating GPT content.&lt;/li&gt;
+&lt;li&gt;The private policy on GPT content that was issued to moderators must be revealed publicly.&lt;/li&gt;
+&lt;li&gt;The data dumps must be re-enabled and SEDE and API access guarenteed.&lt;/li&gt;
+&lt;li&gt;Stack Exchange, Inc. must communicate, gather feedback, and act on that feedback before making major policy or software changes to the public platform.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So, where are we now?&lt;/p&gt;
+&lt;h2 id="the-update"&gt;The update&lt;a class="headerlink" href="#the-update" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="representatives"&gt;Representatives&lt;a class="headerlink" href="#representatives" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Discussions with Stack Exchange started off less than stellar, in my opinion. Quoting from the Vice President of Community at Stack Exchange, as 
+relayed to those of us not in the discussions:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"So in summary:  Cesar is my delegate for issues here, while I reserve final decision making to myself I"ve vested him with broad discretionary authority and we're meeting on a frequent (daily or multiple times daily) basis to clear any differences between us."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;My take away here is that the Vice President of Community - a person who's job should involve &lt;em&gt;dealing with the community&lt;/em&gt; doesn't think this is 
+important enough to attend. While I've worked with Cesar in my role as a moderator, this is just making Cesar the car salesman that has to 
+"talk with the manager about your offer". It's a way for the company to drag this out and a way to make a the real decisions without moderation
+input. I fully expect to hear from the community representatives that Cesar liked a proposal but the VP did not but that the VP wasn't around to 
+discuss why not. I'd love to be proven wrong on that though.&lt;/p&gt;
+&lt;h3 id="data-dumps"&gt;Data Dumps&lt;a class="headerlink" href="#data-dumps" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Data dumps are the third bullet on our list of things that must be restored. Good news! Stack Exchange will have those restored by June 16, 2023.&lt;/p&gt;
+&lt;p&gt;This was &lt;a href="https://meta.stackexchange.com/a/390200/186281"&gt;posted&lt;/a&gt; (&lt;a href="https://meta.stackexchange.com/a/390202/186281"&gt;twice&lt;/a&gt;) by the VP of Community - the one not attending the talks above.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[...]
+Our intention was never to stop posting the data dump, only to begin to collect more information on how it was being used and by whom - especially in light of the rise of LLMs and questions around how genAI models are handling attribution. However, it’s clear that many individual users (academics, researchers, etc) have an immediate need to access updated versions of the dumps. So we are re-enabling the automatic data dumps (and uploading the one that’s about a week overdue). We believe that this can happen by end of the day Friday. We will continue to work toward the creation of certain guardrails (for large AI/LLM companies) for both the dumps and the API, but again - we have no intention of restricting/charging community members or other responsible users of the dumps or the API from accessing them.
+[...]
+In the meantime, the data dumps will be re-enabled by end of day Friday. We will communicate here when that has been completed or if there are any delays. We will also post here prior to making any future changes to the dumps or distribution of the dumps.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I suppose now we wait to see if there are any "delays" before Friday.&lt;/p&gt;
+&lt;p&gt;This message was confirmed by one of the Co-Founders that has since left Stack Exchange and 
+&lt;a href="https://stackoverflow.blog/2009/06/04/stack-overflow-creative-commons-data-dump/"&gt;originally committed to these data dumps back in June 2009&lt;/a&gt;. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I have confirmation via email from Prashanth that this is, indeed, &lt;strong&gt;the new official policy&lt;/strong&gt;. I'm glad to see it. Creative Commons is part of our contract with the community, and it should never be broken -- however, CC does need to address the AI issue in an updated license, in my personal opinion. [...] - &lt;a href="https://meta.stackexchange.com/questions/390201/what-is-the-current-june-2023-status-of-the-data-dumps-and-the-company-s-commi?noredirect=1&amp;amp;lq=1#comment1302765_390202"&gt;Jeff Atwood&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A couple things about this. It is incredibly telling that a Co-Founder had to step in to resolve this bullet. That speaks volumes for his commitment to
+these data dumps and I appreciate making his voice heard on this. Secondly, it is incredible how &lt;em&gt;fast&lt;/em&gt; Stack Exchange did a 180 on this. Lastly,
+it's telling that once again it's Philippe making statements that are lies.&lt;/p&gt;
+&lt;p&gt;He's done it with posts to the press that I mentioned yesterday (moderators are depending on GPT detectors!). He's done it with the internal 
+emails to his own coworkers. He's doing it again here.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Our intention was never to stop posting the data dump...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This &lt;a href="https://meta.stackexchange.com/a/390040/186281"&gt;directly contridicts that statement provided by the Stack Exchange Chief Technology Officer&lt;/a&gt; last week. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Stack Overflow senior leadership is working on a strategy to protect Stack Overflow data from being misused by companies building LLMs. While working on this strategy, we decided to stop the dump until we could put guardrails in place.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For being a VP of Community, the ability to communicate with the community is greatly lacking. &lt;/p&gt;
+&lt;h3 id="ai-policy"&gt;AI Policy&lt;a class="headerlink" href="#ai-policy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Not much more progress has been provided by the community representatives. From what I have seen, Stack Exchange is pushing to call an end of this
+with the promise of a new policy. But it's not done yet. They'll work on it with the moderators and once that's done, that will replace the current 
+policy that started the strike. The representative mentioned they were pushing for a deadline on how quickly moderators would be able to commit to this 
+change.&lt;/p&gt;
+&lt;p&gt;In my opinion, this is a way to end the community's moderation strike and agree to essentially nothing. It's another promise that something will happen. 
+It gets the community back to moderation (which Stack Exchange employees have been doing for the week), and if they break that promise the effort to 
+re-organize action has to start all over again. &lt;/p&gt;
+&lt;p&gt;Right now, I'm not agreeing to go back to utilizing my free time to perform moderation duties without knowing what the new policy is. &lt;/p&gt;
+&lt;h2 id="where-do-i-sit"&gt;Where do I sit?&lt;a class="headerlink" href="#where-do-i-sit" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Much like yesterday, I continue to re-evaluate my relationship with Stack Exchange. I'm really happy that the data dump has been restored. The messaging
+around it though continues to erode my trust in the company's actions. This was also one of the easier items for Stack Exchange to agree to, even 
+though it looks like a co-founder had to step in to get this accomplished. &lt;/p&gt;
+&lt;p&gt;It's also very telling that the messaging doesn't mention the restoration in the context of the strike at all. If the company was attempting to 
+build goodwill in this environment, I'd think they would point to the conditions in the open letter and tie the enablement of the data dumps directly
+to that. Instead, we got a statement that says they didn't intend to stop posting the data dump, directly contridicting a previous statement saying
+senior leadership decided to stop the dump.&lt;/p&gt;
+&lt;p&gt;Amazing.&lt;/p&gt;</content><category term="Side Activities"></category><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>Stack Exchange Strike - Week One</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-week-one.html" rel="alternate"></link><published>2023-06-12T09:00:00-05:00</published><updated>2023-06-12T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-12:/stackexchange-moderator-strike-week-one.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my my summary of the first week.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A week ago, many &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike.html"&gt;Stack Exchange diamond moderators began a moderation strike&lt;/a&gt;. They have been joined by 
 power users and curators. At the time of this post, there are over 1200 users that have signed the &lt;a href="https://openletter.mousetail.nl/"&gt;open letter to Stack Exchange&lt;/a&gt;.&lt;/p&gt;
