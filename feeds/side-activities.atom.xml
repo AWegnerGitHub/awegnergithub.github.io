@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Side Activities</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-06-13T23:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Exchange Strike Update 2</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-update.html" rel="alternate"></link><published>2023-06-13T23:00:00-05:00</published><updated>2023-06-13T23:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-13:/stackexchange-moderator-strike-update.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. My update and impression of the last day.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Side Activities</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/side-activities.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-06-19T14:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Exchange Strike - Does Stack Exchange Care?</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-does-stackexchange-care.html" rel="alternate"></link><published>2023-06-19T14:00:00-05:00</published><updated>2023-06-19T14:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-19:/stackexchange-moderator-strike-does-stackexchange-care.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. It's been two full weeks and the progress toward resolution has been minimal at best.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="recap"&gt;Recap&lt;a class="headerlink" href="#recap" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://andrewwegner.com/stackexchange-moderator-strike.html"&gt;The Moderation and curator strike started on June 5.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Stack Exchange has downplayed the effect of this to the press, while at the same time straight lied to the press about &lt;a href="https://openletter.mousetail.nl/"&gt;causes of the strike&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Stack Exchange &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike-week-one.html"&gt;removed access to the data dump back&lt;/a&gt; in March but never told anyone until they were called out on it in early June.&lt;/li&gt;
+&lt;li&gt;The &lt;a href="{filename}2023_06_12_stackexchange_strike_update2.md"&gt;moderation team has elected three representatives&lt;/a&gt; to engage with Stack Exchange to solve these problems and end the strike.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="where-are-we-now"&gt;Where are we now?&lt;a class="headerlink" href="#where-are-we-now" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Last week, I ended with a note that the data dumps should be restored by June 16. Good news. That has been completed and the &lt;a href="https://meta.stackexchange.com/q/389922/186281"&gt;dump was uploaded&lt;/a&gt; by June 16. It's 
+progress, but after two weeks we have only accomplished one out of four tasks on the list of conditions to end the strike.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A retraction of the of the prohibition of moderating GPT content.&lt;/li&gt;
+&lt;li&gt;The private policy on GPT content that was issued to moderators must be revealed publicly.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The data dumps must be re-enabled and SEDE and API access guarenteed.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Stack Exchange, Inc. must communicate, gather feedback, and act on that feedback before making major policy or software changes to the public platform.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've heard rumors that the second bullet may occur, but nothing has been done publicly. Thus, nothing outside of feedback from representatives to go on here.&lt;/p&gt;
+&lt;h3 id="gpt-content"&gt;GPT Content&lt;a class="headerlink" href="#gpt-content" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;On Thursday, June 15, &lt;a href="https://meta.stackoverflow.com/q/425162/189134"&gt;Stack Exchange enabled their "formatting assistant".&lt;/a&gt; To say it went poorly, is an understatement. There are currently 52 answers to that
+question showing how it doesn't work. It's a thin wrapper around a version of ChatGPT or GPT4. It's also very, very bad at being a "formatting assistant". Instead,
+it's &lt;a href="https://meta.stackoverflow.com/a/425176/189134"&gt;rewriting content&lt;/a&gt;, &lt;a href="https://meta.stackoverflow.com/a/425165/189134"&gt;butchering code being asked about&lt;/a&gt;, &lt;a href="https://meta.stackoverflow.com/a/425169/189134"&gt;making stuff up&lt;/a&gt;, &lt;a href="https://meta.stackoverflow.com/a/425190/189134"&gt;answering questions&lt;/a&gt; and everything other than making formatting 
+better. One user, Mithical, found the &lt;a href="https://meta.stackoverflow.com/a/425208/189134"&gt;prompt the formatting assistant&lt;/a&gt; is using. &lt;/p&gt;
+&lt;p&gt;The one small postive that came out of this is that Stack Exchange did &lt;a href="https://meta.stackoverflow.com/q/425081/189134"&gt;communicate with the community&lt;/a&gt; a few days before this was released. This isn't enough 
+though.&lt;/p&gt;
+&lt;h3 id="communication"&gt;Communication&lt;a class="headerlink" href="#communication" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Why isn't one post enough? &lt;/p&gt;
+&lt;p&gt;Behind the scenes it's become clearer to me that several staff members of Stack Exchange don't wish to engage with the community. I briefly touched on one of these
+people in my &lt;a href="{filename}2023_06_12_stackexchange_strike_update2.md"&gt;last update&lt;/a&gt;. The public press has been out of the loop sounding, the internal reactions on moderation channels has been 
+complaints that moderators are to negative. &lt;/p&gt;
+&lt;p&gt;Of course moderators are negative right now. &lt;em&gt;There is a strike going on because they are unhappy&lt;/em&gt;. The feedback from representatives continues to be filled with
+road blocks. &lt;/p&gt;
+&lt;h2 id="where-do-i-sit-today"&gt;Where do I sit today?&lt;a class="headerlink" href="#where-do-i-sit-today" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I think it's becoming more clear that Stack Exchange is not interested in removing GenerativeAI content from it's site. It's actively building and promoting a tool
+that utilizes ChatGPT under the hood. I am very surprised that they pulled the plug on the formatting assistant after two days. Previous negative feedback has been 
+ignored and I fully expected this one to be as well. The problem with pulling the plug on this, is that CEO has committed to exciting announcements about AI this 
+summer. If the community just showed that one of those AI projects was a flop, they are going to go even harder at getting the next one to succeed. &lt;/p&gt;
+&lt;p&gt;As this drags on into it's third week, I've become more pesimistic that this strike doesn't end with resignations. Reddit had a two day strike during this 
+time period, and they are already threatening to replace community moderators. The Stack Exchange CEO has expressed their fondness for Reddit on occassion,
+so I suspect that the action being taken over their is being considered here. Of course, the difference here is that Stack Exchange wasn't effectively shut down
+by the strike like Reddit was. Sites didn't go dark. Instead, curators and moderators stopped curating and moderating. Everything is still available,
+the sites are still working, it's just less tidy than usual. &lt;/p&gt;</content><category term="Side Activities"></category><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>Stack Exchange Strike Update 2</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-update.html" rel="alternate"></link><published>2023-06-13T23:00:00-05:00</published><updated>2023-06-13T23:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-13:/stackexchange-moderator-strike-update.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. My update and impression of the last day.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Yesterday's update summarized the &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike-week-one.html"&gt;first week of the Stack Exchange Moderator strike&lt;/a&gt;. The &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike.html"&gt;strike began last Monday&lt;/a&gt;
 with an &lt;a href="https://openletter.mousetail.nl/"&gt;open letter to Stack Exchange&lt;/a&gt;.&lt;/p&gt;
