@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/ideal-engineering-interviews.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="I&#39;ve interviewed a lot of engineers at various stages in their careers. I&#39;ve utilized existing interview processes, built new ones and improved upon all of those. What do I think an ideal interview process would look like? Read on for details." />
+<meta name="keywords" content="job, meta, leadership">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="What should a software engineering interview look like?"/>
+  <meta property="og:description" content="I&#39;ve interviewed a lot of engineers at various stages in their careers. I&#39;ve utilized existing interview processes, built new ones and improved upon all of those. What do I think an ideal interview process would look like? Read on for details."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/ideal-engineering-interviews.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-07-06 15:00:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Jobs"/>
+  <meta property="article:tag" content="job"/>
+  <meta property="article:tag" content="meta"/>
+  <meta property="article:tag" content="leadership"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>What should a software engineering interview look like?  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#some-context">Some context</a></li>
+<li><a href="#job-description">Job Description</a></li>
+<li><a href="#application">Application</a></li>
+<li><a href="#technical-assessment">Technical Assessment</a><ul>
+<li><a href="#honorium">Honorium</a></li>
+</ul>
+</li>
+<li><a href="#remote-work">Remote work</a></li>
+<li><a href="#onboarding">Onboarding</a></li>
+<li><a href="#intangables">Intangables</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/jobs.html">Jobs</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/ideal-engineering-interviews.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">What should a software engineering interview look like?</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/jobs.html",
+      "name": "Jobs"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/ideal-engineering-interviews.html",
+      "name": "https://andrewwegner.com/ideal-engineering-interviews.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="ideal-engineering-interviews">What should a software engineering interview look like?</h1>
+    <p>
+      Posted on Thu 06 July 2023 in <a href="https://andrewwegner.com/category/jobs.html">Jobs</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/job.html">job</a>
+        <a href="https://andrewwegner.com/tag/meta.html">meta</a>
+        <a href="https://andrewwegner.com/tag/leadership.html">leadership</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="some-context">Some context<a class="headerlink" href="#some-context" title="Permanent link">¶</a></h2>
+<p>I spent nearly five years at PacketFabric. In my role as Vice President of Software Engineering at the company, I rebuilt the hiring pipeline for
+the software engineering organization. As the company closed it's Series B round of funding we needed to bring on world class talent quickly.  I moved
+on to Woven Teams for a short stint as Director of Engineering where I not only built a tool used by thousands of engineers to get a new job, I hired
+for members of my team as well. In my current role at FleetOps, I've been working to ensure this previous experience is utilized to build a 
+candidate focused hiring process.</p>
+<p>I wrote about my <a href="https://andrewwegner.com/looking-for-new-role.html">hunt for a new role in the summer of 2022</a>. This covered my <a href="https://andrewwegner.com/what-job-source-uses-which-ats.html">experiences with various application tracking systems (ATS)</a>, 
+which <a href="https://andrewwegner.com/upload-resume-reenter-resume.html">application systems require you to duplicate work</a> and <a href="https://andrewwegner.com/job-search-rejections.html">what job search rejection looks like</a>. In the end I got a job at FleetOps as 
+Director of Engineering.</p>
+<p>Let's go through what I think an ideal candidate experience should be. Reality means that all of this isn't possible in all environments, but I strive
+to ensure as much of this is in place in areas and companies I have a say in. A good candidate experience provides a good feeling about the company
+and in any environment - candidate favoring or employer favoring - a happy candidate and new hire will be more effective joining a new company.</p>
+<h2 id="job-description">Job Description<a class="headerlink" href="#job-description" title="Permanent link">¶</a></h2>
+<p>Candidates are applying to a role at your company and should know what that role does. Regardless of whether the candidate is a referral from an 
+executive or someone who is applying from a job board, the job description sets initial expectations for the role. Many engineers can smell 
+marketing hype in a job description. Things like "ninja coder", very vague descriptions or numerous requirements. These are all negatives. A job 
+description should be tailored to the role. It can also be reflective of the company's culture without being off putting. </p>
+<p>Job descriptions should include salary ranges. In my experience, the listings with ranges get more applicants. Additionally, it's becoming a legal
+requirement in many localities, especially in the United States. This should be a legitimate range. If the range is a hundred thousand dollar spread 
+or higher, the believability is pretty low. It signals that the company either doesn't know what they want for this role, that they vastly under pay 
+some of their team, vastly over pay some of their team or a combination of all of these. </p>
+<p>Finally, the job description should spell out the application process and expected and realistic timelines. </p>
+<h2 id="application">Application<a class="headerlink" href="#application" title="Permanent link">¶</a></h2>
+<p>The next step describes a software engineering hiring process. It requires up front work on the part of the company to ensure it goes smoothly. 
+The application should be relatively simple. I'm a fan of not weeding out candidates at this stage and immediately sending them to a technical scenario. 
+This only works if the process can be automated because a job can get hundreds or thousands of applicants. This should be made clear in the application
+and process description that the next step is a technical scenario.</p>
+<h2 id="technical-assessment">Technical Assessment<a class="headerlink" href="#technical-assessment" title="Permanent link">¶</a></h2>
+<p>A technical assessment should be real work. Do not do leetcode or code quizzes. If you use either of these, expect them to be easily answered by 
+utilizing <a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">ChatGPT</a>. Build a rubric so that every person being evaluated is judged the same way. You should be able to automate some of this
+to build in responses that can easily weed out the candidates that are completely inexperienced. </p>
+<p>Scenarios should reflect the type of work they will perform on the job. Build the prompt to fit around a recent problem your team solved. Create a 
+problem that is unique to your industry. Utilize the experiences of your existing team to create these scenarios. When building the rubric, do not 
+build it so that the only possible solution is the one that your team came up with. There are many possible solutions to a problem. Ensure you get those
+to truly see the experiences and expertise your candidates have to offer. </p>
+<p>Build scenarios that have experience levels built in. A junior engineer is going to think about a problem in a different way than a staff engineer. 
+The rubric should be reflective of that. </p>
+<p>The technical assessment should be short and timed. At Woven, I told the companies I worked with the entire assessment (usually 2-4 scenarios) should not
+last longer than two hours. Candidates are unwilling to take assessments that long. Additionally, untimed scenarios favor candidates that do not have 
+other commitments - perhaps another job, family, or hobbies to name a few. Keep candidates on a level field as much as possible.</p>
+<h3 id="honorium">Honorium<a class="headerlink" href="#honorium" title="Permanent link">¶</a></h3>
+<p>When I've looked for specialized skillsets or executive roles, I've extended the time frame of scenarios and attached an <a href="https://en.wikipedia.org/wiki/Honorarium">honorarium</a>. This will
+compensate the candidate for the longer time taken on the application. Unfortunately, free labor is common in the technology industry interview process.
+This is to show the company isn't seeking free labor on a problem. It may need to be explained to candidates due to the experiences they have had with
+other interview processes.</p>
+<h2 id="remote-work">Remote work<a class="headerlink" href="#remote-work" title="Permanent link">¶</a></h2>
+<p><a href="https://andrewwegner.com/remote-work-thoughts-about-offices.html">I am a huge fan of remote work.</a> With the proper company structure, I can hire from a global candidate pool. It's important that the team is 
+able to support their new coworkers regardless of their location in the world. I've seen teams and companies expand their developer ranks by slowly 
+expanding the timezones they hire from instead of immediately jumping to global. The trade off here is that you are missing candidates that would be 
+good for you team immediately and in turn you are slowly training your team to operate on a broader set of timezones and be more asyncronous. </p>
+<p>How the team expands requires careful consideration of team dynamics and executive support. It should also be a discussion the hiring manager is 
+prepared to have with candidates. "Remote" does not always mean someone sitting a handful of timezones away. For some it may mean that they like to 
+travel and could be in the same timezone as you this month and over the winter they are half a world away. How will you, as a team and as a manager,
+respond to this type of situation.</p>
+<h2 id="onboarding">Onboarding<a class="headerlink" href="#onboarding" title="Permanent link">¶</a></h2>
+<p>Once you've made a decision to hire someone, the hiring manager should remain in contact with the candidate. Don't just hand things over to Human 
+Resources and assume everything is perfect. Changing jobs and starting a new job is a big deal. Talk with the candidate on next steps. Ensure they are
+getting the right equipment to perform their job. Start setting up the first tasks they will be doing when they join the team.</p>
+<p>Day one is going to consist of HR work. There is paperwork to fill out, there are things to sign, there are policies to go over, and insurance to sign 
+up for (in the US at least). Everyone with a job has done this stuff. Build this time into their first days on the job. Day one also consists of getting
+the new employee access to systems and introductions. </p>
+<p>Work with the employee and provide a checklist of things they should be doing and who they should be working with to complete these first items. They 
+don't know who in HR to work with because they are new. They don't know their team lead because they are new. The hiring manager should make these 
+introductions easy.</p>
+<p>Set up expectations for the first week or two, the first month and first three months. They will need to learn the environment, get access to the 
+ticketing system and code repositories, and start making their first commits to the code base. But, that's not a day one thing. They will need to 
+learn how system A talks to system B. Again, this is not a day one thing. A new user is going to get a firehose of information. Make it somewhat easier
+for them by not expecting them to be an expert by the end of week two.</p>
+<h2 id="intangables">Intangables<a class="headerlink" href="#intangables" title="Permanent link">¶</a></h2>
+<p>A hiring process has a lot of intangables that can make your candidates feel better or worse about your company. A few examples are:</p>
+<ol>
+<li>How many interviews does the candidate have to go through? To many quickly burns out a candidate and makes the entire process feel like a waste of time. To few, or only technical interviews, doesn't give the candidate a sense of the company and the team.</li>
+<li>Can the interviewers answer a candidate's questions? Candidates are interviewing you too. Does your interview team have the ability to answer a candidate's questions about the company, role expectations, day to day work, job perks, and more? Is the interview committee excited about a new teammate or are they stressed out/uninterested.</li>
+<li>Does the candidate receive updates on their application through out the process? Feedback is important and ghosting a candidate will quickly turn an excited candidate to one that doesn't want to join the team. </li>
+<li>Communication with rejected candidates is important too. Coming back to ghosting a candidate and applicant tracking systems, these can be set up to send candidates emails based on what's happening with their application. If they are rejected, have the system send them a message. Please, PLEASE, don't use a default template for this though. There is a person receiving this email. They deserve more than "we're not moving forward at this time." If the hiring manager has talked to a candidate then this email should be more than the basic template sent to candidates rejected earlier in the process. A rejected candidate may reapply to a future role. How you inform them that you aren't hiring them right now determines if that candidate considers reapplying in the future.</li>
+<li>How is the company perceived to the outside world? A candidate wants to join your team, which means their name will be linked with your company for friends and family at least. Future jobs will associate your company with their name. The candidate may ask about this perception - recent news articles, CEO announcements, blog posts - and the interview team should be able to answer these types of questions.</li>
+</ol>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>Interviewing is different at each company, but candidates don't know what the process looks like at each until they are into the process. The earlier
+this process is communicated to them, the smoother the candidate's experience will be. This requires that the company and hiring manager have spent time
+building the job description, technical assessments, and interview cycles ahead of time. Organization is important.</p>
+<p>Communication is more important. The candidate is applying to join your team. How you communicate with them is their first indication on how they will
+be communicated with as an employee. </p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/stackexchange-moderator-strike-what-are-they-doing.html"
+    title="Stack Exchange Strike - Now AI is bad? Does Stack Exchange know what it is doing?">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "What should a software engineering interview look like?",
+  "headline": "What should a software engineering interview look like?",
+  "dateCreated": "2023-07-06 15:00:00-05:00",
+  "datePublished": "2023-07-06 15:00:00-05:00",
+  "dateModified": "",
+  "copyrightYear": "2023",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/ideal-engineering-interviews.html",
+  "description": "I've interviewed a lot of engineers at various stages in their careers. I've utilized existing interview processes, built new ones and improved upon all of those. What do I think an ideal interview process would look like? Read on for details.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Jobs"
+}
+</script>
+<footer>
+<p>&copy; 2023 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>
