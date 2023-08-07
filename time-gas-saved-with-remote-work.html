@@ -275,12 +275,12 @@
 <p>Lastly, I wanted to see if I could figure out how much CO2 I had not produced based on how much gasoline I hadn't used. I was expecting a complicated formula. Turns out that <a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle#burning">1 Gallon of Gas = 19.59 pounds of CO2</a> (8,887 grams of CO2 per gallon).</p>
 <h2 id="the-calculations">The calculations<a class="headerlink" href="#the-calculations" title="Permanent link">¶</a></h2>
 <p>With my initial numbers determined, the calculations are pretty easy.</p>
-<div class="codehilight code"><pre><span></span><code>Total Miles Not Driven = Miles per day * Total number of work days
-                       = 90 * 1089
+<div class="codehilight code"><pre><span></span><code>Total Miles Not Driven = Miles per day <span class="gs">* Total number of work days</span>
+<span class="gs">                       = 90 *</span> 1089
                        = 98,010 miles
 
-Total Time Not Commuting = Commute time per day (minutes) * Total number of days
-                         = 106 * 1089
+Total Time Not Commuting = Commute time per day (minutes) <span class="gs">* Total number of days</span>
+<span class="gs">                         = 106 *</span> 1089
                          = 115,434 minutes
                          = 1923.9 hours
                          = 80.1 days
@@ -289,12 +289,12 @@ Gallons of Gas Not used = Total Miles Not Driven / Average MPG
                         = 98,010 / 22.5
                         = 4,356 gallons of gasoline
 
-Dollars not spent on gas = Gallons of Gas Not used * Average gas price
-                         = 4,356 * 3.21
+Dollars not spent on gas = Gallons of Gas Not used <span class="gs">* Average gas price</span>
+<span class="gs">                         = 4,356 *</span> 3.21
                          = $13,997.28
 
-CO2 Not produced = Gallons of Gas Not Used * 19.59
-                 = 4,356 * 19.59
+CO2 Not produced = Gallons of Gas Not Used <span class="gs">* 19.59</span>
+<span class="gs">                 = 4,356 *</span> 19.59
                  = 85,334.04 pounds of CO2
 </code></pre></div>
 <h2 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">¶</a></h2>

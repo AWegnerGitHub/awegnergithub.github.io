@@ -307,7 +307,7 @@ cp example.com.yml andrewwegner.com.yml
 </code></pre></div>
 <p>In this case, I am updating two subdomains (<code>nas</code> and <code>gitlab</code>) that are part of the <code>example.com</code> domain. Those should be changed to reflect your set up.</p>
 <p>Last, we need to schedule this to run on a regular basis so that CloudFlare always points to the correct IP address. I did this with a crontab entry:</p>
-<div class="codehilight code"><pre><span></span><code>*/30 * * * * python3 /path/to/cloudflare-ddns.py -z example.com
+<div class="codehilight code"><pre><span></span><code>*/30 <span class="gs">* *</span> * * python3 /path/to/cloudflare-ddns.py -z example.com
 </code></pre></div>
 <p>Again, change <code>example.com</code> to your domain, and it will use the appropriate YML file. With this entry, my DNS entries are updated every 30 minutes. That
 is frequently enough for my needs.</p>

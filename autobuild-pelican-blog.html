@@ -366,14 +366,14 @@ right now too.</p>
 <p>It will only build when I commit to the <code>master</code> branch. I don't use other branches right now, but if I ever do, they won't trigger a build.</p>
 <p>The important bits are in the <code>before_script</code> and <code>script</code> sections.</p>
 <div class="codehilight code"><pre><span></span><code>before_script:
-  - git clone https://github.com/AWegnerGithub/awegnergithub.github.io-source.git source
-  - mkdir source/content
-  - rsync -av --progress ./* source/content --exclude source
-  - cd source
-  - pip install --upgrade pip
-  - pip install -r requirements.txt
+  <span class="k">-</span> git clone https://github.com/AWegnerGithub/awegnergithub.github.io-source.git source
+  <span class="k">-</span> mkdir source/content
+  <span class="k">-</span> rsync -av --progress ./* source/content --exclude source
+  <span class="k">-</span> cd source
+  <span class="k">-</span> pip install --upgrade pip
+  <span class="k">-</span> pip install -r requirements.txt
 script:
-  - pelican content --output output --settings publishconf.py --verbose
+  <span class="k">-</span> pelican content --output output --settings publishconf.py --verbose
 </code></pre></div>
 <p>In <code>before_script</code>, I clone my <code>source</code> repository containing all my Pelican settings into the <code>source</code> directory. Next, I add a <code>content</code>
 directory into this newly created <code>source</code> directory. I <code>rsync</code> my content to this directory and exclude <code>source</code> because you can't

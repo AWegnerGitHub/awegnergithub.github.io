@@ -279,17 +279,17 @@ there.</p>
 <p>If you want to see the full prompt, take a look at the <a href="https://stackoverflow.com/q/51719848/189134">Stack Overflow question</a>. But, briefly, the problem to solve is to find the 
 smallest positve integer that does not appear in an array of numbers. We are provided three sample arrays with positive, negative and duplicate entires.</p>
 <p>I copy and pasted the prompt into ChatGPT and got a short function back.</p>
-<div class="codehilight code"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">solution</span><span class="ss">(</span><span class="nv">A</span><span class="ss">)</span>:
-<span class="w">    </span>#<span class="w"> </span><span class="nv">Create</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">set</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">positive</span><span class="w"> </span><span class="nv">integers</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">list</span>
-<span class="w">    </span><span class="nv">positive_int_set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">set</span><span class="ss">(</span>[<span class="nv">x</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">A</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>]<span class="ss">)</span>
+<div class="codehilight code"><pre><span></span><code>def solution(A):
+    # Create a set of all the positive integers in the list
+    positive_int_set = set([x for x in A if x &gt; 0])
 
-<span class="w">    </span>#<span class="w"> </span><span class="nv">Iterate</span><span class="w"> </span><span class="nv">through</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">positive</span><span class="w"> </span><span class="nv">integers</span>,<span class="w"> </span><span class="nv">starting</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">    </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">positive_int_set</span>:
-<span class="w">        </span><span class="nv">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+    # Iterate through the positive integers, starting at 1
+    i = 1
+    while i in positive_int_set:
+        i += 1
 
-<span class="w">    </span>#<span class="w"> </span><span class="k">Return</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">first</span><span class="w"> </span><span class="nv">integer</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">set</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">i</span>
+    # Return the first integer that is not in the set
+    return i
 </code></pre></div>
 <p>I pasted this back into the testing environment and ran the code.</p>
 <div class="codehilight code"><pre><span></span><code>Compilation successful.

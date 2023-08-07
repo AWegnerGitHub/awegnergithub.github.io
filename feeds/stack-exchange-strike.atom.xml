@@ -1,5 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Stack Exchange Strike</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/stack-exchange-strike.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-07-07T12:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Exchange Strike - Community and AI Talk Reaction</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-overflowai-reaction.html" rel="alternate"></link><published>2023-07-07T12:00:00-05:00</published><updated>2023-07-07T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-07-07:/stackexchange-moderator-strike-overflowai-reaction.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my reaction to Stack Exchange's products and updates announced at the WeAreDevelopers conference.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Stack Exchange Strike</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/stack-exchange-strike.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-08-07T12:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Stack Exchange Strike - The strike is over</title><link href="https://andrewwegner.com/stackexchange-moderator-ends.html" rel="alternate"></link><published>2023-08-07T12:00:00-05:00</published><updated>2023-08-07T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-08-07:/stackexchange-moderator-ends.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are done striking. What did two months of inaction on the part of curators achieve?&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://meta.stackexchange.com/q/392032/186281"&gt;The Stack Exchange strike is over&lt;/a&gt;. It took two months and two days of inaction on behalf of community members and moderators to resolve
+the strike. The &lt;a href="https://meta.stackexchange.com/q/391847/186281"&gt;results of the negotiations&lt;/a&gt; were posted last week. Over the weekend the community voted that the goals of the strike have
+been achieved and called the end the strike.&lt;/p&gt;
+&lt;p&gt;So, what was achieved? What did more than two months of community upheaval get the users of Stack Exchange? &lt;/p&gt;
+&lt;h2 id="ai-generated-posts"&gt;AI Generated Posts&lt;a class="headerlink" href="#ai-generated-posts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Effective immediately, Stack Exchange has agreed to allow the removal of content based on a combination of strong and weak indicators of GPT 
+usage. Additionally, the original policy that was the straw that started all of this has been both &lt;a href="https://meta.stackexchange.com/q/391626/186281"&gt;publicly released&lt;/a&gt; and declared invalid.&lt;/p&gt;
+&lt;p&gt;This release took two months and was the cause of the strike beginning. It drove a wedge between the moderators of Stack Exchange and the 
+company and its employees. I do not understand why it took so long to release this. The public answer is that there was initial moderator 
+pushback on releasing it but that was recinded within days. Like much of the public communications during this, Stack Exchange clung to 
+outdated information.&lt;/p&gt;
+&lt;p&gt;Something that I think is amazing is that this private policy was never leaked in full during the strike. Despite what the company was saying about
+moderators and the community, the community abided by its believe that agreements - private moderator space - should remain just that: private. I 
+applaud the moderation community for this commitment to their ideals.&lt;/p&gt;
+&lt;h2 id="data-dumps"&gt;Data Dumps&lt;a class="headerlink" href="#data-dumps" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Data Dumps were turned off back in March. They were re-enabled several weeks into the strike as one of the first concessions. However, it's 
+important to note that a &lt;a href="https://meta.stackexchange.com/a/391640/186281"&gt;former employee has presented that this was not an unwavering commitment&lt;/a&gt;. They had been contacted by the Stack
+Exchange CEO in March to disable the scheduled data dump.&lt;/p&gt;
+&lt;p&gt;The company officially states that it's committed to the  long-term (foreseeable future) survival of the data dumps, the API, and SEDE [Stack Exchange Data Explorer]. &lt;/p&gt;
+&lt;p&gt;This is good. It is concerned that this action was done without informing the community and only discovered after the after though. This type of 
+"ask for forgiveness" behavior from Stack Exchange is common and is a concern for me. &lt;/p&gt;
+&lt;h2 id="moderation-agreement-changes"&gt;Moderation Agreement Changes&lt;a class="headerlink" href="#moderation-agreement-changes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stack Exchange agreed to a review period for binding policy changes and policies must be made public. This is another big one that caused the strike
+to move forward. I'm happy to see this has been resolved in a way that benefits the community and transparency. Time will tell if this holds true, as 
+it's only something that we can say is effective until it is no longer effective.&lt;/p&gt;
+&lt;p&gt;Assuming that the agreement holds though, a review period will be good for the moderators that are expected to enforce changes. It will give them
+time to get clarifications and be prepared for the discussions on meta. &lt;/p&gt;
+&lt;p&gt;The company also agreed to update their press policy. New statements to the press must get at least one member of the community management team to 
+sign off on the statement and statements must be as general as possible. This works in tandum with the existing policy put in place in 2019, where
+statements won't discuss an individual moderator without written permission.&lt;/p&gt;
+&lt;p&gt;This is another one that we can't judge effectiveness of until it's been broken. Unfortunately, the press policy from 2019 wasn't enough to prevent
+some statements to the press this time that presented moderators in very unflattering light. Even though none were identified by name, the broad 
+statements were taken out of context in a couple instances.&lt;/p&gt;
+&lt;p&gt;That said, there was an &lt;a href="https://meta.stackexchange.com/q/391990/186281"&gt;apology&lt;/a&gt; for that from the Vice President of Community:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I would also like to take this opportunity to extend my most sincere personal apologies to mods who felt that in our previous text we were accusing them of racism. While that was not the intent of the text that I wrote (nor did that sentiment reflect the feelings of anyone involved in drafting the text), I can understand how it could be read that way, and I regret that we allowed it to be published like that. You have my sincere apologies, which I will also deliver in person at the upcoming mod/staff meetup.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="violations-of-the-moderator-agreement"&gt;Violations of the Moderator Agreement&lt;a class="headerlink" href="#violations-of-the-moderator-agreement" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The current moderator agreement does not layout a process for determining if the company violates the agreement. The strike representatives and the 
+company agreed to an outline for such a process. IF Stack Exchange is found to have violated the agreement, actions taken and comments made during the 
+violation must be retracted and nullified and a public apology must be made detailing the violation.&lt;/p&gt;
+&lt;p&gt;This is one that I hope we don't have to see utilized. Again, time will tell if it is something that will occur. &lt;/p&gt;
+&lt;p&gt;There is also a process where the moderation team can vote on if a violation occurred. Exact numbers of still being determined, but essentially a 
+minimium number of moderators must vote on if a violation was committed and from that a minimium amount must vote that a violation occurred.&lt;/p&gt;
+&lt;p&gt;While I'm unhappy with the percentages used as placeholders, the discussions here continue. I am happy with the process and the proposed actions if 
+a violation is determined.&lt;/p&gt;
+&lt;h2 id="stack-exchange-processes"&gt;Stack Exchange Processes&lt;a class="headerlink" href="#stack-exchange-processes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Several internal changes were negotated as well. Each of these were around how the company communicates. These include being transparent that the 
+strike occurred, collaboration with the community instead of fighting it, public policies, and clear communication. &lt;/p&gt;
+&lt;p&gt;All of these are positives changes and can only be evaluated over time. There are already signs that some are taking place with public releases of 
+policies, acknowledgement of the agreement itself and discussions around the final details.&lt;/p&gt;
+&lt;h2 id="what-do-i-think"&gt;What do I think?&lt;a class="headerlink" href="#what-do-i-think" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been pretty pessimistic of the last two months. Stack Exchange appeared to be following reddit's footsteps in some cases. I was afraid that
+the company would start replacing moderators in a few months - either when the automated systems started flagging inactivity or when the products 
+announced at the &lt;a href="https://andrewwegner.com/stackexchange-moderator-strike-overflowai-reaction.html"&gt;developer conference last month&lt;/a&gt; started appearing on the site.&lt;/p&gt;
+&lt;p&gt;I'm still pessimistic about the future of the platform, if I'm being honest with myself. I do not think generative AI will be a benefit to the community,
+as it exists right now. By the time it's to a point where generative AI doesn't make things up, it'll be to late. The bad data and information will 
+already been on the site and trust will be gone.&lt;/p&gt;
+&lt;p&gt;The policies that can't be measured until a violation occurs also has me concerned. We went through this cycle back in 2019 with a strike being 
+very narrowly averted then. Unfortunately, the same things that occurred then triggered the issues now: a private policy and talking to the press. Both
+were supposed to be resolved then. Both are supposed to be resolved now. Unfortunately, we won't know if that's the case until the policies cause another
+problem.&lt;/p&gt;
+&lt;p&gt;So...am I sticking around as a moderator? There is a virtual moderator meet up later this month with the CEO of Stack Exchange. I think that will be
+when I make my final determination. However, two months of not moderating was a welcome break. &lt;/p&gt;</content><category term="Stack Exchange Strike"></category><category term="Stack Exchange"></category><category term="moderation"></category></entry><entry><title>Stack Exchange Strike - Community and AI Talk Reaction</title><link href="https://andrewwegner.com/stackexchange-moderator-strike-overflowai-reaction.html" rel="alternate"></link><published>2023-07-27T12:00:00-05:00</published><updated>2023-07-27T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-07-27:/stackexchange-moderator-strike-overflowai-reaction.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my reaction to Stack Exchange's products and updates announced at the WeAreDevelopers conference.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I really was trying not to post anything about the strike again until it was resolved. There was a long period of no action in July so my 
 assumption was that it was being worked on behind the scenes with the company and the designated representatives. Turns out, that it was just

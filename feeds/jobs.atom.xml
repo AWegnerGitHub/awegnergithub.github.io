@@ -278,12 +278,12 @@ leadership role (reach out if you are looking for someone). Let's take a look at
 &lt;p&gt;Lastly, I wanted to see if I could figure out how much CO2 I had not produced based on how much gasoline I hadn't used. I was expecting a complicated formula. Turns out that &lt;a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle#burning"&gt;1 Gallon of Gas = 19.59 pounds of CO2&lt;/a&gt; (8,887 grams of CO2 per gallon).&lt;/p&gt;
 &lt;h2 id="the-calculations"&gt;The calculations&lt;a class="headerlink" href="#the-calculations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With my initial numbers determined, the calculations are pretty easy.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Total Miles Not Driven = Miles per day * Total number of work days
-                       = 90 * 1089
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Total Miles Not Driven = Miles per day &lt;span class="gs"&gt;* Total number of work days&lt;/span&gt;
+&lt;span class="gs"&gt;                       = 90 *&lt;/span&gt; 1089
                        = 98,010 miles
 
-Total Time Not Commuting = Commute time per day (minutes) * Total number of days
-                         = 106 * 1089
+Total Time Not Commuting = Commute time per day (minutes) &lt;span class="gs"&gt;* Total number of days&lt;/span&gt;
+&lt;span class="gs"&gt;                         = 106 *&lt;/span&gt; 1089
                          = 115,434 minutes
                          = 1923.9 hours
                          = 80.1 days
@@ -292,12 +292,12 @@ Gallons of Gas Not used = Total Miles Not Driven / Average MPG
                         = 98,010 / 22.5
                         = 4,356 gallons of gasoline
 
-Dollars not spent on gas = Gallons of Gas Not used * Average gas price
-                         = 4,356 * 3.21
+Dollars not spent on gas = Gallons of Gas Not used &lt;span class="gs"&gt;* Average gas price&lt;/span&gt;
+&lt;span class="gs"&gt;                         = 4,356 *&lt;/span&gt; 3.21
                          = $13,997.28
 
-CO2 Not produced = Gallons of Gas Not Used * 19.59
-                 = 4,356 * 19.59
+CO2 Not produced = Gallons of Gas Not Used &lt;span class="gs"&gt;* 19.59&lt;/span&gt;
+&lt;span class="gs"&gt;                 = 4,356 *&lt;/span&gt; 19.59
                  = 85,334.04 pounds of CO2
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="analysis"&gt;Analysis&lt;a class="headerlink" href="#analysis" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;

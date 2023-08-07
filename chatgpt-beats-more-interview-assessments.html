@@ -350,17 +350,17 @@ my developers do it, I'd mention it during a code review. I was curious though a
 <p>Write the function without importing <code>factorial</code></p>
 </blockquote>
 <p>It replied with this function:</p>
-<div class="codehilight code"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">BracketCombinations</span><span class="ss">(</span><span class="nv">num</span><span class="ss">)</span>:
-<span class="w">    </span><span class="nv">def</span><span class="w"> </span><span class="nv">fact</span><span class="ss">(</span><span class="nv">n</span><span class="ss">)</span>:
-<span class="w">        </span><span class="nb">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">range</span><span class="ss">(</span><span class="mi">1</span>,<span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="ss">)</span>:
-<span class="w">            </span><span class="nb">result</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nv">i</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">result</span>
+<div class="codehilight code"><pre><span></span><code>def BracketCombinations(num):
+    def fact(n):
+        result = 1
+        for i in range(1, n + 1):
+            result <span class="gs">*= i</span>
+<span class="gs">        return result</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">fact</span><span class="ss">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">num</span><span class="ss">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="ss">(</span><span class="nv">fact</span><span class="ss">(</span><span class="nv">num</span><span class="ss">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">fact</span><span class="ss">(</span><span class="nv">num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="ss">))</span>
+<span class="gs">    return fact(2 *</span> num) // (fact(num) * fact(num + 1))
 
-#<span class="w"> </span><span class="nv">keep</span><span class="w"> </span><span class="nv">this</span><span class="w"> </span><span class="nv">function</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="nl">here</span><span class="w"> </span>
-<span class="nv">print</span><span class="ss">(</span><span class="nv">BracketCombinations</span><span class="ss">(</span><span class="nv">int</span><span class="ss">(</span><span class="nv">input</span><span class="ss">())))</span>
+<span class="gh">#</span> keep this function call here 
+print(BracketCombinations(int(input())))
 </code></pre></div>
 <p>I submitted this response too.</p>
 <p>I only have one set of images for this challenge, because they both output <em>exactly</em> the same responses. Both solutions scored the same. Both solutions 
