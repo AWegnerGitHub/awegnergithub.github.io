@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-08-14T15:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Failure of Management - Unlimited PTO</title><link href="https://andrewwegner.com/management-failure-unlimited-pto.html" rel="alternate"></link><published>2023-08-14T15:00:00-05:00</published><updated>2023-08-14T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-08-14:/management-failure-unlimited-pto.html</id><summary type="html">&lt;p&gt;Unlimited PTO is a perk more and more organization are offering their employees. Unfortunately, many managers and organization are managing this poorly and failing their employees. What does this management failure look like?&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-08-23T22:15:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>How to disable Grafana in Gitlab 16.3 Omnibus</title><link href="https://andrewwegner.com/disable-grafana-in-gitlab-16.html" rel="alternate"></link><published>2023-08-23T22:15:00-05:00</published><updated>2023-08-23T22:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-08-23:/disable-grafana-in-gitlab-16.html</id><summary type="html">&lt;p&gt;GitLab 16.3 deprecated and disabled the bundled Grafana, but didn't provide complete instructions for how to disable it. Fortunately, it's easy to do. I've documented the few steps needed.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I continue to love my &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;self hosted instance of GitLab&lt;/a&gt;. I look forward to the 22nd of every month to pull down the 
+newest dot update and enjoy the new features. As with any piece of software, things get deprecated and eventually disabled over
+time. &lt;/p&gt;
+&lt;p&gt;In 16.3 - released in August 2023 - the version of &lt;a href="https://grafana.com/"&gt;Grafana&lt;/a&gt; bundled with the self hosted version of GitLab reached the 
+end of it's depreciation window and was disabled. GitLab added a check to prevent an update if it was still enabled. &lt;/p&gt;
+&lt;h2 id="symptom"&gt;Symptom&lt;a class="headerlink" href="#symptom" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When performing an &lt;code&gt;apt&lt;/code&gt; update, GitLab 16.3 will error out if Grafana is still enabled on your instance. The error looks like this:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Preparing to unpack .../gitlab-ee_16.3.0-ee.0_amd64.deb ...
+* grafana[enable] has been deprecated since 16.0 and was removed in 16.3. The bundled Grafana is deprecated and no longer available. We recommond following
+https://docs.gitlab.com/ee/administration/monitoring/performance/grafana_configuration.html#deprecation.
+Deprecations found. Please correct them and try again.&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://docs.gitlab.com/ee/administration/monitoring/performance/grafana_configuration.html#deprecation"&gt;documentation linked&lt;/a&gt; provides four steps to follow&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To switch away from bundled Grafana to a newer version of Grafana from Grafana Labs:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Set up a version of Grafana from Grafana Labs.&lt;/li&gt;
+&lt;li&gt;Export the existing dashboards from bundled Grafana.&lt;/li&gt;
+&lt;li&gt;Import the existing dashboards in the new Grafana instance.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.gitlab.com/ee/administration/monitoring/performance/grafana_configuration.html#integrate-with-gitlab-ui"&gt;Configure GitLab&lt;/a&gt; to use the new Grafana instance.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I've removed the links in steps 2 and 3, because they really don't matter for this write up. Step 1 does not have a link, so it's left as 
+and excercise to the user to install Grafana in their environment. Step 4, links to another article that provides a few more steps to follow.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;On the left sidebar, expand the top-most chevron.&lt;/li&gt;
+&lt;li&gt;Select Admin Area.&lt;/li&gt;
+&lt;li&gt;On the left sidebar, select Settings &amp;gt; Metrics and profiling and expand Metrics - Grafana.&lt;/li&gt;
+&lt;li&gt;Select the Add a link to Grafana checkbox.&lt;/li&gt;
+&lt;li&gt;Configure the Grafana URL. Enter the full URL of the Grafana instance.&lt;/li&gt;
+&lt;li&gt;Select Save changes.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And that's it. That's the set of instructions provided by GitLab. Follow those, rerun your &lt;code&gt;apt&lt;/code&gt; update and you'll run into the same symptom.&lt;/p&gt;
+&lt;h2 id="solution"&gt;Solution&lt;a class="headerlink" href="#solution" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The missing step is hinted at in the error message itself: &lt;code&gt;grafana[enable] has been deprecated&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This is a setting in the GitLab configuration file. You will need to edit the config file and set the value to false.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Edit &lt;code&gt;/etc/gitlab/gitlab.rb&lt;/code&gt; (or appropriate path) &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Edit the &lt;code&gt;grafana[enable]&lt;/code&gt; value to be &lt;code&gt;false&lt;/code&gt;. On my config this was on line 1689, but I recommend you search for the string &lt;code&gt;grafana&lt;/code&gt; to find it. &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;grafana['enable'] = false&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Reconfigure GitLab by running &lt;code&gt;gitlab-ctl reconfigure&lt;/code&gt;. Let this run and it should end with &lt;code&gt;gitlab Reconfigured!&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;You can now resume the &lt;code&gt;apt&lt;/code&gt; update that failed due to having Grafana enabled.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once done, you will get the standard GitLab upgrade complete message and you'll be good to go.&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Failure of Management - Unlimited PTO</title><link href="https://andrewwegner.com/management-failure-unlimited-pto.html" rel="alternate"></link><published>2023-08-14T15:00:00-05:00</published><updated>2023-08-14T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-08-14:/management-failure-unlimited-pto.html</id><summary type="html">&lt;p&gt;Unlimited PTO is a perk more and more organization are offering their employees. Unfortunately, many managers and organization are managing this poorly and failing their employees. What does this management failure look like?&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="the-pitch"&gt;The pitch&lt;a class="headerlink" href="#the-pitch" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Unlimited PTO - more vacation time! - is a great recruiting pitch. Who wouldn't want to take more time off through out the year? Recruiters like
 unlimited PTO because it reduces benefit package negotiations over vacation time. Theorectically, it should help fight employee burn out too because 
