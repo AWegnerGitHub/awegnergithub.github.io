@@ -1,5 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-08-23T22:15:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>How to disable Grafana in Gitlab 16.3 Omnibus</title><link href="https://andrewwegner.com/disable-grafana-in-gitlab-16.html" rel="alternate"></link><published>2023-08-23T22:15:00-05:00</published><updated>2023-08-23T22:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-08-23:/disable-grafana-in-gitlab-16.html</id><summary type="html">&lt;p&gt;GitLab 16.3 deprecated and disabled the bundled Grafana, but didn't provide complete instructions for how to disable it. Fortunately, it's easy to do. I've documented the few steps needed.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-09-26T13:30:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Syncing Obsidian Notes across devices using Git and GitLab</title><link href="https://andrewwegner.com/obsidian-gitlab-setup.html" rel="alternate"></link><published>2023-09-26T13:30:00-05:00</published><updated>2023-09-26T13:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-09-26:/obsidian-gitlab-setup.html</id><summary type="html">&lt;p&gt;Setting up Obsidian to sync notes across devices utilizing git and a GitLab backend&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I take a lot of notes. About five years ago I switched from utilizing notebooks, because I was going through them so quickly, to a 
+&lt;a href="https://getrocketbook.com/"&gt;Rocket Book&lt;/a&gt;. This feels very similar to a notebook, with the benefit that it is reusable. It also has an application that allows me to quickly 
+scan a page and save it to one of several locations. It's very handy. The downside is that the OCR isn't perfect (oooor, my handwriting is bad) and the
+annoyance of cleaning the pages every week or so. I've found that if I don't let the pages dry completely, then the next time I go to use that page it 
+has a fine film over it that makes writing a little more difficult. Think writing with a pen that is low on ink.&lt;/p&gt;
+&lt;p&gt;I discovered &lt;a href="https://getrocketbook.com/"&gt;Obsidian&lt;/a&gt; a while ago. I've put a little bit of effort into utilizing it, but more recently I've committed to utilizing it more.
+The idea of all digial notes is enticing. Over time I'll see if it's helpful.&lt;/p&gt;
+&lt;p&gt;But, like anyone with multiple devices, I want my Obsidian vault on all devices. What if I have a thought while I'm away from my main computer? One option is to utilize the &lt;a href="https://obsidian.md/sync"&gt;Obsidian Sync&lt;/a&gt; feature. It's got end to end encryption, version history and a monthly subscription fee. I can build something using my &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;existing GitLab installation&lt;/a&gt; without that monthly subscription fee. Plus, since I'm the only user of this, I'm ok with a little trade off that a full service provides. &lt;/p&gt;
+&lt;h2 id="repository-setup"&gt;Repository Setup&lt;a class="headerlink" href="#repository-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="gitlab"&gt;GitLab&lt;a class="headerlink" href="#gitlab" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Within GitLab set up a new project by clicking on "New Project" in the upper right.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Create a new GitLab Project" src="https://andrewwegner.com/images/obsidian/new_gitlab_project.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Select the option to create a new blank project.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Create a blank repository" src="https://andrewwegner.com/images/obsidian/blank_gitlab_project.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Now we need to set up the project details. Select a name that is meaningful for you. I've utilized &lt;code&gt;andy-notes&lt;/code&gt; in the screenshot below. I also created this without a &lt;code&gt;README&lt;/code&gt;, because I'll generate the initial repository in a moment and push it up to the server.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="New project details - without a precreated README" src="https://andrewwegner.com/images/obsidian/project_details.png"/&gt;&lt;/p&gt;
+&lt;h3 id="repository-initialization"&gt;Repository Initialization&lt;a class="headerlink" href="#repository-initialization" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This set of steps only has to occur once. All devices will be able to start with the next section.&lt;/p&gt;
+&lt;p&gt;Open the command prompt or terminal (depending on what your operating system calls the system console). Navigate to the location you want your notes to be stored. In my case, I created a new directory to match the name of my repository. I then created a &lt;code&gt;.gitignore&lt;/code&gt; with the following content in the directory.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;.obsidian/*
+!.obsidian/app.json
+!.obsidian/appearance.json
+!.obsidian/config
+!.obsidian/community-plugins.json
+!.obsidian/core-plugins.json
+!.obsidian/graph.json
+!.obsidian/hotkeys.json&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This should ignore the majority of the &lt;code&gt;.obsidian&lt;/code&gt; hidden directory between my devices, but keep a few key items. I may update this over time, but for now this is working well.&lt;/p&gt;
+&lt;p&gt;Now, initialize the repository.&lt;/p&gt;
+&lt;p&gt;```
+cd andy-notes
+git init --initial-branch=main
+git remote add origin git@&lt;my.server.url&gt;:andy/andy-notes.git
+git add .
+git commit -m "Initial Commit"
+git push --set-upstream origin main&lt;/my.server.url&gt;&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;p&gt;We're ready to start utilizing Obsidian and GitLab!&lt;/p&gt;
+&lt;h2 id="obsidian-setup"&gt;Obsidian Setup&lt;a class="headerlink" href="#obsidian-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="first-open"&gt;First Open&lt;a class="headerlink" href="#first-open" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Now that the backend repository is set up and it's been initially configured, all instances of Obsidian can utilize these sets of steps to start working. &lt;/p&gt;
+&lt;p&gt;If this is not the device you initilized the repository on, you need to perform an initial &lt;code&gt;pull&lt;/code&gt; of the repository to this device so that it is a local folder.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git clone git@&amp;lt;my.server.url&amp;gt;:andy/andy-notes.git&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Open Obsidian. Since this is the first time you are opening it, you'll be asked to select where your vault is stored. You want to select the "Open folder as vault" option.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Open an existing folder as your vault" src="https://andrewwegner.com/images/obsidian/open_folder.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Select the location that your repository has been cloned into. &lt;/p&gt;
+&lt;h3 id="enable-plugins"&gt;Enable Plugins&lt;a class="headerlink" href="#enable-plugins" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Obsidian has support for &lt;a href="https://obsidian.md/plugins"&gt;community built plugins&lt;/a&gt;. There are plugins to do all kinds of things to improve your writing and note taking. I encourage the reader to look through or search for plugins that may help you. We, however, need one specific one to accomplish our goal of syncing the vault over to GitLab.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://obsidian.md/plugins?id=obsidian-git"&gt;Obsidian Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To install community plugins we need to enable this feature. In the lower left of the workspace, click the gears icon. Then click on "Community plugins", and finally "Turn on community plugins"&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable Community Plugins" src="https://andrewwegner.com/images/obsidian/enable_plugins.png"/&gt;&lt;/p&gt;
+&lt;p&gt;With this enabled, you can now browse the community plugins. To do so, click the browse button.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Browse community plugins button" src="https://andrewwegner.com/images/obsidian/browse_plugins.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Search for &lt;code&gt;Obsidian Git&lt;/code&gt;. While writing this, it was the first result. You should be looking for the one by Vinzent. Click on the card to pull up plugin details and potential actions.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Obsidian Git in the Community Plugins marketplace" src="https://andrewwegner.com/images/obsidian/plugin_search.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Then click "Install". The installation process should only take a moment or two.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Install the Obsidian Git plugin by clicking the install button" src="https://andrewwegner.com/images/obsidian/plugin_install.png"/&gt;&lt;/p&gt;
+&lt;p&gt;You'll receive a confirmation in the upper right if the install is successful.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Successful plugin install confirmation message" src="https://andrewwegner.com/images/obsidian/plugin_install_success.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Finally, enable the new plugin. The previous "install" button has changed to be "Enable". Click that.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable new Obsidian Git plugin" src="https://andrewwegner.com/images/obsidian/plugin_enable.png"/&gt;&lt;/p&gt;
+&lt;h3 id="configure-obsidian-git"&gt;Configure Obsidian Git&lt;a class="headerlink" href="#configure-obsidian-git" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;With the Obsidian Git plugin installed, it's time to configure it. There are a few quick settings to fill out. First, you need to click the "Options" button.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Obsidian Git plugin configuration options" src="https://andrewwegner.com/images/obsidian/plugin_options.png"/&gt;&lt;/p&gt;
+&lt;p&gt;The first setting to change is how often you want the backup to GitLab to occur. This automatic back up is disabled by default. I set mine to be every 5 minutes. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Adjust the backup interval" src="https://andrewwegner.com/images/obsidian/backup_interval.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Next, enable &lt;code&gt;Pull updates on startup&lt;/code&gt; so that the instance of Obsidian that is running is always up to date. Your notes from other devices will be synchronized when Obsidian launches and you can get right back to writing.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable pull updates on startup with this toggle" src="https://andrewwegner.com/images/obsidian/pull_startup.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Be sure to add the Author name and email address. This is the information that will be sent on each commit. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Commit Author information" src="https://andrewwegner.com/images/obsidian/commit_author.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I also adjusted the autocommit message to include the hostname of the device performing the commit. I have been going back and forth on whether this is important enough for me to keep since I'm the only one that utilizes this vault. But, if you want to adjust the messages there are two instances where the commit message can be modified.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Adding the hostname to the automatically generated commit messages" src="https://andrewwegner.com/images/obsidian/commit_author.png"/&gt;&lt;/p&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After performing the steps above, this instance of Obsidian is ready to utilize GitLab to sync your vault for free. Each new instance only needs to have the Obsidian Git plugin installed, enabled and configured. &lt;/p&gt;
+&lt;p&gt;After you've configured your instance, when you open Obsidian the plugin will pull changes from the repository and let you know that everything has been updated.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Obsidian successfully updated the vault after opening" src="https://andrewwegner.com/images/obsidian/open_success.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Then on a scheduled basis - 5 minutes in my case - it will commit and push changes to GitLab.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Successful autocommit" src="https://andrewwegner.com/images/obsidian/autocommit.png"/&gt;&lt;/p&gt;
+&lt;p&gt;In GitLab, this commit will should show up immediately. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="GitLab commit" src="https://andrewwegner.com/images/obsidian/commit.png"/&gt;&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I now have Obsidian set up on my main devices. I've enjoyed the ability to have my notes available as soon as I open the application. Overall, this was pretty easy to set up. It seems like a lot of steps, but the one time setup makes it much longer than installing and configuring a plugin for each new instance actually takes.&lt;/p&gt;
+&lt;p&gt;I'm trying to keep my notes digital and I'm hopeful that this new set up will help. I can move between computers for personal projects instead of wondering what I had found in my research because I left it on another tab on another machine and forgot to put it with the rest of my notes. Now, it just happens. &lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>How to disable Grafana in Gitlab 16.3 Omnibus</title><link href="https://andrewwegner.com/disable-grafana-in-gitlab-16.html" rel="alternate"></link><published>2023-08-23T22:15:00-05:00</published><updated>2023-08-23T22:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-08-23:/disable-grafana-in-gitlab-16.html</id><summary type="html">&lt;p&gt;GitLab 16.3 deprecated and disabled the bundled Grafana, but didn't provide complete instructions for how to disable it. Fortunately, it's easy to do. I've documented the few steps needed.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I continue to love my &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;self hosted instance of GitLab&lt;/a&gt;. I look forward to the 22nd of every month to pull down the 
 newest dot update and enjoy the new features. As with any piece of software, things get deprecated and eventually disabled over
