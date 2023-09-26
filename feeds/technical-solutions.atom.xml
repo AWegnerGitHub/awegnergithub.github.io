@@ -20,30 +20,31 @@ The idea of all digial notes is enticing. Over time I'll see if it's helpful.&lt
 &lt;h3 id="repository-initialization"&gt;Repository Initialization&lt;a class="headerlink" href="#repository-initialization" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;This set of steps only has to occur once. All devices will be able to start with the next section.&lt;/p&gt;
 &lt;p&gt;Open the command prompt or terminal (depending on what your operating system calls the system console). Navigate to the location you want your notes to be stored. In my case, I created a new directory to match the name of my repository. I then created a &lt;code&gt;.gitignore&lt;/code&gt; with the following content in the directory.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;.obsidian/*
-!.obsidian/app.json
-!.obsidian/appearance.json
-!.obsidian/config
-!.obsidian/community-plugins.json
-!.obsidian/core-plugins.json
-!.obsidian/graph.json
-!.obsidian/hotkeys.json&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="p"&gt;*&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;app.json&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;appearance.json&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;config&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;community-plugins.json&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;core-plugins.json&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;graph.json&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;hotkeys.json&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This should ignore the majority of the &lt;code&gt;.obsidian&lt;/code&gt; hidden directory between my devices, but keep a few key items. I may update this over time, but for now this is working well.&lt;/p&gt;
 &lt;p&gt;Now, initialize the repository.&lt;/p&gt;
-&lt;p&gt;```
-cd andy-notes
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cd andy-notes
 git init --initial-branch=main
-git remote add origin git@&lt;my.server.url&gt;:andy/andy-notes.git
+git remote add origin git@&amp;lt;my.server.url&amp;gt;:andy/andy-notes.git
 git add .
 git commit -m "Initial Commit"
-git push --set-upstream origin main&lt;/my.server.url&gt;&lt;/p&gt;
-&lt;p&gt;```&lt;/p&gt;
+git push --set-upstream origin main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We're ready to start utilizing Obsidian and GitLab!&lt;/p&gt;
 &lt;h2 id="obsidian-setup"&gt;Obsidian Setup&lt;a class="headerlink" href="#obsidian-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="first-open"&gt;First Open&lt;a class="headerlink" href="#first-open" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Now that the backend repository is set up and it's been initially configured, all instances of Obsidian can utilize these sets of steps to start working. &lt;/p&gt;
 &lt;p&gt;If this is not the device you initilized the repository on, you need to perform an initial &lt;code&gt;pull&lt;/code&gt; of the repository to this device so that it is a local folder.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git clone git@&amp;lt;my.server.url&amp;gt;:andy/andy-notes.git&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git clone git@&amp;lt;my.server.url&amp;gt;:andy/andy-notes.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Open Obsidian. Since this is the first time you are opening it, you'll be asked to select where your vault is stored. You want to select the "Open folder as vault" option.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Open an existing folder as your vault" src="https://andrewwegner.com/images/obsidian/open_folder.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Select the location that your repository has been cloned into. &lt;/p&gt;
