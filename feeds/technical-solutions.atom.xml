@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-09-26T13:30:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Syncing Obsidian Notes across devices using Git and GitLab</title><link href="https://andrewwegner.com/obsidian-gitlab-setup.html" rel="alternate"></link><published>2023-09-26T13:30:00-05:00</published><updated>2023-09-26T13:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-09-26:/obsidian-gitlab-setup.html</id><summary type="html">&lt;p&gt;Setting up Obsidian to sync notes across devices utilizing git and a GitLab backend&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-10-06T10:15:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Python Gotcha: Mutable Default Optional Arguments</title><link href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html" rel="alternate"></link><published>2023-10-06T10:15:00-05:00</published><updated>2023-10-06T10:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-10-06:/python-gotcha-optional-default-arguments.html</id><summary type="html">&lt;p&gt;A quick walk through of why mutable defaults on optional arguments is bad in Python.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="the-problem"&gt;The Problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Without running this in your IDE, what does the following code output? Forgive the use of &lt;code&gt;vins&lt;/code&gt;, I work in the logistics field and deal with vehicle identification numbers frequently.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;def add_vin(this_vin: str, vins: list = []):
+    if this_vin not in vins:
+        vins.append(this_vin)
+    return vins
+
+add_vin("VIN1")
+add_vin("VIN2")
+print(add_vin("VIN3"))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You probably saw that &lt;code&gt;vins&lt;/code&gt; is an optional argument and that it defaults to an empty list. Run this function three times without passing it a list to append to, and it's reasonable to assume that you have a final result of a list with a single item contained in it - &lt;code&gt;VIN3&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Unfortunately, that's wrong. The output is actually &lt;code&gt;["VIN1", "VIN2", "VIN3"]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Why?&lt;/p&gt;
+&lt;h2 id="whats-going-on"&gt;What's going on?&lt;a class="headerlink" href="#whats-going-on" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In Python, default arguments are bound to a function at the time the function is defined. This is only done once. If you don't pass the optional argument in to the function call, the same list is changed when the function is called. This means that in the example above, a new list is not created each time the function is called without the optional &lt;code&gt;vins&lt;/code&gt; argument.&lt;/p&gt;
+&lt;p&gt;We can see this by slightly modifying the code above to show the object ID we are operating on.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;def add_vin(this_vin, vins=[]):
+    if this_vin not in vins:
+        print(f"id={id(vins)}")    # Print the object ID we are appending to
+        vins.append(this_vin)
+    return vins
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Which outputs the following as it adds each VIN.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;id=2954990867712
+id=2954990867712
+id=2954990867712
+['VIN1', 'VIN2', 'VIN3']
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Each time &lt;code&gt;add_vin&lt;/code&gt; was called without passing it a list to operate on, the function will operate on the same default list.&lt;/p&gt;
+&lt;h2 id="another-example"&gt;Another example&lt;a class="headerlink" href="#another-example" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The example above is basic, but gets the point across. However, let's look at something a bit more common. Connecting to a database with a connection object at the parameter.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;open_database&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;connection&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;make_connection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'example.com'&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# do database things with `connection`&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Well done. You've closed your connection. Your DBA will thank you. However, what happens next time you call &lt;code&gt;open_database()&lt;/code&gt; in your code? After all, your connection information is there by default, you don't need to pass a new connection, right?&lt;/p&gt;
+&lt;p&gt;Again, wrong. You've closed the &lt;code&gt;connection&lt;/code&gt; and it's the default argument. The next call to &lt;code&gt;open_database&lt;/code&gt; will utilize the same &lt;code&gt;connection&lt;/code&gt; object. A connection that is closed. Your database call will fail.&lt;/p&gt;
+&lt;h2 id="last-example"&gt;Last Example&lt;a class="headerlink" href="#last-example" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One last example:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;print_datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;print_datetime&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;print_datetime&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is going to print the current datetime, sleep for 10 seconds, and print the new datetime - right?! &lt;/p&gt;
+&lt;p&gt;No. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;2023&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;10&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;06&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;45&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;21.392973&lt;/span&gt;
+&lt;span class="mf"&gt;2023&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;10&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;06&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;45&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;21.392973&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Why?! &lt;/p&gt;
+&lt;p&gt;Again, an optional default argument is only bound once. Since a new value isn't passed to the function on the second call, the exact same value is used the second time through. Whoops. &lt;/p&gt;
+&lt;h2 id="what-can-i-do-about-this"&gt;What can I do about this?&lt;a class="headerlink" href="#what-can-i-do-about-this" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The best option, in my opinion, is to set the default values to &lt;code&gt;None&lt;/code&gt;. This is going to make it very obvious that there is a problem. In the first example, you'll get an exception because you can't append to &lt;code&gt;None&lt;/code&gt;. In the second, your database calls will error because &lt;code&gt;None&lt;/code&gt; doesn't contain connection information. In the third, you'll print &lt;code&gt;None&lt;/code&gt; instead of an expected &lt;code&gt;datatime&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;You could pass an immutable object like a tuple or a frozenset, but even these have caveats to be aware of. For example, a tuple can contain something mutable in it (ie. a list). Personally, I prefer to utilize &lt;code&gt;None&lt;/code&gt;.&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Syncing Obsidian Notes across devices using Git and GitLab</title><link href="https://andrewwegner.com/obsidian-gitlab-setup.html" rel="alternate"></link><published>2023-09-26T13:30:00-05:00</published><updated>2023-09-26T13:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-09-26:/obsidian-gitlab-setup.html</id><summary type="html">&lt;p&gt;Setting up Obsidian to sync notes across devices utilizing git and a GitLab backend&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I take a lot of notes. About five years ago I switched from utilizing notebooks, because I was going through them so quickly, to a 
 &lt;a href="https://getrocketbook.com/"&gt;Rocket Book&lt;/a&gt;. This feels very similar to a notebook, with the benefit that it is reusable. It also has an application that allows me to quickly 
