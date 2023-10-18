@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/python-gotcha-comparisons.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="Comparing two numerical variables in Python can have surprising results if you aren&#39;t aware of some common gotchas. This post covers a couple of the common ones." />
+<meta name="keywords" content="technical">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Python Gotcha: Comparisons"/>
+  <meta property="og:description" content="Comparing two numerical variables in Python can have surprising results if you aren&#39;t aware of some common gotchas. This post covers a couple of the common ones."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/python-gotcha-comparisons.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-10-18 10:15:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Python Gotcha: Comparisons  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#float-equality-comparisons">Float Equality Comparisons</a><ul>
+<li><a href="#decimal">Decimal</a></li>
+<li><a href="#isclose">isclose</a></li>
+</ul>
+</li>
+<li><a href="#is-vs">is vs. ==</a></li>
+<li><a href="#nan-nan">nan == nan</a><ul>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/python-gotcha-comparisons.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Python Gotcha: Comparisons</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/python-gotcha-comparisons.html",
+      "name": "https://andrewwegner.com/python-gotcha-comparisons.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="python-gotcha-comparisons">Python Gotcha: Comparisons</h1>
+    <p>
+      Posted on Wed 18 October 2023 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="float-equality-comparisons">Float Equality Comparisons<a class="headerlink" href="#float-equality-comparisons" title="Permanent link">¶</a></h2>
+<p>Like every other programming language, Python can't accurately represent floating-point numbers. I'm sure many Computer Science students have lost many hours learning how <a href="https://www.doc.ic.ac.uk/~eedwards/compsys/float/">floating representation works</a>. I remember that class well.</p>
+<p>In any case, let's get into the problem with comparing <code>float</code> values in Python and how to handle it.</p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; 0.1 + 0.2 == 0.3
+False
+</code></pre></div>
+<p>You, me, and anyone with a few years of elementary school under their belt can see that this <em>should be</em> <code>True</code>.</p>
+<p>What's happening here? We can see the problem by breaking down the component parts of this comparison.</p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; 0.3
+0.3
+&gt;&gt;&gt; 0.1 + 0.2
+0.30000000000000004
+</code></pre></div>
+<p>And now we see the floating point representation that is causing a problem.</p>
+<p>So, how do we deal with this?</p>
+<h3 id="decimal">Decimal<a class="headerlink" href="#decimal" title="Permanent link">¶</a></h3>
+<p>There are a couple options, both of which have their drawbacks. Let's start with <a href="https://docs.python.org/3/library/decimal.html"><code>Decimal</code></a>.</p>
+<blockquote>
+<p>The decimal module provides support for fast correctly rounded decimal floating point arithmetic.</p>
+</blockquote>
+<p>This sounds good, but an important gotcha here too is how it handles numerals vs. strings.</p>
+<div class="codehilight code"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Decimal</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">Decimal</span><span class="p">(</span><span class="s1">'0.1000000000000000055511151231257827021181583404541015625'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">'0.1'</span><span class="p">)</span>
+<span class="n">Decimal</span><span class="p">(</span><span class="s1">'0.1'</span><span class="p">)</span>
+</code></pre></div>
+<p>This means, to accomplish the comparison above, we need to wrap each of our numbers in a string.</p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; Decimal('0.1') + Decimal('0.2') == Decimal('0.3')
+True
+</code></pre></div>
+<p>That's annoying, but does function. </p>
+<h3 id="isclose">isclose<a class="headerlink" href="#isclose" title="Permanent link">¶</a></h3>
+<p>Python 3.5 implemented <a href="https://peps.python.org/pep-0485/">PEP 485</a> to test for approximate equality. This is done in the <a href="https://docs.python.org/3/library/math.html#math.isclose"><code>isclose</code></a> function. </p>
+<div class="codehilight code"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">math</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="mf">0.1</span><span class="o">+</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="kc">True</span>
+</code></pre></div>
+<p>That's cleaner than wrapping everything in strings. But, it also is more verbose than a simple <code>==</code> statement. It makes your code less clean, but does provide accurate comparisons.</p>
+<h2 id="is-vs">is vs. ==<a class="headerlink" href="#is-vs" title="Permanent link">¶</a></h2>
+<p>Another comparison that I've commonly seen misapplied is developers using <code>is</code> when they mean <code>==</code>. Put simply, <code>is</code> should ONLY be used if you are checking if two references refer to the same object. <code>==</code> is used to compare value by calling underlying <code>__eq__</code> methods.</p>
+<p>Let's see this in action:</p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; a = [1, 2, 3]
+&gt;&gt;&gt; b = a
+&gt;&gt;&gt; c = [1, 2, 3]
+&gt;&gt;&gt; d = [3, 2, 1]
+&gt;&gt;&gt; a == b
+True
+&gt;&gt;&gt; a == c
+True
+&gt;&gt;&gt; a == d
+False
+</code></pre></div>
+<p>So far, nothing unusual. <code>a</code> has the same values of <code>b</code> and <code>c</code> and different values from <code>d</code>. Now let's use <code>is</code></p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; a is b
+True
+&gt;&gt;&gt; b is a
+True
+&gt;&gt;&gt; a is c
+False
+&gt;&gt;&gt; a is d
+False
+&gt;&gt;&gt; b is c
+False
+</code></pre></div>
+<p>Here, the only <code>True</code> statements are the comparison between <code>a</code> and <code>b</code>. This is because <code>b</code> was initialized with the statement <code>b = a</code>. The other two variables were initialized as their own statements and values. <strong>Remember, <code>is</code> compares object references. If they are the same, it returned <code>True</code>.</strong></p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; id(a), id(b), id(c), id(d)
+(2267170738432, 2267170738432, 2267170545600, 2267170359040)
+</code></pre></div>
+<p>Since <code>a</code> and <code>b</code> are the same object, we get a <code>True</code> on their comparison. The others are different, hence the <code>False</code>.</p>
+<h2 id="nan-nan">nan == nan<a class="headerlink" href="#nan-nan" title="Permanent link">¶</a></h2>
+<p><code>nan</code>, or Not a Number, is a floating point value that can not be converted to anything other than a float and is considered not equal to all other values. It's a common way to represent missing values in a data set.</p>
+<p>There is a key phrase in that description above that is the basis for this Gotcha:</p>
+<blockquote>
+<p>is considered not equal to all other values</p>
+</blockquote>
+<p>It's common for software to check if two values are equal to one another prior to taking an action. For <code>nan</code>, that does not work:</p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; float('nan') == float('nan')
+False
+</code></pre></div>
+<p>This prevents code like this from entering the <code>if</code> block of an <code>if/else</code> statement</p>
+<div class="codehilight code"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">float</span><span class="ss">(</span><span class="s1">'nan'</span><span class="ss">)</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">float</span><span class="ss">(</span><span class="s1">'nan'</span><span class="ss">)</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">b</span>:
+...<span class="w">   </span>..<span class="w"> </span>##<span class="w"> </span><span class="k">Do</span><span class="w"> </span><span class="nv">something</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">equal</span>
+...<span class="w"> </span><span class="k">else</span>:
+...<span class="w">   </span>..<span class="w"> </span>##<span class="w"> </span><span class="k">Do</span><span class="w"> </span><span class="nv">something</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">equal</span>
+</code></pre></div>
+<p>In this example, they are <em>never</em> equal. </p>
+<p>This leads to an interesting, if not unintutive, way of checking if a variable is a <code>nan</code> value. Since <code>nan</code> is not equal to <em>all</em> other values, it is not equal to itself.</p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; a != a
+True
+</code></pre></div>
+<p>Like I said, "Interesting". But, when your code is looked at by others it's also "confusing". There is an easier way to show that you are checking for a <code>nan</code> value. <a href="https://docs.python.org/3/library/math.html#math.isnan"><code>isnan</code></a></p>
+<div class="codehilight code"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">math</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'nan'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'infinity'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="kc">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="kc">False</span>
+</code></pre></div>
+<p>To me, that's a much clearer check that we want to see if the value is <code>nan</code>. It's likely you aren't just passing <code>nan</code> to a single variable. You're probably using a library like <a href="https://numpy.org/">NumPy</a> or <a href="https://pandas.pydata.org/">Pandas</a>. In that case, you have functions in each of those libraries that can check for <code>nan</code> in a performant way.</p>
+<ul>
+<li>In NumPy the function has the same name but in the NumPy library: <code>numpy.isnan(value)</code>. </li>
+<li>In Pandas, the function has a slightly different name: <code>pandas.isna(value)</code></li>
+</ul>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h3>
+<p>Comparisons aren't always as straight forward as we'd like. I covered a few common comparison problems in Python here. </p>
+<p>Floating point comparisons are common across languages. Python has a few ways of making this easier for developers. I recommend utilizing <code>isclose</code> as it keeps the code a bit cleaner and eliminates the need to wrap numbers in strings if using the <code>Decimal</code> module.</p>
+<p><code>is</code> should <em>only</em> being used to check if two items are referring to the same object. In any other case, it's not doing the check you want it to be doing. </p>
+<p>Lastly, <code>nan</code> is equal to <em>nothing else</em>. It's important to be aware of that before you start comparing values in your dataset to one another. </p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/python-gotcha-join-vs-concat.html"
+    title="Python Gotcha: Join vs Concat">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+
+
+
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+  <div class="related-posts">
+    <h4>Part 3 of the Programming Gotchas series</h4>
+    <h5>Previous articles</h5>
+    <ul>
+      <li><a href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html">Python Gotcha: Mutable Default Optional Arguments</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-join-vs-concat.html">Python Gotcha: Join vs Concat</a></li>
+    </ul>
+  </div>
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Python Gotcha: Comparisons",
+  "headline": "Python Gotcha: Comparisons",
+  "dateCreated": "2023-10-18 10:15:00-05:00",
+  "datePublished": "2023-10-18 10:15:00-05:00",
+  "dateModified": "",
+  "copyrightYear": "2023",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/python-gotcha-comparisons.html",
+  "description": "Comparing two numerical variables in Python can have surprising results if you aren't aware of some common gotchas. This post covers a couple of the common ones.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2023 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>

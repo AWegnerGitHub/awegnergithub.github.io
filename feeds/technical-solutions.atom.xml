@@ -1,5 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-10-12T10:45:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Python Gotcha: Join vs Concat</title><link href="https://andrewwegner.com/python-gotcha-join-vs-concat.html" rel="alternate"></link><published>2023-10-12T10:45:00-05:00</published><updated>2023-10-12T10:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-10-12:/python-gotcha-join-vs-concat.html</id><summary type="html">&lt;p&gt;Append 100,000 strings together using join or concat - Which is faster?&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-10-18T10:15:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Python Gotcha: Comparisons</title><link href="https://andrewwegner.com/python-gotcha-comparisons.html" rel="alternate"></link><published>2023-10-18T10:15:00-05:00</published><updated>2023-10-18T10:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-10-18:/python-gotcha-comparisons.html</id><summary type="html">&lt;p&gt;Comparing two numerical variables in Python can have surprising results if you aren't aware of some common gotchas. This post covers a couple of the common ones.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="float-equality-comparisons"&gt;Float Equality Comparisons&lt;a class="headerlink" href="#float-equality-comparisons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Like every other programming language, Python can't accurately represent floating-point numbers. I'm sure many Computer Science students have lost many hours learning how &lt;a href="https://www.doc.ic.ac.uk/~eedwards/compsys/float/"&gt;floating representation works&lt;/a&gt;. I remember that class well.&lt;/p&gt;
+&lt;p&gt;In any case, let's get into the problem with comparing &lt;code&gt;float&lt;/code&gt; values in Python and how to handle it.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; 0.1 + 0.2 == 0.3
+False
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You, me, and anyone with a few years of elementary school under their belt can see that this &lt;em&gt;should be&lt;/em&gt; &lt;code&gt;True&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;What's happening here? We can see the problem by breaking down the component parts of this comparison.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; 0.3
+0.3
+&amp;gt;&amp;gt;&amp;gt; 0.1 + 0.2
+0.30000000000000004
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And now we see the floating point representation that is causing a problem.&lt;/p&gt;
+&lt;p&gt;So, how do we deal with this?&lt;/p&gt;
+&lt;h3 id="decimal"&gt;Decimal&lt;a class="headerlink" href="#decimal" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;There are a couple options, both of which have their drawbacks. Let's start with &lt;a href="https://docs.python.org/3/library/decimal.html"&gt;&lt;code&gt;Decimal&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The decimal module provides support for fast correctly rounded decimal floating point arithmetic.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This sounds good, but an important gotcha here too is how it handles numerals vs. strings.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;decimal&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Decimal&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Decimal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Decimal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'0.1000000000000000055511151231257827021181583404541015625'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Decimal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'0.1'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Decimal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'0.1'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This means, to accomplish the comparison above, we need to wrap each of our numbers in a string.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; Decimal('0.1') + Decimal('0.2') == Decimal('0.3')
+True
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That's annoying, but does function. &lt;/p&gt;
+&lt;h3 id="isclose"&gt;isclose&lt;a class="headerlink" href="#isclose" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Python 3.5 implemented &lt;a href="https://peps.python.org/pep-0485/"&gt;PEP 485&lt;/a&gt; to test for approximate equality. This is done in the &lt;a href="https://docs.python.org/3/library/math.html#math.isclose"&gt;&lt;code&gt;isclose&lt;/code&gt;&lt;/a&gt; function. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isclose&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kc"&gt;True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That's cleaner than wrapping everything in strings. But, it also is more verbose than a simple &lt;code&gt;==&lt;/code&gt; statement. It makes your code less clean, but does provide accurate comparisons.&lt;/p&gt;
+&lt;h2 id="is-vs"&gt;is vs. ==&lt;a class="headerlink" href="#is-vs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Another comparison that I've commonly seen misapplied is developers using &lt;code&gt;is&lt;/code&gt; when they mean &lt;code&gt;==&lt;/code&gt;. Put simply, &lt;code&gt;is&lt;/code&gt; should ONLY be used if you are checking if two references refer to the same object. &lt;code&gt;==&lt;/code&gt; is used to compare value by calling underlying &lt;code&gt;__eq__&lt;/code&gt; methods.&lt;/p&gt;
+&lt;p&gt;Let's see this in action:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; a = [1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; b = a
+&amp;gt;&amp;gt;&amp;gt; c = [1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; d = [3, 2, 1]
+&amp;gt;&amp;gt;&amp;gt; a == b
+True
+&amp;gt;&amp;gt;&amp;gt; a == c
+True
+&amp;gt;&amp;gt;&amp;gt; a == d
+False
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So far, nothing unusual. &lt;code&gt;a&lt;/code&gt; has the same values of &lt;code&gt;b&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt; and different values from &lt;code&gt;d&lt;/code&gt;. Now let's use &lt;code&gt;is&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; a is b
+True
+&amp;gt;&amp;gt;&amp;gt; b is a
+True
+&amp;gt;&amp;gt;&amp;gt; a is c
+False
+&amp;gt;&amp;gt;&amp;gt; a is d
+False
+&amp;gt;&amp;gt;&amp;gt; b is c
+False
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here, the only &lt;code&gt;True&lt;/code&gt; statements are the comparison between &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;. This is because &lt;code&gt;b&lt;/code&gt; was initialized with the statement &lt;code&gt;b = a&lt;/code&gt;. The other two variables were initialized as their own statements and values. &lt;strong&gt;Remember, &lt;code&gt;is&lt;/code&gt; compares object references. If they are the same, it returned &lt;code&gt;True&lt;/code&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; id(a), id(b), id(c), id(d)
+(2267170738432, 2267170738432, 2267170545600, 2267170359040)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Since &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; are the same object, we get a &lt;code&gt;True&lt;/code&gt; on their comparison. The others are different, hence the &lt;code&gt;False&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="nan-nan"&gt;nan == nan&lt;a class="headerlink" href="#nan-nan" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;nan&lt;/code&gt;, or Not a Number, is a floating point value that can not be converted to anything other than a float and is considered not equal to all other values. It's a common way to represent missing values in a data set.&lt;/p&gt;
+&lt;p&gt;There is a key phrase in that description above that is the basis for this Gotcha:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;is considered not equal to all other values&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It's common for software to check if two values are equal to one another prior to taking an action. For &lt;code&gt;nan&lt;/code&gt;, that does not work:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; float('nan') == float('nan')
+False
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This prevents code like this from entering the &lt;code&gt;if&lt;/code&gt; block of an &lt;code&gt;if/else&lt;/code&gt; statement&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;float&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'nan'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;float&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'nan'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt;:
+...&lt;span class="w"&gt;   &lt;/span&gt;..&lt;span class="w"&gt; &lt;/span&gt;##&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;something&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;equal&lt;/span&gt;
+...&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;:
+...&lt;span class="w"&gt;   &lt;/span&gt;..&lt;span class="w"&gt; &lt;/span&gt;##&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;something&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;equal&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In this example, they are &lt;em&gt;never&lt;/em&gt; equal. &lt;/p&gt;
+&lt;p&gt;This leads to an interesting, if not unintutive, way of checking if a variable is a &lt;code&gt;nan&lt;/code&gt; value. Since &lt;code&gt;nan&lt;/code&gt; is not equal to &lt;em&gt;all&lt;/em&gt; other values, it is not equal to itself.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; a != a
+True
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Like I said, "Interesting". But, when your code is looked at by others it's also "confusing". There is an easier way to show that you are checking for a &lt;code&gt;nan&lt;/code&gt; value. &lt;a href="https://docs.python.org/3/library/math.html#math.isnan"&gt;&lt;code&gt;isnan&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'nan'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'infinity'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isnan&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kc"&gt;True&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isnan&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kc"&gt;False&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isnan&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kc"&gt;False&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To me, that's a much clearer check that we want to see if the value is &lt;code&gt;nan&lt;/code&gt;. It's likely you aren't just passing &lt;code&gt;nan&lt;/code&gt; to a single variable. You're probably using a library like &lt;a href="https://numpy.org/"&gt;NumPy&lt;/a&gt; or &lt;a href="https://pandas.pydata.org/"&gt;Pandas&lt;/a&gt;. In that case, you have functions in each of those libraries that can check for &lt;code&gt;nan&lt;/code&gt; in a performant way.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In NumPy the function has the same name but in the NumPy library: &lt;code&gt;numpy.isnan(value)&lt;/code&gt;. &lt;/li&gt;
+&lt;li&gt;In Pandas, the function has a slightly different name: &lt;code&gt;pandas.isna(value)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Comparisons aren't always as straight forward as we'd like. I covered a few common comparison problems in Python here. &lt;/p&gt;
+&lt;p&gt;Floating point comparisons are common across languages. Python has a few ways of making this easier for developers. I recommend utilizing &lt;code&gt;isclose&lt;/code&gt; as it keeps the code a bit cleaner and eliminates the need to wrap numbers in strings if using the &lt;code&gt;Decimal&lt;/code&gt; module.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;is&lt;/code&gt; should &lt;em&gt;only&lt;/em&gt; being used to check if two items are referring to the same object. In any other case, it's not doing the check you want it to be doing. &lt;/p&gt;
+&lt;p&gt;Lastly, &lt;code&gt;nan&lt;/code&gt; is equal to &lt;em&gt;nothing else&lt;/em&gt;. It's important to be aware of that before you start comparing values in your dataset to one another. &lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Python Gotcha: Join vs Concat</title><link href="https://andrewwegner.com/python-gotcha-join-vs-concat.html" rel="alternate"></link><published>2023-10-12T10:45:00-05:00</published><updated>2023-10-12T10:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-10-12:/python-gotcha-join-vs-concat.html</id><summary type="html">&lt;p&gt;Append 100,000 strings together using join or concat - Which is faster?&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="the-problem"&gt;The Problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Here's a somewhat contrivied example to demonstrate a problem. I need to create a string with the word &lt;code&gt;word&lt;/code&gt; 100,000 times. What's the fastest way to generate this string? I could use string concatenation (simply &lt;code&gt;+&lt;/code&gt; the strings to one another). I could &lt;a href="https://docs.python.org/3/library/stdtypes.html#str.join"&gt;&lt;code&gt;join&lt;/code&gt;&lt;/a&gt; a list with 100,000 items. &lt;/p&gt;
 &lt;p&gt;My proposed code for this example is below&lt;/p&gt;
