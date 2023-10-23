@@ -1,5 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-10-18T10:15:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Python Gotcha: Comparisons</title><link href="https://andrewwegner.com/python-gotcha-comparisons.html" rel="alternate"></link><published>2023-10-18T10:15:00-05:00</published><updated>2023-10-18T10:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-10-18:/python-gotcha-comparisons.html</id><summary type="html">&lt;p&gt;Comparing two numerical variables in Python can have surprising results if you aren't aware of some common gotchas. This post covers a couple of the common ones.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-10-23T10:45:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Ruby Gotcha: Operator Precedence</title><link href="https://andrewwegner.com/ruby-gotcha-operator-precedence.html" rel="alternate"></link><published>2023-10-23T10:45:00-05:00</published><updated>2023-10-23T10:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-10-23:/ruby-gotcha-operator-precedence.html</id><summary type="html">&lt;p&gt;In Ruby you can use either &lt;code&gt;and&lt;/code&gt; or &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;. You can use &lt;code&gt;or&lt;/code&gt; or &lt;code&gt;||&lt;/code&gt;. What's is the difference and what's the catch?&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In one of my previous roles, the team utilized Ruby. I was not an individual contributor at that point in my career, so my exposure to it was less than much of my team. However, during my tenure, I noticed several "Gotchas" of the Ruby language. Each language has these in their own way, but in this post I'm going to cover one specific one.&lt;/p&gt;
+&lt;p&gt;What's the difference between &lt;code&gt;and&lt;/code&gt; and &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;? What about the difference between &lt;code&gt;or&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt;?&lt;/p&gt;
+&lt;h2 id="the-gotcha"&gt;The Gotcha&lt;a class="headerlink" href="#the-gotcha" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At first pass, these two blocks of code appear to do the same thing. Let's take a look.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;irb(main):003:0&amp;gt; true &amp;amp;&amp;amp; false
+=&amp;gt; false
+irb(main):004:0&amp;gt; true and false
+=&amp;gt; false
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;By the rules of boolean logic, both &lt;code&gt;and&lt;/code&gt; and &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; statements return &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;irb(main):005:0&amp;gt; true || false
+=&amp;gt; true
+irb(main):006:0&amp;gt; true or false
+=&amp;gt; true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Boolean logic holds true for the &lt;code&gt;or&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; statements and return &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;But, what happens if we assign the result of this to a variable?&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;irb(main):007:0&amp;gt; result = true and false
+=&amp;gt; false
+irb(main):008:0&amp;gt; result1 = true &amp;amp;&amp;amp; false
+=&amp;gt; false
+irb(main):009:0&amp;gt; result
+=&amp;gt; true
+irb(main):010:0&amp;gt; result1
+=&amp;gt; false
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we see the problem. With the &lt;code&gt;and&lt;/code&gt; operator, &lt;code&gt;result = true&lt;/code&gt;. With the &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; operator, &lt;code&gt;result1 = false&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;Looking at the &lt;code&gt;or&lt;/code&gt;/&lt;code&gt;||&lt;/code&gt; operators quickly,&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;irb(main):011:0&amp;gt; result2 = true or false
+=&amp;gt; true
+irb(main):012:0&amp;gt; result3 = true || false
+=&amp;gt; true
+irb(main):013:0&amp;gt; result2
+=&amp;gt; true
+irb(main):014:0&amp;gt; result3
+=&amp;gt; true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This all looks reasonable. But, let's swap the order of our &lt;code&gt;true&lt;/code&gt;/&lt;code&gt;false&lt;/code&gt; in the statement.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;irb(main):015:0&amp;gt; result2 = false or true
+=&amp;gt; true
+irb(main):016:0&amp;gt; result3 = false || true
+=&amp;gt; true
+irb(main):017:0&amp;gt; result2
+=&amp;gt; false
+irb(main):018:0&amp;gt; result3
+=&amp;gt; true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here we see the differences again, with the &lt;code&gt;or&lt;/code&gt; operator setting &lt;code&gt;result2 = false&lt;/code&gt; and the &lt;code&gt;||&lt;/code&gt; operator setting &lt;code&gt;result3 = true&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="what-is-going-on"&gt;What is going on?&lt;a class="headerlink" href="#what-is-going-on" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;and&lt;/code&gt; and &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; / &lt;code&gt;or&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; are the same thing, but they have different orders of precedence. The (not well formatted in my opinion) documentation shows the &lt;a href="https://docs.ruby-lang.org/en/3.2/syntax/precedence_rdoc.html"&gt;precedence table for Ruby&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The key things to point out here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; are above &lt;code&gt;and&lt;/code&gt; and &lt;code&gt;or&lt;/code&gt;, meaning they will be evaluated first.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;=&lt;/code&gt; is also above &lt;code&gt;and&lt;/code&gt; and &lt;code&gt;or&lt;/code&gt; (but below &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let's look at one of the examples again:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;irb(main):015:0&amp;gt; result2 = false or true
+=&amp;gt; true
+irb(main):017:0&amp;gt; result2
+=&amp;gt; false
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With the order of precedence in mind, this is what happens:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;result2&lt;/code&gt; is assigned the value of &lt;code&gt;false&lt;/code&gt; because &lt;code&gt;=&lt;/code&gt; occurs before &lt;code&gt;or&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The remainder of the statement is evaluated as &lt;code&gt;true&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This was hidden when &lt;code&gt;true&lt;/code&gt; and &lt;code&gt;false&lt;/code&gt; was swapped because &lt;code&gt;result2&lt;/code&gt; was assigned a value of &lt;code&gt;true&lt;/code&gt; and then the remainder of the statement was also evaluated to &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="how-do-you-prevent-this"&gt;How do you prevent this?&lt;a class="headerlink" href="#how-do-you-prevent-this" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There is very few reasons to utilize the English words &lt;code&gt;and&lt;/code&gt; and &lt;code&gt;or&lt;/code&gt; in Ruby's logical evaluations. Instead, these should be utilized as flow control modifiers (think &lt;code&gt;if&lt;/code&gt; and &lt;code&gt;unless&lt;/code&gt;) and not for boolean logic. &lt;/p&gt;
+&lt;p&gt;Here's an example of how it should be utilized for flow control&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;irb&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;&lt;span class="mi"&gt;019&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;numeral&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;numeral&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;irb&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s1"&gt;': undefined method `/'&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;NilClass&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NoMethodError&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Ruby32&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x64&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ruby&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gems&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;3.2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gems&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;irb&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.6&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;irb&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;top&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Ruby32&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x64&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;irb&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;load&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Ruby32&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x64&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;irb&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+&lt;span class="n"&gt;irb&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;&lt;span class="mi"&gt;020&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;numeral&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;numeral&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In our first example, with &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;, the statement is broken up like this&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;numeral = (10 &amp;amp;&amp;amp; numeral) / 5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This won't work because &lt;code&gt;numeral&lt;/code&gt; doesn't have a value when &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; is evaluated. Contrast this with the second version where the code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Assigns a value of &lt;code&gt;10&lt;/code&gt; to &lt;code&gt;numeral&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;Divides &lt;code&gt;numeral&lt;/code&gt; by &lt;code&gt;5&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While basic, it should get the point across. Another example could be something like this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;user = User.find_by_email(email) and user.send_email!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here, we are only sending an email to the user if we find their information. No information, no email is sent. &lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Python Gotcha: Comparisons</title><link href="https://andrewwegner.com/python-gotcha-comparisons.html" rel="alternate"></link><published>2023-10-18T10:15:00-05:00</published><updated>2023-10-18T10:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-10-18:/python-gotcha-comparisons.html</id><summary type="html">&lt;p&gt;Comparing two numerical variables in Python can have surprising results if you aren't aware of some common gotchas. This post covers a couple of the common ones.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="float-equality-comparisons"&gt;Float Equality Comparisons&lt;a class="headerlink" href="#float-equality-comparisons" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Like every other programming language, Python can't accurately represent floating-point numbers. I'm sure many Computer Science students have lost many hours learning how &lt;a href="https://www.doc.ic.ac.uk/~eedwards/compsys/float/"&gt;floating representation works&lt;/a&gt;. I remember that class well.&lt;/p&gt;
 &lt;p&gt;In any case, let's get into the problem with comparing &lt;code&gt;float&lt;/code&gt; values in Python and how to handle it.&lt;/p&gt;
