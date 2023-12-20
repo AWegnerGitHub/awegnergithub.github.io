@@ -1,5 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-11-23T10:15:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()</title><link href="https://andrewwegner.com/python-gotcha-timezone-naive-functions.html" rel="alternate"></link><published>2023-11-23T10:15:00-06:00</published><updated>2023-11-23T10:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-11-23:/python-gotcha-timezone-naive-functions.html</id><summary type="html">&lt;p&gt;utcnow() and utcfromtimestamp() don't know about timezones and that causes problems. Let's talk about those, how to fix the problem and their recent deprecation in Python 3.12&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Technical Solutions</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/technical-solutions.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-12-20T15:30:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Python Gotcha: List Copy Problems</title><link href="https://andrewwegner.com/python-gotcha-list-copy.html" rel="alternate"></link><published>2023-12-20T15:30:00-06:00</published><updated>2023-12-20T15:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-12-20:/python-gotcha-list-copy.html</id><summary type="html">&lt;p&gt;Copying a Python list (or any mutable object) isn't as simple as setting one equal to another. Let's discuss a better way to do this.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This problem isn't limited to only &lt;code&gt;list&lt;/code&gt;s. Any mutable object in Python can be impacted by this "gotcha". The problem is setting one mutable object equal to another doesn't make a copy. It assigns a new variable to the same object as the original. Let's take a look and see how this appears.&lt;/p&gt;
+&lt;h2 id="the-first-gotcha"&gt;The First Gotcha&lt;a class="headerlink" href="#the-first-gotcha" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first example is pretty simple. Let's make a copy of our list&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; list1 = [1,2,3,4,5]
+&amp;gt;&amp;gt;&amp;gt; list2 = list1
+&amp;gt;&amp;gt;&amp;gt; list1
+[1, 2, 3, 4, 5]
+&amp;gt;&amp;gt;&amp;gt; list2
+[1, 2, 3, 4, 5]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That looks like I have two lists, both with the same set of values. But, let's modify the second list and change the first element in the list to be &lt;code&gt;6&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; list2
+[6, 2, 3, 4, 5]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But what about &lt;code&gt;list1&lt;/code&gt;? It also has changed.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; list1
+[6, 2, 3, 4, 5]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is occuring because, as mentioned, &lt;code&gt;list2&lt;/code&gt; is assigned to the same object as &lt;code&gt;list1&lt;/code&gt;. Any change to either, changes the object that both are assigned to.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; print(f"list1 id: {id(list1)}")
+list1 id: 1497534800448
+&amp;gt;&amp;gt;&amp;gt; print(f"list2 id: {id(list2)}")
+list2 id: 1497534800448
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="the-first-solution"&gt;The First Solution&lt;a class="headerlink" href="#the-first-solution" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This can be solved a few different ways. The important take away, though, is that you have to create a new object with the original values. I can think of a few ways to handle this. This article doesn't consider performance for these basic lists.&lt;/p&gt;
+&lt;p&gt;One option is to utilize the &lt;code&gt;list()&lt;/code&gt; method and pass it the initial values from &lt;code&gt;list1&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; list3 = list(list1)
+&amp;gt;&amp;gt;&amp;gt; list3
+[6, 2, 3, 4, 5]
+&amp;gt;&amp;gt;&amp;gt; list3[0] = 0
+&amp;gt;&amp;gt;&amp;gt; list3
+[0, 2, 3, 4, 5]
+&amp;gt;&amp;gt;&amp;gt; list1
+[6, 2, 3, 4, 5]
+&amp;gt;&amp;gt;&amp;gt; print(f"list1 id: {id(list1)}")
+list1 id: 1497534800448
+&amp;gt;&amp;gt;&amp;gt; print(f"list3 id: {id(list3)}")
+list3 id: 1497531282368
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A second option is to &lt;code&gt;slice()&lt;/code&gt; the entire original list into a new variable.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; list4 = list1[:]
+&amp;gt;&amp;gt;&amp;gt; list4
+[6, 2, 3, 4, 5]
+&amp;gt;&amp;gt;&amp;gt; list4[0] = 0
+&amp;gt;&amp;gt;&amp;gt; list4
+[0, 2, 3, 4, 5]
+&amp;gt;&amp;gt;&amp;gt; list1
+[6, 2, 3, 4, 5]
+&amp;gt;&amp;gt;&amp;gt; print(f"list1 id: {id(list1)}")
+list1 id: 1497534800448
+&amp;gt;&amp;gt;&amp;gt; print(f"list4 id: {id(list4)}")
+list4 id: 1497534798208
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Lastly, the &lt;code&gt;list&lt;/code&gt; object has a &lt;code&gt;copy()&lt;/code&gt; method that you can utilize. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; list5 = list1.copy()
+&amp;gt;&amp;gt;&amp;gt; list5[0] = 0
+&amp;gt;&amp;gt;&amp;gt; list5
+[0, 2, 3, 4, 5]
+&amp;gt;&amp;gt;&amp;gt; list1
+[6, 2, 3, 4, 5]
+&amp;gt;&amp;gt;&amp;gt; print(f"list1 id: {id(list1)}")
+list1 id: 1497534800448
+&amp;gt;&amp;gt;&amp;gt; print(f"list5 id: {id(list5)}")
+list5 id: 1497534799552
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With each of these three options, you can see that we created new objects because each has a unique object id. Changing one of these copies does not change the original's values.&lt;/p&gt;
+&lt;h2 id="the-second-gotcha"&gt;The Second Gotcha&lt;a class="headerlink" href="#the-second-gotcha" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You, a savvy developer, know all this though. You also have a more advanced data structure. You have a &lt;em&gt;list of lists&lt;/em&gt;. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[
+    ['first element', 1, 2, 3],
+    ['second element', 4, 5, 6],
+    ['third element', 7, 8, 9],
+]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Since you know about this gotcha, you are going to make a new object and copy the values to the new object.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; deeplist1 = [
+...     ['first element', 1, 2, 3],
+...     ['second element', 4, 5, 6],
+...     ['third element', 7, 8, 9],
+... ]
+&amp;gt;&amp;gt;&amp;gt; deeplist2 = deeplist1.copy()
+&amp;gt;&amp;gt;&amp;gt; print(f"deeplist1 id: {id(deeplist1)}")
+deeplist1 id: 1497534571008
+&amp;gt;&amp;gt;&amp;gt; print(f"deeplist2 id: {id(deeplist2)}")
+deeplist2 id: 1497534577536
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, with two different objects, is it safe to modify an element in one of the sublists? Turns out, it is not.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; deeplist2[0][0] = "NOT 3RD"
+&amp;gt;&amp;gt;&amp;gt; deeplist2
+[['NOT 3RD', 1, 2, 3], ['second element', 4, 5, 6], ['third element', 7, 8, 9]]
+&amp;gt;&amp;gt;&amp;gt; deeplist1
+[['NOT 3RD', 1, 2, 3], ['second element', 4, 5, 6], ['third element', 7, 8, 9]]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But why? The ids of &lt;code&gt;deeplist1&lt;/code&gt; and &lt;code&gt;deeplist2&lt;/code&gt; are different. This is true, but the sublists are not. Each sublist is assigned the same object id as the original.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; id(deeplist1[0][0]), id(deeplist2[0][0])
+(1497534796864, 1497534796864)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="the-second-solution"&gt;The Second Solution&lt;a class="headerlink" href="#the-second-solution" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Utilize the &lt;a href="https://docs.python.org/3/library/copy.html#copy.deepcopy"&gt;&lt;code&gt;deepcopy()&lt;/code&gt;&lt;/a&gt; method to make a copy of your original object.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;copy&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;deeplist3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deepcopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;deeplist1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;deeplist3&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"NEW VALUE"&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;deeplist3&lt;/span&gt;
+&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;'NEW VALUE'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'second element'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'third element'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;deeplist1&lt;/span&gt;
+&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;'NOT 3RD'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'second element'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'third element'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Using &lt;code&gt;deepcopy()&lt;/code&gt; we can safely make a copy of our list of lists and modify both the original and the copy without impacting the other.&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()</title><link href="https://andrewwegner.com/python-gotcha-timezone-naive-functions.html" rel="alternate"></link><published>2023-11-23T10:15:00-06:00</published><updated>2023-11-23T10:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-11-23:/python-gotcha-timezone-naive-functions.html</id><summary type="html">&lt;p&gt;utcnow() and utcfromtimestamp() don't know about timezones and that causes problems. Let's talk about those, how to fix the problem and their recent deprecation in Python 3.12&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are two common functions in that are &lt;a href="https://docs.python.org/3/library/datetime.html#aware-and-naive-objects"&gt;naive datetime objects&lt;/a&gt;. The behind these types of objects is that timezones don't matter. Perhaps you always assume that datetimes are in a set timezone. Or, you are aware of timezones and want to make things easy on yourself so always assume datetimes are set to UTC.&lt;/p&gt;
 &lt;p&gt;This is your mistake. &lt;/p&gt;
