@@ -264,7 +264,7 @@
 </code></pre></div>
 <p>What is <em>happening</em>? </p>
 <h2 id="explaination">Explaination<a class="headerlink" href="#explaination" title="Permanent link">¶</a></h2>
-<p>The (unconsious?) assumption that the developer is making with this piece of code is that the final list <em>must</em> be in <code>numbers_list</code>. Since we're able to iterate and modify, there is no need for a temporary variable or a need to worry about [list copy gotchas][1]. But, let's go through this one iteration at a time.</p>
+<p>The (unconsious?) assumption that the developer is making with this piece of code is that the final list <em>must</em> be in <code>numbers_list</code>. Since we're able to iterate and modify, there is no need for a temporary variable or a need to worry about <a href="https://andrewwegner.com/python-gotcha-list-copy.html">list copy gotchas</a>. But, let's go through this one iteration at a time.</p>
 <div class="codehilight code"><pre><span></span><code><span class="nv">Starting</span><span class="w"> </span><span class="nv">list</span>:<span class="w"> </span>[<span class="mi">0</span>,<span class="w"> </span><span class="mi">9</span>,<span class="w"> </span><span class="mi">2</span>,<span class="w"> </span><span class="mi">1</span>,<span class="w"> </span><span class="mi">5</span>,<span class="w"> </span><span class="mi">1</span>,<span class="w"> </span><span class="mi">10</span>,<span class="w"> </span><span class="mi">4</span>,<span class="w"> </span><span class="mi">3</span>]
 
 <span class="o">|</span><span class="w"> </span><span class="nv">Iteration</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">Index</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">Value</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">Value</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span>?<span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">Action</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">List</span><span class="w"> </span><span class="nv">after</span><span class="w"> </span><span class="nv">iteration</span><span class="w">      </span><span class="o">|</span>
@@ -304,7 +304,6 @@ numbers_list = [nums for nums in numbers_list if nums &gt;= 5]
 print(numbers_list)
 </code></pre></div>
 <p>This results in the expected list of <code>[9, 5, 10]</code></p>
-<p>[1]:  [2]: {filename}2023_12_20_python_list_copy_gotcha.md</p>
   </div>
 <div class="neighbors">
   <a class="btn float-left" href="https://andrewwegner.com/python-gotcha-list-copy.html"
