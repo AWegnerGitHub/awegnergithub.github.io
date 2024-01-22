@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-  <link rel="canonical" href="https://andrewwegner.com/travis-ci-tutorial-review.html">
+  <link rel="canonical" href="https://andrewwegner.com/github-actions-cicd-pipelines-review.html">
 
   <meta name="robots" content="index, follow" />
 
@@ -57,17 +57,17 @@
 </script>
 
 <meta name="author" content="Andy Wegner" />
-<meta name="description" content="My review of the Travis CI Tutorial course on Udemy." />
+<meta name="description" content="A review of the Udemy course: Learn Github Actions for CI/CD DevOps Pipelines" />
 <meta name="keywords" content="review, technical, learning">
 
 
   <meta property="og:site_name" content="Ponderings of an Andy"/>
-  <meta property="og:title" content="Review of Travis CI Tutorial Udemy course"/>
-  <meta property="og:description" content="My review of the Travis CI Tutorial course on Udemy."/>
+  <meta property="og:title" content="Review of Learn Github Actions for CI/CD DevOps Pipelines Course"/>
+  <meta property="og:description" content="A review of the Udemy course: Learn Github Actions for CI/CD DevOps Pipelines"/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/travis-ci-tutorial-review.html"/>
+  <meta property="og:url" content="https://andrewwegner.com/github-actions-cicd-pipelines-review.html"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2019-07-09 14:30:00-05:00"/>
+  <meta property="article:published_time" content="2024-01-22 10:30:00-06:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://andrewwegner.com/">
   <meta property="article:section" content="Review"/>
@@ -76,7 +76,7 @@
   <meta property="article:tag" content="learning"/>
   <meta property="og:image" content="/images/wegner_headshot.png">
 
-  <title>Review of Travis CI Tutorial Udemy course  · Ponderings of an Andy
+  <title>Review of Learn Github Actions for CI/CD DevOps Pipelines Course  · Ponderings of an Andy
 </title>
 
 </head>
@@ -118,8 +118,8 @@
       <div class="toc">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#course">Course</a></li>
-<li><a href="#final-thoughts">Final Thoughts</a></li>
+<li><a href="#course-overview">Course Overview</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
 </ul>
 </div>
     </nav>
@@ -181,8 +181,8 @@
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/review.html">Review</a>
         </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/travis-ci-tutorial-review.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Review of Travis CI Tutorial Udemy course</span></li></a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/github-actions-cicd-pipelines-review.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Review of Learn Github Actions for CI/CD DevOps Pipelines Course</span></li></a></li>
     </ul>
 </nav>
 
@@ -224,19 +224,19 @@
     "position": 4,
     "item": 
     {
-      "@id": "https://andrewwegner.com/travis-ci-tutorial-review.html",
-      "name": "https://andrewwegner.com/travis-ci-tutorial-review.html"
+      "@id": "https://andrewwegner.com/github-actions-cicd-pipelines-review.html",
+      "name": "https://andrewwegner.com/github-actions-cicd-pipelines-review.html"
     }
   }
   ]
 }
-</script>    <h1 id="travis-ci-tutorial-review">Review of Travis CI Tutorial Udemy course</h1>
+</script>    <h1 id="github-actions-cicd-pipelines-review">Review of Learn Github Actions for CI/CD DevOps Pipelines Course</h1>
     <p>
-      Posted on Tue 09 July 2019 in <a href="https://andrewwegner.com/category/review.html">Review</a>
+      Posted on Mon 22 January 2024 in <a href="https://andrewwegner.com/category/review.html">Review</a>
 
 
     <div>
-      <span itemprop="ratingValue">2.0</span>
+      <span itemprop="ratingValue">5.0</span>
       <div class="stars-outer">
         <div class="stars-inner"></div>
       </div>
@@ -255,80 +255,24 @@
   <div>
     
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p><strong>Update</strong>: This course is no longer accepting enrollments. </p>
-<p>I've written about Travis CI before. I've reported a bug that makes it fairly easy
-to see <a href="https://andrewwegner.com/travisci-insecure-environment-variables.html">environment variables in Travis CI</a> or even unintentionally transfer
-them if you transfer your repository. I <a href="https://andrewwegner.com/autobuild-pelican-blog.html">build this blog using Travis CI</a>. I've
-<a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html">used Travis CI to set up an OpenShift application</a>. <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">SmokeDetector</a> uses it to
-manage it's blacklists. In short, I have experience with Travis CI.</p>
-<p>I was surprised when I saw a course being offered for free recently on Udemy that
-deals with Travis CI. Since it was free and only a couple hours long, I figured I'd
-give it a shot. I enrolled in the course.</p>
-<p>This is my review of <a href="https://www.udemy.com/travis-ci-tutorial/">Travis CI Tutorial</a> by Vaga Notes.</p>
-<h2 id="course">Course<a class="headerlink" href="#course" title="Permanent link">¶</a></h2>
-<p>This course starts with no instructor introduction, no explanation of what
-the course is about, or goals for the course. If you don't know what Travis CI is,
-don't expect to learn that here. You are expected to know what it is and what
-it does. Honestly, you should probably have used it before too.</p>
-<p>All coding done for this course is gone in the GitHub web editor. This bothered
-me initially, but after thinking about it, not so much. Most of the "real code"
-needed for this course is simply editing the <code>.travis.yml</code> file and the instructor
-saves a lot of time by <em>not</em> dealing with git and GitHub more than necessary.</p>
-<p>Unfortunately, I think that is going to be the last good thing I have to say
-about this course. The rest can be summed up with one word: Inconsistent.</p>
-<p>The sound is inconsistent. From one lesson to another, the instructor goes from
-being whisper quiet at highest volume to so loud it hurts. The microphone being
-used picks up static and most annoyingly, the instructor keeps coughing into the
-mic. Sound <em>within</em> a lesson is also inconsistent. In one lesson - Lesson 13 "Build Stages" -
-it went from quiet to loud and back multiple times.</p>
-<p>Testing of the course material was inconsistent. The instructor recording their
-videos an hour after they had done it the first time, in some cases. This
-short time between doing it the first time and recording it for the tutorial
-is seen in how the instructor handles unexpected delays and failing builds.</p>
-<p>The presentation is inconsistent. On several videos, the instructor obviously
-spent time making an intro and outro for the lecture. It's a few second animation
-and sound effect that encapsulates the lesson. On others, they jump right into the
-material or awkwardly end the lesson. If the instructor had spent more time
-giving the course a unified look and feel through the entire course, it'd come
-across as more polished. Instead, it looks like it was thrown together haphazardly.</p>
-<p>Which brings me to the content. This is also inconsistent. There are points where
-the instructor didn't have a script at worse and only high level bullet points
-at best. They mumble their way through an explanation or series of interface
-options. They live code - with typos - their way through set up. They navigate to
-GitHub using Google Search, but accidentally click to quickly and get a previous
-search result (that could have been embarrassing).</p>
-<p>Along with the live coded examples and an after thought of an explanation of
-what each step means, there is very bad advice given in some locations.</p>
-<p>The first example of this is setting up environment variables (see my post
-on <a href="https://andrewwegner.com/travisci-insecure-environment-variables.html">Travis CI environment variables</a>). While setting up the GitHub token, so
-that Travis can deploy GitHub Pages, the advice given is to "just give it all
-the access". NO! NO NO NO NO NO! NO!. Especially when combined with the next
-step they took, which isn't even described.</p>
-<p>The instructor moves over to Travis CI from GitHub to put in the environment variable.
-They put in the name of the variable and the value. Then they change the "Display
-this value in build log" from the default "Off" to "On" <em>and don't say why</em>!.</p>
-<p>Moments later a build is pushed, the Travis CI log is shown, and there is the
-GitHub token that had "all the access" displayed in the build log. Anyone can
-come along and use that token to do anything to your GitHub repository.</p>
-<h2 id="final-thoughts">Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">¶</a></h2>
-<p>This course is now listed for $20. It's not worth it. Go find something on YouTube,
-look at another repository that is already using Travis CI or Google for an example.
-Any of those options are going to be more useful to you - and more consistent - than
-this course. With the bad sound, half finished video introductions, and horrible
-advice on token generation the only thing you'll be doing if you take this course is
-play with your volume constantly and learn the wrong way to set up environment variables.</p>
-<p>This course feels like it was recorded while the instructor was home sick with a
-minor cold and got bored with their video editing software.</p>
-<p><a href="https://ude.my/UC-IJRCAV24"><img alt="Software Testing Masterclass (2019) - From Notice to Expert" src="https://andrewwegner.com/images/udemy-travis-ci.jpg"/></a></p>
+<p>I received a coupon code for Houssem Dellai's <a href="https://www.udemy.com/course/learn-github-actions-ci-cd-devops-pipelines/">Learn Github Actions for CI/CD DevOps Pipelines Course</a>. I've written about <a href="https://andrewwegner.com/setting-up-gitlab-runners.html">GitLab runners</a> and the CI/CD process of that tool in the past. I've used <a href="https://andrewwegner.com/find-broken-links-with-github-actions.html">GitHub actions to check this blog for broken links</a>. I've used <a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html">TravisCI</a> (and written <a href="https://andrewwegner.com/travisci-insecure-environment-variables.html">why not to trust TravisCI</a>). I've used and BitBucket Pipelines in my professional life. I wanted to learn a big more about what GitHub Actions could do and the coupon code made this 4 hour course worth the time to investigate.</p>
+<p>You'll see below in more detail, but this course was not what I expected. It's advertised as being for "All beginners" and "Ops experts". I argue that both of these are incorrect. This course felt more like a 20-30 lecture "GitHub Actions Cookbook" than a course looking to <em>explain</em> GitHub actions.</p>
+<p>Let's go through it...</p>
+<h2 id="course-overview">Course Overview<a class="headerlink" href="#course-overview" title="Permanent link">¶</a></h2>
+<p>There are multiple formats the instructor uses in this course. It's pretty obvious that the sections in this lecture were recorded independantly. Some lectures take place entirely within the GitHub interface, some are using Powerpoint slides to drive the lecture, one is done on a whiteboard. To me, it seems the various lectures have been bundled together. </p>
+<p>After a bit of research - and a mid-lecture "Check out my YouTube" - it's clear why that feeling exists. The <a href="https://www.youtube.com/@HoussemDellai/videos">lectures are available on YouTube</a>. Not all of the videos on YouTube are part of this course, but scrolling through, I can quickly see that many of the videos in the course are on YouTube.</p>
+<p>As for the content of the course, it doesn't match what I was expecting. With the "All beginners" advertisement, I was expecting more discussion and coverage on <em>why</em> certain things were being done. A discussion on the trade offs or the instructor's through process on how to accomplish tasks.</p>
+<p>Instead, the content is a lot of "this is my code to accomplish this task". It is a great course to get the quick run down of how to accomplish tasks, especially with Azure. However, it is not a good course if you want to know why a specific block of code is the best route to go. It's a cookbook to accomplish a task. A handful of lectures do cover theory, but these are few and very far between.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>If my coupon hadn't knocked off the entire price of the course, I'd be upset with this one. I also picked up two other courses by this instructor and I suspect I'm going to find similar concerns with those courses. Honestly, that's to bad, because the content is good. It's just not marketed how it's packaged. With my expectations set for learning a bit, it's disappointing to get lectures that are designed to be copy and pasted from.</p>
+<p>Don't come into this expecting to learn a lot of reasoning behind how things are accomplished. If you need an overview of how to accomplish the tasks in the content list though, you'll find that. It'll be a relatively dry walkthrough of the exact code you need. But, if you want to know why...this isn't the course for you.</p>
+<p>If you can find a coupon code for this, I think it's worth your time to see how some of these advanced tasks are accomplished. If you can't find that coupon though, head over to the <a href="https://www.youtube.com/@HoussemDellai/videos">instructor's YouTube page</a> and watch that section for free. </p>
+<p><a href="https://www.udemy.com/certificate/UC-628403d3-7a5b-46b5-8083-32d915e79471/"><img alt="Learn Github Actions for CI/CD DevOps Pipelines Completion Certificate" src="https://andrewwegner.com/images/udemy-github-actions-pipeline-review.jpg"/></a></p>
   </div>
 <div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/software-testing-masterclass.html"
-    title="Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course">
+  <a class="btn float-left" href="https://andrewwegner.com/generative-motion-graphics-review.html"
+    title="Review of Unreal Engine 5 Generative Motion Graphics VFX Course">
     <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-  <a class="btn float-right" href="https://andrewwegner.com/aws-certified-developer-review.html"
-    title="Review of Ultimate AWS Certified Developer Associate 2019 course">
-    Next Post <i class="fa fa-angle-right"></i>
   </a>
 </div>
 
@@ -345,7 +289,7 @@ minor cold and got bored with their video editing software.</p>
 
 
   <div class="related-posts">
-    <h4>Part 15 of the Course Reviews series</h4>
+    <h4>Part 26 of the Course Reviews series</h4>
     <h5>Previous articles</h5>
     <ul>
       <li><a href="https://andrewwegner.com/data-analysis-with-pandas-review.html">Review of Udemy's 'Data Analysis with Pandas' course</a></li>
@@ -362,9 +306,7 @@ minor cold and got bored with their video editing software.</p>
       <li><a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html">Review of Udemy's Docker Swarm: Beginner + Advanced</a></li>
       <li><a href="https://andrewwegner.com/sanic-webframework-review.html">Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course</a></li>
       <li><a href="https://andrewwegner.com/software-testing-masterclass.html">Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course</a></li>
-    </ul>
-    <h5>Next articles</h5>
-    <ul>
+      <li><a href="https://andrewwegner.com/travis-ci-tutorial-review.html">Review of Travis CI Tutorial Udemy course</a></li>
       <li><a href="https://andrewwegner.com/aws-certified-developer-review.html">Review of Ultimate AWS Certified Developer Associate 2019 course</a></li>
       <li><a href="https://andrewwegner.com/gitlab-manage-remote-team.html">Review of GitLab's 'How to Manage a Remote Team' Coursera course</a></li>
       <li><a href="https://andrewwegner.com/golang-complete-developer-guide-review.html">Review of Go: The Complete Developer's Guide (Golang) course</a></li>
@@ -375,14 +317,13 @@ minor cold and got bored with their video editing software.</p>
       <li><a href="https://andrewwegner.com/davinci-resolve-beginner-advanced-review.html">Review of DaVinci Resolve 2022: Beginner to Advanced in DaVinci 18 Course</a></li>
       <li><a href="https://andrewwegner.com/make-unreal5-2d-platformer-review.html">Review of Learn How To Make A 2D Platformer In Unreal Engine 5 Course</a></li>
       <li><a href="https://andrewwegner.com/generative-motion-graphics-review.html">Review of Unreal Engine 5 Generative Motion Graphics VFX Course</a></li>
-      <li><a href="https://andrewwegner.com/github-actions-cicd-pipelines-review.html">Review of Learn Github Actions for CI/CD DevOps Pipelines Course</a></li>
     </ul>
   </div>
 
 </article>
 <script type="text/javascript">
   const starTotal = 10;
-  rating = 2.0;
+  rating = 5.0;
   starPercentage = `${((rating / starTotal) * 100)}%`;
   document.querySelector(`.stars-inner`).style.width = starPercentage;
 </script>
@@ -392,13 +333,13 @@ minor cold and got bored with their video editing software.</p>
     {
       "@context": "https://schema.org/",
       "@type": "Review",
-      "name": "Travis CI Tutorial",
-      "headline": "Review of Travis CI Tutorial Udemy course",
-      "url": "https://andrewwegner.com/travis-ci-tutorial-review.html",
-      "dateCreated": "2019-07-09 14:30:00-05:00",
-      "datePublished": "2019-07-09 14:30:00-05:00",
+      "name": "Learn Github Actions for CI/CD DevOps Pipelines",
+      "headline": "Review of Learn Github Actions for CI/CD DevOps Pipelines Course",
+      "url": "https://andrewwegner.com/github-actions-cicd-pipelines-review.html",
+      "dateCreated": "2024-01-22 10:30:00-06:00",
+      "datePublished": "2024-01-22 10:30:00-06:00",
       "dateModified": "",
-      "copyrightYear": "2019",
+      "copyrightYear": "2024",
       "copyrightHolder": {
         "@type": "Person",
         "name": "Andy Wegner",
@@ -406,8 +347,8 @@ minor cold and got bored with their video editing software.</p>
       },
       "itemReviewed": {
         "@type": "Course",
-        "name": "Travis CI Tutorial",
-        "description": "Travis CI Tutorial"
+        "name": "Learn Github Actions for CI/CD DevOps Pipelines",
+        "description": "Learn Github Actions for CI/CD DevOps Pipelines"
         ,
         "provider": {
           "@type": "Organization",
@@ -422,14 +363,14 @@ minor cold and got bored with their video editing software.</p>
         },
         "offers": {
             "@type": "Offer",
-            "price": "0",
+            "price": "54.99",
             "priceCurrency": "USD",
             "category": "Paid"
           }
       },
       "reviewRating": {
         "@type": "Rating",
-        "ratingValue": "2.0",
+        "ratingValue": "5.0",
         "bestRating": "10",
         "worstRating": "0"
       },
