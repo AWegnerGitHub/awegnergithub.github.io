@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/install-mobsf-on-windows-docker.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="A short article on installing the Mobile Security Framework on Windows utilizing Docker and then using it to quickly analyze an APK." />
+<meta name="keywords" content="technical">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Installing the Mobile Security Framework (MobSF) on Windows using Docker"/>
+  <meta property="og:description" content="A short article on installing the Mobile Security Framework on Windows utilizing Docker and then using it to quickly analyze an APK."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/install-mobsf-on-windows-docker.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-02-19 15:00:00-06:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Installing the Mobile Security Framework (MobSF) on Windows using Docker  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#setting-up-docker">Setting up Docker</a></li>
+<li><a href="#installing-mobsf">Installing MobSF</a></li>
+<li><a href="#find-your-apk">Find your APK</a></li>
+<li><a href="#using-mobsf">Using MobSF</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/install-mobsf-on-windows-docker.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Installing the Mobile Security Framework (MobSF) on Windows using Docker</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/install-mobsf-on-windows-docker.html",
+      "name": "https://andrewwegner.com/install-mobsf-on-windows-docker.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="install-mobsf-on-windows-docker">Installing the Mobile Security Framework (MobSF) on Windows using Docker</h1>
+    <p>
+      Posted on Mon 19 February 2024 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>I recently needed to poke around an APK. I'd done this sort of thing before, but it's been years so the process of setting up an Android environment was unfamilar. Instead of spending a day reimmersing myself for what was (hopefully) going to be a 10-15 minute thing, I turned to another tool: <a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF">Mobile Security Framework</a> (also known as MobSF)</p>
+<h2 id="setting-up-docker">Setting up Docker<a class="headerlink" href="#setting-up-docker" title="Permanent link">¶</a></h2>
+<p>There are countless blog posts, articles, and YouTube videos on how to set up the perfect docker environment. This was a quick task. I didn't need "perfect", I needed good enough. At the time, I was on a Windows 11 machine, so that's what I had to work with. The goal was to <a href="https://docs.docker.com/get-docker/">get Docker</a> operational as quickly as possible.</p>
+<p>Why? MobSF has a quick setup with two lines of Docker code. </p>
+<p>Using the <a href="https://docs.docker.com/desktop/install/windows-install/">Install Docker for Windows</a> documentation, I downloaded the installable and started the process. The installation took a couple minutes on the device I was on and required me to log out and back in. Total install time was less than 5 minutes.</p>
+<h2 id="installing-mobsf">Installing MobSF<a class="headerlink" href="#installing-mobsf" title="Permanent link">¶</a></h2>
+<p>Once logged back in, I fired up the command line. The <a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF">MobSF README</a> provides two lines to execute on the command line to pull the latest image. I didn't go through the process of setting up a dymanic analyzer. I didn't think I'd need it (and as luck would have it in this case, I was correct).</p>
+<p>Run the two commands:</p>
+<p><code>docker pull opensecurity/mobile-security-framework-mobsf:latest
+docker run -it --rm -p 8000:8000 opensecurity/mobile-security-framework-mobsf:latest</code></p>
+<p>This will pull the latest version of MobSF and then run it on port 8000 on the local machine. Once it's running you can access it in your browser by going to <code>http://127.0.0.1:8000</code></p>
+<h2 id="find-your-apk">Find your APK<a class="headerlink" href="#find-your-apk" title="Permanent link">¶</a></h2>
+<p>Theorectically, you'll be running this against an APK you've built and developed. In that case, you'll have the APK handy and can load it into the UI. I, unfortunately, didn't have that luxuary. Fortunately, getting the APK is relatively simple.</p>
+<ol>
+<li>Go to the <a href="https://play.google.com/store/apps">Google Playstore</a> and search for the application</li>
+<li>Navigate into the details page of the application (you should see the option to install it)</li>
+<li>Copy the URL to this page</li>
+<li>Go to <a href="https://apkcombo.com/downloader/">APKCombo</a></li>
+<li>Paste the URL you copied in step 3 instal the appropriate text box and click "Generate Download Link"</li>
+<li>After a few seconds, click the download icon next to the link that was generated</li>
+</ol>
+<p>You now have the APK to use.</p>
+<h2 id="using-mobsf">Using MobSF<a class="headerlink" href="#using-mobsf" title="Permanent link">¶</a></h2>
+<p>With the APK in hand, and MobSF running, navigate to <code>http://127.0.0.1:8000</code>. Upload the APK and wait a couple of minutes. If you are watching the logs, you'll see it performing multiple steps behind the scenes. Once it's done analyzing the APK, it'll drop you to the dashboard.</p>
+<p><img alt="Analyzing an APK" src="https://andrewwegner.com/images/mobsf/analyze.png"/></p>
+<p><img alt="Analyzing an APK with logs" src="https://andrewwegner.com/images/mobsf/analyze-logs.png"/></p>
+<p>The dashboard has a <em>lot</em> of detail about the APK. Scroll through to see the permissions it's utilizing, certificates attached to it, potential security vulnerabilities, code analysis, detected URLs in the code, hard coded secrets, and strings. All of these would help a team build a better and more secure mobile application. </p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>For my purpose, this 15 minute excersice not only answered the question I was seeking it also raised a few items that will need to be corrected before the next release. Introducing security practices with a tool like MobSF would be incredibly benefitial to a team tasked with building an Android application. Further, adding in the dynamic analysis capabilities can provide more details on areas to improve. </p>
+<p>While I didn't need those to answer my question, I'd enourage someone looking to introduce this to a team, to look at the <a href="https://mobsf.github.io/docs/#/dynamic_analyzer">capabilities of MobSF</a></p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/data-analysis-with-polars-review.html"
+    title="Review of "Data Analysis with Polars" Udemy course">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Installing the Mobile Security Framework (MobSF) on Windows using Docker",
+  "headline": "Installing the Mobile Security Framework (MobSF) on Windows using Docker",
+  "dateCreated": "2024-02-19 15:00:00-06:00",
+  "datePublished": "2024-02-19 15:00:00-06:00",
+  "dateModified": "",
+  "copyrightYear": "2024",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/install-mobsf-on-windows-docker.html",
+  "description": "A short article on installing the Mobile Security Framework on Windows utilizing Docker and then using it to quickly analyze an APK.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2024 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>
