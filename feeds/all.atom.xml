@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2024-02-19T15:00:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Installing the Mobile Security Framework (MobSF) on Windows using Docker</title><link href="https://andrewwegner.com/install-mobsf-on-windows-docker.html" rel="alternate"></link><published>2024-02-19T15:00:00-06:00</published><updated>2024-02-19T15:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-02-19:/install-mobsf-on-windows-docker.html</id><summary type="html">&lt;p&gt;A short article on installing the Mobile Security Framework on Windows utilizing Docker and then using it to quickly analyze an APK.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2024-03-29T09:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Python Gotcha: strip, lstrip, rstrip can remove more than expected</title><link href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html" rel="alternate"></link><published>2024-03-29T09:00:00-05:00</published><updated>2024-03-29T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-03-29:/python-gotcha-strip-functions-unexpected-behavior.html</id><summary type="html">&lt;p&gt;The Python strip, lstrip, and rstrip functions can have unexpected behavior. Even though this is documented, non-default values passed to these functions can lead to unexpected results and how Python 3.9 solved this with two new functions.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As a software engineer, you've cleaned your fair share of dirty strings. Removing leading or trailing spaces is probably one of the most common things done to user input. &lt;/p&gt;
+&lt;p&gt;In Python, this is done with the &lt;a href="https://docs.python.org/3.10/library/stdtypes.html#str.strip"&gt;&lt;code&gt;.strip()&lt;/code&gt;&lt;/a&gt;, &lt;a href="https://docs.python.org/3.10/library/stdtypes.html#str.lstrip"&gt;&lt;code&gt;.lstrip()&lt;/code&gt;&lt;/a&gt; or &lt;a href="https://docs.python.org/3.10/library/stdtypes.html#str.rstrip"&gt;&lt;code&gt;.rstrip()&lt;/code&gt;&lt;/a&gt; functions and generally looks like this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; "     Andrew Wegner     ".lower().strip()
+'andrew wegner'
+&amp;gt;&amp;gt;&amp;gt; "     Andrew Wegner     ".lower().lstrip()
+'andrew wegner     '
+&amp;gt;&amp;gt;&amp;gt; "     Andrew Wegner     ".lower().rstrip()
+'     andrew wegner'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That's pretty straightforward and nothing unexpected in going on. &lt;/p&gt;
+&lt;h2 id="gotcha"&gt;Gotcha&lt;a class="headerlink" href="#gotcha" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Gotcha is that each of these functions take a list of characters that can be removed. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; "Andrew Wegner".lower().rstrip(" wegner")
+'and'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What happened? Why wasn't the result just&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;'andrew'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="explaination"&gt;Explaination&lt;a class="headerlink" href="#explaination" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Read line from the documentation again, carefully:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A list of &lt;strong&gt;characters&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Not a list of strings.&lt;/p&gt;
+&lt;p&gt;This is explicitly spelled out in the documentation, with an example, showing what the implications are. However, for a new developer, it's unexpected behavior. After all, these seem like intutive functions. &lt;/p&gt;
+&lt;p&gt;The example with my does the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Receives a list of characters to remove. In this case it is all letters in my last name, plus the space character: &lt;code&gt;wegner&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Lower case all letters in the input string, resulting in &lt;code&gt;andrew wegner&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;From the right hand side of the string, begin removing characters that are in the input list. Stop when you encounter a character not in the list. In this case that means that &lt;code&gt;rengew wer&lt;/code&gt; are removed (right to left) and then the &lt;code&gt;d&lt;/code&gt; in &lt;code&gt;andrew&lt;/code&gt; is encountered so that &lt;code&gt;rstrip&lt;/code&gt; function stops. &lt;/li&gt;
+&lt;li&gt;Return the remaining string of &lt;code&gt;and&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="solution"&gt;Solution&lt;a class="headerlink" href="#solution" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Python has two functions that will correctly remove a &lt;strong&gt;string&lt;/strong&gt; - &lt;a href="https://docs.python.org/3.10/library/stdtypes.html#str.removesuffix"&gt;&lt;code&gt;.removesuffix()&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://docs.python.org/3.10/library/stdtypes.html#str.removeprefix"&gt;&lt;code&gt;.removeprefix()&lt;/code&gt;&lt;/a&gt; for right and left side removals. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; "Andrew Wegner".lower().removesuffix(" wegner")
+'andrew'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;These two functions were introduced in Python 3.9 as part of &lt;a href="https://peps.python.org/pep-0616/"&gt;PEP-616&lt;/a&gt;. In the PEP, it explicitly calls out the confusion users have about the &lt;code&gt;*strip()&lt;/code&gt; functions and how they behave. These two were introduced to allow the desired behavior. &lt;/p&gt;
+&lt;p&gt;One important note is that these two &lt;code&gt;remove*&lt;/code&gt; functions will only remove &lt;em&gt;at most&lt;/em&gt; one instance of the string.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; "Andrew Wegner Wegner".lower().removesuffix(" wegner")
+'andrew wegner'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Installing the Mobile Security Framework (MobSF) on Windows using Docker</title><link href="https://andrewwegner.com/install-mobsf-on-windows-docker.html" rel="alternate"></link><published>2024-02-19T15:00:00-06:00</published><updated>2024-02-19T15:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-02-19:/install-mobsf-on-windows-docker.html</id><summary type="html">&lt;p&gt;A short article on installing the Mobile Security Framework on Windows utilizing Docker and then using it to quickly analyze an APK.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I recently needed to poke around an APK. I'd done this sort of thing before, but it's been years so the process of setting up an Android environment was unfamilar. Instead of spending a day reimmersing myself for what was (hopefully) going to be a 10-15 minute thing, I turned to another tool: &lt;a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF"&gt;Mobile Security Framework&lt;/a&gt; (also known as MobSF)&lt;/p&gt;
 &lt;h2 id="setting-up-docker"&gt;Setting up Docker&lt;a class="headerlink" href="#setting-up-docker" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;

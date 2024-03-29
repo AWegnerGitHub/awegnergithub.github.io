@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-  <link rel="canonical" href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html">
+  <link rel="canonical" href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html">
 
   <meta name="robots" content="index, follow" />
 
@@ -57,24 +57,24 @@
 </script>
 
 <meta name="author" content="Andy Wegner" />
-<meta name="description" content="A quick walk through of why mutable defaults on optional arguments is bad in Python." />
+<meta name="description" content="The Python strip, lstrip, and rstrip functions can have unexpected behavior. Even though this is documented, non-default values passed to these functions can lead to unexpected results and how Python 3.9 solved this with two new functions." />
 <meta name="keywords" content="technical">
 
 
   <meta property="og:site_name" content="Ponderings of an Andy"/>
-  <meta property="og:title" content="Python Gotcha: Mutable Default Optional Arguments"/>
-  <meta property="og:description" content="A quick walk through of why mutable defaults on optional arguments is bad in Python."/>
+  <meta property="og:title" content="Python Gotcha: strip, lstrip, rstrip can remove more than expected"/>
+  <meta property="og:description" content="The Python strip, lstrip, and rstrip functions can have unexpected behavior. Even though this is documented, non-default values passed to these functions can lead to unexpected results and how Python 3.9 solved this with two new functions."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/python-gotcha-optional-default-arguments.html"/>
+  <meta property="og:url" content="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2023-10-06 10:15:00-05:00"/>
+  <meta property="article:published_time" content="2024-03-29 09:00:00-05:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://andrewwegner.com/">
   <meta property="article:section" content="Technical Solutions"/>
   <meta property="article:tag" content="technical"/>
   <meta property="og:image" content="/images/wegner_headshot.png">
 
-  <title>Python Gotcha: Mutable Default Optional Arguments  · Ponderings of an Andy
+  <title>Python Gotcha: strip, lstrip, rstrip can remove more than expected  · Ponderings of an Andy
 </title>
 
 </head>
@@ -115,11 +115,10 @@
     <nav class="toc">
       <div class="toc">
 <ul>
-<li><a href="#the-problem">The Problem</a></li>
-<li><a href="#whats-going-on">What's going on?</a></li>
-<li><a href="#another-example">Another example</a></li>
-<li><a href="#last-example">Last Example</a></li>
-<li><a href="#what-can-i-do-about-this">What can I do about this?</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#gotcha">Gotcha</a></li>
+<li><a href="#explaination">Explaination</a></li>
+<li><a href="#solution">Solution</a></li>
 </ul>
 </div>
     </nav>
@@ -181,8 +180,8 @@
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
         </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Python Gotcha: Mutable Default Optional Arguments</span></li></a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Python Gotcha: strip, lstrip, rstrip can remove more than expected</span></li></a></li>
     </ul>
 </nav>
 
@@ -224,15 +223,15 @@
     "position": 4,
     "item": 
     {
-      "@id": "https://andrewwegner.com/python-gotcha-optional-default-arguments.html",
-      "name": "https://andrewwegner.com/python-gotcha-optional-default-arguments.html"
+      "@id": "https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html",
+      "name": "https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html"
     }
   }
   ]
 }
-</script>    <h1 id="python-gotcha-optional-default-arguments">Python Gotcha: Mutable Default Optional Arguments</h1>
+</script>    <h1 id="python-gotcha-strip-functions-unexpected-behavior">Python Gotcha: strip, lstrip, rstrip can remove more than expected</h1>
     <p>
-      Posted on Fri 06 October 2023 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+      Posted on Fri 29 March 2024 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
 
 
     <div class="tag-cloud">
@@ -245,70 +244,54 @@
 
   <div>
     
-<h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">¶</a></h2>
-<p>Without running this in your IDE, what does the following code output? Forgive the use of <code>vins</code>, I work in the logistics field and deal with vehicle identification numbers frequently.</p>
-<div class="codehilight code"><pre><span></span><code>def add_vin(this_vin: str, vins: list = []):
-    if this_vin not in vins:
-        vins.append(this_vin)
-    return vins
-
-add_vin("VIN1")
-add_vin("VIN2")
-print(add_vin("VIN3"))
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>As a software engineer, you've cleaned your fair share of dirty strings. Removing leading or trailing spaces is probably one of the most common things done to user input. </p>
+<p>In Python, this is done with the <a href="https://docs.python.org/3.10/library/stdtypes.html#str.strip"><code>.strip()</code></a>, <a href="https://docs.python.org/3.10/library/stdtypes.html#str.lstrip"><code>.lstrip()</code></a> or <a href="https://docs.python.org/3.10/library/stdtypes.html#str.rstrip"><code>.rstrip()</code></a> functions and generally looks like this:</p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; "     Andrew Wegner     ".lower().strip()
+'andrew wegner'
+&gt;&gt;&gt; "     Andrew Wegner     ".lower().lstrip()
+'andrew wegner     '
+&gt;&gt;&gt; "     Andrew Wegner     ".lower().rstrip()
+'     andrew wegner'
 </code></pre></div>
-<p>You probably saw that <code>vins</code> is an optional argument and that it defaults to an empty list. Run this function three times without passing it a list to append to, and it's reasonable to assume that you have a final result of a list with a single item contained in it - <code>VIN3</code></p>
-<p>Unfortunately, that's wrong. The output is actually <code>["VIN1", "VIN2", "VIN3"]</code></p>
-<p>Why?</p>
-<h2 id="whats-going-on">What's going on?<a class="headerlink" href="#whats-going-on" title="Permanent link">¶</a></h2>
-<p>In Python, default arguments are bound to a function at the time the function is defined. This is only done once. If you don't pass the optional argument in to the function call, the same list is changed when the function is called. This means that in the example above, a new list is not created each time the function is called without the optional <code>vins</code> argument.</p>
-<p>We can see this by slightly modifying the code above to show the object ID we are operating on.</p>
-<div class="codehilight code"><pre><span></span><code>def add_vin(this_vin, vins=[]):
-    if this_vin not in vins:
-        print(f"id={id(vins)}")    # Print the object ID we are appending to
-        vins.append(this_vin)
-    return vins
+<p>That's pretty straightforward and nothing unexpected in going on. </p>
+<h2 id="gotcha">Gotcha<a class="headerlink" href="#gotcha" title="Permanent link">¶</a></h2>
+<p>The Gotcha is that each of these functions take a list of characters that can be removed. </p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; "Andrew Wegner".lower().rstrip(" wegner")
+'and'
 </code></pre></div>
-<p>Which outputs the following as it adds each VIN.</p>
-<div class="codehilight code"><pre><span></span><code>id=2954990867712
-id=2954990867712
-id=2954990867712
-['VIN1', 'VIN2', 'VIN3']
+<p>What happened? Why wasn't the result just</p>
+<div class="codehilight code"><pre><span></span><code>'andrew'
 </code></pre></div>
-<p>Each time <code>add_vin</code> was called without passing it a list to operate on, the function will operate on the same default list.</p>
-<h2 id="another-example">Another example<a class="headerlink" href="#another-example" title="Permanent link">¶</a></h2>
-<p>The example above is basic, but gets the point across. However, let's look at something a bit more common. Connecting to a database with a connection object at the parameter.</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">open_database</span><span class="p">(</span><span class="k">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make_connection</span><span class="p">(</span><span class="k">host</span><span class="o">=</span><span class="s1">'example.com'</span><span class="p">))</span><span class="o">:</span>
-<span class="w">    </span><span class="c1"># do database things with `connection`</span>
-<span class="w">    </span><span class="k">connection</span><span class="p">.</span><span class="k">close</span><span class="p">()</span>
+<h2 id="explaination">Explaination<a class="headerlink" href="#explaination" title="Permanent link">¶</a></h2>
+<p>Read line from the documentation again, carefully:</p>
+<blockquote>
+<p>A list of <strong>characters</strong></p>
+</blockquote>
+<p>Not a list of strings.</p>
+<p>This is explicitly spelled out in the documentation, with an example, showing what the implications are. However, for a new developer, it's unexpected behavior. After all, these seem like intutive functions. </p>
+<p>The example with my does the following:</p>
+<ol>
+<li>Receives a list of characters to remove. In this case it is all letters in my last name, plus the space character: <code>wegner</code></li>
+<li>Lower case all letters in the input string, resulting in <code>andrew wegner</code></li>
+<li>From the right hand side of the string, begin removing characters that are in the input list. Stop when you encounter a character not in the list. In this case that means that <code>rengew wer</code> are removed (right to left) and then the <code>d</code> in <code>andrew</code> is encountered so that <code>rstrip</code> function stops. </li>
+<li>Return the remaining string of <code>and</code></li>
+</ol>
+<h2 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">¶</a></h2>
+<p>Python has two functions that will correctly remove a <strong>string</strong> - <a href="https://docs.python.org/3.10/library/stdtypes.html#str.removesuffix"><code>.removesuffix()</code></a> and <a href="https://docs.python.org/3.10/library/stdtypes.html#str.removeprefix"><code>.removeprefix()</code></a> for right and left side removals. </p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; "Andrew Wegner".lower().removesuffix(" wegner")
+'andrew'
 </code></pre></div>
-<p>Well done. You've closed your connection. Your DBA will thank you. However, what happens next time you call <code>open_database()</code> in your code? After all, your connection information is there by default, you don't need to pass a new connection, right?</p>
-<p>Again, wrong. You've closed the <code>connection</code> and it's the default argument. The next call to <code>open_database</code> will utilize the same <code>connection</code> object. A connection that is closed. Your database call will fail.</p>
-<h2 id="last-example">Last Example<a class="headerlink" href="#last-example" title="Permanent link">¶</a></h2>
-<p>One last example:</p>
-<div class="codehilight code"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span><span class="o">,</span> <span class="nn">time</span>
-
-<span class="k">def</span> <span class="nf">print_datetime</span><span class="p">(</span><span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()):</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">print_datetime</span><span class="p">())</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">print_datetime</span><span class="p">())</span>
+<p>These two functions were introduced in Python 3.9 as part of <a href="https://peps.python.org/pep-0616/">PEP-616</a>. In the PEP, it explicitly calls out the confusion users have about the <code>*strip()</code> functions and how they behave. These two were introduced to allow the desired behavior. </p>
+<p>One important note is that these two <code>remove*</code> functions will only remove <em>at most</em> one instance of the string.</p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; "Andrew Wegner Wegner".lower().removesuffix(" wegner")
+'andrew wegner'
 </code></pre></div>
-<p>This is going to print the current datetime, sleep for 10 seconds, and print the new datetime - right?! </p>
-<p>No. </p>
-<div class="codehilight code"><pre><span></span><code><span class="mf">2023</span><span class="o">-</span><span class="mf">10</span><span class="o">-</span><span class="mf">06</span><span class="w"> </span><span class="mf">08</span><span class="p">:</span><span class="mf">45</span><span class="p">:</span><span class="mf">21.392973</span>
-<span class="mf">2023</span><span class="o">-</span><span class="mf">10</span><span class="o">-</span><span class="mf">06</span><span class="w"> </span><span class="mf">08</span><span class="p">:</span><span class="mf">45</span><span class="p">:</span><span class="mf">21.392973</span>
-</code></pre></div>
-<p>Why?! </p>
-<p>Again, an optional default argument is only bound once. Since a new value isn't passed to the function on the second call, the exact same value is used the second time through. Whoops. </p>
-<h2 id="what-can-i-do-about-this">What can I do about this?<a class="headerlink" href="#what-can-i-do-about-this" title="Permanent link">¶</a></h2>
-<p>The best option, in my opinion, is to set the default values to <code>None</code>. This is going to make it very obvious that there is a problem. In the first example, you'll get an exception because you can't append to <code>None</code>. In the second, your database calls will error because <code>None</code> doesn't contain connection information. In the third, you'll print <code>None</code> instead of an expected <code>datatime</code>. </p>
-<p>You could pass an immutable object like a tuple or a frozenset, but even these have caveats to be aware of. For example, a tuple can contain something mutable in it (ie. a list). Personally, I prefer to utilize <code>None</code>.</p>
   </div>
 <div class="neighbors">
-  <a class="btn float-right" href="https://andrewwegner.com/python-gotcha-join-vs-concat.html"
-    title="Python Gotcha: Join vs Concat">
-    Next Post <i class="fa fa-angle-right"></i>
+  <a class="btn float-left" href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html"
+    title="Python Gotcha: Modifying a list while iterating">
+    <i class="fa fa-angle-left"></i> Previous Post
   </a>
 </div>
 
@@ -325,16 +308,16 @@ id=2954990867712
 
 
   <div class="related-posts">
-    <h4>Part 1 of the Programming Gotchas series</h4>
-    <h5>Next articles</h5>
+    <h4>Part 8 of the Programming Gotchas series</h4>
+    <h5>Previous articles</h5>
     <ul>
+      <li><a href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html">Python Gotcha: Mutable Default Optional Arguments</a></li>
       <li><a href="https://andrewwegner.com/python-gotcha-join-vs-concat.html">Python Gotcha: Join vs Concat</a></li>
       <li><a href="https://andrewwegner.com/python-gotcha-comparisons.html">Python Gotcha: Comparisons</a></li>
       <li><a href="https://andrewwegner.com/ruby-gotcha-operator-precedence.html">Ruby Gotcha: Operator Precedence</a></li>
       <li><a href="https://andrewwegner.com/python-gotcha-timezone-naive-functions.html">Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()</a></li>
       <li><a href="https://andrewwegner.com/python-gotcha-list-copy.html">Python Gotcha: List Copy Problems</a></li>
       <li><a href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html">Python Gotcha: Modifying a list while iterating</a></li>
-      <li><a href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html">Python Gotcha: strip, lstrip, rstrip can remove more than expected</a></li>
     </ul>
   </div>
 </article>
@@ -343,12 +326,12 @@ id=2954990867712
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "name": "Python Gotcha: Mutable Default Optional Arguments",
-  "headline": "Python Gotcha: Mutable Default Optional Arguments",
-  "dateCreated": "2023-10-06 10:15:00-05:00",
-  "datePublished": "2023-10-06 10:15:00-05:00",
+  "name": "Python Gotcha: strip, lstrip, rstrip can remove more than expected",
+  "headline": "Python Gotcha: strip, lstrip, rstrip can remove more than expected",
+  "dateCreated": "2024-03-29 09:00:00-05:00",
+  "datePublished": "2024-03-29 09:00:00-05:00",
   "dateModified": "",
-  "copyrightYear": "2023",
+  "copyrightYear": "2024",
   "copyrightHolder": {
     "@type": "Person",
     "name": "Andy Wegner",
@@ -373,8 +356,8 @@ id=2954990867712
       ]
   },
   "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/python-gotcha-optional-default-arguments.html",
-  "description": "A quick walk through of why mutable defaults on optional arguments is bad in Python.",
+  "url": "https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html",
+  "description": "The Python strip, lstrip, and rstrip functions can have unexpected behavior. Even though this is documented, non-default values passed to these functions can lead to unexpected results and how Python 3.9 solved this with two new functions.",
   "mainEntityOfPage": "True",
   "articleSection": "Technical Solutions"
 }
