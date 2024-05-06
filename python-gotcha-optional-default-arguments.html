@@ -285,10 +285,10 @@ id=2954990867712
 <p>Again, wrong. You've closed the <code>connection</code> and it's the default argument. The next call to <code>open_database</code> will utilize the same <code>connection</code> object. A connection that is closed. Your database call will fail.</p>
 <h2 id="last-example">Last Example<a class="headerlink" href="#last-example" title="Permanent link">¶</a></h2>
 <p>One last example:</p>
-<div class="codehilight code"><pre><span></span><code><span class="kn">import</span> <span class="nn">datetime</span><span class="o">,</span> <span class="nn">time</span>
+<div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="k">def</span> <span class="nf">print_datetime</span><span class="p">(</span><span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()):</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_datetime</span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()):</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">print_datetime</span><span class="p">())</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>

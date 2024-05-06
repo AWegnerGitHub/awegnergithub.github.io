@@ -274,13 +274,13 @@ code easy enough to type and follow along, the lesson was more effective because
 <p>The first few lessons are a little rough, because the recordings stutter like the machine that was doing the recording wasn't powerful enough. After 5-6 lessons
 this clears up. It's a minor thing but I do feel it's something that should have been fixed before the course was posted. One other annoyance was that each
 lesson contains the same boiler plate code:</p>
-<div class="codehilight code"><pre><span></span><code><span class="kn">import</span> <span class="nn">sanic</span>
+<div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sanic</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">sanic</span><span class="o">.</span><span class="n">Sanic</span><span class="p">()</span>
+<span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sanic</span><span class="o">.</span><span class="n">Sanic</span><span class="p">()</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
+<span class="k">if</span><span class="w"> </span><span class="vm">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"__main__"</span><span class="p">:</span>
+<span class="w">    </span><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span><span class="w"> </span><span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
 </code></pre></div>
 <p>The lesson code will then go after the <code>app</code> variable is defined. The problem with this boiler plate code is that the instructor types it out every single lesson.
 Again, this is minor and it makes each lesson self contained, but I think having this code already written and adding in the important, lesson specific code,

@@ -328,7 +328,7 @@ Flask-SQLAlchemy==2.1
     <span class="nb">name</span> = <span class="n">db</span>.<span class="n">Column</span>(<span class="n">db</span>.<span class="n">String</span>(<span class="mi">60</span>))
 </code></pre></div>
 <p>A few adjustments were made to the import statements of the Flask application:</p>
-<div class="codehilight code"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<div class="codehilight code"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask_sqlalchemy</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">SQLAlchemy</span>
 </code></pre></div>
 <p>A couple variables were created and loaded:</p>
 <div class="codehilight code"><pre><span></span><code>app.config.from_pyfile('flaskapp.cfg')
@@ -395,14 +395,14 @@ pytest-runner==2.6.2
 <span class="na">test</span><span class="o">=</span><span class="s">pytest</span>
 </code></pre></div>
 <p>I modified my <code>setup_requires</code> list a bit, so that it's conditional. Since this would install the <code>pytest-runner</code> on every call to <code>setup.py</code>, even when the module wouldn't be called, I wanted the runner to only be required when <code>pytest</code> is utilized.</p>
-<div class="codehilight code"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">needs_pytest</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'pytest'</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">,</span> <span class="s1">'ptr'</span><span class="p">}</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-<span class="n">pytest_runner</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'pytest-runner'</span><span class="p">]</span> <span class="k">if</span> <span class="n">needs_pytest</span> <span class="k">else</span> <span class="p">[]</span>
+<div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">needs_pytest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">'pytest'</span><span class="p">,</span><span class="w"> </span><span class="s1">'test'</span><span class="p">,</span><span class="w"> </span><span class="s1">'ptr'</span><span class="p">}</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">pytest_runner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">'pytest-runner'</span><span class="p">]</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">needs_pytest</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">[]</span>
 
 <span class="n">setup</span><span class="p">(</span>
-    <span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span>
-        <span class="c1">#... Other requirements here</span>
-    <span class="p">]</span> <span class="o">+</span> <span class="n">pytest_runner</span><span class="p">,</span>
+<span class="w">    </span><span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span>
+<span class="w">        </span><span class="c1">#... Other requirements here</span>
+<span class="w">    </span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pytest_runner</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 <p>I wanted to test that my tests were working correctly. I created a <code>tests</code> directory, which is where I plan on storing all of my test cases. <code>pytest</code> will find any files that start or end with <code>test</code> and execute them. I created a very simple <code>test_tests.py</code> file with the following simple test (taken from the <a href="https://hypothesis.readthedocs.org/en/latest/quickstart.html#writing-tests">Hypothesis Quickstart</a>)</p>

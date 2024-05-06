@@ -272,23 +272,23 @@ assessment because I don't know react. I've liked these types of assessment ques
 apply my experience to "nudge" ChatGPT toward a solution. </p>
 <p>The challenge here is to toggle a button between "On" and "Off". You're presented with a very small amount of boiler plate code. </p>
 <p>I simply copy/pasted the prompt and the template into ChatGPT. It sent back this:</p>
-<div class="codehilight code"><pre><span></span><code><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">useState</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">'react'</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">ReactDOM</span> <span class="kn">from</span> <span class="s1">'react-dom'</span><span class="p">;</span>
+<div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kn">from</span><span class="w"> </span><span class="s1">'react'</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ReactDOM</span><span class="w"> </span><span class="kn">from</span><span class="w"> </span><span class="s1">'react-dom'</span><span class="p">;</span>
 
-<span class="n">function</span> <span class="n">Toggle</span><span class="p">()</span> <span class="p">{</span>
-<span class="n">const</span> <span class="p">[</span><span class="n">toggle</span><span class="p">,</span> <span class="n">setToggle</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>
+<span class="n">function</span><span class="w"> </span><span class="n">Toggle</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="n">const</span><span class="w"> </span><span class="p">[</span><span class="n">toggle</span><span class="p">,</span><span class="w"> </span><span class="n">setToggle</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">useState</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>
 
-<span class="n">function</span> <span class="n">handleClick</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">setToggle</span><span class="p">(</span><span class="err">!</span><span class="n">toggle</span><span class="p">);</span>
+<span class="n">function</span><span class="w"> </span><span class="n">handleClick</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">setToggle</span><span class="p">(</span><span class="err">!</span><span class="n">toggle</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">handleClick</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">toggle</span> <span class="err">?</span> <span class="s1">'ON'</span> <span class="p">:</span> <span class="s1">'OFF'</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+<span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">button</span><span class="w"> </span><span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">handleClick</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">toggle</span><span class="w"> </span><span class="err">?</span><span class="w"> </span><span class="s1">'ON'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">'OFF'</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
 <span class="p">);</span>
 <span class="p">}</span>
 
 <span class="n">ReactDOM</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
-<span class="o">&lt;</span><span class="n">Toggle</span> <span class="o">/&gt;</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">Toggle</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">,</span>
 <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">)</span>
 <span class="p">);</span>
 </code></pre></div>
@@ -335,10 +335,10 @@ of pairs of parenthesis. The example provided is:</p>
 <p>The possible combinations of 3 pairs of parenthesis, namely: ()()(), are ()()(), ()(()), (())(), ((())), and (()())</p>
 </blockquote>
 <p>I copied the prompt and boiler plate code into ChatGPT and it returned the following response:</p>
-<div class="codehilight code"><pre><span></span><code><span class="k">def</span> <span class="nf">BracketCombinations</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+<div class="codehilight code"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">BracketCombinations</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
 
-    <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">factorial</span>
-    <span class="k">return</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">num</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="w">    </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">factorial</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="n">num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
 
 <span class="c1"># keep this function call here </span>
 <span class="nb">print</span><span class="p">(</span><span class="n">BracketCombinations</span><span class="p">(</span><span class="nb">input</span><span class="p">()))</span>
