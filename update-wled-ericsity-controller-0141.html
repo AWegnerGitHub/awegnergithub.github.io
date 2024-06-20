@@ -118,8 +118,8 @@
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#the-problem">The Problem</a></li>
 <li><a href="#setting-up-ericsity-controller">Setting up Ericsity Controller</a></li>
-<li><a href="#update-to-014x">Update to 0.14.x</a></li>
-<li><a href="#official-build">Official build</a><ul>
+<li><a href="#update-to-014x">Update to 0.14.x</a><ul>
+<li><a href="#official-build">Official build</a></li>
 <li><a href="#selecting-a-more-recent-build">Selecting a more recent build</a></li>
 <li><a href="#press-the-button">Press the button!</a></li>
 <li><a href="#fixing-sound-reactive">Fixing Sound Reactive</a></li>
@@ -283,7 +283,7 @@
 </blockquote>
 <p>I performed this OTA upgrade from my computer by navigating to the mDNS I set up previously. It can also be accessed by the IP address of the controller in your browser.</p>
 <p>At the time of this post, the <a href="https://github.com/MoonModules/WLED/releases">current release</a> was <code>0.14.1-b30</code>. This was released approximately 6 months ago. I briefly skimmed through recent issues and pull requests to see if I should find a more recent build. There was an <a href="https://github.com/MoonModules/WLED/issues/130">crash issue</a> reported with the <code>ripple</code> effects. Since I like that particular effect, I decided to both with a newer build than the official release. </p>
-<h2 id="official-build">Official build<a class="headerlink" href="#official-build" title="Permanent link">¶</a></h2>
+<h3 id="official-build">Official build<a class="headerlink" href="#official-build" title="Permanent link">¶</a></h3>
 <p>If you are going to stick with an official release, navigate to the <a href="https://github.com/MoonModules/WLED/releases">release page</a> and download the binary file you want to install. For the Ericsity, I found that the generic ESP32 build worked. If you want to use this, look for the file titled <code>WLEDMM_0.14.1-b30.36_esp32_4MB_M.bin</code>. You could also use the <code>WLEDMM_0.14.1-b30.36_esp32_4MB_S.bin</code>. Download this file.</p>
 <h3 id="selecting-a-more-recent-build">Selecting a more recent build<a class="headerlink" href="#selecting-a-more-recent-build" title="Permanent link">¶</a></h3>
 <p>Since I wanted a fix for the item I <a href="https://github.com/MoonModules/WLED/issues/130">found</a>, I opted to download a recent build of the <code>mdev</code> branch. This can be accomplished by navigating to the build pipeline and filtering for the <code>mdev</code> branch. This is on Github and available via this direct link to the <a href="https://github.com/MoonModules/WLED/actions/workflows/wled-ci.yml?query=branch%3Amdev">mdev pipeline</a>.</p>
