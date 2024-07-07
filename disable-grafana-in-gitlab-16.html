@@ -68,7 +68,7 @@
   <meta property="og:url" content="https://andrewwegner.com/disable-grafana-in-gitlab-16.html"/>
   <meta property="og:type" content="article"/>
   <meta property="article:published_time" content="2023-08-23 22:15:00-05:00"/>
-  <meta property="article:modified_time" content=""/>
+  <meta property="article:modified_time" content="2024-07-07 00:00:00-05:00"/>
   <meta property="article:author" content="https://andrewwegner.com/">
   <meta property="article:section" content="Technical Solutions"/>
   <meta property="article:tag" content="technical"/>
@@ -119,6 +119,7 @@
 <li><a href="#symptom">Symptom</a></li>
 <li><a href="#the-problem">The Problem</a></li>
 <li><a href="#solution">Solution</a></li>
+<li><a href="#reading-unsupported-config-value-grafana">Reading unsupported config value grafana.</a></li>
 </ul>
 </div>
     </nav>
@@ -233,6 +234,7 @@
     <p>
       Posted on Wed 23 August 2023 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
 
+      <br />Updated on Sun 07 Jul 2024
 
     <div class="tag-cloud">
       <p>
@@ -298,6 +300,12 @@ and excercise to the user to install Grafana in their environment. Step 4, links
 </ol>
 </blockquote>
 <p>Once done, you will get the standard GitLab upgrade complete message and you'll be good to go.</p>
+<h2 id="reading-unsupported-config-value-grafana">Reading unsupported config value grafana.<a class="headerlink" href="#reading-unsupported-config-value-grafana" title="Permanent link">¶</a></h2>
+<p><em>Update: July 2024, GitLab 17.1</em></p>
+<p>In the GitLab 17.1 update from June 2024, Grafana has been completely removed. If you still have <code>grafana</code> keys in the config file upon updating to 17.1, the upgrade will fail with</p>
+<div class="codehilight code"><pre><span></span><code>Mixlib::config::unknownconfigoptionerror: Reading unsupported config value grafana.
+</code></pre></div>
+<p>The solution to this is to edit <code>/etc/gitlab/gitlab.rb</code> and comment out (or remove entirely) all lines that start with <code>grafana</code>. Once this is done, save the file and attempt the upgrade again. Like when it was originally deprecated, this step will end with <code>gitlab Reconfigured</code>.</p>
   </div>
 <div class="neighbors">
   <a class="btn float-left" href="https://andrewwegner.com/management-failure-unlimited-pto.html"
@@ -329,7 +337,7 @@ and excercise to the user to install Grafana in their environment. Step 4, links
   "headline": "How to disable Grafana in Gitlab 16.3 Omnibus",
   "dateCreated": "2023-08-23 22:15:00-05:00",
   "datePublished": "2023-08-23 22:15:00-05:00",
-  "dateModified": "",
+  "dateModified": "2024-07-07 00:00:00-05:00",
   "copyrightYear": "2023",
   "copyrightHolder": {
     "@type": "Person",
