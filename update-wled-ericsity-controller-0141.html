@@ -58,7 +58,7 @@
 
 <meta name="author" content="Andy Wegner" />
 <meta name="description" content="The Ericsity WLED controller comes with WLED 0.13.3 preinstalled and only offers the ability to update to 0.13.4. This walks through setting up the controller for the first time and moving to 0.14.1 while maintaining the sound reactive features the controller advertises." />
-<meta name="keywords" content="technical">
+<meta name="keywords" content="technical, wled">
 
 
   <meta property="og:site_name" content="Ponderings of an Andy"/>
@@ -72,6 +72,7 @@
   <meta property="article:author" content="https://andrewwegner.com/">
   <meta property="article:section" content="Technical Solutions"/>
   <meta property="article:tag" content="technical"/>
+  <meta property="article:tag" content="wled"/>
   <meta property="og:image" content="/images/wegner_headshot.png">
 
   <title>Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1  · Ponderings of an Andy
@@ -244,6 +245,7 @@
     <div class="tag-cloud">
       <p>
         <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+        <a href="https://andrewwegner.com/tag/wled.html">wled</a>
       </p>
     </div>
     </p>
@@ -253,7 +255,7 @@
     
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
 <p>My summer time project this year is to set up some LED lights outside. After testing out a couple Govee strips that I didn't like because I couldn't diffuse the individual lights away, I finally found an LED strip I liked. The next step was to control these strips so that I could do more than solid colors or the default rainbow every LED strip has. I settled on using the amazing <a href="https://kno.wled.ge/">WLED project</a> to control the lights. To speed up the project, I decided to get a prebuilt controller and eventually selected the <a href="https://www.amazon.com/Ericsity-Controller-Addressable-WS2812B-SK6812/dp/B0CNVXY8NX">Ericsity controller with a built in mic</a>.</p>
-<p>Side note: I plan on writing about the entire project later. This post is just about how I updated the controller.</p>
+<p>Side note: This post is just about how I updated the controller. The next article in the post is available, and talks about how <a href="https://andrewwegner.com/control-power-wled-relay.html">I am controlling a larger power supply with the WLED controller</a>.</p>
 <h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">¶</a></h2>
 <p>The controller arrived and was easy to set up. I wired up my strips in the basement to ensure I didn't have any power problems and then determined where I needed to make cuts and solder points once this was outside. Then I went to set up <a href="https://kno.wled.ge/features/segments/">segments</a> in WLED so that I could control effects in specific areas.</p>
 <p>The problem I quickly encountered was that I am outlining my deck with these lights and right in the middle of the deck is a set of steps that I also wanted to light up and then the rest of the deck rail. WLED doesn't have the ability (at least that I've found) to span an effect across multiple segments and I'd need multiple segments for this. </p>
@@ -319,6 +321,10 @@
   <a class="btn float-left" href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html"
     title="Python Gotcha: strip, lstrip, rstrip can remove more than expected">
     <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+  <a class="btn float-right" href="https://andrewwegner.com/control-power-wled-relay.html"
+    title="Controlling power to LED lights with WLED Controller and a Relay switch">
+    Next Post <i class="fa fa-angle-right"></i>
   </a>
 </div>
   <hr />

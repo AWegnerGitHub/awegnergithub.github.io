@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/control-power-wled-relay.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="Wiring a lot of LEDs requires more power than the small WLED controller can handle, but leaving a large power supply running even when the lights are off is inefficient. This post talks about the progress on the project and how I wired in a relay to keep everything running efficiently." />
+<meta name="keywords" content="technical, wled">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Controlling power to LED lights with WLED Controller and a Relay switch"/>
+  <meta property="og:description" content="Wiring a lot of LEDs requires more power than the small WLED controller can handle, but leaving a large power supply running even when the lights are off is inefficient. This post talks about the progress on the project and how I wired in a relay to keep everything running efficiently."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/control-power-wled-relay.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-08-16 12:00:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="article:tag" content="wled"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Controlling power to LED lights with WLED Controller and a Relay switch  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#power-injection">Power Injection</a></li>
+<li><a href="#turning-off-the-psu">Turning off the PSU</a><ul>
+<li><a href="#wiring">Wiring</a></li>
+</ul>
+</li>
+<li><a href="#success">Success</a></li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/control-power-wled-relay.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Controlling power to LED lights with WLED Controller and a Relay switch</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/control-power-wled-relay.html",
+      "name": "https://andrewwegner.com/control-power-wled-relay.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="control-power-wled-relay">Controlling power to LED lights with WLED Controller and a Relay switch</h1>
+    <p>
+      Posted on Fri 16 August 2024 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+        <a href="https://andrewwegner.com/tag/wled.html">wled</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>It's time to continue my summer project of setting up some outdoor LED lights. <a href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html">Previously</a>, I <a href="https://www.amazon.com/Ericsity-Controller-Addressable-WS2812B-SK6812/dp/B0CNVXY8NX">set up and updated the Ericsity controller</a> with <a href="https://kno.wled.ge/">WLED</a>.</p>
+<p>I am putting up approximiately 20 meters - 65 feet - of LEDs. Total this will be nearly 2,000 individual LEDs and approximately 665 individually controlled LED segments (3 LEDs per segment). This will take more power than the little controller can handle. To demonstrate the problem of powering all of these LEDs with only the controller, look at this image:</p>
+<p><img alt="Power drop across 20 meters of LEDs" src="https://andrewwegner.com/images/wled/voltage-drop.png"/></p>
+<p>These strips are wired with the end of one strip connected to the start of the next. The top strip is connected directly to the controller. The one below is the end of strip two, followed by the start of strip three and the bottom is the very end of the full run of LEDs. The lights are all set to the same color, but as you can see they clearly aren't the same color. The voltage drop across 65 feet of LEDs means that the LEDs are the end can't get enough power to match their earlier siblings.</p>
+<h2 id="power-injection">Power Injection<a class="headerlink" href="#power-injection" title="Permanent link">¶</a></h2>
+<p>The solution to this specific problem is to inject power into the LED strips. I picked up some <a href="https://www.amazon.com/dp/B0957T1S9C">WAGO connectors</a> and a <a href="https://www.amazon.com/dp/B0BXTP524R">NUOFUWEI power supply</a>. I also had some 18 guage wire on hand. With this power unit, I can easily set up three injection points.</p>
+<p>The goal was to inject power at the start of strip 1, right where the controller is connecting in the image above. Then inject between strips 2 and 3, in the middle of the run. Finally, I injected power at the end of strip 4. With these three, equally spaced injection points, I was able to get a nice uniform color across the entire 20 meter run.</p>
+<p><img alt="LED strip with power injection shows uniform coloring" src="https://andrewwegner.com/images/wled/equal-voltage.png"/></p>
+<p>Problem Solved! Right?</p>
+<p>Not exactly.</p>
+<h2 id="turning-off-the-psu">Turning off the PSU<a class="headerlink" href="#turning-off-the-psu" title="Permanent link">¶</a></h2>
+<p>WLED controls the lights, but doesn't control the power supply with this wiring setup. Turning off the lights within WLED does turn off the LEDs, but the power supply continues to run. It's not drawing at full load, but it is drawing power and the cooling fan is active. It's noticable and unneeded. I want a way to turn off the power supply AND the LEDs at the same time. </p>
+<p>I can't power the WLED controller from the large power supply to do this, because if I turn off the power supply that'd also turn off the WLED controller. I'll need to power the WLED controller independently from the lights. Fortunately, this won't be a problem. </p>
+<p>The next step is figuring out how I can use WLED to control the larger power supply. Fortunately, <a href="https://kno.wled.ge/features/relay-control/">WLED has the ability to control a relay</a>, which I can use to control the power supply. The Ericsity controller also has two output data pins. While I don't think the second one was built in to control a relay, it works perfectly here. </p>
+<h3 id="wiring">Wiring<a class="headerlink" href="#wiring" title="Permanent link">¶</a></h3>
+<p>I purchased a <a href="https://capitaloneshopping.com/p/hi-letgo-5-v-1-channel-relay-mod/2RDBGLR8VL">HiLetGo relay</a> so that I could toggle the larger power supply on and off. To do this, it's important that the data line and the ground are common among the controller, the power supply and the LEDs.</p>
+<p><img alt="Wiring diagram for WLED controller, external power supply, LEDs and a relay controlling the external PSU" src="https://andrewwegner.com/images/wled/deck-lights-wled.png"/></p>
+<p>The diagram above is a rough schematic of how I wired this. The controller's sent data, but not power, to the LEDs. Data was on GPIO 16. The important part here is that the data line is shared across all of the strips. I did not need a signal booster for my project, and because I'm about to use the second exposed data channel for the relay, I had to ensure that this single channel could send a signal down the entire length of the strip. Fortunately, I didn't have any issues.</p>
+<p>The wiring ground was tied into the PSU and the LEDs as well. The common ground is important.</p>
+<p>On the other side of the diagram is the relay. I put this relay between the wall and the PSU. When WLED sent an <code>ON</code> signal, it would close the relay, turning on the PSU and the LEDs. GPIO 2 was tied to the relay and within <code>LED Preferences</code>, the Relay Pin was set to GPIO 2. </p>
+<p>One quick power cycle from within WLED is required at this point. Press the power button in the UI to turn everything off, press it once more to turn it on. As long as the PSU is plugged into the wall, you should here it fire up and see the LEDs turn on. If you press the power button again, the LEDs turn off, the relay clicks, shuts down the PSU and only the WLED controller remains active.</p>
+<h2 id="success">Success<a class="headerlink" href="#success" title="Permanent link">¶</a></h2>
+<p>With the relay in place, the LEDs don't draw phantom power while off because the PSU isn't active. The added benefit, at least for this specific power unit, is the the fans aren't running constantly so it's not as loud. While this will eventually be outside, I'd still prefer to not hear the fan when the lights are off. While they are active it's not going to be bothering me, because I'll likely have music playing for the sound reactive features which will easily be louder than this fan.</p>
+<p>The next step in the project is going to be to get this set up outside. </p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html"
+    title="Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Controlling power to LED lights with WLED Controller and a Relay switch",
+  "headline": "Controlling power to LED lights with WLED Controller and a Relay switch",
+  "dateCreated": "2024-08-16 12:00:00-05:00",
+  "datePublished": "2024-08-16 12:00:00-05:00",
+  "dateModified": "",
+  "copyrightYear": "2024",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/control-power-wled-relay.html",
+  "description": "Wiring a lot of LEDs requires more power than the small WLED controller can handle, but leaving a large power supply running even when the lights are off is inefficient. This post talks about the progress on the project and how I wired in a relay to keep everything running efficiently.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2024 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>
