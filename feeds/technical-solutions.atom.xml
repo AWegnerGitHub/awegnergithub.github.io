@@ -1957,8 +1957,10 @@ that can create new databases, users and permissions.&lt;/p&gt;
 &lt;p&gt;Now we'll run three commands. The first is to create the new database, the second
 is to create the user. The third is to set appropriate permissions for the
 new user and new password.&lt;/p&gt;
-&lt;p&gt;!!! attention
-    Change the default password from &lt;code&gt;ninja&lt;/code&gt; to something secure&lt;/p&gt;
+&lt;div class="admonition attention"&gt;
+&lt;p class="admonition-title"&gt;Attention&lt;/p&gt;
+&lt;p&gt;Change the default password from &lt;code&gt;ninja&lt;/code&gt; to something secure&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Our three commands:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;CREATE DATABASE ninja;
 CREATE USER 'ninja'@'localhost' IDENTIFIED BY 'ninja';
