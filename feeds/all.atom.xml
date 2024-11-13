@@ -1,5 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2024-09-04T00:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Controlling power to LED lights with WLED Controller and a Relay switch</title><link href="https://andrewwegner.com/control-power-wled-relay.html" rel="alternate"></link><published>2024-08-16T12:00:00-05:00</published><updated>2024-08-16T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-08-16:/control-power-wled-relay.html</id><summary type="html">&lt;p&gt;Wiring a lot of LEDs requires more power than the small WLED controller can handle, but leaving a large power supply running even when the lights are off is inefficient. This post talks about the progress on the project and how I wired in a relay to keep everything running efficiently.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2024-11-13T13:00:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Format USB drive with EFI partition in Windows</title><link href="https://andrewwegner.com/format-efi-usb-windows.html" rel="alternate"></link><published>2024-11-13T13:00:00-06:00</published><updated>2024-11-13T13:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-11-13:/format-efi-usb-windows.html</id><summary type="html">&lt;p&gt;Windows protects EFI partitions from being deleted. This article is a quick walkthrough on how to format a USB drive with an EFI partition within Windows.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I seem to collect USB drives. They are handed out at conferences. They are used as recovery media for new machines. They just randomly appear on my desk. I use them to build live Linux CDs, transferring media from one device to another, building recovery media, and generally the things you'd expect a USB drive to be used for. Generally, when I use a USB drive the first thing I do is format it. My USB drives are not for long term storage and I consider anything on them used one time then the drive goes back to the bin for reuse another time. &lt;/p&gt;
+&lt;p&gt;An annoyance with this, though, is that when I use a drive to build a bootable backup media, often times an EFI partition will be created. As soon as this is created, Windows prevents that partition from being deleted in the future without taking additional steps. I have to go look those up every time because I do it infrequently enough to remember. This is a simple walkthrough of my process to solve this problem&lt;/p&gt;
+&lt;p&gt;A USB drive with an EFI partition looks like this within the Disk Management tool in Windows&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A USB drive with an EFI partition and an unallocated partition" src="https://andrewwegner.com/images/efi-partition.png"/&gt;&lt;/p&gt;
+&lt;h2 id="format-an-efi-partition"&gt;Format an EFI Partition&lt;a class="headerlink" href="#format-an-efi-partition" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To remove this partition, utilize the built in &lt;code&gt;diskpart&lt;/code&gt; tool. &lt;code&gt;Win&lt;/code&gt; + &lt;code&gt;R&lt;/code&gt; and type in &lt;code&gt;diskpart&lt;/code&gt; and allow the application to run. &lt;/p&gt;
+&lt;p&gt;First you need to find which drive you want to adjust partitions on. &lt;/p&gt;
+&lt;div class="admonition attention"&gt;
+&lt;p class="admonition-title"&gt;Attention&lt;/p&gt;
+&lt;p&gt;Ensure you select the correct disk. Failure to do so could result in an inoperable system&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Plug the USB drive into the machine and run &lt;code&gt;list disk&lt;/code&gt; to see all available disks.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;DISKPART&amp;gt; list disk
+
+Disk ###  Status         Size     Free     Dyn  Gpt
+--------  -------------  -------  -------  ---  ---
+Disk 0    Online         3726 GB  1024 KB        &lt;span class="gs"&gt;*&lt;/span&gt;
+&lt;span class="gs"&gt;Disk 1    Online          931 GB  1024 KB        *&lt;/span&gt;
+Disk 2    Online           14 GB    14 GB
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can see that I have 3 drives detected. &lt;code&gt;Disk 2&lt;/code&gt; is my USB drive.&lt;/p&gt;
+&lt;p&gt;Select the disk.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;DISKPART&amp;gt; sel disk 2
+
+Disk 2 is now the selected disk.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then show the partitions on the disk.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;DISKPART&amp;gt; list partition
+
+Partition ###  Type              Size     Offset
+-------------  ----------------  -------  -------
+Partition 1    System            4000 KB   850 KB
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There is a single partition - the EFI partition. The rest of the drive is unallocated, as the screenshot above shows. Select this partition. IF you have multiple partitions listed, you'll need to determine which is the EFI partition. In my case, since I'm going to be formatting the entire drive anyway, if there were multiple listed I'd select and delete each individual partition. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;DISKPART&amp;gt; sel partition 1
+
+Partition 1 is now the selected partition.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="admonition attention"&gt;
+&lt;p class="admonition-title"&gt;Attention&lt;/p&gt;
+&lt;p&gt;These commands will delete a partition. If you haven't selected the right drive or partition things will break.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Finally, delete the EFI partition&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;DISKPART&amp;gt; delete partition override
+DiskPart successfully deleted the selected partition.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;From the disk management tool, you can verify it's gone and format as normal.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="All EFI partitions removed" src="https://andrewwegner.com/images/efi-partition-removed.png"/&gt;&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Controlling power to LED lights with WLED Controller and a Relay switch</title><link href="https://andrewwegner.com/control-power-wled-relay.html" rel="alternate"></link><published>2024-08-16T12:00:00-05:00</published><updated>2024-08-16T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-08-16:/control-power-wled-relay.html</id><summary type="html">&lt;p&gt;Wiring a lot of LEDs requires more power than the small WLED controller can handle, but leaving a large power supply running even when the lights are off is inefficient. This post talks about the progress on the project and how I wired in a relay to keep everything running efficiently.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It's time to continue my summer project of setting up some outdoor LED lights. &lt;a href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html"&gt;Previously&lt;/a&gt;, I &lt;a href="https://amzn.to/3X6HLLT"&gt;set up and updated the Ericsity controller&lt;/a&gt; with &lt;a href="https://kno.wled.ge/"&gt;WLED&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I am putting up approximiately 20 meters - 65 feet - of LEDs. Total this will be nearly 2,000 individual LEDs and approximately 665 individually controlled LED segments (3 LEDs per segment). This will take more power than the little controller can handle. To demonstrate the problem of powering all of these LEDs with only the controller, look at this image:&lt;/p&gt;
