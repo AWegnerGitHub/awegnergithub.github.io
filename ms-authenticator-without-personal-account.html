@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-  <link rel="canonical" href="https://andrewwegner.com/format-efi-usb-windows.html">
+  <link rel="canonical" href="https://andrewwegner.com/ms-authenticator-without-personal-account.html">
 
   <meta name="robots" content="index, follow" />
 
@@ -57,24 +57,24 @@
 </script>
 
 <meta name="author" content="Andy Wegner" />
-<meta name="description" content="Windows protects EFI partitions from being deleted. This article is a quick walkthrough on how to format a USB drive with an EFI partition within Windows." />
+<meta name="description" content="The Microsoft Authenticator application allows you to transfer tokens to a new device if you have a personal Microsoft account. How do you do it if you don&#39;t have a personal account? This is a quick walk through of what worked for me." />
 <meta name="keywords" content="technical">
 
 
   <meta property="og:site_name" content="Ponderings of an Andy"/>
-  <meta property="og:title" content="Format USB drive with EFI partition in Windows"/>
-  <meta property="og:description" content="Windows protects EFI partitions from being deleted. This article is a quick walkthrough on how to format a USB drive with an EFI partition within Windows."/>
+  <meta property="og:title" content="Moving MS Authenticator to a new phone without a personal account"/>
+  <meta property="og:description" content="The Microsoft Authenticator application allows you to transfer tokens to a new device if you have a personal Microsoft account. How do you do it if you don&#39;t have a personal account? This is a quick walk through of what worked for me."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/format-efi-usb-windows.html"/>
+  <meta property="og:url" content="https://andrewwegner.com/ms-authenticator-without-personal-account.html"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2024-11-13 13:00:00-06:00"/>
+  <meta property="article:published_time" content="2024-11-27 12:15:00-06:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://andrewwegner.com/">
   <meta property="article:section" content="Technical Solutions"/>
   <meta property="article:tag" content="technical"/>
   <meta property="og:image" content="/images/wegner_headshot.png">
 
-  <title>Format USB drive with EFI partition in Windows  · Ponderings of an Andy
+  <title>Moving MS Authenticator to a new phone without a personal account  · Ponderings of an Andy
 </title>
 
 </head>
@@ -116,7 +116,8 @@
       <div class="toc">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#format-an-efi-partition">Format an EFI Partition</a></li>
+<li><a href="#alternative-to-cloud-backup">Alternative to Cloud Backup</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
 </ul>
 </div>
     </nav>
@@ -178,8 +179,8 @@
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
         </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/format-efi-usb-windows.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Format USB drive with EFI partition in Windows</span></li></a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/ms-authenticator-without-personal-account.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Moving MS Authenticator to a new phone without a personal account</span></li></a></li>
     </ul>
 </nav>
 
@@ -221,15 +222,15 @@
     "position": 4,
     "item": 
     {
-      "@id": "https://andrewwegner.com/format-efi-usb-windows.html",
-      "name": "https://andrewwegner.com/format-efi-usb-windows.html"
+      "@id": "https://andrewwegner.com/ms-authenticator-without-personal-account.html",
+      "name": "https://andrewwegner.com/ms-authenticator-without-personal-account.html"
     }
   }
   ]
 }
-</script>    <h1 id="format-efi-usb-windows">Format USB drive with EFI partition in Windows</h1>
+</script>    <h1 id="ms-authenticator-without-personal-account">Moving MS Authenticator to a new phone without a personal account</h1>
     <p>
-      Posted on Wed 13 November 2024 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+      Posted on Wed 27 November 2024 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
 
 
     <div class="tag-cloud">
@@ -243,63 +244,29 @@
   <div>
     
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>I seem to collect USB drives. They are handed out at conferences. They are used as recovery media for new machines. They just randomly appear on my desk. I use them to build live Linux CDs, transferring media from one device to another, building recovery media, and generally the things you'd expect a USB drive to be used for. Generally, when I use a USB drive the first thing I do is format it. My USB drives are not for long term storage and I consider anything on them used one time then the drive goes back to the bin for reuse another time. </p>
-<p>An annoyance with this, though, is that when I use a drive to build a bootable backup media, often times an EFI partition will be created. As soon as this is created, Windows prevents that partition from being deleted in the future without taking additional steps. I have to go look those up every time because I do it infrequently enough to remember. This is a simple walkthrough of my process to solve this problem</p>
-<p>A USB drive with an EFI partition looks like this within the Disk Management tool in Windows</p>
-<p><img alt="A USB drive with an EFI partition and an unallocated partition" src="https://andrewwegner.com/images/efi-partition.png"/></p>
-<h2 id="format-an-efi-partition">Format an EFI Partition<a class="headerlink" href="#format-an-efi-partition" title="Permanent link">¶</a></h2>
-<p>To remove this partition, utilize the built in <code>diskpart</code> tool. <code>Win</code> + <code>R</code> and type in <code>diskpart</code> and allow the application to run. </p>
-<p>First you need to find which drive you want to adjust partitions on. </p>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>Ensure you select the correct disk. Failure to do so could result in an inoperable system</p>
-</div>
-<p>Plug the USB drive into the machine and run <code>list disk</code> to see all available disks.</p>
-<div class="codehilight code"><pre><span></span><code>DISKPART&gt; list disk
-
-Disk ###  Status         Size     Free     Dyn  Gpt
---------  -------------  -------  -------  ---  ---
-Disk 0    Online         3726 GB  1024 KB        <span class="gs">*</span>
-<span class="gs">Disk 1    Online          931 GB  1024 KB        *</span>
-Disk 2    Online           14 GB    14 GB
-</code></pre></div>
-<p>You can see that I have 3 drives detected. <code>Disk 2</code> is my USB drive.</p>
-<p>Select the disk.</p>
-<div class="codehilight code"><pre><span></span><code>DISKPART&gt; sel disk 2
-
-Disk 2 is now the selected disk.
-</code></pre></div>
-<p>Then show the partitions on the disk.</p>
-<div class="codehilight code"><pre><span></span><code>DISKPART&gt; list partition
-
-Partition ###  Type              Size     Offset
--------------  ----------------  -------  -------
-Partition 1    System            4000 KB   850 KB
-</code></pre></div>
-<p>There is a single partition - the EFI partition. The rest of the drive is unallocated, as the screenshot above shows. Select this partition. IF you have multiple partitions listed, you'll need to determine which is the EFI partition. In my case, since I'm going to be formatting the entire drive anyway, if there were multiple listed I'd select and delete each individual partition. </p>
-<div class="codehilight code"><pre><span></span><code>DISKPART&gt; sel partition 1
-
-Partition 1 is now the selected partition.
-</code></pre></div>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>These commands will delete a partition. If you haven't selected the right drive or partition things will break.</p>
-</div>
-<p>Finally, delete the EFI partition</p>
-<div class="codehilight code"><pre><span></span><code>DISKPART&gt; delete partition override
-DiskPart successfully deleted the selected partition.
-</code></pre></div>
-<p>From the disk management tool, you can verify it's gone and format as normal.</p>
-<p><img alt="All EFI partitions removed" src="https://andrewwegner.com/images/efi-partition-removed.png"/></p>
+<p>Work utilizes the Microsoft Authenticator app as their 2FA application of choice. It's not my favorite, but it does what it needs to do, and since I only use the application for work things, it's nice to keep work accounts out of personal accounts in my other 2FA application. Recently, I got a new phone, and needed to migrate everything over to that device. As an aside, Android continues to make this easier and easier. </p>
+<p>Standard advice on how to migrate your token to a new device is to enable cloud backup, sign in to the new device and import the backup. The problem is when you go to enable Cloud Backup from the settings, you are hit with this message:</p>
+<blockquote>
+<p>"You need a personal Microsoft account to use cloud backup"</p>
+</blockquote>
+<p>Well, I don't have a personal Microsoft account. </p>
+<p><em>Aside: I can't provide screenshots of the Android application for this post because the application prevents screenshots from being taken. I appreciate this feature as part of the application for security purposes, but it's annoying when trying to write about it. Oh well...</em></p>
+<h2 id="alternative-to-cloud-backup">Alternative to Cloud Backup<a class="headerlink" href="#alternative-to-cloud-backup" title="Permanent link">¶</a></h2>
+<p>I have set up MFA on my work account - obviously - and can access settings through the <a href="https://aka.ms/mfasetup">Microsoft MFA setup page</a>. From here, you'll be on the Security Info page. It will show the current authenticator device being utilized. You'll need the old device during this process to authenticate one last time.</p>
+<p><img alt="Microsoft security information page showing my current MS Authenticator device" src="https://andrewwegner.com/images/ms_authenticator/security_info.png"/></p>
+<p>Click on "Add sign-in method" and then "Microsoft Authenticator"</p>
+<p><img alt="Options to pick from for adding a new signin method. For this, select Microsoft Authenticator" src="https://andrewwegner.com/images/ms_authenticator/new_method.png"/></p>
+<p>On your phone, ensure you have the MS Authenticator application installed. Then follow the on screen prompts between your computer and your new phone. You'll select "Work or School" and then scan the QR code that is common with 2FA/MFA applications.</p>
+<p>The last step in the process will be to send an authentication request to the new device. Do so, enter the verification code, and your new device will be added.</p>
+<p><img alt="Device is approved after entering your verification code" src="https://andrewwegner.com/images/ms_authenticator/approved_device.png"/></p>
+<p>I recommend you wrap this up by removing your old device from the Security Info section now that the new device is approved. </p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>The Microsoft authenticator application doesn't make moving to a new device as easy as some of its competitors. The requirement for a personal Microsoft account to go through the most commonly recommended way is also a non-starter if you don't have such an account already. Fortunately, the alternative posted above ended up working just fine. I assume I'll need a new phone again, and this should help at least me, remember that there is an easy enough way to migrate.</p>
   </div>
 <div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/control-power-wled-relay.html"
-    title="Controlling power to LED lights with WLED Controller and a Relay switch">
+  <a class="btn float-left" href="https://andrewwegner.com/format-efi-usb-windows.html"
+    title="Format USB drive with EFI partition in Windows">
     <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-  <a class="btn float-right" href="https://andrewwegner.com/ms-authenticator-without-personal-account.html"
-    title="Moving MS Authenticator to a new phone without a personal account">
-    Next Post <i class="fa fa-angle-right"></i>
   </a>
 </div>
   <hr />
@@ -318,10 +285,10 @@ DiskPart successfully deleted the selected partition.
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "name": "Format USB drive with EFI partition in Windows",
-  "headline": "Format USB drive with EFI partition in Windows",
-  "dateCreated": "2024-11-13 13:00:00-06:00",
-  "datePublished": "2024-11-13 13:00:00-06:00",
+  "name": "Moving MS Authenticator to a new phone without a personal account",
+  "headline": "Moving MS Authenticator to a new phone without a personal account",
+  "dateCreated": "2024-11-27 12:15:00-06:00",
+  "datePublished": "2024-11-27 12:15:00-06:00",
   "dateModified": "",
   "copyrightYear": "2024",
   "copyrightHolder": {
@@ -348,8 +315,8 @@ DiskPart successfully deleted the selected partition.
       ]
   },
   "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/format-efi-usb-windows.html",
-  "description": "Windows protects EFI partitions from being deleted. This article is a quick walkthrough on how to format a USB drive with an EFI partition within Windows.",
+  "url": "https://andrewwegner.com/ms-authenticator-without-personal-account.html",
+  "description": "The Microsoft Authenticator application allows you to transfer tokens to a new device if you have a personal Microsoft account. How do you do it if you don't have a personal account? This is a quick walk through of what worked for me.",
   "mainEntityOfPage": "True",
   "articleSection": "Technical Solutions"
 }
