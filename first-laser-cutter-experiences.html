@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/first-laser-cutter-experiences.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="My local library recently received a Glowforge for their patrons to utilize. This article is about my experiences using the machine" />
+<meta name="keywords" content="technical, meta">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="My first experiences with a laser cutter"/>
+  <meta property="og:description" content="My local library recently received a Glowforge for their patrons to utilize. This article is about my experiences using the machine"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/first-laser-cutter-experiences.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-01-02 10:15:00-06:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Side Activities"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="article:tag" content="meta"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>My first experiences with a laser cutter  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#a-simple-start">A simple start</a></li>
+<li><a href="#getting-fancy">Getting Fancy</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/first-laser-cutter-experiences.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">My first experiences with a laser cutter</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/side-activities.html",
+      "name": "Side Activities"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/first-laser-cutter-experiences.html",
+      "name": "https://andrewwegner.com/first-laser-cutter-experiences.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="first-laser-cutter-experiences">My first experiences with a laser cutter</h1>
+    <p>
+      Posted on Thu 02 January 2025 in <a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+        <a href="https://andrewwegner.com/tag/meta.html">meta</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>My local library spent a lot of time and money remodeling the last few years. Part of this remodel was adding an Innovation Lab with different tools that the public can utilize. These include a Cricut cutter, a Glowforge, a couple 3D printers, sewing machines, a T-shirt screen printer, and a few others I can't recall off hand. I am excited to try out several of these, but started with the laser cutter, because I have a home project that needs a few small things cut and engraved that I wasn't sure how I was going to do.</p>
+<p>The end goal is to get a set of two inch by one inch rectangles with various years engraved, scored or cut so that I can use these as labels. </p>
+<h2 id="a-simple-start">A simple start<a class="headerlink" href="#a-simple-start" title="Permanent link">¶</a></h2>
+<p>After a bit of research, I found that what I wanted was relatively simple - at least compared to what the machine is able to do. To do more advanced things, I'd have to learn a lot more about how some software tools operate. For my project though, I used <a href="https://inkscape.org/">Inkscape</a>. I started by setting up the rectangle I wanted to use, rounding the corners, and adding a year to engrave. This became my basic template, to ensure that everything was the same size.</p>
+<p><img alt='A basic rounded rectangle with "2009" engraved' src="https://andrewwegner.com/images/laser_cutter/2009_cut_engrave.png"/></p>
+<p>In all of my SVG files, I only used three colors: </p>
+<ul>
+<li>Red for cuts</li>
+<li>Black for engrave</li>
+<li>Blue for scoring</li>
+</ul>
+<p>While I read the Glowforge can handle different colors, I noticed that other tooling and software could not and used these three colors. If I ever get access to another laser cutter - or buy one of my own - I don't want to have to redo all of my work.</p>
+<p>The important thing at this step was to select the text, then Text-&gt;Object to path. Without this step, the Glowforge application didn't see the text, just the rectangle. </p>
+<h2 id="getting-fancy">Getting Fancy<a class="headerlink" href="#getting-fancy" title="Permanent link">¶</a></h2>
+<p>Once I had a basic cut done on basswood proof grade material from Glowforge, I wanted to try a few other designs. All of my examples below are using 2009, because that's the set I grabbed when taking pictures.</p>
+<p><img alt='A basic rounded rectangle with background engraved so "2009" pops out' src="https://andrewwegner.com/images/laser_cutter/2009_background_engraved.jpg"/></p>
+<p>With this, I engraved the background, instead of the text, so that the year would pop out. I didn't end up liking this one very much, because it makes the material so much thinner. This is obvious when I had multiple tiles of years that had not all been engraved this way. The thinness made these specific tiles feel flimsy. Since I didn't want to use this pattern for all years for the project, it wasn't going to work for only a couple.</p>
+<p><img alt="Black acrylic with an outer border" src="https://andrewwegner.com/images/laser_cutter/2009_black_unmasked.jpg"/></p>
+<p>I tried a couple acrylic colors - Black and Blue - to see how it'd look. In this test, I wanted to deal with the thinness I mentioned above too. I did this by adding a small border around the outside, so that when the tiles were side by side, the outer edges were all the same thickness. I liked how this looked and would end up using a portion of this in some final designs. The black acrylic turned out well. </p>
+<p><img alt="Blue acrylic with an outer border, still with masking tape" src="https://andrewwegner.com/images/laser_cutter/2009_blue_masked.jpg"/></p>
+<p>Unfortunately, I didn't like the blue acrylic. This is how blue looks with the masking tape still in place. This tape is is to prevent scorching marks. It looks ok with the tape in place, but once removed, the blue text just kind of got lost.</p>
+<p><img alt="Blue acrylic without an outer border, with no masking tape" src="https://andrewwegner.com/images/laser_cutter/2009_blue_unmasked.jpg"/></p>
+<p>This test didn't have the outer border, but I don't think that would have helped me like it any better. The blue text just gets lost from any angle other than straight on. </p>
+<p><img alt="Individual numeral cut outs" src="https://andrewwegner.com/images/laser_cutter/2009_individual.jpg"/></p>
+<p>I cut out individual numbers as well. These look really good. Unfortunately, I didn't plan beyond the cut out, and dealing with four individual numerals on each item I wanted to label very quickly became a ton of work to ensure they were unmasked, aligned, and glued into place. They also didn't end up looking as good as the tiled items once I had them in place. </p>
+<p>Something I should have learned from this experiment that I was vaguely aware of, but didn't pay attention to because I was focused on the numbers themselves, was that the inner part of the numbers would come out. This was more important in the next two experiments.</p>
+<p><img alt="Stacking acrylic on top of a wooden background" src="https://andrewwegner.com/images/laser_cutter/2009_stacked.jpg"/></p>
+<p>At this point I had decided that I liked how the black acrylic looked, but wanted to highlight a few years. I attempted one last test to see if I could utilize the narrower engraved look and stack it on top of another. The original goal had been to end up with the same thickness as the other tiles, but that didn't work as planned. </p>
+<p>That said, for the few years that I needed to highlight, this worked very well. To build this, I kept the lower layer - the wood - the same size as other tiles. I engraved like I had done for the acrylic tests above. Then on the acrylic itself, I made it the size of the inner border and reversed the numerals. I did this because I originally tested by engraving the acrylic down to size too, but it didn't look good. Instead, I kept the acrylic the original width and just cut out the numbers.</p>
+<p>Once stacked and glued together, I realized that I hadn't kept the inner pieces of the zeros. It is easy enough to go cut out a couple more numbers at the library, but at the same time, not bothering me enough to do so. </p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>Over the holidays, I completed the project and got everything labeled. I'm pleased with how it turned out. I was not surprised at how easy the Glowforge itself is to use. Learning how to design the SVG cut files took longer than I expected. There are likely other software tools that could do the job better, but for this small project and for some experiments, Inkscape worked just fine.</p>
+<p>For my next project, I'd like to finish off the <a href="https://andrewwegner.com/control-power-wled-relay.html">WLED</a> work I did last summer. The original project didn't work as expected, but the WLED portion worked wonderfully. I could build a couple stand lights and laser cut out the base. I'd have to figure out how to model the aluminium rail to cut it correctly, but that sound like a fun task.</p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/ms-authenticator-without-personal-account.html"
+    title="Moving MS Authenticator to a new phone without a personal account">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "My first experiences with a laser cutter",
+  "headline": "My first experiences with a laser cutter",
+  "dateCreated": "2025-01-02 10:15:00-06:00",
+  "datePublished": "2025-01-02 10:15:00-06:00",
+  "dateModified": "",
+  "copyrightYear": "2025",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/first-laser-cutter-experiences.html",
+  "description": "My local library recently received a Glowforge for their patrons to utilize. This article is about my experiences using the machine",
+  "mainEntityOfPage": "True",
+  "articleSection": "Side Activities"
+}
+</script>
+<footer>
+<p>&copy; 2025 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>
