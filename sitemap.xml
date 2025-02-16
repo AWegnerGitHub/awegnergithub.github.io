@@ -21,11 +21,6 @@
 <changefreq>weekly</changefreq>
 <priority>0.80</priority>
 </url><url>
-<loc>https://andrewwegner.com/learn-analytics-with-polars-review.html</loc>
-<lastmod>2024-09-04</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.80</priority>
-</url><url>
 <loc>https://andrewwegner.com/control-power-wled-relay.html</loc>
 <lastmod>2024-08-16</lastmod>
 <changefreq>weekly</changefreq>
@@ -53,6 +48,11 @@
 </url><url>
 <loc>https://andrewwegner.com/data-analysis-with-polars-review.html</loc>
 <lastmod>2024-01-29</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.80</priority>
+</url><url>
+<loc>https://andrewwegner.com/learn-analytics-with-polars-review.html</loc>
+<lastmod>2024-01-25</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.80</priority>
 </url><url>
@@ -685,10 +685,6 @@
 <changefreq>weekly</changefreq>
 <priority>0.50</priority>
 </url><url>
-<loc>https://andrewwegner.com/sponsored-content/</loc>
-<changefreq>weekly</changefreq>
-<priority>0.50</priority>
-</url><url>
 <loc>https://andrewwegner.com/category/jobs.html</loc>
 <lastmod>2023-08-14</lastmod>
 <changefreq>monthly</changefreq>
@@ -700,7 +696,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/category/review.html</loc>
-<lastmod>2024-09-04</lastmod>
+<lastmod>2024-01-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -785,7 +781,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/tag/learning.html</loc>
-<lastmod>2024-09-04</lastmod>
+<lastmod>2024-01-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>
@@ -810,7 +806,7 @@
 <priority>0.40</priority>
 </url><url>
 <loc>https://andrewwegner.com/tag/review.html</loc>
-<lastmod>2024-09-04</lastmod>
+<lastmod>2024-01-29</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.40</priority>
 </url><url>

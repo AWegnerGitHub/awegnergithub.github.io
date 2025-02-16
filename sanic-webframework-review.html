@@ -254,15 +254,6 @@
   </header>
 
   <div>
-<div class="admonition tip">
-    <p class="admonition-title"></p>
-    <p>
-        Portions of this post may be sponsored or contain affiliate links. Sponsors and affiliates have no input into
-        the content of this post and my words are my own. My full <a
-            href="https://andrewwegner.com/sponsored-content">Ethics Statement</a> and list of exactly what has been
-        sponsored or placed behind an affiliate link is available.
-    </p>
-</div>
     
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
 <p>At work we are starting to write version 2 of our API. As part of this new version, we're migrating from PHP to Python (hooray!). There are various technical
@@ -271,9 +262,9 @@ and after several internal discussions, we settled on <a href="https://sanic.rea
 <blockquote>
 <p>Sanic is a Flask-like Python 3.5+ web server that’s written to go fast.</p>
 </blockquote>
-<p>Great! I used Flask at my previous job. To be clear, Sanic is not <em>based on</em> Flask, but it's API is <em>Flask-like</em>. Good enough to start with. With the framework
+<p>Great! I used Flask at my previous job. To be clear, Sanic is not <em>based on</em> Flask, but it's API is <em>Flask-like</em>. Good enjoy to start with. With the framework
 set, and previous experience with a similar framework, I wanted to go through how Sanic works.</p>
-<p>I turned to Udemy and the <a href="https://click.linksynergy.com/link?id=upT2m3Gzivc&amp;offerid=1597309.3919718232128023212992482&amp;type=2&amp;murl=https%3a%2f%2fwww.udemy.com%2fcourse%2fsanic-an-asynchronous-web-framework-for-pythonistas%2f">Sanic - an asynchronous web framework for Pythonistas</a> course, created by Szabó Dániel Ernő.</p>
+<p>I turned to Udemy and the <a href="https://www.udemy.com/sanic-an-asynchronous-web-framework-for-pythonistas/">Sanic - an asynchronous web framework for Pythonistas</a> course, created by Szabó Dániel Ernő.</p>
 <h2 id="course">Course<a class="headerlink" href="#course" title="Permanent link">¶</a></h2>
 <p>The course is roughly two hours long and consists of 20 tutorial videos. Each one is less than 10 minutes long. It covers a wide range of features available in
 Sanic. The instructor made their code available on <a href="https://github.com/r3ap3rpy/sanic-web-framework">GitHub</a>. I never actually used the GitHub repository though. Instead, I followed along with the brief
@@ -285,11 +276,11 @@ this clears up. It's a minor thing but I do feel it's something that should have
 lesson contains the same boiler plate code:</p>
 <div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sanic</span>
 
-<span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sanic</span><span class="o">.</span><span class="n">Sanic</span><span class="p">()</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">sanic</span><span class="o">.</span><span class="n">Sanic</span><span class="p">()</span>
 
 
-<span class="k">if</span><span class="w"> </span><span class="vm">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"__main__"</span><span class="p">:</span>
-<span class="w">    </span><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span><span class="w"> </span><span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
 </code></pre></div>
 <p>The lesson code will then go after the <code>app</code> variable is defined. The problem with this boiler plate code is that the instructor types it out every single lesson.
 Again, this is minor and it makes each lesson self contained, but I think having this code already written and adding in the important, lesson specific code,

@@ -248,23 +248,14 @@
   </header>
 
   <div>
-<div class="admonition tip">
-    <p class="admonition-title"></p>
-    <p>
-        Portions of this post may be sponsored or contain affiliate links. Sponsors and affiliates have no input into
-        the content of this post and my words are my own. My full <a
-            href="https://andrewwegner.com/sponsored-content">Ethics Statement</a> and list of exactly what has been
-        sponsored or placed behind an affiliate link is available.
-    </p>
-</div>
     
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>It's time to continue my summer project of setting up some outdoor LED lights. <a href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html">Previously</a>, I <a href="https://amzn.to/3X6HLLT">set up and updated the Ericsity controller</a> with <a href="https://kno.wled.ge/">WLED</a>.</p>
+<p>It's time to continue my summer project of setting up some outdoor LED lights. <a href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html">Previously</a>, I <a href="https://www.amazon.com/Ericsity-Controller-Addressable-WS2812B-SK6812/dp/B0CNVXY8NX">set up and updated the Ericsity controller</a> with <a href="https://kno.wled.ge/">WLED</a>.</p>
 <p>I am putting up approximiately 20 meters - 65 feet - of LEDs. Total this will be nearly 2,000 individual LEDs and approximately 665 individually controlled LED segments (3 LEDs per segment). This will take more power than the little controller can handle. To demonstrate the problem of powering all of these LEDs with only the controller, look at this image:</p>
 <p><img alt="Power drop across 20 meters of LEDs" src="https://andrewwegner.com/images/wled/voltage-drop.png"/></p>
 <p>These strips are wired with the end of one strip connected to the start of the next. The top strip is connected directly to the controller. The one below is the end of strip two, followed by the start of strip three and the bottom is the very end of the full run of LEDs. The lights are all set to the same color, but as you can see they clearly aren't the same color. The voltage drop across 65 feet of LEDs means that the LEDs are the end can't get enough power to match their earlier siblings.</p>
 <h2 id="power-injection">Power Injection<a class="headerlink" href="#power-injection" title="Permanent link">¶</a></h2>
-<p>The solution to this specific problem is to inject power into the LED strips. I picked up some <a href="https://amzn.to/4e3hBR3">WAGO connectors</a> and a <a href="https://amzn.to/4e547o6">NUOFUWEI power supply</a>. I also had some 18 guage wire on hand. With this power unit, I can easily set up three injection points.</p>
+<p>The solution to this specific problem is to inject power into the LED strips. I picked up some <a href="https://www.amazon.com/dp/B0957T1S9C">WAGO connectors</a> and a <a href="https://www.amazon.com/dp/B0BXTP524R">NUOFUWEI power supply</a>. I also had some 18 guage wire on hand. With this power unit, I can easily set up three injection points.</p>
 <p>The goal was to inject power at the start of strip 1, right where the controller is connecting in the image above. Then inject between strips 2 and 3, in the middle of the run. Finally, I injected power at the end of strip 4. With these three, equally spaced injection points, I was able to get a nice uniform color across the entire 20 meter run.</p>
 <p><img alt="LED strip with power injection shows uniform coloring" src="https://andrewwegner.com/images/wled/equal-voltage.png"/></p>
 <p>Problem Solved! Right?</p>
