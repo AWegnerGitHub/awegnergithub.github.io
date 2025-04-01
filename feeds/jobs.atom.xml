@@ -14,25 +14,23 @@ Our solution was to make each cohort of new hires part of the knowledge-building
 &lt;h2 id="culture-preservation-techniques-that-work"&gt;Culture Preservation Techniques That Work&lt;a class="headerlink" href="#culture-preservation-techniques-that-work" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Maintaining culture during growth requires intentionality. Here are strategies I've found effective:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Immediate Integration into Meaningful Work
-New team members were immediately included in team ceremonies and assigned meaningful tasks—not just busywork. This sent a clear message: you're a valued contributor from day one. By giving new engineers real problems to solve immediately, they quickly identified with the team's mission and felt ownership of their work.&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Public Knowledge Sharing
-We instituted a rule that all support work must occur in public channels. This transparency accomplished several things:&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;New engineers could observe troubleshooting in real-time&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Immediate Integration into Meaningful Work&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;New team members were immediately included in team ceremonies and assigned meaningful tasks—not just busywork. This sent a clear message: you're a valued contributor from day one. By giving new engineers real problems to solve immediately, they quickly identified with the team's mission and felt ownership of their work.
+2. Public Knowledge Sharing&lt;/p&gt;
+&lt;p&gt;We instituted a rule that all support work must occur in public channels. This transparency accomplished several things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New engineers could observe troubleshooting in real-time&lt;/li&gt;
 &lt;li&gt;Everyone learned from each issue that arose&lt;/li&gt;
 &lt;li&gt;Team members could spot when someone was solving a previously addressed problem&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Patterns of recurring issues became visible, highlighting systemic problems that needed permanent fixes&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Visual Documentation
-A picture truly is worth a thousand words on day one. System architecture diagrams, workflow charts, and even team organization maps help new engineers orient themselves quickly. We continually updated these visual aids as our systems and teams evolved.&lt;/p&gt;
+&lt;p&gt;Visual Documentation&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
+&lt;p&gt;A picture truly is worth a thousand words on day one. System architecture diagrams, workflow charts, and even team organization maps help new engineers orient themselves quickly. We continually updated these visual aids as our systems and teams evolved.&lt;/p&gt;
 &lt;h2 id="evolution-of-team-structure-and-communication"&gt;Evolution of Team Structure and Communication&lt;a class="headerlink" href="#evolution-of-team-structure-and-communication" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="adaptive-team-structures"&gt;Adaptive Team Structures&lt;a class="headerlink" href="#adaptive-team-structures" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;There's no one-size-fits-all approach to team structure during scaling phases. I've built dedicated backend, frontend, and QA teams, and I've also created cross-functional pods. The right approach depends on your product, business needs, and the existing strengths of your team.
