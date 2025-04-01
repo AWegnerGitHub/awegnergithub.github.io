@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Jobs</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/jobs.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2023-08-14T15:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Failure of Management - Unlimited PTO</title><link href="https://andrewwegner.com/management-failure-unlimited-pto.html" rel="alternate"></link><published>2023-08-14T15:00:00-05:00</published><updated>2023-08-14T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-08-14:/management-failure-unlimited-pto.html</id><summary type="html">&lt;p&gt;Unlimited PTO is a perk more and more organization are offering their employees. Unfortunately, many managers and organization are managing this poorly and failing their employees. What does this management failure look like?&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy - Jobs</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/jobs.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2025-04-01T10:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture</title><link href="https://andrewwegner.com/scaling-teams-without-losing-culture.html" rel="alternate"></link><published>2025-04-01T10:00:00-05:00</published><updated>2025-04-01T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-04-01:/scaling-teams-without-losing-culture.html</id><summary type="html">&lt;p&gt;Scaling engineering teams is about much more than just adding headcount. It's about creating sustainable growth that preserves the core elements of your culture while evolving systems to support a larger organization. Here are a few of my thoughts about the topic.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;After nearly two decades in software development leadership and multiple VP-level roles, I've learned that scaling engineering teams is about much more than just adding headcount. It's about creating sustainable growth that preserves the core elements of your culture while evolving systems to support a larger organization.&lt;/p&gt;
+&lt;h2 id="the-challenges-of-rapid-growth"&gt;The Challenges of Rapid Growth&lt;a class="headerlink" href="#the-challenges-of-rapid-growth" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When scaling engineering teams, I faced two consistent challenges that required thoughtful solutions:&lt;/p&gt;
+&lt;h3 id="challenge-1-accelerated-hiring-while-maintaining-quality"&gt;Challenge 1: Accelerated Hiring While Maintaining Quality&lt;a class="headerlink" href="#challenge-1-accelerated-hiring-while-maintaining-quality" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Hiring quickly while finding candidates with the right skillsets is one of the most difficult aspects of scaling. The pressure to fill seats can easily lead to compromising on talent quality or cultural fit. I've found that being crystal clear about technical requirements while remaining flexible about where a candidate's talents can best serve the organization helps thread this needle.&lt;/p&gt;
+&lt;p&gt;During &lt;a href="https://andrewwegner.com/ideal-engineering-interviews.html"&gt;interviews&lt;/a&gt;, I focus on diving deep into candidates' past projects rather than relying solely on technical assessments. If an engineer discusses a project and emphasizes backend architecture and database design while only briefly touching on UI elements, this reveals their true areas of expertise. I always follow up by asking whether they want to continue developing in those areas or expand into new ones. Both answers are valuable—they help me understand not just what the candidate can do today, but how they might grow tomorrow.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/top-soft-skills-senior-developers-need.html"&gt;Soft skills are incredibly important&lt;/a&gt;. An engineer that takes ownership of the system, is willing to try an unknown, likes mentoring (and being mentored), and can communicate with others in a professional and empathic manner can bring much more than their technical skills to a growing team. Obviously you need that technical skill, but an engineer isn't a machine. They should be able to do more than sling code, rebuild a server, or make a system diagram. I am hiring someone for their whole set of skills.&lt;/p&gt;
+&lt;h3 id="challenge-2-knowledge-transfer-at-scale"&gt;Challenge 2: Knowledge Transfer at Scale&lt;a class="headerlink" href="#challenge-2-knowledge-transfer-at-scale" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In small teams, knowledge naturally diffuses through daily interactions. As teams grow, this organic process breaks down, creating knowledge silos and redundant work. Each wave of engineers we onboarded faced steeper learning curves without proper documentation and orientation.
+Our solution was to make each cohort of new hires part of the knowledge-building process. Every wave of engineers contributed to our knowledge bases, improving the experience for the next group. We implemented, essentially, an onboarding buddy system that paired new engineers with each other to build relationships, while also connecting them with experienced team members who could fill in knowledge gaps.&lt;/p&gt;
+&lt;p&gt;The other benefit of these types of improvements, is that is supports &lt;a href="https://andrewwegner.com/remote-work-thoughts-about-offices.html"&gt;asynchronous communication and remote work&lt;/a&gt;. Remote work and hybrid work have grown in popularity, especially since 2020. Building knowledge transfers through tooling that doesn't expect the entire team to be in a single location provides so much &lt;em&gt;context&lt;/em&gt; to others. Someone can catch up in a Slack channel later, or read a Confluence article tomorrow. &lt;/p&gt;
+&lt;h2 id="culture-preservation-techniques-that-work"&gt;Culture Preservation Techniques That Work&lt;a class="headerlink" href="#culture-preservation-techniques-that-work" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Maintaining culture during growth requires intentionality. Here are strategies I've found effective:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Immediate Integration into Meaningful Work
+New team members were immediately included in team ceremonies and assigned meaningful tasks—not just busywork. This sent a clear message: you're a valued contributor from day one. By giving new engineers real problems to solve immediately, they quickly identified with the team's mission and felt ownership of their work.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Public Knowledge Sharing
+We instituted a rule that all support work must occur in public channels. This transparency accomplished several things:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;New engineers could observe troubleshooting in real-time&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Everyone learned from each issue that arose&lt;/li&gt;
+&lt;li&gt;Team members could spot when someone was solving a previously addressed problem&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Patterns of recurring issues became visible, highlighting systemic problems that needed permanent fixes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Visual Documentation
+A picture truly is worth a thousand words on day one. System architecture diagrams, workflow charts, and even team organization maps help new engineers orient themselves quickly. We continually updated these visual aids as our systems and teams evolved.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="evolution-of-team-structure-and-communication"&gt;Evolution of Team Structure and Communication&lt;a class="headerlink" href="#evolution-of-team-structure-and-communication" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="adaptive-team-structures"&gt;Adaptive Team Structures&lt;a class="headerlink" href="#adaptive-team-structures" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;There's no one-size-fits-all approach to team structure during scaling phases. I've built dedicated backend, frontend, and QA teams, and I've also created cross-functional pods. The right approach depends on your product, business needs, and the existing strengths of your team.
+What matters most is acknowledging that your structure must evolve as you grow. The flat organization that worked at 5 engineers simply won't function at 50. Being transparent about these necessary changes helps the team understand why restructuring happens.&lt;/p&gt;
+&lt;h3 id="communication-cascade"&gt;Communication Cascade&lt;a class="headerlink" href="#communication-cascade" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;As teams grow, communication needs to flow through multiple channels. While I always strive to stay hands-on and close to the work, the reality of executive leadership means I can't directly communicate with everyone daily. Building a strong communication cascade through direct managers becomes essential.&lt;/p&gt;
+&lt;p&gt;I maintain regular one-on-one meetings with my direct reports and hold skip-level meetings on a consistent cadence. I also encourage my direct reports to do the same with their teams. This creates multiple pathways for information to flow up and down the organization.
+Crucially, engineers need to see their feedback traveling up the chain and resulting in actual changes. When team members witness their input driving decisions, they remain engaged in the communication process and feel valued for their insights.&lt;/p&gt;
+&lt;h2 id="measuring-success-beyond-headcount"&gt;Measuring Success Beyond Headcount&lt;a class="headerlink" href="#measuring-success-beyond-headcount" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Adding engineers is easy—ensuring they contribute effectively is the real challenge. Here are metrics I've found valuable for measuring successful scaling:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Time to first meaningful commit: How quickly can a new engineer contribute value?&lt;/li&gt;
+&lt;li&gt;Feature deployment velocity: Is delivery speed maintaining or improving as the team grows?&lt;/li&gt;
+&lt;li&gt;New product launch timelines: Are we bringing innovations to market faster?&lt;/li&gt;
+&lt;li&gt;Support queue metrics: Are new engineers getting involved in support while maintaining quality and response times?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These indicators help identify whether your growing team is becoming more capable or just more numerous.&lt;/p&gt;
+&lt;h2 id="the-lesson-id-apply-to-future-scaling-efforts"&gt;The Lesson I'd Apply to Future Scaling Efforts&lt;a class="headerlink" href="#the-lesson-id-apply-to-future-scaling-efforts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If I were scaling a team again tomorrow, I'd place even greater emphasis on breaking down business expectations into clearly defined incremental goals. Saying "we're adding X engineers to deliver Y major initiative" creates unrealistic timelines and pressure.
+New engineers need time to contribute meaningfully to large tasks. By defining a granular priority list with visible intermediate steps, both new and existing engineers can march toward tangible milestones rather than an intimidating "big thing" with unclear pathways to completion.&lt;/p&gt;
+&lt;h2 id="cross-team-integration-from-day-one"&gt;Cross-Team Integration from Day One&lt;a class="headerlink" href="#cross-team-integration-from-day-one" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Finally, I've learned the critical importance of ensuring engineering teams aren't isolated from other departments. As engineers onboard and learn, they should continuously interact with product, sales, customer success, and other functions.
+This cross-functional exposure provides vital context about why certain features are requested or designed in specific ways. Engineers who understand the business rationale make better technical decisions and can anticipate future needs.
+For example, understanding upcoming business requirements helps engineers build flexibility into systems where it will actually be needed, rather than adding unnecessary complexity. Building with the right level of flexibility now is infinitely easier than redesigning systems later.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Scaling engineering teams successfully requires balancing technical excellence, cultural preservation, and business alignment. By implementing thoughtful onboarding processes, maintaining transparent communication, measuring meaningful metrics, and keeping engineers connected to the broader business context, you can grow your team without losing what made it special in the first place.
+The journey from 5 to 50+ engineers is challenging, but with intentional leadership, it can result in not just a larger team, but a more capable, cohesive and impactful organization.&lt;/p&gt;</content><category term="Jobs"></category><category term="job"></category><category term="meta"></category><category term="leadership"></category></entry><entry><title>Failure of Management - Unlimited PTO</title><link href="https://andrewwegner.com/management-failure-unlimited-pto.html" rel="alternate"></link><published>2023-08-14T15:00:00-05:00</published><updated>2023-08-14T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-08-14:/management-failure-unlimited-pto.html</id><summary type="html">&lt;p&gt;Unlimited PTO is a perk more and more organization are offering their employees. Unfortunately, many managers and organization are managing this poorly and failing their employees. What does this management failure look like?&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="the-pitch"&gt;The pitch&lt;a class="headerlink" href="#the-pitch" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Unlimited PTO - more vacation time! - is a great recruiting pitch. Who wouldn't want to take more time off through out the year? Recruiters like
 unlimited PTO because it reduces benefit package negotiations over vacation time. Theorectically, it should help fight employee burn out too because 
@@ -124,7 +184,105 @@ for them by not expecting them to be an expert by the end of week two.&lt;/p&gt;
 this process is communicated to them, the smoother the candidate's experience will be. This requires that the company and hiring manager have spent time
 building the job description, technical assessments, and interview cycles ahead of time. Organization is important.&lt;/p&gt;
 &lt;p&gt;Communication is more important. The candidate is applying to join your team. How you communicate with them is their first indication on how they will
-be communicated with as an employee. &lt;/p&gt;</content><category term="Jobs"></category><category term="job"></category><category term="meta"></category><category term="leadership"></category></entry><entry><title>ChatGPT is here - Use that to stop asking LeetCode questions during interviews</title><link href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html" rel="alternate"></link><published>2022-12-15T23:45:00-06:00</published><updated>2022-12-15T23:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-15:/chatgpt-should-end-leetcode-interviews.html</id><summary type="html">&lt;p&gt;ChatGPT's availability and ability to answer basic questions should end LeetCode use in software engineering interviews. Right?&lt;/p&gt;</summary><content type="html">
+be communicated with as an employee. &lt;/p&gt;</content><category term="Jobs"></category><category term="job"></category><category term="meta"></category><category term="leadership"></category></entry><entry><title>My thoughts on what remote work will look like in the coming decade</title><link href="https://andrewwegner.com/remote-work-thoughts-about-offices.html" rel="alternate"></link><published>2023-05-23T15:30:00-05:00</published><updated>2023-05-23T15:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-05-23:/remote-work-thoughts-about-offices.html</id><summary type="html">&lt;p&gt;Return of office, hybrid work, fully remote job opportunities. Where do I think this is going?&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="preface"&gt;Preface&lt;a class="headerlink" href="#preface" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post is a bit different than some of my others. It's a direct response to an article. Over the past 9 months, as the 
+technology industry contracts, we've seen return to office orders from countless companies. Combined with the, roughly, 
+&lt;a href="https://layoffs.fyi/"&gt;300k layoffs&lt;/a&gt; between August 1, 2022and May 23, 2023 (&lt;a href="https://andrewwegner.com/looking-for-new-role.html"&gt;I was laid off in that time frame too&lt;/a&gt;), we've seen &lt;em&gt;a lot&lt;/em&gt; of 
+articles about how many companies are recalling people to the office. &lt;/p&gt;
+&lt;p&gt;I think this is short sighted. Remote work, when done properly, is the way of the future and forcing everyone back into an 
+office is not going to work as expected. One of the bright spots from the COVID-19 pandemic was that society learned many jobs
+can be done from home.&lt;/p&gt;
+&lt;h2 id="the-article"&gt;The article&lt;a class="headerlink" href="#the-article" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The article I'm responding to is &lt;a href="https://flocrivello.com/changing-my-mind-on-remote-about-being-in-san-francisco/"&gt;Changing my mind on remote, moving the team back to San Francisco&lt;/a&gt; by Flo Crivello. This
+isn't designed to pick on this author specifically, it's just the latest in a long line of these types of posts. &lt;/p&gt;
+&lt;p&gt;I encourage readers to take a look at the article. It is well written. I, however, disagree with almost all of it.&lt;/p&gt;
+&lt;p&gt;Let's get started, shall we?&lt;/p&gt;
+&lt;h2 id="counter-point"&gt;Counter point&lt;a class="headerlink" href="#counter-point" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I have a lot of problems with this article. The short version is that it sounds like this company implemented remote work poorly, 
+possibly during covid (I'm not sure how long they've been around). I think remote work is the best, especially for companies 
+that does not need a local presence.&lt;/p&gt;
+&lt;p&gt;The article raises four coordination cost bullet points:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;It’s harder to get a hold of each other, as we’re not online at the same time. “I’ll talk about it when I see him tomorrow” — these delays compound in a huge way.&lt;/li&gt;
+&lt;li&gt;So most interactions are async, leading to lower bandwidth, more context switching, and more things falling through the cracks.&lt;/li&gt;
+&lt;li&gt;Even sync chats aren’t as good. People can’t interrupt each other or have sidebars, and there are bugs with video, audio, screenshare, etc… These frictions compound too.&lt;/li&gt;
+&lt;li&gt;This causes us to be less aligned. We’re only a few engineers right now, and yet people feel out of the loop on who’s building what.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The first three of these are the result of poor company policy and team expectations for how remote work will function. Remote 
+work is still "work". It isn't "spend time by the pool with a laptop". It isn't "pick up groceries, mow the lawn, volunteer at the 
+classroom parent, and maybe hop on a phone call". It is work. The team and company need to set that expectation. However, remote 
+does offer the flexibility to do different things during the day. The company needs to be accepting of time zones, and time shifts.
+Embrace the employees that are productive outside of a 9-5 working day, especially if your workforce is scattered across time zones.&lt;/p&gt;
+&lt;p&gt;If the company is fully remote, they should build in the async communication as part of their communication plan. &lt;a href="https://getlighthouse.com/blog/power-of-repetition-successful-leaders/"&gt;Good communication requires repetition&lt;/a&gt;. Asynchronous communication leads to that perfectly. Send a message in slack, send an email, mention it in Slack in another context, bring it up on an all hands call. Versus, only mentioning it once in a meeting.&lt;/p&gt;
+&lt;p&gt;Items falling through the cracks isn't a remote or async communication problem. It's a team problem. It's a leadership problem. 
+It's a training problem. Don't blame remote work for this failure. Empower your team to make decisions that don't require 
+constant input from others. This is one of the core points that &lt;a href="https://about.gitlab.com/teamops/"&gt;GitLab's TeamOps&lt;/a&gt; has. &lt;a href="https://handbook.gitlab.com/teamops/everyone-contributes/#give-agency"&gt;Give your teams agency&lt;/a&gt;
+to make decisions without permission, review or approval. Do this, and those cracks get a lot smaller - regardless of 
+where the employees work.&lt;/p&gt;
+&lt;p&gt;Synchronous chats having communication problems aren't great, but the reasons for failure that are listed by the author don't 
+sound like a sync chat problem. "Interrupting", "having sidebars" - There are other avenues to communicate - zoom chat and 
+slack are two examples. The bigger problem, in my opinion, is the requirement to always have video communication on in a company. 
+This leads to fatigue due to communication patterns that don't exist in face to face communication (close eye contact, seeing 
+your self, reduced mobility, and higher cognitive load). I argue that a well structured async communication plan and team 
+will do better without constant sync communication. Sure, seeing people in person is helpful sometimes, but it's not required for 
+all interactions. &lt;/p&gt;
+&lt;p&gt;The alignment problem is a leadership failure. I've worked remotely for the better part of a decade. I worked in an office for 
+over a decade. Teams don't get misaligned because of remote work. They get misaligned because of leadership failures. Failure 
+to communicate at all, or only slivers of data, will misalign a team faster than a network outage or Zoom failure will. Way 
+faster. A poor company culture will ruin alignment in a way that a "My web cam isn't working today" could only dream of accomplishing.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Colocation is more fun too. You get to have lunch with your team, grab beers on Friday nights, play video games at the end of the day in the office, etc&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;sigh&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This author does not care about a work life balance either for themselves or their employees. There are employees that absolutely 
+love doing these things, building those relationships, and that's great. There are others that want to get home and spend time 
+unwinding, being with family, hanging out with friends and none of that can be done if the boss is expecting you to go to the bar 
+with them on a Friday night or stay at the office to play video games. Team building is important, but the way it's described here is 
+not the way to build a team long term.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This matters not only because fun is fun, and building community is super important, but also because it helps build trust, which improves our work&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;My personal bias is going to show here, but my trust in team mates grows more through professional pursuits. How a team 
+accomplishes a task or how a team responds to failure ( &lt;em&gt;especially&lt;/em&gt; how they respond to failure) is going to build that trust 
+a lot more than going to a bar on a Friday. Going to a bar will build a personal friendship, but that is different than a 
+professional level of trust.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[A]sk yourself which of the following competitors you’d be most afraid of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The bunch of hackers coding on a couch in an apartment&lt;/li&gt;
+&lt;li&gt;The team that’s fully colocated&lt;/li&gt;
+&lt;li&gt;The team that’s hybrid&lt;/li&gt;
+&lt;li&gt;The team that’s fully remote, split across timezones&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The last one, absolutely. In this environment, I as a manager, can hire the best person for the job regardless of where they sit in 
+the world. It doesn't matter if we could car pool to an office or if you are 18 hours ahead of me. This is the massive advantage of a 
+fully remote workforce and is commonly brushed under the rug in these types of articles. A team that is aligned and has the best 
+people in the world or industry working for them is going to crush a team of that is colocated and is limited by who lives in 
+commuting distance or is willing to relocate to commuting distance of the office.&lt;/p&gt;
+&lt;p&gt;Lastly, this quote&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A quick look for software engineers finds that SF has about 40 times more than Miami: (and my hunch is that they’re better ones too)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Wow. Every engineer here should be offended by this. I've hired over 100 engineers in my career. I think I have a pretty good idea 
+of how it works, how these engineers perform, and how they behave. Purely from an economic stand point, hiring from the Bay Area 
+is expensive. "But your engineers don't live in the Bay Area, Andy, you just said you hire globally." True...now, tell 
+that engineer in Miami or London or Ankara or Sao Paulo or anywhere else why they are making at least $100k less a year than 
+their coworker doing the exact same thing and see how quickly engineering morale crumbles. Or, are you one of the minority of 
+companies that pay the same regardless of location? If not, you should be. &lt;/p&gt;
+&lt;p&gt;The best engineers I've worked with, except one, have been located well outside of the Bay Area. An engineer in Miami can do the exact
+same work that an engineer in San Fransisco can at the same quality.&lt;/p&gt;
+&lt;p&gt;Remote works can and is incredibly successful for many companies. It does require deliberate, intentional, company decisions to make 
+it work though. I shared the &lt;a href="https://about.gitlab.com/teamops/"&gt;TeamOps&lt;/a&gt; information above (and completed &lt;a href="https://andrewwegner.com/gitlab-teamops-certification.html"&gt;TeamOps certification&lt;/a&gt; earlier this year). GitLab, one 
+of the largest successful all remote companies in the world, has intentionally built their remote policies around this. Without
+putting in the time or effort to ensure remote is successful, teams will (and are) defaulting back to in office. I think we are 
+going to be seeing just how unsuccessful that strategy is in the next decade. One of the few benefits of Covid was that it showed
+many engineers around the world just how much they are missing out on with daily commutes, 10-12 hour days in the office, 
+lack of family time which is why there has been such push back. Those that have successfully adapted (or built from the 
+ground up) the company culture to handle remote work will have a huge advantage as this period of contraction eases in the future.&lt;/p&gt;</content><category term="Jobs"></category><category term="job search"></category><category term="leadership"></category></entry><entry><title>ChatGPT is here - Use that to stop asking LeetCode questions during interviews</title><link href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html" rel="alternate"></link><published>2022-12-15T23:45:00-06:00</published><updated>2022-12-15T23:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-15:/chatgpt-should-end-leetcode-interviews.html</id><summary type="html">&lt;p&gt;ChatGPT's availability and ability to answer basic questions should end LeetCode use in software engineering interviews. Right?&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I have interviewed a lot of software engineers looking for a new position. I've talked with college students looking for
 an internship, junior engineers just getting started, staff engineers looking for a new role, managers and directors to

@@ -1,0 +1,397 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/scaling-teams-without-losing-culture.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="Scaling engineering teams is about much more than just adding headcount. It&#39;s about creating sustainable growth that preserves the core elements of your culture while evolving systems to support a larger organization. Here are a few of my thoughts about the topic." />
+<meta name="keywords" content="job, meta, leadership">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture"/>
+  <meta property="og:description" content="Scaling engineering teams is about much more than just adding headcount. It&#39;s about creating sustainable growth that preserves the core elements of your culture while evolving systems to support a larger organization. Here are a few of my thoughts about the topic."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/scaling-teams-without-losing-culture.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-04-01 10:00:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Jobs"/>
+  <meta property="article:tag" content="job"/>
+  <meta property="article:tag" content="meta"/>
+  <meta property="article:tag" content="leadership"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#the-challenges-of-rapid-growth">The Challenges of Rapid Growth</a><ul>
+<li><a href="#challenge-1-accelerated-hiring-while-maintaining-quality">Challenge 1: Accelerated Hiring While Maintaining Quality</a></li>
+<li><a href="#challenge-2-knowledge-transfer-at-scale">Challenge 2: Knowledge Transfer at Scale</a></li>
+</ul>
+</li>
+<li><a href="#culture-preservation-techniques-that-work">Culture Preservation Techniques That Work</a></li>
+<li><a href="#evolution-of-team-structure-and-communication">Evolution of Team Structure and Communication</a><ul>
+<li><a href="#adaptive-team-structures">Adaptive Team Structures</a></li>
+<li><a href="#communication-cascade">Communication Cascade</a></li>
+</ul>
+</li>
+<li><a href="#measuring-success-beyond-headcount">Measuring Success Beyond Headcount</a></li>
+<li><a href="#the-lesson-id-apply-to-future-scaling-efforts">The Lesson I'd Apply to Future Scaling Efforts</a></li>
+<li><a href="#cross-team-integration-from-day-one">Cross-Team Integration from Day One</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/jobs.html">Jobs</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/scaling-teams-without-losing-culture.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/jobs.html",
+      "name": "Jobs"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/scaling-teams-without-losing-culture.html",
+      "name": "https://andrewwegner.com/scaling-teams-without-losing-culture.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="scaling-teams-without-losing-culture">Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture</h1>
+    <p>
+      Posted on Tue 01 April 2025 in <a href="https://andrewwegner.com/category/jobs.html">Jobs</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/job.html">job</a>
+        <a href="https://andrewwegner.com/tag/meta.html">meta</a>
+        <a href="https://andrewwegner.com/tag/leadership.html">leadership</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<p>After nearly two decades in software development leadership and multiple VP-level roles, I've learned that scaling engineering teams is about much more than just adding headcount. It's about creating sustainable growth that preserves the core elements of your culture while evolving systems to support a larger organization.</p>
+<h2 id="the-challenges-of-rapid-growth">The Challenges of Rapid Growth<a class="headerlink" href="#the-challenges-of-rapid-growth" title="Permanent link">¶</a></h2>
+<p>When scaling engineering teams, I faced two consistent challenges that required thoughtful solutions:</p>
+<h3 id="challenge-1-accelerated-hiring-while-maintaining-quality">Challenge 1: Accelerated Hiring While Maintaining Quality<a class="headerlink" href="#challenge-1-accelerated-hiring-while-maintaining-quality" title="Permanent link">¶</a></h3>
+<p>Hiring quickly while finding candidates with the right skillsets is one of the most difficult aspects of scaling. The pressure to fill seats can easily lead to compromising on talent quality or cultural fit. I've found that being crystal clear about technical requirements while remaining flexible about where a candidate's talents can best serve the organization helps thread this needle.</p>
+<p>During <a href="https://andrewwegner.com/ideal-engineering-interviews.html">interviews</a>, I focus on diving deep into candidates' past projects rather than relying solely on technical assessments. If an engineer discusses a project and emphasizes backend architecture and database design while only briefly touching on UI elements, this reveals their true areas of expertise. I always follow up by asking whether they want to continue developing in those areas or expand into new ones. Both answers are valuable—they help me understand not just what the candidate can do today, but how they might grow tomorrow.</p>
+<p><a href="https://andrewwegner.com/top-soft-skills-senior-developers-need.html">Soft skills are incredibly important</a>. An engineer that takes ownership of the system, is willing to try an unknown, likes mentoring (and being mentored), and can communicate with others in a professional and empathic manner can bring much more than their technical skills to a growing team. Obviously you need that technical skill, but an engineer isn't a machine. They should be able to do more than sling code, rebuild a server, or make a system diagram. I am hiring someone for their whole set of skills.</p>
+<h3 id="challenge-2-knowledge-transfer-at-scale">Challenge 2: Knowledge Transfer at Scale<a class="headerlink" href="#challenge-2-knowledge-transfer-at-scale" title="Permanent link">¶</a></h3>
+<p>In small teams, knowledge naturally diffuses through daily interactions. As teams grow, this organic process breaks down, creating knowledge silos and redundant work. Each wave of engineers we onboarded faced steeper learning curves without proper documentation and orientation.
+Our solution was to make each cohort of new hires part of the knowledge-building process. Every wave of engineers contributed to our knowledge bases, improving the experience for the next group. We implemented, essentially, an onboarding buddy system that paired new engineers with each other to build relationships, while also connecting them with experienced team members who could fill in knowledge gaps.</p>
+<p>The other benefit of these types of improvements, is that is supports <a href="https://andrewwegner.com/remote-work-thoughts-about-offices.html">asynchronous communication and remote work</a>. Remote work and hybrid work have grown in popularity, especially since 2020. Building knowledge transfers through tooling that doesn't expect the entire team to be in a single location provides so much <em>context</em> to others. Someone can catch up in a Slack channel later, or read a Confluence article tomorrow. </p>
+<h2 id="culture-preservation-techniques-that-work">Culture Preservation Techniques That Work<a class="headerlink" href="#culture-preservation-techniques-that-work" title="Permanent link">¶</a></h2>
+<p>Maintaining culture during growth requires intentionality. Here are strategies I've found effective:</p>
+<ol>
+<li>Immediate Integration into Meaningful Work
+New team members were immediately included in team ceremonies and assigned meaningful tasks—not just busywork. This sent a clear message: you're a valued contributor from day one. By giving new engineers real problems to solve immediately, they quickly identified with the team's mission and felt ownership of their work.</li>
+<li>
+<p>Public Knowledge Sharing
+We instituted a rule that all support work must occur in public channels. This transparency accomplished several things:</p>
+</li>
+<li>
+<p>New engineers could observe troubleshooting in real-time</p>
+</li>
+<li>Everyone learned from each issue that arose</li>
+<li>Team members could spot when someone was solving a previously addressed problem</li>
+<li>
+<p>Patterns of recurring issues became visible, highlighting systemic problems that needed permanent fixes</p>
+</li>
+<li>
+<p>Visual Documentation
+A picture truly is worth a thousand words on day one. System architecture diagrams, workflow charts, and even team organization maps help new engineers orient themselves quickly. We continually updated these visual aids as our systems and teams evolved.</p>
+</li>
+</ol>
+<h2 id="evolution-of-team-structure-and-communication">Evolution of Team Structure and Communication<a class="headerlink" href="#evolution-of-team-structure-and-communication" title="Permanent link">¶</a></h2>
+<h3 id="adaptive-team-structures">Adaptive Team Structures<a class="headerlink" href="#adaptive-team-structures" title="Permanent link">¶</a></h3>
+<p>There's no one-size-fits-all approach to team structure during scaling phases. I've built dedicated backend, frontend, and QA teams, and I've also created cross-functional pods. The right approach depends on your product, business needs, and the existing strengths of your team.
+What matters most is acknowledging that your structure must evolve as you grow. The flat organization that worked at 5 engineers simply won't function at 50. Being transparent about these necessary changes helps the team understand why restructuring happens.</p>
+<h3 id="communication-cascade">Communication Cascade<a class="headerlink" href="#communication-cascade" title="Permanent link">¶</a></h3>
+<p>As teams grow, communication needs to flow through multiple channels. While I always strive to stay hands-on and close to the work, the reality of executive leadership means I can't directly communicate with everyone daily. Building a strong communication cascade through direct managers becomes essential.</p>
+<p>I maintain regular one-on-one meetings with my direct reports and hold skip-level meetings on a consistent cadence. I also encourage my direct reports to do the same with their teams. This creates multiple pathways for information to flow up and down the organization.
+Crucially, engineers need to see their feedback traveling up the chain and resulting in actual changes. When team members witness their input driving decisions, they remain engaged in the communication process and feel valued for their insights.</p>
+<h2 id="measuring-success-beyond-headcount">Measuring Success Beyond Headcount<a class="headerlink" href="#measuring-success-beyond-headcount" title="Permanent link">¶</a></h2>
+<p>Adding engineers is easy—ensuring they contribute effectively is the real challenge. Here are metrics I've found valuable for measuring successful scaling:</p>
+<ul>
+<li>Time to first meaningful commit: How quickly can a new engineer contribute value?</li>
+<li>Feature deployment velocity: Is delivery speed maintaining or improving as the team grows?</li>
+<li>New product launch timelines: Are we bringing innovations to market faster?</li>
+<li>Support queue metrics: Are new engineers getting involved in support while maintaining quality and response times?</li>
+</ul>
+<p>These indicators help identify whether your growing team is becoming more capable or just more numerous.</p>
+<h2 id="the-lesson-id-apply-to-future-scaling-efforts">The Lesson I'd Apply to Future Scaling Efforts<a class="headerlink" href="#the-lesson-id-apply-to-future-scaling-efforts" title="Permanent link">¶</a></h2>
+<p>If I were scaling a team again tomorrow, I'd place even greater emphasis on breaking down business expectations into clearly defined incremental goals. Saying "we're adding X engineers to deliver Y major initiative" creates unrealistic timelines and pressure.
+New engineers need time to contribute meaningfully to large tasks. By defining a granular priority list with visible intermediate steps, both new and existing engineers can march toward tangible milestones rather than an intimidating "big thing" with unclear pathways to completion.</p>
+<h2 id="cross-team-integration-from-day-one">Cross-Team Integration from Day One<a class="headerlink" href="#cross-team-integration-from-day-one" title="Permanent link">¶</a></h2>
+<p>Finally, I've learned the critical importance of ensuring engineering teams aren't isolated from other departments. As engineers onboard and learn, they should continuously interact with product, sales, customer success, and other functions.
+This cross-functional exposure provides vital context about why certain features are requested or designed in specific ways. Engineers who understand the business rationale make better technical decisions and can anticipate future needs.
+For example, understanding upcoming business requirements helps engineers build flexibility into systems where it will actually be needed, rather than adding unnecessary complexity. Building with the right level of flexibility now is infinitely easier than redesigning systems later.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>Scaling engineering teams successfully requires balancing technical excellence, cultural preservation, and business alignment. By implementing thoughtful onboarding processes, maintaining transparent communication, measuring meaningful metrics, and keeping engineers connected to the broader business context, you can grow your team without losing what made it special in the first place.
+The journey from 5 to 50+ engineers is challenging, but with intentional leadership, it can result in not just a larger team, but a more capable, cohesive and impactful organization.</p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/first-laser-cutter-experiences.html"
+    title="My first experiences with a laser cutter">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture",
+  "headline": "Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture",
+  "dateCreated": "2025-04-01 10:00:00-05:00",
+  "datePublished": "2025-04-01 10:00:00-05:00",
+  "dateModified": "",
+  "copyrightYear": "2025",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/about/"
+      ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/scaling-teams-without-losing-culture.html",
+  "description": "Scaling engineering teams is about much more than just adding headcount. It's about creating sustainable growth that preserves the core elements of your culture while evolving systems to support a larger organization. Here are a few of my thoughts about the topic.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Jobs"
+}
+</script>
+<footer>
+<p>&copy; 2025 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy"
+}
+</script>
+</body>
+
+</html>
