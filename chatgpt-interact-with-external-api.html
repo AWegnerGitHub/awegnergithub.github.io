@@ -270,22 +270,22 @@ API key. <em>Side Note: The documentation is wrong in that it states this end po
 <p>The code that I was provided:</p>
 <div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
-<span class="n">api_key</span> <span class="o">=</span> <span class="s2">"YOUR_API_KEY"</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
-    <span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span>
+<span class="n">api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"YOUR_API_KEY"</span>
+<span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span>
 <span class="p">}</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="s2">"https://api.packetfabric.com/v2/location?state=CA"</span><span class="p">,</span>
-    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+<span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<span class="w">    </span><span class="s2">"https://api.packetfabric.com/v2/location?state=CA"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
 <span class="p">)</span>
 
-<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-    <span class="n">locations</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">locations</span><span class="p">)</span>
+<span class="k">if</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">200</span><span class="p">:</span>
+<span class="w">    </span><span class="n">locations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="n">locations</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Request failed with status code </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Request failed with status code </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <p>As I mentioned above, the Bearer token isn't required for this end point. It's inclusion does not impact the functionality of this 
 script, and assuming I'm making more than calls to the <code>locations</code> end point, it'll be needed anyway. I'll keep it here. </p>
@@ -335,22 +335,22 @@ For example, to get a list of all locations in Atlanta, Georgia (GA), you could 
 </blockquote>
 <div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
-<span class="n">api_key</span> <span class="o">=</span> <span class="s2">"YOUR_API_KEY"</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
-    <span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span>
+<span class="n">api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"YOUR_API_KEY"</span>
+<span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span>
 <span class="p">}</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="s2">"https://api.packetfabric.com/v2/location?state=GA&amp;city=Atlanta"</span><span class="p">,</span>
-    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+<span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<span class="w">    </span><span class="s2">"https://api.packetfabric.com/v2/location?state=GA&amp;city=Atlanta"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
 <span class="p">)</span>
 
-<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-    <span class="n">locations</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">locations</span><span class="p">)</span>
+<span class="k">if</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">200</span><span class="p">:</span>
+<span class="w">    </span><span class="n">locations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="n">locations</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Request failed with status code </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Request failed with status code </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <blockquote>
 <p>This will send a GET request to the /location endpoint with the state query parameter set to GA and the city query parameter set to Atlanta, and will print the list of locations returned by the API.

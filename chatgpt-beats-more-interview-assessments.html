@@ -272,23 +272,23 @@ assessment because I don't know react. I've liked these types of assessment ques
 apply my experience to "nudge" ChatGPT toward a solution. </p>
 <p>The challenge here is to toggle a button between "On" and "Off". You're presented with a very small amount of boiler plate code. </p>
 <p>I simply copy/pasted the prompt and the template into ChatGPT. It sent back this:</p>
-<div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">useState</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'react'</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">ReactDOM</span> <span class="kn">from</span><span class="w"> </span><span class="s1">'react-dom'</span><span class="p">;</span>
+<div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kn">from</span><span class="w"> </span><span class="s1">'react'</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ReactDOM</span><span class="w"> </span><span class="kn">from</span><span class="w"> </span><span class="s1">'react-dom'</span><span class="p">;</span>
 
-<span class="n">function</span> <span class="n">Toggle</span><span class="p">()</span> <span class="p">{</span>
-<span class="n">const</span> <span class="p">[</span><span class="n">toggle</span><span class="p">,</span> <span class="n">setToggle</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>
+<span class="n">function</span><span class="w"> </span><span class="n">Toggle</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="n">const</span><span class="w"> </span><span class="p">[</span><span class="n">toggle</span><span class="p">,</span><span class="w"> </span><span class="n">setToggle</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">useState</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>
 
-<span class="n">function</span> <span class="n">handleClick</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">setToggle</span><span class="p">(</span><span class="err">!</span><span class="n">toggle</span><span class="p">);</span>
+<span class="n">function</span><span class="w"> </span><span class="n">handleClick</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">setToggle</span><span class="p">(</span><span class="err">!</span><span class="n">toggle</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">handleClick</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">toggle</span> <span class="err">?</span> <span class="s1">'ON'</span> <span class="p">:</span> <span class="s1">'OFF'</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+<span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">button</span><span class="w"> </span><span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">handleClick</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">toggle</span><span class="w"> </span><span class="err">?</span><span class="w"> </span><span class="s1">'ON'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">'OFF'</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
 <span class="p">);</span>
 <span class="p">}</span>
 
 <span class="n">ReactDOM</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
-<span class="o">&lt;</span><span class="n">Toggle</span> <span class="o">/&gt;</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">Toggle</span><span class="w"> </span><span class="o">/&gt;</span><span class="p">,</span>
 <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">)</span>
 <span class="p">);</span>
 </code></pre></div>
@@ -305,22 +305,22 @@ lot more uniform compared to a non-SQL coding assessment. This one wasn't a diff
 <p>The goal of this assessment was to return a list of names in alphabetical order, a count of the number of people that report to them, and the 
 average age of their team members. I pasted the prompt, the expected table layout for the output and the table layout being selected from.</p>
 <p>The first response was </p>
-<div class="codehilight code"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">ReportsTo</span><span class="p">,</span><span class="w"> </span><span class="nf">COUNT</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Members</span><span class="p">,</span><span class="w"> </span><span class="nf">AVG</span><span class="p">(</span><span class="n">Age</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Average_Age</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">maintable_YTTQH</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">ReportsTo</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ReportsTo</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ReportsTo</span><span class="p">;</span>
+<div class="codehilight code"><pre><span></span><code>SELECT ReportsTo, COUNT(ID) AS Members, AVG(Age) AS Average_Age
+FROM maintable_YTTQH
+WHERE ReportsTo IS NOT NULL
+GROUP BY ReportsTo
+ORDER BY ReportsTo;
 </code></pre></div>
 <p>This is where experience, and checking the results are important. The expected output showed that the average age should be an integer. It also showed that the average age column should be named <code>Average Age</code> not <code>Average_Age</code> (notice the lack of the underscore). I provided this guidance to ChatGPT</p>
 <blockquote>
 <p>The AVG(Age) should be an integer not a float and The "Average_Age" field should be "Average Age" without an underscore. </p>
 </blockquote>
 <p>It corrected both problems with a new query which I submitted. </p>
-<div class="codehilight code"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">ReportsTo</span><span class="p">,</span><span class="w"> </span><span class="nf">COUNT</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Members</span><span class="p">,</span><span class="w"> </span><span class="nf">ROUND</span><span class="p">(</span><span class="nf">AVG</span><span class="p">(</span><span class="n">Age</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s2">"Average Age"</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">maintable_YTTQH</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">ReportsTo</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ReportsTo</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ReportsTo</span><span class="p">;</span>
+<div class="codehilight code"><pre><span></span><code>SELECT ReportsTo, COUNT(ID) AS Members, ROUND(AVG(Age)) AS "Average Age"
+FROM maintable_YTTQH
+WHERE ReportsTo IS NOT NULL
+GROUP BY ReportsTo
+ORDER BY ReportsTo;
 </code></pre></div>
 <p><img alt="CoderByte - Medium Challenge - SQL Score" src="https://andrewwegner.com/images/coderbyte-medium-tests.png"/></p>
 <p>ChatGPT scored another 10/10. </p>
@@ -337,8 +337,8 @@ of pairs of parenthesis. The example provided is:</p>
 <p>I copied the prompt and boiler plate code into ChatGPT and it returned the following response:</p>
 <div class="codehilight code"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">BracketCombinations</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
 
-    <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">factorial</span>
-    <span class="k">return</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">num</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="w">    </span><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">factorial</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">factorial</span><span class="p">(</span><span class="n">num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
 
 <span class="c1"># keep this function call here </span>
 <span class="nb">print</span><span class="p">(</span><span class="n">BracketCombinations</span><span class="p">(</span><span class="nb">input</span><span class="p">()))</span>
