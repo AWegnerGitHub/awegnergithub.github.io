@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/tech-debt-management-strategic-approach.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="After navigating technical leadership roles across startups and established corporations, I&#39;ve come to view technical debt as both inevitable and manageable. It&#39;s the leadership approach to this debt that often determines whether a company can maintain momentum or finds itself grinding to a halt." />
+<meta name="keywords" content="job, meta, leadership">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Technical Debt Management: A Strategic Approach"/>
+  <meta property="og:description" content="After navigating technical leadership roles across startups and established corporations, I&#39;ve come to view technical debt as both inevitable and manageable. It&#39;s the leadership approach to this debt that often determines whether a company can maintain momentum or finds itself grinding to a halt."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/tech-debt-management-strategic-approach.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-04-08 09:00:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Leadership"/>
+  <meta property="article:tag" content="job"/>
+  <meta property="article:tag" content="meta"/>
+  <meta property="article:tag" content="leadership"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Technical Debt Management: A Strategic Approach  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#understanding-technical-debt">Understanding Technical Debt</a></li>
+<li><a href="#the-real-cost-of-technical-debt">The Real Cost of Technical Debt</a></li>
+<li><a href="#when-to-address-vs-when-to-defer">When to Address vs. When to Defer</a><ul>
+<li><a href="#the-upgrade-case-study">The Upgrade Case Study</a></li>
+<li><a href="#why-early-is-cheaper">Why Early Is Cheaper</a></li>
+</ul>
+</li>
+<li><a href="#making-technical-debt-visible">Making Technical Debt Visible</a></li>
+<li><a href="#automation-as-visibility">Automation as Visibility</a></li>
+<li><a href="#cultural-elements-of-technical-debt-management">Cultural Elements of Technical Debt Management</a></li>
+<li><a href="#the-continuous-approach">The Continuous Approach</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/leadership.html">Leadership</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/tech-debt-management-strategic-approach.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Technical Debt Management: A Strategic Approach</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/leadership.html",
+      "name": "Leadership"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/tech-debt-management-strategic-approach.html",
+      "name": "https://andrewwegner.com/tech-debt-management-strategic-approach.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="tech-debt-management-strategic-approach">Technical Debt Management: A Strategic Approach</h1>
+    <p>
+      Posted on Tue 08 April 2025 in <a href="https://andrewwegner.com/category/leadership.html">Leadership</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/job.html">job</a>
+        <a href="https://andrewwegner.com/tag/meta.html">meta</a>
+        <a href="https://andrewwegner.com/tag/leadership.html">leadership</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>The term "technical debt" has become a catch-all phrase, it's used to describe anything from poorly written code to outdated systems. But at its core, technical debt represents the very real trade-off of choosing immediate delivery over long-term maintainability. For companies caught between aggressive timelines and the need for sustainable systems, managing this debt becomes more than just a technical challenge. It's a strategic imperative.</p>
+<h2 id="understanding-technical-debt">Understanding Technical Debt<a class="headerlink" href="#understanding-technical-debt" title="Permanent link">¶</a></h2>
+<p>Technical debt manifests differently at various companies. Large organizations struggle with legacy systems built decades ago, while smaller companies struggle with systems built hastily last quarter that are already creaking under unexpected scale or scope expansion.</p>
+<p>The primary sources of technical debt during rapid scaling often emerge from several common scenarios. I've witnessed early architectural decisions made with limited information create significant challenges. When we built our first API at a one startup, we made assumptions about how users would utilize the API and the portal built on top of it that proved incorrect. We made assumptions about our own product line that didn't hold true as we scaled. As our user base grew, as our product line grew, as our internal structure grew, we found that we'd built ourselves into a cage that wasn't easy to build our way out of. Acquisition integration introduces another layer of complexity, as we often need to integrate systems built with different architectural assumptions and technical standards.</p>
+<p>Feature pressure also plays a huge role. When racing to meet competitive threats or capitalize on market opportunities, corners get cut. These aren't necessarily bad decisions at the time, but they accumulate over time. Team rotation creates knowledge gaps. As teams and companies scale, original architects and developers move into management, other roles, or to other companies taking vital context with them if proper knowledge transfer isn't prioritized.</p>
+<p>The "move fast and break things" ethos that drives early success can quickly become a liability if technical debt isn't managed proactively. In these environments, yesterday's clever hack becomes today's bottleneck, and today's workaround becomes tomorrow's single point of failure.</p>
+<h2 id="the-real-cost-of-technical-debt">The Real Cost of Technical Debt<a class="headerlink" href="#the-real-cost-of-technical-debt" title="Permanent link">¶</a></h2>
+<p>Technical debt is often discussed in abstract terms, making it difficult for non-technical stakeholders to appreciate its impact. To make these costs tangible, I find it helpful to categorize them into different areas of impact.</p>
+<p>Unmanaged technical debt progressively slows development. What once took days begins taking weeks as developers navigate around increasingly brittle code. Systems built around technical debt typically require more hands-on management. For example, in one role, we found support was seeing the same pattern of problems over and over again, despite engineering effort to solve the problem. Engineers were spending so much time maintaining these systems that new development slowed to a crawl.</p>
+<p>Which leads to what I think is the most damaging aspect of unmanaged technical debit. Stiffled innovation. When engineers spend their creative energy working around limitations rather than solving new problems, competitive advantage erodes. This cost is hardest to quantify but most devastating long-term. Technical debt becomes most visible when it impacts customers. Whether this manifests through outages, performance issues, or security vulnerabilities, it impacts customers in some way. By then, the solution is typically more expensive and disruptive than if addressed proactively.</p>
+<h2 id="when-to-address-vs-when-to-defer">When to Address vs. When to Defer<a class="headerlink" href="#when-to-address-vs-when-to-defer" title="Permanent link">¶</a></h2>
+<p>Not all technical debt requires immediate attention. The key is distinguishing between strategic debt that enables necessary velocity and toxic debt that creates compounding problems. Here's how I approach these decisions:</p>
+<h3 id="the-upgrade-case-study">The Upgrade Case Study<a class="headerlink" href="#the-upgrade-case-study" title="Permanent link">¶</a></h3>
+<p>As I mentioned above, at one company, we faced a critical decision about our API infrastructure. We had built an initial API quickly as a skeleton for the product, but it wasn't designed for the scale and feature set we now needed. As the team grew rapidly, we had to decide whether to focus exclusively on building a new production ready API, or gradually migrate from old to new while continuing feature development on both.</p>
+<p>After analysis, we estimated that implementing new product features in the old API would actually take longer than building a robust new API and implementing the new features there first. The tipping point came when our team estimated that one specific new product line would take less time to deliver by building the skeleton of a new API, setting it up properly, and implementing the new feature than it would to build the feature into the current API.</p>
+<p>The clean-cut approach allowed new team members to focus entirely on the new API, infrastructure, and features. They came up to speed quickly by building a product they knew from the ground up. We ported the old API functionality to achieve parity, added new features as an incentive for customers to migrate, and then deprecated and ultimately shut down V1.</p>
+<p>This counterintuitive approach, where addressing technical debt actually accelerated delivery, is exactly the kind of strategic analysis companies need.</p>
+<h3 id="why-early-is-cheaper">Why Early Is Cheaper<a class="headerlink" href="#why-early-is-cheaper" title="Permanent link">¶</a></h3>
+<p>A fundamental principle of technical debt management is that the cost to update almost always increases with time. In my experience, moving one version forward is generally easier than moving two, which is easier than moving three. Waiting until something reaches end-of-life means you're multiple versions behind, increasing the likelihood that functionality you rely on has been deprecated or removed.</p>
+<p>The same principle applies across development. Finding problems in development is cheaper than finding them in QA, which is cheaper than finding them in production. Security follows this curve most dramatically. Addressing vulnerabilities during development is vastly cheaper than responding to a public security breach.</p>
+<p>When discussing technical debt with business stakeholders, this compounding cost curve is the most persuasive argument for proactive management.</p>
+<h2 id="making-technical-debt-visible">Making Technical Debt Visible<a class="headerlink" href="#making-technical-debt-visible" title="Permanent link">¶</a></h2>
+<p>Creating organizational awareness around technical debt is essential for managing it effectively. The approaches I've found most effective include visualization tools that make the abstract concrete.</p>
+<p>One simple but powerful approach that worked for us was a "stoplight" system for technical debt. We identified all libraries, frameworks, and language versions in use and tracked their end-of-life dates. These became our "red light" dates - points at which we must update or risk being on unsupported versions. This system helped build a clear priority list and highlighted whether manual maintenance was feasible or automation was needed. Managing 5 dependencies manually is reasonable; managing 500 is not.</p>
+<h2 id="automation-as-visibility">Automation as Visibility<a class="headerlink" href="#automation-as-visibility" title="Permanent link">¶</a></h2>
+<p>Tools like <a href="https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide">Dependabot</a> provide ongoing visibility into dependency status. When automated systems continuously generate pull requests for outdated dependencies, the entire organization develops awareness of technical health. These systems make the invisible nature of tech debt visible and turn theoretical discussions about debt into actionable items. It also does it gradually, so it just becomes part of system maintenance, instead of giant maintenance cycles that slow development.</p>
+<p>When discussing technical debt with non-technical executives, I focus on two key aspects. First is why we need to address it. These reasons vary depending on the scenario and team, but could be something like us being on an unsupported version, or we that spend significant hours weekly working around issues fixed in newer versions.</p>
+<p>The second aspect is considering the consequences of deferring. If we remain on an unsupported version, the vendor won't help when problems arise or at least not cheaply. There might be active exploits in the wild for the version of a library we are using.</p>
+<p>I also include impact analysis on existing priorities. If properly planned, technical debt work fits into existing timelines with minimal disruption. When that's not possible, I clearly explain the trade-offs and impacts of both addressing and deferring the debt.</p>
+<h2 id="cultural-elements-of-technical-debt-management">Cultural Elements of Technical Debt Management<a class="headerlink" href="#cultural-elements-of-technical-debt-management" title="Permanent link">¶</a></h2>
+<p>Technical debt management isn't only a technical practice. It's a cultural one too. The most successful approaches I've seen embed debt management into everyday work rather than treating it as an occasional "debt sprint."</p>
+<p>A culture of automating away low-level technical debt proved crucial in my experience. Implementing tools like Dependabot, <a href="https://owasp.org/">OWASP</a> scans, and <a href="https://docs.gitlab.com/ci/testing/accessibility_testing/">accessibility checks</a> reduced the time engineers spent worrying about these issues because they were handled behind the scenes. This automation-first approach served multiple purposes. It baked prevention into the development process, encouraged engineers to think about security, accessibility, and dependencies early, demonstrated organizational commitment to technical excellence, and created a positive ripple effect as other teams adopted similar practices.</p>
+<p>When one team successfully automated technical debt management, others naturally followed suit. This created a culture of continuous improvement rather than periodic cleanup.</p>
+<p>One particularly effective practice I found was assigning new engineers small technical debt tasks as their first projects. This might be a library update, minor bug fix, or addressing a potential security flaw. New engineers made immediate, valuable contributions while building confidence in a new system by completing manageable tasks. The team addressed technical debt items that might otherwise struggle for prioritization, documentation got updated based on fresh perspectives, and new team members learned team processes in a low-pressure context.</p>
+<p>By introducing technical debt management during onboarding, we established it as a normal part of engineering work instead of an occassional activity.</p>
+<h2 id="the-continuous-approach">The Continuous Approach<a class="headerlink" href="#the-continuous-approach" title="Permanent link">¶</a></h2>
+<p>Rather than scheduling occasional "technical debt sprints" that disrupt normal work, I've found greater success in making debt reduction a continuous process.</p>
+<p>Traditional technical debt sprints create several problems. They interrupt feature development momentum, treat technical excellence as exceptional rather than normal, and encourage deferring small fixes that could be handled immediately to "some other time".</p>
+<p>Instead, I've found treating technical debt like regular household maintenance works better. By making small, continuous improvements, you prevent the need for major renovations in most cases.</p>
+<p>With automated tools handling routine updates, engineering teams can focus on substantive technical debt such as infrastructure improvements, major framework upgrades, outdated UI refreshes, and performance bottlenecks. These larger initiatives deserve careful planning and dedicated time, but they should still be approached as part of normal development cycles rather than exceptional activities.</p>
+<p>The most efficient technical debt management strategy I've witnessed is preventing unnecessary debt in the first place. During high-growth periods, implementing automated checks early in the development process caught potential issues before they became embedded in our systems. Clear standards for code quality, security, and architecture provided guidance without imposing unnecessary constraints. The key was establishing these standards as enablers rather than barriers. They helped developers make good decisions quickly rather than slowing them down with bureaucracy. It also eliminates back and forth during code review - "This line is 120 character", "This function call should have parameters on new lines". Bake that into your linter that every developer must use and those discussions will never need to occur again.</p>
+<p>Some technical investments I've seen pay dividends by preventing debt accumulation. Comprehensive test suites caught regressions early. CI/CD pipelines enforced quality standards. Architecture decision records preserved context. Service boundaries limited the spread of technical compromises. These investments created an environment where quality was the path of least resistance rather than an additional burden.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>In my experience in multiple leadership roles, when managed effectively, technical debt becomes not just a necessary evil but a strategic tool. By making conscious decisions about when to take on debt and when to pay it down, companies can maintain the velocity needed for market success while building sustainable technical foundations.</p>
+<p>I've found that making debt visible through automation, metrics, and clear communication ensures technical debt is part of strategic conversations. Embedding debt management in culture builds technical excellence into everyday practices rather than occasional initiatives. Focusing on prevention by investing in tools and practices makes it easier to do things right than to create new debt. Being strategic about remediation means addressing debt that limits key business initiatives while deferring debt that doesn't impact current priorities. Measuring the impact by tracking before-and-after metrics demonstrates the value of technical debt reduction.</p>
+<p>As engineering leaders, our role isn't to eliminate all technical debt. That would be neither possible nor desirable. Instead, our job is to manage technical debt as thoughtfully as we would manage financial debt. The goal is to take it on deliberately when the terms make sense, monitoring its impact, and paying it down strategically to maximize long-term value.</p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/scaling-teams-without-losing-culture.html"
+    title="Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Technical Debt Management: A Strategic Approach",
+  "headline": "Technical Debt Management: A Strategic Approach",
+  "dateCreated": "2025-04-08 09:00:00-05:00",
+  "datePublished": "2025-04-08 09:00:00-05:00",
+  "dateModified": "",
+  "copyrightYear": "2025",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/",
+      "https://www.andrewwegner.com/about/",
+      "https://www.andrewwegner.com/resume.pdf",
+      "https://www.linkedin.com/in/andrew-wegner/",
+      "https://github.com/AWegnerGitHub/",
+      "https://stackoverflow.com/users/189134/andy",
+      "https://keybase.io/awegner"
+    ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/",
+      "https://www.andrewwegner.com/about/",
+      "https://www.andrewwegner.com/resume.pdf",
+      "https://www.linkedin.com/in/andrew-wegner/",
+      "https://github.com/AWegnerGitHub/",
+      "https://stackoverflow.com/users/189134/andy",
+      "https://keybase.io/awegner"
+    ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/tech-debt-management-strategic-approach.html",
+  "description": "After navigating technical leadership roles across startups and established corporations, I've come to view technical debt as both inevitable and manageable. It's the leadership approach to this debt that often determines whether a company can maintain momentum or finds itself grinding to a halt.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Leadership"
+}
+</script>
+<footer>
+<p>&copy; 2025 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy Wegner"
+}
+</script>
+</body>
+
+</html>
