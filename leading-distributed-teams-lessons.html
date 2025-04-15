@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/leading-distributed-teams-lessons.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="Leading engineers from around the world has taught me how to balance asynchronous communication and decisive action. The right frameworks transform geographical challenges into strategic advantages for organizations seeking to leverage global talent and build resilient engineering cultures." />
+<meta name="keywords" content="job, leadership">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Leading Distributed Teams: Lessons from Managing Global Engineering Teams"/>
+  <meta property="og:description" content="Leading engineers from around the world has taught me how to balance asynchronous communication and decisive action. The right frameworks transform geographical challenges into strategic advantages for organizations seeking to leverage global talent and build resilient engineering cultures."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/leading-distributed-teams-lessons.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-04-15 01:00:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Leadership"/>
+  <meta property="article:tag" content="job"/>
+  <meta property="article:tag" content="leadership"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Leading Distributed Teams: Lessons from Managing Global Engineering Teams  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#building-foundations-for-distributed-success">Building Foundations for Distributed Success</a></li>
+<li><a href="#decision-making-frameworks-across-time-zones">Decision-Making Frameworks Across Time Zones</a></li>
+<li><a href="#technical-infrastructure-for-global-development">Technical Infrastructure for Global Development</a></li>
+<li><a href="#a-support-model">A Support Model</a></li>
+<li><a href="#evaluations-in-distributed-teams">Evaluations in Distributed Teams</a></li>
+<li><a href="#developing-talent-globally">Developing Talent Globally</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/leadership.html">Leadership</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/leading-distributed-teams-lessons.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Leading Distributed Teams: Lessons from Managing Global Engineering Teams</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/leadership.html",
+      "name": "Leadership"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/leading-distributed-teams-lessons.html",
+      "name": "https://andrewwegner.com/leading-distributed-teams-lessons.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="leading-distributed-teams-lessons">Leading Distributed Teams: Lessons from Managing Global Engineering Teams</h1>
+    <p>
+      Posted on Tue 15 April 2025 in <a href="https://andrewwegner.com/category/leadership.html">Leadership</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/job.html">job</a>
+        <a href="https://andrewwegner.com/tag/leadership.html">leadership</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>Leading engineering teams across multiple time zones has been a defining part of my career. I have taken courses on how to <a href="https://andrewwegner.com/gitlab-manage-remote-team.html">manage a remote team</a>, how to implement <a href="https://andrewwegner.com/gitlab-teamops-certification.html">TeamOps</a> (both offered by <a href="https://about.gitlab.com/blog/">GitLab</a>) and I've managed teams spanning half of the global time zones, with team members located across every continent except Antarctica. This global distribution brings tremendous advantages in terms of talent access and round-the-clock development capability, but it also presents unique leadership challenges that require intentional strategies.</p>
+<p>As software development continues to <a href="https://andrewwegner.com/remote-work-thoughts-about-offices.html">embrace remote work</a> - kind of, it has started falling out of favor since the end of the pandemic - the ability to <a href="https://andrewwegner.com/scaling-teams-without-losing-culture.html">effectively lead and scale distributed engineering teams</a> has evolved from a nice-to-have skill to a critical competency for senior leaders. The lessons I've learned managing global teams have shaped my leadership approach and provided insights that apply across both to engineering and to the broader organization.</p>
+<h2 id="building-foundations-for-distributed-success">Building Foundations for Distributed Success<a class="headerlink" href="#building-foundations-for-distributed-success" title="Permanent link">¶</a></h2>
+<p>The foundation of any successful distributed team begins with <a href="https://andrewwegner.com/top-soft-skills-senior-developers-need.html#excellent-communication">intentional communication</a>. Tools like Slack, Zoom (with recording capabilities), Atlassian suite (Jira/Confluence), GitHub/GitLab, and collaborative document platforms like Google Workspace aren't just conveniences. They are the essential connective tissue of distributed teams.</p>
+<p>However, having the right tools is only the beginning. More important is establishing clear principles for how these tools should be used. In my experience, the most successful distributed teams operate with a strong bias toward asynchronous communication. This means documenting decisions thoroughly, creating detailed specifications in advance of implementation, and ensuring appropriate synchronous discussions are recorded and summarized for team members in different time zones. Things like team meetings, troubleshooting sessions, and deep dives should be recorded and shared so that others can consume this information too.</p>
+<p>Documentation is the backbone of effective collaboration. Unlike co-located teams that can rely on impromptu conversations or whiteboard sessions to clarify questions, distributed teams need comprehensive documentation that stands on its own. This includes architectural decisions, specification documents, onboarding guides, and even meeting notes.</p>
+<p>A <a href="https://handbook.gitlab.com/handbook/company/culture/all-remote/remote-work-report/">study by GitLab in 2021</a> (during the height of the pandemic) found that less than half of respondants felt their company was sharing company goals, creating and documenting processes and standards or promoting visibility across teams well. Intentional communication is important in all work places, but even more so when everyone is located in geographically different areas of the world.</p>
+<p>I've found that building a "document-first" culture pays enormous dividends. When team members know that the first question in response to "How do I...?" will be "Did you check the documentation?", they naturally begin to contribute to and rely on that shared knowledge base. This reduces repeat questions, accelerates onboarding, and creates a more equitable information environment across time zones.</p>
+<h2 id="decision-making-frameworks-across-time-zones">Decision-Making Frameworks Across Time Zones<a class="headerlink" href="#decision-making-frameworks-across-time-zones" title="Permanent link">¶</a></h2>
+<p>One of the most challenging aspects of leading distributed teams is balancing the need for inclusive decision-making with the necessity to move projects forward. Over time, I've developed a time-gated decision framework that respects input from all regions while preventing decision paralysis.</p>
+<p>For non-emergency decisions, I post proposals to our shared channels with clear timelines for feedback. For example: "I'll be creating Jira stories based on this architectural approach starting next Monday unless concerns are raised." This provides a minimum of one business day (often more) for team members across all regions to review and comment, while also creating a clear decision point that prevents endless deliberation.</p>
+<p>For decisions requiring input from specific individuals, I'll explicitly mention them in the initial message. This creates accountability while also signaling to others who the key stakeholders are for that particular domain.</p>
+<p>Not all decisions can wait, of course. Production outages or customer-impacting bugs demand synchronous communication and rapid response. In these cases, available team members need to be empowered to make decisions with the information at hand, with the understanding that these decisions will be reviewed and possibly refined once more of the team is available.</p>
+<p>The balancing act of knowing when to wait for comprehensive input versus when to move forward with available information is one of the most nuanced skills in distributed leadership. In my experience, being explicit about which type of decision is being made helps team members adjust their expectations appropriately.</p>
+<h2 id="technical-infrastructure-for-global-development">Technical Infrastructure for Global Development<a class="headerlink" href="#technical-infrastructure-for-global-development" title="Permanent link">¶</a></h2>
+<p>The technical infrastructure supporting distributed development deserves particular attention. Continuous Integration/Continuous Deployment (CI/CD) pipelines, which are beneficial for any engineering organization, become absolutely essential for distributed teams. Automated testing, code quality checks, and deployment processes create consistency across time zones and reduce the risk of human error. This isn't limited to just a "time zone" thing though. It creates consistency across the team. Everyone's code, from the newest member of the team to the most veteran member, has their code commits go through the exact same process.</p>
+<p>Code review practices need careful consideration in distributed environments. When reviewers might be asleep during a developer's working hours, teams need clear expectations about review timeframes. I emphasize that while we strive for quick reviews, team members should be prepared to either continue with different work or pivot to another task if a review is delayed. As the team grows and more individuals are working similar hours these delays will reduce, but initially, it is a concern that the team members have delibrately work on so that someone isn't always delayed.</p>
+<p>Deployment strategies must also account for global distribution. Whether your team deploys each commit directly to production or follows a more scheduled release cadence, the key is establishing clear, documented processes that anyone on the team can follow regardless of location. When setting up these processes, consider who needs to be available during deployments, how deployment failures will be handled across the team, and whether certain deployment windows should be avoided due to regional holidays or weekend coverage.</p>
+<p>In my experience, the most successful approach is establishing deployment processes that don't require real-time coordination between team members in different time zones. This might mean investing more heavily in automated testing, feature flags, and rollback capabilities, but the resulting independence pays dividends in team efficiency and satisfaction.</p>
+<h2 id="a-support-model">A Support Model<a class="headerlink" href="#a-support-model" title="Permanent link">¶</a></h2>
+<p>One of the natural advantages of a globally distributed team is the ability to provide around-the-clock coverage without requiring anyone to work unusual hours. We've implemented a rotation support model, where team members handle support duties during their local working hours. This creates continuous coverage while respecting everyone's work-life balance. Depending on the product, this could mean that the team only provides support during business hours or it could mean that the support follows the sun. In either case, the type of support provided must be clearly communicated to both the team and to end users.</p>
+<p>This doesn't mean team members are never contacted outside working hours. True emergencies sometimes require waking someone with specialized knowledge. However, two important principles guide these situations:</p>
+<p>First, if someone is contacted outside working hours to address an issue, they receive compensatory time off. This creates accountability in the escalation process. People think twice before waking a colleague unless truly necessary.</p>
+<p>Second, and perhaps more importantly, each off-hours escalation triggers a review of our documentation and training. If someone needed to be woken for a particular issue, that indicates a gap in our knowledge distribution that needs to be addressed. This transforms what could be a negative experience into an opportunity for team improvement.</p>
+<p>Over time, this approach creates robust documentation and broader knowledge distribution across the team, reducing the frequency of off-hours disruptions and building resilience into the organization. This is important, because documentation takes time. It's rarely a one shot deal. </p>
+<h2 id="evaluations-in-distributed-teams">Evaluations in Distributed Teams<a class="headerlink" href="#evaluations-in-distributed-teams" title="Permanent link">¶</a></h2>
+<p>Evaluating performance fairly across distributed teams requires deliberate attention to measurable outcomes rather than observable behaviors. I focus primarily on deliverables. Are teams hitting their targets and delivering on time and on budget? Are we meeting the KPIs we've established for deployments, code reviews, specifications, feature delivery, and performance improvements?</p>
+<p>For managers specifically, I evaluate whether they're maintaining regular one-on-one meetings with all team members, regardless of location, and whether they're developing clear career succession and training plans for each report. These expectations apply uniformly across the organization, creating consistency in how leadership effectiveness is measured.</p>
+<p>To ensure that geographical distance doesn't create invisible barriers to advancement, I maintain skip-level one-on-ones with team members across all regions. This gives everyone direct access to higher-level leadership and provides me with unfiltered insights into how to team is operating and individual contributions that might otherwise be obscured by distance.</p>
+<p>I've found that managers who excel in distributed environments share certain qualities: they communicate proactively, document thoroughly, avoid making assumptions about team members' contexts, and create equitable opportunities for visibility and recognition regardless of location. These behaviors become key elements in leadership development and promotion criteria.</p>
+<h2 id="developing-talent-globally">Developing Talent Globally<a class="headerlink" href="#developing-talent-globally" title="Permanent link">¶</a></h2>
+<p>Hiring for distributed teams requires evaluating candidates not just for technical skills but for their ability to thrive in a remote, asynchronous environment. Beyond the job-specific requirements, I look for clear written and verbal communication skills, as team members will interact with colleagues, leaders, and customers from diverse linguistic and cultural backgrounds. Comfort with asynchronous work patterns and self-direction is essential, as are strong documentation habits that support knowledge sharing. Cultural adaptability and awareness round out the key attributes that predict success in distributed environments.</p>
+<p>Once hired, ensuring equitable career development opportunities across regions becomes essential. During review cycles, we systematically discuss everyone's performance and growth trajectory. I expect managers to speak knowledgeably about each team member's contributions and aspirations, regardless of where they're located.</p>
+<p>The skip-level one-on-ones mentioned earlier serve a dual purpose here. First, they help identify talent that might otherwise be overlooked due to geographical distance from headquarters or senior leadership. These conversations also build relationships that help me understand individual motivations and career goals across the organization.</p>
+<p>One particularly effective practice has been creating cross-regional project teams that give team members exposure to colleagues and challenges outside their immediate locale. This broadens perspectives while creating mentorship and leadership opportunities that might not arise within more regionally confined teams.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>As I've moved through increasingly senior leadership roles, the principles of effective team management have become even more important to my leadership approach. The future of engineering leadership demands comfort with distributed teams. Demands. Leading a team, whether it's fully remote or hybrid, is a skill that leaders need if they want to have access to talent.</p>
+<p>The most successful technical leaders in this environment will be those who design systems and processes that work asynchronously by default, create cultures where documentation and knowledge sharing are valued and rewarded, and balance inclusive decision-making with the need to move  forward. They will build technical infrastructure that supports distributed development, implement support models that leverage global distribution, ensure performance evaluation focuses on outcomes rather than presence, and develop hiring practices that identify talent suited for distributed work.</p>
+<p>These capabilities represent the future of engineering leadership at the highest levels. For aspiring technical leaders, developing comfort and competence in distributed team management isn't just a nice-to-have—it's increasingly essential preparation for senior technical leadership roles.</p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/tech-debt-management-strategic-approach.html"
+    title="Technical Debt Management: A Strategic Approach">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Leading Distributed Teams: Lessons from Managing Global Engineering Teams",
+  "headline": "Leading Distributed Teams: Lessons from Managing Global Engineering Teams",
+  "dateCreated": "2025-04-15 01:00:00-05:00",
+  "datePublished": "2025-04-15 01:00:00-05:00",
+  "dateModified": "",
+  "copyrightYear": "2025",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/",
+      "https://www.andrewwegner.com/about/",
+      "https://www.andrewwegner.com/resume.pdf",
+      "https://www.linkedin.com/in/andrew-wegner/",
+      "https://github.com/AWegnerGitHub/",
+      "https://stackoverflow.com/users/189134/andy",
+      "https://keybase.io/awegner"
+    ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/",
+      "https://www.andrewwegner.com/about/",
+      "https://www.andrewwegner.com/resume.pdf",
+      "https://www.linkedin.com/in/andrew-wegner/",
+      "https://github.com/AWegnerGitHub/",
+      "https://stackoverflow.com/users/189134/andy",
+      "https://keybase.io/awegner"
+    ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/leading-distributed-teams-lessons.html",
+  "description": "Leading engineers from around the world has taught me how to balance asynchronous communication and decisive action. The right frameworks transform geographical challenges into strategic advantages for organizations seeking to leverage global talent and build resilient engineering cultures.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Leadership"
+}
+</script>
+<footer>
+<p>&copy; 2025 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy Wegner"
+}
+</script>
+</body>
+
+</html>
