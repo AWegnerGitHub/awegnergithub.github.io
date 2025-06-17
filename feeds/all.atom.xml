@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2025-04-15T01:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Leading Distributed Teams: Lessons from Managing Global Engineering Teams</title><link href="https://andrewwegner.com/leading-distributed-teams-lessons.html" rel="alternate"></link><published>2025-04-15T01:00:00-05:00</published><updated>2025-04-15T01:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-04-15:/leading-distributed-teams-lessons.html</id><summary type="html">&lt;p&gt;Leading engineers from around the world has taught me how to balance asynchronous communication and decisive action. The right frameworks transform geographical challenges into strategic advantages for organizations seeking to leverage global talent and build resilient engineering cultures.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"></link><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"></link><id>https://andrewwegner.com/</id><updated>2025-06-17T08:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly</title><link href="https://andrewwegner.com/python-gotcha-identity-vs-equality.html" rel="alternate"></link><published>2025-06-17T08:00:00-05:00</published><updated>2025-06-17T08:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-06-17:/python-gotcha-identity-vs-equality.html</id><summary type="html">&lt;p&gt;To a new developer &lt;code&gt;is&lt;/code&gt; can look like an equality check in Python, especially in poorly written tutorials. I'll an overview of what &lt;code&gt;is&lt;/code&gt; is and how you should use it in only limited circumstances.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In the &lt;a href="https://andrewwegner.com/python-gotcha-comparisons.html"&gt;comparisons gotcha&lt;/a&gt; I wrote a few years ago, I briefly touched on &lt;a href="https://andrewwegner.com/python-gotcha-comparisons.html#is-vs"&gt;&lt;code&gt;is&lt;/code&gt; vs &lt;code&gt;==&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Put simply, &lt;code&gt;is&lt;/code&gt; should ONLY be used if you are checking if two references refer to the same object.
+&lt;em&gt;Remember, &lt;code&gt;is&lt;/code&gt; compares object references.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Even more simply, &lt;code&gt;is&lt;/code&gt; is &lt;em&gt;not&lt;/em&gt; checking value. Let's take a look at a couple examples.&lt;/p&gt;
+&lt;h2 id="gotcha"&gt;Gotcha&lt;a class="headerlink" href="#gotcha" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="integers"&gt;Integers&lt;a class="headerlink" href="#integers" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Python, specifically CPython, caches the values of &lt;code&gt;-5&lt;/code&gt; through &lt;code&gt;256&lt;/code&gt; (inclusive). This means that these small integer values will always refer to the same object. &lt;/p&gt;
+&lt;p&gt;Note the phrasing there - "the same object".&lt;/p&gt;
+&lt;p&gt;Outside of that range, though, the same is not true. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; a = 100
+&amp;gt;&amp;gt;&amp;gt; b = 100
+&amp;gt;&amp;gt;&amp;gt; a is b
+True
+&amp;gt;&amp;gt;&amp;gt; a = 257
+&amp;gt;&amp;gt;&amp;gt; b = 257
+&amp;gt;&amp;gt;&amp;gt; a is b
+False
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In both of the above examples, using &lt;code&gt;a == b&lt;/code&gt; would have returned &lt;code&gt;True&lt;/code&gt;. The mistake was assuming that &lt;code&gt;is&lt;/code&gt; does the same thing. It does not.&lt;/p&gt;
+&lt;h3 id="strings"&gt;Strings&lt;a class="headerlink" href="#strings" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;String interning is a method of storing only one copy of each distinct immutable string value. Immutable strings can't be changed. Not every string will be interned though. Let's take a look:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; a = "Hello"
+&amp;gt;&amp;gt;&amp;gt; b = "Hello"
+&amp;gt;&amp;gt;&amp;gt; a is b
+True
+&amp;gt;&amp;gt;&amp;gt; a = "Hello World"
+&amp;gt;&amp;gt;&amp;gt; b = "Hello World"
+&amp;gt;&amp;gt;&amp;gt; a is b
+False
+&amp;gt;&amp;gt;&amp;gt; a = "Hello_World"
+&amp;gt;&amp;gt;&amp;gt; b = "Hello_World"
+&amp;gt;&amp;gt;&amp;gt; a is b
+True
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The first and last example interned the strings, showing that &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; refer to the same object. But, the second example - &lt;code&gt;Hello World&lt;/code&gt; - didn't get interned, so &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; refer to different objects. Why is this?&lt;/p&gt;
+&lt;p&gt;The short and simply answer is that any string that has only numbers, letters or underscores will be interned. Since &lt;code&gt;Hello World&lt;/code&gt; contains a &lt;code&gt;space&lt;/code&gt;, it would not be interned.&lt;/p&gt;
+&lt;h2 id="the-solution"&gt;The Solution&lt;a class="headerlink" href="#the-solution" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To a new developer that has seen tutorials that read &lt;code&gt;if a is True&lt;/code&gt; or &lt;code&gt;if b is None&lt;/code&gt;, a conditional for integers or strings following the same pattern &lt;em&gt;appears&lt;/em&gt; to be comparing values. If they test it with small, positive numbers or simple one word strings, the assumption holds up. &lt;/p&gt;
+&lt;p&gt;But, &lt;code&gt;==&lt;/code&gt; is for comparing values! Each of the above examples would return &lt;code&gt;True&lt;/code&gt; by changing the statement to &lt;code&gt;a == b&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The few times that &lt;code&gt;is&lt;/code&gt; is appropriate are when you are checking &lt;code&gt;True&lt;/code&gt;/&lt;code&gt;False&lt;/code&gt; or &lt;code&gt;None&lt;/code&gt;. Otherwise, the &lt;em&gt;vast&lt;/em&gt; majority of the time, you want to use an equality check (&lt;code&gt;==&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;The Python &lt;a href="https://peps.python.org/pep-0008/#programming-recommendations"&gt;PEP8 programming recommendations&lt;/a&gt; state:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Comparisons to singletons like &lt;code&gt;None&lt;/code&gt; should always be done with &lt;code&gt;is&lt;/code&gt; or &lt;code&gt;is not&lt;/code&gt;, never the equality operators.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The linters in the Python ecosystem report on the usage of &lt;code&gt;is&lt;/code&gt; vs &lt;code&gt;==&lt;/code&gt; too. &lt;code&gt;flake8&lt;/code&gt; has &lt;a href="https://www.flake8rules.com/rules/E711.html"&gt;E711&lt;/a&gt; - &lt;code&gt;Comparison to None should be 'cond is None:'&lt;/code&gt;. &lt;code&gt;ruff&lt;/code&gt; has a similar report with it's &lt;a href="https://docs.astral.sh/ruff/rules/none-comparison/"&gt;&lt;code&gt;None&lt;/code&gt; comparison&lt;/a&gt; check.&lt;/p&gt;
+&lt;p&gt;I highly recommend a linter for your projects to catch this, and other problems that go against best practices. &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Remember, &lt;code&gt;is&lt;/code&gt; compares object references, not object equality&lt;/em&gt;&lt;/p&gt;</content><category term="Technical Solutions"></category><category term="technical"></category></entry><entry><title>Leading Distributed Teams: Lessons from Managing Global Engineering Teams</title><link href="https://andrewwegner.com/leading-distributed-teams-lessons.html" rel="alternate"></link><published>2025-04-15T01:00:00-05:00</published><updated>2025-04-15T01:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-04-15:/leading-distributed-teams-lessons.html</id><summary type="html">&lt;p&gt;Leading engineers from around the world has taught me how to balance asynchronous communication and decisive action. The right frameworks transform geographical challenges into strategic advantages for organizations seeking to leverage global talent and build resilient engineering cultures.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Leading engineering teams across multiple time zones has been a defining part of my career. I have taken courses on how to &lt;a href="https://andrewwegner.com/gitlab-manage-remote-team.html"&gt;manage a remote team&lt;/a&gt;, how to implement &lt;a href="https://andrewwegner.com/gitlab-teamops-certification.html"&gt;TeamOps&lt;/a&gt; (both offered by &lt;a href="https://about.gitlab.com/blog/"&gt;GitLab&lt;/a&gt;) and I've managed teams spanning half of the global time zones, with team members located across every continent except Antarctica. This global distribution brings tremendous advantages in terms of talent access and round-the-clock development capability, but it also presents unique leadership challenges that require intentional strategies.&lt;/p&gt;
 &lt;p&gt;As software development continues to &lt;a href="https://andrewwegner.com/remote-work-thoughts-about-offices.html"&gt;embrace remote work&lt;/a&gt; - kind of, it has started falling out of favor since the end of the pandemic - the ability to &lt;a href="https://andrewwegner.com/scaling-teams-without-losing-culture.html"&gt;effectively lead and scale distributed engineering teams&lt;/a&gt; has evolved from a nice-to-have skill to a critical competency for senior leaders. The lessons I've learned managing global teams have shaped my leadership approach and provided insights that apply across both to engineering and to the broader organization.&lt;/p&gt;

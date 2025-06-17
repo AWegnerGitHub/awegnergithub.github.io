@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-  <link rel="canonical" href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html">
+  <link rel="canonical" href="https://andrewwegner.com/python-gotcha-identity-vs-equality.html">
 
   <meta name="robots" content="index, follow" />
 
@@ -57,24 +57,24 @@
 </script>
 
 <meta name="author" content="Andy Wegner" />
-<meta name="description" content="A quick walk through of why mutable defaults on optional arguments is bad in Python." />
+<meta name="description" content="To a new developer is can look like an equality check in Python, especially in poorly written tutorials. I&#39;ll an overview of what is is and how you should use it in only limited circumstances." />
 <meta name="keywords" content="technical">
 
 
   <meta property="og:site_name" content="Ponderings of an Andy"/>
-  <meta property="og:title" content="Python Gotcha: Mutable Default Optional Arguments"/>
-  <meta property="og:description" content="A quick walk through of why mutable defaults on optional arguments is bad in Python."/>
+  <meta property="og:title" content="Python Gotcha: Identity vs Equality - When &#39;is&#39; Fails Unexpectedly"/>
+  <meta property="og:description" content="To a new developer is can look like an equality check in Python, especially in poorly written tutorials. I&#39;ll an overview of what is is and how you should use it in only limited circumstances."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/python-gotcha-optional-default-arguments.html"/>
+  <meta property="og:url" content="https://andrewwegner.com/python-gotcha-identity-vs-equality.html"/>
   <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2023-10-06 10:15:00-05:00"/>
+  <meta property="article:published_time" content="2025-06-17 08:00:00-05:00"/>
   <meta property="article:modified_time" content=""/>
   <meta property="article:author" content="https://andrewwegner.com/">
   <meta property="article:section" content="Technical Solutions"/>
   <meta property="article:tag" content="technical"/>
   <meta property="og:image" content="/images/wegner_headshot.png">
 
-  <title>Python Gotcha: Mutable Default Optional Arguments  · Ponderings of an Andy
+  <title>Python Gotcha: Identity vs Equality - When &#39;is&#39; Fails Unexpectedly  · Ponderings of an Andy
 </title>
 
 </head>
@@ -115,11 +115,13 @@
     <nav class="toc">
       <div class="toc">
 <ul>
-<li><a href="#the-problem">The Problem</a></li>
-<li><a href="#whats-going-on">What's going on?</a></li>
-<li><a href="#another-example">Another example</a></li>
-<li><a href="#last-example">Last Example</a></li>
-<li><a href="#what-can-i-do-about-this">What can I do about this?</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#gotcha">Gotcha</a><ul>
+<li><a href="#integers">Integers</a></li>
+<li><a href="#strings">Strings</a></li>
+</ul>
+</li>
+<li><a href="#the-solution">The Solution</a></li>
 </ul>
 </div>
     </nav>
@@ -181,8 +183,8 @@
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
         <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
         </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Python Gotcha: Mutable Default Optional Arguments</span></li></a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/python-gotcha-identity-vs-equality.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Python Gotcha: Identity vs Equality - When &#39;is&#39; Fails Unexpectedly</span></li></a></li>
     </ul>
 </nav>
 
@@ -224,15 +226,15 @@
     "position": 4,
     "item": 
     {
-      "@id": "https://andrewwegner.com/python-gotcha-optional-default-arguments.html",
-      "name": "https://andrewwegner.com/python-gotcha-optional-default-arguments.html"
+      "@id": "https://andrewwegner.com/python-gotcha-identity-vs-equality.html",
+      "name": "https://andrewwegner.com/python-gotcha-identity-vs-equality.html"
     }
   }
   ]
 }
-</script>    <h1 id="python-gotcha-optional-default-arguments">Python Gotcha: Mutable Default Optional Arguments</h1>
+</script>    <h1 id="python-gotcha-identity-vs-equality">Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly</h1>
     <p>
-      Posted on Fri 06 October 2023 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+      Posted on Tue 17 June 2025 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
 
 
     <div class="tag-cloud">
@@ -245,70 +247,61 @@
 
   <div>
     
-<h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">¶</a></h2>
-<p>Without running this in your IDE, what does the following code output? Forgive the use of <code>vins</code>, I work in the logistics field and deal with vehicle identification numbers frequently.</p>
-<div class="codehilight code"><pre><span></span><code>def add_vin(this_vin: str, vins: list = []):
-    if this_vin not in vins:
-        vins.append(this_vin)
-    return vins
-
-add_vin("VIN1")
-add_vin("VIN2")
-print(add_vin("VIN3"))
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>In the <a href="https://andrewwegner.com/python-gotcha-comparisons.html">comparisons gotcha</a> I wrote a few years ago, I briefly touched on <a href="https://andrewwegner.com/python-gotcha-comparisons.html#is-vs"><code>is</code> vs <code>==</code></a>.</p>
+<blockquote>
+<p>Put simply, <code>is</code> should ONLY be used if you are checking if two references refer to the same object.
+<em>Remember, <code>is</code> compares object references.</em></p>
+</blockquote>
+<p>Even more simply, <code>is</code> is <em>not</em> checking value. Let's take a look at a couple examples.</p>
+<h2 id="gotcha">Gotcha<a class="headerlink" href="#gotcha" title="Permanent link">¶</a></h2>
+<h3 id="integers">Integers<a class="headerlink" href="#integers" title="Permanent link">¶</a></h3>
+<p>Python, specifically CPython, caches the values of <code>-5</code> through <code>256</code> (inclusive). This means that these small integer values will always refer to the same object. </p>
+<p>Note the phrasing there - "the same object".</p>
+<p>Outside of that range, though, the same is not true. </p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; a = 100
+&gt;&gt;&gt; b = 100
+&gt;&gt;&gt; a is b
+True
+&gt;&gt;&gt; a = 257
+&gt;&gt;&gt; b = 257
+&gt;&gt;&gt; a is b
+False
 </code></pre></div>
-<p>You probably saw that <code>vins</code> is an optional argument and that it defaults to an empty list. Run this function three times without passing it a list to append to, and it's reasonable to assume that you have a final result of a list with a single item contained in it - <code>VIN3</code></p>
-<p>Unfortunately, that's wrong. The output is actually <code>["VIN1", "VIN2", "VIN3"]</code></p>
-<p>Why?</p>
-<h2 id="whats-going-on">What's going on?<a class="headerlink" href="#whats-going-on" title="Permanent link">¶</a></h2>
-<p>In Python, default arguments are bound to a function at the time the function is defined. This is only done once. If you don't pass the optional argument in to the function call, the same list is changed when the function is called. This means that in the example above, a new list is not created each time the function is called without the optional <code>vins</code> argument.</p>
-<p>We can see this by slightly modifying the code above to show the object ID we are operating on.</p>
-<div class="codehilight code"><pre><span></span><code>def add_vin(this_vin, vins=[]):
-    if this_vin not in vins:
-        print(f"id={id(vins)}")    # Print the object ID we are appending to
-        vins.append(this_vin)
-    return vins
+<p>In both of the above examples, using <code>a == b</code> would have returned <code>True</code>. The mistake was assuming that <code>is</code> does the same thing. It does not.</p>
+<h3 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">¶</a></h3>
+<p>String interning is a method of storing only one copy of each distinct immutable string value. Immutable strings can't be changed. Not every string will be interned though. Let's take a look:</p>
+<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; a = "Hello"
+&gt;&gt;&gt; b = "Hello"
+&gt;&gt;&gt; a is b
+True
+&gt;&gt;&gt; a = "Hello World"
+&gt;&gt;&gt; b = "Hello World"
+&gt;&gt;&gt; a is b
+False
+&gt;&gt;&gt; a = "Hello_World"
+&gt;&gt;&gt; b = "Hello_World"
+&gt;&gt;&gt; a is b
+True
 </code></pre></div>
-<p>Which outputs the following as it adds each VIN.</p>
-<div class="codehilight code"><pre><span></span><code>id=2954990867712
-id=2954990867712
-id=2954990867712
-['VIN1', 'VIN2', 'VIN3']
-</code></pre></div>
-<p>Each time <code>add_vin</code> was called without passing it a list to operate on, the function will operate on the same default list.</p>
-<h2 id="another-example">Another example<a class="headerlink" href="#another-example" title="Permanent link">¶</a></h2>
-<p>The example above is basic, but gets the point across. However, let's look at something a bit more common. Connecting to a database with a connection object at the parameter.</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">open_database</span><span class="p">(</span><span class="k">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make_connection</span><span class="p">(</span><span class="k">host</span><span class="o">=</span><span class="s1">'example.com'</span><span class="p">))</span><span class="o">:</span>
-<span class="w">    </span><span class="c1"># do database things with `connection`</span>
-<span class="w">    </span><span class="k">connection</span><span class="p">.</span><span class="k">close</span><span class="p">()</span>
-</code></pre></div>
-<p>Well done. You've closed your connection. Your DBA will thank you. However, what happens next time you call <code>open_database()</code> in your code? After all, your connection information is there by default, you don't need to pass a new connection, right?</p>
-<p>Again, wrong. You've closed the <code>connection</code> and it's the default argument. The next call to <code>open_database</code> will utilize the same <code>connection</code> object. A connection that is closed. Your database call will fail.</p>
-<h2 id="last-example">Last Example<a class="headerlink" href="#last-example" title="Permanent link">¶</a></h2>
-<p>One last example:</p>
-<div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">print_datetime</span><span class="p">(</span><span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()):</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">print_datetime</span><span class="p">())</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">print_datetime</span><span class="p">())</span>
-</code></pre></div>
-<p>This is going to print the current datetime, sleep for 10 seconds, and print the new datetime - right?! </p>
-<p>No. </p>
-<div class="codehilight code"><pre><span></span><code><span class="mf">2023</span><span class="o">-</span><span class="mf">10</span><span class="o">-</span><span class="mf">06</span><span class="w"> </span><span class="mf">08</span><span class="p">:</span><span class="mf">45</span><span class="p">:</span><span class="mf">21.392973</span>
-<span class="mf">2023</span><span class="o">-</span><span class="mf">10</span><span class="o">-</span><span class="mf">06</span><span class="w"> </span><span class="mf">08</span><span class="p">:</span><span class="mf">45</span><span class="p">:</span><span class="mf">21.392973</span>
-</code></pre></div>
-<p>Why?! </p>
-<p>Again, an optional default argument is only bound once. Since a new value isn't passed to the function on the second call, the exact same value is used the second time through. Whoops. </p>
-<h2 id="what-can-i-do-about-this">What can I do about this?<a class="headerlink" href="#what-can-i-do-about-this" title="Permanent link">¶</a></h2>
-<p>The best option, in my opinion, is to set the default values to <code>None</code>. This is going to make it very obvious that there is a problem. In the first example, you'll get an exception because you can't append to <code>None</code>. In the second, your database calls will error because <code>None</code> doesn't contain connection information. In the third, you'll print <code>None</code> instead of an expected <code>datatime</code>. </p>
-<p>You could pass an immutable object like a tuple or a frozenset, but even these have caveats to be aware of. For example, a tuple can contain something mutable in it (ie. a list). Personally, I prefer to utilize <code>None</code>.</p>
+<p>The first and last example interned the strings, showing that <code>a</code> and <code>b</code> refer to the same object. But, the second example - <code>Hello World</code> - didn't get interned, so <code>a</code> and <code>b</code> refer to different objects. Why is this?</p>
+<p>The short and simply answer is that any string that has only numbers, letters or underscores will be interned. Since <code>Hello World</code> contains a <code>space</code>, it would not be interned.</p>
+<h2 id="the-solution">The Solution<a class="headerlink" href="#the-solution" title="Permanent link">¶</a></h2>
+<p>To a new developer that has seen tutorials that read <code>if a is True</code> or <code>if b is None</code>, a conditional for integers or strings following the same pattern <em>appears</em> to be comparing values. If they test it with small, positive numbers or simple one word strings, the assumption holds up. </p>
+<p>But, <code>==</code> is for comparing values! Each of the above examples would return <code>True</code> by changing the statement to <code>a == b</code>.</p>
+<p>The few times that <code>is</code> is appropriate are when you are checking <code>True</code>/<code>False</code> or <code>None</code>. Otherwise, the <em>vast</em> majority of the time, you want to use an equality check (<code>==</code>)</p>
+<p>The Python <a href="https://peps.python.org/pep-0008/#programming-recommendations">PEP8 programming recommendations</a> state:</p>
+<blockquote>
+<p>Comparisons to singletons like <code>None</code> should always be done with <code>is</code> or <code>is not</code>, never the equality operators.</p>
+</blockquote>
+<p>The linters in the Python ecosystem report on the usage of <code>is</code> vs <code>==</code> too. <code>flake8</code> has <a href="https://www.flake8rules.com/rules/E711.html">E711</a> - <code>Comparison to None should be 'cond is None:'</code>. <code>ruff</code> has a similar report with it's <a href="https://docs.astral.sh/ruff/rules/none-comparison/"><code>None</code> comparison</a> check.</p>
+<p>I highly recommend a linter for your projects to catch this, and other problems that go against best practices. </p>
+<p><em>Remember, <code>is</code> compares object references, not object equality</em></p>
   </div>
 <div class="neighbors">
-  <a class="btn float-right" href="https://andrewwegner.com/python-gotcha-join-vs-concat.html"
-    title="Python Gotcha: Join vs Concat">
-    Next Post <i class="fa fa-angle-right"></i>
+  <a class="btn float-left" href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html"
+    title="Python Gotcha: strip, lstrip, rstrip can remove more than expected">
+    <i class="fa fa-angle-left"></i> Previous Post
   </a>
 </div>
 
@@ -325,9 +318,10 @@ id=2954990867712
 
 
   <div class="related-posts">
-    <h4>Part 1 of the Programming Gotchas series</h4>
-    <h5>Next articles</h5>
+    <h4>Part 9 of the Programming Gotchas series</h4>
+    <h5>Previous articles</h5>
     <ul>
+      <li><a href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html">Python Gotcha: Mutable Default Optional Arguments</a></li>
       <li><a href="https://andrewwegner.com/python-gotcha-join-vs-concat.html">Python Gotcha: Join vs Concat</a></li>
       <li><a href="https://andrewwegner.com/python-gotcha-comparisons.html">Python Gotcha: Comparisons</a></li>
       <li><a href="https://andrewwegner.com/ruby-gotcha-operator-precedence.html">Ruby Gotcha: Operator Precedence</a></li>
@@ -335,7 +329,6 @@ id=2954990867712
       <li><a href="https://andrewwegner.com/python-gotcha-list-copy.html">Python Gotcha: List Copy Problems</a></li>
       <li><a href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html">Python Gotcha: Modifying a list while iterating</a></li>
       <li><a href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html">Python Gotcha: strip, lstrip, rstrip can remove more than expected</a></li>
-      <li><a href="https://andrewwegner.com/python-gotcha-identity-vs-equality.html">Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly</a></li>
     </ul>
   </div>
 </article>
@@ -344,12 +337,12 @@ id=2954990867712
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "name": "Python Gotcha: Mutable Default Optional Arguments",
-  "headline": "Python Gotcha: Mutable Default Optional Arguments",
-  "dateCreated": "2023-10-06 10:15:00-05:00",
-  "datePublished": "2023-10-06 10:15:00-05:00",
+  "name": "Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly",
+  "headline": "Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly",
+  "dateCreated": "2025-06-17 08:00:00-05:00",
+  "datePublished": "2025-06-17 08:00:00-05:00",
   "dateModified": "",
-  "copyrightYear": "2023",
+  "copyrightYear": "2025",
   "copyrightHolder": {
     "@type": "Person",
     "name": "Andy Wegner",
@@ -386,8 +379,8 @@ id=2954990867712
     ]
   },
   "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/python-gotcha-optional-default-arguments.html",
-  "description": "A quick walk through of why mutable defaults on optional arguments is bad in Python.",
+  "url": "https://andrewwegner.com/python-gotcha-identity-vs-equality.html",
+  "description": "To a new developer is can look like an equality check in Python, especially in poorly written tutorials. I'll an overview of what is is and how you should use it in only limited circumstances.",
   "mainEntityOfPage": "True",
   "articleSection": "Technical Solutions"
 }
