@@ -58,7 +58,7 @@
 
 <meta name="author" content="Andy Wegner" />
 <meta name="description" content="Let&#39;s set up some private repositories on GitLab" />
-<meta name="keywords" content="technical">
+<meta name="keywords" content="technical, gitlab">
 
 
   <meta property="og:site_name" content="Ponderings of an Andy"/>
@@ -72,6 +72,7 @@
   <meta property="article:author" content="https://andrewwegner.com/">
   <meta property="article:section" content="Technical Solutions"/>
   <meta property="article:tag" content="technical"/>
+  <meta property="article:tag" content="gitlab"/>
   <meta property="og:image" content="/images/wegner_headshot.png">
 
   <title>Setting up GitLab on the new server  · Ponderings of an Andy
@@ -248,6 +249,7 @@
     <div class="tag-cloud">
       <p>
         <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+        <a href="https://andrewwegner.com/tag/gitlab.html">gitlab</a>
       </p>
     </div>
     </p>
@@ -301,8 +303,8 @@ my life easier. Fortunately, GitLab can handle this with a few <a href="https://
 already installed and the <code>www-data</code> user (on Ubuntu) added to the <code>gitlab-www</code> group.</p>
 <ul>
 <li>Find <code>nginx['enable']</code> and set it to <code>false</code></li>
-<li>In <code>web_server['external_users'], add</code>www-data` to the array. Note that this is an array and not a single string.</li>
-<li>In `gitlab_rails['trusted_proxies'], add the IP address of the Apache web server. </li>
+<li>In <code>web_server['external_users']</code>, add <code>www-data</code> to the array. Note that this is an array and not a single string.</li>
+<li>In <code>gitlab_rails['trusted_proxies']</code>, add the IP address of the Apache web server. </li>
 <li>Change the gitlab workhorse settings to the following (default) values. </li>
 </ul>
 <p>These may already be in the configuration file. If so, you probably don't need to modify them.</p>
