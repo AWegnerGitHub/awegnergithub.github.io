@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="Uncaught exceptions will crash an application. If you don&#39;t know how to log these, it can be difficult to troubleshoot such a crash. Let&#39;s walk through this gotcha and see how to fix it." />
+<meta name="keywords" content="technical">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Python Gotcha: Logging an uncaught exception"/>
+  <meta property="og:description" content="Uncaught exceptions will crash an application. If you don&#39;t know how to log these, it can be difficult to troubleshoot such a crash. Let&#39;s walk through this gotcha and see how to fix it."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-07-14 23:00:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Python Gotcha: Logging an uncaught exception  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#gotcha">Gotcha</a></li>
+<li><a href="#solution">Solution</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Python Gotcha: Logging an uncaught exception</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html",
+      "name": "https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="python-gotcha-logging-uncaught-exception">Python Gotcha: Logging an uncaught exception</h1>
+    <p>
+      Posted on Mon 14 July 2025 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>A well build application will use logging instead of <code>print</code> statements. An exceptionally well built one will log in such a way that additional context is added to each log message and be consumable by a log aggregation service. Perhaps I'll write up such an article in the future. For now though, let's focus on a single problem. </p>
+<p>Here is some sample code to demonstrate the problem.</p>
+<div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+<span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s2">"app.log"</span><span class="p">)</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">"</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(name)s</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">/</span><span class="n">b</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Application start"</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Application end"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>Briefly, this sets up the <code>app.log</code> file to receive our log messages. The <code>main</code> function is going to divide two numbers, log the result, and end the program. Pretty simple.</p>
+<p>Except, in this case, it is dividing by zero. This throws an error and crashes the program.</p>
+<p>The console spits out a stack trace</p>
+<div class="codehilight code"><pre><span></span><code><span class="nv">Traceback</span><span class="w"> </span><span class="ss">(</span><span class="nv">most</span><span class="w"> </span><span class="nv">recent</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="nl">last</span><span class="ss">)</span>:
+<span class="nv">File</span><span class="w"> </span><span class="s2">"/home/andy/main.py"</span>,<span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="mi">22</span>,<span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">module</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="nv">main</span><span class="ss">()</span>
+<span class="w">    </span><span class="o">~~~~^^</span>
+<span class="nv">File</span><span class="w"> </span><span class="s2">"/home/andy/main.py"</span>,<span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="mi">18</span>,<span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">main</span>
+<span class="w">    </span><span class="nv">logger</span>.<span class="nv">info</span><span class="ss">(</span><span class="nv">divide</span><span class="ss">(</span><span class="nv">a</span>,<span class="nv">b</span><span class="ss">))</span>
+<span class="w">                </span><span class="o">~~~~~~^^^^^</span>
+<span class="nv">File</span><span class="w"> </span><span class="s2">"/home/andy/main.py"</span>,<span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="mi">12</span>,<span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">divide</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">a</span><span class="o">/</span><span class="nv">b</span>
+<span class="w">        </span><span class="o">~^~</span>
+<span class="nv">ZeroDivisionError</span>:<span class="w"> </span><span class="nv">division</span><span class="w"> </span><span class="nv">by</span><span class="w"> </span><span class="nv">zero</span>
+</code></pre></div>
+<p>The <code>app.log</code> file contains a single line:</p>
+<div class="codehilight code"><pre><span></span><code><span class="mf">2025</span><span class="o">-</span><span class="mf">07</span><span class="o">-</span><span class="mf">14</span><span class="w"> </span><span class="mf">22</span><span class="p">:</span><span class="mf">20</span><span class="p">:</span><span class="mf">04</span><span class="p">,</span><span class="mf">551</span><span class="w"> </span><span class="n">__main__</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="n">Application</span><span class="w"> </span><span class="n">start</span>
+</code></pre></div>
+<h2 id="gotcha">Gotcha<a class="headerlink" href="#gotcha" title="Permanent link">¶</a></h2>
+<p>Where is the gotcha here? The stack trace is right there!</p>
+<p>You are, of course, right. However, imagine that this was not a simple application, but instead a production application that sends logs to a central service. Your application crashed and now one was watching the console. Your <code>app.log</code> file has no information. It says the application started and then...nothing. What happened? Is it still running?</p>
+<p>As you dig through running processes, or check a <code>/health</code> end point for responses, you find out that it isn't running. That took a lot of time, and production isn't responding.</p>
+<p>You've lost all visibility to what happened in your application at the most critical moment. When it crashed and spit out a stack trace, you want as much detail as you can get.</p>
+<h2 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">¶</a></h2>
+<p>The solution is <a href="https://docs.python.org/3/library/sys.html#sys.excepthook">sys.excepthook</a>. This is called when any exception is raised and uncaught, except for <code>SystemExit</code>. It's pretty easy to utilize as well. A few small changes to the above code will allow us to log this completely unexpected <code>ZeroDivisionError</code>. </p>
+<div class="codehilight code"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+<span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s2">"app.log"</span><span class="p">)</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">"</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(name)s</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_uncaught_exception</span><span class="p">(</span><span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">exc_traceback</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span>
+        <span class="s2">"uncaught exception, application will terminate."</span><span class="p">,</span>
+        <span class="n">exc_info</span><span class="o">=</span><span class="p">(</span><span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">exc_traceback</span><span class="p">),</span>
+    <span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">excepthook</span> <span class="o">=</span> <span class="n">handle_uncaught_exception</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">/</span><span class="n">b</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Application start"</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Application end"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>The important bit is the new <code>handle_uncaught_exception</code> function and the <code>sys.excepthook</code> line (with appropriate <code>import</code> statement). </p>
+<p>Someone running this in the console will notice that there is not a stack trace dumped to the console now. Instead, our log contains important information:</p>
+<div class="codehilight code"><pre><span></span><code><span class="mf">2025</span><span class="o">-</span><span class="mf">07</span><span class="o">-</span><span class="mf">14</span><span class="w"> </span><span class="mf">22</span><span class="p">:</span><span class="mf">30</span><span class="p">:</span><span class="mf">44</span><span class="p">,</span><span class="mf">061</span><span class="w"> </span><span class="n">__main__</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="n">Application</span><span class="w"> </span><span class="n">start</span>
+<span class="mf">2025</span><span class="o">-</span><span class="mf">07</span><span class="o">-</span><span class="mf">14</span><span class="w"> </span><span class="mf">22</span><span class="p">:</span><span class="mf">30</span><span class="p">:</span><span class="mf">44</span><span class="p">,</span><span class="mf">061</span><span class="w"> </span><span class="n">__main__</span><span class="w"> </span><span class="n">CRITICAL</span><span class="w"> </span><span class="n">uncaught</span><span class="w"> </span><span class="n">exception</span><span class="p">,</span><span class="w"> </span><span class="n">application</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">terminate</span><span class="mf">.</span>
+<span class="n">Traceback</span><span class="w"> </span><span class="p">(</span><span class="n">most</span><span class="w"> </span><span class="n">recent</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="n">last</span><span class="p">):</span>
+<span class="n">File</span><span class="w"> </span><span class="s">"/home/andy/main.py"</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mf">31</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="n">main</span><span class="p">()</span>
+<span class="w">    </span><span class="err">~~~~</span><span class="o">^^</span>
+<span class="n">File</span><span class="w"> </span><span class="s">"/home/andy/main.py"</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mf">27</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">main</span>
+<span class="w">    </span><span class="nb">log</span><span class="n">ger</span><span class="mf">.</span><span class="n">info</span><span class="p">(</span><span class="n">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+<span class="w">                </span><span class="err">~~~~~~</span><span class="o">^^^^^</span>
+<span class="n">File</span><span class="w"> </span><span class="s">"/home/andy/main.py"</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mf">21</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">divide</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">a</span><span class="o">/</span><span class="n">b</span>
+<span class="w">        </span><span class="err">~</span><span class="o">^</span><span class="err">~</span>
+<span class="n">ZeroDivisionError</span><span class="p">:</span><span class="w"> </span><span class="n">division</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">zero</span>
+</code></pre></div>
+<p>This is great! Now when troubleshooting this failing application and looking at the logs, we can easily see that an exception occurred. Additionally, with proper updates to the logging, more context can be provide such as the values of <code>a</code> and <code>b</code>. While it's easy enough to figure out that <code>b</code> is <code>0</code> in this simple example, the context in a larger production application could save a ton of troubleshooting time.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>Logging is vital to knowing what your application is doing. But, it's even more important to determining why it stopped working. If your logs aren't providing information when the application crashes, it's functionally useless. By implementing an <code>excepthook</code>, you can catch and properly log uncaught exceptions.</p>
+<p>I know some of you are coming up with alternatives. Terrible ideas like wrapping the entire main block in a <code>try/except</code>. There are legitimate reasons to throw an exception. In this case, a <code>ZeroDivisionError</code> is a great exception to catch. But, you'd want to do it around as small of a code block as possible.</p>
+<p>This is a clean way to catch truly unexcepted exceptions, not something a developer could have anticipated and, perhaps, fixed with additional input validation.</p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/python-gotcha-identity-vs-equality.html"
+    title="Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+
+
+
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+  <div class="related-posts">
+    <h4>Part 10 of the Programming Gotchas series</h4>
+    <h5>Previous articles</h5>
+    <ul>
+      <li><a href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html">Python Gotcha: Mutable Default Optional Arguments</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-join-vs-concat.html">Python Gotcha: Join vs Concat</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-comparisons.html">Python Gotcha: Comparisons</a></li>
+      <li><a href="https://andrewwegner.com/ruby-gotcha-operator-precedence.html">Ruby Gotcha: Operator Precedence</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-timezone-naive-functions.html">Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-list-copy.html">Python Gotcha: List Copy Problems</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html">Python Gotcha: Modifying a list while iterating</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html">Python Gotcha: strip, lstrip, rstrip can remove more than expected</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-identity-vs-equality.html">Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly</a></li>
+    </ul>
+  </div>
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Python Gotcha: Logging an uncaught exception",
+  "headline": "Python Gotcha: Logging an uncaught exception",
+  "dateCreated": "2025-07-14 23:00:00-05:00",
+  "datePublished": "2025-07-14 23:00:00-05:00",
+  "dateModified": "",
+  "copyrightYear": "2025",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/",
+      "https://www.andrewwegner.com/about/",
+      "https://www.andrewwegner.com/resume.pdf",
+      "https://www.linkedin.com/in/andrew-wegner/",
+      "https://github.com/AWegnerGitHub/",
+      "https://stackoverflow.com/users/189134/andy",
+      "https://keybase.io/awegner"
+    ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/",
+      "https://www.andrewwegner.com/about/",
+      "https://www.andrewwegner.com/resume.pdf",
+      "https://www.linkedin.com/in/andrew-wegner/",
+      "https://github.com/AWegnerGitHub/",
+      "https://stackoverflow.com/users/189134/andy",
+      "https://keybase.io/awegner"
+    ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html",
+  "description": "Uncaught exceptions will crash an application. If you don't know how to log these, it can be difficult to troubleshoot such a crash. Let's walk through this gotcha and see how to fix it.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2025 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy Wegner"
+}
+</script>
+</body>
+
+</html>
