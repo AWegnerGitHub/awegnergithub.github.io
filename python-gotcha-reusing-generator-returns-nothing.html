@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="canonical" href="https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html">
+
+  <meta name="robots" content="index, follow" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
+
+
+  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
+
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#080019">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#080019">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Microsoft EDGE -->
+  <meta name="msapplication-TileColor" content="#080019">
+
+  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ponderings of an Andy Atom">
+
+
+<script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
+    heap.load("653100411");
+</script>
+
+<meta name="author" content="Andy Wegner" />
+<meta name="description" content="Generators provide lazy evaluation for processing large datasets efficiently. However, once a generator is exhausted through iteration, it cannot be reused or reset. Let&#39;s cover this common gotcha that trips up developers new to this Python feature." />
+<meta name="keywords" content="technical">
+
+
+  <meta property="og:site_name" content="Ponderings of an Andy"/>
+  <meta property="og:title" content="Python Gotcha: Reusing Generators Returns Nothing"/>
+  <meta property="og:description" content="Generators provide lazy evaluation for processing large datasets efficiently. However, once a generator is exhausted through iteration, it cannot be reused or reset. Let&#39;s cover this common gotcha that trips up developers new to this Python feature."/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-07-22 09:00:00-05:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://andrewwegner.com/">
+  <meta property="article:section" content="Technical Solutions"/>
+  <meta property="article:tag" content="technical"/>
+  <meta property="og:image" content="/images/wegner_headshot.png">
+
+  <title>Python Gotcha: Reusing Generators Returns Nothing  · Ponderings of an Andy
+</title>
+
+</head>
+
+<body class="light-theme" >
+
+<aside class="aside-border">
+  <div class="aside-cont">
+<a href="https://andrewwegner.com/">
+    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Ponderings of an Andy" title="Ponderings of an Andy">
+</a>
+
+    <nav id="nav-links">
+      <ul class="list">
+
+
+
+        <li>
+          <a target="_self" href="/">Home</a>
+        </li>
+        <li>
+          <a target="_self" href="/about/">About Me</a>
+        </li>
+        <li>
+          <a target="_self" href="/archives.html">Archives</a>
+        </li>
+        <li>
+          <a target="_self" href="/categories.html">Categories</a>
+        </li>
+        <li>
+          <a target="_self" href="/tags.html">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3>Article Contents</h3>
+    <hr />
+    <nav class="toc">
+      <div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#flashback">Flashback</a></li>
+</ul>
+</li>
+<li><a href="#yield-vs-return">yield vs return</a></li>
+<li><a href="#gotcha">Gotcha</a><ul>
+<li><a href="#log-processing">Log processing</a></li>
+<li><a href="#fibonacci">Fibonacci</a></li>
+</ul>
+</li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</div>
+    </nav>
+
+<ul class="social">
+  <div class="itsmefooter">Andy Wegner</div>
+  <li>
+    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
+      target="_blank">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
+      target="_blank">
+      <i class="fa-brands fa-stack-overflow"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
+      target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
+      target="_blank">
+      <i class="fa-solid fa-file-pdf"></i>
+    </a>
+  </li>
+  <li>
+    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
+      target="_blank">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+  </li>
+</ul>
+  </div>
+
+  <script type="text/javascript">
+
+    let acont = document.getElementsByClassName("toc content-cont")[0];
+    function back(){
+      acont.style.left = "-24vw";
+    }
+    function openCont(){
+      acont.style.left = "-1vw";
+    }
+  </script>
+</aside>
+  <main>
+
+<article class="single">
+  <header>
+    
+<nav>
+    <ul class="article-breadcrumbs">
+        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+        </li>
+        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html"><i
+                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Python Gotcha: Reusing Generators Returns Nothing</span></li></a></li>
+    </ul>
+</nav>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "item": 
+    {
+      "@id": "/",
+      "name": "Ponderings of an Andy"
+    }
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/categories.html",
+      "name": "Categories"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 3,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/category/technical-solutions.html",
+      "name": "Technical Solutions"
+    }
+  }
+  ,{
+    "@type": "ListItem",
+    "position": 4,
+    "item": 
+    {
+      "@id": "https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html",
+      "name": "https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html"
+    }
+  }
+  ]
+}
+</script>    <h1 id="python-gotcha-reusing-generator-returns-nothing">Python Gotcha: Reusing Generators Returns Nothing</h1>
+    <p>
+      Posted on Tue 22 July 2025 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
+
+
+    <div class="tag-cloud">
+      <p>
+        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
+      </p>
+    </div>
+    </p>
+  </header>
+
+  <div>
+    
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>In the previous article, we looked at <a href="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html">logging uncaught exceptions</a>. Let's utilize the log output from that post for another common task: error log file processing. This example is going to be pretty simple, as the error log for the post is tiny, but in a production environment this could be hundreds of thousands of lines, or gigabytes in size. Potentially, that's a lot to shove into memory for processing. But that's where a generator can come in to help.</p>
+<p><a href="https://docs.python.org/3/tutorial/classes.html#generators">Generators</a> do not store their results, instead they maintain state and <code>yield</code> the result back to the caller. This means each line in a log can be processed and returned, without loading the entire file. </p>
+<h3 id="flashback">Flashback<a class="headerlink" href="#flashback" title="Permanent link">¶</a></h3>
+<p>As a reminder from the <a href="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html">previous article</a>, the log file being used looks like this:</p>
+<div class="codehilight code"><pre><span></span><code><span class="mf">2025</span><span class="o">-</span><span class="mf">07</span><span class="o">-</span><span class="mf">14</span><span class="w"> </span><span class="mf">22</span><span class="p">:</span><span class="mf">30</span><span class="p">:</span><span class="mf">44</span><span class="p">,</span><span class="mf">061</span><span class="w"> </span><span class="n">__main__</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="n">Application</span><span class="w"> </span><span class="n">start</span>
+<span class="mf">2025</span><span class="o">-</span><span class="mf">07</span><span class="o">-</span><span class="mf">14</span><span class="w"> </span><span class="mf">22</span><span class="p">:</span><span class="mf">30</span><span class="p">:</span><span class="mf">44</span><span class="p">,</span><span class="mf">061</span><span class="w"> </span><span class="n">__main__</span><span class="w"> </span><span class="n">CRITICAL</span><span class="w"> </span><span class="n">uncaught</span><span class="w"> </span><span class="n">exception</span><span class="p">,</span><span class="w"> </span><span class="n">application</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">terminate</span><span class="mf">.</span>
+<span class="n">Traceback</span><span class="w"> </span><span class="p">(</span><span class="n">most</span><span class="w"> </span><span class="n">recent</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="n">last</span><span class="p">):</span>
+<span class="n">File</span><span class="w"> </span><span class="s">"/home/andy/main.py"</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mf">31</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="n">main</span><span class="p">()</span>
+<span class="w">    </span><span class="err">~~~~</span><span class="o">^^</span>
+<span class="n">File</span><span class="w"> </span><span class="s">"/home/andy/main.py"</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mf">27</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">main</span>
+<span class="w">    </span><span class="nb">log</span><span class="n">ger</span><span class="mf">.</span><span class="n">info</span><span class="p">(</span><span class="n">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+<span class="w">                </span><span class="err">~~~~~~</span><span class="o">^^^^^</span>
+<span class="n">File</span><span class="w"> </span><span class="s">"/home/andy/main.py"</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mf">21</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">divide</span>
+<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">a</span><span class="o">/</span><span class="n">b</span>
+<span class="w">        </span><span class="err">~</span><span class="o">^</span><span class="err">~</span>
+<span class="n">ZeroDivisionError</span><span class="p">:</span><span class="w"> </span><span class="n">division</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">zero</span>
+</code></pre></div>
+<p>There is one <code>INFO</code> entry and one <code>CRITICAL</code> entry.</p>
+<h2 id="yield-vs-return">yield vs return<a class="headerlink" href="#yield-vs-return" title="Permanent link">¶</a></h2>
+<p>It's important to understand what makes a generator different from a regular function. The key distinction is the <code>yield</code> keyword. When a function contains <code>yield</code>, Python treats it as a generator function, which behaves differently from functions that use <code>return</code>. </p>
+<p>A regular function with <code>return</code> executes completely, returns back a single result and then terminates. A function with <code>yield</code> creates a generator object that can pause execution, return a value, and later resume from exactly where it left off. This is what enables the memory-efficient and lazy evaluation that makes generators powerful.</p>
+<h2 id="gotcha">Gotcha<a class="headerlink" href="#gotcha" title="Permanent link">¶</a></h2>
+<h3 id="log-processing">Log processing<a class="headerlink" href="#log-processing" title="Permanent link">¶</a></h3>
+<p>A generator result can only be utilized one time. Whether you are using a generator to output the next item in a sequence or process a file line by line, once you have passed an iterable or exhausted the generator, it doesn't get reused. This simple generator demonstrates the issue.</p>
+<div class="codehilight code"><pre><span></span><code>def read_log_lines(filename):
+    with open(filename, 'r') as f:
+        for line in f:
+            if 'CRITICAL' in line:
+                yield line.strip()
+
+error_logs = read_log_lines('app.log')
+
+error_count = len(list(error_logs))
+print(f"Found {error_count} CRITICAL lines")
+
+recent_errors = [log for log in error_logs if '2025' in log]
+print(f"Recent errors: {len(recent_errors)}")
+</code></pre></div>
+<p>At first glance, it looks like this will read the log file, count the number of errors and then output how many of those were in 2025 (or contain the string <code>2025</code>). However, the actual output is different.</p>
+<div class="codehilight code"><pre><span></span><code>Found 1 CRITICAL lines
+Recent errors: 0
+</code></pre></div>
+<p><code>error_logs</code> is a generator object. If a function <code>yield</code>s, it is a generator. As <code>error_count</code> is initialized, it processes the error log and yields back any critical lines. The <code>list()</code> function will consume the entire generator (file). A few lines later, the developer wants to see how many of these are recent errors and attempts to go through the <code>error_logs</code> generator again. Success! No recent errors!</p>
+<p>Right?</p>
+<p>No, and looking at the log quickly shows that.</p>
+<h3 id="fibonacci">Fibonacci<a class="headerlink" href="#fibonacci" title="Permanent link">¶</a></h3>
+<p>Let's use a generator to build the Fibonocci sequence. Spoiler for interviews! In this case, I'm going to use a generator to get the first 10 items. Then print out the first 5 and then try to print the entire list of 10 items.</p>
+<div class="codehilight code"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">        </span><span class="nb">yield</span><span class="w"> </span><span class="n">a</span>
+<span class="w">        </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span>
+
+<span class="n">fib_numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First 5 numbers:"</span><span class="p">)</span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">enumerate</span><span class="p">(</span><span class="n">fib_numbers</span><span class="p">):</span>
+<span class="w">    </span><span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">4</span><span class="p">:</span>
+<span class="w">        </span><span class="k">break</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Entire List:"</span><span class="p">)</span>
+<span class="n">full_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="n">fib_numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">full_list</span><span class="p">)</span>
+</code></pre></div>
+<p>The output for this is:</p>
+<div class="codehilight code"><pre><span></span><code>First 5 numbers:
+0
+1
+1
+2
+3
+Entire List:
+[5, 8, 13, 21, 34]
+</code></pre></div>
+<p>Notice that the <code>full_list</code> variable only contains the items remaining on the generator. Since the first 5 (indexes <code>0</code> through <code>4</code>) were printed, they are no longer part of the generator. When the full list is printed, only the remaining items can be printed.</p>
+<h2 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">¶</a></h2>
+<p>The solution to the problem is easy enough. Call the generator function again. For example, with the log code from above:</p>
+<div class="codehilight code"><pre><span></span><code>error_logs = read_log_lines('app.log')
+error_count = len(list(error_logs))
+...
+error_logs = read_log_lines('app.log')  # Call again and create a new generator
+recent_errors = [log for log in error_logs if '2025' in log]
+</code></pre></div>
+<p>For the Fibonacci code, you would call <code>fib_numbers = fibonacci(10)</code> again before printing the full list.</p>
+<p>Obviously, there is a down side here with duplicate processing of the same data due to running the generator twice. This could probably be solved with some logic adjustments to the generator or the code calling the generator, but that'll vary by application depending on what the generator is doing.</p>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h3>
+<p>The important thing to take away from this is that once you have iterated over an item in a generator, it's no longer part of a generator. This means that if you want to get clever and see if there are more items in a generator, or determine the next item, you've consumed the next item.</p>
+<p>The power of generators, especially when processing large amounts of data, can't be understated. But, at the same time, it's important to know that reusing an exhausted generator or attempting to access a previous item directly from the generator is not going to work. Instead, to reuse generator logic, call the generator function again to create a new generator object, or convert to a list if memory permits and multiple iterations are needed.</p>
+  </div>
+<div class="neighbors">
+  <a class="btn float-left" href="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html"
+    title="Python Gotcha: Logging an uncaught exception">
+    <i class="fa fa-angle-left"></i> Previous Post
+  </a>
+</div>
+
+
+
+  <hr />
+  <div>
+            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
+             is a father, an engineer and a computer scientist. He is interested in online
+            community building, tinkering with new code and building new applications.
+            He writes about his experiences with each of these.</span>
+
+  </div>
+
+
+  <div class="related-posts">
+    <h4>Part 11 of the Programming Gotchas series</h4>
+    <h5>Previous articles</h5>
+    <ul>
+      <li><a href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html">Python Gotcha: Mutable Default Optional Arguments</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-join-vs-concat.html">Python Gotcha: Join vs Concat</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-comparisons.html">Python Gotcha: Comparisons</a></li>
+      <li><a href="https://andrewwegner.com/ruby-gotcha-operator-precedence.html">Ruby Gotcha: Operator Precedence</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-timezone-naive-functions.html">Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-list-copy.html">Python Gotcha: List Copy Problems</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html">Python Gotcha: Modifying a list while iterating</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html">Python Gotcha: strip, lstrip, rstrip can remove more than expected</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-identity-vs-equality.html">Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly</a></li>
+      <li><a href="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html">Python Gotcha: Logging an uncaught exception</a></li>
+    </ul>
+  </div>
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Python Gotcha: Reusing Generators Returns Nothing",
+  "headline": "Python Gotcha: Reusing Generators Returns Nothing",
+  "dateCreated": "2025-07-22 09:00:00-05:00",
+  "datePublished": "2025-07-22 09:00:00-05:00",
+  "dateModified": "",
+  "copyrightYear": "2025",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/",
+      "https://www.andrewwegner.com/about/",
+      "https://www.andrewwegner.com/resume.pdf",
+      "https://www.linkedin.com/in/andrew-wegner/",
+      "https://github.com/AWegnerGitHub/",
+      "https://stackoverflow.com/users/189134/andy",
+      "https://keybase.io/awegner"
+    ],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.andrewwegner.com/about/"
+      }
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Andy Wegner",
+    "sameAs": [
+      "https://www.andrewwegner.com/",
+      "https://www.andrewwegner.com/about/",
+      "https://www.andrewwegner.com/resume.pdf",
+      "https://www.linkedin.com/in/andrew-wegner/",
+      "https://github.com/AWegnerGitHub/",
+      "https://stackoverflow.com/users/189134/andy",
+      "https://keybase.io/awegner"
+    ]
+  },
+  "image": "/images/wegner_headshot.png",
+  "url": "https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html",
+  "description": "Generators provide lazy evaluation for processing large datasets efficiently. However, once a generator is exhausted through iteration, it cannot be reused or reset. Let's cover this common gotcha that trips up developers new to this Python feature.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}
+</script>
+<footer>
+<p>&copy; 2025 Andrew Wegner</p>
+</footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Ponderings of an Andy ",
+  "url" : "https://andrewwegner.com",
+  "image": "/images/wegner_headshot.png",
+  "description": "Articles and reviews covering thoughts on work place leadership, technical course reviews, and other ponderings of Andy Wegner"
+}
+</script>
+</body>
+
+</html>
