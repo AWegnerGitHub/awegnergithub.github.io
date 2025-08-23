@@ -345,13 +345,14 @@ are discovered.</p>
 <p>While setting this up there where a few things that I learned or desired that were not immediately obvious while reading documentation. The first
 was that GitHub actions aren't triggerable without setting up the appropriate <code>on</code> event type. In this case, I want to occassionally
 run the link checker on command, instead of once a week. That means I need the <code>workflow_dispatch</code> event and it needs to be empty. </p>
-<p>on:
-    schedule:
-      - cron:  '12 1 * * 5'
-    workflow_dispatch:
-  env:
-    WEBSITE_URL: "https://andrewwegner.com/"
-    ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"</p>
+<div class="codehilight code"><pre><span></span><code><span class="n">on</span><span class="o">:</span>
+<span class="w">  </span><span class="n">schedule</span><span class="o">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">cron</span><span class="o">:</span><span class="w">  </span><span class="s1">'12 1 * * 5'</span>
+<span class="w">  </span><span class="n">workflow_dispatch</span><span class="o">:</span>
+<span class="n">env</span><span class="o">:</span>
+<span class="w">  </span><span class="n">WEBSITE_URL</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://andrewwegner.com/"</span>
+<span class="w">  </span><span class="n">ISSUE_TEMPLATE</span><span class="o">:</span><span class="w"> </span><span class="s2">".github/workflows/check-broken-links.md"</span>
+</code></pre></div>
 <p>Notice that the empty <code>workflow_dispatch</code> has no other parameters. It can accept some, if I wanted to provide input to the script at run time,
 but I have no need for that right now. So, mine remains empty.</p>
 <p>A couple nice to haves, that I wasn't able to immediately figure out were how to retry a failed link "later" in the script. While testing
