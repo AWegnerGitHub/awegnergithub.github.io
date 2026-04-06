@@ -288,9 +288,9 @@ git commit -m "Adding Flask application"
 git push
 </code></pre></div>
 <p>This will take a moment. At the end, you should see these lines in your command prompt:</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">remote</span><span class="o">:</span><span class="w"> </span><span class="n">Git</span><span class="w"> </span><span class="n">Post</span><span class="o">-</span><span class="n">Receive</span><span class="w"> </span><span class="n">Result</span><span class="o">:</span><span class="w"> </span><span class="n">success</span>
-<span class="n">remote</span><span class="o">:</span><span class="w"> </span><span class="n">Activation</span><span class="w"> </span><span class="n">status</span><span class="o">:</span><span class="w"> </span><span class="n">success</span>
-<span class="n">remote</span><span class="o">:</span><span class="w"> </span><span class="n">Deployment</span><span class="w"> </span><span class="n">completed</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">status</span><span class="o">:</span><span class="w"> </span><span class="n">success</span>
+<div class="codehilight code"><pre><span></span><code>remote: Git Post-Receive Result: success
+remote: Activation status: success
+remote: Deployment completed with status: success
 </code></pre></div>
 <p>If all three are a success, then you should be able to visit your URL. Your URL is a combination of your selected Namespace and the application name you created.</p>
 <div class="codehilight code"><pre><span></span><code>http://&lt;namespace&gt;-&lt;testapp&gt;.rhcloud.com/
@@ -370,7 +370,7 @@ git push -u origin master
 </code></pre></div>
 <p>Fill out the prompts. Defaults should be fine in most cases, but do pay attention to "OpenShift application name". If your GitHub repository is named differently than your OpenShift application name, the default for this prompt will be incorrect.</p>
 <p>One last note, for a quick test you can change the <code>script</code> section to </p>
-<div class="codehilight code"><pre><span></span><code><span class="n">script</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<div class="codehilight code"><pre><span></span><code>script: true
 </code></pre></div>
 <p>This forces the tests to pass. Once you've written tests, you can do something like:</p>
 <div class="codehilight code"><pre><span></span><code>script:

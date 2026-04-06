@@ -2072,7 +2072,7 @@ get, to move to their next role.&lt;/p&gt;</content><category term="Technical So
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sanic src.server:app -p 7777 --debug --workers=2
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Simplifying that command a bit and setting up the Heroku &lt;code&gt;Procfile&lt;/code&gt; (capitization matters and no extension) I have a single line in my &lt;code&gt;Procfile&lt;/code&gt; that reads:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;web&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sanic&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;web: sanic server:app
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Creating a &lt;code&gt;requirements.txt&lt;/code&gt; file with Sanic as an item was also required. If you're using a virtualenv, you can simply &lt;code&gt;pip freeze &amp;gt; requirements.txt&lt;/code&gt; to get everything in your environment into the file.&lt;/p&gt;
 &lt;p&gt;Thus, my directory looks like this:&lt;/p&gt;
@@ -2300,13 +2300,13 @@ the project that will be using this runner. It should be available at this link:
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;With this, the &lt;code&gt;python&lt;/code&gt; tag will be automatically applied to the task. For a simple pipeline like mine, it may seem like overkill, but it's useful if I want to force other tags or steps.&lt;/p&gt;
 &lt;h3 id="allow-failures"&gt;Allow failures&lt;a class="headerlink" href="#allow-failures" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;extends&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;allow_failure&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;absolute&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;xenon&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Analysis&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;xenon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nx"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;absolute&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nx"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;modules&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nx"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;average&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I previously mentioned that I allowed the xenon step to fail. This is accomplished with the &lt;code&gt;allow_failue: true&lt;/code&gt; setting you see here. Since this setting is in place, the pipeline will proceed even if this single task fails.&lt;/p&gt;
 &lt;h3 id="manual-deployment"&gt;Manual deployment&lt;a class="headerlink" href="#manual-deployment" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -2913,12 +2913,12 @@ recursively copy a directory into itself.&lt;/p&gt;
 &lt;p&gt;Then, I get my dependancies installed. I update &lt;code&gt;pip&lt;/code&gt; and install my &lt;code&gt;requirements.txt&lt;/code&gt;. Finally, I execute the same &lt;code&gt;pelican&lt;/code&gt; command I
 previously used and add on the &lt;code&gt;verbose&lt;/code&gt; flag, just in case I need to troubleshoot a failed build.&lt;/p&gt;
 &lt;p&gt;Deployment is done via the &lt;code&gt;deploy&lt;/code&gt; block, but all it is doing is calling my &lt;code&gt;deploy.sh&lt;/code&gt; script that I covered above.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;deploy&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;provider&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;skip_cleanup&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;deploy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;sh&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;deploy:
+  provider: script
+  skip_cleanup: true
+  script: bash deploy.sh
+  on:
+    branch: master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;code&gt;skip_cleanup&lt;/code&gt; is important to leave as &lt;code&gt;true&lt;/code&gt; so that the output from the &lt;code&gt;script&lt;/code&gt; block isn't cleaned up before we deploy.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -3111,19 +3111,19 @@ cat laptop-rsync-key.pub &amp;gt;&amp;gt; authorized_keys
 &lt;h3 id="set-up-appyaml"&gt;Set up app.yaml&lt;a class="headerlink" href="#set-up-appyaml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;With &lt;code&gt;gcloud&lt;/code&gt; set up on your development machine, there is one last step to do: Configuring the &lt;code&gt;app.yaml&lt;/code&gt; file.&lt;/p&gt;
 &lt;p&gt;This file contains information on the type of environment you'll be deploying to. Create and save an &lt;code&gt;app.yaml&lt;/code&gt; file in the same directory as the Flask application. For this example, the Flask application is in a file saved as &lt;code&gt;example-script.py&lt;/code&gt;&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;runtime&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
-&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flex&lt;/span&gt;
-&lt;span class="n"&gt;entrypoint&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gunicorn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;$PORT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT example-script:app
 
-&lt;span class="n"&gt;runtime_config&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;python_version&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+runtime_config:
+  python_version: 3
 
-&lt;span class="n"&gt;manual_scaling&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;instances&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;cpu&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;memory_gb&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;disk_size_gb&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Other than the &lt;code&gt;entrypoint&lt;/code&gt; line, this is the example &lt;code&gt;app.yaml&lt;/code&gt; provided by Google. &lt;code&gt;example-script&lt;/code&gt; is the name of the file that contains the Flask application.&lt;/p&gt;
 &lt;h3 id="deploy-to-google"&gt;Deploy to Google&lt;a class="headerlink" href="#deploy-to-google" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -3387,11 +3387,11 @@ it deployed to &lt;em&gt;my&lt;/em&gt; AWS account using &lt;em&gt;my&lt;/em&gt;
 &lt;p&gt;&lt;img alt="Enable Integration" src="https://andrewwegner.com/images/1-travis-enable-repository.png"/&gt;&lt;/p&gt;
 &lt;h3 id="create-a-travisyml-file"&gt;Create a .travis.yml file&lt;a class="headerlink" href="#create-a-travisyml-file" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;With the integration now in place, set up a basic build script by adding a &lt;code&gt;.travis.yml&lt;/code&gt; file to the repository.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
-&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"3.5"&lt;/span&gt;
-&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;py&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;language: python
+python:
+  - "3.5"
+script:
+  - python hello.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This script will set up a build task and run your &lt;code&gt;hello.py&lt;/code&gt; file, using Python 3.5. You will see that "Hello World!" is printed in the build console.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="First Build" src="https://andrewwegner.com/images/2-travis-first-build.png"/&gt;&lt;/p&gt;
@@ -3573,7 +3573,7 @@ should match the path you installed NextCloud into in the previous step.&lt;/p&g
 you need to copy &lt;code&gt;/var/www/html/nextcloud/config/config.sample.php&lt;/code&gt; to &lt;code&gt;/var/www/html/nextcloud/config/config.php&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The important settings to check are:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`datadirectory`&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;In&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;case&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;was&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pointed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dataset&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;created&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;when&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;[&lt;/span&gt;&lt;span class="k"&gt;set&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ZFS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="err"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="err"&gt;]&lt;/span&gt;
-&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`overwrite.cli.url`&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Changed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;point&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;HTTPS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;URL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;want&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`overwrite.cli.url`&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Changed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;point&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;HTTPS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;URL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;want&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="complete-the-installation"&gt;Complete the installation&lt;a class="headerlink" href="#complete-the-installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Restart Apache and the navigate to the domain you've set up for your NextCloud installation. I am assuming that you know how to set up a DNS record for the server name
@@ -3900,9 +3900,9 @@ community and better support.&lt;/p&gt;</content><category term="Technical Solut
 &lt;p&gt;The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using &lt;code&gt;python setup.py -q install&lt;/code&gt;. Then the test suite is run.&lt;/p&gt;
 &lt;p&gt;The important bits are in the &lt;code&gt;deploy&lt;/code&gt; section.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;on:
+  tags: true
+  branch: master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since &lt;code&gt;bumpversion&lt;/code&gt; makes a new git tag with each new version, this works perfectly.&lt;/p&gt;
 &lt;p&gt;This does require that my password be included in the yml file. To keep this secure, I utilized the &lt;a href="https://blog.travis-ci.com/2013-01-14-new-client/"&gt;Travis Command Line Client&lt;/a&gt; (&lt;code&gt;gem install travis&lt;/code&gt;). In my local directory, I then ran:&lt;/p&gt;
@@ -3954,9 +3954,9 @@ git commit -m "Adding Flask application"
 git push
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This will take a moment. At the end, you should see these lines in your command prompt:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Git&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Post&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Receive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;success&lt;/span&gt;
-&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Activation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;success&lt;/span&gt;
-&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deployment&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;completed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;success&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;remote: Git Post-Receive Result: success
+remote: Activation status: success
+remote: Deployment completed with status: success
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If all three are a success, then you should be able to visit your URL. Your URL is a combination of your selected Namespace and the application name you created.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;http://&amp;lt;namespace&amp;gt;-&amp;lt;testapp&amp;gt;.rhcloud.com/
@@ -4036,7 +4036,7 @@ git push -u origin master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Fill out the prompts. Defaults should be fine in most cases, but do pay attention to "OpenShift application name". If your GitHub repository is named differently than your OpenShift application name, the default for this prompt will be incorrect.&lt;/p&gt;
 &lt;p&gt;One last note, for a quick test you can change the &lt;code&gt;script&lt;/code&gt; section to &lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;script: true
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This forces the tests to pass. Once you've written tests, you can do something like:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;script:

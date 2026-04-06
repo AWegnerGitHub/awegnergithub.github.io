@@ -267,9 +267,9 @@ especially because this is the site I give out in a professional context.</p>
 <h3 id="scheduling">Scheduling<a class="headerlink" href="#scheduling" title="Permanent link">¶</a></h3>
 <p>My goal for this project was to check links for the entire site on a regular basis. I was hoping roughly once a week. Fortunately,
 GitHub Actions allow you to <a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule">schedule your actions</a>, using syntax like this:</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">on</span><span class="o">:</span>
-<span class="w">    </span><span class="n">schedule</span><span class="o">:</span>
-<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">cron</span><span class="o">:</span><span class="w">  </span><span class="s1">'12 1 * * 5'</span>
+<div class="codehilight code"><pre><span></span><code>on:
+    schedule:
+        <span class="k">-</span> cron:  '12 1 <span class="gs">* *</span> 5'
 </code></pre></div>
 <p>The important thing to note, which is called out in the docs, is that <code>*</code> is a special character in YAML, so the string 
 has to be quoted. Using this schedule, my link checks will run every Friday at 1:12am. For me, timezone doesn't matter, but the
@@ -335,9 +335,9 @@ once I'm happy with the stability and reliablity of the checks.</p>
 <p>You can see what an <a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/issues/5">issue created with this template looks like in the repository</a>.</p>
 <h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">¶</a></h3>
 <p>The last section, I've alluded to already - the environment variables. I have two currently defined. </p>
-<div class="codehilight code"><pre><span></span><code><span class="n">env</span><span class="o">:</span>
-<span class="w">    </span><span class="n">WEBSITE_URL</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://andrewwegner.com/"</span>
-<span class="w">    </span><span class="n">ISSUE_TEMPLATE</span><span class="o">:</span><span class="w"> </span><span class="s2">".github/workflows/check-broken-links.md"</span>
+<div class="codehilight code"><pre><span></span><code>env:
+    WEBSITE_URL: "https://andrewwegner.com/"
+    ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"
 </code></pre></div>
 <p>The first is to set the domain I'm scanning. Mine, obviously. The second is a link to the issue template that is utilized if broken links
 are discovered.</p>
@@ -345,13 +345,13 @@ are discovered.</p>
 <p>While setting this up there where a few things that I learned or desired that were not immediately obvious while reading documentation. The first
 was that GitHub actions aren't triggerable without setting up the appropriate <code>on</code> event type. In this case, I want to occassionally
 run the link checker on command, instead of once a week. That means I need the <code>workflow_dispatch</code> event and it needs to be empty. </p>
-<div class="codehilight code"><pre><span></span><code><span class="n">on</span><span class="o">:</span>
-<span class="w">  </span><span class="n">schedule</span><span class="o">:</span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">cron</span><span class="o">:</span><span class="w">  </span><span class="s1">'12 1 * * 5'</span>
-<span class="w">  </span><span class="n">workflow_dispatch</span><span class="o">:</span>
-<span class="n">env</span><span class="o">:</span>
-<span class="w">  </span><span class="n">WEBSITE_URL</span><span class="o">:</span><span class="w"> </span><span class="s2">"https://andrewwegner.com/"</span>
-<span class="w">  </span><span class="n">ISSUE_TEMPLATE</span><span class="o">:</span><span class="w"> </span><span class="s2">".github/workflows/check-broken-links.md"</span>
+<div class="codehilight code"><pre><span></span><code>on:
+  schedule:
+    <span class="k">-</span> cron:  '12 1 <span class="gs">* *</span> 5'
+  workflow_dispatch:
+env:
+  WEBSITE_URL: "https://andrewwegner.com/"
+  ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"
 </code></pre></div>
 <p>Notice that the empty <code>workflow_dispatch</code> has no other parameters. It can accept some, if I wanted to provide input to the script at run time,
 but I have no need for that right now. So, mine remains empty.</p>

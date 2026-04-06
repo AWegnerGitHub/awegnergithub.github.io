@@ -381,12 +381,12 @@ recursively copy a directory into itself.</p>
 <p>Then, I get my dependancies installed. I update <code>pip</code> and install my <code>requirements.txt</code>. Finally, I execute the same <code>pelican</code> command I
 previously used and add on the <code>verbose</code> flag, just in case I need to troubleshoot a failed build.</p>
 <p>Deployment is done via the <code>deploy</code> block, but all it is doing is calling my <code>deploy.sh</code> script that I covered above.</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">deploy</span><span class="o">:</span>
-<span class="w">  </span><span class="n">provider</span><span class="o">:</span><span class="w"> </span><span class="n">script</span>
-<span class="w">  </span><span class="n">skip_cleanup</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">  </span><span class="n">script</span><span class="o">:</span><span class="w"> </span><span class="n">bash</span><span class="w"> </span><span class="n">deploy</span><span class="o">.</span><span class="na">sh</span>
-<span class="w">  </span><span class="n">on</span><span class="o">:</span>
-<span class="w">    </span><span class="n">branch</span><span class="o">:</span><span class="w"> </span><span class="n">master</span>
+<div class="codehilight code"><pre><span></span><code>deploy:
+  provider: script
+  skip_cleanup: true
+  script: bash deploy.sh
+  on:
+    branch: master
 </code></pre></div>
 <p><code>skip_cleanup</code> is important to leave as <code>true</code> so that the output from the <code>script</code> block isn't cleaned up before we deploy.</p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>

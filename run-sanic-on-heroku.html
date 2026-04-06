@@ -275,7 +275,7 @@
 <div class="codehilight code"><pre><span></span><code>sanic src.server:app -p 7777 --debug --workers=2
 </code></pre></div>
 <p>Simplifying that command a bit and setting up the Heroku <code>Procfile</code> (capitization matters and no extension) I have a single line in my <code>Procfile</code> that reads:</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">web</span><span class="o">:</span><span class="w"> </span><span class="n">sanic</span><span class="w"> </span><span class="n">server</span><span class="o">:</span><span class="n">app</span>
+<div class="codehilight code"><pre><span></span><code>web: sanic server:app
 </code></pre></div>
 <p>Creating a <code>requirements.txt</code> file with Sanic as an item was also required. If you're using a virtualenv, you can simply <code>pip freeze &gt; requirements.txt</code> to get everything in your environment into the file.</p>
 <p>Thus, my directory looks like this:</p>

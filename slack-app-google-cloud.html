@@ -408,19 +408,19 @@
 <h3 id="set-up-appyaml">Set up app.yaml<a class="headerlink" href="#set-up-appyaml" title="Permanent link">¶</a></h3>
 <p>With <code>gcloud</code> set up on your development machine, there is one last step to do: Configuring the <code>app.yaml</code> file.</p>
 <p>This file contains information on the type of environment you'll be deploying to. Create and save an <code>app.yaml</code> file in the same directory as the Flask application. For this example, the Flask application is in a file saved as <code>example-script.py</code></p>
-<div class="codehilight code"><pre><span></span><code><span class="n">runtime</span><span class="o">:</span><span class="w"> </span><span class="n">python</span>
-<span class="n">env</span><span class="o">:</span><span class="w"> </span><span class="n">flex</span>
-<span class="n">entrypoint</span><span class="o">:</span><span class="w"> </span><span class="n">gunicorn</span><span class="w"> </span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="n">$PORT</span><span class="w"> </span><span class="n">example</span><span class="o">-</span><span class="n">script</span><span class="o">:</span><span class="n">app</span>
+<div class="codehilight code"><pre><span></span><code>runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT example-script:app
 
-<span class="n">runtime_config</span><span class="o">:</span>
-<span class="w">  </span><span class="n">python_version</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span>
+runtime_config:
+  python_version: 3
 
-<span class="n">manual_scaling</span><span class="o">:</span>
-<span class="w">  </span><span class="n">instances</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
-<span class="n">resources</span><span class="o">:</span>
-<span class="w">  </span><span class="n">cpu</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">  </span><span class="n">memory_gb</span><span class="o">:</span><span class="w"> </span><span class="mf">0.5</span>
-<span class="w">  </span><span class="n">disk_size_gb</span><span class="o">:</span><span class="w"> </span><span class="mi">10</span>
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
 </code></pre></div>
 <p>Other than the <code>entrypoint</code> line, this is the example <code>app.yaml</code> provided by Google. <code>example-script</code> is the name of the file that contains the Flask application.</p>
 <h3 id="deploy-to-google">Deploy to Google<a class="headerlink" href="#deploy-to-google" title="Permanent link">¶</a></h3>

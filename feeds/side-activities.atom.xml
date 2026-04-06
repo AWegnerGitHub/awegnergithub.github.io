@@ -138,9 +138,9 @@ especially because this is the site I give out in a professional context.&lt;/p&
 &lt;h3 id="scheduling"&gt;Scheduling&lt;a class="headerlink" href="#scheduling" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;My goal for this project was to check links for the entire site on a regular basis. I was hoping roughly once a week. Fortunately,
 GitHub Actions allow you to &lt;a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule"&gt;schedule your actions&lt;/a&gt;, using syntax like this:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cron&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s1"&gt;'12 1 * * 5'&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;on:
+    schedule:
+        &lt;span class="k"&gt;-&lt;/span&gt; cron:  '12 1 &lt;span class="gs"&gt;* *&lt;/span&gt; 5'
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The important thing to note, which is called out in the docs, is that &lt;code&gt;*&lt;/code&gt; is a special character in YAML, so the string 
 has to be quoted. Using this schedule, my link checks will run every Friday at 1:12am. For me, timezone doesn't matter, but the
@@ -206,9 +206,9 @@ once I'm happy with the stability and reliablity of the checks.&lt;/p&gt;
 &lt;p&gt;You can see what an &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/issues/5"&gt;issue created with this template looks like in the repository&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="environment-variables"&gt;Environment Variables&lt;a class="headerlink" href="#environment-variables" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The last section, I've alluded to already - the environment variables. I have two currently defined. &lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://andrewwegner.com/"&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;".github/workflows/check-broken-links.md"&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env:
+    WEBSITE_URL: "https://andrewwegner.com/"
+    ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The first is to set the domain I'm scanning. Mine, obviously. The second is a link to the issue template that is utilized if broken links
 are discovered.&lt;/p&gt;
@@ -216,13 +216,13 @@ are discovered.&lt;/p&gt;
 &lt;p&gt;While setting this up there where a few things that I learned or desired that were not immediately obvious while reading documentation. The first
 was that GitHub actions aren't triggerable without setting up the appropriate &lt;code&gt;on&lt;/code&gt; event type. In this case, I want to occassionally
 run the link checker on command, instead of once a week. That means I need the &lt;code&gt;workflow_dispatch&lt;/code&gt; event and it needs to be empty. &lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cron&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s1"&gt;'12 1 * * 5'&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;workflow_dispatch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://andrewwegner.com/"&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;".github/workflows/check-broken-links.md"&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;on:
+  schedule:
+    &lt;span class="k"&gt;-&lt;/span&gt; cron:  '12 1 &lt;span class="gs"&gt;* *&lt;/span&gt; 5'
+  workflow_dispatch:
+env:
+  WEBSITE_URL: "https://andrewwegner.com/"
+  ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Notice that the empty &lt;code&gt;workflow_dispatch&lt;/code&gt; has no other parameters. It can accept some, if I wanted to provide input to the script at run time,
 but I have no need for that right now. So, mine remains empty.&lt;/p&gt;

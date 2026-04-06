@@ -379,9 +379,9 @@
 <p>The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on <a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml">GitHub</a>.</p>
 <p>My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using <code>python setup.py -q install</code>. Then the test suite is run.</p>
 <p>The important bits are in the <code>deploy</code> section.</p>
-<div class="codehilight code"><pre><span></span><code><span class="n">on</span><span class="o">:</span>
-<span class="w">  </span><span class="n">tags</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">  </span><span class="n">branch</span><span class="o">:</span><span class="w"> </span><span class="n">master</span>
+<div class="codehilight code"><pre><span></span><code>on:
+  tags: true
+  branch: master
 </code></pre></div>
 <p>If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since <code>bumpversion</code> makes a new git tag with each new version, this works perfectly.</p>
 <p>This does require that my password be included in the yml file. To keep this secure, I utilized the <a href="https://blog.travis-ci.com/2013-01-14-new-client/">Travis Command Line Client</a> (<code>gem install travis</code>). In my local directory, I then ran:</p>

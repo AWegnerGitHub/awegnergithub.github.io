@@ -451,13 +451,13 @@ the project that will be using this runner. It should be available at this link:
 </code></pre></div>
 <p>With this, the <code>python</code> tag will be automatically applied to the task. For a simple pipeline like mine, it may seem like overkill, but it's useful if I want to force other tags or steps.</p>
 <h3 id="allow-failures">Allow failures<a class="headerlink" href="#allow-failures" title="Permanent link">¶</a></h3>
-<div class="codehilight code"><pre><span></span><code><span class="n">xenon</span><span class="o">:</span>
-<span class="w">  </span><span class="n">stage</span><span class="o">:</span><span class="w"> </span><span class="n">Static</span><span class="w"> </span><span class="n">Analysis</span>
-<span class="w">  </span><span class="kd">extends</span><span class="o">:</span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="o">.</span><span class="na">python</span><span class="o">-</span><span class="n">tag</span>
-<span class="w">  </span><span class="n">allow_failure</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">  </span><span class="n">script</span><span class="o">:</span>
-<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">xenon</span><span class="w"> </span><span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">absolute</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">modules</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">--</span><span class="n">max</span><span class="o">-</span><span class="n">average</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">my_package</span><span class="o">/</span>
+<div class="codehilight code"><pre><span></span><code><span class="nx">xenon</span><span class="p">:</span>
+<span class="w">  </span><span class="nx">stage</span><span class="p">:</span><span class="w"> </span><span class="nx">Static</span><span class="w"> </span><span class="nx">Analysis</span>
+<span class="w">  </span><span class="kd">extends</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="nx">python</span><span class="o">-</span><span class="nx">tag</span>
+<span class="w">  </span><span class="nx">allow_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="nx">script</span><span class="p">:</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="nx">xenon</span><span class="w"> </span><span class="o">--</span><span class="nx">max</span><span class="o">-</span><span class="nx">absolute</span><span class="w"> </span><span class="nx">B</span><span class="w"> </span><span class="o">--</span><span class="nx">max</span><span class="o">-</span><span class="nx">modules</span><span class="w"> </span><span class="nx">B</span><span class="w"> </span><span class="o">--</span><span class="nx">max</span><span class="o">-</span><span class="nx">average</span><span class="w"> </span><span class="nx">B</span><span class="w"> </span><span class="nx">my_package</span><span class="o">/</span>
 </code></pre></div>
 <p>I previously mentioned that I allowed the xenon step to fail. This is accomplished with the <code>allow_failue: true</code> setting you see here. Since this setting is in place, the pipeline will proceed even if this single task fails.</p>
 <h3 id="manual-deployment">Manual deployment<a class="headerlink" href="#manual-deployment" title="Permanent link">¶</a></h3>

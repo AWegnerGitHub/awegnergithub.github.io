@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Andrew Wegner | Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"/><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"/><id>https://andrewwegner.com/</id><updated>2026-03-25T15:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them.</title><link href="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html" rel="alternate"/><published>2026-03-25T15:00:00-05:00</published><updated>2026-03-25T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2026-03-25:/ai-broke-our-interview-process-i-had-to-fix-it.html</id><summary type="html">&lt;p&gt;After proving AI could beat most technical assessments, I had to rebuild how I hire engineers. Here's the process I've developed; focused on what actually predicts success on the job.&lt;/p&gt;</summary><content type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Andrew Wegner | Ponderings of an Andy</title><link href="https://andrewwegner.com/" rel="alternate"/><link href="https://andrewwegner.com/feeds/all.atom.xml" rel="self"/><id>https://andrewwegner.com/</id><updated>2026-04-06T10:30:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Review of Claude Code for Python Developers from Real Python</title><link href="https://andrewwegner.com/real-python-claude-code-live-course.html" rel="alternate"/><published>2026-04-06T10:30:00-05:00</published><updated>2026-04-06T10:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2026-04-06:/real-python-claude-code-live-course.html</id><summary type="html">&lt;p&gt;A review of the Real Python live workshop - Claude Code for Python Developers: Hands-on agentic coding course&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you are in the software industry and haven't started working with an AI assistant by this point in 2026, then you should start getting concerned about your role in the company you work at. &lt;a href="https://www.cfodive.com/news/ai-tied-a-quarter-us-layoffs-march/816519/"&gt;Throughout the first few months of 2026&lt;/a&gt;, there have been several large layoffs by major corporations. &lt;a href="https://programs.com/resources/ai-layoffs/"&gt;Companies like Block and Oracle cited AI as the driver&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;AI is here and as of today, it's the least capable it will ever be, because each day it gets better. I've been exploring it since ChatGPT came out and it's &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;impact on interviews&lt;/a&gt;. I've written about it multiple times recently. &lt;a href="https://andrewwegner.com/junior-engineer-crisis-ai-code-generation.html"&gt;AI's impact on junior developers&lt;/a&gt; is particularly important because I'm already seeing this in my role. &lt;/p&gt;
+&lt;p&gt;My teams have been utilizing a handful of AI assistants over the past year and making amazing improvements to our workflows. From things as simple as reducing the SDLC cycle time for major features to triage of support items, the impact has been dramatic. &lt;/p&gt;
+&lt;p&gt;I feel like I've only &lt;em&gt;touched&lt;/em&gt; the surface - not even scratched it - touched the surface of how to better use AI tooling, and I've been using it a lot. So, I looked for a workshop to increase my knowledge. As a subscriber to &lt;a href="https://realpython.com/"&gt;Real Python&lt;/a&gt;, I was happy to see they offered a brand new workshop about &lt;a href="https://code.claude.com/docs/en/overview"&gt;Claude Code&lt;/a&gt; and as of this writing they are offering it again.&lt;/p&gt;
+&lt;p&gt;The course - &lt;a href="https://realpython.com/workshops/claude-code/"&gt;Claude Code for Python Developers: Hands-On Agentic Coding Course&lt;/a&gt;. A bit wordy, but an amazing two days.&lt;/p&gt;
+&lt;h2 id="spoiler"&gt;Spoiler&lt;a class="headerlink" href="#spoiler" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As a spoiler, my review of the course is on the main course page. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Learning about how Claude Code works was great. Working with things like Skills, learning a workflow that functions, was what I was hoping to learn about. All of those were covered."&lt;/p&gt;
+&lt;p&gt;"I feel more comfortable with the tool itself and how to implement a basic workflow for myself with ideas on how to extend it to a whole team."&lt;/p&gt;
+&lt;p&gt;"This is one of the best training sessions I've joined in the last year across multiple platforms."&lt;/p&gt;
+&lt;p&gt;— Andrew Wegner, VP Product at Zayo&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="My review of the Real Python Claude Code workshop that I endorse" src="https://andrewwegner.com/images/real-python-claude-code-endoursement.png"/&gt;&lt;/p&gt;
+&lt;h2 id="course"&gt;Course&lt;a class="headerlink" href="#course" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As you can see from above, I thought this course was great. It was a two day (over a weekend) live course with about 100 participants from around the world. Based on the chat during the course, the skill set of participants ranged from "new to Claude code but experienced developer" to "somewhat familiar with Claude Code and looking to do more with it". It was a nice mix of participants. The instructor, &lt;a href="https://realpython.com/team/pacsany/"&gt;Philipp Acsany&lt;/a&gt;, did a good job of answering questions, sharing content, and ensuring everyone was able to follow along. This was very hands on workshop.&lt;/p&gt;
+&lt;p&gt;Before the course began, set up instructions were sent out. I can not overstate how much this was appreciated, because that meant the course could assume that everyone has a functioning environment to work in. This saved so much time and basic questions and allowed the course to start with the interesting content, not a tutorial on how to install Claude Code, GitHub CLI, Python and uv, Git and Zoom.&lt;/p&gt;
+&lt;p&gt;Day 1 started with the very basics of Claude. Normally, I'd be annoyed by starting with such a basic concept, but Philipp kept it engaging and more importantly, showed some best practicies using Claude to scaffold a new project that I hadn't seen. Thinking that this bodes well for the rest of the course, I eagerly followed along. &lt;/p&gt;
+&lt;p&gt;As Day 1 moved on, we built upon our scaffold to develop a small application, learning how to manipulate various aspects of claude, setting up prompts and skills to assist our workflow and learning how to debug when something doesn't work. Day 1 concluded with a little bit of homework. After 4 hours in the workshop, I felt pretty confident that I could accomplish this and was happy to see that confidence was justified. After about an hour more of individual work, I completed the tasks and was ready for day 2.&lt;/p&gt;
+&lt;p&gt;Day two built on top of the homework by adding in additional features, ensuring we were able to utilize various skills, and learning more about how Claude operates under the hood. The session concluded with quick demos of additional aspects of Claude - hooks, MCPs, and Agents. Honestly, this was my biggest disappointment in the course, because it showed so many things we wouldn't be getting to, but it did fill my "research later" queue.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This isn't a cheap course. But, it was worth it to me. I approached this with two goals in mind:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Learn something for myself that I could take and apply to personal projects&lt;/li&gt;
+&lt;li&gt;Learn something for my teams so that we could use it as inspiration to make further improvements to our workflows&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Both of these were met in Day 1. That made Day 2 even more fun for me, because I showed up wanting to learn more, cover more, do more. As I said in my review on Real Python: This is one of the best training sessions I've joined in the last year across multiple platforms. &lt;/p&gt;
+&lt;p&gt;Through out the course, student questions were responded to - both live via Philipp and in chat via one of Philipp's partners or from other participants. I found this aspect of the course really valuable too. I did get a handful of questions answered during it, but I was able to provide answers as well. &lt;/p&gt;
+&lt;p&gt;So, why did I only give this a 9 out of 10? What's preventing that last star?&lt;/p&gt;
+&lt;p&gt;There are aspects of the course that were touched on so briefly that I think would have been useful to dive into. These are the topics that have ended up in my research queue - hooks, mcp services, agents, agent teams. I think these could have filled another 4 hour block, but this was a weekend course and didn't fit. I'll be watching for a session that covers these topics.&lt;/p&gt;
+&lt;p&gt;The other thing - the cost can be prohibitive to students. There is the cost of the course itself: $800 normally, $500 on sale when I joined. Plus the cost of Claude. It is recommended to get at last the MAx plan which runs $100 per month. I agree with that. I think if I'd only gone with Pro, I'd have hit usage limits during the course.&lt;/p&gt;
+&lt;p&gt;That said, if you can afford it (or get work to cover it as training), this is worth it for both an introduction to Claude Code and to learn about features you likely aren't using to their full power. Even with this course, I don't think I am doing that yet, but I know what to research now to get better for personal usage and for team improvements.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://realpython.com/certificates/2e9b80f4-03f7-4a89-b9ef-7fef48829b8c/"&gt;&lt;img alt="Real Python Claude Code for Python Developers: Hands-on Agentic Coding certificate of completion" src="https://andrewwegner.com/images/real-python-claude-code-certificate.png"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="technical"/><category term="learning"/></entry><entry><title>I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them.</title><link href="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html" rel="alternate"/><published>2026-03-25T15:00:00-05:00</published><updated>2026-03-25T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2026-03-25:/ai-broke-our-interview-process-i-had-to-fix-it.html</id><summary type="html">&lt;p&gt;After proving AI could beat most technical assessments, I had to rebuild how I hire engineers. Here's the process I've developed; focused on what actually predicts success on the job.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="the-interview-process-i-used-to-run"&gt;The interview process I used to run&lt;a class="headerlink" href="#the-interview-process-i-used-to-run" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For years, I used timed online assessments as part of my hiring process. At PacketFabric, when we needed to scale the engineering team rapidly during our Series B, I helped evaluate several assessment platforms to find one that balanced candidate experience with the quality of signal we received as hiring managers. We landed on &lt;a href="https://www.woventeams.com/"&gt;Woven&lt;/a&gt;, and it worked. The assessments helped us move quickly through a high volume of candidates and gave us comparable data points across applicants.&lt;/p&gt;
 &lt;p&gt;I had doubts, though. I've been opposed to LeetCode style interviews forever. Woven wasn't LeetCode as it provided amazing feedback to the candidate on what did and did not work. I liked the company so much that &lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I joined Woven&lt;/a&gt; for a while. But even with the best assessment platform I'd found, I saw cracks. The candidates who passed the assessments and joined the team didn't always succeed in the ways I expected. Some produced clean code under time pressure but struggled to collaborate with the team. Others passed technical screens convincingly but couldn't translate that skill into shipping features in a real codebase with real constraints. The assessment told me they could solve a problem in isolation. It told me very little about whether they could do the actual job.&lt;/p&gt;
@@ -2619,9 +2653,9 @@ especially because this is the site I give out in a professional context.&lt;/p&
 &lt;h3 id="scheduling"&gt;Scheduling&lt;a class="headerlink" href="#scheduling" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;My goal for this project was to check links for the entire site on a regular basis. I was hoping roughly once a week. Fortunately,
 GitHub Actions allow you to &lt;a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule"&gt;schedule your actions&lt;/a&gt;, using syntax like this:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cron&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s1"&gt;'12 1 * * 5'&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;on:
+    schedule:
+        &lt;span class="k"&gt;-&lt;/span&gt; cron:  '12 1 &lt;span class="gs"&gt;* *&lt;/span&gt; 5'
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The important thing to note, which is called out in the docs, is that &lt;code&gt;*&lt;/code&gt; is a special character in YAML, so the string 
 has to be quoted. Using this schedule, my link checks will run every Friday at 1:12am. For me, timezone doesn't matter, but the
@@ -2687,9 +2721,9 @@ once I'm happy with the stability and reliablity of the checks.&lt;/p&gt;
 &lt;p&gt;You can see what an &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/issues/5"&gt;issue created with this template looks like in the repository&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="environment-variables"&gt;Environment Variables&lt;a class="headerlink" href="#environment-variables" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The last section, I've alluded to already - the environment variables. I have two currently defined. &lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://andrewwegner.com/"&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;".github/workflows/check-broken-links.md"&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env:
+    WEBSITE_URL: "https://andrewwegner.com/"
+    ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The first is to set the domain I'm scanning. Mine, obviously. The second is a link to the issue template that is utilized if broken links
 are discovered.&lt;/p&gt;
@@ -2697,13 +2731,13 @@ are discovered.&lt;/p&gt;
 &lt;p&gt;While setting this up there where a few things that I learned or desired that were not immediately obvious while reading documentation. The first
 was that GitHub actions aren't triggerable without setting up the appropriate &lt;code&gt;on&lt;/code&gt; event type. In this case, I want to occassionally
 run the link checker on command, instead of once a week. That means I need the &lt;code&gt;workflow_dispatch&lt;/code&gt; event and it needs to be empty. &lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cron&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s1"&gt;'12 1 * * 5'&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;workflow_dispatch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://andrewwegner.com/"&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;".github/workflows/check-broken-links.md"&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;on:
+  schedule:
+    &lt;span class="k"&gt;-&lt;/span&gt; cron:  '12 1 &lt;span class="gs"&gt;* *&lt;/span&gt; 5'
+  workflow_dispatch:
+env:
+  WEBSITE_URL: "https://andrewwegner.com/"
+  ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Notice that the empty &lt;code&gt;workflow_dispatch&lt;/code&gt; has no other parameters. It can accept some, if I wanted to provide input to the script at run time,
 but I have no need for that right now. So, mine remains empty.&lt;/p&gt;
@@ -4213,7 +4247,7 @@ CO2 Not produced = Gallons of Gas Not Used &lt;span class="gs"&gt;* 19.59&lt;/sp
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sanic src.server:app -p 7777 --debug --workers=2
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Simplifying that command a bit and setting up the Heroku &lt;code&gt;Procfile&lt;/code&gt; (capitization matters and no extension) I have a single line in my &lt;code&gt;Procfile&lt;/code&gt; that reads:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;web&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sanic&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;web: sanic server:app
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Creating a &lt;code&gt;requirements.txt&lt;/code&gt; file with Sanic as an item was also required. If you're using a virtualenv, you can simply &lt;code&gt;pip freeze &amp;gt; requirements.txt&lt;/code&gt; to get everything in your environment into the file.&lt;/p&gt;
 &lt;p&gt;Thus, my directory looks like this:&lt;/p&gt;
@@ -5159,13 +5193,13 @@ the project that will be using this runner. It should be available at this link:
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;With this, the &lt;code&gt;python&lt;/code&gt; tag will be automatically applied to the task. For a simple pipeline like mine, it may seem like overkill, but it's useful if I want to force other tags or steps.&lt;/p&gt;
 &lt;h3 id="allow-failures"&gt;Allow failures&lt;a class="headerlink" href="#allow-failures" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;extends&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;allow_failure&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;absolute&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;xenon&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;Analysis&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;xenon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nx"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;absolute&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nx"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;modules&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nx"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;average&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I previously mentioned that I allowed the xenon step to fail. This is accomplished with the &lt;code&gt;allow_failue: true&lt;/code&gt; setting you see here. Since this setting is in place, the pipeline will proceed even if this single task fails.&lt;/p&gt;
 &lt;h3 id="manual-deployment"&gt;Manual deployment&lt;a class="headerlink" href="#manual-deployment" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -6151,12 +6185,12 @@ recursively copy a directory into itself.&lt;/p&gt;
 &lt;p&gt;Then, I get my dependancies installed. I update &lt;code&gt;pip&lt;/code&gt; and install my &lt;code&gt;requirements.txt&lt;/code&gt;. Finally, I execute the same &lt;code&gt;pelican&lt;/code&gt; command I
 previously used and add on the &lt;code&gt;verbose&lt;/code&gt; flag, just in case I need to troubleshoot a failed build.&lt;/p&gt;
 &lt;p&gt;Deployment is done via the &lt;code&gt;deploy&lt;/code&gt; block, but all it is doing is calling my &lt;code&gt;deploy.sh&lt;/code&gt; script that I covered above.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;deploy&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;provider&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;skip_cleanup&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;deploy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;sh&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;deploy:
+  provider: script
+  skip_cleanup: true
+  script: bash deploy.sh
+  on:
+    branch: master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;code&gt;skip_cleanup&lt;/code&gt; is important to leave as &lt;code&gt;true&lt;/code&gt; so that the output from the &lt;code&gt;script&lt;/code&gt; block isn't cleaned up before we deploy.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -6406,19 +6440,19 @@ cat laptop-rsync-key.pub &amp;gt;&amp;gt; authorized_keys
 &lt;h3 id="set-up-appyaml"&gt;Set up app.yaml&lt;a class="headerlink" href="#set-up-appyaml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;With &lt;code&gt;gcloud&lt;/code&gt; set up on your development machine, there is one last step to do: Configuring the &lt;code&gt;app.yaml&lt;/code&gt; file.&lt;/p&gt;
 &lt;p&gt;This file contains information on the type of environment you'll be deploying to. Create and save an &lt;code&gt;app.yaml&lt;/code&gt; file in the same directory as the Flask application. For this example, the Flask application is in a file saved as &lt;code&gt;example-script.py&lt;/code&gt;&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;runtime&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
-&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flex&lt;/span&gt;
-&lt;span class="n"&gt;entrypoint&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gunicorn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;$PORT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT example-script:app
 
-&lt;span class="n"&gt;runtime_config&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;python_version&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+runtime_config:
+  python_version: 3
 
-&lt;span class="n"&gt;manual_scaling&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;instances&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;cpu&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;memory_gb&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;disk_size_gb&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Other than the &lt;code&gt;entrypoint&lt;/code&gt; line, this is the example &lt;code&gt;app.yaml&lt;/code&gt; provided by Google. &lt;code&gt;example-script&lt;/code&gt; is the name of the file that contains the Flask application.&lt;/p&gt;
 &lt;h3 id="deploy-to-google"&gt;Deploy to Google&lt;a class="headerlink" href="#deploy-to-google" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -6682,11 +6716,11 @@ it deployed to &lt;em&gt;my&lt;/em&gt; AWS account using &lt;em&gt;my&lt;/em&gt;
 &lt;p&gt;&lt;img alt="Enable Integration" src="https://andrewwegner.com/images/1-travis-enable-repository.png"/&gt;&lt;/p&gt;
 &lt;h3 id="create-a-travisyml-file"&gt;Create a .travis.yml file&lt;a class="headerlink" href="#create-a-travisyml-file" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;With the integration now in place, set up a basic build script by adding a &lt;code&gt;.travis.yml&lt;/code&gt; file to the repository.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
-&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"3.5"&lt;/span&gt;
-&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;py&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;language: python
+python:
+  - "3.5"
+script:
+  - python hello.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This script will set up a build task and run your &lt;code&gt;hello.py&lt;/code&gt; file, using Python 3.5. You will see that "Hello World!" is printed in the build console.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="First Build" src="https://andrewwegner.com/images/2-travis-first-build.png"/&gt;&lt;/p&gt;
@@ -6868,7 +6902,7 @@ should match the path you installed NextCloud into in the previous step.&lt;/p&g
 you need to copy &lt;code&gt;/var/www/html/nextcloud/config/config.sample.php&lt;/code&gt; to &lt;code&gt;/var/www/html/nextcloud/config/config.php&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The important settings to check are:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`datadirectory`&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;In&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;case&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;was&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pointed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dataset&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;created&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;when&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;[&lt;/span&gt;&lt;span class="k"&gt;set&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ZFS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pool&lt;/span&gt;&lt;span class="err"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="err"&gt;]&lt;/span&gt;
-&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`overwrite.cli.url`&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Changed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;point&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;HTTPS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;URL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;want&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;
+&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n n-Quoted"&gt;`overwrite.cli.url`&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Changed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;point&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;HTTPS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;URL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;I&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;want&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="complete-the-installation"&gt;Complete the installation&lt;a class="headerlink" href="#complete-the-installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Restart Apache and the navigate to the domain you've set up for your NextCloud installation. I am assuming that you know how to set up a DNS record for the server name
@@ -8251,9 +8285,9 @@ it'll be a while. I'll consider running again then. &lt;/p&gt;</content><categor
 &lt;p&gt;The last step in this process will be using Travis CI to perform some basic tests and, if this was a new release, push the changes to PyPI. The Travis config file is available on &lt;a href="https://github.com/AWegnerGitHub/stackapi/blob/master/.travis.yml"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;My goal is to support 'modern' Python with this library. I've configured Travis to test against multiple versions of Python, ranging from 2.7 to 3.5. StackAPI is installed using &lt;code&gt;python setup.py -q install&lt;/code&gt;. Then the test suite is run.&lt;/p&gt;
 &lt;p&gt;The important bits are in the &lt;code&gt;deploy&lt;/code&gt; section.&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;on:
+  tags: true
+  branch: master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If there is a new git tag pushed to GitHub, and the tests pass, Travis CI will push the code to PyPI. Since &lt;code&gt;bumpversion&lt;/code&gt; makes a new git tag with each new version, this works perfectly.&lt;/p&gt;
 &lt;p&gt;This does require that my password be included in the yml file. To keep this secure, I utilized the &lt;a href="https://blog.travis-ci.com/2013-01-14-new-client/"&gt;Travis Command Line Client&lt;/a&gt; (&lt;code&gt;gem install travis&lt;/code&gt;). In my local directory, I then ran:&lt;/p&gt;
@@ -8305,9 +8339,9 @@ git commit -m "Adding Flask application"
 git push
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This will take a moment. At the end, you should see these lines in your command prompt:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Git&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Post&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Receive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;success&lt;/span&gt;
-&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Activation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;success&lt;/span&gt;
-&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deployment&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;completed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;success&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;remote: Git Post-Receive Result: success
+remote: Activation status: success
+remote: Deployment completed with status: success
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If all three are a success, then you should be able to visit your URL. Your URL is a combination of your selected Namespace and the application name you created.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;http://&amp;lt;namespace&amp;gt;-&amp;lt;testapp&amp;gt;.rhcloud.com/
@@ -8387,7 +8421,7 @@ git push -u origin master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Fill out the prompts. Defaults should be fine in most cases, but do pay attention to "OpenShift application name". If your GitHub repository is named differently than your OpenShift application name, the default for this prompt will be incorrect.&lt;/p&gt;
 &lt;p&gt;One last note, for a quick test you can change the &lt;code&gt;script&lt;/code&gt; section to &lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;script: true
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This forces the tests to pass. Once you've written tests, you can do something like:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;script:
