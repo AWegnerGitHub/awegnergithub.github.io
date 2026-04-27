@@ -1,388 +1,58 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="The Ericsity WLED controller comes with WLED 0.13.3 preinstalled and only offers the ability to update to 0.13.4. This walks through setting up the controller for the first time and moving to 0.14.1 while maintaining the sound reactive features the controller advertises." />
-<meta name="keywords" content="technical, wled">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1"/>
-  <meta property="og:description" content="The Ericsity WLED controller comes with WLED 0.13.3 preinstalled and only offers the ability to update to 0.13.4. This walks through setting up the controller for the first time and moving to 0.14.1 while maintaining the sound reactive features the controller advertises."/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/update-wled-ericsity-controller-0141.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2024-06-20 15:45:00-05:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Technical Solutions"/>
-  <meta property="article:tag" content="technical"/>
-  <meta property="article:tag" content="wled"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#the-problem">The Problem</a></li>
-<li><a href="#setting-up-ericsity-controller">Setting up Ericsity Controller</a></li>
-<li><a href="#update-to-014x">Update to 0.14.x</a><ul>
-<li><a href="#official-build">Official build</a></li>
-<li><a href="#selecting-a-more-recent-build">Selecting a more recent build</a></li>
-<li><a href="#press-the-button">Press the button!</a></li>
-<li><a href="#fixing-sound-reactive">Fixing Sound Reactive</a></li>
-</ul>
-</li>
-<li><a href="#good-to-go">Good to go</a></li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/technical-solutions.html",
-      "name": "Technical Solutions"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/update-wled-ericsity-controller-0141.html",
-      "name": "https://andrewwegner.com/update-wled-ericsity-controller-0141.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="update-wled-ericsity-controller-0141">Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1</h1>
-    <p>
-      Posted on Thu 20 June 2024 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
-
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
-        <a href="https://andrewwegner.com/tag/wled.html">wled</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>My summer time project this year is to set up some LED lights outside. After testing out a couple Govee strips that I didn't like because I couldn't diffuse the individual lights away, I finally found an LED strip I liked. The next step was to control these strips so that I could do more than solid colors or the default rainbow every LED strip has. I settled on using the amazing <a href="https://kno.wled.ge/">WLED project</a> to control the lights. To speed up the project, I decided to get a prebuilt controller and eventually selected the <a href="https://www.amazon.com/Ericsity-Controller-Addressable-WS2812B-SK6812/dp/B0CNVXY8NX">Ericsity controller with a built in mic</a>.</p>
-<p>Side note: This post is just about how I updated the controller. The next article in the post is available, and talks about how <a href="https://andrewwegner.com/control-power-wled-relay.html">I am controlling a larger power supply with the WLED controller</a>.</p>
-<h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">¶</a></h2>
-<p>The controller arrived and was easy to set up. I wired up my strips in the basement to ensure I didn't have any power problems and then determined where I needed to make cuts and solder points once this was outside. Then I went to set up <a href="https://kno.wled.ge/features/segments/">segments</a> in WLED so that I could control effects in specific areas.</p>
-<p>The problem I quickly encountered was that I am outlining my deck with these lights and right in the middle of the deck is a set of steps that I also wanted to light up and then the rest of the deck rail. WLED doesn't have the ability (at least that I've found) to span an effect across multiple segments and I'd need multiple segments for this. </p>
-<p>At minimium I'd need 3 segments - The rail, the steps, the rest of the rail. If I want an effect to span the entire rail, I can't do that with the steps in the middle. Further research pointed me to the ability to <a href="https://kno.wled.ge/advanced/mapping/">remap the physical LED order</a> to a logical LED order. After trying to set this up, it wasn't feature complete in 0.13, but did appear to be in 0.14.</p>
-<p>However, the Ericsity - rightfully so - utilizes a <a href="https://github.com/atuline/WLED">stable version of WLED</a> that only allows you to <a href="https://github.com/atuline/WLED/releases">update to 0.13.4</a> and the README has the following note:</p>
-<blockquote>
-<p>This repository is still maintained, and will receive bugfixes. However no new features will be added.</p>
-</blockquote>
-<p><img alt="WLED Sound Reactive update page showing that upgrades are only available through version 0.13.4" src="https://andrewwegner.com/images/wled/wled-update-page.png"/></p>
-<h2 id="setting-up-ericsity-controller">Setting up Ericsity Controller<a class="headerlink" href="#setting-up-ericsity-controller" title="Permanent link">¶</a></h2>
-<p>Let's take a step back and get the controller set up and then focus on upgrading it. Fortunately, Ericsity makes this pretty easy.</p>
-<p>Step 1 is to plug in the controller. After a few seconds, you will see a new network available on your phone called <code>WLED-AP</code>. Join that network. From your browser navigate to <code>4.3.2.1</code> and select "WIFI SETTINGS". </p>
-<p><img alt="WLED install page" src="https://andrewwegner.com/images/wled/install1.png"/></p>
-<p>The goal is to add this controller to your wireless network. Do this by adding your network name and password into the first two text boxes. I also updated the mDNS setting, but that's optional. Then save and connect.</p>
-<p><img alt="WLED network set up page" src="https://andrewwegner.com/images/wled/install2.png"/></p>
-<p>Finally, install the WLED mobile application if you are going to manage this via your phone. On an android device you can find it in the Google Play store with the name <a href="https://play.google.com/store/apps/details?id=com.aircoookie.WLED&amp;hl=en_US">WLED</a>. Reconnect to your wireless network and the one you just added the controller to. Once installed and reconnected to the network, open the application. </p>
-<p>If you have already installed and configured a controller, you'll see your previous controllers listed. To add the new controller, click on the <code>+</code> sign in the upper right. Then "Start Discovery". When the controller is found, you can press the check button.</p>
-<p><img alt="Searching for and adding a new controller to the WLED application" src="https://andrewwegner.com/images/wled/install3.png"/></p>
-<p>The new controller will be listed on the main WLED page with the default name of <code>WLED-SoundReactive</code>. Select that controller by tapping it. Then select "Config" along the top and "Security &amp; Updates" at the bottom.</p>
-<p>Scroll all the way down to the bottom of this page and you should see that you have the following version installed:</p>
-<p><code>WLED SR version 0.13.3</code></p>
-<h2 id="update-to-014x">Update to 0.14.x<a class="headerlink" href="#update-to-014x" title="Permanent link">¶</a></h2>
-<p>From the Security &amp; Updates page, it makes sense to try and perform and update. If you click "Manual OTA Update" you'll notice that only version <code>0.13.3</code> is available via this link though. It's time to do a manual update!</p>
-<p>I am utilizing the <a href="https://github.com/MoonModules/WLED">MoonModules branch</a> because the README for the default install says that changes should be made against this branch.</p>
-<blockquote>
-<p>Pull Requests should be created against the MoonModules mdev branch.</p>
-</blockquote>
-<p>I performed this OTA upgrade from my computer by navigating to the mDNS I set up previously. It can also be accessed by the IP address of the controller in your browser.</p>
-<p>At the time of this post, the <a href="https://github.com/MoonModules/WLED/releases">current release</a> was <code>0.14.1-b30</code>. This was released approximately 6 months ago. I briefly skimmed through recent issues and pull requests to see if I should find a more recent build. There was an <a href="https://github.com/MoonModules/WLED/issues/130">crash issue</a> reported with the <code>ripple</code> effects. Since I like that particular effect, I decided to go with a newer build than the official release. </p>
-<h3 id="official-build">Official build<a class="headerlink" href="#official-build" title="Permanent link">¶</a></h3>
-<p>If you are going to stick with an official release, navigate to the <a href="https://github.com/MoonModules/WLED/releases">release page</a> and download the binary file you want to install. For the Ericsity, I found that the generic ESP32 build worked. If you want to use this, look for the file titled <code>WLEDMM_0.14.1-b30.36_esp32_4MB_M.bin</code>. You could also use the <code>WLEDMM_0.14.1-b30.36_esp32_4MB_S.bin</code>. Download this file.</p>
-<h3 id="selecting-a-more-recent-build">Selecting a more recent build<a class="headerlink" href="#selecting-a-more-recent-build" title="Permanent link">¶</a></h3>
-<p>Since I wanted a fix for the item I <a href="https://github.com/MoonModules/WLED/issues/130">found</a>, I opted to download a recent build of the <code>mdev</code> branch. This can be accomplished by navigating to the build pipeline and filtering for the <code>mdev</code> branch. This is on Github and available via this direct link to the <a href="https://github.com/MoonModules/WLED/actions/workflows/wled-ci.yml?query=branch%3Amdev">mdev pipeline</a>.</p>
-<p><img alt="Recent builds on Github. Look for mdev branch" src="https://andrewwegner.com/images/wled/github-builds.png"/></p>
-<p>From here, select the build you want and scroll all the way to the bottom of the page. Find the binary you want to download. In my case, I wanted the <code>firmware-esp32_4MB_M</code> and download it. Once downloaded, extract it so that you can upload the <code>.bin</code> file within the WLED page. </p>
-<p><img alt="Select the build to utilize. For the Ericsity controller, I found the firmware-esp32_4MB_M version works" src="https://andrewwegner.com/images/wled/github-build-version.png"/></p>
-<h3 id="press-the-button">Press the button!<a class="headerlink" href="#press-the-button" title="Permanent link">¶</a></h3>
-<p>In WLED's Security and Update page, select this binary and then click "Update!"</p>
-<p><img alt="Upload the binary to utilize as the new image" src="https://andrewwegner.com/images/wled/update1.png"/></p>
-<p>The update took less than a minute for me. While the new image was being installed, I was told not to close or refresh the page.</p>
-<p><img alt="Update installing, don't close or refresh" src="https://andrewwegner.com/images/wled/update2.png"/></p>
-<p>When the update is complete, the controller will reboot. </p>
-<p><img alt="Update complete, rebooting" src="https://andrewwegner.com/images/wled/update3.png"/></p>
-<p>To confirm that everything has been updated, click on "Config". Immediately, you'll notice a lot more options. Scroll to the bottom and select "Security &amp; Updates" and at the bottom you'll have an About section that lists the version you selected to install. Mine looks like this:</p>
-<p><code>WLEDMM version 0.14.1-b31.38 ☾</code></p>
-<h3 id="fixing-sound-reactive">Fixing Sound Reactive<a class="headerlink" href="#fixing-sound-reactive" title="Permanent link">¶</a></h3>
-<p>During testing, I noticed that the sound reaction wasn't working. I found the AudioReactive plugin was disabled by default. This is an easy fix. In the WLED application (or web page), click on "Info" then click the power button icon next to "AudioReactive". However, this isn't enough to solve the problem. Click on "Config" then scroll down to AudioReactive. First make sure it is enabled (it should be after the power button selection above). </p>
-<p>The digitalmic section needs to be modified. The Ericsity controller has the microphone on the following pins:</p>
-<ul>
-<li>Microphone Type: Generic I2S</li>
-<li>Pin I2S SD: 26</li>
-<li>Pin I2S WS: 5</li>
-<li>Pin I2S SCK: 21</li>
-</ul>
-<p><img alt="Correct audio settings for Ericsity controller. Pin 26 for SD, Pin 5 for WS and Pin 21 for SCK" src="https://andrewwegner.com/images/wled/correct-audio.png"/> </p>
-<p>I found that pin 5 was selected for another plugin. If you find this too, navigate back to Config page and select "Rotary-Encoder". I don't utilize this plugin, but it is part of the <code>M</code> build I downloaded. Disable the plugin and change the <code>CLK Pin</code> to be <code>undefined</code>. Then save this change and go back to the AudioReactive plugin and set it up with the pin layout above.</p>
-<p><img alt="Disable the Rotary-Encoder plugin and set the CLK pin to undefined" src="https://andrewwegner.com/images/wled/disabled-plugin.png"/></p>
-<p>Finally, reboot the controller by selecting "Info" and rebooting the controller at the bottom.</p>
-<h2 id="good-to-go">Good to go<a class="headerlink" href="#good-to-go" title="Permanent link">¶</a></h2>
-<p>Now that the controller has rebooted, audio reactions are working again. The branch I've updated by controller to is actively maintained for the 0.14 branch, even if it is several months behind the main line. I'm satisfied with this for now and will begin experimenting with the led mappings that I need that started this entire upgrade process.</p>
-  </div>
-<div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html"
-    title="Python Gotcha: strip, lstrip, rstrip can remove more than expected">
-    <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-  <a class="btn float-right" href="https://andrewwegner.com/control-power-wled-relay.html"
-    title="Controlling power to LED lights with WLED Controller and a Relay switch">
-    Next Post <i class="fa fa-angle-right"></i>
-  </a>
-</div>
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-</article>
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1 — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="The Ericsity WLED controller comes with WLED 0.13.3 preinstalled and only offers the ability to update to 0.13.4. This walks through setting up the controller for the first time and moving to 0.14.1 while maintaining the sound reactive features the controller advertises."><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Technical Solutions (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/update-wled-ericsity-controller-0141.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1"><meta property="og:url" content="https://andrewwegner.com/update-wled-ericsity-controller-0141.html"><meta property="og:description" content="The Ericsity WLED controller comes with WLED 0.13.3 preinstalled and only offers the ability to update to 0.13.4. This walks through setting up the controller for the first time and moving to 0.14.1 while maintaining the sound reactive features the controller advertises."><meta property="article:published_time" content="2024-06-20T15:45:00-05:00"><meta property="article:section" content="Technical Solutions"><meta property="article:tag" content="technical"><meta property="article:tag" content="wled"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
   "@context": "http://schema.org",
   "@type": "BlogPosting",
   "name": "Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1",
   "headline": "Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1",
-  "dateCreated": "2024-06-20 15:45:00-05:00",
-  "datePublished": "2024-06-20 15:45:00-05:00",
-  "dateModified": "",
-  "copyrightYear": "2024",
+  "dateCreated": "2024-06-20T15:45:00-05:00",
+  "datePublished": "2024-06-20T15:45:00-05:00",  "dateModified": "2024-06-20T15:45:00-05:00",  "copyrightYear": "2024",
   "copyrightHolder": {
     "@type": "Person",
-    "name": "Andy Wegner",
+    "name": "Andrew Wegner",
     "url": "https://andrewwegner.com"
   },
   "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
   },
   "publisher": {
     "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/update-wled-ericsity-controller-0141.html",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/update-wled-ericsity-controller-0141.html",
   "description": "The Ericsity WLED controller comes with WLED 0.13.3 preinstalled and only offers the ability to update to 0.13.4. This walks through setting up the controller for the first time and moving to 0.14.1 while maintaining the sound reactive features the controller advertises.",
   "mainEntityOfPage": "True",
   "articleSection": "Technical Solutions"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+}</script></head><body data-page-type="article" data-page-slug="update-wled-ericsity-controller-0141" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a></nav><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/technical-solutions.html",
+        "name": "Technical Solutions"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Technical Solutions</span></div><h1 class="article-title">Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1</h1><p class="article-summary">The Ericsity WLED controller comes with WLED 0.13.3 preinstalled and only offers the ability to update to 0.13.4. This walks through setting up the controller for the first time and moving to 0.14.1 while maintaining the sound reactive features the controller advertises.</p><div class="article-meta"><time datetime="2024-06-20T15:45:00-05:00" class="article-meta-date">Thu 20 June 2024</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/technical.html" class="tag">#technical</a> <a href="https://andrewwegner.com/tag/wled.html" class="tag">#wled</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#the-problem">The Problem</a></li><li><a href="#setting-up-ericsity-controller">Setting up Ericsity Controller</a></li><li><a href="#update-to-014x">Update to 0.14.x</a><ul><li><a href="#official-build">Official build</a></li><li><a href="#selecting-a-more-recent-build">Selecting a more recent build</a></li><li><a href="#press-the-button">Press the button!</a></li><li><a href="#fixing-sound-reactive">Fixing Sound Reactive</a></li></ul></li><li><a href="#good-to-go">Good to go</a></li></ul></div></div><div class="prose"><h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2><p>My summer time project this year is to set up some LED lights outside. After testing out a couple Govee strips that I didn't like because I couldn't diffuse the individual lights away, I finally found an LED strip I liked. The next step was to control these strips so that I could do more than solid colors or the default rainbow every LED strip has. I settled on using the amazing <a href="https://kno.wled.ge/">WLED project</a> to control the lights. To speed up the project, I decided to get a prebuilt controller and eventually selected the <a href="https://www.amazon.com/Ericsity-Controller-Addressable-WS2812B-SK6812/dp/B0CNVXY8NX">Ericsity controller with a built in mic</a>.</p><p>Side note: This post is just about how I updated the controller. The next article in the post is available, and talks about how <a href="https://andrewwegner.com/control-power-wled-relay.html">I am controlling a larger power supply with the WLED controller</a>.</p><h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">¶</a></h2><p>The controller arrived and was easy to set up. I wired up my strips in the basement to ensure I didn't have any power problems and then determined where I needed to make cuts and solder points once this was outside. Then I went to set up <a href="https://kno.wled.ge/features/segments/">segments</a> in WLED so that I could control effects in specific areas.</p><p>The problem I quickly encountered was that I am outlining my deck with these lights and right in the middle of the deck is a set of steps that I also wanted to light up and then the rest of the deck rail. WLED doesn't have the ability (at least that I've found) to span an effect across multiple segments and I'd need multiple segments for this.</p><p>At minimium I'd need 3 segments - The rail, the steps, the rest of the rail. If I want an effect to span the entire rail, I can't do that with the steps in the middle. Further research pointed me to the ability to <a href="https://kno.wled.ge/advanced/mapping/">remap the physical LED order</a> to a logical LED order. After trying to set this up, it wasn't feature complete in 0.13, but did appear to be in 0.14.</p><p>However, the Ericsity - rightfully so - utilizes a <a href="https://github.com/atuline/WLED">stable version of WLED</a> that only allows you to <a href="https://github.com/atuline/WLED/releases">update to 0.13.4</a> and the README has the following note:</p><blockquote><p>This repository is still maintained, and will receive bugfixes. However no new features will be added.</p></blockquote><p><img alt="WLED Sound Reactive update page showing that upgrades are only available through version 0.13.4" src="https://andrewwegner.com/images/wled/wled-update-page.png"></p><h2 id="setting-up-ericsity-controller">Setting up Ericsity Controller<a class="headerlink" href="#setting-up-ericsity-controller" title="Permanent link">¶</a></h2><p>Let's take a step back and get the controller set up and then focus on upgrading it. Fortunately, Ericsity makes this pretty easy.</p><p>Step 1 is to plug in the controller. After a few seconds, you will see a new network available on your phone called <code>WLED-AP</code>. Join that network. From your browser navigate to <code>4.3.2.1</code> and select "WIFI SETTINGS".</p><p><img alt="WLED install page" src="https://andrewwegner.com/images/wled/install1.png"></p><p>The goal is to add this controller to your wireless network. Do this by adding your network name and password into the first two text boxes. I also updated the mDNS setting, but that's optional. Then save and connect.</p><p><img alt="WLED network set up page" src="https://andrewwegner.com/images/wled/install2.png"></p><p>Finally, install the WLED mobile application if you are going to manage this via your phone. On an android device you can find it in the Google Play store with the name <a href="https://play.google.com/store/apps/details?id=com.aircoookie.WLED&amp;hl=en_US">WLED</a>. Reconnect to your wireless network and the one you just added the controller to. Once installed and reconnected to the network, open the application.</p><p>If you have already installed and configured a controller, you'll see your previous controllers listed. To add the new controller, click on the <code>+</code> sign in the upper right. Then "Start Discovery". When the controller is found, you can press the check button.</p><p><img alt="Searching for and adding a new controller to the WLED application" src="https://andrewwegner.com/images/wled/install3.png"></p><p>The new controller will be listed on the main WLED page with the default name of <code>WLED-SoundReactive</code>. Select that controller by tapping it. Then select "Config" along the top and "Security &amp; Updates" at the bottom.</p><p>Scroll all the way down to the bottom of this page and you should see that you have the following version installed:</p><p><code>WLED SR version 0.13.3</code></p><h2 id="update-to-014x">Update to 0.14.x<a class="headerlink" href="#update-to-014x" title="Permanent link">¶</a></h2><p>From the Security &amp; Updates page, it makes sense to try and perform and update. If you click "Manual OTA Update" you'll notice that only version <code>0.13.3</code> is available via this link though. It's time to do a manual update!</p><p>I am utilizing the <a href="https://github.com/MoonModules/WLED">MoonModules branch</a> because the README for the default install says that changes should be made against this branch.</p><blockquote><p>Pull Requests should be created against the MoonModules mdev branch.</p></blockquote><p>I performed this OTA upgrade from my computer by navigating to the mDNS I set up previously. It can also be accessed by the IP address of the controller in your browser.</p><p>At the time of this post, the <a href="https://github.com/MoonModules/WLED/releases">current release</a> was <code>0.14.1-b30</code>. This was released approximately 6 months ago. I briefly skimmed through recent issues and pull requests to see if I should find a more recent build. There was an <a href="https://github.com/MoonModules/WLED/issues/130">crash issue</a> reported with the <code>ripple</code> effects. Since I like that particular effect, I decided to go with a newer build than the official release.</p><h3 id="official-build">Official build<a class="headerlink" href="#official-build" title="Permanent link">¶</a></h3><p>If you are going to stick with an official release, navigate to the <a href="https://github.com/MoonModules/WLED/releases">release page</a> and download the binary file you want to install. For the Ericsity, I found that the generic ESP32 build worked. If you want to use this, look for the file titled <code>WLEDMM_0.14.1-b30.36_esp32_4MB_M.bin</code>. You could also use the <code>WLEDMM_0.14.1-b30.36_esp32_4MB_S.bin</code>. Download this file.</p><h3 id="selecting-a-more-recent-build">Selecting a more recent build<a class="headerlink" href="#selecting-a-more-recent-build" title="Permanent link">¶</a></h3><p>Since I wanted a fix for the item I <a href="https://github.com/MoonModules/WLED/issues/130">found</a>, I opted to download a recent build of the <code>mdev</code> branch. This can be accomplished by navigating to the build pipeline and filtering for the <code>mdev</code> branch. This is on Github and available via this direct link to the <a href="https://github.com/MoonModules/WLED/actions/workflows/wled-ci.yml?query=branch%3Amdev">mdev pipeline</a>.</p><p><img alt="Recent builds on Github. Look for mdev branch" src="https://andrewwegner.com/images/wled/github-builds.png"></p><p>From here, select the build you want and scroll all the way to the bottom of the page. Find the binary you want to download. In my case, I wanted the <code>firmware-esp32_4MB_M</code> and download it. Once downloaded, extract it so that you can upload the <code>.bin</code> file within the WLED page.</p><p><img alt="Select the build to utilize. For the Ericsity controller, I found the firmware-esp32_4MB_M version works" src="https://andrewwegner.com/images/wled/github-build-version.png"></p><h3 id="press-the-button">Press the button!<a class="headerlink" href="#press-the-button" title="Permanent link">¶</a></h3><p>In WLED's Security and Update page, select this binary and then click "Update!"</p><p><img alt="Upload the binary to utilize as the new image" src="https://andrewwegner.com/images/wled/update1.png"></p><p>The update took less than a minute for me. While the new image was being installed, I was told not to close or refresh the page.</p><p><img alt="Update installing, don't close or refresh" src="https://andrewwegner.com/images/wled/update2.png"></p><p>When the update is complete, the controller will reboot.</p><p><img alt="Update complete, rebooting" src="https://andrewwegner.com/images/wled/update3.png"></p><p>To confirm that everything has been updated, click on "Config". Immediately, you'll notice a lot more options. Scroll to the bottom and select "Security &amp; Updates" and at the bottom you'll have an About section that lists the version you selected to install. Mine looks like this:</p><p><code>WLEDMM version 0.14.1-b31.38 ☾</code></p><h3 id="fixing-sound-reactive">Fixing Sound Reactive<a class="headerlink" href="#fixing-sound-reactive" title="Permanent link">¶</a></h3><p>During testing, I noticed that the sound reaction wasn't working. I found the AudioReactive plugin was disabled by default. This is an easy fix. In the WLED application (or web page), click on "Info" then click the power button icon next to "AudioReactive". However, this isn't enough to solve the problem. Click on "Config" then scroll down to AudioReactive. First make sure it is enabled (it should be after the power button selection above).</p><p>The digitalmic section needs to be modified. The Ericsity controller has the microphone on the following pins:</p><ul><li>Microphone Type: Generic I2S</li><li>Pin I2S SD: 26</li><li>Pin I2S WS: 5</li><li>Pin I2S SCK: 21</li></ul><p><img alt="Correct audio settings for Ericsity controller. Pin 26 for SD, Pin 5 for WS and Pin 21 for SCK" src="https://andrewwegner.com/images/wled/correct-audio.png"></p><p>I found that pin 5 was selected for another plugin. If you find this too, navigate back to Config page and select "Rotary-Encoder". I don't utilize this plugin, but it is part of the <code>M</code> build I downloaded. Disable the plugin and change the <code>CLK Pin</code> to be <code>undefined</code>. Then save this change and go back to the AudioReactive plugin and set it up with the pin layout above.</p><p><img alt="Disable the Rotary-Encoder plugin and set the CLK pin to undefined" src="https://andrewwegner.com/images/wled/disabled-plugin.png"></p><p>Finally, reboot the controller by selecting "Info" and rebooting the controller at the bottom.</p><h2 id="good-to-go">Good to go<a class="headerlink" href="#good-to-go" title="Permanent link">¶</a></h2><p>Now that the controller has rebooted, audio reactions are working again. The branch I've updated by controller to is actively maintained for the 0.14 branch, even if it is several months behind the main line. I'm satisfied with this for now and will begin experimenting with the led mappings that I need that started this entire upgrade process.</p></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#the-problem">The Problem</a></li><li><a href="#setting-up-ericsity-controller">Setting up Ericsity Controller</a></li><li><a href="#update-to-014x">Update to 0.14.x</a><ul><li><a href="#official-build">Official build</a></li><li><a href="#selecting-a-more-recent-build">Selecting a more recent build</a></li><li><a href="#press-the-button">Press the button!</a></li><li><a href="#fixing-sound-reactive">Fixing Sound Reactive</a></li></ul></li><li><a href="#good-to-go">Good to go</a></li></ul></div></aside></div><nav class="post-nav" aria-label="Post navigation"><a href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html" class="post-nav-link post-nav-link-prev"><span class="post-nav-dir">← Previous post</span> <span class="post-nav-title">Python Gotcha: strip, lstrip, rstrip can remove more than expected</span> </a><a href="https://andrewwegner.com/control-power-wled-relay.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">Controlling power to LED lights with WLED Controller and a Relay switch</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

@@ -138,9 +138,9 @@ especially because this is the site I give out in a professional context.&lt;/p&
 &lt;h3 id="scheduling"&gt;Scheduling&lt;a class="headerlink" href="#scheduling" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;My goal for this project was to check links for the entire site on a regular basis. I was hoping roughly once a week. Fortunately,
 GitHub Actions allow you to &lt;a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule"&gt;schedule your actions&lt;/a&gt;, using syntax like this:&lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;on:
-    schedule:
-        &lt;span class="k"&gt;-&lt;/span&gt; cron:  '12 1 &lt;span class="gs"&gt;* *&lt;/span&gt; 5'
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cron&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s1"&gt;'12 1 * * 5'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The important thing to note, which is called out in the docs, is that &lt;code&gt;*&lt;/code&gt; is a special character in YAML, so the string 
 has to be quoted. Using this schedule, my link checks will run every Friday at 1:12am. For me, timezone doesn't matter, but the
@@ -206,9 +206,9 @@ once I'm happy with the stability and reliablity of the checks.&lt;/p&gt;
 &lt;p&gt;You can see what an &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/issues/5"&gt;issue created with this template looks like in the repository&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="environment-variables"&gt;Environment Variables&lt;a class="headerlink" href="#environment-variables" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The last section, I've alluded to already - the environment variables. I have two currently defined. &lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;env:
-    WEBSITE_URL: "https://andrewwegner.com/"
-    ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://andrewwegner.com/"&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;".github/workflows/check-broken-links.md"&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The first is to set the domain I'm scanning. Mine, obviously. The second is a link to the issue template that is utilized if broken links
 are discovered.&lt;/p&gt;
@@ -216,13 +216,13 @@ are discovered.&lt;/p&gt;
 &lt;p&gt;While setting this up there where a few things that I learned or desired that were not immediately obvious while reading documentation. The first
 was that GitHub actions aren't triggerable without setting up the appropriate &lt;code&gt;on&lt;/code&gt; event type. In this case, I want to occassionally
 run the link checker on command, instead of once a week. That means I need the &lt;code&gt;workflow_dispatch&lt;/code&gt; event and it needs to be empty. &lt;/p&gt;
-&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;on:
-  schedule:
-    &lt;span class="k"&gt;-&lt;/span&gt; cron:  '12 1 &lt;span class="gs"&gt;* *&lt;/span&gt; 5'
-  workflow_dispatch:
-env:
-  WEBSITE_URL: "https://andrewwegner.com/"
-  ISSUE_TEMPLATE: ".github/workflows/check-broken-links.md"
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cron&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s1"&gt;'12 1 * * 5'&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;workflow_dispatch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://andrewwegner.com/"&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;".github/workflows/check-broken-links.md"&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Notice that the empty &lt;code&gt;workflow_dispatch&lt;/code&gt; has no other parameters. It can accept some, if I wanted to provide input to the script at run time,
 but I have no need for that right now. So, mine remains empty.&lt;/p&gt;
@@ -1502,86 +1502,4 @@ a community for &lt;em&gt;only&lt;/em&gt; moderation questions. We are a communi
 be a part of community building. (How many times can you say "community" before it sounds weird?)&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://meta.communitybuilding.stackexchange.com/q/140/78"&gt;Discussions&lt;/a&gt; began in August about possible name changes. These &lt;a href="http://meta.communitybuilding.stackexchange.com/q/175/78"&gt;discussions&lt;/a&gt; continued into October as we worked on
 the &lt;a href="http://meta.communitybuilding.stackexchange.com/q/172/78"&gt;scope&lt;/a&gt; of our site. Finally, on December 2, we received our new name: &lt;a href="http://meta.communitybuilding.stackexchange.com/q/193/78"&gt;Community Building&lt;/a&gt;. It's the same great site
-but with a much more relevant name. &lt;/p&gt;</content><category term="Side Activities"/><category term="Stack Exchange"/><category term="moderation"/></entry><entry><title>I had a secret addiction to the TF2 idling economy but I'm better now (honest)</title><link href="https://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html" rel="alternate"/><published>2013-08-13T00:01:00-05:00</published><updated>2013-08-13T00:01:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-08-13:/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html</id><summary type="html">&lt;p&gt;Hi everyone, I'm Andy, and I used to idle.&lt;/p&gt;</summary><content type="html">
-&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;On July 11, 2013, Valve released a &lt;a href="http://www.teamfortress.com/post.php?id=11105"&gt;patch&lt;/a&gt; to Team Fortress 2 to limit idling. Idling is the process of launching
-Team Fortress and then letting it run for a few hours and collecting item drops. It used to be simple to do by utilizing
-the &lt;code&gt;-textmode&lt;/code&gt; &lt;a href="https://developer.valvesoftware.com/wiki/Command_Line_Options#Command-line_parameters_2"&gt;game parameter&lt;/a&gt;. This would "launch" the game without graphics. From there, you just let it run and
-come back in a few hours with 8-10 new items (your weekly limit).&lt;/p&gt;
-&lt;p&gt;The idea behind this was to then trade or craft these into metal. The metal could be used to trade for keys, hats, etc. and
-all you to be "rich". The quotes are there because I do realize that being rich in a virtual game does not make one rich in
-the real world. But, since the &lt;a href="https://wiki.teamfortress.com/wiki/Mann-Conomy_Update"&gt;Mann-Conomy Update&lt;/a&gt; introduced this massive meta game to Team Fortress, I've tried to stay
-out of it.&lt;/p&gt;
-&lt;p&gt;I failed. I didn't just idle one account. I idled 17 accounts. That is between 136 and 170 items a week. That's between 68 to 85
-scrap metal a week. That's between 7.55 and 9.44 refined metal a week. That is between 3 and 4 keys a week (depending on
-who I trade with). Keys are the backbone of the economy. Get enough of those and you can trade for anything else.&lt;/p&gt;
-&lt;p&gt;I honestly don't know what my goal was. I wasn't interested in the fancy hats (ooooh...shiny pixels). I didn't open crates
-with the keys. I did utilize the keys to get &lt;a href="https://wiki.teamfortress.com/wiki/Tour_of_Duty_Ticket"&gt;Tour of Duty&lt;/a&gt; tickets for me and some friends. That's honorable, right?&lt;/p&gt;
-&lt;h2 id="how-did-this-happen"&gt;How did this happen?&lt;a class="headerlink" href="#how-did-this-happen" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;This all started with &lt;a href="https://andrewwegner.com/give-some-refined-win-some-prizes.html"&gt;the bot I built for Vipers to handle the raffles&lt;/a&gt;. I realized that I could automate much more
-than trading with players. I could automate trading between bots. I could automate &lt;em&gt;crafting&lt;/em&gt; - which is relatively time
-consuming, especially when you have 136 items to go through. I could automate trading with established scrap bank bots. These
-bots will take any two weapon drops and give you one scrap, even if the two items can't be crafted together. The idea is
-that they get enough weapons that eventually they'll be able to craft it down to metal.&lt;/p&gt;
-&lt;h3 id="the-set-up"&gt;The set up&lt;a class="headerlink" href="#the-set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;To idle 17 accounts I needed to figure out what my computer could handle. I had to figure out how to run multiple instances
-of Steam and Team Fortress at a time. Enter an application I'd utilized before: &lt;a href="http://www.sandboxie.com/"&gt;Sandboxie&lt;/a&gt;. This application provides
-isolated sandboxes for applications to run in. Normally Steam won't run more than once on a machine. But, if you launch
-it via Sandboxie, the host OS (and other Sandboxie environments) can't see that Steam is running in another instance.&lt;/p&gt;
-&lt;p&gt;A bit of experimentation showed that I could handle 6 accounts idling at a time and have the computer remain just barely
-usable. I created new accounts and split them into which day of the week they'd be run. I had three days out of the week
-designated for idling.&lt;/p&gt;
-&lt;p&gt;A batch script was built to launch the Sandboxie environments of the day that was to idle. Then it'd launch Team Fortress
-in each of those environments. Then I'd go to bed. When I woke up the next morning, I'd shut down the environments. I'd
-repeat this for two more nights. At the end of the third night, I had all the items I could get for the week.&lt;/p&gt;
-&lt;p&gt;Accounts could not be free accounts. This meant that I needed to either buy an item for each account, or trade for an
-&lt;a href="https://wiki.teamfortress.com/wiki/Upgrade_to_Premium_Gift"&gt;"Upgrade to Premium Gift"&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id="getting-items-to-a-single-account"&gt;Getting items to a single account&lt;a class="headerlink" href="#getting-items-to-a-single-account" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The next step in the process was to convert all the items to metal. Normally, this would take place by either logging into
-each account and crafting there and then trading everything to a master account, or trading everything first then crafting.
-In either case, 17 accounts is a lot to handle and trading/crafting is rather boring.&lt;/p&gt;
-&lt;p&gt;My solution was to modify the raffle bot. I'd designate one account as a master account. This would be the account that
-received items. All others would dump items to it. I'd log into the account that was receiving items and initiate a trade
-with each other bot in turn. I'd issue a command &lt;code&gt;add all&lt;/code&gt; and that bot would dump it's inventory into trade. Making it
-through all the bots would take 5 minutes. Previously it would take me an hour or more to log into each account and
-manually add items to the trade windows and then confirm the trade on both sides. &lt;em&gt;yawn&lt;/em&gt;&lt;/p&gt;
-&lt;h3 id="crafting"&gt;Crafting&lt;a class="headerlink" href="#crafting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The next step was crafting items to metal. The rule was that any two weapons utilized by the same class could be
-crafted to scrap metal. That sounds simple enough.&lt;/p&gt;
-&lt;p&gt;After lots of trial and error, I'd built a set of commands that would select compatible weapons and craft them together. This
-particular aspect wasn't documented by Steam (or the reverse engineered SteamKit2 library I was utilizing). Crafting would
-take about 15 seconds to get all compatible items to scrap and then combining 9 scrap to get a refined metal. This saved
-inventory space.&lt;/p&gt;
-&lt;p&gt;With the simple command &lt;code&gt;craftall&lt;/code&gt;, all those new weapons would be crafted into metal and then combined into refined metal. This
-would be done in less than a minute. Previously, I'd have to initiate each crafting session, add all items per craft, wait for the
-craft to complete and then repeat. This was another 15-30 minutes saved.&lt;/p&gt;
-&lt;h3 id="left-overs"&gt;Left overs&lt;a class="headerlink" href="#left-overs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;After crafting, there would still be left over weapons. There were weapons that had run out of same class items to craft
-with. The solution was to trade these away in groups of two to &lt;a href="http://scrapbank.me/"&gt;ScrapBank.me&lt;/a&gt; and get scrap metal back. This could be
-further combined to refined metal again wasting space.&lt;/p&gt;
-&lt;h3 id="metal-to-keys"&gt;Metal to Keys&lt;a class="headerlink" href="#metal-to-keys" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;At this point, human intervention was required again. I had to convert my metal to keys. I did this via trading. The easy
-way to do this was to find someone running a keybot, that would take metal for a key. Many exist, but all of them overcharge.
-The other option was to look for a trader that was getting rid of a bulk set of keys and then trade them. In either case,
-I'd end the week with 3-4 keys. I'd trade these for Tour of Duty tickets and go play a game with friends.&lt;/p&gt;
-&lt;p&gt;The actual work required on my part was starting the idling for the night, shutting down idling in the morning, starting
-the automated trade, crafting and trade left overs processes and finally trading metal for keys. What used to take me hours
-to do each week, I could not do in less than an hour (the bulk of which ended up being trading metal for keys).&lt;/p&gt;
-&lt;h2 id="what-changed"&gt;What changed?&lt;a class="headerlink" href="#what-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Valve released a patch to limit how effective idling was. Their "Mann-Conomy" was seeing rapid inflation. The price of
-keys (which they sold for physical money) in metal was rapidly increasing. From the time I started this to the time I ended
-it, it jumped from 2-3 refined per key to 9-10 per key, with no sign of stopping. Casual players were complaining they couldn't
-get enough items to trade for this stuff. The patch also required that you click to confirm each new received item.&lt;/p&gt;
-&lt;h2 id="im-ok-honest"&gt;I'm ok. Honest.&lt;a class="headerlink" href="#im-ok-honest" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I tried for a few days to find an effective work around. I didn't. When I wasn't able to find one, I transferred all items
-to the master account and went through the process of converting to keys. With that, I purchased the final set of
-Tour of Duty tickets. The idle bots were shut down.&lt;/p&gt;
-&lt;p&gt;It's been a month now. The bots are still down. I'm still around. Looking back on this, I'm happy Valve broke this. It wasn't
-doing anything for me other than providing me with something to do: "Need to idle tonight", "Need to craft and trade today", etc.
-Now I have that time back.&lt;/p&gt;
-&lt;p&gt;I am pleased with the technical challenges I over came to get this done though. Crafting was the biggest, but I think I'm
-most proud of the automated transfer of items to the master. Since the bots had to communicate via Steam and not via
-a local application, working out how I was going to do that took some time.&lt;/p&gt;
-&lt;hr/&gt;
-&lt;p&gt;That, my friends, was my addiction to the meta game of a hat simulator in a first person shooter. I'm over it now and
-looking forward to some other project.&lt;/p&gt;</content><category term="Side Activities"/><category term="automation"/><category term="programming"/><category term="gaming"/></entry></feed>
+but with a much more relevant name. &lt;/p&gt;</content><category term="Side Activities"/><category term="Stack Exchange"/><category term="moderation"/></entry></feed>

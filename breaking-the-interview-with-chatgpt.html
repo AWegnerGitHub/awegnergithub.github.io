@@ -1,291 +1,67 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="Using ChatGPT, I&#39;m going to solve a couple interview questions from TestGorilla quickly, easily and with nothing more than copying and pasting." />
-<meta name="keywords" content="technical, job search, chatgpt, ai interviews">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="Breaking TestGorilla interview questions with ChatGPT"/>
-  <meta property="og:description" content="Using ChatGPT, I&#39;m going to solve a couple interview questions from TestGorilla quickly, easily and with nothing more than copying and pasting."/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2022-12-26 10:45:00-06:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Technical Solutions"/>
-  <meta property="article:tag" content="technical"/>
-  <meta property="article:tag" content="job search"/>
-  <meta property="article:tag" content="chatgpt"/>
-  <meta property="article:tag" content="ai interviews"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>Breaking TestGorilla interview questions with ChatGPT  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#assessment-one-php-arrays">Assessment One - PHP Arrays</a></li>
-<li><a href="#assessment-two-kotlin-arrays">Assessment Two - Kotlin Arrays</a></li>
-<li><a href="#evaluation">Evaluation</a></li>
-<li><a href="#hiring-process">Hiring process</a></li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Breaking TestGorilla interview questions with ChatGPT</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Breaking TestGorilla interview questions with ChatGPT — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="Using ChatGPT, I&#39;m going to solve a couple interview questions from TestGorilla quickly, easily and with nothing more than copying and pasting."><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Technical Solutions (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="Breaking TestGorilla interview questions with ChatGPT"><meta property="og:url" content="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"><meta property="og:description" content="Using ChatGPT, I&#39;m going to solve a couple interview questions from TestGorilla quickly, easily and with nothing more than copying and pasting."><meta property="article:published_time" content="2022-12-26T10:45:00-06:00"><meta property="article:section" content="Technical Solutions"><meta property="article:tag" content="technical"><meta property="article:tag" content="job search"><meta property="article:tag" content="chatgpt"><meta property="article:tag" content="ai interviews"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Breaking TestGorilla interview questions with ChatGPT",
+  "headline": "Breaking TestGorilla interview questions with ChatGPT",
+  "dateCreated": "2022-12-26T10:45:00-06:00",
+  "datePublished": "2022-12-26T10:45:00-06:00",  "dateModified": "2022-12-26T10:45:00-06:00",  "copyrightYear": "2022",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/breaking-the-interview-with-chatgpt.html",
+  "description": "Using ChatGPT, I&#39;m going to solve a couple interview questions from TestGorilla quickly, easily and with nothing more than copying and pasting.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}</script></head><body data-page-type="article" data-page-slug="breaking-the-interview-with-chatgpt" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a></nav><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/technical-solutions.html",
-      "name": "Technical Solutions"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/breaking-the-interview-with-chatgpt.html",
-      "name": "https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="breaking-the-interview-with-chatgpt">Breaking TestGorilla interview questions with ChatGPT</h1>
-    <p>
-      Posted on Mon 26 December 2022 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
-
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
-        <a href="https://andrewwegner.com/tag/job-search.html">job search</a>
-        <a href="https://andrewwegner.com/tag/chatgpt.html">chatgpt</a>
-        <a href="https://andrewwegner.com/tag/ai-interviews.html">ai interviews</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>I've written quiet a bit about <a href="https://openai.com/blog/chatgpt/">ChatGPT</a> in the last month. As of this post, it is still <a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html">banned on Stack Overflow</a>. I believe I showed
-why with my previous post. In it, I showed that <a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html">ChatGPT is prone to adding subtle errors</a> (and in some cases not so subtle), which is bad on a Q&amp;A site. </p>
-<p>Today's post follows in the footsteps of my writing about how I hope ChatGPT inpires software engineering hiring managers to change their 
-hiring process. I wrote about how <a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">ChatGPT can solve LeetCode</a> problems. Today's post is going to focus on a company called <a href="https://www.testgorilla.com/">TestGorilla</a> and a 
-couple of their assessments.</p>
-<p><em>First a disclaimer</em>: I was Director of Engineering at <a href="https://www.woventeams.com/">Woven Teams</a> in 2022. Prior to that, <a href="https://andrewwegner.com/woven-client-to-woven-employee.html">I was a customer of Woven for over two years</a>. 
-Woven is a competitor of TestGorilla. That said, I do not recall TestGorilla being discussed during my employment at Woven. 
-I only became aware of them during my job search this year. I'd be happy to do this same type of analysis on a Woven assessment, but as far 
-as I am aware, their prompts are not presented publicly. TestGorilla's prompts used in this article are taken directly from their website. I did not 
-speak with either company prior to writing this article.</p>
-<h2 id="assessment-one-php-arrays">Assessment One - PHP Arrays<a class="headerlink" href="#assessment-one-php-arrays" title="Permanent link">¶</a></h2>
-<p>The first assessment I want to look at is related to PHP Arrays. The <a href="https://app.testgorilla.com/preview/105976?language=en">prompt</a> itself if fairly simple.</p>
-<p><img alt="TestGorilla - PHP Array Sample Prompt" src="https://andrewwegner.com/images/testgorilla-php-array.png"/></p>
-<p>This is billed as:</p>
-<blockquote>
-<p>PHP (coding): intermediate-level algorithms
-This PHP test evaluates candidates' coding skills through a short coding assignment. The test requires candidates to write code that meets certain requirements, and candidates can run their code to test if the result matches their expectations.</p>
-</blockquote>
-<p>The estimated time for this test is 30 minutes. </p>
-<p>Well, let's see if ChatGPT is an intermediate level PHP programmer. Pasting the prompt into ChatGPT quickly spits out a result, in Python. I'm not
-surprised since almost all of my testing has been in Python. I provided one additional set of directions for ChatGPT to utilize, based on the boilerplate
-code provided.</p>
-<blockquote>
-<p>Write this in PHP using the following as a template:</p>
-</blockquote>
-<div class="codehilight code"><pre><span></span><code><span class="cp">&lt;?php</span> <span class="k">function</span> <span class="nf">sum_array</span><span class="p">(</span> <span class="nv">$no1</span><span class="p">,</span> <span class="nv">$no2</span> <span class="p">)</span> <span class="p">{</span>
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/technical-solutions.html",
+        "name": "Technical Solutions"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Technical Solutions</span> <span class="article-eyebrow-dot">·</span> <span>Part 4 of 8 · ChatGPT Commentary</span></div><h1 class="article-title">Breaking TestGorilla interview questions with ChatGPT</h1><p class="article-summary">Using ChatGPT, I'm going to solve a couple interview questions from TestGorilla quickly, easily and with nothing more than copying and pasting.</p><div class="article-meta"><time datetime="2022-12-26T10:45:00-06:00" class="article-meta-date">Mon 26 December 2022</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/technical.html" class="tag">#technical</a> <a href="https://andrewwegner.com/tag/job-search.html" class="tag">#job search</a> <a href="https://andrewwegner.com/tag/chatgpt.html" class="tag">#chatgpt</a> <a href="https://andrewwegner.com/tag/ai-interviews.html" class="tag">#ai interviews</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#assessment-one-php-arrays">Assessment One - PHP Arrays</a></li><li><a href="#assessment-two-kotlin-arrays">Assessment Two - Kotlin Arrays</a></li><li><a href="#evaluation">Evaluation</a></li><li><a href="#hiring-process">Hiring process</a></li></ul></div></div><div class="prose"><h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2><p>I've written quiet a bit about <a href="https://openai.com/blog/chatgpt/">ChatGPT</a> in the last month. As of this post, it is still <a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html">banned on Stack Overflow</a>. I believe I showed why with my previous post. In it, I showed that <a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html">ChatGPT is prone to adding subtle errors</a> (and in some cases not so subtle), which is bad on a Q&amp;A site.</p><p>Today's post follows in the footsteps of my writing about how I hope ChatGPT inpires software engineering hiring managers to change their hiring process. I wrote about how <a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">ChatGPT can solve LeetCode</a> problems. Today's post is going to focus on a company called <a href="https://www.testgorilla.com/">TestGorilla</a> and a couple of their assessments.</p><p><em>First a disclaimer</em>: I was Director of Engineering at <a href="https://www.woventeams.com/">Woven Teams</a> in 2022. Prior to that, <a href="https://andrewwegner.com/woven-client-to-woven-employee.html">I was a customer of Woven for over two years</a>. Woven is a competitor of TestGorilla. That said, I do not recall TestGorilla being discussed during my employment at Woven. I only became aware of them during my job search this year. I'd be happy to do this same type of analysis on a Woven assessment, but as far as I am aware, their prompts are not presented publicly. TestGorilla's prompts used in this article are taken directly from their website. I did not speak with either company prior to writing this article.</p><h2 id="assessment-one-php-arrays">Assessment One - PHP Arrays<a class="headerlink" href="#assessment-one-php-arrays" title="Permanent link">¶</a></h2><p>The first assessment I want to look at is related to PHP Arrays. The <a href="https://app.testgorilla.com/preview/105976?language=en">prompt</a> itself if fairly simple.</p><p><img alt="TestGorilla - PHP Array Sample Prompt" src="https://andrewwegner.com/images/testgorilla-php-array.png"></p><p>This is billed as:</p><blockquote><p>PHP (coding): intermediate-level algorithms This PHP test evaluates candidates' coding skills through a short coding assignment. The test requires candidates to write code that meets certain requirements, and candidates can run their code to test if the result matches their expectations.</p></blockquote><p>The estimated time for this test is 30 minutes.</p><p>Well, let's see if ChatGPT is an intermediate level PHP programmer. Pasting the prompt into ChatGPT quickly spits out a result, in Python. I'm not surprised since almost all of my testing has been in Python. I provided one additional set of directions for ChatGPT to utilize, based on the boilerplate code provided.</p><blockquote><p>Write this in PHP using the following as a template:</p></blockquote><div class="codehilight code"><pre><span></span><code><span class="cp">&lt;?php</span> <span class="k">function</span> <span class="nf">sum_array</span><span class="p">(</span> <span class="nv">$no1</span><span class="p">,</span> <span class="nv">$no2</span> <span class="p">)</span> <span class="p">{</span>
 
 <span class="nv">$array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">];</span>
     <span class="c1">//Insert your code here </span>
 <span class="p">}</span>
 <span class="cp">?&gt;</span>
-</code></pre></div>
-<p>The result provided looks functional, based on very outdated PHP syntax knowledge.</p>
-<div class="codehilight code"><pre><span></span><code><span class="cp">&lt;?php</span>
+</code></pre></div><p>The result provided looks functional, based on very outdated PHP syntax knowledge.</p><div class="codehilight code"><pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="k">function</span> <span class="nf">sum_array</span><span class="p">(</span><span class="nv">$no1</span><span class="p">,</span> <span class="nv">$no2</span><span class="p">)</span> <span class="p">{</span>
 <span class="nv">$array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">];</span>
@@ -306,9 +82,7 @@ code provided.</p>
 <span class="p">}</span>
 
 <span class="cp">?&gt;</span>
-</code></pre></div>
-<p>I copy and pasted that into TestGorilla's preview page and ran it to see how it'd do. </p>
-<div class="codehilight code"><pre><span></span><code><span class="c">Task executed successfully</span><span class="nt">.</span>
+</code></pre></div><p>I copy and pasted that into TestGorilla's preview page and ran it to see how it'd do.</p><div class="codehilight code"><pre><span></span><code><span class="c">Task executed successfully</span><span class="nt">.</span>
 
 <span class="nb">---------------------------------</span>
 <span class="c">    Input parameters: ((int) 10</span><span class="nt">,</span><span class="c"> (int) 20)</span>
@@ -326,29 +100,13 @@ code provided.</p>
 <span class="c">    Input parameters: ((int) 90</span><span class="nt">,</span><span class="c"> (int) 100)</span>
 <span class="c">Result: (190)</span>
 <span class="c">OK</span>
-</code></pre></div>
-<p>Success! One intermediate PHP assessment completed. Total time taken: 2 minutes. </p>
-<h2 id="assessment-two-kotlin-arrays">Assessment Two - Kotlin Arrays<a class="headerlink" href="#assessment-two-kotlin-arrays" title="Permanent link">¶</a></h2>
-<p>This <a href="https://app.testgorilla.com/preview/788899?language=en">assessment</a> is listed as a "New Test" by TestGorilla at the time of this post. The challenge here, if ChatGPT fails, is that I have never
-used Kotlin. </p>
-<p><img alt="TestGorilla - Kotlin Array Sample Prompt" src="https://andrewwegner.com/images/testgorilla-kotlin-array.png"/></p>
-<p>This is billed as:</p>
-<blockquote>
-<p>Kotlin (Coding): Working with Arrays
-This Kotlin Coding test evaluates candidates’ ability to work with arrays. The test gives candidates 30 minutes to create a short algorithm involving arrays while taking into consideration all the requirements provided.</p>
-</blockquote>
-<p>This is billed as a 20 minute assessment. It is also billed as an intermediate level assessment. </p>
-<p>I pasted the prompt into ChatGPT and also provided the boiler plate code block. The prompt doesn't explicitly say "Kotlin" anywhere, and I didn't mention
-it either. The only hint provided was the boiler plate code. ChatGPT picked up the language and returned a result.</p>
-<div class="codehilight code"><pre><span></span><code><span class="nv">fun</span><span class="w"> </span><span class="nv">getUniqueStudentIds</span><span class="ss">(</span><span class="nv">a</span>:<span class="w"> </span><span class="nv">Array</span><span class="o">&lt;</span><span class="nv">Int</span><span class="o">&gt;</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Array</span><span class="o">&lt;</span><span class="nv">Int</span><span class="o">&gt;</span><span class="w"> </span>{
+</code></pre></div><p>Success! One intermediate PHP assessment completed. Total time taken: 2 minutes.</p><h2 id="assessment-two-kotlin-arrays">Assessment Two - Kotlin Arrays<a class="headerlink" href="#assessment-two-kotlin-arrays" title="Permanent link">¶</a></h2><p>This <a href="https://app.testgorilla.com/preview/788899?language=en">assessment</a> is listed as a "New Test" by TestGorilla at the time of this post. The challenge here, if ChatGPT fails, is that I have never used Kotlin.</p><p><img alt="TestGorilla - Kotlin Array Sample Prompt" src="https://andrewwegner.com/images/testgorilla-kotlin-array.png"></p><p>This is billed as:</p><blockquote><p>Kotlin (Coding): Working with Arrays This Kotlin Coding test evaluates candidates’ ability to work with arrays. The test gives candidates 30 minutes to create a short algorithm involving arrays while taking into consideration all the requirements provided.</p></blockquote><p>This is billed as a 20 minute assessment. It is also billed as an intermediate level assessment.</p><p>I pasted the prompt into ChatGPT and also provided the boiler plate code block. The prompt doesn't explicitly say "Kotlin" anywhere, and I didn't mention it either. The only hint provided was the boiler plate code. ChatGPT picked up the language and returned a result.</p><div class="codehilight code"><pre><span></span><code><span class="nv">fun</span><span class="w"> </span><span class="nv">getUniqueStudentIds</span><span class="ss">(</span><span class="nv">a</span>:<span class="w"> </span><span class="nv">Array</span><span class="o">&lt;</span><span class="nv">Int</span><span class="o">&gt;</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Array</span><span class="o">&lt;</span><span class="nv">Int</span><span class="o">&gt;</span><span class="w"> </span>{
 <span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">a</span>.<span class="nv">any</span><span class="w"> </span>{<span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">50000</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">99999</span><span class="w"> </span>}<span class="ss">)</span><span class="w"> </span>{
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">arrayOf</span><span class="ss">(</span><span class="o">-</span><span class="mi">1</span><span class="ss">)</span>
 }
 <span class="k">return</span><span class="w"> </span><span class="nv">a</span>.<span class="nv">distinct</span><span class="ss">()</span>.<span class="nv">toTypedArray</span><span class="ss">()</span>
 }
-</code></pre></div>
-<p>Running this on TestGorilla's preview page passes the built in test cases:</p>
-<div class="codehilight code"><pre><span></span><code>Task executed successfully.
+</code></pre></div><p>Running this on TestGorilla's preview page passes the built in test cases:</p><div class="codehilight code"><pre><span></span><code>Task executed successfully.
 
 ---------------------------------
 Input parameters: (arrayOf(52311, 52311, 55125, 55125, 52128, 52130, 52128) )
@@ -366,110 +124,4 @@ OK
 Input parameters: (arrayOf(54321, 53421, 53241, 53214, 54231, 54213, 54312) )
 Result: (54321, 53421, 53241, 53214, 54231, 54213, 54312)
 OK
-</code></pre></div>
-<p>Success! Total time: 1 Minute</p>
-<h2 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">¶</a></h2>
-<p>Despite not knowing Kotlin, I can look at the code provided and see that improvements can be made to the code. The prompt says </p>
-<blockquote>
-<p>Note that all student IDs are 5-digit numbers beginning with the number 5. Return -1 as a single element in the array in the case of any invalid input.</p>
-</blockquote>
-<p>The <code>if (a.any { it &lt; 50000 || it &gt; 99999 })</code> statement can be adjusted to reflect the prompt's specification better. Additionally, there isn't a 
-built in test case for invalid data, but I suspect that it'll fail based on the expected return.</p>
-<p>Depending on how TestGorilla is evaluating these edge cases on the paid version of this exam, this may be picked up. On the free preview version, though
-it is not. </p>
-<h2 id="hiring-process">Hiring process<a class="headerlink" href="#hiring-process" title="Permanent link">¶</a></h2>
-<p>Once again, the reader should be able to see that a simple technical evaluation of software engineers in the hiring process is no longer sufficient. It 
-took me longer to determine which prompts I wanted to evaluate for this post than it did to solve with a couple copy and pastes into ChatGPT. </p>
-<p>The hiring process must be more than "solve this code challenge". Hiring managers need to move past code only assessments. Instead, focus on a 
-candidate's ability to technically assess and judge based on a context specific problem. These types of problems require a candidate to show their
-experience, versus their ability to Google, ask Stack Overflow or use ChatGPT to provide a problem prompt. Evaluate your candidates based on the 
-work you want them to actually do. </p>
-  </div>
-<div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"
-    title="Using ChatGPT to interact with an API">
-    <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-  <a class="btn float-right" href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html"
-    title="Running CodeSignal questions through ChatGPT">
-    Next Post <i class="fa fa-angle-right"></i>
-  </a>
-</div>
-
-
-
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-  <div class="related-posts">
-    <h4>Part 4 of the ChatGPT Commentary series</h4>
-    <h5>Previous articles</h5>
-    <ul>
-      <li><a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html">Stack Overflow bans ChatGPT temporarily</a></li>
-      <li><a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">ChatGPT is here - Use that to stop asking LeetCode questions during interviews</a></li>
-      <li><a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html">Using ChatGPT to interact with an API</a></li>
-    </ul>
-    <h5>Next articles</h5>
-    <ul>
-      <li><a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html">Running CodeSignal questions through ChatGPT</a></li>
-      <li><a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html">Taking Codility's sample interview exam using ChatGPT</a></li>
-      <li><a href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html">ChatGPT easily solves HackerRank questions</a></li>
-      <li><a href="https://andrewwegner.com/chatgpt-beats-more-interview-assessments.html">CoderByte assessments fall to ChatGPT</a></li>
-    </ul>
-  </div>
-</article>
-
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BlogPosting",
-  "name": "Breaking TestGorilla interview questions with ChatGPT",
-  "headline": "Breaking TestGorilla interview questions with ChatGPT",
-  "dateCreated": "2022-12-26 10:45:00-06:00",
-  "datePublished": "2022-12-26 10:45:00-06:00",
-  "dateModified": "",
-  "copyrightYear": "2022",
-  "copyrightHolder": {
-    "@type": "Person",
-    "name": "Andy Wegner",
-    "url": "https://andrewwegner.com"
-  },
-  "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
-  },
-  "publisher": {
-    "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/breaking-the-interview-with-chatgpt.html",
-  "description": "Using ChatGPT, I'm going to solve a couple interview questions from TestGorilla quickly, easily and with nothing more than copying and pasting.",
-  "mainEntityOfPage": "True",
-  "articleSection": "Technical Solutions"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+</code></pre></div><p>Success! Total time: 1 Minute</p><h2 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">¶</a></h2><p>Despite not knowing Kotlin, I can look at the code provided and see that improvements can be made to the code. The prompt says</p><blockquote><p>Note that all student IDs are 5-digit numbers beginning with the number 5. Return -1 as a single element in the array in the case of any invalid input.</p></blockquote><p>The <code>if (a.any { it &lt; 50000 || it &gt; 99999 })</code> statement can be adjusted to reflect the prompt's specification better. Additionally, there isn't a built in test case for invalid data, but I suspect that it'll fail based on the expected return.</p><p>Depending on how TestGorilla is evaluating these edge cases on the paid version of this exam, this may be picked up. On the free preview version, though it is not.</p><h2 id="hiring-process">Hiring process<a class="headerlink" href="#hiring-process" title="Permanent link">¶</a></h2><p>Once again, the reader should be able to see that a simple technical evaluation of software engineers in the hiring process is no longer sufficient. It took me longer to determine which prompts I wanted to evaluate for this post than it did to solve with a couple copy and pastes into ChatGPT.</p><p>The hiring process must be more than "solve this code challenge". Hiring managers need to move past code only assessments. Instead, focus on a candidate's ability to technically assess and judge based on a context specific problem. These types of problems require a candidate to show their experience, versus their ability to Google, ask Stack Overflow or use ChatGPT to provide a problem prompt. Evaluate your candidates based on the work you want them to actually do.</p></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#assessment-one-php-arrays">Assessment One - PHP Arrays</a></li><li><a href="#assessment-two-kotlin-arrays">Assessment Two - Kotlin Arrays</a></li><li><a href="#evaluation">Evaluation</a></li><li><a href="#hiring-process">Hiring process</a></li></ul></div></aside></div><section class="series-block" aria-label="Series"><div class="series-block-head"><div class="series-block-kicker">Series · ChatGPT Commentary</div><div class="series-block-progress">Part 4 of 8</div></div><div class="series-block-nav"><a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html" class="series-block-link series-block-link-prev"><span class="series-block-dir">← Previous in series</span> <span class="series-block-title">Using ChatGPT to interact with an API</span> </a><a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html" class="series-block-link series-block-link-next"><span class="series-block-dir">Next in series →</span> <span class="series-block-title">Running CodeSignal questions through ChatGPT</span></a></div></section><nav class="post-nav" aria-label="Post navigation"><a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html" class="post-nav-link post-nav-link-prev"><span class="post-nav-dir">← Previous post</span> <span class="post-nav-title">Using ChatGPT to interact with an API</span> </a><a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">Running CodeSignal questions through ChatGPT</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

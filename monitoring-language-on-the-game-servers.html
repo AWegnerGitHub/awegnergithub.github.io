@@ -1,391 +1,58 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/monitoring-language-on-the-game-servers.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="Team Vipers is proud of it&#39;s friendly atmosphere. This post describes how I automated a large part of the process" />
-<meta name="keywords" content="team vipers, automation, programming">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="Monitoring Language on the game servers"/>
-  <meta property="og:description" content="Team Vipers is proud of it&#39;s friendly atmosphere. This post describes how I automated a large part of the process"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/monitoring-language-on-the-game-servers.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2012-04-22 12:13:00-05:00"/>
-  <meta property="article:modified_time" content="2015-01-08 00:00:00-06:00"/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Vipers"/>
-  <meta property="article:tag" content="team vipers"/>
-  <meta property="article:tag" content="automation"/>
-  <meta property="article:tag" content="programming"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>Monitoring Language on the game servers  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#chat-monitor">Chat Monitor</a></li>
-<li><a href="#inappropriate-words">Inappropriate words</a><ul>
-<li><a href="#automated-removal-logic">Automated removal logic</a></li>
-<li><a href="#updated-removal-logic">Updated removal logic</a></li>
-</ul>
-</li>
-<li><a href="#update-at-shutdown">Update at shutdown</a></li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/vipers.html">Vipers</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/monitoring-language-on-the-game-servers.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Monitoring Language on the game servers</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/vipers.html",
-      "name": "Vipers"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/monitoring-language-on-the-game-servers.html",
-      "name": "https://andrewwegner.com/monitoring-language-on-the-game-servers.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="monitoring-language-on-the-game-servers">Monitoring Language on the game servers</h1>
-    <p>
-      Posted on Sun 22 April 2012 in <a href="https://andrewwegner.com/category/vipers.html">Vipers</a>
-
-      <br />Updated on Thu 08 Jan 2015
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/team-vipers.html">team vipers</a>
-        <a href="https://andrewwegner.com/tag/automation.html">automation</a>
-        <a href="https://andrewwegner.com/tag/programming.html">programming</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>My admin tool of choice for the TF2 servers is <a href="http://www.hlsw.org/">HLSW</a>. It's decent at allowing me to manage a server without ever
-needing to log to the server. My biggest complaint about it is that I can only watch the game chat of one server at a time.
-Sometimes, it's helpful to see an ongoing conversation to resolve minor problems before they become big ones. For example,
-claims of "hacking" usually turn out to be completely baseless. But, if multiple users (and more importantly, multiple
-<em>trusted</em> users) suddenly start mentioning a hacker, I can step in and resolve the problem without entering the server.
-HLSW is good for this. A hacker is confined to one server.</p>
-<p>The biggest problem is when there are reports of lag across all of the game servers. Vipers has a dedicated machine that
-runs 5 game servers. If all five suddenly report lag, there is a problem somewhere. With HLSW, though, I can't see all of
-the servers at once. Thus, I've built a tool...</p>
-<h2 id="chat-monitor">Chat Monitor<a class="headerlink" href="#chat-monitor" title="Permanent link">¶</a></h2>
-<p>All chat that occurs on the servers is logged. I've used this to resolve complaints of unfair bans and reports of hackers.
-I built in a hook to these logs from the application template to quickly pull known aliases of users. It's been invaluable
-in solving problems of "what happened" on the servers.</p>
-<p><img alt="Multiserver Chat monitor" src="https://andrewwegner.com/images/vipers-chat-monitor.png"/></p>
-<p>I've expanded it's usefulness. Now I can load a single page and see all chat activity occurring on all active game servers
-on a single screen. It provides, at a glance, a quick way to see if there are problems on the servers. It also allows me
-to step back from picking which server I think will be "bad" and monitor that. Now I can monitor all of them at once.</p>
-<h2 id="inappropriate-words">Inappropriate words<a class="headerlink" href="#inappropriate-words" title="Permanent link">¶</a></h2>
-<p>As a community, we've chosen to set a higher standard for our players. As such, we have a restriction on a total of 3
-words and a few derivatives of those words. This system is in place because the community stepped forward and wanted to
-clean up the experience on the servers a bit. The problem with these higher standards is that we don't have admins on the
-game servers (or watch chat logs) 24 hours a day. Thus, while admins sleep, a troll can wander through and spew garbage.
-Unless a user reports this behavior, we will never be aware of it.</p>
-<p>I've built a system to handle this automatically. The system will monitor chat logs across all servers. If a user hits the
-threshold for banning, they will be removed from the server and banned for a day. The logic to the system is this:</p>
-<h3 id="automated-removal-logic">Automated removal logic<a class="headerlink" href="#automated-removal-logic" title="Permanent link">¶</a></h3>
-<ul>
-<li>Inappropriate terms are configured with a "weight". This "weight" will be used to calculate whether or not a user
- surpasses a threshold set for being banned.</li>
-<li>System monitors chat logs for configured terms.</li>
-<li>If a term is found, the offending message is saved. The term weight is added to the user's current threshold value.
- If this is the user's first time saying one of these terms, they start at 0 and this weight is added.</li>
-<li>If user exceeds the threshold, the system issues a ban to Sourcebans. The user is then kicked from the game server.
- The ban length will be 1 day.</li>
-<li>The system keeps messages for a total of 5 minutes. If a message is older than that, the system forgets it.</li>
-</ul>
-<p>Currently, the three inappropriate terms all have a threshold of <code>1</code>. This means they saying the words results in a ban.
-Homophobic, racist remarks aren't welcome on the Viper servers. We can't prevent it, but we can deal with offenses swiftly.
-The 5 minute window is added because the community requested that excessive swearing also be limited. We don't want to
-outright ban it, but they don't want a swear filled rant to occur after every match.</p>
-<p>Thus, I built in the 5 minute window and the thresholds. The system is configured to catch common swear words, but the words
-have a low weight. It'd take repeated spamming of the words in a 5 minute window to reach the threshold and be removed from
-the server.</p>
-<h3 id="updated-removal-logic">Updated removal logic<a class="headerlink" href="#updated-removal-logic" title="Permanent link">¶</a></h3>
-<p><em>Updated May 17, 2012</em></p>
-<p>The automated system has been active for almost a month. I'm finding that the system has been removing the same set of
-players every other day. They aren't learning. This is despite the message they are shown when removed from the server.
-I've made a change to the logic in how long a ban will last. It provides a 4 strike system:</p>
-<ul>
-<li>First offence: Weight of term(s) said times 1. This means, for most cases, they are issued a single day ban.</li>
-<li>Second offence: Weight of term(s) said times 3. This means, for most cases, they are issued a three day ban.</li>
-<li>Third offence: Weight of terms said times 21. This means, for most cases, they are issued a three week ban.</li>
-<li>Forth offence: Permanent removal from the game servers.</li>
-</ul>
-<p>The community has been very enthusiastic about how quickly users of inappropriate terms are removed. I've seen a few minor
-complaints about the permanent removal of users on the forth offense. I've told the community that <em>if</em> a user protests the
-ban and <em>if</em> they can show they've learned our rules, I will provide one additional chance after the user has waited a minimum
-of a month from from last time they were banned. If they return to their previous activities, they will be re-banned and
-they will not be able to return in the future.</p>
-<h2 id="update-at-shutdown">Update at shutdown<a class="headerlink" href="#update-at-shutdown" title="Permanent link">¶</a></h2>
-<p><em>Updated January 20, 2015</em></p>
-<p>In January 2015, Team Vipers <a href="https://andrewwegner.com/thanks-for-all-the-fish.html">shut down</a>. With that shutdown, all chat monitoring also shut down. The system was active
-from April 23, 2012 to January 4, 2015, for a total of 987 days. In that time, 4457 bans were issued for inappropriate
-language. That is over 4 users a day being removed from our player base because they couldn't maintain a respectful
-attitude. I consider that a success. I believe Viper community members did too.</p>
-  </div>
-<div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/connect-python-to-osi-soft-pi.html"
-    title="Connect Python to OSI Soft PI">
-    <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-  <a class="btn float-right" href="https://andrewwegner.com/homing-projectiles-are-awesome!.html"
-    title="Homing projectiles are awesome!">
-    Next Post <i class="fa fa-angle-right"></i>
-  </a>
-</div>
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-</article>
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Monitoring Language on the game servers — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="Team Vipers is proud of it&#39;s friendly atmosphere. This post describes how I automated a large part of the process"><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/monitoring-language-on-the-game-servers.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Vipers (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/monitoring-language-on-the-game-servers.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="Monitoring Language on the game servers"><meta property="og:url" content="https://andrewwegner.com/monitoring-language-on-the-game-servers.html"><meta property="og:description" content="Team Vipers is proud of it&#39;s friendly atmosphere. This post describes how I automated a large part of the process"><meta property="article:published_time" content="2012-04-22T12:13:00-05:00"><meta property="article:modified_time" content="2015-01-08T00:00:00-06:00"><meta property="article:section" content="Vipers"><meta property="article:tag" content="team vipers"><meta property="article:tag" content="automation"><meta property="article:tag" content="programming"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
   "@context": "http://schema.org",
   "@type": "BlogPosting",
   "name": "Monitoring Language on the game servers",
   "headline": "Monitoring Language on the game servers",
-  "dateCreated": "2012-04-22 12:13:00-05:00",
-  "datePublished": "2012-04-22 12:13:00-05:00",
-  "dateModified": "2015-01-08 00:00:00-06:00",
-  "copyrightYear": "2012",
+  "dateCreated": "2012-04-22T12:13:00-05:00",
+  "datePublished": "2012-04-22T12:13:00-05:00",  "dateModified": "2015-01-08T00:00:00-06:00",  "copyrightYear": "2012",
   "copyrightHolder": {
     "@type": "Person",
-    "name": "Andy Wegner",
+    "name": "Andrew Wegner",
     "url": "https://andrewwegner.com"
   },
   "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
   },
   "publisher": {
     "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/monitoring-language-on-the-game-servers.html",
-  "description": "Team Vipers is proud of it's friendly atmosphere. This post describes how I automated a large part of the process",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/monitoring-language-on-the-game-servers.html",
+  "description": "Team Vipers is proud of it&#39;s friendly atmosphere. This post describes how I automated a large part of the process",
   "mainEntityOfPage": "True",
   "articleSection": "Vipers"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+}</script></head><body data-page-type="article" data-page-slug="monitoring-language-on-the-game-servers" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/vipers.html">Vipers</a></nav><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/vipers.html",
+        "name": "Vipers"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Vipers</span></div><h1 class="article-title">Monitoring Language on the game servers</h1><p class="article-summary">Team Vipers is proud of it's friendly atmosphere. This post describes how I automated a large part of the process</p><div class="article-meta"><time datetime="2012-04-22T12:13:00-05:00" class="article-meta-date">Sun 22 April 2012</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/team-vipers.html" class="tag">#team vipers</a> <a href="https://andrewwegner.com/tag/automation.html" class="tag">#automation</a> <a href="https://andrewwegner.com/tag/programming.html" class="tag">#programming</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#chat-monitor">Chat Monitor</a></li><li><a href="#inappropriate-words">Inappropriate words</a><ul><li><a href="#automated-removal-logic">Automated removal logic</a></li><li><a href="#updated-removal-logic">Updated removal logic</a></li></ul></li><li><a href="#update-at-shutdown">Update at shutdown</a></li></ul></div></div><div class="prose"><h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2><p>My admin tool of choice for the TF2 servers is <a href="http://www.hlsw.org/">HLSW</a>. It's decent at allowing me to manage a server without ever needing to log to the server. My biggest complaint about it is that I can only watch the game chat of one server at a time. Sometimes, it's helpful to see an ongoing conversation to resolve minor problems before they become big ones. For example, claims of "hacking" usually turn out to be completely baseless. But, if multiple users (and more importantly, multiple <em>trusted</em> users) suddenly start mentioning a hacker, I can step in and resolve the problem without entering the server. HLSW is good for this. A hacker is confined to one server.</p><p>The biggest problem is when there are reports of lag across all of the game servers. Vipers has a dedicated machine that runs 5 game servers. If all five suddenly report lag, there is a problem somewhere. With HLSW, though, I can't see all of the servers at once. Thus, I've built a tool...</p><h2 id="chat-monitor">Chat Monitor<a class="headerlink" href="#chat-monitor" title="Permanent link">¶</a></h2><p>All chat that occurs on the servers is logged. I've used this to resolve complaints of unfair bans and reports of hackers. I built in a hook to these logs from the application template to quickly pull known aliases of users. It's been invaluable in solving problems of "what happened" on the servers.</p><p><img alt="Multiserver Chat monitor" src="https://andrewwegner.com/images/vipers-chat-monitor.png"></p><p>I've expanded it's usefulness. Now I can load a single page and see all chat activity occurring on all active game servers on a single screen. It provides, at a glance, a quick way to see if there are problems on the servers. It also allows me to step back from picking which server I think will be "bad" and monitor that. Now I can monitor all of them at once.</p><h2 id="inappropriate-words">Inappropriate words<a class="headerlink" href="#inappropriate-words" title="Permanent link">¶</a></h2><p>As a community, we've chosen to set a higher standard for our players. As such, we have a restriction on a total of 3 words and a few derivatives of those words. This system is in place because the community stepped forward and wanted to clean up the experience on the servers a bit. The problem with these higher standards is that we don't have admins on the game servers (or watch chat logs) 24 hours a day. Thus, while admins sleep, a troll can wander through and spew garbage. Unless a user reports this behavior, we will never be aware of it.</p><p>I've built a system to handle this automatically. The system will monitor chat logs across all servers. If a user hits the threshold for banning, they will be removed from the server and banned for a day. The logic to the system is this:</p><h3 id="automated-removal-logic">Automated removal logic<a class="headerlink" href="#automated-removal-logic" title="Permanent link">¶</a></h3><ul><li>Inappropriate terms are configured with a "weight". This "weight" will be used to calculate whether or not a user surpasses a threshold set for being banned.</li><li>System monitors chat logs for configured terms.</li><li>If a term is found, the offending message is saved. The term weight is added to the user's current threshold value. If this is the user's first time saying one of these terms, they start at 0 and this weight is added.</li><li>If user exceeds the threshold, the system issues a ban to Sourcebans. The user is then kicked from the game server. The ban length will be 1 day.</li><li>The system keeps messages for a total of 5 minutes. If a message is older than that, the system forgets it.</li></ul><p>Currently, the three inappropriate terms all have a threshold of <code>1</code>. This means they saying the words results in a ban. Homophobic, racist remarks aren't welcome on the Viper servers. We can't prevent it, but we can deal with offenses swiftly. The 5 minute window is added because the community requested that excessive swearing also be limited. We don't want to outright ban it, but they don't want a swear filled rant to occur after every match.</p><p>Thus, I built in the 5 minute window and the thresholds. The system is configured to catch common swear words, but the words have a low weight. It'd take repeated spamming of the words in a 5 minute window to reach the threshold and be removed from the server.</p><h3 id="updated-removal-logic">Updated removal logic<a class="headerlink" href="#updated-removal-logic" title="Permanent link">¶</a></h3><p><em>Updated May 17, 2012</em></p><p>The automated system has been active for almost a month. I'm finding that the system has been removing the same set of players every other day. They aren't learning. This is despite the message they are shown when removed from the server. I've made a change to the logic in how long a ban will last. It provides a 4 strike system:</p><ul><li>First offence: Weight of term(s) said times 1. This means, for most cases, they are issued a single day ban.</li><li>Second offence: Weight of term(s) said times 3. This means, for most cases, they are issued a three day ban.</li><li>Third offence: Weight of terms said times 21. This means, for most cases, they are issued a three week ban.</li><li>Forth offence: Permanent removal from the game servers.</li></ul><p>The community has been very enthusiastic about how quickly users of inappropriate terms are removed. I've seen a few minor complaints about the permanent removal of users on the forth offense. I've told the community that <em>if</em> a user protests the ban and <em>if</em> they can show they've learned our rules, I will provide one additional chance after the user has waited a minimum of a month from from last time they were banned. If they return to their previous activities, they will be re-banned and they will not be able to return in the future.</p><h2 id="update-at-shutdown">Update at shutdown<a class="headerlink" href="#update-at-shutdown" title="Permanent link">¶</a></h2><p><em>Updated January 20, 2015</em></p><p>In January 2015, Team Vipers <a href="https://andrewwegner.com/thanks-for-all-the-fish.html">shut down</a>. With that shutdown, all chat monitoring also shut down. The system was active from April 23, 2012 to January 4, 2015, for a total of 987 days. In that time, 4457 bans were issued for inappropriate language. That is over 4 users a day being removed from our player base because they couldn't maintain a respectful attitude. I consider that a success. I believe Viper community members did too.</p></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#chat-monitor">Chat Monitor</a></li><li><a href="#inappropriate-words">Inappropriate words</a><ul><li><a href="#automated-removal-logic">Automated removal logic</a></li><li><a href="#updated-removal-logic">Updated removal logic</a></li></ul></li><li><a href="#update-at-shutdown">Update at shutdown</a></li></ul></div></aside></div><nav class="post-nav" aria-label="Post navigation"><a href="https://andrewwegner.com/connect-python-to-osi-soft-pi.html" class="post-nav-link post-nav-link-prev"><span class="post-nav-dir">← Previous post</span> <span class="post-nav-title">Connect Python to OSI Soft PI</span> </a><a href="https://andrewwegner.com/homing-projectiles-are-awesome!.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">Homing projectiles are awesome!</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

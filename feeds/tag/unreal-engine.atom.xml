@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Andrew Wegner | Ponderings of an Andy - unreal engine</title><link href="https://andrewwegner.com/" rel="alternate"/><link href="https://andrewwegner.com/feeds/tag/unreal-engine.atom.xml" rel="self"/><id>https://andrewwegner.com/</id><updated>2023-04-14T09:15:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Review of Unreal Engine 5 Generative Motion Graphics VFX Course</title><link href="https://andrewwegner.com/generative-motion-graphics-review.html" rel="alternate"/><published>2023-04-14T09:15:00-05:00</published><updated>2023-04-14T09:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-04-14:/generative-motion-graphics-review.html</id><summary type="html">&lt;p&gt;A review of the Udemy course: Unreal Engine 5 | Generative Motion Graphics / VFX&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After my last venture into Unreal Engine where &lt;a href="https://andrewwegner.com/make-unreal5-2d-platformer-review.html"&gt;I built a simple 2D platformer&lt;/a&gt;, I wanted to continue learning about blue prints,
+but take a set of lessons that would be relatively quick. I found a great course for that in Yu Fujishiro's 
+&lt;a href="https://www.udemy.com/course/ue5-procedural-vfx-motion-graphics/"&gt;Unreal Engine 5 | Generative Motion Graphics / VFX&lt;/a&gt; course on Udemy.&lt;/p&gt;
+&lt;p&gt;The course is billed as an hour and a half course that will help the learner gain comfort in using the Unreal Engine as an art
+and design tool. Here's the result of my work from this course, and I am happy with the result.&lt;/p&gt;
+&lt;div class="videowrapper youtube"&gt;
+&lt;iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/vTW2w9IHRVE"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The hour and a half estimated time is slightly misleading, as the instructor is approaching the course expecting that the 
+student has some experience. Fortunately, the &lt;a href="https://andrewwegner.com/tag/unreal-engine.html"&gt;handful of Unreal Engine courses&lt;/a&gt; I've taken since last year were enough for 
+me to feel comfortable in this course.&lt;/p&gt;
+&lt;p&gt;The first "5 minute" section of the course depends on that knowledge (and your ability to Google) to set up and configure the project.
+It's not difficult. I will save you a bit of time on one step though. This minute and a half &lt;a href="https://www.youtube.com/watch?v=BBx0a6rNgvI"&gt;video on installing the DLSS plugin&lt;/a&gt; 
+was more useful than pages of text from NVidia. &lt;/p&gt;
+&lt;p&gt;With that out of the way, it's onto the course material. The instructor is clear about the what and the why we are doing things.
+I appreciated the explaination of small bits of logic and the migration from hard coded sections to more dynamic blue prints. It 
+was a good way to introduce a concept and the same type of thing I've done when teaching beginners. &lt;/p&gt;
+&lt;p&gt;I have one issue with my blue print logic that the instructor didn't seem to have. I'm not sure if it's due to different versions
+of the engine. I was using 5.1.1 and I believe they were using 5.0. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Cube Material Emission not equal to 0" src="https://andrewwegner.com/images/cube_material_emission.png"/&gt;&lt;/p&gt;
+&lt;p&gt;See that emission node down on the lower left? In the course, the instructor has this set to a default of &lt;code&gt;0.0&lt;/code&gt;. If I left this at 
+&lt;code&gt;0.0&lt;/code&gt;, my cubes were all black. They'd start with the color I selected, but on the first split the children would be black cubes
+instead of the expected shifting hue of colors. I couldn't figure out what I did wrong, but adjusting the default solved my
+problem.&lt;/p&gt;
+&lt;p&gt;The only other oddness - at least to me - was the process of exporting a high quality render. In a previous course I 
+&lt;a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html"&gt;exported a video as MP4&lt;/a&gt;, I learned that through Google and a plugin. This course exports as an EXR file format. I've never
+utilized this before so was initially confused by the giant dump of individual files I received. &lt;/p&gt;
+&lt;p&gt;Fortunately, &lt;a href="https://andrewwegner.com/davinci-resolve-beginner-advanced-review.html"&gt;DaVinci Resolve (and the course I took on it)&lt;/a&gt; can handle this without problems. This is how I created the 
+video show casing my work above.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course was short and sweet. It took me approximately two and a half hours to get through. This accounts for environment set up,
+playing around with various colors and values to make the composition unique, and the emission bug I mentioned above. I was looking 
+for a short course that focused on a single "thing" and was pleased with how this turned out.&lt;/p&gt;
+&lt;p&gt;There are few things that I didn't like were the assumption that the students had experience. Normally this wouldn't be a problem, but
+the instructor does reference "previous courses" a handful of times but they only have this course on Udemy at the time of publishing
+this post. Another negative was the instructor's push of a paid for Unreal Plugin. This was for electronic wires, versus the curvy 
+ones from the image above. The electronic wires allow for a more compact blue print - which I can see being valuable in a very large
+project like the 2D Platformer - but in a short course it does cause the wires the overlap and can be difficult to follow. It also
+costs an additional $13.&lt;/p&gt;
+&lt;p&gt;Overall, this was an entertaining course and I am happy with the output I produced. It was very satisfying the first time I pressed
+play and watched my cube split, flash, lauch a few small sparks, and repeat. I recommend this course for someone with a basic 
+Unreal Engine experience and a few hours to learn.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.udemy.com/certificate/UC-ce71bf81-06b7-41f4-bbbd-934670454295/"&gt;&lt;img alt="Unreal Engine 5 | Generative Motion Graphics / VFX Completion Certificate" src="https://andrewwegner.com/images/udemy-generative-motion-graphics.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="technical"/><category term="learning"/><category term="unreal engine"/></entry><entry><title>Review of Learn How To Make A 2D Platformer In Unreal Engine 5 Course</title><link href="https://andrewwegner.com/make-unreal5-2d-platformer-review.html" rel="alternate"/><published>2023-04-11T13:15:00-05:00</published><updated>2023-04-11T13:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-04-11:/make-unreal5-2d-platformer-review.html</id><summary type="html">&lt;p&gt;A review of the Udemy course: Learn How To Make A 2D Platformer In Unreal Engine 5&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I spent a portion of late summer/early fall 2022 learning a little bit about Unreal Engine 5. I reviewed a course 
+covering &lt;a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html"&gt;designing a realistic landscape environment&lt;/a&gt;, &lt;a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html"&gt;designing a realistic cabin&lt;/a&gt;, and &lt;a href="https://andrewwegner.com/ue5-complete-beginners-course.html"&gt;building a small game&lt;/a&gt;. 
+Each of these furthered my interest in learning more about Unreal Engine and everything is capable of doing. &lt;/p&gt;
+&lt;p&gt;The next thing to learn about in my Unreal journey was blueprints. You can build an entire game without writing code, and
+I wanted to learn more about how to accomplish this. I selected &lt;a href="https://www.udemy.com/course/learn-how-to-make-a-2d-platformer-in-unreal-engine/"&gt;"Learn How To Make A 2D Platformer In Unreal Engine 5"&lt;/a&gt; by
+Uisco Dev to take this next step.&lt;/p&gt;
+&lt;p&gt;A quick spoiler before you get further down - the &lt;em&gt;content&lt;/em&gt; of this course was pretty good. The demo I have below shows 
+what I was able to accomplish following along with this course. The &lt;em&gt;presentation&lt;/em&gt; of this course was frustrating and 
+an excersice in patience to get through. &lt;/p&gt;
+&lt;p&gt;On to the review...&lt;/p&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="negative-aspects"&gt;Negative Aspects&lt;a class="headerlink" href="#negative-aspects" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This course is advertised as a 7 hour course. If you are following along, as I was, with the course on one monitor and the Unreal 
+Engine development environment on another, it's going to take much longer than 7 hours. The reason for this is how the instructor
+presents the course. It took me a month to get through the course.&lt;/p&gt;
+&lt;p&gt;It seems that the instructor is expecting students to watch the course and work in Unreal Engine at different times. There is a lot
+of statements like "connect these two nodes", or "connect this to the new node" - which on the surface are relevant. What isn't 
+noticed though, because you are rapidly clicking through the blue prints and attempting to keep up, is that the instructor has 
+moved to another node or isn't explaining which output needs to be connected to the new node. &lt;/p&gt;
+&lt;p&gt;So, the you need to pause the video, rewind a few seconds to get oriented, and rewatch. Then you go back to Unreal Engine and 
+replicate the change. But, you didn't pause the video so the instructor continued to move on while you were catching up and 
+the process repeats multiple times in a 5 minute lesson. That five minute lesson quickly becomes a 20 minute lesson because of the 
+constant shifts between the lecture and the course with few natural break points.&lt;/p&gt;
+&lt;h3 id="positive-aspects"&gt;Positive Aspects&lt;a class="headerlink" href="#positive-aspects" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;em&gt;content&lt;/em&gt; of this course is really good. I mentioned above that I wanted to learn about blue prints and this course did a great 
+job of showing how powerful blue prints are. It also provided an eye opening overview of how "simple" things are more complex under the hood. &lt;/p&gt;
+&lt;p&gt;A simple coin pick up system involve setting up a sprite, checking for collision and ensure it's the player and not an enemy, adding
+the coin to the player's count of coins and doing something if you collect enough coins. Conceptually, I knew all the happened, but 
+setting it up showed just how much goes into the small aspects. Setting up a player or an enemey that will fight and interact with 
+the environment is even more complex.&lt;/p&gt;
+&lt;p&gt;I really enjoyed learning those aspects of simple game development.&lt;/p&gt;
+&lt;p&gt;Another positive attribute of this course is the instructor interaction. The instructor has cultivated an environment of providing
+answers and explaining &lt;em&gt;how&lt;/em&gt; the answer can be found or set up in the future. The is one of the most active Q&amp;amp;A sections on Udemy
+that I've seen. This should be commended. &lt;/p&gt;
+&lt;p&gt;Lastly, the instructor has updated the course to account for differences in Unreal Versions. The course was originally developed
+for Unreal Engine 5.0. I utilize 5.1 and appreciate that there are a handful of lectures - specifically during control set up - 
+that show the differences between 5.0 and 5.1. While I was taking this course Epic released a preview version of 5.2. I imagine the
+instructor will be adding lectures as appropriate to show differences with that version in the future.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As mentioned above, the presentation of this course was frustrating. On several occassions I considered stopping the course because
+I was so frustrated with the constant pause, rewind, replay, repeat cycle. Normally, I enjoy getting through a section at a time in
+a Udemy course and on many occassions here, I could barely get through a handful of lectures before I needed to stop for the day.&lt;/p&gt;
+&lt;p&gt;However, the content of the course was very useful and I was learning. I would have appreciated some more "why" lectures but
+those existed for the areas that I felt they were most appropriate. It's the useful content and that I was learning something that
+would pull me back in after a day or two of being away from the course.&lt;/p&gt;
+&lt;p&gt;Below is my final result. Obviously, it's a bit basic, but for a month of work I'm rather proud of how it turned out. I am 
+walking away from this with more understanding of how blueprints work and that was my goal.&lt;/p&gt;
+&lt;div class="videowrapper youtube"&gt;
+&lt;iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/m64wxIoXtJo"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href="https://www.udemy.com/certificate/UC-119fc59e-c3a0-48d2-bf43-c1377c054009/"&gt;&lt;img alt="Learn How To Make A 2D Platformer In Unreal Engine 5 Completion Certificate" src="https://andrewwegner.com/images/udemy-2d-platformer-completion.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="technical"/><category term="learning"/><category term="unreal engine"/></entry><entry><title>Review of Unreal Engine 5 Beginners Guide to Building an Environment</title><link href="https://andrewwegner.com/ue5-beginners-building-environment-review.html" rel="alternate"/><published>2022-10-18T23:00:00-05:00</published><updated>2022-10-18T23:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-10-18:/ue5-beginners-building-environment-review.html</id><summary type="html">&lt;p&gt;My review of the Unreal Engine 5 Beginners Guide to Building an Environment Udemy course&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In my third adventure into learning little bit about &lt;a href="https://www.unrealengine.com/en-US/unreal-engine-5"&gt;Unreal Engine 5&lt;/a&gt;, I set out to learn a little
+bit more about modeling water. This was kind of brushed over in the &lt;a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html"&gt;first course&lt;/a&gt; I took, and not touched
+at all in the &lt;a href="https://andrewwegner.com/ue5-complete-beginners-course.html"&gt;second course&lt;/a&gt;. I was hoping to learn about real time water simulation based on a couple of the
+course content section headers.&lt;/p&gt;
+&lt;p&gt;Spoiler: That's not in this course. However, I was not disappointed in the course.&lt;/p&gt;
+&lt;p&gt;I settled on &lt;a href="https://www.udemy.com/course/unreal-engine-5-beginners-guide-building-environment/"&gt;Unreal Engine 5 Beginners Guide to Building an Environment&lt;/a&gt; by 3D Tudor.&lt;/p&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Udemy says this is an 18.5 hour course. Plan on more than that. The instructor does a great job at explaining what the goal of the
+section is, how it will be accomplished, and then showing how it's done. The end goal of the course is building a little cabin in
+the mountains along a lake. You go from nothing, to basic blocking out the cabin, to setting up the landscape. From there you build the cabin, set up foliage, adding textures and details, to setting up the water material.&lt;/p&gt;
+&lt;p&gt;I mentioned earlier that I was hoping for a real time water simulation. You don't get that here, but you do spend some time building
+and setting up a water material that can be customized extensively. There are lessons on setting up a waterfall, building and animating birds
+in the background, and adding fireflies. Time is spent building a fire pit and simulating the fire and smoke. Finally it ends with
+setting up a camera and rendering the scene.&lt;/p&gt;
+&lt;p&gt;Overall, this course covers a LOT and the instructor takes the time to explain what is happening and setting up the course very logically.
+The time spent going through the entire workflow is helpful to see how to go from an empty grey box, to a very nice looking cabin.&lt;/p&gt;
+&lt;p&gt;Plan on spending more than the allocated time in several lessons. Multiple times in the course, I found myself just playing with how
+the scene looked. This became my painting canvas. The end goal was a cabin by the lake, but it wasn't to be identical to the
+instructors (and mine is not). I found knowledge provided was wonderful to spark new ideas in how I could make the scene my own.&lt;/p&gt;
+&lt;h2 id="future-learning-goal"&gt;Future learning Goal&lt;a class="headerlink" href="#future-learning-goal" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I did find that I need to learn more about rendering a scene in the future. My initial output was grainy. It looked compressed and I was
+a little saddened to see that environment that I spent so much time in look so...2005 in how it was output. I did manage to make it a little
+better. This is a three camera clip of my result.&lt;/p&gt;
+&lt;div class="videowrapper youtube"&gt;
+&lt;iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/l4i1V2OMnUs"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;The first 20 seconds is just a static shot from the side of the cabin. This shows off the fire pit, the background birds, fireflies
+and waterfall as well as the nice lighting from the sky. The other 40 seconds are split to show a few different areas in a quick flyby.
+I did this on my own because I wanted more than just a static shot.&lt;/p&gt;
+&lt;h3 id="high-quality-renders"&gt;High quality renders&lt;a class="headerlink" href="#high-quality-renders" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One thing I did find is that by default, Unreal Engine renders with compression. I tried turning that off to see the results. I quickly learned
+that a 20 second clip will reach almost 4.5GB of storage space. I'm still new at this...but ouch. That's a lot of space for a longer cinematic.
+I'm not sure how to get a super high quality without that much space though.&lt;/p&gt;
+&lt;p&gt;I also couldn't figure out how to render it as a 4K video, instead of 1080p.&lt;/p&gt;
+&lt;p&gt;The first clip in high quality (1080p):&lt;/p&gt;
+&lt;div class="videowrapper youtube"&gt;
+&lt;iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/myBTHdU694c"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;I'm happy with this one. Everything looks good. Even those birds. I learned during this course that I do NOT have the skill set of 3D sculpt.
+However, that's ok. Those birds are in the background. The animation on the wings works perfectly and they look like they belong.&lt;/p&gt;
+&lt;p&gt;The next clip is flying from the side, over the island that I put in the lake to break up the water. In this shot you get a better look at the
+waterfalls in the distance, the chance to see all four sides of the house and some more details on the roof and dock. If you look closely
+around the 12 second mark you can also see some floating rocks. This looks like some foliage that is "touching" the landscaping - in the very
+back - and didn't stay attached the the side of the landscape going into the water.&lt;/p&gt;
+&lt;div class="videowrapper youtube"&gt;
+&lt;iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/uvEKQTpy32o"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;Finally the last clip in high quality is a fly over the lake. It starts by getting a good look at the waterfall (and some more floating rocks). It then flies through the fireflies crossing the river, and gives another look at the cabin and firepit. Finally it pulls back along the river to give a wide shot of the entire scene. A few things to point out - around the 14 second mark, you can see the mountain in the background floating above the landscape. I should have caught that, but I was more focused on keeping the cabin in the shot that I let the camera go to high and you can see a bit of level design that wasn't meant to be shown. Around the 16 second mark, as the camera pulls back, you can see the water texture start to change. I'm not sure what is causing that, but my guess is because of the lighting angles. I don't know how to fix it though.&lt;/p&gt;
+&lt;div class="videowrapper youtube"&gt;
+&lt;iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/4x7yg7FSAUA"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I really liked this course. I went into it hoping to learn some water simulation, and instead learned about a whole lot more. I also made a
+pretty good water material.&lt;/p&gt;
+&lt;p&gt;I found the course to be well paced, excellently explained, and almost like an art class at times. The instructor taught you the techniques
+you should use to build the end result but didn't want you to copy. You made it your own.&lt;/p&gt;
+&lt;p&gt;If you have the time to spare (one of the downsides to this course is the length), as a beginner, you'll learn a lot. &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ude.my/UC-c877a178-0922-4c1b-9ae2-d77295704107"&gt;&lt;img alt="Unreal Engine 5: The Complete Beginner's Course" src="https://andrewwegner.com/images/UC-ue5-beginner-environment-course.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="technical"/><category term="learning"/><category term="unreal engine"/></entry><entry><title>Review of Unreal Engine 5: The Complete Beginner's Course</title><link href="https://andrewwegner.com/ue5-complete-beginners-course.html" rel="alternate"/><published>2022-10-03T10:00:00-05:00</published><updated>2022-10-03T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-10-03:/ue5-complete-beginners-course.html</id><summary type="html">&lt;p&gt;My review of the Unreal Engine 5: The Complete Beginner's Course Udemy course&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Continuing on my journey to learn a little bit about &lt;a href="https://www.unrealengine.com/en-US/unreal-engine-5"&gt;Unreal Engine 5&lt;/a&gt;, I turned to Udemy again for a
+course I could take that would help to learn some more.&lt;/p&gt;
+&lt;p&gt;I settled on &lt;a href="https://www.udemy.com/course/unreal-engine-5-the-complete-beginners-course/"&gt;Unreal Engine 5: The Complete Beginner's Course&lt;/a&gt; by David Nixon. I wanted to learn more than
+landscaping (like I did in the &lt;a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html"&gt;last course&lt;/a&gt;). This was a ten hour course and covered much more of Unreal
+Engine.&lt;/p&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The end goal of the course was to create a very basic game. This would demonstrate building a level, adding
+materials, enemies, puzzles, victory conditions, and more. To me, this course was really two courses mashed into
+one.&lt;/p&gt;
+&lt;h3 id="course-one-overview"&gt;Course One - Overview&lt;a class="headerlink" href="#course-one-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The first part of the course and the majority of the content, was the practical overview of how everything works in
+Unreal Engine. The instructor went over individual sections - designing a level, setting up the player, collisions, audio and
+most importantly, blue prints.&lt;/p&gt;
+&lt;p&gt;These sections of the course were detailed and demonstrated how various settings would impact the overall project. Additionally,
+the instructor injected just enough (bad) puns to keep the content from getting boring. This portion of the course I found very useful.&lt;/p&gt;
+&lt;h3 id="course-two-the-tutorials"&gt;Course Two - The Tutorials&lt;a class="headerlink" href="#course-two-the-tutorials" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The other part of the course was the hands on tutorials. At the start of the course, this is what I was looking forward to the most. Unfortunately,
+this is where I felt the course fell flat. The tutorials did their job and my video below demonstrates it was effective - I have a completed game
+(and I was cool to the kids for the minute and half it took them to beat it).&lt;/p&gt;
+&lt;p&gt;However, the tutorials are rushed. On the better laid out ones, its obvious that the voice over was recorded after the video because the vocal instructions
+get 2-3 steps ahead of what the video is showing. This makes following along difficult when these are literally just "click here, change this value"
+rapid fire instructions.&lt;/p&gt;
+&lt;p&gt;Additionally, many of the instructions provided are to set exact object dimensions or locations, with no explaination of why or how these were found.
+The end result is a project that works...but I am left wondering &lt;em&gt;how&lt;/em&gt; certain dimensions were found. Was this done via guess and check? Did the
+instructor do fancy math to figure out where to place walls? Is there a systematic way that these could have been placed?&lt;/p&gt;
+&lt;p&gt;Unfortunately, I don't know the answer to those questions. Instead, to follow along with the rushed tutorials, I typed in the same numbers as the instructor
+and have literally the same project as they do because of it.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course was better than the previous one, but I still feel like it could have been so much better. The overview portions of the course were
+really good. Unfortunately, they didn't translate as well into the tutorial lectures. While the tutorials accomplished the goal of building a
+simple game, they left out so much content that would be useful to know. The tutorials moved quickly and felt more like checking off boxes to
+make a game instead of designing, debugging, or even just providing a little explaination on how or why certain decisions were made.&lt;/p&gt;
+&lt;p&gt;I recommend this course for the overviews provided. If you know going into it that the tutorials will get you the game I have below, without a lot
+of the design decisions behind it, then all the better. However, don't take this just for the tutorials. They are quick and lack context on why
+certain things are being done.&lt;/p&gt;
+&lt;p&gt;My game:&lt;/p&gt;
+&lt;div class="videowrapper youtube"&gt;
+&lt;iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/8_gXkDKlYIo"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href="https://ude.my/UC-b0f6acd8-5f68-4f67-a64d-30bd1faee7da"&gt;&lt;img alt="Unreal Engine 5: The Complete Beginner's Course" src="https://andrewwegner.com/images/UC-ue5-complete-beginners-course.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="technical"/><category term="learning"/><category term="unreal engine"/></entry><entry><title>Review of Unreal Engine 5 - Realistic Environment Design for Beginners course</title><link href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html" rel="alternate"/><published>2022-09-20T11:45:00-05:00</published><updated>2022-09-20T11:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-09-20:/ue5-realistic-environment-design-beginner.html</id><summary type="html">&lt;p&gt;My review of the Unreal Engine 5 - Realistic Environment Design for Beginners Udemy course&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I have an idea for a game in my head. I've had it for a while, but I don't know anything about video game design. 
+&lt;a href="https://www.unrealengine.com/en-US/unreal-engine-5"&gt;Unreal Engine 5&lt;/a&gt; came out in April 2022. The demo looked amazing. The thought of my game continues to 
+pop in and out of my brain over time. With my current &lt;a href="https://andrewwegner.com/looking-for-new-role.html"&gt;free time&lt;/a&gt;, I decided to learn a little bit about 
+how Unreal Engine works.&lt;/p&gt;
+&lt;p&gt;I turned to &lt;a href="https://www.udemy.com/course/unreal-engine-5-outdoor-level-design/"&gt;Unreal Engine 5 - Realistic Environment Design for Beginners&lt;/a&gt;, by Gavin Eisenbeisz on Udemy. My goal
+was to get a very basic understanding of how the tool worked and decide if I'd continue forward. I knew going into this
+that a 5 hour course wasn't going to be enough to learn everything of Unreal Engine, but hopefully it'd be enough to 
+determine if I should learn more.&lt;/p&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I am conflicted in how to properly evaluate this course. I have several complaints about the course (below), but 
+it did meet my goal of getting me a basic understanding of how an aspect of the tool worked and I do want to continue 
+learning how to use Unreal Engine.&lt;/p&gt;
+&lt;p&gt;But first, my concerns...&lt;/p&gt;
+&lt;h3 id="version"&gt;Version&lt;a class="headerlink" href="#version" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The course was last updated in June of 2021. I mentioned about that Unreal Engine 5 came out in April 2022. The instructor is 
+using an early access edition of Unreal Engine 5. This means the UI is slightly different, a few bugs exist - namely landscape material
+blend is black on the non-early access version of Unreal Engine 5, and a few options have been merged or moved in the full release. &lt;/p&gt;
+&lt;p&gt;This version difference isn't a deal breaker, but it does mean that quick clicks the instructor does on video don't align to the UI currently
+in use on version 5.0.3. They are in different locations or are renamed or simply merged into another option that isn't clear.&lt;/p&gt;
+&lt;h3 id="instructor-response"&gt;Instructor response&lt;a class="headerlink" href="#instructor-response" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The instructor has not been responsive to students in the course. The landscape material bug has multiple discussion threads on the 
+course Q&amp;amp;A section, but no response from the instructor. Students are clearly frustrated at the lack of response, and some have given up the 
+course because they assume this bug prevents them from moving forward. Buried in the comments is a note from another student that this does 
+not impact other areas AND the material will be useable when painting the landscape. Again, frustration.&lt;/p&gt;
+&lt;p&gt;There was plenty of good in the course though:&lt;/p&gt;
+&lt;h3 id="landscape-tooling"&gt;Landscape tooling&lt;a class="headerlink" href="#landscape-tooling" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;With a title of "Realistic Environment Design", it's not surprising that the course focused on building a landscape. Covering sculpting, 
+texturing, decorating and a few small environment things like collisions and basic lighting, I was able to create an island. It's not going 
+to win any awards for level design, but for a first time, I'm proud of it.&lt;/p&gt;
+&lt;p&gt;Plus, the kids now was to add "all the things" to my island.&lt;/p&gt;
+&lt;p&gt;Forgive the lack of true cinematics, and only 6 seconds of video...this wasn't covered in the course and I probably found an old way to do this 
+manually, but here is my island.&lt;/p&gt;
+&lt;div class="videowrapper youtube"&gt;
+&lt;iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/EpP63rH-NZI"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I would not recommend Unreal Engine 5 - Realistic Environment Design for Beginners as your first introduction to Unreal Engine 5. The course is 
+a year out of date and running on an early access version of the engine. However, if you know the tooling a little bit (or are willing to pause and
+Google a quick how to), the overview of the landscaping tools were useful for an introduction. &lt;/p&gt;
+&lt;p&gt;This course has increased my desire to learn a bit more about the engine. I don't think I'm close to starting my game, but I am looking forward
+to learning more about what this tool can do - and how I'd be able to take advantage of it.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ude.my/UC-7509d344-53ea-496f-af00-99955986fa85"&gt;&lt;img alt="Unreal Engine 5 - Realistic Environment Design for Beginners" src="https://andrewwegner.com/images/udemy-ue5-realistic-environment-for-beginners.jpg"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="technical"/><category term="learning"/><category term="unreal engine"/></entry></feed>

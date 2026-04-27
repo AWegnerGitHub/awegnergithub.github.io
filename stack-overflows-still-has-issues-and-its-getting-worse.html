@@ -1,530 +1,58 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="A follow up from a post I made a year and a half ago. How&#39;s Stack Overflow doing (from the perspective of a long time community member and moderator)?" />
-<meta name="keywords" content="Stack Exchange">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="Stack Overflow still has issues and it&#39;s getting worse"/>
-  <meta property="og:description" content="A follow up from a post I made a year and a half ago. How&#39;s Stack Overflow doing (from the perspective of a long time community member and moderator)?"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2019-03-29 10:34:00-05:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Side Activities"/>
-  <meta property="article:tag" content="Stack Exchange"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>Stack Overflow still has issues and it&#39;s getting worse  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#last-time-on-this-blog">Last time on this blog</a></li>
-<li><a href="#documentation">Documentation</a><ul>
-<li><a href="#what-went-wrong">What went wrong?</a></li>
-</ul>
-</li>
-<li><a href="#teams">Teams</a></li>
-<li><a href="#meta-hatred">Meta hatred</a><ul>
-<li><a href="#the-welcoming">The Welcoming</a></li>
-<li><a href="#removal-from-network-questions-list">Removal from Network Questions list</a></li>
-</ul>
-</li>
-<li><a href="#communication">Communication</a></li>
-<li><a href="#what-can-be-done">What can be done?</a></li>
-<li><a href="#where-to-from-here">Where to from here?</a></li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Stack Overflow still has issues and it&#39;s getting worse</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/side-activities.html",
-      "name": "Side Activities"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html",
-      "name": "https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="stack-overflows-still-has-issues-and-its-getting-worse">Stack Overflow still has issues and it's getting worse</h1>
-    <p>
-      Posted on Fri 29 March 2019 in <a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
-
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/stack-exchange.html">Stack Exchange</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="last-time-on-this-blog">Last time on this blog<a class="headerlink" href="#last-time-on-this-blog" title="Permanent link">¶</a></h2>
-<p>A little over a year and a half ago, I wrote an article about <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">Stack Overflow's problems</a>
-from my perspective as an experienced user. This was before I was <a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html">elected as a moderator</a> on
-Stack Overflow. I ended the previous article with this:</p>
-<blockquote>
-<p>I continue to invest my time and effort into the community, but even as an active user who
-really wants the company and community to succeed, it's getting harder and harder to ignore that
-those of us that have been around for years are not being listened to any more. We're being treated as the
-grumpy old person that grumbles about the way things used to be. Our experiences on the site are brushed aside as
-being unhelpful to new users. That completely ignores that fact that we are still trying to reach
-the goal on which Stack Overflow was created:
-<a href="https://stackoverflow.com/tour">"With your help, we're working together to build a library of detailed answers to every question about programming."</a>
-To do this, we need high quality questions and answers so that we can actually provide help to all users. I
-think <em>this</em> is the biggest challenge that Stack Overflow is going to face in the next 18 months.</p>
-</blockquote>
-<p>So, what's happened in the last 18 months?</p>
-<h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">¶</a></h2>
-<p>After years of development (being announced in 2015), <a href="https://meta.stackoverflow.com/q/354217/189134">Documentation was shuttered</a> in August of 2017. Stack Overflow
-wasn't drawing users to the Documentation feature. Their own metrics and analysis showed that fixing Documentation to
-be useful to users - both new and experienced - would require a significantly larger team.</p>
-<h3 id="what-went-wrong">What went wrong?<a class="headerlink" href="#what-went-wrong" title="Permanent link">¶</a></h3>
-<p>In my opinion, and as I <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">mentioned</a> in 2017, Stack Overflow has ignored it's user base. This is going to be a recurring
-theme in this post. For years, users provided feedback on meta, in dedicated user experience interviews and in chatrooms.
-This resulted in superficial changes and major rewrites. Yet, complaints still existed. These complaints turned off the
-experienced users that could produce the high quality documentation. Instead, Documentation became a reputation farming operation
-in all but name. This turned off even more users.</p>
-<p>By Stack Overflow's own admission when sun setting the feature, Documentation was built to solve a problem that wasn't really a
-problem.</p>
-<blockquote>
-<p>Finally, our research showed that while a lot of developers were dissatisfied, the current state of programming documentation is
-not universally broken the way Q&amp;A was when Stack Overflow started. In particular, we heard over and over that Stack Overflow
-has become de facto documentation for many technologies. As many of you pointed out, Stack Overflow is already good enough
-at providing documentation of obscure features. Even when considering just the company's mission of helping programmers
-“learn, share their knowledge and build their careers”, Documentation isn't the most efficient use of resources.</p>
-</blockquote>
-<p>Two years of major development, focusing on a problem that the community had not been enthusiastic about, and intentionally ignoring
-other feature requests and other improvements angered a lot of users.</p>
-<h2 id="teams">Teams<a class="headerlink" href="#teams" title="Permanent link">¶</a></h2>
-<p>In my <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">last post</a>, I mentioned that Teams had been launched and shut down in less than a year. Teams is back! At least the name is.
-Initially launched as <a href="https://meta.stackoverflow.com/q/352065/189134">"Channels"</a>, and later re-branded to "Stack Overflow for Teams", this is a money generating route for Stack Overflow.
-It uses the <a href="https://stackoverflow.com/teams">old URL</a>.</p>
-<p>Now, generating money is good. It's good for both the community and the company. Without money, the company can't survive. Without the
-company there is not Stack Overflow or community. My problem isn't with money generation. My problem is that, once again, community feature
-requests for higher quality and moderation tooling to cultivate that higher quality was ignored.</p>
-<p>By all accounts, Teams seems to be doing well and bringing in revenue. I am hopeful that this translates into development time to
-build out the features the community still clamors for.</p>
-<h2 id="meta-hatred">Meta hatred<a class="headerlink" href="#meta-hatred" title="Permanent link">¶</a></h2>
-<p>Meta. <a href="https://blog.codinghorror.com/meta-is-murder/">It's murder.</a> Until it's not. Meta is how Stack Overflow communicates with the community. It's how the community
-communicates with itself. It's where governing principals/thoughts/guidance/sticky notes comes from. In short, meta is a
-large part of how Stack Overflow the company and Stack Overflow the community talks with one another. Decisions are questioned here,
-announcements are posted here, and little by little the site is made better.</p>
-<p>That is, until nothing happens. Stack Overflow's <a href="https://meta.stackexchange.com/a/19514/186281">response time has become a meme</a>.</p>
-<p>"6 to 8 weeks" is a joke. It's used to indicate that something isn't going to be built or changed. It's so prevalent that this
-comment crops up over and over on feature request posts. It's used by the community to say that nothing is going to happen.</p>
-<p>When something does happen, it's a "big deal". There have been a few examples in the past year. Unfortunately, these changes happened
-due to feedback from Twitter, not Meta. For years we've been told to post on Meta. For years we've been told that Meta is where
-the company will engage with us. Then two massive changes happened.</p>
-<h3 id="the-welcoming">The Welcoming<a class="headerlink" href="#the-welcoming" title="Permanent link">¶</a></h3>
-<p>The first change was to make Stack Overflow more <a href="https://stackoverflow.blog/2018/04/26/stack-overflow-isnt-very-welcoming-its-time-for-that-to-change/">"welcoming"</a>. This isn't bad. As both an experienced user and as a
-moderator, I've seen my fair share of users not being welcomed. I've seen hostility to poorly asked questions.</p>
-<p>Unfortunately, this whole blog post and resulting meta-drama <em>appears</em> to have cropped up because of a post on Twitter from
-someone who felt unwelcome. That's fair. I believe they felt that way. However, from my point of view, Stack Overflow ignored
-their own users (some of whom had been saying the exact same thing for years) because it was suddenly posted on Twitter where
-the entire world could comment on things that may have been out of context. Instead of listening to their own users and the
-experiences those users had, Stack Overflow went into damage control mode and rapidly <a href="https://stackoverflow.blog/2018/06/21/rolling-out-the-welcome-wagon-june-update/">updated it's "Be Nice" policy.</a></p>
-<p>Whether this is actually what happened or not is really beside the point. Many long time users had this perception. Meta was
-ignored. User feedback was ignored. Instead, the person that could shout the loudest and had made the most noise appeared to
-be the one that was listened to.</p>
-<p>A few months after the welcoming blog was posted and a month after the update, another post was made about how the company
-was attempting to <a href="https://stackoverflow.blog/2018/07/10/welcome-wagon-classifying-comments-on-stack-overflow">classify comments</a>. The idea behind this was good, the execution of the blog post was not. In the initial
-version of the post, exact comments were posted to show "bad comments". I disagreed that a few of them were rude. I'd have removed them
-as no longer needed without a problem. Honestly, I'd probably have removed them as rude too, because comments don't need to stick around
-and it's easier to accept the rude flag than it is to decline and manually delete.</p>
-<p>My problem was that the exact comment content was posted as a "wall of shame". Then, despite only employees being involved, none
-of these comments were removed or even flagged for moderators to remove. In short, it really was a "wall of shame".</p>
-<p>I believe I covered my disappointment in both this failure and in the technical aspect in my <a href="https://stackoverflow.blog/2018/07/10/welcome-wagon-classifying-comments-on-stack-overflow/#comment-29001">comment</a> on the blog.</p>
-<blockquote>
-<p>I am a huge fan of automatically removing unwanted comments. I did so for several years. That said, I’m disappointed in how
-this is playing out here. I’m disappointed on both a community level and a technical level.</p>
-<p>On the community level, I am very disappointed that 57 Stack Exchange employees were able to evaluate bad comments, determine
-they were bad enough to put in the hall of shame post here, and then do nothing about them. It took users less than 15 minutes
-to find those comments on Stack Overflow and identify the “rude” users. Users who are rude because they asked why a certain
-tag was on a question. Did none of your 57 users have a diamond where you could remove the comment from the site? Even if
-that’s the case, all of you have the option to flag a comment. Even that wasn't done.</p>
-<p>On a technical level, you evaluated less than 4000 comments. That is a few hours worth of comments on a single week
-day. (source: http://data.stackexchange.com/stackoverflow/query/872382) Is that really representative? How did you determine
-which comments to use in your evaluation?</p>
-</blockquote>
-<p>The good news is that the comment samples were edited to be "representative" of the problem later.</p>
-<p>Welcoming users is <em>great</em>. Helping users is the purpose of the site. I fully support all of that. What I don't support is
-ignoring the feedback mechanism you've built and told everyone to use for years because someone else with a lot of Twitter
-followers put Stack Overflow in a bad light. Yes, it should be fixed and should have been fixed sooner, but the perception
-of "listen to the loudest shout" is not a good look.</p>
-<p>Which brings me to...</p>
-<h3 id="removal-from-network-questions-list">Removal from Network Questions list<a class="headerlink" href="#removal-from-network-questions-list" title="Permanent link">¶</a></h3>
-<p>In October, the entire "Twitter shouted, Stack Overflow reacted" repeated itself. This time, a user was offended (while on
-Stack Overflow) over the Hot Network Questions list for two questions on another Stack Exchange site. In under an hour,
-Stack Overflow (the company) removed that question from the hot network questions list.</p>
-<p>The community in question was shocked by the result. A community manager explained the decision on that <a href="https://interpersonal.meta.stackexchange.com/a/3335/34">site's meta</a></p>
-<blockquote>
-<p>It was the solution we chose - without consulting IPS - because it was effective and easy to implement since it would
-fix the perceived problem immediately and there was already a technical solution in place for doing it.</p>
-</blockquote>
-<p>Notice a couple things here that stand out to me:</p>
-<ul>
-<li>"perceived problem"</li>
-<li>"without consulting IPS"</li>
-</ul>
-<p>The company knee-capped an entire community and a large source of their traffic (the Hot Network Questions list) because
-of a single Twitter comment. Understandably, the community was upset.</p>
-<p>Behind the scenes was even worse. On Twitter, the original user posting their complaint was engaged by community moderators.
-It didn't go well. Then they complained about that. A Stack Overflow employee jumped into the thread with the following:</p>
-<blockquote>
-<p>If the DM trolls claimed to be moderators on any of the sites then I'd like to follow up with the community team and see about
-getting removed - they take this very seriously.</p>
-</blockquote>
-<p>Turns out that Stack Overflow doesn't value their community moderators. One employee might be misguided, but this Twitter
-reply remained active and moderators across the network clamored for an official response. A moderator reached out to the Twitter
-user in good faith and was threatened with removal by a Stack Overflow employee.</p>
-<p>One of Stack Exchange's most respected moderators posted <a href="https://medium.com/@cellio/dear-stack-overflow-we-need-to-talk-13bf3f90204f">their frustrations on Medium</a>. I highly recommend you read it. One
-of the community managers posted a <a href="https://jericson.github.io/2018/10/24/lost_trust.html">response on their own blog</a> too.</p>
-<p>The <a href="https://meta.stackexchange.com/a/317264/186281">"super-official <em>almost</em> response"</a> was posted even later. This was more than 10 days after the <a href="https://meta.stackexchange.com/q/316934/186281">original incident</a>. It
-took half a month for a first draft of a "moderator social media guidelines" post to be made in the private Stack Moderators Team.
-That post consisted of bullet points on how a moderator should behave on social media. I replied to that post with this</p>
-<blockquote>
-<p>I am underwhelmed by this response. The event that led to this post and recent discussions around Stack Exchange (and the broader
-internet) wasn't due to a moderator's bad behavior. Moderators engaged a user on Twitter following the bullets in this post, and
-yet stuff still exploded in everyone's face. From my point of view, <em>this</em> post is so far down the list of responses that I was
-hoping to see from Stack Exchange that I'm feeling insulted.</p>
-</blockquote>
-<p>I was asked to hold my judgment until the final draft was posted. That took place in December - two months after the incident. It was
-changed from "Social media guidelines" to a "community emergency process". These four bullets were provided:</p>
-<blockquote>
-<ul>
-<li>Introduce yourself and if necessary, your role as moderator of a SO/SE site.</li>
-<li>Offer to help with the situation, and be very respectful if someone declines your assistance. Sometimes, people just want to vent, and the best thing we can do to help is to give them space.</li>
-<li>Be aware of the volatile nature of online discussions; if the path to constructive discourse becomes blurred, it's often best to disengage.</li>
-<li>Keep your interactions with others, concerning SO/SE, as clear and as kind as possible. If things begin to get out of hand, please disengage and let us know about it.</li>
-</ul>
-</blockquote>
-<p>In short, do exactly what the moderator did initially on Twitter which resulted in the threat of being removed.</p>
-<h2 id="communication">Communication<a class="headerlink" href="#communication" title="Permanent link">¶</a></h2>
-<p>Stack Overflow is slowly isolating itself from the community. There have been multiple comments scattered around the network
-saying the employees don't want to engage on any meta. There are community managers that are feeling hated because of complaints
-users have made. Users are taking out their anger of being ignored on posts talking about new or unrelated features. In turn,
-the employees engage just a little bit less. Lines are being drawn. I see it as a moderator. I see it as a user. Very slowly
-the community is trusting the company less and less.</p>
-<p>Everything is becoming "us" vs. "them". There is "the company" vs. "the users". Blog posts, comments, meta discussions also appear
-to be driving a wedge between "the users" and making it "new users" vs. "established users". In the blog post announcing
-<a href="https://stackoverflow.blog/2019/03/28/the-next-ceo-of-stack-overflow/">the search for a new Stack Overflow CEO</a>, this comment was made by the current CEO:</p>
-<blockquote>
-<p>One thing I’m very concerned about, as we try to educate the next generation of developers, and, importantly, get more
-diversity and inclusiveness in that new generation, is what obstacles we’re putting up for people as they try to learn programming.
-In many ways Stack Overflow’s specific rules for what is permitted and what is not are obstacles, but an even bigger problem is
-rudeness, snark, or condescension that newcomers often see.</p>
-</blockquote>
-<p>The underlying sentiment - improving inclusiveness and diversity - is great. I'm all for that. The rest of it, though, is a dig
-at the established community in the same way that the Welcoming blog post was. Stack Overflow's high quality standards are the
-problem. It makes the community seem rude and abusive. You should stop closing those questions, stop down voting new users, and
-just be nice. It doesn't say that directly, but that's how <a href="https://meta.stackoverflow.com/q/381927/189134">existing members</a> are seeing it. Read under <a href="https://meta.stackoverflow.com/a/381935/189134">hairboat's answer</a>
-to see some of the simmering feelings of <em>high</em> reputation users.</p>
-<p>The idea of trust between users and the company is brought up in the comments. This is just another example, in a long list,
-where the community and the company are butting heads. Something happens that the community doesn't like - reacting to incidents off
-site, focusing on features no one asked for, not explaining why these new features <em>need</em> to be done, comments are made
-by one side that makes the other seem unflattering - and another round of not trusting the company starts again.</p>
-<p>The company has had a decade of experience with this community. It's grown, shrunk, and grown again. For most of that time, there has
-been fairly open communication and trust. I am afraid that trust has eroded over the last few years and can't be recovered.</p>
-<h2 id="what-can-be-done">What can be done?<a class="headerlink" href="#what-can-be-done" title="Permanent link">¶</a></h2>
-<p>The company wants to focus on areas that can bring in more money. In my <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">previous post</a> I quoted the President and Chief Technology Officer
-of the company.</p>
-<blockquote>
-<p>I appreciate that there are a lot of issues on Stack Overflow that need to be addressed, and maybe we haven't been
-responding to them as quickly as we should. But Stack Overflow Q&amp;A is a big, established product, most of the problems left are
-hard, and we can't let maintenance become the only thing we work on or we'll just slowly run out of money and go out of
-business. We are trying to both maintain Q&amp;A and solve new problems for developers and reach new audiences. The latter is hard,
-and maybe we'll fail on a lot of our ideas, but we're not going to stop trying. – David Fullerton May 17 at 21:10</p>
-</blockquote>
-<p>I bemoaned that this sounded that Q&amp;A was feature frozen. It's been nearly two years since that time. I can't remember a new feature that
-was introduced into Q&amp;A that helped the community maintain high quality posts. There was a new wizard introduced for new users that
-is supposed to help. A quick look at the review queue numbers on Stack Overflow shows that they are still stable at the same point it
-was two years ago.</p>
-<p>My suggestion as a user, a moderator and someone interested in see Stack Overflow remain successful, is to focus on helping to manage
-the quality of your content. Users have been asking <em>for years</em> to be able to better handle poor content. They've asked for tools (both
-system tools and moderator tools). There have been projects started, stopped, restarted, and stopped again that are supposed to
-improve quality. Community tools have been built to help deal with quality problems. <em>Use some of this!</em></p>
-<p>Stack Overflow has a data science team. Work with the community directly to help figure out ways to prevent low quality content from
-ever getting posted. Force users - all users - to post higher quality content. Work with the communities that have developed automated
-tools. Run it with larger data sets. Even if Stack Overflow has to be more conservative than the community tool, if you can prevent
-<em>some</em> of the low quality content from making it to the site you have a victory.</p>
-<p>Obviously the company can't ignore the areas that bring in revenue, but it's becoming increasingly clear that the community is
-much less forgiving than they used to be. Continued communication blunders will not help with anything.</p>
-<h2 id="where-to-from-here">Where to from here?<a class="headerlink" href="#where-to-from-here" title="Permanent link">¶</a></h2>
-<p>I ended my last post with this:</p>
-<blockquote>
-<p>I want Stack Overflow to continue to grow. I also want Stack Overflow to have high quality content. I think my experience
-and the experience of others can help build the features to accomplish this. We just need Stack Overflow to refocus on the
-Q&amp;A portion of their network again.</p>
-</blockquote>
-<p>I think that holds true today, just as it did 18 months ago. The aspect of the site that draws users in is Q&amp;A. Make it better. Make
-the content better. Give users tools to make it better. With all of this, I believe, the "welcoming" aspect will improve. Let the system
-handle the low quality stuff automatically. Eliminate the need for users to ask basic questions or remind users to post their code. Let
-the system be "the bad guy", and let users interact and <em>help</em> one another.</p>
-<p>We'll see how everything looks in 18 months. In the meantime, I'll be here, cleaning up the low quality content and prodding the
-company to provide improvements to Q&amp;A.</p>
-  </div>
-<div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/ubiquiti-home-network.html"
-    title="Upgrading the home network to use Ubiquiti products">
-    <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-  <a class="btn float-right" href="https://andrewwegner.com/software-testing-masterclass.html"
-    title="Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course">
-    Next Post <i class="fa fa-angle-right"></i>
-  </a>
-</div>
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-</article>
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stack Overflow still has issues and it&#39;s getting worse — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="A follow up from a post I made a year and a half ago. How&#39;s Stack Overflow doing (from the perspective of a long time community member and moderator)?"><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Side Activities (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="Stack Overflow still has issues and it&#39;s getting worse"><meta property="og:url" content="https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html"><meta property="og:description" content="A follow up from a post I made a year and a half ago. How&#39;s Stack Overflow doing (from the perspective of a long time community member and moderator)?"><meta property="article:published_time" content="2019-03-29T10:34:00-05:00"><meta property="article:section" content="Side Activities"><meta property="article:tag" content="Stack Exchange"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "name": "Stack Overflow still has issues and it's getting worse",
-  "headline": "Stack Overflow still has issues and it's getting worse",
-  "dateCreated": "2019-03-29 10:34:00-05:00",
-  "datePublished": "2019-03-29 10:34:00-05:00",
-  "dateModified": "",
-  "copyrightYear": "2019",
+  "name": "Stack Overflow still has issues and it&#39;s getting worse",
+  "headline": "Stack Overflow still has issues and it&#39;s getting worse",
+  "dateCreated": "2019-03-29T10:34:00-05:00",
+  "datePublished": "2019-03-29T10:34:00-05:00",  "dateModified": "2019-03-29T10:34:00-05:00",  "copyrightYear": "2019",
   "copyrightHolder": {
     "@type": "Person",
-    "name": "Andy Wegner",
+    "name": "Andrew Wegner",
     "url": "https://andrewwegner.com"
   },
   "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
   },
   "publisher": {
     "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html",
-  "description": "A follow up from a post I made a year and a half ago. How's Stack Overflow doing (from the perspective of a long time community member and moderator)?",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html",
+  "description": "A follow up from a post I made a year and a half ago. How&#39;s Stack Overflow doing (from the perspective of a long time community member and moderator)?",
   "mainEntityOfPage": "True",
   "articleSection": "Side Activities"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+}</script></head><body data-page-type="article" data-page-slug="stack-overflows-still-has-issues-and-its-getting-worse" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a></nav><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/side-activities.html",
+        "name": "Side Activities"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Side Activities</span></div><h1 class="article-title">Stack Overflow still has issues and it's getting worse</h1><p class="article-summary">A follow up from a post I made a year and a half ago. How's Stack Overflow doing (from the perspective of a long time community member and moderator)?</p><div class="article-meta"><time datetime="2019-03-29T10:34:00-05:00" class="article-meta-date">Fri 29 March 2019</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/stack-exchange.html" class="tag">#Stack Exchange</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#last-time-on-this-blog">Last time on this blog</a></li><li><a href="#documentation">Documentation</a><ul><li><a href="#what-went-wrong">What went wrong?</a></li></ul></li><li><a href="#teams">Teams</a></li><li><a href="#meta-hatred">Meta hatred</a><ul><li><a href="#the-welcoming">The Welcoming</a></li><li><a href="#removal-from-network-questions-list">Removal from Network Questions list</a></li></ul></li><li><a href="#communication">Communication</a></li><li><a href="#what-can-be-done">What can be done?</a></li><li><a href="#where-to-from-here">Where to from here?</a></li></ul></div></div><div class="prose"><h2 id="last-time-on-this-blog">Last time on this blog<a class="headerlink" href="#last-time-on-this-blog" title="Permanent link">¶</a></h2><p>A little over a year and a half ago, I wrote an article about <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">Stack Overflow's problems</a> from my perspective as an experienced user. This was before I was <a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html">elected as a moderator</a> on Stack Overflow. I ended the previous article with this:</p><blockquote><p>I continue to invest my time and effort into the community, but even as an active user who really wants the company and community to succeed, it's getting harder and harder to ignore that those of us that have been around for years are not being listened to any more. We're being treated as the grumpy old person that grumbles about the way things used to be. Our experiences on the site are brushed aside as being unhelpful to new users. That completely ignores that fact that we are still trying to reach the goal on which Stack Overflow was created: <a href="https://stackoverflow.com/tour">"With your help, we're working together to build a library of detailed answers to every question about programming."</a> To do this, we need high quality questions and answers so that we can actually provide help to all users. I think <em>this</em> is the biggest challenge that Stack Overflow is going to face in the next 18 months.</p></blockquote><p>So, what's happened in the last 18 months?</p><h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">¶</a></h2><p>After years of development (being announced in 2015), <a href="https://meta.stackoverflow.com/q/354217/189134">Documentation was shuttered</a> in August of 2017. Stack Overflow wasn't drawing users to the Documentation feature. Their own metrics and analysis showed that fixing Documentation to be useful to users - both new and experienced - would require a significantly larger team.</p><h3 id="what-went-wrong">What went wrong?<a class="headerlink" href="#what-went-wrong" title="Permanent link">¶</a></h3><p>In my opinion, and as I <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">mentioned</a> in 2017, Stack Overflow has ignored it's user base. This is going to be a recurring theme in this post. For years, users provided feedback on meta, in dedicated user experience interviews and in chatrooms. This resulted in superficial changes and major rewrites. Yet, complaints still existed. These complaints turned off the experienced users that could produce the high quality documentation. Instead, Documentation became a reputation farming operation in all but name. This turned off even more users.</p><p>By Stack Overflow's own admission when sun setting the feature, Documentation was built to solve a problem that wasn't really a problem.</p><blockquote><p>Finally, our research showed that while a lot of developers were dissatisfied, the current state of programming documentation is not universally broken the way Q&amp;A was when Stack Overflow started. In particular, we heard over and over that Stack Overflow has become de facto documentation for many technologies. As many of you pointed out, Stack Overflow is already good enough at providing documentation of obscure features. Even when considering just the company's mission of helping programmers “learn, share their knowledge and build their careers”, Documentation isn't the most efficient use of resources.</p></blockquote><p>Two years of major development, focusing on a problem that the community had not been enthusiastic about, and intentionally ignoring other feature requests and other improvements angered a lot of users.</p><h2 id="teams">Teams<a class="headerlink" href="#teams" title="Permanent link">¶</a></h2><p>In my <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">last post</a>, I mentioned that Teams had been launched and shut down in less than a year. Teams is back! At least the name is. Initially launched as <a href="https://meta.stackoverflow.com/q/352065/189134">"Channels"</a>, and later re-branded to "Stack Overflow for Teams", this is a money generating route for Stack Overflow. It uses the <a href="https://stackoverflow.com/teams">old URL</a>.</p><p>Now, generating money is good. It's good for both the community and the company. Without money, the company can't survive. Without the company there is not Stack Overflow or community. My problem isn't with money generation. My problem is that, once again, community feature requests for higher quality and moderation tooling to cultivate that higher quality was ignored.</p><p>By all accounts, Teams seems to be doing well and bringing in revenue. I am hopeful that this translates into development time to build out the features the community still clamors for.</p><h2 id="meta-hatred">Meta hatred<a class="headerlink" href="#meta-hatred" title="Permanent link">¶</a></h2><p>Meta. <a href="https://blog.codinghorror.com/meta-is-murder/">It's murder.</a> Until it's not. Meta is how Stack Overflow communicates with the community. It's how the community communicates with itself. It's where governing principals/thoughts/guidance/sticky notes comes from. In short, meta is a large part of how Stack Overflow the company and Stack Overflow the community talks with one another. Decisions are questioned here, announcements are posted here, and little by little the site is made better.</p><p>That is, until nothing happens. Stack Overflow's <a href="https://meta.stackexchange.com/a/19514/186281">response time has become a meme</a>.</p><p>"6 to 8 weeks" is a joke. It's used to indicate that something isn't going to be built or changed. It's so prevalent that this comment crops up over and over on feature request posts. It's used by the community to say that nothing is going to happen.</p><p>When something does happen, it's a "big deal". There have been a few examples in the past year. Unfortunately, these changes happened due to feedback from Twitter, not Meta. For years we've been told to post on Meta. For years we've been told that Meta is where the company will engage with us. Then two massive changes happened.</p><h3 id="the-welcoming">The Welcoming<a class="headerlink" href="#the-welcoming" title="Permanent link">¶</a></h3><p>The first change was to make Stack Overflow more <a href="https://stackoverflow.blog/2018/04/26/stack-overflow-isnt-very-welcoming-its-time-for-that-to-change/">"welcoming"</a>. This isn't bad. As both an experienced user and as a moderator, I've seen my fair share of users not being welcomed. I've seen hostility to poorly asked questions.</p><p>Unfortunately, this whole blog post and resulting meta-drama <em>appears</em> to have cropped up because of a post on Twitter from someone who felt unwelcome. That's fair. I believe they felt that way. However, from my point of view, Stack Overflow ignored their own users (some of whom had been saying the exact same thing for years) because it was suddenly posted on Twitter where the entire world could comment on things that may have been out of context. Instead of listening to their own users and the experiences those users had, Stack Overflow went into damage control mode and rapidly <a href="https://stackoverflow.blog/2018/06/21/rolling-out-the-welcome-wagon-june-update/">updated it's "Be Nice" policy.</a></p><p>Whether this is actually what happened or not is really beside the point. Many long time users had this perception. Meta was ignored. User feedback was ignored. Instead, the person that could shout the loudest and had made the most noise appeared to be the one that was listened to.</p><p>A few months after the welcoming blog was posted and a month after the update, another post was made about how the company was attempting to <a href="https://stackoverflow.blog/2018/07/10/welcome-wagon-classifying-comments-on-stack-overflow">classify comments</a>. The idea behind this was good, the execution of the blog post was not. In the initial version of the post, exact comments were posted to show "bad comments". I disagreed that a few of them were rude. I'd have removed them as no longer needed without a problem. Honestly, I'd probably have removed them as rude too, because comments don't need to stick around and it's easier to accept the rude flag than it is to decline and manually delete.</p><p>My problem was that the exact comment content was posted as a "wall of shame". Then, despite only employees being involved, none of these comments were removed or even flagged for moderators to remove. In short, it really was a "wall of shame".</p><p>I believe I covered my disappointment in both this failure and in the technical aspect in my <a href="https://stackoverflow.blog/2018/07/10/welcome-wagon-classifying-comments-on-stack-overflow/#comment-29001">comment</a> on the blog.</p><blockquote><p>I am a huge fan of automatically removing unwanted comments. I did so for several years. That said, I’m disappointed in how this is playing out here. I’m disappointed on both a community level and a technical level.</p><p>On the community level, I am very disappointed that 57 Stack Exchange employees were able to evaluate bad comments, determine they were bad enough to put in the hall of shame post here, and then do nothing about them. It took users less than 15 minutes to find those comments on Stack Overflow and identify the “rude” users. Users who are rude because they asked why a certain tag was on a question. Did none of your 57 users have a diamond where you could remove the comment from the site? Even if that’s the case, all of you have the option to flag a comment. Even that wasn't done.</p><p>On a technical level, you evaluated less than 4000 comments. That is a few hours worth of comments on a single week day. (source: http://data.stackexchange.com/stackoverflow/query/872382) Is that really representative? How did you determine which comments to use in your evaluation?</p></blockquote><p>The good news is that the comment samples were edited to be "representative" of the problem later.</p><p>Welcoming users is <em>great</em>. Helping users is the purpose of the site. I fully support all of that. What I don't support is ignoring the feedback mechanism you've built and told everyone to use for years because someone else with a lot of Twitter followers put Stack Overflow in a bad light. Yes, it should be fixed and should have been fixed sooner, but the perception of "listen to the loudest shout" is not a good look.</p><p>Which brings me to...</p><h3 id="removal-from-network-questions-list">Removal from Network Questions list<a class="headerlink" href="#removal-from-network-questions-list" title="Permanent link">¶</a></h3><p>In October, the entire "Twitter shouted, Stack Overflow reacted" repeated itself. This time, a user was offended (while on Stack Overflow) over the Hot Network Questions list for two questions on another Stack Exchange site. In under an hour, Stack Overflow (the company) removed that question from the hot network questions list.</p><p>The community in question was shocked by the result. A community manager explained the decision on that <a href="https://interpersonal.meta.stackexchange.com/a/3335/34">site's meta</a></p><blockquote><p>It was the solution we chose - without consulting IPS - because it was effective and easy to implement since it would fix the perceived problem immediately and there was already a technical solution in place for doing it.</p></blockquote><p>Notice a couple things here that stand out to me:</p><ul><li>"perceived problem"</li><li>"without consulting IPS"</li></ul><p>The company knee-capped an entire community and a large source of their traffic (the Hot Network Questions list) because of a single Twitter comment. Understandably, the community was upset.</p><p>Behind the scenes was even worse. On Twitter, the original user posting their complaint was engaged by community moderators. It didn't go well. Then they complained about that. A Stack Overflow employee jumped into the thread with the following:</p><blockquote><p>If the DM trolls claimed to be moderators on any of the sites then I'd like to follow up with the community team and see about getting removed - they take this very seriously.</p></blockquote><p>Turns out that Stack Overflow doesn't value their community moderators. One employee might be misguided, but this Twitter reply remained active and moderators across the network clamored for an official response. A moderator reached out to the Twitter user in good faith and was threatened with removal by a Stack Overflow employee.</p><p>One of Stack Exchange's most respected moderators posted <a href="https://medium.com/@cellio/dear-stack-overflow-we-need-to-talk-13bf3f90204f">their frustrations on Medium</a>. I highly recommend you read it. One of the community managers posted a <a href="https://jericson.github.io/2018/10/24/lost_trust.html">response on their own blog</a> too.</p><p>The <a href="https://meta.stackexchange.com/a/317264/186281">"super-official <em>almost</em> response"</a> was posted even later. This was more than 10 days after the <a href="https://meta.stackexchange.com/q/316934/186281">original incident</a>. It took half a month for a first draft of a "moderator social media guidelines" post to be made in the private Stack Moderators Team. That post consisted of bullet points on how a moderator should behave on social media. I replied to that post with this</p><blockquote><p>I am underwhelmed by this response. The event that led to this post and recent discussions around Stack Exchange (and the broader internet) wasn't due to a moderator's bad behavior. Moderators engaged a user on Twitter following the bullets in this post, and yet stuff still exploded in everyone's face. From my point of view, <em>this</em> post is so far down the list of responses that I was hoping to see from Stack Exchange that I'm feeling insulted.</p></blockquote><p>I was asked to hold my judgment until the final draft was posted. That took place in December - two months after the incident. It was changed from "Social media guidelines" to a "community emergency process". These four bullets were provided:</p><blockquote><ul><li>Introduce yourself and if necessary, your role as moderator of a SO/SE site.</li><li>Offer to help with the situation, and be very respectful if someone declines your assistance. Sometimes, people just want to vent, and the best thing we can do to help is to give them space.</li><li>Be aware of the volatile nature of online discussions; if the path to constructive discourse becomes blurred, it's often best to disengage.</li><li>Keep your interactions with others, concerning SO/SE, as clear and as kind as possible. If things begin to get out of hand, please disengage and let us know about it.</li></ul></blockquote><p>In short, do exactly what the moderator did initially on Twitter which resulted in the threat of being removed.</p><h2 id="communication">Communication<a class="headerlink" href="#communication" title="Permanent link">¶</a></h2><p>Stack Overflow is slowly isolating itself from the community. There have been multiple comments scattered around the network saying the employees don't want to engage on any meta. There are community managers that are feeling hated because of complaints users have made. Users are taking out their anger of being ignored on posts talking about new or unrelated features. In turn, the employees engage just a little bit less. Lines are being drawn. I see it as a moderator. I see it as a user. Very slowly the community is trusting the company less and less.</p><p>Everything is becoming "us" vs. "them". There is "the company" vs. "the users". Blog posts, comments, meta discussions also appear to be driving a wedge between "the users" and making it "new users" vs. "established users". In the blog post announcing <a href="https://stackoverflow.blog/2019/03/28/the-next-ceo-of-stack-overflow/">the search for a new Stack Overflow CEO</a>, this comment was made by the current CEO:</p><blockquote><p>One thing I’m very concerned about, as we try to educate the next generation of developers, and, importantly, get more diversity and inclusiveness in that new generation, is what obstacles we’re putting up for people as they try to learn programming. In many ways Stack Overflow’s specific rules for what is permitted and what is not are obstacles, but an even bigger problem is rudeness, snark, or condescension that newcomers often see.</p></blockquote><p>The underlying sentiment - improving inclusiveness and diversity - is great. I'm all for that. The rest of it, though, is a dig at the established community in the same way that the Welcoming blog post was. Stack Overflow's high quality standards are the problem. It makes the community seem rude and abusive. You should stop closing those questions, stop down voting new users, and just be nice. It doesn't say that directly, but that's how <a href="https://meta.stackoverflow.com/q/381927/189134">existing members</a> are seeing it. Read under <a href="https://meta.stackoverflow.com/a/381935/189134">hairboat's answer</a> to see some of the simmering feelings of <em>high</em> reputation users.</p><p>The idea of trust between users and the company is brought up in the comments. This is just another example, in a long list, where the community and the company are butting heads. Something happens that the community doesn't like - reacting to incidents off site, focusing on features no one asked for, not explaining why these new features <em>need</em> to be done, comments are made by one side that makes the other seem unflattering - and another round of not trusting the company starts again.</p><p>The company has had a decade of experience with this community. It's grown, shrunk, and grown again. For most of that time, there has been fairly open communication and trust. I am afraid that trust has eroded over the last few years and can't be recovered.</p><h2 id="what-can-be-done">What can be done?<a class="headerlink" href="#what-can-be-done" title="Permanent link">¶</a></h2><p>The company wants to focus on areas that can bring in more money. In my <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">previous post</a> I quoted the President and Chief Technology Officer of the company.</p><blockquote><p>I appreciate that there are a lot of issues on Stack Overflow that need to be addressed, and maybe we haven't been responding to them as quickly as we should. But Stack Overflow Q&amp;A is a big, established product, most of the problems left are hard, and we can't let maintenance become the only thing we work on or we'll just slowly run out of money and go out of business. We are trying to both maintain Q&amp;A and solve new problems for developers and reach new audiences. The latter is hard, and maybe we'll fail on a lot of our ideas, but we're not going to stop trying. – David Fullerton May 17 at 21:10</p></blockquote><p>I bemoaned that this sounded that Q&amp;A was feature frozen. It's been nearly two years since that time. I can't remember a new feature that was introduced into Q&amp;A that helped the community maintain high quality posts. There was a new wizard introduced for new users that is supposed to help. A quick look at the review queue numbers on Stack Overflow shows that they are still stable at the same point it was two years ago.</p><p>My suggestion as a user, a moderator and someone interested in see Stack Overflow remain successful, is to focus on helping to manage the quality of your content. Users have been asking <em>for years</em> to be able to better handle poor content. They've asked for tools (both system tools and moderator tools). There have been projects started, stopped, restarted, and stopped again that are supposed to improve quality. Community tools have been built to help deal with quality problems. <em>Use some of this!</em></p><p>Stack Overflow has a data science team. Work with the community directly to help figure out ways to prevent low quality content from ever getting posted. Force users - all users - to post higher quality content. Work with the communities that have developed automated tools. Run it with larger data sets. Even if Stack Overflow has to be more conservative than the community tool, if you can prevent <em>some</em> of the low quality content from making it to the site you have a victory.</p><p>Obviously the company can't ignore the areas that bring in revenue, but it's becoming increasingly clear that the community is much less forgiving than they used to be. Continued communication blunders will not help with anything.</p><h2 id="where-to-from-here">Where to from here?<a class="headerlink" href="#where-to-from-here" title="Permanent link">¶</a></h2><p>I ended my last post with this:</p><blockquote><p>I want Stack Overflow to continue to grow. I also want Stack Overflow to have high quality content. I think my experience and the experience of others can help build the features to accomplish this. We just need Stack Overflow to refocus on the Q&amp;A portion of their network again.</p></blockquote><p>I think that holds true today, just as it did 18 months ago. The aspect of the site that draws users in is Q&amp;A. Make it better. Make the content better. Give users tools to make it better. With all of this, I believe, the "welcoming" aspect will improve. Let the system handle the low quality stuff automatically. Eliminate the need for users to ask basic questions or remind users to post their code. Let the system be "the bad guy", and let users interact and <em>help</em> one another.</p><p>We'll see how everything looks in 18 months. In the meantime, I'll be here, cleaning up the low quality content and prodding the company to provide improvements to Q&amp;A.</p></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#last-time-on-this-blog">Last time on this blog</a></li><li><a href="#documentation">Documentation</a><ul><li><a href="#what-went-wrong">What went wrong?</a></li></ul></li><li><a href="#teams">Teams</a></li><li><a href="#meta-hatred">Meta hatred</a><ul><li><a href="#the-welcoming">The Welcoming</a></li><li><a href="#removal-from-network-questions-list">Removal from Network Questions list</a></li></ul></li><li><a href="#communication">Communication</a></li><li><a href="#what-can-be-done">What can be done?</a></li><li><a href="#where-to-from-here">Where to from here?</a></li></ul></div></aside></div><nav class="post-nav" aria-label="Post navigation"><a href="https://andrewwegner.com/ubiquiti-home-network.html" class="post-nav-link post-nav-link-prev"><span class="post-nav-dir">← Previous post</span> <span class="post-nav-title">Upgrading the home network to use Ubiquiti products</span> </a><a href="https://andrewwegner.com/software-testing-masterclass.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

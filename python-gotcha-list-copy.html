@@ -1,279 +1,75 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/python-gotcha-list-copy.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="Copying a Python list (or any mutable object) isn&#39;t as simple as setting one equal to another. Let&#39;s discuss a better way to do this." />
-<meta name="keywords" content="technical">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="Python Gotcha: List Copy Problems"/>
-  <meta property="og:description" content="Copying a Python list (or any mutable object) isn&#39;t as simple as setting one equal to another. Let&#39;s discuss a better way to do this."/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/python-gotcha-list-copy.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2023-12-20 15:30:00-06:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Technical Solutions"/>
-  <meta property="article:tag" content="technical"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>Python Gotcha: List Copy Problems  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#the-first-gotcha">The First Gotcha</a></li>
-<li><a href="#the-first-solution">The First Solution</a></li>
-<li><a href="#the-second-gotcha">The Second Gotcha</a></li>
-<li><a href="#the-second-solution">The Second Solution</a></li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/python-gotcha-list-copy.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Python Gotcha: List Copy Problems</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python Gotcha: List Copy Problems — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="Copying a Python list (or any mutable object) isn&#39;t as simple as setting one equal to another. Let&#39;s discuss a better way to do this."><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/python-gotcha-list-copy.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Technical Solutions (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/python-gotcha-list-copy.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="Python Gotcha: List Copy Problems"><meta property="og:url" content="https://andrewwegner.com/python-gotcha-list-copy.html"><meta property="og:description" content="Copying a Python list (or any mutable object) isn&#39;t as simple as setting one equal to another. Let&#39;s discuss a better way to do this."><meta property="article:published_time" content="2023-12-20T15:30:00-06:00"><meta property="article:section" content="Technical Solutions"><meta property="article:tag" content="technical"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Python Gotcha: List Copy Problems",
+  "headline": "Python Gotcha: List Copy Problems",
+  "dateCreated": "2023-12-20T15:30:00-06:00",
+  "datePublished": "2023-12-20T15:30:00-06:00",  "dateModified": "2023-12-20T15:30:00-06:00",  "copyrightYear": "2023",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/python-gotcha-list-copy.html",
+  "description": "Copying a Python list (or any mutable object) isn&#39;t as simple as setting one equal to another. Let&#39;s discuss a better way to do this.",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}</script></head><body data-page-type="article" data-page-slug="python-gotcha-list-copy" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a></nav><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/technical-solutions.html",
-      "name": "Technical Solutions"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/python-gotcha-list-copy.html",
-      "name": "https://andrewwegner.com/python-gotcha-list-copy.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="python-gotcha-list-copy">Python Gotcha: List Copy Problems</h1>
-    <p>
-      Posted on Wed 20 December 2023 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
-
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>This problem isn't limited to only <code>list</code>s. Any mutable object in Python can be impacted by this "gotcha". The problem is setting one mutable object equal to another doesn't make a copy. It assigns a new variable to the same object as the original. Let's take a look and see how this appears.</p>
-<h2 id="the-first-gotcha">The First Gotcha<a class="headerlink" href="#the-first-gotcha" title="Permanent link">¶</a></h2>
-<p>The first example is pretty simple. Let's make a copy of our list</p>
-<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list1 = [1,2,3,4,5]
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/technical-solutions.html",
+        "name": "Technical Solutions"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Technical Solutions</span> <span class="article-eyebrow-dot">·</span> <span>Part 6 of 11 · Programming Gotchas</span></div><h1 class="article-title">Python Gotcha: List Copy Problems</h1><p class="article-summary">Copying a Python list (or any mutable object) isn't as simple as setting one equal to another. Let's discuss a better way to do this.</p><div class="article-meta"><time datetime="2023-12-20T15:30:00-06:00" class="article-meta-date">Wed 20 December 2023</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/technical.html" class="tag">#technical</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#the-first-gotcha">The First Gotcha</a></li><li><a href="#the-first-solution">The First Solution</a></li><li><a href="#the-second-gotcha">The Second Gotcha</a></li><li><a href="#the-second-solution">The Second Solution</a></li></ul></div></div><div class="prose"><h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2><p>This problem isn't limited to only <code>list</code>s. Any mutable object in Python can be impacted by this "gotcha". The problem is setting one mutable object equal to another doesn't make a copy. It assigns a new variable to the same object as the original. Let's take a look and see how this appears.</p><h2 id="the-first-gotcha">The First Gotcha<a class="headerlink" href="#the-first-gotcha" title="Permanent link">¶</a></h2><p>The first example is pretty simple. Let's make a copy of our list</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list1 = [1,2,3,4,5]
 &gt;&gt;&gt; list2 = list1
 &gt;&gt;&gt; list1
 [1, 2, 3, 4, 5]
 &gt;&gt;&gt; list2
 [1, 2, 3, 4, 5]
-</code></pre></div>
-<p>That looks like I have two lists, both with the same set of values. But, let's modify the second list and change the first element in the list to be <code>6</code></p>
-<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list2
+</code></pre></div><p>That looks like I have two lists, both with the same set of values. But, let's modify the second list and change the first element in the list to be <code>6</code></p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list2
 [6, 2, 3, 4, 5]
-</code></pre></div>
-<p>But what about <code>list1</code>? It also has changed.</p>
-<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list1
+</code></pre></div><p>But what about <code>list1</code>? It also has changed.</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list1
 [6, 2, 3, 4, 5]
-</code></pre></div>
-<p>This is occuring because, as mentioned, <code>list2</code> is assigned to the same object as <code>list1</code>. Any change to either, changes the object that both are assigned to.</p>
-<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; print(f"list1 id: {id(list1)}")
+</code></pre></div><p>This is occuring because, as mentioned, <code>list2</code> is assigned to the same object as <code>list1</code>. Any change to either, changes the object that both are assigned to.</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; print(f"list1 id: {id(list1)}")
 list1 id: 1497534800448
 &gt;&gt;&gt; print(f"list2 id: {id(list2)}")
 list2 id: 1497534800448
-</code></pre></div>
-<h2 id="the-first-solution">The First Solution<a class="headerlink" href="#the-first-solution" title="Permanent link">¶</a></h2>
-<p>This can be solved a few different ways. The important take away, though, is that you have to create a new object with the original values. I can think of a few ways to handle this. This article doesn't consider performance for these basic lists.</p>
-<p>One option is to utilize the <code>list()</code> method and pass it the initial values from <code>list1</code></p>
-<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list3 = list(list1)
+</code></pre></div><h2 id="the-first-solution">The First Solution<a class="headerlink" href="#the-first-solution" title="Permanent link">¶</a></h2><p>This can be solved a few different ways. The important take away, though, is that you have to create a new object with the original values. I can think of a few ways to handle this. This article doesn't consider performance for these basic lists.</p><p>One option is to utilize the <code>list()</code> method and pass it the initial values from <code>list1</code></p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list3 = list(list1)
 &gt;&gt;&gt; list3
 [6, 2, 3, 4, 5]
 &gt;&gt;&gt; list3[0] = 0
@@ -285,9 +81,7 @@ list2 id: 1497534800448
 list1 id: 1497534800448
 &gt;&gt;&gt; print(f"list3 id: {id(list3)}")
 list3 id: 1497531282368
-</code></pre></div>
-<p>A second option is to <code>slice()</code> the entire original list into a new variable.</p>
-<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list4 = list1[:]
+</code></pre></div><p>A second option is to <code>slice()</code> the entire original list into a new variable.</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list4 = list1[:]
 &gt;&gt;&gt; list4
 [6, 2, 3, 4, 5]
 &gt;&gt;&gt; list4[0] = 0
@@ -299,9 +93,7 @@ list3 id: 1497531282368
 list1 id: 1497534800448
 &gt;&gt;&gt; print(f"list4 id: {id(list4)}")
 list4 id: 1497534798208
-</code></pre></div>
-<p>Lastly, the <code>list</code> object has a <code>copy()</code> method that you can utilize. </p>
-<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list5 = list1.copy()
+</code></pre></div><p>Lastly, the <code>list</code> object has a <code>copy()</code> method that you can utilize.</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list5 = list1.copy()
 &gt;&gt;&gt; list5[0] = 0
 &gt;&gt;&gt; list5
 [0, 2, 3, 4, 5]
@@ -311,18 +103,12 @@ list4 id: 1497534798208
 list1 id: 1497534800448
 &gt;&gt;&gt; print(f"list5 id: {id(list5)}")
 list5 id: 1497534799552
-</code></pre></div>
-<p>With each of these three options, you can see that we created new objects because each has a unique object id. Changing one of these copies does not change the original's values.</p>
-<h2 id="the-second-gotcha">The Second Gotcha<a class="headerlink" href="#the-second-gotcha" title="Permanent link">¶</a></h2>
-<p>You, a savvy developer, know all this though. You also have a more advanced data structure. You have a <em>list of lists</em>. </p>
-<div class="codehilight code"><pre><span></span><code>[
+</code></pre></div><p>With each of these three options, you can see that we created new objects because each has a unique object id. Changing one of these copies does not change the original's values.</p><h2 id="the-second-gotcha">The Second Gotcha<a class="headerlink" href="#the-second-gotcha" title="Permanent link">¶</a></h2><p>You, a savvy developer, know all this though. You also have a more advanced data structure. You have a <em>list of lists</em>.</p><div class="codehilight code"><pre><span></span><code>[
     ['first element', 1, 2, 3],
     ['second element', 4, 5, 6],
     ['third element', 7, 8, 9],
 ]
-</code></pre></div>
-<p>Since you know about this gotcha, you are going to make a new object and copy the values to the new object.</p>
-<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; deeplist1 = [
+</code></pre></div><p>Since you know about this gotcha, you are going to make a new object and copy the values to the new object.</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; deeplist1 = [
 ...     ['first element', 1, 2, 3],
 ...     ['second element', 4, 5, 6],
 ...     ['third element', 7, 8, 9],
@@ -332,118 +118,18 @@ list5 id: 1497534799552
 deeplist1 id: 1497534571008
 &gt;&gt;&gt; print(f"deeplist2 id: {id(deeplist2)}")
 deeplist2 id: 1497534577536
-</code></pre></div>
-<p>Now, with two different objects, is it safe to modify an element in one of the sublists? Turns out, it is not.</p>
-<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; deeplist2[0][0] = "NOT 3RD"
+</code></pre></div><p>Now, with two different objects, is it safe to modify an element in one of the sublists? Turns out, it is not.</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; deeplist2[0][0] = "NOT 3RD"
 &gt;&gt;&gt; deeplist2
 [['NOT 3RD', 1, 2, 3], ['second element', 4, 5, 6], ['third element', 7, 8, 9]]
 &gt;&gt;&gt; deeplist1
 [['NOT 3RD', 1, 2, 3], ['second element', 4, 5, 6], ['third element', 7, 8, 9]]
-</code></pre></div>
-<p>But why? The ids of <code>deeplist1</code> and <code>deeplist2</code> are different. This is true, but the sublists are not. Each sublist is assigned the same object id as the original.</p>
-<div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; id(deeplist1[0][0]), id(deeplist2[0][0])
+</code></pre></div><p>But why? The ids of <code>deeplist1</code> and <code>deeplist2</code> are different. This is true, but the sublists are not. Each sublist is assigned the same object id as the original.</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; id(deeplist1[0][0]), id(deeplist2[0][0])
 (1497534796864, 1497534796864)
-</code></pre></div>
-<h2 id="the-second-solution">The Second Solution<a class="headerlink" href="#the-second-solution" title="Permanent link">¶</a></h2>
-<p>Utilize the <a href="https://docs.python.org/3/library/copy.html#copy.deepcopy"><code>deepcopy()</code></a> method to make a copy of your original object.</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+</code></pre></div><h2 id="the-second-solution">The Second Solution<a class="headerlink" href="#the-second-solution" title="Permanent link">¶</a></h2><p>Utilize the <a href="https://docs.python.org/3/library/copy.html#copy.deepcopy"><code>deepcopy()</code></a> method to make a copy of your original object.</p><div class="codehilight code"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">deeplist3</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">deeplist1</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">deeplist3</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"NEW VALUE"</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">deeplist3</span>
 <span class="p">[[</span><span class="s1">'NEW VALUE'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s1">'second element'</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="s1">'third element'</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">deeplist1</span>
 <span class="p">[[</span><span class="s1">'NOT 3RD'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s1">'second element'</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="s1">'third element'</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
-</code></pre></div>
-<p>Using <code>deepcopy()</code> we can safely make a copy of our list of lists and modify both the original and the copy without impacting the other.</p>
-  </div>
-<div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/python-gotcha-timezone-naive-functions.html"
-    title="Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()">
-    <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-  <a class="btn float-right" href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html"
-    title="Python Gotcha: Modifying a list while iterating">
-    Next Post <i class="fa fa-angle-right"></i>
-  </a>
-</div>
-
-
-
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-  <div class="related-posts">
-    <h4>Part 6 of the Programming Gotchas series</h4>
-    <h5>Previous articles</h5>
-    <ul>
-      <li><a href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html">Python Gotcha: Mutable Default Optional Arguments</a></li>
-      <li><a href="https://andrewwegner.com/python-gotcha-join-vs-concat.html">Python Gotcha: Join vs Concat</a></li>
-      <li><a href="https://andrewwegner.com/python-gotcha-comparisons.html">Python Gotcha: Comparisons</a></li>
-      <li><a href="https://andrewwegner.com/ruby-gotcha-operator-precedence.html">Ruby Gotcha: Operator Precedence</a></li>
-      <li><a href="https://andrewwegner.com/python-gotcha-timezone-naive-functions.html">Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()</a></li>
-    </ul>
-    <h5>Next articles</h5>
-    <ul>
-      <li><a href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html">Python Gotcha: Modifying a list while iterating</a></li>
-      <li><a href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html">Python Gotcha: strip, lstrip, rstrip can remove more than expected</a></li>
-      <li><a href="https://andrewwegner.com/python-gotcha-identity-vs-equality.html">Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly</a></li>
-      <li><a href="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html">Python Gotcha: Logging an uncaught exception</a></li>
-      <li><a href="https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html">Python Gotcha: Reusing Generators Returns Nothing</a></li>
-    </ul>
-  </div>
-</article>
-
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BlogPosting",
-  "name": "Python Gotcha: List Copy Problems",
-  "headline": "Python Gotcha: List Copy Problems",
-  "dateCreated": "2023-12-20 15:30:00-06:00",
-  "datePublished": "2023-12-20 15:30:00-06:00",
-  "dateModified": "",
-  "copyrightYear": "2023",
-  "copyrightHolder": {
-    "@type": "Person",
-    "name": "Andy Wegner",
-    "url": "https://andrewwegner.com"
-  },
-  "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
-  },
-  "publisher": {
-    "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/python-gotcha-list-copy.html",
-  "description": "Copying a Python list (or any mutable object) isn't as simple as setting one equal to another. Let's discuss a better way to do this.",
-  "mainEntityOfPage": "True",
-  "articleSection": "Technical Solutions"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+</code></pre></div><p>Using <code>deepcopy()</code> we can safely make a copy of our list of lists and modify both the original and the copy without impacting the other.</p></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#the-first-gotcha">The First Gotcha</a></li><li><a href="#the-first-solution">The First Solution</a></li><li><a href="#the-second-gotcha">The Second Gotcha</a></li><li><a href="#the-second-solution">The Second Solution</a></li></ul></div></aside></div><section class="series-block" aria-label="Series"><div class="series-block-head"><div class="series-block-kicker">Series · Programming Gotchas</div><div class="series-block-progress">Part 6 of 11</div></div><div class="series-block-nav"><a href="https://andrewwegner.com/python-gotcha-timezone-naive-functions.html" class="series-block-link series-block-link-prev"><span class="series-block-dir">← Previous in series</span> <span class="series-block-title">Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()</span> </a><a href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html" class="series-block-link series-block-link-next"><span class="series-block-dir">Next in series →</span> <span class="series-block-title">Python Gotcha: Modifying a list while iterating</span></a></div></section><nav class="post-nav" aria-label="Post navigation"><a href="https://andrewwegner.com/decade-fighting-spam-charcoal.html" class="post-nav-link post-nav-link-prev"><span class="post-nav-dir">← Previous post</span> <span class="post-nav-title">A Decade of Fighting Spam</span> </a><a href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">Python Gotcha: Modifying a list while iterating</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

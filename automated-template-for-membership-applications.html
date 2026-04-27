@@ -1,397 +1,58 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/automated-template-for-membership-applications.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="How Team Vipers improved user applications and admin participation in the process" />
-<meta name="keywords" content="team vipers, automation, community, programming">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="Automated template for membership applications"/>
-  <meta property="og:description" content="How Team Vipers improved user applications and admin participation in the process"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/automated-template-for-membership-applications.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2009-10-30 22:30:00-05:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Vipers"/>
-  <meta property="article:tag" content="team vipers"/>
-  <meta property="article:tag" content="automation"/>
-  <meta property="article:tag" content="community"/>
-  <meta property="article:tag" content="programming"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>Automated template for membership applications  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#whats-new">What's new?</a><ul>
-<li><a href="#voting-rules">Voting rules</a></li>
-</ul>
-</li>
-<li><a href="#possible-responses">Possible Responses</a><ul>
-<li><a href="#accepted-by-admin-team">Accepted by admin team</a></li>
-<li><a href="#denied-by-admin-team">Denied by admin team</a></li>
-<li><a href="#denied-due-to-lack-of-votes">Denied due to lack of votes</a></li>
-<li><a href="#denied-because-of-age">Denied because of age</a></li>
-</ul>
-</li>
-<li><a href="#original-announcement">Original Announcement</a></li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/vipers.html">Vipers</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/automated-template-for-membership-applications.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Automated template for membership applications</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/vipers.html",
-      "name": "Vipers"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/automated-template-for-membership-applications.html",
-      "name": "https://andrewwegner.com/automated-template-for-membership-applications.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="automated-template-for-membership-applications">Automated template for membership applications</h1>
-    <p>
-      Posted on Fri 30 October 2009 in <a href="https://andrewwegner.com/category/vipers.html">Vipers</a>
-
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/team-vipers.html">team vipers</a>
-        <a href="https://andrewwegner.com/tag/automation.html">automation</a>
-        <a href="https://andrewwegner.com/tag/community.html">community</a>
-        <a href="https://andrewwegner.com/tag/programming.html">programming</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>Not to long ago, applications for new membership in Team Vipers consisted of someone wandering onto the site, posting a
-few words and an administrator saying they were accepted as a member. This worked when we were a small community. We
-aren't small any more. We have 5 servers and hundreds of players a day. Each server has their own sub-community. There
-are players joining the forums than entire groups of people have never met because they play exclusively on one game server.</p>
-<p>Admins were also inconsistent in how (or if) they voted. Some admins didn't realize they could have a say, thinking it
-was a privilege granted to only the senior administrators. We've built a system to resolve many of these problems and to
-make the administration side easier.</p>
-<h2 id="whats-new">What's new?<a class="headerlink" href="#whats-new" title="Permanent link">¶</a></h2>
-<p>The new system presents all users with an application template. They fill out the form and the system handles the rest.
-The New Users and Applications subforum has been modified so that no one, except the bot, can create topics. They
-topics will only be created when the form is submitted. When a user applies to join Vipers, we will automatically
-include relevant information about the user as we know them:</p>
-<ul>
-<li>HLStats information: This helps us get a sense of where they play and how often they play. It will help admins identify
- users they <em>should</em> recognize based on the servers they frequent (because we all know certain servers are better than
- others ;) <em>cough</em> Vanilla Nest vs Crits <em>cough</em> )</li>
-<li>Ban information: This will check if the user has any recorded bans in <a href="http://www.sourcebans.net/">Sourcebans</a>. It's important to know if the
- user has been banned previously.</li>
-<li>Known aliases: Pulling information from our chat logs and Valve's profile page, we can build a list of known aliases.
- This helps identify users that frequently change names but have been around a while.</li>
-</ul>
-<p>There may be other features we add in the future as well.</p>
-<p><em>Updated January 2012</em> I've removed HLStats from the servers and removed it from new application information. We have
-added a check of a user's <a href="http://steamrep.com/api.php">Steam Reputation</a> instead.</p>
-<p>After a user applies, they are put into a two week hold. During this week it is expected they will stick around the forums
-and learn about the community they just applied to. Even better would be that they had done this before applying. While
-this two week hold is in place, the administration team will be able to cast they votes in a separate sub-forum. They can
-hold administration specific discussions - usually details that are important for admins to know, but don't <em>need</em> to be
-public. Once voting is complete, if they become a member, the system automatically grants appropriate forum and server
-related permissions.</p>
-<h3 id="voting-rules">Voting rules<a class="headerlink" href="#voting-rules" title="Permanent link">¶</a></h3>
-<ul>
-<li>Three admin "Yes" votes and zero "No" votes grants the user membership immediately after the two week window has expired</li>
-<li>One or two "No" votes places a message on the user's application that the administrators are still considering the application</li>
-<li>Three or more "No" votes rejects the application</li>
-</ul>
-<h2 id="possible-responses">Possible Responses<a class="headerlink" href="#possible-responses" title="Permanent link">¶</a></h2>
-<h3 id="accepted-by-admin-team">Accepted by admin team<a class="headerlink" href="#accepted-by-admin-team" title="Permanent link">¶</a></h3>
-<p>If you reach a total of three or more admin "Yes" votes, and do not get three or more admin "No" votes, you will be accepted
-as a member of Vipers and automatically have your forum access modified. You will receive a message similar to this:</p>
-<p><img alt="Application Accepted" src="https://andrewwegner.com/images/application-accepted.png"/></p>
-<h3 id="denied-by-admin-team">Denied by admin team<a class="headerlink" href="#denied-by-admin-team" title="Permanent link">¶</a></h3>
-<p>If you reach three or more "No" votes your application will be denied. This will occur even if you receive more "Yes" votes
-than "No" votes. Vipers is not a majority rule community. The decision has been made that if three admins do not feel comfortable
-accepting your application, you will not be granted membership. You will receive a message similar to this:</p>
-<p><img alt="Application Denied by Admins" src="https://andrewwegner.com/images/application-denied.png"/></p>
-<h3 id="denied-due-to-lack-of-votes">Denied due to lack of votes<a class="headerlink" href="#denied-due-to-lack-of-votes" title="Permanent link">¶</a></h3>
-<p>To be accepted, your application requires a minimum of three "Yes" votes. If this can not be reached (and you also can't reach
- three "No" votes), your application will be rejected due to lack of votes from the admin team. This means that the admin team
- does not feel strongly either way about your application. Post on the forums. Play in the servers. Get to know our players
- and the community at large and then try again in a month. You will receive a message similar to this:</p>
-<p><img alt="Application Denied with not enough votes" src="https://andrewwegner.com/images/application-denied-not-enough-votes.png"/></p>
-<h3 id="denied-because-of-age">Denied because of age<a class="headerlink" href="#denied-because-of-age" title="Permanent link">¶</a></h3>
-<p>Repeat after me: "Age does not equal maturity." However, it has a very strong correlation. Over time we have learned that younger
- players tend to bring a lower maturity level that most of the community does not care for. As such, we've decided to set a minimum
- age requirement of 16. If a user indicates they are less than that, the system will reject their application with a message similar to
- this:</p>
-<p><img alt="Application Denied because of age" src="https://andrewwegner.com/images/application-denied-underage.png"/></p>
-<p><em>Updated January 2010</em> This process has been in place for a few months now. It has gone very well. We've reduced the clutter
-in the applications forum. We've also seen the number of "forgotten" applications drop dramatically.</p>
-<h2 id="original-announcement">Original Announcement<a class="headerlink" href="#original-announcement" title="Permanent link">¶</a></h2>
-<p>The original announcement is posted here for future reference.</p>
-<blockquote>
-<p>Zephyr is an automated robot designed to improve our new member application process. The current process, which involves copying a template to a new thread and the potential for applications to become misplaced, is cumbersome and inefficient. The goal of Zephyr is to remove as much of the manual process as possible.</p>
-<p>Now, our new applicants will fill out an actual application online. The same information will be requested, but it will be in a more reliable format and will not require an applicant copy and paste anything between threads. This new application will be posted in the same forum as you're used to, and members will be freely able to comment and discuss the applicant via that thread. It will also display which date admin voting will be open, which is two full weeks after the original application post. This will hopefully cut down on any confusion related to the delay between application and voting.</p>
-<p>As another note, from now on Zephyr will be the only user capable of creating new threads in the New Member Application forum. As previously stated, members will be able to post comments on existing threads, but the only new threads will come from the application process. This will keep the forum cleaner and help prevent applications from becoming lost or forgotten about.</p>
-<p>Once again, Zephyr is an automated robot. It is not programmed to respond to comments or questions. Doing so will not get your question answered. As always, if you have questions or comments about the application process, Zephyr, or anything else, you're welcome to send them to any admin. We'll be more than happy to help.</p>
-<p>You may all bow to your Robotic Overlord now.</p>
-</blockquote>
-  </div>
-<div class="neighbors">
-  <a class="btn float-right" href="https://andrewwegner.com/fixing-myisam-crashed-tables.html"
-    title="Fixing MYISAM Crashed Tables">
-    Next Post <i class="fa fa-angle-right"></i>
-  </a>
-</div>
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-</article>
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Automated template for membership applications — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="How Team Vipers improved user applications and admin participation in the process"><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/automated-template-for-membership-applications.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Vipers (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/automated-template-for-membership-applications.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="Automated template for membership applications"><meta property="og:url" content="https://andrewwegner.com/automated-template-for-membership-applications.html"><meta property="og:description" content="How Team Vipers improved user applications and admin participation in the process"><meta property="article:published_time" content="2009-10-30T22:30:00-05:00"><meta property="article:section" content="Vipers"><meta property="article:tag" content="team vipers"><meta property="article:tag" content="automation"><meta property="article:tag" content="community"><meta property="article:tag" content="programming"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
   "@context": "http://schema.org",
   "@type": "BlogPosting",
   "name": "Automated template for membership applications",
   "headline": "Automated template for membership applications",
-  "dateCreated": "2009-10-30 22:30:00-05:00",
-  "datePublished": "2009-10-30 22:30:00-05:00",
-  "dateModified": "",
-  "copyrightYear": "2009",
+  "dateCreated": "2009-10-30T22:30:00-05:00",
+  "datePublished": "2009-10-30T22:30:00-05:00",  "dateModified": "2009-10-30T22:30:00-05:00",  "copyrightYear": "2009",
   "copyrightHolder": {
     "@type": "Person",
-    "name": "Andy Wegner",
+    "name": "Andrew Wegner",
     "url": "https://andrewwegner.com"
   },
   "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
   },
   "publisher": {
     "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/automated-template-for-membership-applications.html",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/automated-template-for-membership-applications.html",
   "description": "How Team Vipers improved user applications and admin participation in the process",
   "mainEntityOfPage": "True",
   "articleSection": "Vipers"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+}</script></head><body data-page-type="article" data-page-slug="automated-template-for-membership-applications" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/vipers.html">Vipers</a></nav><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/vipers.html",
+        "name": "Vipers"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Vipers</span></div><h1 class="article-title">Automated template for membership applications</h1><p class="article-summary">How Team Vipers improved user applications and admin participation in the process</p><div class="article-meta"><time datetime="2009-10-30T22:30:00-05:00" class="article-meta-date">Fri 30 October 2009</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/team-vipers.html" class="tag">#team vipers</a> <a href="https://andrewwegner.com/tag/automation.html" class="tag">#automation</a> <a href="https://andrewwegner.com/tag/community.html" class="tag">#community</a> <a href="https://andrewwegner.com/tag/programming.html" class="tag">#programming</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#whats-new">What's new?</a><ul><li><a href="#voting-rules">Voting rules</a></li></ul></li><li><a href="#possible-responses">Possible Responses</a><ul><li><a href="#accepted-by-admin-team">Accepted by admin team</a></li><li><a href="#denied-by-admin-team">Denied by admin team</a></li><li><a href="#denied-due-to-lack-of-votes">Denied due to lack of votes</a></li><li><a href="#denied-because-of-age">Denied because of age</a></li></ul></li><li><a href="#original-announcement">Original Announcement</a></li></ul></div></div><div class="prose"><h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2><p>Not to long ago, applications for new membership in Team Vipers consisted of someone wandering onto the site, posting a few words and an administrator saying they were accepted as a member. This worked when we were a small community. We aren't small any more. We have 5 servers and hundreds of players a day. Each server has their own sub-community. There are players joining the forums than entire groups of people have never met because they play exclusively on one game server.</p><p>Admins were also inconsistent in how (or if) they voted. Some admins didn't realize they could have a say, thinking it was a privilege granted to only the senior administrators. We've built a system to resolve many of these problems and to make the administration side easier.</p><h2 id="whats-new">What's new?<a class="headerlink" href="#whats-new" title="Permanent link">¶</a></h2><p>The new system presents all users with an application template. They fill out the form and the system handles the rest. The New Users and Applications subforum has been modified so that no one, except the bot, can create topics. They topics will only be created when the form is submitted. When a user applies to join Vipers, we will automatically include relevant information about the user as we know them:</p><ul><li>HLStats information: This helps us get a sense of where they play and how often they play. It will help admins identify users they <em>should</em> recognize based on the servers they frequent (because we all know certain servers are better than others ;) <em>cough</em> Vanilla Nest vs Crits <em>cough</em> )</li><li>Ban information: This will check if the user has any recorded bans in <a href="http://www.sourcebans.net/">Sourcebans</a>. It's important to know if the user has been banned previously.</li><li>Known aliases: Pulling information from our chat logs and Valve's profile page, we can build a list of known aliases. This helps identify users that frequently change names but have been around a while.</li></ul><p>There may be other features we add in the future as well.</p><p><em>Updated January 2012</em> I've removed HLStats from the servers and removed it from new application information. We have added a check of a user's <a href="http://steamrep.com/api.php">Steam Reputation</a> instead.</p><p>After a user applies, they are put into a two week hold. During this week it is expected they will stick around the forums and learn about the community they just applied to. Even better would be that they had done this before applying. While this two week hold is in place, the administration team will be able to cast they votes in a separate sub-forum. They can hold administration specific discussions - usually details that are important for admins to know, but don't <em>need</em> to be public. Once voting is complete, if they become a member, the system automatically grants appropriate forum and server related permissions.</p><h3 id="voting-rules">Voting rules<a class="headerlink" href="#voting-rules" title="Permanent link">¶</a></h3><ul><li>Three admin "Yes" votes and zero "No" votes grants the user membership immediately after the two week window has expired</li><li>One or two "No" votes places a message on the user's application that the administrators are still considering the application</li><li>Three or more "No" votes rejects the application</li></ul><h2 id="possible-responses">Possible Responses<a class="headerlink" href="#possible-responses" title="Permanent link">¶</a></h2><h3 id="accepted-by-admin-team">Accepted by admin team<a class="headerlink" href="#accepted-by-admin-team" title="Permanent link">¶</a></h3><p>If you reach a total of three or more admin "Yes" votes, and do not get three or more admin "No" votes, you will be accepted as a member of Vipers and automatically have your forum access modified. You will receive a message similar to this:</p><p><img alt="Application Accepted" src="https://andrewwegner.com/images/application-accepted.png"></p><h3 id="denied-by-admin-team">Denied by admin team<a class="headerlink" href="#denied-by-admin-team" title="Permanent link">¶</a></h3><p>If you reach three or more "No" votes your application will be denied. This will occur even if you receive more "Yes" votes than "No" votes. Vipers is not a majority rule community. The decision has been made that if three admins do not feel comfortable accepting your application, you will not be granted membership. You will receive a message similar to this:</p><p><img alt="Application Denied by Admins" src="https://andrewwegner.com/images/application-denied.png"></p><h3 id="denied-due-to-lack-of-votes">Denied due to lack of votes<a class="headerlink" href="#denied-due-to-lack-of-votes" title="Permanent link">¶</a></h3><p>To be accepted, your application requires a minimum of three "Yes" votes. If this can not be reached (and you also can't reach three "No" votes), your application will be rejected due to lack of votes from the admin team. This means that the admin team does not feel strongly either way about your application. Post on the forums. Play in the servers. Get to know our players and the community at large and then try again in a month. You will receive a message similar to this:</p><p><img alt="Application Denied with not enough votes" src="https://andrewwegner.com/images/application-denied-not-enough-votes.png"></p><h3 id="denied-because-of-age">Denied because of age<a class="headerlink" href="#denied-because-of-age" title="Permanent link">¶</a></h3><p>Repeat after me: "Age does not equal maturity." However, it has a very strong correlation. Over time we have learned that younger players tend to bring a lower maturity level that most of the community does not care for. As such, we've decided to set a minimum age requirement of 16. If a user indicates they are less than that, the system will reject their application with a message similar to this:</p><p><img alt="Application Denied because of age" src="https://andrewwegner.com/images/application-denied-underage.png"></p><p><em>Updated January 2010</em> This process has been in place for a few months now. It has gone very well. We've reduced the clutter in the applications forum. We've also seen the number of "forgotten" applications drop dramatically.</p><h2 id="original-announcement">Original Announcement<a class="headerlink" href="#original-announcement" title="Permanent link">¶</a></h2><p>The original announcement is posted here for future reference.</p><blockquote><p>Zephyr is an automated robot designed to improve our new member application process. The current process, which involves copying a template to a new thread and the potential for applications to become misplaced, is cumbersome and inefficient. The goal of Zephyr is to remove as much of the manual process as possible.</p><p>Now, our new applicants will fill out an actual application online. The same information will be requested, but it will be in a more reliable format and will not require an applicant copy and paste anything between threads. This new application will be posted in the same forum as you're used to, and members will be freely able to comment and discuss the applicant via that thread. It will also display which date admin voting will be open, which is two full weeks after the original application post. This will hopefully cut down on any confusion related to the delay between application and voting.</p><p>As another note, from now on Zephyr will be the only user capable of creating new threads in the New Member Application forum. As previously stated, members will be able to post comments on existing threads, but the only new threads will come from the application process. This will keep the forum cleaner and help prevent applications from becoming lost or forgotten about.</p><p>Once again, Zephyr is an automated robot. It is not programmed to respond to comments or questions. Doing so will not get your question answered. As always, if you have questions or comments about the application process, Zephyr, or anything else, you're welcome to send them to any admin. We'll be more than happy to help.</p><p>You may all bow to your Robotic Overlord now.</p></blockquote></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#whats-new">What's new?</a><ul><li><a href="#voting-rules">Voting rules</a></li></ul></li><li><a href="#possible-responses">Possible Responses</a><ul><li><a href="#accepted-by-admin-team">Accepted by admin team</a></li><li><a href="#denied-by-admin-team">Denied by admin team</a></li><li><a href="#denied-due-to-lack-of-votes">Denied due to lack of votes</a></li><li><a href="#denied-because-of-age">Denied because of age</a></li></ul></li><li><a href="#original-announcement">Original Announcement</a></li></ul></div></aside></div><nav class="post-nav" aria-label="Post navigation"><span></span> <a href="https://andrewwegner.com/fixing-myisam-crashed-tables.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">Fixing MYISAM Crashed Tables</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

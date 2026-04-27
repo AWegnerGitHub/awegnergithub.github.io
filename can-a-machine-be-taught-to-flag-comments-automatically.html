@@ -1,284 +1,61 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="Description of how I automatically flag comments on Stack Overflow" />
-<meta name="keywords" content="Stack Exchange, machine learning, automation, programming">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="Can a machine be taught to flag comments automatically"/>
-  <meta property="og:description" content="Description of how I automatically flag comments on Stack Overflow"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2015-01-02 08:47:00-06:00"/>
-  <meta property="article:modified_time" content="2016-01-09 00:00:00-06:00"/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Programming Projects"/>
-  <meta property="article:tag" content="Stack Exchange"/>
-  <meta property="article:tag" content="machine learning"/>
-  <meta property="article:tag" content="automation"/>
-  <meta property="article:tag" content="programming"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>Can a machine be taught to flag comments automatically  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#background">Background</a></li>
-<li><a href="#results">Results</a><ul>
-<li><a href="#flagged-but-declined">Flagged but declined</a></li>
-</ul>
-</li>
-<li><a href="#lessons-and-observations">Lessons and Observations</a></li>
-<li><a href="#discussion">Discussion</a></li>
-<li><a href="#update">Update</a><ul>
-<li><a href="#process-changes">Process Changes</a></li>
-<li><a href="#may-2015-11-months">May 2015 (11 Months)</a></li>
-<li><a href="#sept-2015-15-months">Sept 2015 (15 Months)</a></li>
-<li><a href="#summary-of-2015">Summary of 2015</a></li>
-</ul>
-</li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/programming-projects.html">Programming Projects</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Can a machine be taught to flag comments automatically</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Can a machine be taught to flag comments automatically — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="Description of how I automatically flag comments on Stack Overflow"><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Programming Projects (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="Can a machine be taught to flag comments automatically"><meta property="og:url" content="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"><meta property="og:description" content="Description of how I automatically flag comments on Stack Overflow"><meta property="article:published_time" content="2015-01-02T08:47:00-06:00"><meta property="article:modified_time" content="2016-01-09T00:00:00-06:00"><meta property="article:section" content="Programming Projects"><meta property="article:tag" content="Stack Exchange"><meta property="article:tag" content="machine learning"><meta property="article:tag" content="automation"><meta property="article:tag" content="programming"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Can a machine be taught to flag comments automatically",
+  "headline": "Can a machine be taught to flag comments automatically",
+  "dateCreated": "2015-01-02T08:47:00-06:00",
+  "datePublished": "2015-01-02T08:47:00-06:00",  "dateModified": "2016-01-09T00:00:00-06:00",  "copyrightYear": "2015",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html",
+  "description": "Description of how I automatically flag comments on Stack Overflow",
+  "mainEntityOfPage": "True",
+  "articleSection": "Programming Projects"
+}</script></head><body data-page-type="article" data-page-slug="can-a-machine-be-taught-to-flag-comments-automatically" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/programming-projects.html">Programming Projects</a></nav><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/programming-projects.html",
-      "name": "Programming Projects"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html",
-      "name": "https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="can-a-machine-be-taught-to-flag-comments-automatically">Can a machine be taught to flag comments automatically</h1>
-    <p>
-      Posted on Fri 02 January 2015 in <a href="https://andrewwegner.com/category/programming-projects.html">Programming Projects</a>
-
-      <br />Updated on Sat 09 Jan 2016
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/stack-exchange.html">Stack Exchange</a>
-        <a href="https://andrewwegner.com/tag/machine-learning.html">machine learning</a>
-        <a href="https://andrewwegner.com/tag/automation.html">automation</a>
-        <a href="https://andrewwegner.com/tag/programming.html">programming</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>This post was originally <a href="http://meta.stackoverflow.com/q/280546/189134">published</a> by <a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile">me</a> on Meta Stack Overflow on December 14, 2014. I've republished it here
-so that I can easily update information related to recent developments. If you have questions or comments, I highly
-encourage you to visit the <a href="http://meta.stackoverflow.com/q/280546/189134">question</a> on Meta Stack Overflow and post there.</p>
-<hr/>
-<p>TL;DR: Yes it can.</p>
-<hr/>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">¶</a></h2>
-<p>On June 27, 2014 Skynet awoke. It looked at Stack Overflow and thought "Why are all these people being so chatty and talking about obsolete things? I should nuke them all!" Fortunately, Skynet was a baby and only had access to my 100 comment flags a day.</p>
-<p>Prior to this activation date, the system was fed with 10,000 "Good Comments", "Obsolete" comments and "Too Chatty" comments. These comments were taken from the <a href="http://data.stackexchange.com/">Stack Exchange Data Explorer</a>. The "Obsolete" and "Too Chatty" comment types had to meet the following criteria:</p>
-<ul>
-<li>Total comment length of less than 100 characters</li>
-<li>Comment has a 0 score</li>
-<li>Had variations of the following phrases:</li>
-</ul>
-<p>Phrases</p>
-<div class="codehilight code"><pre><span></span><code>'%mark%answer%'
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/programming-projects.html",
+        "name": "Programming Projects"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Programming Projects</span></div><h1 class="article-title">Can a machine be taught to flag comments automatically</h1><p class="article-summary">Description of how I automatically flag comments on Stack Overflow</p><div class="article-meta"><time datetime="2015-01-02T08:47:00-06:00" class="article-meta-date">Fri 02 January 2015</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/stack-exchange.html" class="tag">#Stack Exchange</a> <a href="https://andrewwegner.com/tag/machine-learning.html" class="tag">#machine learning</a> <a href="https://andrewwegner.com/tag/automation.html" class="tag">#automation</a> <a href="https://andrewwegner.com/tag/programming.html" class="tag">#programming</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#background">Background</a></li><li><a href="#results">Results</a><ul><li><a href="#flagged-but-declined">Flagged but declined</a></li></ul></li><li><a href="#lessons-and-observations">Lessons and Observations</a></li><li><a href="#discussion">Discussion</a></li><li><a href="#update">Update</a><ul><li><a href="#process-changes">Process Changes</a></li><li><a href="#may-2015-11-months">May 2015 (11 Months)</a></li><li><a href="#sept-2015-15-months">Sept 2015 (15 Months)</a></li><li><a href="#summary-of-2015">Summary of 2015</a></li></ul></li></ul></div></div><div class="prose"><h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2><p>This post was originally <a href="http://meta.stackoverflow.com/q/280546/189134">published</a> by <a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile">me</a> on Meta Stack Overflow on December 14, 2014. I've republished it here so that I can easily update information related to recent developments. If you have questions or comments, I highly encourage you to visit the <a href="http://meta.stackoverflow.com/q/280546/189134">question</a> on Meta Stack Overflow and post there.</p><hr><p>TL;DR: Yes it can.</p><hr><h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">¶</a></h2><p>On June 27, 2014 Skynet awoke. It looked at Stack Overflow and thought "Why are all these people being so chatty and talking about obsolete things? I should nuke them all!" Fortunately, Skynet was a baby and only had access to my 100 comment flags a day.</p><p>Prior to this activation date, the system was fed with 10,000 "Good Comments", "Obsolete" comments and "Too Chatty" comments. These comments were taken from the <a href="http://data.stackexchange.com/">Stack Exchange Data Explorer</a>. The "Obsolete" and "Too Chatty" comment types had to meet the following criteria:</p><ul><li>Total comment length of less than 100 characters</li><li>Comment has a 0 score</li><li>Had variations of the following phrases:</li></ul><p>Phrases</p><div class="codehilight code"><pre><span></span><code>'%mark%answer%'
 '%mark%accept%'
 '%accept%answer%'
 '%lease%accept%'
@@ -288,195 +65,21 @@ encourage you to visit the <a href="http://meta.stackoverflow.com/q/280546/18913
 '%.....'
 '+1%'
 '-1%'
-</code></pre></div>
-<p>"Good Comments" were assumed, initially, to be anything that didn't fall into the above criteria</p>
-<p>This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.</p>
-<p>My next step was to train a classifier. I had initially assumed that I'd start with a Naive Bayes to get a baseline and then work to something more complicated from there. Perhaps, extract text features, user information, etc. and build a fancy classifier. My initial tests showed that the Naive Bayes was accurate 80-90% of the time with test data.</p>
-<p>I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these threshold took a few weeks but eventually I determined the following thresholds were appropriate for my use:</p>
-<div class="codehilight code"><pre><span></span><code><span class="gh">Type            | Threshold     | Flagging Enabled</span>
+</code></pre></div><p>"Good Comments" were assumed, initially, to be anything that didn't fall into the above criteria</p><p>This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.</p><p>My next step was to train a classifier. I had initially assumed that I'd start with a Naive Bayes to get a baseline and then work to something more complicated from there. Perhaps, extract text features, user information, etc. and build a fancy classifier. My initial tests showed that the Naive Bayes was accurate 80-90% of the time with test data.</p><p>I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these threshold took a few weeks but eventually I determined the following thresholds were appropriate for my use:</p><div class="codehilight code"><pre><span></span><code><span class="gh">Type            | Threshold     | Flagging Enabled</span>
 <span class="gh">--------------------------------------------------</span>
 too chatty      | 0.9997        | True
 obsolete        | 0.99          | True
 good comment    | 0.9999        | False
-</code></pre></div>
-<p>When a comment is classified, if it exceeds the threshold for one of the above, it is recorded into my database for future retraining. If flagging is enabled, the API is <a href="http://api.stackexchange.com/docs/comment-flag-options">utilized</a> to issue an <a href="http://api.stackexchange.com/docs/create-comment-flag">appropriate</a> flag. Obviously, I don't want to flag good comments, but I do want to record them so that I can reuse the data in a later training step.</p>
-<hr/>
-<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">¶</a></h2>
-<p>What have the results of this experiment been? From my point of view, I'd venture that it's been successful. I have automatically flagged over 17,000 comments. As of December 17, 2014, the process has been running for 173 days. My comment flagging stats are currently:</p>
-<div class="codehilight code"><pre><span></span><code><span class="mf">26885</span><span class="w">   </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span>
+</code></pre></div><p>When a comment is classified, if it exceeds the threshold for one of the above, it is recorded into my database for future retraining. If flagging is enabled, the API is <a href="http://api.stackexchange.com/docs/comment-flag-options">utilized</a> to issue an <a href="http://api.stackexchange.com/docs/create-comment-flag">appropriate</a> flag. Obviously, I don't want to flag good comments, but I do want to record them so that I can reuse the data in a later training step.</p><hr><h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">¶</a></h2><p>What have the results of this experiment been? From my point of view, I'd venture that it's been successful. I have automatically flagged over 17,000 comments. As of December 17, 2014, the process has been running for 173 days. My comment flagging stats are currently:</p><div class="codehilight code"><pre><span></span><code><span class="mf">26885</span><span class="w">   </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span>
 <span class="mf">26714</span><span class="w">   </span><span class="n">deemed</span><span class="w"> </span><span class="n">helpful</span>
 <span class="mf">171</span><span class="w">     </span><span class="n">declined</span>
-</code></pre></div>
-<p>Started at (approximately):</p>
-<div class="codehilight code"><pre><span></span><code><span class="mf">9885</span><span class="w">    </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span>
+</code></pre></div><p>Started at (approximately):</p><div class="codehilight code"><pre><span></span><code><span class="mf">9885</span><span class="w">    </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span>
 <span class="mf">9847</span><span class="w">    </span><span class="n">deemed</span><span class="w"> </span><span class="n">helpful</span>
 <span class="mf">38</span><span class="w">      </span><span class="n">declined</span>
-</code></pre></div>
-<p>This gives me an overall accuracy of 99.36%. Down from 99.61% when no automated process was involved.</p>
-<hr/>
-<p>There are pictures that help tell this story too. In this first one, we see that the rolling 10 day average for the number of declined flags has stayed below two flags a day. In October, there was a two week period where the rolling average was 0 and nearly a month long period where the system did not make any mistakes.</p>
-<p><img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/flags_per_day_rolling_average.png"/></p>
-<p>Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the <a href="http://winterbash2014.stackexchange.com/resolution">Resolution hat</a>. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to day light saving time. My process starts 10 minutes after UTC. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they <a href="http://meta.stackexchange.com/a/215397/186281">lost their keys</a> that day.</p>
-<hr/>
-<p><img alt="Total flagged vs Total Declined" src="https://andrewwegner.com/images/total_flags_vs_total_declined.png"/></p>
-<p>Except for 3 days, since June 27th, the process has flagged 100 comments a day. In this chart, you can see the number of declined comment flags along the bottom.</p>
-<hr/>
-<p><img alt="Number of comments saved per day" src="https://andrewwegner.com/images/comments_saved_per_day.png"/></p>
-<p>Finally, this chart shows the number of comments that the system wanted to act on (and a rolling 5 day average). When the system was brought online, it was acting on 700-800 comments a day (saving to my local database). Many of these were being classified as "Good Comments". You can see the day that I adjusted the threshold for "Good Comments" to be acted upon (saved). The drop in the number of comments the system saved is dramatic. Instead of saving 700-800 comments daily, the system now averages about 150 comments to save. Since I don't flag "Good Comments", I feel this is the appropriate action to take.</p>
-<hr/>
-<h3 id="flagged-but-declined">Flagged but declined<a class="headerlink" href="#flagged-but-declined" title="Permanent link">¶</a></h3>
-<p>As shown above, I've had comments flags declined. Some of these obviously should have been and required a retraining or threshold adjustment on my part. Others, in my opinion, should have been removed as noise. Below is a small sampling of both types of comments.</p>
-<p>Recent comments that I feel are noise:</p>
-<ul>
-<li><a href="http://stackoverflow.com/questions/27420526/i-want-to-play-from-frame-2-and-then-stop-at-frame-3/27425983#comment43388489_27425983">yes thank you so much for you help it works sorry for the late reply</a></li>
-<li><a href="http://stackoverflow.com/questions/27476522/how-to-call-a-function-by-a-pointer/27476639#comment43387801_27476639">Wow it works. Thank you very much!</a></li>
-<li><a href="http://stackoverflow.com/questions/27284958/why-thread-id-creates-not-in-order/27285031#comment43038003_27285031">wow that works!Thanks so much for your advice!</a></li>
-<li><a href="http://stackoverflow.com/questions/27375504/remove-legends-for-each-point-and-keep-only-those-which-are-outliers-for-ggplot/27380631#comment43387125_27380631">Ok, the works great, thank you so much!</a></li>
-<li><a href="http://stackoverflow.com/questions/14907518/modal-view-controllers-how-to-display-and-dismiss/14910469#comment43386201_14910469">Thank you very much for your explanation, you rock dude !!!</a></li>
-</ul>
-<p>Here are some comments that were incorrectly flagged:</p>
-<ul>
-<li><a href="http://stackoverflow.com/questions/18545905/meteor-without-mongo#comment42850716_18545905">@Spina: yes. Check my answer. You can simply point MONGO_URL to an invalid URL.</a></li>
-<li><a href="http://stackoverflow.com/questions/27007685/how-can-i-position-divs-at-the-bottom-of-container-div-and-inline/27007772#comment42544238_27007772">Sorry, my error. I was: "position", not "display". Check it: jsfiddle.net/hvfku99c</a></li>
-<li><a href="http://stackoverflow.com/questions/26745185/multiple-spacebar-conditional-operators/26745790#comment42078870_26745790">I believe UI.registerHelper is, being deprecated. Please check my updated answer.</a></li>
-</ul>
-<p>Other comments are flagged but then edited prior to a moderator seeing the comment. The edit adds information to the post, thus the declination is justified:</p>
-<ul>
-<li><a href="http://stackoverflow.com/questions/27406267/neo4j-very-slowly-using-shortestpath#comment43271781_27406267">Yes, I have indexes. Let me show my schema</a> was edited to the much more useful: <code>Yes, I have indexes for UUID and Permission. In fact rlationship is a variable length here (e)-[rp:Has_Pocket|Has_Document*0..]-&gt;d</code></li>
-<li><a href="http://stackoverflow.com/questions/26535662/how-to-read-files-in-sequence-from-a-directory-in-opencv/26536198#comment41709286_26536198">Here is the question i had posted first using FIleStorage issue</a> was edited to include the link to the referenced post.</li>
-</ul>
-<p>It's also worth noting that despite getting flags declined, some comments do eventually disappear. This is due to either flags raised by other community members putting the comment back in front of a moderator or by simply accumulating enough community flags for the system to act automatically. In either case, the desired result of removing noise has been accomplished.</p>
-<ul>
-<li><a href="http://stackoverflow.com/questions/27006363/node-js-parse-filename-from-url/27006555#comment42544432_27006555">Oh, derr. good point. Edited.</a></li>
-<li><a href="http://stackoverflow.com/questions/27073761/redefining-the-hitbox-of-objects/27073838#comment42659999_27073838">You're right! Hopefully you see my point anyways.</a></li>
-</ul>
-<hr/>
-<h2 id="lessons-and-observations">Lessons and Observations<a class="headerlink" href="#lessons-and-observations" title="Permanent link">¶</a></h2>
-<ul>
-<li>Replication to other sites would depend on site culture</li>
-</ul>
-<p>As a (fairly) non-subjective site, Stack Overflow made a good test case for this. On a site like <a href="http://communitybuilding.stackexchange.com/">Community Building</a>, <a href="http://pets.stackexchange.com/">Pets</a>, <a href="http://parenting.stackexchange.com/">Parenting</a> or other site that accepts subjective answers, "too chatty" would be much harder to classify.</p>
-<ul>
-<li><a href="http://meta.stackoverflow.com/q/277314/189134">+/-1 has been discouraged</a></li>
-</ul>
-<p>The observation I made on my own that comments with this type of content were distracting has been noticed by others as well. This was actually a very nice validation of my own process and some of the results posted on that thread show many such comments continue to be noise. Of course, this change did also force users to modify their content and may have added new patterns that can be utilized in future training.</p>
-<ul>
-<li>Ability to <a href="http://meta.stackexchange.com/q/245416/186281">automatically check flags</a> would be great so that automated runs could be paused if it goes crazy</li>
-</ul>
-<p>The process of checking that my flagging history remains accurate is time consuming. The status of a flag can't be acquired via the API. I've submitted a feature request for this information to be added to the API. With this information, flagging can be paused or stopped if X number of flags are declined.</p>
-<ul>
-<li>Stack Overflow's volume of comments is a crutch.</li>
-</ul>
-<p>Due to the <a href="http://data.stackexchange.com/stackoverflow/query/200435#graph">high volume of comments</a> and limited number of comment flags my account has available, I can afford to be picky on which comments I want to act on. The classifier itself is about 85% accurate in determining the type of comment. However, I artificially increase my accuracy by only acting on comments that have a very high classifier certainty by forcing this certainty level to meet or surpass my threshold values from above. Smaller sites, with a lower volume, don't have the benefit of having enough comments to be this picky. It is on these sites that a more feature based classifier would be important.</p>
-<ul>
-<li>The human element is still unpredictable.</li>
-</ul>
-<p>My classifier was trained utilizing my idea of how comments should be flagged. Prior to automating this, I was not 100% accurate. Additionally, moderators are not 100% accurate in their processing of flags. <a href="http://meta.stackoverflow.com/q/278813/189134">Users</a> <a href="http://meta.stackoverflow.com/q/280426/189134">disagree</a> on how these rules should be implemented, but are willing to <a href="http://meta.stackoverflow.com/q/278927/189134">assist</a> in keeping the site clean. With more than 175K comments a week, every little bit helps.</p>
-<hr/>
-<h2 id="discussion">Discussion<a class="headerlink" href="#discussion" title="Permanent link">¶</a></h2>
-<p>As my title states, my original question was whether or not I can teach a machine how to flag comments as I would. The answer to that is yes. The next question is whether this type of system would be helpful in cleaning up comments across Stack Overflow. My system works only on new comments created around each new UTC. Once my 100 flags are hit (or the API tells me to stop), it shuts down for the day. Having something automated go through historical comments or that can run all day would be beneficial.</p>
-<p>Finally, now that I've admitted that I've been automatically flagging comments, can I continue to do so?</p>
-<hr/>
-<h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">¶</a></h2>
-<p><em>This section has been updated multiple times since the original post. Most recently, it was updated May 3, 2015</em></p>
-<p>As I mentioned in the introduction, this was originally published in December 2014. How is the system behaving now? It is performing very well.</p>
-<h3 id="process-changes">Process Changes<a class="headerlink" href="#process-changes" title="Permanent link">¶</a></h3>
-<p>In January 2015, <a href="http://meta.stackoverflow.com/q/283030/189134">another user</a> was using a basic query to look for invalid comments. This caused a high number of moderator flags, many of which were declined. My process was caught in this mass decline. This resulted in 49 declined flags for a single day.
-This is, by far, the largest number of declined flags the process has generated in a day. It did, however, prompt a process change after consultation with the Stack Overflow moderators.</p>
-<p>The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.</p>
-<h3 id="may-2015-11-months">May 2015 (11 Months)<a class="headerlink" href="#may-2015-11-months" title="Permanent link">¶</a></h3>
-<p>After nearly a year of running, these are my flagging statistics:</p>
-<div class="codehilight code"><pre><span></span><code><span class="mf">39938</span><span class="w">   </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span>
+</code></pre></div><p>This gives me an overall accuracy of 99.36%. Down from 99.61% when no automated process was involved.</p><hr><p>There are pictures that help tell this story too. In this first one, we see that the rolling 10 day average for the number of declined flags has stayed below two flags a day. In October, there was a two week period where the rolling average was 0 and nearly a month long period where the system did not make any mistakes.</p><p><img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/flags_per_day_rolling_average.png"></p><p>Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the <a href="http://winterbash2014.stackexchange.com/resolution">Resolution hat</a>. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to day light saving time. My process starts 10 minutes after UTC. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they <a href="http://meta.stackexchange.com/a/215397/186281">lost their keys</a> that day.</p><hr><p><img alt="Total flagged vs Total Declined" src="https://andrewwegner.com/images/total_flags_vs_total_declined.png"></p><p>Except for 3 days, since June 27th, the process has flagged 100 comments a day. In this chart, you can see the number of declined comment flags along the bottom.</p><hr><p><img alt="Number of comments saved per day" src="https://andrewwegner.com/images/comments_saved_per_day.png"></p><p>Finally, this chart shows the number of comments that the system wanted to act on (and a rolling 5 day average). When the system was brought online, it was acting on 700-800 comments a day (saving to my local database). Many of these were being classified as "Good Comments". You can see the day that I adjusted the threshold for "Good Comments" to be acted upon (saved). The drop in the number of comments the system saved is dramatic. Instead of saving 700-800 comments daily, the system now averages about 150 comments to save. Since I don't flag "Good Comments", I feel this is the appropriate action to take.</p><hr><h3 id="flagged-but-declined">Flagged but declined<a class="headerlink" href="#flagged-but-declined" title="Permanent link">¶</a></h3><p>As shown above, I've had comments flags declined. Some of these obviously should have been and required a retraining or threshold adjustment on my part. Others, in my opinion, should have been removed as noise. Below is a small sampling of both types of comments.</p><p>Recent comments that I feel are noise:</p><ul><li><a href="http://stackoverflow.com/questions/27420526/i-want-to-play-from-frame-2-and-then-stop-at-frame-3/27425983#comment43388489_27425983">yes thank you so much for you help it works sorry for the late reply</a></li><li><a href="http://stackoverflow.com/questions/27476522/how-to-call-a-function-by-a-pointer/27476639#comment43387801_27476639">Wow it works. Thank you very much!</a></li><li><a href="http://stackoverflow.com/questions/27284958/why-thread-id-creates-not-in-order/27285031#comment43038003_27285031">wow that works!Thanks so much for your advice!</a></li><li><a href="http://stackoverflow.com/questions/27375504/remove-legends-for-each-point-and-keep-only-those-which-are-outliers-for-ggplot/27380631#comment43387125_27380631">Ok, the works great, thank you so much!</a></li><li><a href="http://stackoverflow.com/questions/14907518/modal-view-controllers-how-to-display-and-dismiss/14910469#comment43386201_14910469">Thank you very much for your explanation, you rock dude !!!</a></li></ul><p>Here are some comments that were incorrectly flagged:</p><ul><li><a href="http://stackoverflow.com/questions/18545905/meteor-without-mongo#comment42850716_18545905">@Spina: yes. Check my answer. You can simply point MONGO_URL to an invalid URL.</a></li><li><a href="http://stackoverflow.com/questions/27007685/how-can-i-position-divs-at-the-bottom-of-container-div-and-inline/27007772#comment42544238_27007772">Sorry, my error. I was: "position", not "display". Check it: jsfiddle.net/hvfku99c</a></li><li><a href="http://stackoverflow.com/questions/26745185/multiple-spacebar-conditional-operators/26745790#comment42078870_26745790">I believe UI.registerHelper is, being deprecated. Please check my updated answer.</a></li></ul><p>Other comments are flagged but then edited prior to a moderator seeing the comment. The edit adds information to the post, thus the declination is justified:</p><ul><li><a href="http://stackoverflow.com/questions/27406267/neo4j-very-slowly-using-shortestpath#comment43271781_27406267">Yes, I have indexes. Let me show my schema</a> was edited to the much more useful: <code>Yes, I have indexes for UUID and Permission. In fact rlationship is a variable length here (e)-[rp:Has_Pocket|Has_Document*0..]-&gt;d</code></li><li><a href="http://stackoverflow.com/questions/26535662/how-to-read-files-in-sequence-from-a-directory-in-opencv/26536198#comment41709286_26536198">Here is the question i had posted first using FIleStorage issue</a> was edited to include the link to the referenced post.</li></ul><p>It's also worth noting that despite getting flags declined, some comments do eventually disappear. This is due to either flags raised by other community members putting the comment back in front of a moderator or by simply accumulating enough community flags for the system to act automatically. In either case, the desired result of removing noise has been accomplished.</p><ul><li><a href="http://stackoverflow.com/questions/27006363/node-js-parse-filename-from-url/27006555#comment42544432_27006555">Oh, derr. good point. Edited.</a></li><li><a href="http://stackoverflow.com/questions/27073761/redefining-the-hitbox-of-objects/27073838#comment42659999_27073838">You're right! Hopefully you see my point anyways.</a></li></ul><hr><h2 id="lessons-and-observations">Lessons and Observations<a class="headerlink" href="#lessons-and-observations" title="Permanent link">¶</a></h2><ul><li>Replication to other sites would depend on site culture</li></ul><p>As a (fairly) non-subjective site, Stack Overflow made a good test case for this. On a site like <a href="http://communitybuilding.stackexchange.com/">Community Building</a>, <a href="http://pets.stackexchange.com/">Pets</a>, <a href="http://parenting.stackexchange.com/">Parenting</a> or other site that accepts subjective answers, "too chatty" would be much harder to classify.</p><ul><li><a href="http://meta.stackoverflow.com/q/277314/189134">+/-1 has been discouraged</a></li></ul><p>The observation I made on my own that comments with this type of content were distracting has been noticed by others as well. This was actually a very nice validation of my own process and some of the results posted on that thread show many such comments continue to be noise. Of course, this change did also force users to modify their content and may have added new patterns that can be utilized in future training.</p><ul><li>Ability to <a href="http://meta.stackexchange.com/q/245416/186281">automatically check flags</a> would be great so that automated runs could be paused if it goes crazy</li></ul><p>The process of checking that my flagging history remains accurate is time consuming. The status of a flag can't be acquired via the API. I've submitted a feature request for this information to be added to the API. With this information, flagging can be paused or stopped if X number of flags are declined.</p><ul><li>Stack Overflow's volume of comments is a crutch.</li></ul><p>Due to the <a href="http://data.stackexchange.com/stackoverflow/query/200435#graph">high volume of comments</a> and limited number of comment flags my account has available, I can afford to be picky on which comments I want to act on. The classifier itself is about 85% accurate in determining the type of comment. However, I artificially increase my accuracy by only acting on comments that have a very high classifier certainty by forcing this certainty level to meet or surpass my threshold values from above. Smaller sites, with a lower volume, don't have the benefit of having enough comments to be this picky. It is on these sites that a more feature based classifier would be important.</p><ul><li>The human element is still unpredictable.</li></ul><p>My classifier was trained utilizing my idea of how comments should be flagged. Prior to automating this, I was not 100% accurate. Additionally, moderators are not 100% accurate in their processing of flags. <a href="http://meta.stackoverflow.com/q/278813/189134">Users</a> <a href="http://meta.stackoverflow.com/q/280426/189134">disagree</a> on how these rules should be implemented, but are willing to <a href="http://meta.stackoverflow.com/q/278927/189134">assist</a> in keeping the site clean. With more than 175K comments a week, every little bit helps.</p><hr><h2 id="discussion">Discussion<a class="headerlink" href="#discussion" title="Permanent link">¶</a></h2><p>As my title states, my original question was whether or not I can teach a machine how to flag comments as I would. The answer to that is yes. The next question is whether this type of system would be helpful in cleaning up comments across Stack Overflow. My system works only on new comments created around each new UTC. Once my 100 flags are hit (or the API tells me to stop), it shuts down for the day. Having something automated go through historical comments or that can run all day would be beneficial.</p><p>Finally, now that I've admitted that I've been automatically flagging comments, can I continue to do so?</p><hr><h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">¶</a></h2><p><em>This section has been updated multiple times since the original post. Most recently, it was updated May 3, 2015</em></p><p>As I mentioned in the introduction, this was originally published in December 2014. How is the system behaving now? It is performing very well.</p><h3 id="process-changes">Process Changes<a class="headerlink" href="#process-changes" title="Permanent link">¶</a></h3><p>In January 2015, <a href="http://meta.stackoverflow.com/q/283030/189134">another user</a> was using a basic query to look for invalid comments. This caused a high number of moderator flags, many of which were declined. My process was caught in this mass decline. This resulted in 49 declined flags for a single day. This is, by far, the largest number of declined flags the process has generated in a day. It did, however, prompt a process change after consultation with the Stack Overflow moderators.</p><p>The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.</p><h3 id="may-2015-11-months">May 2015 (11 Months)<a class="headerlink" href="#may-2015-11-months" title="Permanent link">¶</a></h3><p>After nearly a year of running, these are my flagging statistics:</p><div class="codehilight code"><pre><span></span><code><span class="mf">39938</span><span class="w">   </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span>
 <span class="mf">39659</span><span class="w">   </span><span class="n">deemed</span><span class="w"> </span><span class="n">helpful</span>
 <span class="mf">279</span><span class="w">     </span><span class="n">declined</span>
-</code></pre></div>
-<p>This provides a helpful rate of 99.3%. This is down <em>just</em> slightly from 99.36% in December. I attribute a large part of the dip to the issue mentioned above.</p>
-<hr/>
-<p><img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average.png"/></p>
-<p>Here is an updated chart showing the rolling 10 day average for number of declined flags. I've had several stretches of multi-week time frames with no declined flags.</p>
-<p>This is a busy chart, so I've narrowed it down to show just the last 90 days. From here you can see that in the past 90 days there have been only 10 declined flags.</p>
-<p><img alt="Flags per day with rolling 10 day average - 90 day window" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/></p>
-<h3 id="sept-2015-15-months">Sept 2015 (15 Months)<a class="headerlink" href="#sept-2015-15-months" title="Permanent link">¶</a></h3>
-<p>It has been almost 15 months since the process started. In that time, the model has gotten more accurate. Since the last update in May, I've had only 3 declined comment flags:</p>
-<div class="codehilight code"><pre><span></span><code><span class="mf">52351</span><span class="w">   </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span>
+</code></pre></div><p>This provides a helpful rate of 99.3%. This is down <em>just</em> slightly from 99.36% in December. I attribute a large part of the dip to the issue mentioned above.</p><hr><p><img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average.png"></p><p>Here is an updated chart showing the rolling 10 day average for number of declined flags. I've had several stretches of multi-week time frames with no declined flags.</p><p>This is a busy chart, so I've narrowed it down to show just the last 90 days. From here you can see that in the past 90 days there have been only 10 declined flags.</p><p><img alt="Flags per day with rolling 10 day average - 90 day window" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"></p><h3 id="sept-2015-15-months">Sept 2015 (15 Months)<a class="headerlink" href="#sept-2015-15-months" title="Permanent link">¶</a></h3><p>It has been almost 15 months since the process started. In that time, the model has gotten more accurate. Since the last update in May, I've had only 3 declined comment flags:</p><div class="codehilight code"><pre><span></span><code><span class="mf">52351</span><span class="w">   </span><span class="n">comments</span><span class="w"> </span><span class="n">flagged</span>
 <span class="mf">52069</span><span class="w">   </span><span class="n">deemed</span><span class="w"> </span><span class="n">helpful</span>
 <span class="mf">282</span><span class="w">     </span><span class="n">declined</span>
-</code></pre></div>
-<p>This provides a helpful rate of 99.46%. Here is an updated chart showing the rolling 10 day average for number of declined flags. The 90 day window is not even worth showing. It has three days where a single flag was declined.</p>
-<p><img alt="Flags per day with rolling 10 day average - 15 Months of data training" src="https://andrewwegner.com/images/declined_per_day_15_months.png"/></p>
-<h3 id="summary-of-2015">Summary of 2015<a class="headerlink" href="#summary-of-2015" title="Permanent link">¶</a></h3>
-<p>I processed comments 359 days out of the year. I missed three in January due to stopping it after a mass decline of flags (more later), I can't account for a missed day in July and August. I don't recall stopping it, but I missed July 3rd and August 19. I also missed December 28th due to a power issue. I flagged 35,960 comments. Of that, 111 were declined.</p>
-<p>By month, this is the break down of rejected flags.</p>
-<p><img alt="2015 Flag Summary" src="https://andrewwegner.com/images/2015-flag-summary.png"/></p>
-<p>The blip at the end of November is due to new moderators being elected and adjusting to what other moderators consider "good" versus "bad" comments. I didn't see the spike in the April election which is interesting, but after a couple days in November it's back to normal. The January spike I mentioned above.</p>
-<p>Interesting note: The longest stretch in the year with no declined flags was from August 13th through November 24th.</p>
-  </div>
-<div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/moderation-postion-on-moderators.html"
-    title="Moderation postion on Moderators">
-    <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-  <a class="btn float-right" href="https://andrewwegner.com/thanks-for-all-the-fish.html"
-    title="Thanks for all the fish">
-    Next Post <i class="fa fa-angle-right"></i>
-  </a>
-</div>
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-</article>
-
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BlogPosting",
-  "name": "Can a machine be taught to flag comments automatically",
-  "headline": "Can a machine be taught to flag comments automatically",
-  "dateCreated": "2015-01-02 08:47:00-06:00",
-  "datePublished": "2015-01-02 08:47:00-06:00",
-  "dateModified": "2016-01-09 00:00:00-06:00",
-  "copyrightYear": "2015",
-  "copyrightHolder": {
-    "@type": "Person",
-    "name": "Andy Wegner",
-    "url": "https://andrewwegner.com"
-  },
-  "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
-  },
-  "publisher": {
-    "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html",
-  "description": "Description of how I automatically flag comments on Stack Overflow",
-  "mainEntityOfPage": "True",
-  "articleSection": "Programming Projects"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+</code></pre></div><p>This provides a helpful rate of 99.46%. Here is an updated chart showing the rolling 10 day average for number of declined flags. The 90 day window is not even worth showing. It has three days where a single flag was declined.</p><p><img alt="Flags per day with rolling 10 day average - 15 Months of data training" src="https://andrewwegner.com/images/declined_per_day_15_months.png"></p><h3 id="summary-of-2015">Summary of 2015<a class="headerlink" href="#summary-of-2015" title="Permanent link">¶</a></h3><p>I processed comments 359 days out of the year. I missed three in January due to stopping it after a mass decline of flags (more later), I can't account for a missed day in July and August. I don't recall stopping it, but I missed July 3rd and August 19. I also missed December 28th due to a power issue. I flagged 35,960 comments. Of that, 111 were declined.</p><p>By month, this is the break down of rejected flags.</p><p><img alt="2015 Flag Summary" src="https://andrewwegner.com/images/2015-flag-summary.png"></p><p>The blip at the end of November is due to new moderators being elected and adjusting to what other moderators consider "good" versus "bad" comments. I didn't see the spike in the April election which is interesting, but after a couple days in November it's back to normal. The January spike I mentioned above.</p><p>Interesting note: The longest stretch in the year with no declined flags was from August 13th through November 24th.</p></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#background">Background</a></li><li><a href="#results">Results</a><ul><li><a href="#flagged-but-declined">Flagged but declined</a></li></ul></li><li><a href="#lessons-and-observations">Lessons and Observations</a></li><li><a href="#discussion">Discussion</a></li><li><a href="#update">Update</a><ul><li><a href="#process-changes">Process Changes</a></li><li><a href="#may-2015-11-months">May 2015 (11 Months)</a></li><li><a href="#sept-2015-15-months">Sept 2015 (15 Months)</a></li><li><a href="#summary-of-2015">Summary of 2015</a></li></ul></li></ul></div></aside></div><nav class="post-nav" aria-label="Post navigation"><a href="https://andrewwegner.com/moderation-postion-on-moderators.html" class="post-nav-link post-nav-link-prev"><span class="post-nav-dir">← Previous post</span> <span class="post-nav-title">Moderation postion on Moderators</span> </a><a href="https://andrewwegner.com/thanks-for-all-the-fish.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">Thanks for all the fish</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

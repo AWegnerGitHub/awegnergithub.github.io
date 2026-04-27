@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Andrew Wegner | Ponderings of an Andy - hydroponics</title><link href="https://andrewwegner.com/" rel="alternate"/><link href="https://andrewwegner.com/feeds/tag/hydroponics.atom.xml" rel="self"/><id>https://andrewwegner.com/</id><updated>2022-12-07T08:45:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Rise Garden Two Year Follow Up</title><link href="https://andrewwegner.com/rise-garden-two-year-review.html" rel="alternate"/><published>2022-12-07T08:45:00-06:00</published><updated>2022-12-07T08:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-07:/rise-garden-two-year-review.html</id><summary type="html">&lt;p&gt;After two and half years of using the Rise Garden product, how is it holding up? This article provides an update.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When I last talked about the [Rise Garden][risegarden] my family is using, it was during my first harvest two and a half years ago.
+I said &lt;a href="https://andrewwegner.com/rise-garden-final-review.html"&gt;I'd get the garden again&lt;/a&gt;. During the posts at the time, I also covered some
+&lt;a href="https://andrewwegner.com/rise-garden-suggestions-physical.html"&gt;physical changes that would be helpful&lt;/a&gt; and
+some &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;application suggestions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It's been two and a half years since I first assembled the garden and two years since my last update at the end of the previous article. Let's
+review and see how the garden has held up.&lt;/p&gt;
+&lt;p&gt;I mentioned above that I provided a few suggestions, and raised a few concerns. Here's a quick summary of those, so that we can easily see what
+I'm looking to address here based on concerns then.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Application&lt;/li&gt;
+&lt;li&gt;Number of plants the garden supports&lt;/li&gt;
+&lt;li&gt;Few fruiting plants&lt;/li&gt;
+&lt;li&gt;The number of pods that don't sprout&lt;/li&gt;
+&lt;li&gt;Subscription service item availability&lt;/li&gt;
+&lt;li&gt;Physical improvements&lt;/li&gt;
+&lt;li&gt;Nutrient build up&lt;/li&gt;
+&lt;li&gt;Pump&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="application"&gt;Application&lt;a class="headerlink" href="#application" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Let's start with the application itself. In my &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;previous post&lt;/a&gt;, I raised a couple
+concerns I had about the mobile application.&lt;/p&gt;
+&lt;p&gt;In good news, the splash screen issue has been resolved. The log in issue has also been resolved. I do still need to occassionally re-login, but
+overall, the application remembers me a lot longer than the handful of days it did at the time.&lt;/p&gt;
+&lt;p&gt;The lighting options have also been updated.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Lighting options are updated to include sunrise/sunset options" src="https://andrewwegner.com/images/2022-garden-lights.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I have more than a simple time and duration option. The sunrise and sunset options aren't exactly what I asked for two years ago, but
+this is a nice compromise. It's winter, so I've moved my garden inside to a warmer location, which unfortunately places it out of direct
+sunlight. However, during the rest of the year, this gradual lighting is nice, because I was able to time it to when the sun
+hits the garden and when it does not. This allowed me to use less than 100% lighting through out the day.&lt;/p&gt;
+&lt;p&gt;I do have a complaint about this new screen though. Look back at my &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;screen shot of the previous lighting page&lt;/a&gt;. Previously,
+I could select any time for the lights to come on, and it was a pretty intuitive hour/minute selector. Now, it is a single slider with 15 minute
+increments. It is really hard to hit exactly what you want with a slider. It takes a lot of small adjustments to get the time I want my
+lights to come on with this slider. I think moving to a slider from the hour/minute selector was a bad user experience choice.&lt;/p&gt;
+&lt;p&gt;Unfortunately, that wasn't the only bad user experience change.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Garden plants screen" src="https://andrewwegner.com/images/2022-garden-plants.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This new page showing my garden is awful. The previous version showed an overview of the entire garden, and then allowed me to click a plant to
+get more details. This version shows a single tray on a single level and involves both vertical and horizontal scrolling to see all of my plants.
+I do not like this change. There is a lot more tapping and dragging around the screen to find specific plants.&lt;/p&gt;
+&lt;p&gt;The last application problem I'm still seeing is that plant information is wildly inaccurate. This is my current pea plant, that the application
+says is past harvest. It hasn't even started flowering yet. In two years, this page has not been accurate for a single plant.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="No Flowers on this pea plant yet, despite the app saying it's past harvest time" src="https://andrewwegner.com/images/2022-garden-peaplant.jpg"/&gt;&lt;/p&gt;
+&lt;h2 id="plants"&gt;Plants&lt;a class="headerlink" href="#plants" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The marketing images show very full gardens. When I've attempted full gardens and followed the application's recommendations, I get sub-optimal
+harvests. The large plants crowd out one another, even with aggressive pruning. The vines will take over an entire level and smother others, without
+aggressive pruning.&lt;/p&gt;
+&lt;p&gt;The plants that I can get to grow most consistently are lettuces and herbs. Fortunately, we use a lot of both. But, it'd be nice to get a consistent
+pepper, tomato, cucumber or pea plant each harvest too. Unfortunately, adding more than a couple of those plants to the entire garden results in a
+plant that doesn't produce.&lt;/p&gt;
+&lt;p&gt;Combining this with the sprouting failure rate I mentioned 2 years ago, that hasn't improved, it becomes a gamble on what to grow sometimes. The
+sprouting problems continue to plague each harvest, with approximately 1 out of 10 seeds across all plants not sprouting. Unfortunately, on my
+latest batch, I had 3 lettuce and 1 pea plant that didn't sprout. This was my highest failure rate so far.&lt;/p&gt;
+&lt;p&gt;I did notice, while writing this post, that Rise Gardens &lt;a href="https://risegardens.com/products/indoor-garden-nursery"&gt;released a new nursery&lt;/a&gt;. It only supports 4 pods though, compared to the 12 pods one of
+my current nurseries holds. I'd have to replan how and when I plant certain plants (or buy extra of these small nurseries). I like to get two
+sets of lettuce in for 1 tomatato plant due to their different growth cycles. Fewer nursery spots would enforce more staggered growing. This isn't bad
+just something I'd need to adapt to.&lt;/p&gt;
+&lt;h2 id="seed-subscriptions"&gt;Seed Subscriptions&lt;a class="headerlink" href="#seed-subscriptions" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I complained two years ago about the &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;lack of variety packs&lt;/a&gt;. The garden came with a
+&lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;salad mix and a variety pack of plants&lt;/a&gt;. Those aren't offered as part of the subscription service. I don't need 4 tomato pods, because
+I can't get them all to grow at once, like I mentioned above. But, if I could get a tomato, a pepper and a couple other plants, I have a nice set
+of plants that I could use all at once. That is assuming that they all sprout.&lt;/p&gt;
+&lt;p&gt;I keep looking for this. Until then, I turn my subscription on and off for about three months at a time, because otherwise I just get to many
+seeds to utilize and I don't need to buy a subscription for seeds that have an increasingly common failure rate.&lt;/p&gt;
+&lt;h2 id="garden-hardware"&gt;Garden Hardware&lt;a class="headerlink" href="#garden-hardware" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The garden hardware has held up really well. I did replace the original DC30 pump with the upgraded DC40 pump about six months ago. I did this
+because I kept getting nutrient build up in my tubing and along the bottom of my trays. Theorectically, the more powerful pump should solve
+this problem. At the end of my current harvest I'll have a better idea of how well it's worked, but I haven't had to do an emergency tube
+cleaning because the water couldn't get past the build up, so that is a positive.&lt;/p&gt;
+&lt;p&gt;I also installed chicken wire around the garden to give my climbing plants something to climb. This has been great at keeping the vine plants -
+peas and cucumbers - under control. It also has allowed a couple spots on the level they sit on to remain open because they don't completely
+overwhelm a tray. I have been able to utilize that to grow a faster plant on the level of these vine plants before they have spread all over.&lt;/p&gt;
+&lt;p&gt;The one physical concern I mentioned two years ago was the inability to easily level the garden. This still remains a problem because the garden
+needs to be level to ensure the water flows correctly. When I have the garden in my sunroom - which is less level than other areas of my house, I
+have a small wooden splint built to keep the garden leveled correctly.&lt;/p&gt;
+&lt;p&gt;I still highly recommend that Rise Garden make adjustable footings in their next iteration.&lt;/p&gt;
+&lt;h2 id="summary-review"&gt;Summary Review&lt;a class="headerlink" href="#summary-review" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The question now: Would I get it again. Previously, I said that I &lt;a href="https://andrewwegner.com/rise-garden-final-review.html"&gt;absolutely would&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I would still do this again, but I think I'd get a smaller garden - something like the &lt;a href="https://amzn.to/4e8xTIv"&gt;one level garden&lt;/a&gt; of mine, or maybe the &lt;a href="https://amzn.to/3AU9bNF"&gt;personal sized garden&lt;/a&gt; for a handful of lettuce heads. This isn't because I don't want to grow plants indoors and year round. It's
+because I can't utilize all of the space I have now. A completely full garden hasn't been productive for me. I leave space open every time I plants.
+It's also due to the number of seeds that I've had not sprout. If I have less space to plant, I'll be a little more choosey on what I plants
+versus "I have some space available and might as well use it if these sprout". Additionally, the application changes have been very off
+putting. The new tray page is unusable and the inaccurate plant pages continue to be unhelpful.&lt;/p&gt;
+&lt;p&gt;This said, I am still enjoying growing my own food. It's still not sustainable, but that was never my goal. It's a fun activity. The kids enjoy
+planting and harvesting. They glance at it once and a while and provide updates on how they think things are growing or what we can harvest
+for a meal.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Garden Stats - 107 pounds of produce, 2800 gallons of water saved, 190,000 food miles saved" src="https://andrewwegner.com/images/2022-garden-stats.png"/&gt;&lt;/p&gt;
+&lt;p&gt;These stats fall into the same category as the plant stats. I'm not sure how reliable they actually are, but it is nice to see
+numbers. Saving nearly 3,000 gallons of water over two and a half years is drop in the bucket, but it's still good to see an impact.
+Rise Gardens describes it's &lt;a href="https://risegardens.com/blogs/communitygarden/earth-day-transforming-the-food-system-one-garden-at-a-time"&gt;"Food Miles" equation&lt;/a&gt; on their blog. Going with my &lt;a href="https://andrewwegner.com/time-gas-saved-with-remote-work.html"&gt;calculations from this summer on gasoline savings&lt;/a&gt; and CO2 not
+produced due to remote work, I've made another tiny positive impact.&lt;/p&gt;
+&lt;p&gt;Finally, Rise Gardens: Add strawberries as a plant you provide in your subscriptions. I'd still like that API I talked about before, but I'd be much happier with strawberries.&lt;/p&gt;
+&lt;p&gt;Oh, and do something about the seeds not sprouting.&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="garden"/><category term="hydroponics"/></entry><entry><title>Rise Gardens Review</title><link href="https://andrewwegner.com/rise-garden-final-review.html" rel="alternate"/><published>2020-05-29T10:00:00-05:00</published><updated>2020-10-27T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-29:/rise-garden-final-review.html</id><summary type="html">&lt;p&gt;The end of the series about Rise Gardens. What is my final opinion?&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Before I close out this series with a quick run down of everything, I want to
+congratulate &lt;a href="https://techcrunch.com/2020/05/27/rise-gardens-raises-seed-funding-for-a-indoor-hydroponic-gardening-system/"&gt;Rise Gardens on closing a round of funding&lt;/a&gt; to the tune of $2.6M this
+week. Well done, Rise Gardens!&lt;/p&gt;
+&lt;p&gt;I started this series a little over a month ago to document my new &lt;a href="https://risegardens.com/"&gt;Rise Gardens&lt;/a&gt; indoor garden.
+I've covered everything from the [initial opening of the garden][unboxgarden], &lt;a href="https://andrewwegner.com/rise-garden-assembly.html"&gt;garden assembly&lt;/a&gt;,
+to [planting the first plants][plants]. I've covered the &lt;a href="https://andrewwegner.com/rise-garden-suggestions-physical.html"&gt;hardware of the garden&lt;/a&gt; and
+the &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;software and subscription service&lt;/a&gt;. During this time, I've watched my plants
+sprout, grow and been harvested (at least some).&lt;/p&gt;
+&lt;h2 id="harvest"&gt;Harvest&lt;a class="headerlink" href="#harvest" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A month isn't a lot of time for larger plants to grow. My tomatoes and peppers aren't even close to
+being ready, but several varieties of lettuce have been for a while. I've had the butter lettuce,
+romaine, and red oak already. My arugula is two days away from being ready, according to the app. I think it's
+more likely that it's about a week away.&lt;/p&gt;
+&lt;p&gt;Each variety has been good. I have favorites, based on tastes, but no complaints about the quality
+or taste of the lettuce. Surprisingly, the kids liked all of them too.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="5 weeks into growth" src="https://andrewwegner.com/images/garden/7_final_review/garden_now.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Five weeks into growing, and I have a decent crop growing. On the bottom, there is a couple tomato plants,
+some pepper plants, a swiss chard (almost to harvest too), and a tiny little kale plant. I finally got one
+of those to sprout. That was my last kale pod, so I'm happy at least one sprouted.&lt;/p&gt;
+&lt;p&gt;In the middle there are two basil plants and two chamomile plants. I've got a nursery started with some plants
+that will go in this area in about a week and a half. At the top is my lettuce. In this picture, I'd just removed
+two pods that had been completely harvested so it is a bit emptier than it had been.&lt;/p&gt;
+&lt;p&gt;On the bottom, you can see that I ran some twine to help hold up the plants. This was put in place to help the
+tomatoes before their stalks thickened. They had been leaning. Now that they are tall and thick though, they
+aren't even touching that twine.&lt;/p&gt;
+&lt;p&gt;It looks good!&lt;/p&gt;
+&lt;h2 id="customer-support"&gt;Customer Support&lt;a class="headerlink" href="#customer-support" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I don't remember mentioning this in previous posts, but Rise Gardens has good customer support. I've reached out to
+them a few times for various questions. Each time I get a response within a couple days and have had my questions
+answered. They are friendly and know what they are talking about. Keep doing this Rise Gardens! As you grow, keep
+that focus on the customer.&lt;/p&gt;
+&lt;h2 id="correction"&gt;Correction&lt;a class="headerlink" href="#correction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In my post about &lt;a href="https://andrewwegner.com/rise-garden-assembly.html"&gt;assembling the garden&lt;/a&gt; I mentioned that there is a gap that appears when you
+place the small tray covers in place. It turns out, I was putting those trays on backward. This was pointed
+out to be by another Rise Garden owner. Thank you for your help!&lt;/p&gt;
+&lt;p&gt;In the picture above, you can see I have those trays in place correctly now. You can also see a long white
+stain on the second level that is clearly coming from the exit pipe. This is due to the splashing the water
+was doing before I turned the covers around and the lime in my water. When I clean the garden, this will get
+cleaned off too.&lt;/p&gt;
+&lt;h2 id="final-summary"&gt;Final Summary&lt;a class="headerlink" href="#final-summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Rise Gardens has built an amazing product. It's not going to replace your trips to the grocery store. One garden
+isn't going to feed your family. But, it will supplement it. It will provide you with some fresh vegetables and herbs.
+It will allow you to grow for more of the year (especially in colder climates).&lt;/p&gt;
+&lt;p&gt;It's also proved to be very interesting for the kids. They love checking the garden each morning to see how big
+plants have gotten or how "their" plant is doing. They help out when nutrients are put in and like refilling the
+water with me.&lt;/p&gt;
+&lt;p&gt;There are a few areas that can be improved though. I think the biggest improvement that could be made, physically, is
+adding leveling feet. If the next iteration has adjustable feet, that solves the largest problem I had during assembly:
+how do I make this thing level?&lt;/p&gt;
+&lt;p&gt;Other areas of improvement are related to the software and subscription service. I mentioned these in my &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;post
+about the software&lt;/a&gt;. Personally, I think the suggested times are a bit aggressive for plant harvesting.
+I'm continuing to watch, but based on the lettuces that have been harvested so far, the software tells me they are ready
+much earlier than they are. The subscription service could use a few additional features - mainly the ability to schedule
+selections out a few months and the newest seeds. I still don't see those and I think I'm going to miss them for June, because
+my shipping day is soon. I'll try again for July.&lt;/p&gt;
+&lt;p&gt;Of the wishlist of items I have, I'm hoping the round of funding they received can be partially used to meet some of these.
+On the software side, I'd love an API to pull back previous readings. On the hardware side, a light sensor and more lighting
+options would be amazing. If I had to pick between the two, I'd pick that API though...I am a programmer, so take that
+opinion with that bias in mind.&lt;/p&gt;
+&lt;h3 id="would-i-get-it-again"&gt;Would I get it again?&lt;a class="headerlink" href="#would-i-get-it-again" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I absolutely would get this again. This is a great in door garden. It grows way more than herbs. It's large enough to grow big
+plants. It's expandable to grow &lt;em&gt;more&lt;/em&gt; plants. It's easy enough to not kill plants. With a few improvements, I'd have no complaints
+at all.&lt;/p&gt;
+&lt;h2 id="update-oct-2020"&gt;Update: Oct. 2020&lt;a class="headerlink" href="#update-oct-2020" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first full harvest took place in late August/early September. I was reasonably pleased with most of the plants. I started
+the second crop a couple weeks ago, hoping to put some lessons learned into practice to do ever better this round. A few problems
+I had with my first crop:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I planted to many tomato and pepper plants. They grow larger than the shelf space and started growing up the sides.&lt;/li&gt;
+&lt;li&gt;I planted kale about two weeks after my first batch of seeds and by the time it was transferred to the garden it was tiny and overwhelmed by larger plants&lt;/li&gt;
+&lt;li&gt;Cucumbers had a lot of buds, but few fruits. I think this is because I didn't prune well enough.&lt;/li&gt;
+&lt;li&gt;The pepper plants grew very large, produced many flowers, but didn't product a single pepper. I suspect part of this is due to pollination and competition with the tomatoes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For this second crop, I've spread of the plants that grow large much more and will end up having empty space in the garden because they will
+quickly overwhelm the other plants. I've put lettuce and herbs on the top shelf and filled it reasonably well. I've put two cucumber plants on the middle
+shelf and will work on pruning them better and shaping the direction they grow so that they remain on this level instead of growing everywhere. Finally, I'm
+only doing one tomato and one pepper plant this time. I'm hopeful that I get some peppers. The tomatoes were very good, but with only one plant I am hoping
+it have more room to grow and less competition.&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="garden"/><category term="hydroponics"/></entry><entry><title>Rise Gardens App/Subscription Improvement suggestions</title><link href="https://andrewwegner.com/rise-garden-suggestions-software.html" rel="alternate"/><published>2020-05-24T23:45:00-05:00</published><updated>2020-05-24T23:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-24:/rise-garden-suggestions-software.html</id><summary type="html">&lt;p&gt;Several suggestion for the Rise Gardens app, their subscription service and product as a whole.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The [garden has been opened][unboxgarden]. The &lt;a href="https://andrewwegner.com/rise-garden-assembly.html"&gt;garden has been assembled&lt;/a&gt;. The &lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;nurseries were
+opened&lt;/a&gt;. The &lt;a href="https://andrewwegner.com/rise-garden-planting.html"&gt;first plants have sprouted&lt;/a&gt;. I've had my first lecture harvest (more on
+this next time). While waiting for that harvest, I offered suggestion on how to &lt;a href="https://andrewwegner.com/rise-garden-suggestions-physical.html"&gt;improve the hardware&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Today, after about a month of growing, monitoring and watching the sprout go from seed to plate, I've been
+using the application almost daily. I have thoughts on how to make it even better. I have thoughts on how to make
+the subscription service better. I'll share those below.&lt;/p&gt;
+&lt;h2 id="mobile-application"&gt;Mobile Application&lt;a class="headerlink" href="#mobile-application" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One of the selling points of the &lt;a href="https://risegardens.com/"&gt;Rise Gardens&lt;/a&gt; is the mobile application. It's built to
+help you maintain your garden. For the most part, it works well. But there are some warts that need to
+be ironed out of it.&lt;/p&gt;
+&lt;p&gt;I am using the Android application.&lt;/p&gt;
+&lt;h3 id="loading-screen"&gt;Loading Screen&lt;a class="headerlink" href="#loading-screen" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Launching the application presents you with the Rise Gardens splash screen.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Rise Garden App splash screen" src="https://andrewwegner.com/images/garden/6_app_suggestions/riseapp-loading.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Learn to love this splash screen. On a good day, it will show for a few seconds. On a bad day, the application will
+hang forever. There is a simple work around, force close the application and relaunch it, but that's rather annoying.
+I estimate that I encounter this problem every three to four times I launch the application.&lt;/p&gt;
+&lt;h3 id="login-screen"&gt;Login Screen&lt;a class="headerlink" href="#login-screen" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once I've made it past the loading screen, I find that every four to five days my log in information is forgotten.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Rise Garden App login" src="https://andrewwegner.com/images/garden/6_app_suggestions/riseapp-login.png"/&gt;&lt;/p&gt;
+&lt;p&gt;So, every few days I have to log back in. It's also important to point out here that this log in is not
+the same as the login you use on their website. My login on the website contains a &lt;code&gt;+&lt;/code&gt;. The application
+rejects that form of email address. Since I usually use &lt;code&gt;+servicename&lt;/code&gt; to keep my login information easier
+to remember, this is rather annoying.&lt;/p&gt;
+&lt;p&gt;I can stay logged into Slack, Hangouts, Gmail, NextCloud, and countless other applications on my phone
+indefinitely. I should be able to do that same here too.&lt;/p&gt;
+&lt;h3 id="plant-information"&gt;Plant Information&lt;a class="headerlink" href="#plant-information" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One of the nice things about the application, in addition to it's ability to tell me how many and what kind
+of nutrients to add, is suggestions on how when to harvest your plants. Unfortunately, I don't think it's
+very accurate.&lt;/p&gt;
+&lt;p&gt;This accuracy is something I'm aware of and am keeping in mind as I add nutrients too. If I can't trust one
+area, can I really trust the other? So far, with four different types of lettuce harvested, I don't see a
+reason not to trust it, but that thought is still in my head.&lt;/p&gt;
+&lt;p&gt;Why is it inaccurate?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Red Oak Harvest Day Suggestion" src="https://andrewwegner.com/images/garden/6_app_suggestions/redoak-harvest-day-app.png"/&gt;&lt;/p&gt;
+&lt;p&gt;On harvest day, this is the information presented by the application. There are a few things to
+notice in this screen shot. First, "0 days to harvest", yet still showing the "Mid-growth" data.
+Second, this didn't change to "harvest" until a full day later. Thinking about it now, I suspect
+the datetime of when I added the plant to a nursery was recorded, not just the day and it's going
+by "hours since planted", to display the stage information.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Red Oak on Harvest Day" src="https://andrewwegner.com/images/garden/6_app_suggestions/redoak-harvest-day.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;This is the red oak lettuce on harvest day. This...is not ready. I will fully admit that I am not
+an experienced gardener, but this is a tiny little plant. I waited almost two full weeks after this
+picture was taken to actually harvest the plant. It had grown much larger by then.&lt;/p&gt;
+&lt;p&gt;I found the same type of problem with all of my lettuces. They all reached "Harvest day", but
+were not ready to be harvested. The other plants I have in the garden at the moment are
+longer growing and aren't to the flowering stages yet, so I'll watch for those stages in the
+application versus reality.&lt;/p&gt;
+&lt;h2 id="subscription-service"&gt;Subscription Service&lt;a class="headerlink" href="#subscription-service" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One of the things I really like about Rise Gardens so far is the monthly subscription service,
+which sends plants that I've selected and nutrients to grow them. My shipping date for May
+just missed their newest plants, but I'm looking forward to getting a few of those in June.&lt;/p&gt;
+&lt;p&gt;That said, I do have a few suggestions for how to make the subscription service amazing.&lt;/p&gt;
+&lt;h3 id="multipacks"&gt;Multipacks&lt;a class="headerlink" href="#multipacks" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One of the things that I was sent during the shipping delays was variety packs of seeds.
+I covered these in my post where I &lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;opened the nurseries&lt;/a&gt;. The subscription
+service doesn't allow this type of package. Instead, it ships four pods of an identical
+plant.&lt;/p&gt;
+&lt;p&gt;I'd like to try mint, or cat nip or a couple herbs that I haven't had or use very infrequently,
+but I don't need four pods of these plants. Instead, if I could create my own
+variety packs I'd be more willing to try some newer plants. This is how I got the
+red oak lettuce and the kale that is in the garden now. I wouldn't have gotten four
+pods of either of those, since that's just not what I need (or want, in the case of kale). But a
+single pod...sure. Might as well, and the kids can try something new.&lt;/p&gt;
+&lt;h3 id="plan-out-multiple-months"&gt;Plan out multiple months&lt;a class="headerlink" href="#plan-out-multiple-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Plants are shipped out once a month. About ten days before that, I receive an email saying
+that my shipment is coming up. Five days before shipping I have the ability to go pick the
+plants I want and they are immediately locked in.&lt;/p&gt;
+&lt;p&gt;I'd love if this flow could go out multiple months. Instead of worrying about making sure
+I hit that five day window to make selections, let me pick the plants I want for the next three
+months or so and allow me to change those until a few days before shipping. Then I know what I'm going
+to be getting and if I decide that I don't like something or want to try something else in a
+few months I can still go change it.&lt;/p&gt;
+&lt;h3 id="subscription-plants-vs-store-plants"&gt;Subscription plants vs Store plants&lt;a class="headerlink" href="#subscription-plants-vs-store-plants" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I missed the availability of new plants for my May shipment. I was looking forward to trying some of
+these for June. It turns out, the new plants aren't listed in the list of plants I can
+select for my subscription. This is incredibly disappointing.&lt;/p&gt;
+&lt;h2 id="wishlist"&gt;Wishlist&lt;a class="headerlink" href="#wishlist" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I have two items that I really think would make Rise Gardens fantastic and both are software!&lt;/p&gt;
+&lt;h3 id="access-to-old-water-readings"&gt;Access to old water readings&lt;a class="headerlink" href="#access-to-old-water-readings" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I know the application sending my water readings somewhere. I have to log in, and the
+application doesn't work when the internet is down (tried...doesn't load). Give us the ability
+to pull those old readings via an API call so that I can plot them. I love data and I love
+visualizing date. More information via an API call would be even better. Things like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How long the lights were on&lt;/li&gt;
+&lt;li&gt;Water level&lt;/li&gt;
+&lt;li&gt;Suggested nutrients to add&lt;/li&gt;
+&lt;li&gt;Suggested pH balance to add&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Maybe if enough people can see and play with their old data we can even make some suggestions
+on what would work better. As it stands though, we don't have access to it. We put in water readings
+and that's it. It's gone.&lt;/p&gt;
+&lt;p&gt;I'd really love the ability to pull that old data back.&lt;/p&gt;
+&lt;h3 id="allow-better-light-control"&gt;Allow better light control&lt;a class="headerlink" href="#allow-better-light-control" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Right now light control is pretty limited. You pick a time for them to turn on and a number
+of hours for them to stay on. That's it. (The hour thing is why I thought about when the
+plant status shifted from "Mid-growth" to "Harvest" as well)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Light control" src="https://andrewwegner.com/images/garden/6_app_suggestions/light-schedule.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I'd like the ability to be able to turn these lights on and off through out the day. As the sun
+crosses the sky, there are hours where the plants are in direct sunlight. I could turn the lights
+down to 50% intensity during those hours or off all together.&lt;/p&gt;
+&lt;p&gt;There are two open ports on the controller. A piece of hardware that can detect light level
+could be used to control on/off or light intensity level. Obviously you couldn't put there right next
+to a plant, because the LEDs would affect the sensor, but put it on a post and it could tell if you if
+the sun was shining on the garden.&lt;/p&gt;
+&lt;p&gt;This type of thing could also be used in different seasons to determine when to turn the lights on
+or off automatically. I can use natural light for part of the day, but when the days get shorter, I need the
+lights to stay on longer.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I'm nearly done with this series. I am only planning one last post - a final summary of everything
+so far and a quick summary of first harvests (I think it'll only be lettuce at that point).&lt;/p&gt;
+&lt;p&gt;Here I've covered the things that have frustrated me (application loading/login), things that
+can be improved (plant information) and offered a few suggestions to make the software and subscription better.&lt;/p&gt;
+&lt;p&gt;Overall, I think everything I've mentioned is do able with some development time. I am looking forward to
+how Rise Gardens continues to improve the product.&lt;/p&gt;
+&lt;p&gt;One thing that is very disappointing though, is that the new plants - cucumbers, bean mascotte, celery, catnip, and
+several more - aren't even available as options when selecting my next subscription plants. I hope this is
+resolved soon, because I really want to try some of these new plants.&lt;/p&gt;
+&lt;p&gt;The next post will be the &lt;a href="https://andrewwegner.com/rise-garden-final-review.html"&gt;last in the series&lt;/a&gt; and will cover harvest and my final, overall impressions of the garden.&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="garden"/><category term="hydroponics"/></entry><entry><title>Rise Gardens physical improvements suggestions</title><link href="https://andrewwegner.com/rise-garden-suggestions-physical.html" rel="alternate"/><published>2020-05-05T10:00:00-05:00</published><updated>2020-05-05T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-05:/rise-garden-suggestions-physical.html</id><summary type="html">&lt;p&gt;Everything is set up and sprouting. While I'm waiting for a harvest, I have some thoughts on how to make the new garden even better.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've &lt;a href="https://andrewwegner.com/rise-gardens-unboxing.html"&gt;opened the garden&lt;/a&gt;, &lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;opened the nurseries&lt;/a&gt; and &lt;a href="https://andrewwegner.com/rise-garden-assembly.html"&gt;assembled the garden&lt;/a&gt;.
+I've &lt;a href="https://andrewwegner.com/rise-garden-planting.html"&gt;planted my first pods&lt;/a&gt; and am now eagerly awaiting a harvest from the new &lt;a href="https://risegardens.com/"&gt;Rise Gardens&lt;/a&gt; garden.
+While waiting, I have some time on my hands, so this post is an overview on what I really like and what I think can be improved.
+I'm going to just cover the physical garden in this post, and in the next one I'll go over some improvements that would make
+the mobile application and subscription service amazing.&lt;/p&gt;
+&lt;h2 id="improvements"&gt;Improvements&lt;a class="headerlink" href="#improvements" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Let's start with what hasn't been great. It's customary to do good news, then bad news, but overall I am
+very pleased with the garden so far. Granted, I'm not even at my first harvest yet, but first impressions
+have been good. I wanted to end the post on the "good" things about the system.&lt;/p&gt;
+&lt;h3 id="packaging"&gt;Packaging&lt;a class="headerlink" href="#packaging" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Packaging has been a mixed bag. Packaging of seed pods and nutrients, has been flawless. Packaging of the garden, itself,
+was less so. As I pointed out in my post where I [opened the garden][unboxgarden], there were areas where packaging just
+didn't hold up.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Loose screws" src="https://andrewwegner.com/images/garden/5_suggestions/scratched_tray.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The screws broke out of their paper bag and scattered all over the inside of the tray. This particular tray has a few scratches on it
+that the other two levels do not. I presume it is from the sliding screws.&lt;/p&gt;
+&lt;p&gt;My suggestion here is to either put the screws into a plastic bag instead of the paper one, or put the paper bag of screws into
+a little box. A box the size the pods arrive in would be perfect.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Scratched Top" src="https://andrewwegner.com/images/garden/5_suggestions/scratched_top.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;My top shelf was also scratched. This was stored right next to the bottom shelf - with drawers - and both parts are
+metal. I assume they rubbed together during shipping, causing the scratch. I think the easiest way to prevent this would
+be to add some small barrier between the two.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Antenna Smudge" src="https://andrewwegner.com/images/garden/5_suggestions/smudged_anntena.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Finally, for the packaging complaints, we return to the small little antenna. This looks like it was picked from a warehouse
+bin by a worker with dirty hands. That's not uncommon for that line of work. My suggestion, in this case, is to have the antennas
+stored in some kind of protection - a small plastic bag, perhaps.&lt;/p&gt;
+&lt;h3 id="seeds"&gt;Seeds&lt;a class="headerlink" href="#seeds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I'm now about three weeks into my first set of plants, and while a majority of them sprouted, there were several that did not. I know that
+not all seeds will sprout, but if I'm getting only four pods of seeds per box and one of those doesn't sprout, that's an
+expensive failure rate over time.&lt;/p&gt;
+&lt;p&gt;For my first transplanting, 7 out of 18 plants didn't sprout after 10 days. After 14 days, those seven still had not sprouted,
+but a new set of pods had.&lt;/p&gt;
+&lt;p&gt;Unfortunately, I don't have a suggestion on how to improve this right now. As I watch the next round of plants, and my May seeds
+when they arrive, I'll be watching failure rate carefully.&lt;/p&gt;
+&lt;p&gt;So far, this is my biggest and only major complaint.&lt;/p&gt;
+&lt;h3 id="adjustable-feet"&gt;Adjustable Feet&lt;a class="headerlink" href="#adjustable-feet" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I have three items that I think would make an immediate improvement on how the system is physically assembled.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Lack of adjustable feet" src="https://andrewwegner.com/images/garden/5_suggestions/cardboard_level.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Something I mentioned in my &lt;a href="https://andrewwegner.com/rise-garden-assembly.html"&gt;assembly post&lt;/a&gt;, was that the area my garden sits in is not perfectly level.
+The garden needs to be level though, so that the water flows correctly. My solution to this was cardboard box slices the
+length of the foot, so that we could level it out.&lt;/p&gt;
+&lt;p&gt;My suggestion though, is to add adjustable feet. This eliminates the need for users to come up with a way to level a
+garden that is 50+ pounds that isn't supported by the company. It'd also look much nicer than 6-7 slices of cardboard
+stuffed under one leg.&lt;/p&gt;
+&lt;h3 id="light-sensor"&gt;Light Sensor&lt;a class="headerlink" href="#light-sensor" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next item on my wishlist would be a light sensor. The controller has two unused ports. A light sensor could fit into one
+of those ports and could be used to automatically decide if the overhead lights should be on and at what intensity.&lt;/p&gt;
+&lt;p&gt;As the year passes, the sun rises and sets at different times of day. I received my garden after day light saving kicked in this
+year, but I am curious how it handles that too. Right now, the lights are controlled by the application to come on at a specific time,
+stay one for a specific number of hours and then turn off. My garden receives sunlight throughout the day. I'd like to use the overhead
+lights to augment that natural light. If it's a cloudy day - turn on the lights. If it's during that time of day where the sun goes
+over the corner of the room so the garden is in shade, turn on the lights. If it's early in the morning and the sun is shining on the
+plants, but it's just not the intensity recommended, turn on the lights at an appropriate intensity to augment the sun. As it rises and
+places the garden in more direct sunlight, lower the lights.&lt;/p&gt;
+&lt;h3 id="wire-harness-around-controller"&gt;Wire harness around controller&lt;a class="headerlink" href="#wire-harness-around-controller" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The garden has some nice groves built into it to hide the wiring for the lights. It works really well and makes the garden look
+nice when you are looking at the plants, or showing off to family members. But, this nice wiring solution doesn't exist once everything
+is inside the cabinet. It's a giant free for all of wires. There are light wires, the pump power wire and the power cord for the whole system.
+It is fortunate that the wires are long enough that things can be moved and adjusted, but it also means that there is a mass of
+wires that hang around in there. A harness of some kind to keep these wires in the correct location would be helpful.&lt;/p&gt;
+&lt;h2 id="the-good"&gt;The good&lt;a class="headerlink" href="#the-good" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With my list of complaints and wish list items out of the way, let's go over what has been good about the garden.
+Let's make it clear that, apart from my concern about the number of seeds that didn't grow, the scratches and other
+packaging things I mentioned are small and easy enough to ignore. The smudged antenna cleaned up and the scratched top can't be seen.&lt;/p&gt;
+&lt;h3 id="craftsmanship"&gt;Craftsmanship&lt;a class="headerlink" href="#craftsmanship" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The design of the garden is fantastic. Assembly instructions are clear. At first they appeared to be
+long, but after using them during assembly, that's because they are complete. There were no missing steps. The
+components fit together well, the hardware needed to assemble the garden was all provided and nothing was missing.&lt;/p&gt;
+&lt;p&gt;The kids helped to assemble it, and I believe that's a testament to how easy it is to put together. They knew what to
+do and how to help.&lt;/p&gt;
+&lt;p&gt;The system is solid. I am confident it's going to hold the weight of the water and the plants. The biggest thing I need to
+worry about is a power outage, which would drain the water (due to gravity) in the basin in the cabinet. If this happens
+soon after I refill the water, I suspect it'd overflow. It'll happen at some point, so we'll see how it works out. But,
+apart from using a larger basic for a three level garden, I don't think there is anything that needs to change here.&lt;/p&gt;
+&lt;h3 id="support"&gt;Support&lt;a class="headerlink" href="#support" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I've reached out to Rise Gardens support a few times now for various questions I had. I did this both pre-purchase and
+post-purchase. In all cases, support has provided me with accurate and helpful answers within a day or two. During the
+delivery delays, the company continued to communicate with me.&lt;/p&gt;
+&lt;p&gt;If they keep this high quality customer support and open communication thing going, they will do well in building
+customer loyalty.&lt;/p&gt;
+&lt;h3 id="it-works"&gt;It works&lt;a class="headerlink" href="#it-works" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Rise Gardens is a young company. It's been my experience that young companies don't always turn out high quality
+productions on their first iteration. Rise Gardens has show that experience is not the rule. Everything worked as
+expected when I assembled it.&lt;/p&gt;
+&lt;p&gt;The pump, the electronics, the assembly instructions. It all just works.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The physical hardware of the garden has a few areas where improvement would take a great product to even another
+level. The packaging could be improved to reduce some of the cosmetic complaints I have.&lt;/p&gt;
+&lt;p&gt;This is a great design. Rise Gardens has clearly put in the time to design something that works as expected,
+but is easy to set up, maintain, and use.&lt;/p&gt;
+&lt;p&gt;In my next post, I'm going to cover some more &lt;a href="https://andrewwegner.com/rise-garden-suggestions-software.html"&gt;improvement ideas focused on the mobile application and
+subscription service&lt;/a&gt;.&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="garden"/><category term="hydroponics"/></entry><entry><title>Planting the first crop in the Rise Garden</title><link href="https://andrewwegner.com/rise-garden-planting.html" rel="alternate"/><published>2020-05-01T10:00:00-05:00</published><updated>2020-05-01T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-05-01:/rise-garden-planting.html</id><summary type="html">&lt;p&gt;Planting the first crop in the garden&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've &lt;a href="https://andrewwegner.com/rise-gardens-unboxing.html"&gt;opened the garden&lt;/a&gt;, &lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;opened the nurseries&lt;/a&gt; and &lt;a href="https://andrewwegner.com/rise-garden-assembly.html"&gt;assembled the garden&lt;/a&gt;.
+In this post, we plant the first round of seeds, set them in the nursery and wait for them to grow. Let's
+continue on this new hydroponic journey with the &lt;a href="https://risegardens.com/"&gt;Rise Gardens&lt;/a&gt; indoor garden.&lt;/p&gt;
+&lt;h2 id="planting-pods"&gt;Planting Pods&lt;a class="headerlink" href="#planting-pods" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In my post about &lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;opening the nurseries&lt;/a&gt;, I had pictures of what the seed pods look like. These pods
+fit very easily into the pod holders and then slip into the nursery trays. With the variety packs and first
+round of seeds we received, it was time to pick what to plant first.&lt;/p&gt;
+&lt;p&gt;The first decision we made was that we wouldn't try to grow everything all at once. I can only eat so
+much lettuce or so many peppers at a time. I don't want everything ready for harvest all at once. So, we had the kids
+fill one nursery while we filled half of another.&lt;/p&gt;
+&lt;p&gt;Our initial selections were tomatoes, peppers, two types of lettuce, some chamomile, and basil.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A full nursery" src="https://andrewwegner.com/images/garden/4_planting/full_nursery.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The kids filled their nursery. We recorded which plant was which in the Rise Garden app, filled the water level as
+appropriate, and set it in the sun.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A half full nursery" src="https://andrewwegner.com/images/garden/4_planting/half_full_nursery.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;We planted half a nursery's worth of plants, filled the water level, and set it in the sun.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="App with plants in the nursery" src="https://andrewwegner.com/images/garden/4_planting/nursery_app.png"/&gt;&lt;/p&gt;
+&lt;p&gt;With everything planted, we updated the app, and started waiting. Let's see how these grow!&lt;/p&gt;
+&lt;h3 id="three-days-later"&gt;Three days later&lt;a class="headerlink" href="#three-days-later" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Day 3 - Chamomile Sprouts" src="https://andrewwegner.com/images/garden/4_planting/day_3_chamomile.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Each morning the kids ran down to the nurseries and looked inside eagerly to see if anything had grown. On day three,
+we saw our first sprouts - chamomile. The kids were excited because this was in their nursery.&lt;/p&gt;
+&lt;h3 id="day-6"&gt;Day 6&lt;a class="headerlink" href="#day-6" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Day 6 - Lettuce, Swiss Chard, Tomatoes, Chamomile" src="https://andrewwegner.com/images/garden/4_planting/day_6.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;On day six, the kid's nursery had several sprouts. In the image above, you can see a couple lettuces, some swiss chard, the
+chamomile, and a small tomato sprout.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Day 6 - Lettuce" src="https://andrewwegner.com/images/garden/4_planting/day_6_2.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The adult nursery was much less green. We have some lettuce.&lt;/p&gt;
+&lt;h2 id="transplanting"&gt;Transplanting&lt;a class="headerlink" href="#transplanting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Ten days after the initial pods were put in to the nurseries, we had sprouts that were touching the roof of the nursery.
+I figured it was time to transplant some of the more mature ones. Even though we were a week and a half later, there were
+not sprouts in all of the pods. We didn't transplant those.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Transplanted Lettuce" src="https://andrewwegner.com/images/garden/4_planting/transplanting_2.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Here, we can see the lettuces transplanted to the top layer of the garden. Lettuce doesn't grow tall, so it doesn't
+need the extra space provided on the bottom layer. It's also a single harvest, and should grow relatively quickly. We
+figured the top level would be great for the faster cycling plants.&lt;/p&gt;
+&lt;p&gt;We stuck the larger plants - swiss chard, tomatoes and peppers - on the bottom level and left anything else for the middle.&lt;/p&gt;
+&lt;p&gt;In total, eleven out of 18 pods were transplanted. The other 7 didn't have sprouts yet. The hope is they will in a few days.
+If not, that's a fairly high failure rate and we'll have to figure out something else to plant.&lt;/p&gt;
+&lt;p&gt;With the first round of plants in the garden, each of us picked one additional pod to plant and added that to the nursery for
+the next cycle.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We've finally made it to the garden. Unfortunately, the next step - harvesting - is a ways off. Even the fastest plants are at least a month
+or more away. That's fine though, by the time we can start harvesting, we'll be ready for it.&lt;/p&gt;
+&lt;p&gt;I'm a little concerned about the number of pods that didn't sprout. It is our first attempt though, so maybe it was a
+combination of which plants were together and which took in more water. We'll be experimenting with different groupings.&lt;/p&gt;
+&lt;p&gt;The kids continue to be super interested in this, which is exciting to see. They've grown attached to some of the plants
+they've never eaten before, both in the current round of plants and in the plants now in the nursery.&lt;/p&gt;
+&lt;p&gt;Next in this series is my &lt;a href="https://andrewwegner.com/rise-garden-suggestions-physical.html"&gt;impressions so far&lt;/a&gt;, along with a set of changes that would be nice to make the product even better.
+This will cover both the physical hardware and the electronics/automation side too.&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="garden"/><category term="hydroponics"/></entry><entry><title>Assembling the Rise Garden</title><link href="https://andrewwegner.com/rise-garden-assembly.html" rel="alternate"/><published>2020-04-26T01:10:00-05:00</published><updated>2020-04-26T01:10:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-04-26:/rise-garden-assembly.html</id><summary type="html">&lt;p&gt;Assemble the new Rise Garden&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's time to assemble the &lt;a href="https://risegardens.com/"&gt;Rise Gardens&lt;/a&gt; indoor garden. In previous posts you can find the
+process of &lt;a href="https://andrewwegner.com/rise-gardens-unboxing.html"&gt;unboxing the garden&lt;/a&gt; and the process of &lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;unboxing the nurseries&lt;/a&gt;.
+Today, we assemble.&lt;/p&gt;
+&lt;p&gt;Rise Gardens makes the following claim on their web page:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Within an hour, you can assemble your garden, connect your app, and plant your first herbs and veggies.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Spoiler: If you don't have children helping, you can definitely hit that one hour mark. For me, the kids wanted to help
+assemble, so it took about an hour and a half. Not a big deal. It was a good family project and assembly was fairly easy.&lt;/p&gt;
+&lt;h2 id="assembly"&gt;Assembly&lt;a class="headerlink" href="#assembly" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The assembly manual that we pulled out while &lt;a href="https://andrewwegner.com/rise-gardens-unboxing.html"&gt;unboxing the garden&lt;/a&gt; is misleading in how complex
+the process it. It is a fairly thick manual, but it turns out that is because Rise Gardens has documented the
+process very well. Most pieces just fit together, get a couple screws and you keep working your way up.&lt;/p&gt;
+&lt;h3 id="lower-shelf-and-level"&gt;Lower Shelf and Level&lt;a class="headerlink" href="#lower-shelf-and-level" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The process starts at the base. It's important to note, and it is noted somewhere in the manual, that the
+garden needs to be level so that the water flows correctly. If it's not level, water has this weird thing
+about not going where you expect.&lt;/p&gt;
+&lt;p&gt;We stuck this in a sun room built on a concrete slab. It's not the most level thing in the area. But, with a
+level and some ingenuity we solved that problem.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Lower Shelf and Lowest Level" src="https://andrewwegner.com/images/garden/3_assembly/lower_brackets.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The metal shelf sits an inch or two off the ground once the feet have been attached. The screw holes on the bracket
+are designed to catch holes built into the shelf. Then they are tightened into place.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Lower Tray" src="https://andrewwegner.com/images/garden/3_assembly/lower_tray.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The lower tray operates on the same principal. The tray catches on, then is screwed into place with the
+included allen wrench.&lt;/p&gt;
+&lt;h3 id="upper-levels"&gt;Upper Levels&lt;a class="headerlink" href="#upper-levels" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Middle Brackets" src="https://andrewwegner.com/images/garden/3_assembly/middle_tray_brackets.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The next two levels are installed by adding the extensions for the level. They attach via a screw to
+each upright post.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Middle Tray" src="https://andrewwegner.com/images/garden/3_assembly/middle_tray.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;These trays are also attached the same way. On the bottom of these trays is the light that will shine down
+on the level below.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Assembled without trays" src="https://andrewwegner.com/images/garden/3_assembly/assembled_no_trays.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Adding the third level is the same as the second. It is topped with the light. If you look closely at the
+right foot in this picture, you'll notice we have wedged several layers of cardboard under the foot to
+ensure the garden is level.&lt;/p&gt;
+&lt;h3 id="plumbing"&gt;Plumbing&lt;a class="headerlink" href="#plumbing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The plumbing was as easy to add as the trays. On the lowest level, we added the thick flexible tubes into the basin
+below.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flexible tubes into water basin" src="https://andrewwegner.com/images/garden/3_assembly/water_basin_plumbing.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The short tube in the back is the pipe that will go up to the plant trays. The longer front one is the water return.
+I didn't capture a picture, but the small flexible tubing we unboxed earlier actually will go inside the back tube.
+This is different than I envisioned while unboxing it, but frankly makes a lot of sense. This is a thick pipe and I
+didn't understand how we wouldn't just flood the system with that much water. The small tubing is much better suited
+for the task.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Plumbing and plant trays" src="https://andrewwegner.com/images/garden/3_assembly/plant_trays.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The inflexible black pipes fit into the trays. In the picture above, you can see the plumbing pipes on the left
+hand side of the garden.&lt;/p&gt;
+&lt;p&gt;The water will flow from the basin at the bottom, all the way to the back top. It will flow around the edge on the right
+and drain down to the lower level. This will repeat for the second level and then the first and flow back into the
+water basin.&lt;/p&gt;
+&lt;h2 id="testing-the-system"&gt;Testing the system&lt;a class="headerlink" href="#testing-the-system" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With assembly done, it was time to test the lights and add the water to look for leaks.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Lights" src="https://andrewwegner.com/images/garden/3_assembly/lights.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Light check went well. They work at full power and 50% power, as expected.&lt;/p&gt;
+&lt;p&gt;Adding water to the basin and trays and turning on the pump went better than expected too. Water and I
+don't always get along. In this case though, water went up and cycled through as expected.&lt;/p&gt;
+&lt;p&gt;But, there was one aspect I didn't like about plant trays and the water. Each level has three
+large plant trays with four holes each to support twelve plans on the level. There is also a gap
+by the plumbing that has a small black covering too. That covering doesn't fit though.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Gap between pipe and tray" src="https://andrewwegner.com/images/garden/3_assembly/gap.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;There is a gap that forms, because the output pipe on each level prevents this covering
+from sitting flat. When the pump was first turned on and for the first few hours, we noticed
+that water was splashing out of this gap.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Outpipe doesn't fit under tray" src="https://andrewwegner.com/images/garden/3_assembly/gap_pipe.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;As you can see here, the output pipe and it's 90 degree elbow doesn't fit under the black
+tray covering.&lt;/p&gt;
+&lt;p&gt;This is something I'll have to keep an eye one. I have had the system running for about
+a week, but the time this was posted. The first day or two, while the water level was high,
+I noticed this splashing. As the water level got lower though, I noticed less and less.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Assembly was incredibly easy. The kids helped do almost all of it. Plumbing was also easy. Almost,
+plug and play, easy. I give huge props to Rise Gardens to making the assembly so simple.&lt;/p&gt;
+&lt;p&gt;I have one big complaint, but it's not related to assembly. It's related to the tray
+gap I mentioned above. I really wish the output pipe didn't get in the way of the
+black tray coverings, so that it could sit flat.&lt;/p&gt;
+&lt;p&gt;I also have one suggestion. In the next iteration, put adjustable feet on the bottom of the
+upright brackets. I can't imagine I'm the only one with an uneven floor, and it'd be so
+much easier to level it with some adjustable feet.&lt;/p&gt;
+&lt;p&gt;The build quality is good, minus that tray fitting. It feels very stable. I've had the water running for a week now
+and the plants in the nursery are getting close to the point where they can be transplanted to the
+garden.&lt;/p&gt;
+&lt;p&gt;Next up, &lt;a href="https://andrewwegner.com/rise-garden-planting.html"&gt;planting the nursery and watching the seeds sprout&lt;/a&gt;.&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="garden"/><category term="hydroponics"/></entry><entry><title>Unboxing garden nurseries</title><link href="https://andrewwegner.com/nursery-unboxing.html" rel="alternate"/><published>2020-04-24T10:00:00-05:00</published><updated>2020-04-24T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-04-24:/nursery-unboxing.html</id><summary type="html">&lt;p&gt;With the garden unboxed, it's time to look at the nurseries. Our seed have to start growing somewhere.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In my &lt;a href="https://andrewwegner.com/rise-gardens-unboxing.html"&gt;last post&lt;/a&gt;, I opened all of the boxes related to my new indoor, hydroponic
+garden from &lt;a href="https://risegardens.com/"&gt;Rise Gardens&lt;/a&gt;. Today's post goes over the opening of the
+three nurseries I received. Let's continue my review of the new Rise Gardens farm!&lt;/p&gt;
+&lt;p&gt;I mentioned in my &lt;a href="https://andrewwegner.com/rise-gardens-unboxing.html"&gt;first post&lt;/a&gt;, that there were shipping delays with the garden. One
+of the things that Rise Gardens did to make up for this was ship additional nurseries,
+nutrients and seeds.&lt;/p&gt;
+&lt;p&gt;The nurseries showed up a week before the garden did. Had I been planning properly, I would have
+set them up at that time. That way when the garden arrived I'd be a week into waiting for my
+sprouts. Alas, I did not, so the garden was assembled the same day the nurseries were started.&lt;/p&gt;
+&lt;p&gt;Oh well. On to the unboxing!&lt;/p&gt;
+&lt;h2 id="the-unboxing"&gt;The Unboxing&lt;a class="headerlink" href="#the-unboxing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Boxes of nurseries" src="https://andrewwegner.com/images/garden/2_unboxing/nurseries_boxed.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The nurseries showed up in three boxes, all taped together. This should have been my first indication
+that the company loves tape.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Inside of the boxes" src="https://andrewwegner.com/images/garden/2_unboxing/box_1_seeds_instructions.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Boxes two and three had identical contents. Box one had a couple extras. The first extra
+was this nice quick start guide.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Quick Start - Inside" src="https://andrewwegner.com/images/garden/2_unboxing/inside_instructions.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;It very quickly covers what's in the three boxes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Nutrient Sensor&lt;/li&gt;
+&lt;li&gt;Batteries&lt;/li&gt;
+&lt;li&gt;Nutrients&lt;/li&gt;
+&lt;li&gt;Plant Holders (12 for the nursery, plus 6 extra for the next round of plants)&lt;/li&gt;
+&lt;li&gt;Seed packs. It says 4, but boxes two and three actually had five seed packs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It also gives you a quick overview of how to use the nursery. It's pretty simple:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Take the cover off a seed pod&lt;/li&gt;
+&lt;li&gt;Don't dump out the seed&lt;/li&gt;
+&lt;li&gt;Place it in the nursery&lt;/li&gt;
+&lt;li&gt;Put in the appropriate amount of water&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="Quick Start - Back" src="https://andrewwegner.com/images/garden/2_unboxing/back_instructions.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The last step in the quick start is a note on the application provide by Rise Gardens.
+I'm new at hydroponics, so I'm looking forward to using this for the first few growing
+cycles. I'm also hoping that I learn something about how much nutrient solution I should
+be adding, so that I don't need to be reliant on the app in the future. We'll see
+how that works out. Technology is nice.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Nursery" src="https://andrewwegner.com/images/garden/2_unboxing/nursery.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;On to the nursery! I'm going to admit, I was surprised by how small this nursery is.
+I don't know what I was expecting, but it was larger. Now that I've thought about it for
+more than five seconds though, this is perfect. This is a &lt;em&gt;nursery&lt;/em&gt;. It's designed to
+help the plants sprout, not grow. That's what the garden is for.&lt;/p&gt;
+&lt;p&gt;The nursery holds twelve plant pods and has a hole for adding water. If you look closely at the
+inside of the quick start guide, you'll see the nice bold warning: Never add nutrients to nursery.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Plant Pod" src="https://andrewwegner.com/images/garden/2_unboxing/plant_holder.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The plant pods, or net cups as the quick start calls them, clips into the nursery. They are
+easy to add and remove. They are also much more solidly built than the plastic of the
+nursery. I'm interested in seeing how the nursery holds up after a couple cycles of
+clipping/unclipping these pods.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Nutrient Sensor" src="https://andrewwegner.com/images/garden/2_unboxing/water_tester.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The last thing in the first box, apart from the seeds, is the nutrient sensor and
+extra batteries. Before I migrate plants from the nursery to the garden, I'll read
+up on how this works. In the mean time, quickly looking at it I see that it does
+pH readings and EC (electro-current) readings. As I go through a few cycles, and with
+the help of the app, I'll figure out what is the correct range of values for each of these.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Nutrients" src="https://andrewwegner.com/images/garden/2_unboxing/nutrients.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;In boxes two and three, there were nutrients for the garden. It's not mentioned
+in the quick start, but in the large instruction manual provided with the garden itself,
+there are brief instructions on the difference between the two provided here. The
+general idea, though, is that it helps the plants grow and produce. Obviously.&lt;/p&gt;
+&lt;h2 id="the-seeds"&gt;The seeds&lt;a class="headerlink" href="#the-seeds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now we get to the seeds. What will I be growing on the first round of two of plants.
+With a three tier garden, and three nurseries, I have room for 36 individual. That's a
+lot of vegetables all at once. I'm planning on staggering these in 3-4 week batches. That
+what I don't get 40 tomatoes all at once.&lt;/p&gt;
+&lt;p&gt;In the boxes, I received the same plants for each, plus an extra box of chamomile in
+boxes two and three. That's eight pods. I'm not sure what I'm going to do with that
+much chamomile, but I'll figure it out.&lt;/p&gt;
+&lt;h3 id="salad-mix"&gt;Salad Mix&lt;a class="headerlink" href="#salad-mix" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Salad Mix" src="https://andrewwegner.com/images/garden/2_unboxing/salad_mix.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;In each large box, I received two salad mix boxes. Each of these contains&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1 pod of Red Oak lettuce&lt;/li&gt;
+&lt;li&gt;1 pod of butter lettuce&lt;/li&gt;
+&lt;li&gt;1 pod of dragoon romain lettuce&lt;/li&gt;
+&lt;li&gt;1 pod of astro arugula&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'll have lettuce forever. Excellent. These also grow relatively quickly, so I'll
+be able to cycle through these consistently.&lt;/p&gt;
+&lt;h3 id="variety-pack"&gt;Variety Pack&lt;a class="headerlink" href="#variety-pack" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Variety Pack" src="https://andrewwegner.com/images/garden/2_unboxing/variety_pack.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;I received a variety pack in each large box. This pack contains&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1 pod of little bing tomatoes&lt;/li&gt;
+&lt;li&gt;1 pod of dwarf blue kale&lt;/li&gt;
+&lt;li&gt;1 pod of swiss chard bright lights&lt;/li&gt;
+&lt;li&gt;1 pod of fresh bites orange peppers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="basil"&gt;Basil&lt;a class="headerlink" href="#basil" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Basil" src="https://andrewwegner.com/images/garden/2_unboxing/basil.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The last package of seeds was four pods of basil, in each large package. I'm not sure
+what I'm going to do with twelve basil pods, but again, I'll figure it out.&lt;/p&gt;
+&lt;h3 id="plant-pod"&gt;Plant Pod&lt;a class="headerlink" href="#plant-pod" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Plant Pod" src="https://andrewwegner.com/images/garden/2_unboxing/plant_pod.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The plant seed pods fit nicely into the net cups. There are a couple seeds in
+each pod.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The nurseries look easy enough to use. Select the plants I want, stick the seed pods
+into a net cup and add water. Wait a week or two for sprouts and then transfer to the
+garden until harvest time.&lt;/p&gt;
+&lt;p&gt;My only complaint about this entire round of unboxing is rather minor. Honestly, it
+wouldn't even be a complaint, if I hadn't received the variety packs of seeds. If, instead
+I'd gotten just single pods of lettuce or tomato or peppers, I wouldn't have thought
+of it.&lt;/p&gt;
+&lt;p&gt;My complaint is that I have twelve pods of basil. I don't use that much basil. A variety
+pack of herbs would have been awesome.&lt;/p&gt;
+&lt;p&gt;But, as I said, very minor complaint. I will figure out what to do with some fresh basil.
+I have family members that will probably be happy to get some.&lt;/p&gt;
+&lt;p&gt;All in all, the nurseries look good. The seeds look good. The tiny little gardener in
+me is ready to see if I can grow something.&lt;/p&gt;
+&lt;p&gt;With another unboxing complete, I am ready to start assembling the garden. My next post
+will cover &lt;a href="https://andrewwegner.com/rise-garden-assembly.html"&gt;assembly of the garden&lt;/a&gt;.&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="garden"/><category term="hydroponics"/></entry><entry><title>Unboxing and reviewing the new indoor Rise Gardens hydroponic garden</title><link href="https://andrewwegner.com/rise-gardens-unboxing.html" rel="alternate"/><published>2020-04-22T10:00:00-05:00</published><updated>2020-10-27T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-04-22:/rise-gardens-unboxing.html</id><summary type="html">&lt;p&gt;The garden has arrived! Time to open it up and see how it looks.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Over the next several posts, I'm going to provide my review of the family's new
+indoor garden. At the point this article is being written, it's been unboxed, assembled
+and we've planted the first round of seeds. I anticipate by the time I'm done with this series,
+I'll have some plants migrated from the nursery to the garden itself. Once I reach the point of
+harvest, I'll provide a follow up.&lt;/p&gt;
+&lt;p&gt;With that, let's begin my review of the new Rise Gardens farm!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Update&lt;/em&gt;: For the final summary, please read my &lt;a href="https://andrewwegner.com/rise-garden-final-review.html"&gt;final review&lt;/a&gt;. I encourage you to read
+the whole series because I cover individual aspects of the product, but if you are just looking for the
+final review, you can jump right to that &lt;a href="https://andrewwegner.com/rise-garden-final-review.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For most of last year, I had my mind set that I wanted a small indoor garden. We used to have
+an outdoor garden, but it never really did that well. This was due to both the soil and the wildlife.
+Last summer and fall, I went and forth between building an internal garden and buying one and
+never really settled on one. During the winter, I found &lt;a href="https://risegardens.com/"&gt;Rise Gardens&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a hydroponic garden, which is exactly what I wanted. I don't want soil everywhere
+and I'd prefer something self contained. Plus, I was secretly hoping the kids would find it
+exciting to watch vegetables grow and then harvest and eat them.&lt;/p&gt;
+&lt;p&gt;Shortly before the entire world shut down due to COVID-19, I ordered a garden. It was scheduled to ship in
+mid-February. Sadly, it did not. The shipping date arrived and an email notice was sent saying that shipping
+had been delayed approximately a month.&lt;/p&gt;
+&lt;p&gt;Mid-March showed up and again, no garden. This time, though, I was promised additional nurseries and some
+plant nutrients for waiting patiently. I had no major complaints and with the world slowly isolating
+itself, we were figuring out what was going on. The delay was not a problem.&lt;/p&gt;
+&lt;p&gt;Then came mid-April. Another email and another shipping delay. However, the nurseries, seeds and nutrients
+would ship on time with the garden being delayed a week. As the email said, the nurseries showed
+and a week later so did the garden.&lt;/p&gt;
+&lt;p&gt;The delays were unfortunate. But, I really have no major complaints. Rise Gardens was very communicative
+about the delays and the causes. A global pandemic will screw with your supply chain and logistics capabilities.
+Plus, the nurseries were nice. I'll cover those in a later article.&lt;/p&gt;
+&lt;p&gt;I appreciate the level of communication that I've seen so far. I hope that continues.&lt;/p&gt;
+&lt;h2 id="the-unboxing"&gt;The Unboxing&lt;a class="headerlink" href="#the-unboxing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="boxes"&gt;Boxes&lt;a class="headerlink" href="#boxes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;We ordered the triple level garden. According to the specifications, that means it's 66 inches tall and weights 106 pounds.
+It showed up in three boxes.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Garden Boxes" src="https://andrewwegner.com/images/garden/1_unboxing/garden_boxes.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The two boxes on the left are the second and third levels of the garden. The big box is the main garden, the water basin,
+and the electronic brains of the system.&lt;/p&gt;
+&lt;h3 id="extensions"&gt;Extensions&lt;a class="headerlink" href="#extensions" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I started by opening the smaller boxes. Each extension comes with a planter tray, a grow light for the level below, some
+tray covers for the plants, wooden extensions to add to the main garden, and some assembly hardware (screws).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Extension 1" src="https://andrewwegner.com/images/garden/1_unboxing/tray_covers_extension_tidy.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;In this picture, the tray the water will sit in is the black tray. If you look closely, you see that it is in a white tray.
+This is the light cover for the lower level.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Extension 2" src="https://andrewwegner.com/images/garden/1_unboxing/tray_covers_extension_untidy.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The second extension has the same hardware as the first. The difference is, this one didn't show up as nicely packaged. It
+looks like tape holdig the tray covers in place came loose in shipping and allowed everything to slide around.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Extension Brackets" src="https://andrewwegner.com/images/garden/1_unboxing/extension_brackets.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;These brackets are nice. They have a spot to hide the wire used to plug in the lights, seem solidly made and (spoiler)
+fit together correctly when assembling the levels.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Grow Lights" src="https://andrewwegner.com/images/garden/1_unboxing/level_lights.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Each level of the garden has a set of grow lights. These are two LED panels. The light tray also holds the plastic
+water tray of the level above. The two holes you see at the top of this light panel are wher the plumbing passes through
+to the next level.&lt;/p&gt;
+&lt;h3 id="main-garden"&gt;Main Garden&lt;a class="headerlink" href="#main-garden" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Big Garden Box" src="https://andrewwegner.com/images/garden/1_unboxing/garden_box_open.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The large garden box contains three big items inside.&lt;/p&gt;
+&lt;p&gt;The first item is the metal shelving unit. When assembled, this shelf will hold the water basin inside.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Garden Shelf" src="https://andrewwegner.com/images/garden/1_unboxing/bottom_shelf_water_tray.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;This shelf has two doors. On the outside are five LED lights which are used to indicate the water level
+of the basic. There is also a button that controls the LED lights. This button cycles through full intensity, half
+intensity and off.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Water Basin" src="https://andrewwegner.com/images/garden/1_unboxing/water_tray.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The marks on the water basic coorespond to the lights on the exterior of the shelving unit. There are five blue
+water level marks and five LEDs.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Water Pump" src="https://andrewwegner.com/images/garden/1_unboxing/water_pump.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Tucked inside the water basin is the water pump. This hangs from the side of the basic and is submerged into the
+water.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Watering Can" src="https://andrewwegner.com/images/garden/1_unboxing/watering_can.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Rise Gardens provides a watering can. This is useful for filling the trays as well as the basin.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Antenna" src="https://andrewwegner.com/images/garden/1_unboxing/antenna_smudged.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;On the side of the shelf unit is a spot to screw in the little antenna. This allows the control board to
+connect to the local wireless network. In doing so, you can connect your phone to the garden and receive
+updates about water levels as well as help in planning out your garden and when nutrients should be added.&lt;/p&gt;
+&lt;p&gt;My antenna showed up looking rather smudged.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Control Board" src="https://andrewwegner.com/images/garden/1_unboxing/control_board.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The control board is already set up and attached to the internal side of the shelf unit. I am not sure what the
+A and B ports are used for and don't recall reading about them in the manual, but the rest of the ports are
+pretty easy to figure out.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Main Garden Tray" src="https://andrewwegner.com/images/garden/1_unboxing/tray.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Much like the extensions mentioned above, the main garden comes with the first tray of the system. Also like
+one of the extensions mentioned above, the internal parts of this tray came loose and shifted during
+transportation.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Loose Screws" src="https://andrewwegner.com/images/garden/1_unboxing/tray_hardware_untidy.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The assembly hardware and brick portion of the power supply slide all over. Some of the screws got wedged between the
+tray and the cardboard packaging.&lt;/p&gt;
+&lt;p&gt;Unfortunately, this also seems to have scratched the tray a bit.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Top Lights" src="https://andrewwegner.com/images/garden/1_unboxing/top_light_brackets.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The last part of the packaging is the top light and brackets. The brackets here re the legs that attach to
+the shelf and hold it off the ground. The light will be installed above the top level of plants.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I'll provide a more concise break down of pros and cons in a later article, so that you don't need to read each
+individual one. For now though, let's talk about what I thought while unboxing everything.&lt;/p&gt;
+&lt;p&gt;The first thing I noticed was that Rise Gardens provides printed instructions. This is something I'd been worried about.
+I had found their &lt;a href="https://support.risegardens.com/en_us/garden-assembly-and-setup-instructions-SJBeSfy9c"&gt;assembly instructions&lt;/a&gt; on their web site and I was concerned that's what I've had to use to assemble
+the garden. The included instructors are the same as those on the website, but I like the tangible instructions to needing
+my phone near by during assembly.&lt;/p&gt;
+&lt;p&gt;The second thing I noticed, both during this unboxing and while unboxing the nurseries is that Rise Gardens loves their packaging
+tape. Box seams are fully covered. Tape is not something they are concerned about...&lt;/p&gt;
+&lt;p&gt;...on the outside boxes. Internally though, the lack of tape or using cheap masking tape, caused interal components to break free
+and slide all over.&lt;/p&gt;
+&lt;p&gt;The hardware feels very high quality. I don't feel like I'm going to snap these wooden legs or brackets when I put weight on them. The
+control board, and the electronics in general, appear very well assembled.&lt;/p&gt;
+&lt;p&gt;In short, despite some packaging annoyances, I'm looking forward to assembling this thing over the coming day. Next up, though, is
+&lt;a href="https://andrewwegner.com/nursery-unboxing.html"&gt;unpacking my first round of seeds and the nurseries&lt;/a&gt;.&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="garden"/><category term="hydroponics"/></entry></feed>

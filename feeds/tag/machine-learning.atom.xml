@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Andrew Wegner | Ponderings of an Andy - machine learning</title><link href="https://andrewwegner.com/" rel="alternate"/><link href="https://andrewwegner.com/feeds/tag/machine-learning.atom.xml" rel="self"/><id>https://andrewwegner.com/</id><updated>2017-02-20T00:00:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Can a machine be taught to flag spam automatically</title><link href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html" rel="alternate"/><published>2017-02-19T22:51:00-06:00</published><updated>2017-02-20T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-02-19:/can-a-machine-be-taught-to-flag-spam-automatically.html</id><summary type="html">&lt;p&gt;Description of how a group of people helped completely eliminate spam on the Stack Exchange network&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post was originally &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;published&lt;/a&gt; on Meta Stack Exchange on February 20, 2017. I've republished it here
+so that I can easily update information related to recent developments. If you have questions or comments, I highly
+encourage you to visit the &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;question&lt;/a&gt; on Meta Stack Exchange and post there.&lt;/p&gt;
+&lt;p&gt;The post was featured across the entire Stack Exchange network for a week, too. This drove a huge amount of traffic
+to the question and resulted in some valuable feedback:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-featured-announcement.png"&gt;&lt;img alt="Featured Announcement" src="https://andrewwegner.com/images/spam-featured-announcement.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;TL;DR: &lt;a href="http://charcoal-se.org/people.html"&gt;We&lt;/a&gt; did it, so... yes.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="what-is-this"&gt;What is this?&lt;a class="headerlink" href="#what-is-this" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Charcoal is the &lt;a href="http://charcoal-se.org/people.html"&gt;organization&lt;/a&gt; behind the &lt;a href="https://github.com/Charcoal-SE/SmokeDetector"&gt;SmokeDetector&lt;/a&gt; bot and other &lt;a href="https://github.com/Charcoal-SE"&gt;nice things&lt;/a&gt;. This bot scans new 
+posts across the entire network for spam posts and reports them to &lt;a href="https://github.com/Charcoal-SE/SmokeDetector/wiki/Chat-Rooms"&gt;various chatrooms&lt;/a&gt; where people can act on them. 
+If a post has been created or edited, anywhere on the network, we've probably seen it. The bot utilizes our knowledge 
+of how spammers work and what they have previously posted to come up with common patterns and rules to detect spam in
+the new and updated posts. You've likely seen the SmokeDetector bot if you visit chatrooms such as
+&lt;a href="http://chat.meta.stackexchange.com/rooms/89/tavern-on-the-meta"&gt;Tavern on the Meta&lt;/a&gt;, &lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt;, &lt;a href="http://chat.stackoverflow.com/rooms/41570/so-close-vote-reviewers"&gt;SO Close Vote Reviewers&lt;/a&gt; and others across the network. Over time, the 
+bot has become very accurate. &lt;/p&gt;
+&lt;p&gt;Now we are leveraging the years of data and accuracy to automatically cast spam flags. With approximately 58,000 posts 
+to draw from and over 46,000 true positives, we have a vast trove of data to utilize.&lt;/p&gt;
+&lt;h2 id="what-problem-does-this-address"&gt;What problem does this address?&lt;a class="headerlink" href="#what-problem-does-this-address" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To put it simply, &lt;strong&gt;spam&lt;/strong&gt;. Stack Exchange is one of the most popular networks of websites on the Internet, and &lt;em&gt;all&lt;/em&gt; 
+of it gets spammed at some point. Our statistics show that we see about 100 spam posts per day, on average over the 
+last three months. &lt;/p&gt;
+&lt;p&gt;A decent chunk of this isn't the type you'd want to see at work (or at all). The faster we can get this off the home 
+page, the better for all involved. Unfortunately, it's not unheard of for spam to last several hours, even on the 
+larger sites such as Graphic Design.&lt;/p&gt;
+&lt;p&gt;Over the past three years, efforts with Smokey have significantly cut the time it takes for spam to be deleted. This 
+project is an extension of that, and it's now well within reach to delete spam within seconds of it being posted.&lt;/p&gt;
+&lt;h2 id="what-are-we-doing"&gt;What are we doing?&lt;a class="headerlink" href="#what-are-we-doing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For over 3 years, SmokeDetector has reported potential spam across the Stack Exchange network so that users can flag 
+the posts as appropriate. Users have provided feedback to inform the bot on whether the detection was correct or not 
+(referred to as "feedback"). This feedback is stored in our web dashboard, &lt;a href="https://metasmoke.erwaysoftware.com/"&gt;metasmoke&lt;/a&gt; (&lt;a href="https://github.com/Charcoal-SE/metasmoke"&gt;code&lt;/a&gt;). Over time, we've 
+used this feedback to evaluate our patterns ("reasons") and improve our accuracy. &lt;a href="https://metasmoke.erwaysoftware.com/reason/106"&gt;Several&lt;/a&gt; of our &lt;a href="https://metasmoke.erwaysoftware.com/reason/21"&gt;reasons&lt;/a&gt; 
+are over 99.9% &lt;a href="https://metasmoke.erwaysoftware.com/reason/61"&gt;accurate&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Early last year, and after getting a baseline accuracy from &lt;a href="http://stackoverflow.com/users/1933347/jmac"&gt;jmac&lt;/a&gt; (thank you!), we realized we could use the 
+system to automatically cast spam flags. On Stack Overflow the current accuracy of users flagging spam posts is 85.7%. 
+Across the rest of the network users are 95.4% accurate. We determined we can beat those numbers and eliminate spam 
+from Stack Overflow and the rest of the network even faster. &lt;/p&gt;
+&lt;p&gt;Without going into too much detail (if you really want it, it's available on our &lt;a href="https://charcoal-se.org/flagging"&gt;website&lt;/a&gt;), we leverage the 
+accuracy of each existing reason to come up with a weight indicating how certain the system is that a post is spam. If 
+this value exceeds a specific threshold, the system will cast up to three spam flags on the post. We cast multiple 
+flags utilizing a number of different users' accounts and the Stack Exchange API. Via metasmoke, users are given the 
+opportunity to &lt;a href="https://metasmoke.erwaysoftware.com/flagging/ocs"&gt;enable their accounts to be used to flag spam&lt;/a&gt; (You can too, if you've made it this far). When a 
+post is eligible for flagging because it exceeded the threshold set by each individual user, accounts are randomly 
+selected from the pool of enabled users to cast a single flag each, up to a maximum of three per post so that we never 
+unilaterally nuke something.&lt;/p&gt;
+&lt;h2 id="what-are-our-safety-checks"&gt;What are our safety checks?&lt;a class="headerlink" href="#what-are-our-safety-checks" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We designed the entire system with accuracy and sanity checks in mind. Our design collaborations are available for 
+your browsing pleasure (&lt;a href="https://docs.google.com/document/d/1Bg0u4oY9W_skp79wSnyQWttUIBH8WV46JELDGJ7Bixo/edit"&gt;RFC 1&lt;/a&gt;, &lt;a href="https://docs.google.com/document/d/1voGyl3BUA1JHJ0pR2Mf9E5-wmIDUFC1G8HcThiS7B1k/edit"&gt;RFC 2&lt;/a&gt;, RFC 3 (no longer available)). The major things that make this system safe and sane 
+are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We give users a choice as to how accurate they want to be with their automatic flags. Before casting any flags, we 
+ check that the preferences the user has set result in a spam detection accuracy of over 99.5% over a sample of at 
+ least 1000 posts. Remember, the current accuracy of humans is 85.7% on SO and network wide it is 95.4%. &lt;/li&gt;
+&lt;li&gt;We do not unilaterally spam nuke a post, regardless of how sure we are it is spam. This means that a human &lt;em&gt;must&lt;/em&gt; 
+ be involved to finish off a post, even on the few sites with lower spam thresholds.&lt;/li&gt;
+&lt;li&gt;We’ve designed the system to be tolerant of faults - if there’s a malfunction anywhere in the system, any user with 
+ access to SmokeDetector can immediately halt all automatic flagging - this includes all network moderators. If this 
+ happens, it needs a system administrator to step in to re-enable flags.&lt;/li&gt;
+&lt;li&gt;We've discussed this with a community manager and have their &lt;a href="http://chat.stackexchange.com/transcript/message/35437121#35437121"&gt;blessing&lt;/a&gt; on the project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We have been casting an average of 60-70 automatic flags per day for over two months, for a total of just over 4000 
+flags network wide. These flags were cast by 22 different users. In that time, we've had &lt;a href="https://metasmoke.erwaysoftware.com/flagging/logs?filter=fps"&gt;four&lt;/a&gt; false positives. 
+We would like to be able to automatically cancel these particular cases. This isn't possible though, so we've created 
+a feature request to &lt;a href="http://meta.stackexchange.com/questions/288120/allow-retracting-flags-from-the-api"&gt;retract flags via the API&lt;/a&gt;. In the mean time, the flags are either manually retracted by the 
+user or declined by a moderator.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-weights-and-accuracies.png"&gt;&lt;img alt="Weights and Accuracy" src="https://andrewwegner.com/images/spam-weights-and-accuracies.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The above graph plots the weight of the reasons against its overall volume of reports and accuracy. As minimum weight 
+increases, accuracy (yellow line and rightmost Y-axis) and total reports (blue line) on the left-hand scale increase. 
+The green line represents the number of true positives, which are verified by SmokeDetector user feedback.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-autoflags-per-day.png"&gt;&lt;img alt="Automatic Flags per day" src="https://andrewwegner.com/images/spam-autoflags-per-day.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This shows the number of posts we've automatically flagged per day over the last month. The jump on February 15th, is 
+due to increasing the number of automatic flags from 1 per post to 3 per post. You can see a live version of this graph 
+on &lt;a href="https://metasmoke.erwaysoftware.com/flagging"&gt;metasmoke's autoflagging page&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-spam-hours.png"&gt;&lt;img alt="Spam Hours" src="https://andrewwegner.com/images/spam-spam-hours.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Spam arrives on Stack Exchange in waves. It is easy to see the time of day that many spam reports come in. The hours, 
+above, are UTC time. The busiest spam times of day are the 8 hour block between 4am and Noon. We have affectionately 
+named this "spam hour" in the chat room. &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-average-time-to-delete.png"&gt;&lt;img alt="Average Time to Deletion" src="https://andrewwegner.com/images/spam-average-time-to-delete.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Our goal is to delete spam quickly and accurately. The graph shows the time it takes for a reported spam post to be 
+removed from the network. This section has three trend lines that show these averages. The first, red section is when 
+we were simply reporting the posts to chatrooms and all flags had to come from users. You can see we are pretty constant 
+in the time it takes to remove spam during this period. It took, on average, just over five minutes to get a post 
+removed.&lt;/p&gt;
+&lt;p&gt;The green trend line is when we were issuing a single automatic flag. At implementation, we eliminated a full minute 
+from time to deletion and after a month we'd eliminated two full minutes compared to no automatic flags.&lt;/p&gt;
+&lt;p&gt;The last section, the orange, is when we implemented three automatic flags to most sites. This was rolled out last 
+week, but it's already had a dramatic improvement on the time to deletion. We are seeing between 1 and 2 minutes to 
+time to deletion.&lt;/p&gt;
+&lt;p&gt;As mentioned above, spam arrives in waves. The dashed and dotted lines on the graph show the average deletion time 
+during these two different time periods. The dashed lines show deletion time during 4am and Noon UTC, the dotted lines 
+show the rest of the 24 hour period. An interesting thing this graph shows is that time to deletion during spam hour 
+was higher when we didn't cast any automatic flags. It was removed faster outside of spam hour. That reversed when we 
+started issuing a single auto-flag. The spam hour time to deletion is slightly lower than the average. Comparing the 
+two time periods though, time to deletion during non-spam hour at the end of the non-flagging time period and the end 
+of the single flag period are roughly the same. &lt;/p&gt;
+&lt;p&gt;We'll update these in a few weeks too, to better show the trend we are seeing with three automatic flags.  &lt;/p&gt;
+&lt;h2 id="discussion"&gt;Discussion&lt;a class="headerlink" href="#discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We are confident in SmokeDetector and the three years of history it has. We've had many talented developers assist us 
+over the years and many more users have provided feedback to improve our detection rules. Let us know what you want us 
+to elaborate on, features you're wondering about or would like to see added, or things we might have missed in the 
+process or the tooling. Take a look at the &lt;a href="http://meta.stackexchange.com/questions/288120/allow-retracting-flags-from-the-api"&gt;feature&lt;/a&gt; we'd really like Stack Exchange to consider so that we can 
+further improve this system (and some of the other community built systems). We'll have &lt;a href="http://charcoal-se.org/people.html"&gt;Charcoal members&lt;/a&gt; hanging 
+around and answering your questions. Alternatively, feel free to drop into &lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt; and have a chat. &lt;/p&gt;</content><category term="Programming Projects"/><category term="Stack Exchange"/><category term="machine learning"/><category term="automation"/><category term="programming"/></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"/><published>2015-01-02T08:47:00-06:00</published><updated>2016-01-09T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:/can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">&lt;p&gt;Description of how I automatically flag comments on Stack Overflow&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post was originally &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;published&lt;/a&gt; by &lt;a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile"&gt;me&lt;/a&gt; on Meta Stack Overflow on December 14, 2014. I've republished it here
+so that I can easily update information related to recent developments. If you have questions or comments, I highly
+encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;question&lt;/a&gt; on Meta Stack Overflow and post there.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;TL;DR: Yes it can.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="background"&gt;Background&lt;a class="headerlink" href="#background" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On June 27, 2014 Skynet awoke. It looked at Stack Overflow and thought "Why are all these people being so chatty and talking about obsolete things? I should nuke them all!" Fortunately, Skynet was a baby and only had access to my 100 comment flags a day.&lt;/p&gt;
+&lt;p&gt;Prior to this activation date, the system was fed with 10,000 "Good Comments", "Obsolete" comments and "Too Chatty" comments. These comments were taken from the &lt;a href="http://data.stackexchange.com/"&gt;Stack Exchange Data Explorer&lt;/a&gt;. The "Obsolete" and "Too Chatty" comment types had to meet the following criteria:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Total comment length of less than 100 characters&lt;/li&gt;
+&lt;li&gt;Comment has a 0 score&lt;/li&gt;
+&lt;li&gt;Had variations of the following phrases:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Phrases&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;'%mark%answer%'
+'%mark%accept%'
+'%accept%answer%'
+'%lease%accept%'
+'%mark%answer%'
+'%thank%you%'
+'%thx%you%'
+'%.....'
+'+1%'
+'-1%'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;"Good Comments" were assumed, initially, to be anything that didn't fall into the above criteria&lt;/p&gt;
+&lt;p&gt;This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.&lt;/p&gt;
+&lt;p&gt;My next step was to train a classifier. I had initially assumed that I'd start with a Naive Bayes to get a baseline and then work to something more complicated from there. Perhaps, extract text features, user information, etc. and build a fancy classifier. My initial tests showed that the Naive Bayes was accurate 80-90% of the time with test data.&lt;/p&gt;
+&lt;p&gt;I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these threshold took a few weeks but eventually I determined the following thresholds were appropriate for my use:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;Type            | Threshold     | Flagging Enabled&lt;/span&gt;
+&lt;span class="gh"&gt;--------------------------------------------------&lt;/span&gt;
+too chatty      | 0.9997        | True
+obsolete        | 0.99          | True
+good comment    | 0.9999        | False
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When a comment is classified, if it exceeds the threshold for one of the above, it is recorded into my database for future retraining. If flagging is enabled, the API is &lt;a href="http://api.stackexchange.com/docs/comment-flag-options"&gt;utilized&lt;/a&gt; to issue an &lt;a href="http://api.stackexchange.com/docs/create-comment-flag"&gt;appropriate&lt;/a&gt; flag. Obviously, I don't want to flag good comments, but I do want to record them so that I can reuse the data in a later training step.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;What have the results of this experiment been? From my point of view, I'd venture that it's been successful. I have automatically flagged over 17,000 comments. As of December 17, 2014, the process has been running for 173 days. My comment flagging stats are currently:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;26885&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;
+&lt;span class="mf"&gt;26714&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;
+&lt;span class="mf"&gt;171&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Started at (approximately):&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;9885&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;
+&lt;span class="mf"&gt;9847&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;
+&lt;span class="mf"&gt;38&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This gives me an overall accuracy of 99.36%. Down from 99.61% when no automated process was involved.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;There are pictures that help tell this story too. In this first one, we see that the rolling 10 day average for the number of declined flags has stayed below two flags a day. In October, there was a two week period where the rolling average was 0 and nearly a month long period where the system did not make any mistakes.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the &lt;a href="http://winterbash2014.stackexchange.com/resolution"&gt;Resolution hat&lt;/a&gt;. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to day light saving time. My process starts 10 minutes after UTC. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they &lt;a href="http://meta.stackexchange.com/a/215397/186281"&gt;lost their keys&lt;/a&gt; that day.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Total flagged vs Total Declined" src="https://andrewwegner.com/images/total_flags_vs_total_declined.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Except for 3 days, since June 27th, the process has flagged 100 comments a day. In this chart, you can see the number of declined comment flags along the bottom.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Number of comments saved per day" src="https://andrewwegner.com/images/comments_saved_per_day.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Finally, this chart shows the number of comments that the system wanted to act on (and a rolling 5 day average). When the system was brought online, it was acting on 700-800 comments a day (saving to my local database). Many of these were being classified as "Good Comments". You can see the day that I adjusted the threshold for "Good Comments" to be acted upon (saved). The drop in the number of comments the system saved is dramatic. Instead of saving 700-800 comments daily, the system now averages about 150 comments to save. Since I don't flag "Good Comments", I feel this is the appropriate action to take.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h3 id="flagged-but-declined"&gt;Flagged but declined&lt;a class="headerlink" href="#flagged-but-declined" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;As shown above, I've had comments flags declined. Some of these obviously should have been and required a retraining or threshold adjustment on my part. Others, in my opinion, should have been removed as noise. Below is a small sampling of both types of comments.&lt;/p&gt;
+&lt;p&gt;Recent comments that I feel are noise:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27420526/i-want-to-play-from-frame-2-and-then-stop-at-frame-3/27425983#comment43388489_27425983"&gt;yes thank you so much for you help it works sorry for the late reply&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27476522/how-to-call-a-function-by-a-pointer/27476639#comment43387801_27476639"&gt;Wow it works. Thank you very much!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27284958/why-thread-id-creates-not-in-order/27285031#comment43038003_27285031"&gt;wow that works!Thanks so much for your advice!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27375504/remove-legends-for-each-point-and-keep-only-those-which-are-outliers-for-ggplot/27380631#comment43387125_27380631"&gt;Ok, the works great, thank you so much!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/14907518/modal-view-controllers-how-to-display-and-dismiss/14910469#comment43386201_14910469"&gt;Thank you very much for your explanation, you rock dude !!!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are some comments that were incorrectly flagged:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/18545905/meteor-without-mongo#comment42850716_18545905"&gt;@Spina: yes. Check my answer. You can simply point MONGO_URL to an invalid URL.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27007685/how-can-i-position-divs-at-the-bottom-of-container-div-and-inline/27007772#comment42544238_27007772"&gt;Sorry, my error. I was: "position", not "display". Check it: jsfiddle.net/hvfku99c&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/26745185/multiple-spacebar-conditional-operators/26745790#comment42078870_26745790"&gt;I believe UI.registerHelper is, being deprecated. Please check my updated answer.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Other comments are flagged but then edited prior to a moderator seeing the comment. The edit adds information to the post, thus the declination is justified:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27406267/neo4j-very-slowly-using-shortestpath#comment43271781_27406267"&gt;Yes, I have indexes. Let me show my schema&lt;/a&gt; was edited to the much more useful: &lt;code&gt;Yes, I have indexes for UUID and Permission. In fact rlationship is a variable length here (e)-[rp:Has_Pocket|Has_Document*0..]-&amp;gt;d&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/26535662/how-to-read-files-in-sequence-from-a-directory-in-opencv/26536198#comment41709286_26536198"&gt;Here is the question i had posted first using FIleStorage issue&lt;/a&gt; was edited to include the link to the referenced post.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's also worth noting that despite getting flags declined, some comments do eventually disappear. This is due to either flags raised by other community members putting the comment back in front of a moderator or by simply accumulating enough community flags for the system to act automatically. In either case, the desired result of removing noise has been accomplished.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27006363/node-js-parse-filename-from-url/27006555#comment42544432_27006555"&gt;Oh, derr. good point. Edited.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27073761/redefining-the-hitbox-of-objects/27073838#comment42659999_27073838"&gt;You're right! Hopefully you see my point anyways.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h2 id="lessons-and-observations"&gt;Lessons and Observations&lt;a class="headerlink" href="#lessons-and-observations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Replication to other sites would depend on site culture&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As a (fairly) non-subjective site, Stack Overflow made a good test case for this. On a site like &lt;a href="http://communitybuilding.stackexchange.com/"&gt;Community Building&lt;/a&gt;, &lt;a href="http://pets.stackexchange.com/"&gt;Pets&lt;/a&gt;, &lt;a href="http://parenting.stackexchange.com/"&gt;Parenting&lt;/a&gt; or other site that accepts subjective answers, "too chatty" would be much harder to classify.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://meta.stackoverflow.com/q/277314/189134"&gt;+/-1 has been discouraged&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The observation I made on my own that comments with this type of content were distracting has been noticed by others as well. This was actually a very nice validation of my own process and some of the results posted on that thread show many such comments continue to be noise. Of course, this change did also force users to modify their content and may have added new patterns that can be utilized in future training.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ability to &lt;a href="http://meta.stackexchange.com/q/245416/186281"&gt;automatically check flags&lt;/a&gt; would be great so that automated runs could be paused if it goes crazy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The process of checking that my flagging history remains accurate is time consuming. The status of a flag can't be acquired via the API. I've submitted a feature request for this information to be added to the API. With this information, flagging can be paused or stopped if X number of flags are declined.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Stack Overflow's volume of comments is a crutch.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Due to the &lt;a href="http://data.stackexchange.com/stackoverflow/query/200435#graph"&gt;high volume of comments&lt;/a&gt; and limited number of comment flags my account has available, I can afford to be picky on which comments I want to act on. The classifier itself is about 85% accurate in determining the type of comment. However, I artificially increase my accuracy by only acting on comments that have a very high classifier certainty by forcing this certainty level to meet or surpass my threshold values from above. Smaller sites, with a lower volume, don't have the benefit of having enough comments to be this picky. It is on these sites that a more feature based classifier would be important.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The human element is still unpredictable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My classifier was trained utilizing my idea of how comments should be flagged. Prior to automating this, I was not 100% accurate. Additionally, moderators are not 100% accurate in their processing of flags. &lt;a href="http://meta.stackoverflow.com/q/278813/189134"&gt;Users&lt;/a&gt; &lt;a href="http://meta.stackoverflow.com/q/280426/189134"&gt;disagree&lt;/a&gt; on how these rules should be implemented, but are willing to &lt;a href="http://meta.stackoverflow.com/q/278927/189134"&gt;assist&lt;/a&gt; in keeping the site clean. With more than 175K comments a week, every little bit helps.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="discussion"&gt;Discussion&lt;a class="headerlink" href="#discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As my title states, my original question was whether or not I can teach a machine how to flag comments as I would. The answer to that is yes. The next question is whether this type of system would be helpful in cleaning up comments across Stack Overflow. My system works only on new comments created around each new UTC. Once my 100 flags are hit (or the API tells me to stop), it shuts down for the day. Having something automated go through historical comments or that can run all day would be beneficial.&lt;/p&gt;
+&lt;p&gt;Finally, now that I've admitted that I've been automatically flagging comments, can I continue to do so?&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="update"&gt;Update&lt;a class="headerlink" href="#update" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This section has been updated multiple times since the original post. Most recently, it was updated May 3, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As I mentioned in the introduction, this was originally published in December 2014. How is the system behaving now? It is performing very well.&lt;/p&gt;
+&lt;h3 id="process-changes"&gt;Process Changes&lt;a class="headerlink" href="#process-changes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In January 2015, &lt;a href="http://meta.stackoverflow.com/q/283030/189134"&gt;another user&lt;/a&gt; was using a basic query to look for invalid comments. This caused a high number of moderator flags, many of which were declined. My process was caught in this mass decline. This resulted in 49 declined flags for a single day.
+This is, by far, the largest number of declined flags the process has generated in a day. It did, however, prompt a process change after consultation with the Stack Overflow moderators.&lt;/p&gt;
+&lt;p&gt;The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.&lt;/p&gt;
+&lt;h3 id="may-2015-11-months"&gt;May 2015 (11 Months)&lt;a class="headerlink" href="#may-2015-11-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After nearly a year of running, these are my flagging statistics:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;39938&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;
+&lt;span class="mf"&gt;39659&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;
+&lt;span class="mf"&gt;279&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This provides a helpful rate of 99.3%. This is down &lt;em&gt;just&lt;/em&gt; slightly from 99.36% in December. I attribute a large part of the dip to the issue mentioned above.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Here is an updated chart showing the rolling 10 day average for number of declined flags. I've had several stretches of multi-week time frames with no declined flags.&lt;/p&gt;
+&lt;p&gt;This is a busy chart, so I've narrowed it down to show just the last 90 days. From here you can see that in the past 90 days there have been only 10 declined flags.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 90 day window" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/&gt;&lt;/p&gt;
+&lt;h3 id="sept-2015-15-months"&gt;Sept 2015 (15 Months)&lt;a class="headerlink" href="#sept-2015-15-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;It has been almost 15 months since the process started. In that time, the model has gotten more accurate. Since the last update in May, I've had only 3 declined comment flags:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;52351&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;
+&lt;span class="mf"&gt;52069&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;
+&lt;span class="mf"&gt;282&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This provides a helpful rate of 99.46%. Here is an updated chart showing the rolling 10 day average for number of declined flags. The 90 day window is not even worth showing. It has three days where a single flag was declined.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 15 Months of data training" src="https://andrewwegner.com/images/declined_per_day_15_months.png"/&gt;&lt;/p&gt;
+&lt;h3 id="summary-of-2015"&gt;Summary of 2015&lt;a class="headerlink" href="#summary-of-2015" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I processed comments 359 days out of the year. I missed three in January due to stopping it after a mass decline of flags (more later), I can't account for a missed day in July and August. I don't recall stopping it, but I missed July 3rd and August 19. I also missed December 28th due to a power issue. I flagged 35,960 comments. Of that, 111 were declined.&lt;/p&gt;
+&lt;p&gt;By month, this is the break down of rejected flags.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2015 Flag Summary" src="https://andrewwegner.com/images/2015-flag-summary.png"/&gt;&lt;/p&gt;
+&lt;p&gt;The blip at the end of November is due to new moderators being elected and adjusting to what other moderators consider "good" versus "bad" comments. I didn't see the spike in the April election which is interesting, but after a couple days in November it's back to normal. The January spike I mentioned above.&lt;/p&gt;
+&lt;p&gt;Interesting note: The longest stretch in the year with no declined flags was from August 13th through November 24th.&lt;/p&gt;</content><category term="Programming Projects"/><category term="Stack Exchange"/><category term="machine learning"/><category term="automation"/><category term="programming"/></entry></feed>

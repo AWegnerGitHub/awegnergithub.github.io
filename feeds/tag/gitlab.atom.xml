@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Andrew Wegner | Ponderings of an Andy - gitlab</title><link href="https://andrewwegner.com/" rel="alternate"/><link href="https://andrewwegner.com/feeds/tag/gitlab.atom.xml" rel="self"/><id>https://andrewwegner.com/</id><updated>2025-07-06T08:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>How to fix GitLab 18 error regarding git_data_dirs</title><link href="https://andrewwegner.com/gitlab_18_git_data_dirs_resolution.html" rel="alternate"/><published>2025-07-06T08:00:00-05:00</published><updated>2025-07-06T08:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-07-06:/gitlab_18_git_data_dirs_resolution.html</id><summary type="html">&lt;p&gt;GitLab 18 removes &lt;code&gt;git_data_dirs&lt;/code&gt; and if you have been using it and didn't notice the deprecation warnings, an update to GitLab 18 will fail. This is a simple fix.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Several years ago I &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;set up GitLab in my home environment&lt;/a&gt;. I apprecate past me documenting the basic steps I took to do this, because I'll need them again at some point when I make upgrades to my home lab. I've documented somethings I've done (like &lt;a href="https://andrewwegner.com/setting-up-gitlab-runners.html"&gt;setting up GitLab runners&lt;/a&gt;, or dealing with &lt;a href="https://andrewwegner.com/disable-grafana-in-gitlab-16.html"&gt;Grafana being deprecated within GitLab&lt;/a&gt; or utilzing &lt;a href="https://andrewwegner.com/obsidian-gitlab-setup.html"&gt;GitLab to automatically backup my Obsidian notes&lt;/a&gt;) Unfortunately, I didn't document everything. One of those things that I didn't document was changing where my repositories are stored on disk by default.&lt;/p&gt;
+&lt;p&gt;In GitLab 17.8 (January 2025), a new deprecation warning started appearing.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;git_data_dirs has been deprecated since 17.8 and will be removed in 18.0. See https://docs.gitlab.com/omnibus/settings/configuration.html#migrating-from-git_data_dirs for migration instructions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I'm a little annoyed that there were only 5 months of notice on this because major versions are released in May. In any case, if you attempt to update to version 18 or beyond and are utilizing &lt;code&gt;git_data_dirs&lt;/code&gt;, the upgrade will fail.&lt;/p&gt;
+&lt;h2 id="solution"&gt;Solution&lt;a class="headerlink" href="#solution" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As usual, GitLab is good at providing &lt;a href="https://docs.gitlab.com/omnibus/settings/configuration/#migrating-from-git_data_dirs"&gt;documentation on resoluting and migrating&lt;/a&gt; through the deprecations. However, on my first attempt I encountered an error. I believe it's because I missed a note buried in the text - not the code blocks - the first time.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that the &lt;code&gt;/repositories&lt;/code&gt; suffix must be appended to the path because it was previously appended internally.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The solution is to open &lt;code&gt;/etc/gitlab/gitlab.rb&lt;/code&gt; (you probably should make a backup first). Find the &lt;code&gt;git_data_dirs&lt;/code&gt; line. For me this was around line 455. Then comment out this entire block.&lt;/p&gt;
+&lt;p&gt;Then find (or add) the &lt;code&gt;gitaly['configuration']&lt;/code&gt; block. This was immediately after the &lt;code&gt;git_data_dirs&lt;/code&gt; section for me. Uncomment it, and add the appropriate path (from your &lt;code&gt;git_data_dirs&lt;/code&gt; block) and add &lt;code&gt;/repositories&lt;/code&gt; to the end of it.&lt;/p&gt;
+&lt;p&gt;Once you are done, run&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;gitlab-ctl reconfigure
+gitlab-ctl restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Give it a minute to fire up all the GitLab subcomponents, and then you should be able to update GitLab beyond version 18.&lt;/p&gt;
+&lt;h3 id="new-code-section"&gt;New code section&lt;a class="headerlink" href="#new-code-section" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;My &lt;code&gt;gitlab.rb&lt;/code&gt; now has this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;#&lt;/span&gt;git_data_dirs({
+&lt;span class="gh"&gt;#&lt;/span&gt;  "default" =&amp;gt; {
+&lt;span class="gh"&gt;#&lt;/span&gt;    "path" =&amp;gt; "/previous/path/to/repos"
+&lt;span class="gh"&gt;#&lt;/span&gt;   }
+&lt;span class="gh"&gt;#&lt;/span&gt;})
+
+&lt;span class="gu"&gt;##&lt;/span&gt;# Gitaly settings
+gitaly['configuration'] = {
+storage: [
+    {
+    name: 'default',
+    path: '/previous/path/to/repos/repositories',
+    },
+],
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With this quick change, I can continue to hold the repositories at a location of my choosing. The biggest thing is to add &lt;code&gt;/repositories&lt;/code&gt; to the &lt;code&gt;path&lt;/code&gt; in the new Gitly configuration. With this change, I can continue to utilizing the current version of GitLab - a tool that I still find invaluable.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="gitlab"/></entry><entry><title>Syncing Obsidian Notes across devices using Git and GitLab</title><link href="https://andrewwegner.com/obsidian-gitlab-setup.html" rel="alternate"/><published>2023-09-26T13:30:00-05:00</published><updated>2023-09-26T13:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-09-26:/obsidian-gitlab-setup.html</id><summary type="html">&lt;p&gt;Setting up Obsidian to sync notes across devices utilizing git and a GitLab backend&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I take a lot of notes. About five years ago I switched from utilizing notebooks, because I was going through them so quickly, to a 
+&lt;a href="https://getrocketbook.com/"&gt;Rocket Book&lt;/a&gt;. This feels very similar to a notebook, with the benefit that it is reusable. It also has an application that allows me to quickly 
+scan a page and save it to one of several locations. It's very handy. The downside is that the OCR isn't perfect (oooor, my handwriting is bad) and the
+annoyance of cleaning the pages every week or so. I've found that if I don't let the pages dry completely, then the next time I go to use that page it 
+has a fine film over it that makes writing a little more difficult. Think writing with a pen that is low on ink.&lt;/p&gt;
+&lt;p&gt;I discovered &lt;a href="https://getrocketbook.com/"&gt;Obsidian&lt;/a&gt; a while ago. I've put a little bit of effort into utilizing it, but more recently I've committed to utilizing it more.
+The idea of all digial notes is enticing. Over time I'll see if it's helpful.&lt;/p&gt;
+&lt;p&gt;But, like anyone with multiple devices, I want my Obsidian vault on all devices. What if I have a thought while I'm away from my main computer? One option is to utilize the &lt;a href="https://obsidian.md/sync"&gt;Obsidian Sync&lt;/a&gt; feature. It's got end to end encryption, version history and a monthly subscription fee. I can build something using my &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;existing GitLab installation&lt;/a&gt; without that monthly subscription fee. Plus, since I'm the only user of this, I'm ok with a little trade off that a full service provides. &lt;/p&gt;
+&lt;h2 id="repository-setup"&gt;Repository Setup&lt;a class="headerlink" href="#repository-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="gitlab"&gt;GitLab&lt;a class="headerlink" href="#gitlab" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Within GitLab set up a new project by clicking on "New Project" in the upper right.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Create a new GitLab Project" src="https://andrewwegner.com/images/obsidian/new_gitlab_project.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Select the option to create a new blank project.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Create a blank repository" src="https://andrewwegner.com/images/obsidian/blank_gitlab_project.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Now we need to set up the project details. Select a name that is meaningful for you. I've utilized &lt;code&gt;andy-notes&lt;/code&gt; in the screenshot below. I also created this without a &lt;code&gt;README&lt;/code&gt;, because I'll generate the initial repository in a moment and push it up to the server.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="New project details - without a precreated README" src="https://andrewwegner.com/images/obsidian/project_details.png"/&gt;&lt;/p&gt;
+&lt;h3 id="repository-initialization"&gt;Repository Initialization&lt;a class="headerlink" href="#repository-initialization" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This set of steps only has to occur once. All devices will be able to start with the next section.&lt;/p&gt;
+&lt;p&gt;Open the command prompt or terminal (depending on what your operating system calls the system console). Navigate to the location you want your notes to be stored. In my case, I created a new directory to match the name of my repository. I then created a &lt;code&gt;.gitignore&lt;/code&gt; with the following content in the directory.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="p"&gt;*&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;app.json&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;appearance.json&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;config&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;community-plugins.json&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;core-plugins.json&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;graph.json&lt;/span&gt;
+&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="na"&gt;.obsidian&lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="no"&gt;hotkeys.json&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This should ignore the majority of the &lt;code&gt;.obsidian&lt;/code&gt; hidden directory between my devices, but keep a few key items. I may update this over time, but for now this is working well.&lt;/p&gt;
+&lt;p&gt;Now, initialize the repository.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cd andy-notes
+git init --initial-branch=main
+git remote add origin git@&amp;lt;my.server.url&amp;gt;:andy/andy-notes.git
+git add .
+git commit -m "Initial Commit"
+git push --set-upstream origin main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We're ready to start utilizing Obsidian and GitLab!&lt;/p&gt;
+&lt;h2 id="obsidian-setup"&gt;Obsidian Setup&lt;a class="headerlink" href="#obsidian-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="first-open"&gt;First Open&lt;a class="headerlink" href="#first-open" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Now that the backend repository is set up and it's been initially configured, all instances of Obsidian can utilize these sets of steps to start working. &lt;/p&gt;
+&lt;p&gt;If this is not the device you initilized the repository on, you need to perform an initial &lt;code&gt;pull&lt;/code&gt; of the repository to this device so that it is a local folder.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git clone git@&amp;lt;my.server.url&amp;gt;:andy/andy-notes.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Open Obsidian. Since this is the first time you are opening it, you'll be asked to select where your vault is stored. You want to select the "Open folder as vault" option.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Open an existing folder as your vault" src="https://andrewwegner.com/images/obsidian/open_folder.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Select the location that your repository has been cloned into. &lt;/p&gt;
+&lt;h3 id="enable-plugins"&gt;Enable Plugins&lt;a class="headerlink" href="#enable-plugins" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Obsidian has support for &lt;a href="https://obsidian.md/plugins"&gt;community built plugins&lt;/a&gt;. There are plugins to do all kinds of things to improve your writing and note taking. I encourage the reader to look through or search for plugins that may help you. We, however, need one specific one to accomplish our goal of syncing the vault over to GitLab.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://obsidian.md/plugins?id=obsidian-git"&gt;Obsidian Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To install community plugins we need to enable this feature. In the lower left of the workspace, click the gears icon. Then click on "Community plugins", and finally "Turn on community plugins"&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable Community Plugins" src="https://andrewwegner.com/images/obsidian/enable_plugins.png"/&gt;&lt;/p&gt;
+&lt;p&gt;With this enabled, you can now browse the community plugins. To do so, click the browse button.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Browse community plugins button" src="https://andrewwegner.com/images/obsidian/browse_plugins.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Search for &lt;code&gt;Obsidian Git&lt;/code&gt;. While writing this, it was the first result. You should be looking for the one by Vinzent. Click on the card to pull up plugin details and potential actions.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Obsidian Git in the Community Plugins marketplace" src="https://andrewwegner.com/images/obsidian/plugin_search.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Then click "Install". The installation process should only take a moment or two.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Install the Obsidian Git plugin by clicking the install button" src="https://andrewwegner.com/images/obsidian/plugin_install.png"/&gt;&lt;/p&gt;
+&lt;p&gt;You'll receive a confirmation in the upper right if the install is successful.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Successful plugin install confirmation message" src="https://andrewwegner.com/images/obsidian/plugin_install_success.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Finally, enable the new plugin. The previous "install" button has changed to be "Enable". Click that.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable new Obsidian Git plugin" src="https://andrewwegner.com/images/obsidian/plugin_enable.png"/&gt;&lt;/p&gt;
+&lt;h3 id="configure-obsidian-git"&gt;Configure Obsidian Git&lt;a class="headerlink" href="#configure-obsidian-git" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;With the Obsidian Git plugin installed, it's time to configure it. There are a few quick settings to fill out. First, you need to click the "Options" button.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Obsidian Git plugin configuration options" src="https://andrewwegner.com/images/obsidian/plugin_options.png"/&gt;&lt;/p&gt;
+&lt;p&gt;The first setting to change is how often you want the backup to GitLab to occur. This automatic back up is disabled by default. I set mine to be every 5 minutes. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Adjust the backup interval" src="https://andrewwegner.com/images/obsidian/backup_interval.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Next, enable &lt;code&gt;Pull updates on startup&lt;/code&gt; so that the instance of Obsidian that is running is always up to date. Your notes from other devices will be synchronized when Obsidian launches and you can get right back to writing.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Enable pull updates on startup with this toggle" src="https://andrewwegner.com/images/obsidian/pull_startup.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Be sure to add the Author name and email address. This is the information that will be sent on each commit. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Commit Author information" src="https://andrewwegner.com/images/obsidian/commit_author.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I also adjusted the autocommit message to include the hostname of the device performing the commit. I have been going back and forth on whether this is important enough for me to keep since I'm the only one that utilizes this vault. But, if you want to adjust the messages there are two instances where the commit message can be modified.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Adding the hostname to the automatically generated commit messages" src="https://andrewwegner.com/images/obsidian/commit_author.png"/&gt;&lt;/p&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After performing the steps above, this instance of Obsidian is ready to utilize GitLab to sync your vault for free. Each new instance only needs to have the Obsidian Git plugin installed, enabled and configured. &lt;/p&gt;
+&lt;p&gt;After you've configured your instance, when you open Obsidian the plugin will pull changes from the repository and let you know that everything has been updated.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Obsidian successfully updated the vault after opening" src="https://andrewwegner.com/images/obsidian/open_success.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Then on a scheduled basis - 5 minutes in my case - it will commit and push changes to GitLab.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Successful autocommit" src="https://andrewwegner.com/images/obsidian/autocommit.png"/&gt;&lt;/p&gt;
+&lt;p&gt;In GitLab, this commit will should show up immediately. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="GitLab commit" src="https://andrewwegner.com/images/obsidian/commit.png"/&gt;&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I now have Obsidian set up on my main devices. I've enjoyed the ability to have my notes available as soon as I open the application. Overall, this was pretty easy to set up. It seems like a lot of steps, but the one time setup makes it much longer than installing and configuring a plugin for each new instance actually takes.&lt;/p&gt;
+&lt;p&gt;I'm trying to keep my notes digital and I'm hopeful that this new set up will help. I can move between computers for personal projects instead of wondering what I had found in my research because I left it on another tab on another machine and forgot to put it with the rest of my notes. Now, it just happens. &lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="gitlab"/></entry><entry><title>How to disable Grafana in Gitlab 16.3 Omnibus</title><link href="https://andrewwegner.com/disable-grafana-in-gitlab-16.html" rel="alternate"/><published>2023-08-23T22:15:00-05:00</published><updated>2024-07-07T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-08-23:/disable-grafana-in-gitlab-16.html</id><summary type="html">&lt;p&gt;GitLab 16.3 deprecated and disabled the bundled Grafana, but didn't provide complete instructions for how to disable it. Fortunately, it's easy to do. I've documented the few steps needed.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I continue to love my &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;self hosted instance of GitLab&lt;/a&gt;. I look forward to the 22nd of every month to pull down the 
+newest dot update and enjoy the new features. As with any piece of software, things get deprecated and eventually disabled over
+time. &lt;/p&gt;
+&lt;p&gt;In 16.3 - released in August 2023 - the version of &lt;a href="https://grafana.com/"&gt;Grafana&lt;/a&gt; bundled with the self hosted version of GitLab reached the 
+end of it's depreciation window and was disabled. GitLab added a check to prevent an update if it was still enabled. &lt;/p&gt;
+&lt;h2 id="symptom"&gt;Symptom&lt;a class="headerlink" href="#symptom" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When performing an &lt;code&gt;apt&lt;/code&gt; update, GitLab 16.3 will error out if Grafana is still enabled on your instance. The error looks like this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Preparing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ee_16&lt;/span&gt;&lt;span class="mf"&gt;.3.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ee&lt;/span&gt;&lt;span class="mf"&gt;.0&lt;/span&gt;&lt;span class="n"&gt;_amd64&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;grafana&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;enable&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;has&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;been&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;deprecated&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;since&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;16.0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;was&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;removed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;16.3&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bundled&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Grafana&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;deprecated&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;no&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;longer&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;We&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;recommond&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;following&lt;/span&gt;
+&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ee&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;administration&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;monitoring&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;performance&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;grafana_configuration&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html#deprecation&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Deprecations&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;found&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Please&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;correct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;them&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;again&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="the-problem"&gt;The Problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://docs.gitlab.com/ee/administration/monitoring/performance/grafana_configuration.html#deprecation"&gt;documentation linked&lt;/a&gt; provides four steps to follow&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To switch away from bundled Grafana to a newer version of Grafana from Grafana Labs:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Set up a version of Grafana from Grafana Labs.&lt;/li&gt;
+&lt;li&gt;Export the existing dashboards from bundled Grafana.&lt;/li&gt;
+&lt;li&gt;Import the existing dashboards in the new Grafana instance.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.gitlab.com/ee/administration/monitoring/performance/grafana_configuration.html#integrate-with-gitlab-ui"&gt;Configure GitLab&lt;/a&gt; to use the new Grafana instance.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I've removed the links in steps 2 and 3, because they really don't matter for this write up. Step 1 does not have a link, so it's left as 
+and excercise to the user to install Grafana in their environment. Step 4, links to another article that provides a few more steps to follow.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;On the left sidebar, expand the top-most chevron.&lt;/li&gt;
+&lt;li&gt;Select Admin Area.&lt;/li&gt;
+&lt;li&gt;On the left sidebar, select Settings &amp;gt; Metrics and profiling and expand Metrics - Grafana.&lt;/li&gt;
+&lt;li&gt;Select the Add a link to Grafana checkbox.&lt;/li&gt;
+&lt;li&gt;Configure the Grafana URL. Enter the full URL of the Grafana instance.&lt;/li&gt;
+&lt;li&gt;Select Save changes.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And that's it. That's the set of instructions provided by GitLab. Follow those, rerun your &lt;code&gt;apt&lt;/code&gt; update and you'll run into the same symptom.&lt;/p&gt;
+&lt;h2 id="solution"&gt;Solution&lt;a class="headerlink" href="#solution" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The missing step is hinted at in the error message itself: &lt;code&gt;grafana[enable] has been deprecated&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This is a setting in the GitLab configuration file. You will need to edit the config file and set the value to false.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Edit &lt;code&gt;/etc/gitlab/gitlab.rb&lt;/code&gt; (or appropriate path) &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Edit the &lt;code&gt;grafana[enable]&lt;/code&gt; value to be &lt;code&gt;false&lt;/code&gt;. On my config this was on line 1689, but I recommend you search for the string &lt;code&gt;grafana&lt;/code&gt; to find it. &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;grafana['enable'] = false&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Reconfigure GitLab by running &lt;code&gt;gitlab-ctl reconfigure&lt;/code&gt;. Let this run and it should end with &lt;code&gt;gitlab Reconfigured!&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;You can now resume the &lt;code&gt;apt&lt;/code&gt; update that failed due to having Grafana enabled.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once done, you will get the standard GitLab upgrade complete message and you'll be good to go.&lt;/p&gt;
+&lt;h2 id="reading-unsupported-config-value-grafana"&gt;Reading unsupported config value grafana.&lt;a class="headerlink" href="#reading-unsupported-config-value-grafana" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Update: July 2024, GitLab 17.1&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In the GitLab 17.1 update from June 2024, Grafana has been completely removed. If you still have &lt;code&gt;grafana&lt;/code&gt; keys in the config file upon updating to 17.1, the upgrade will fail with&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Mixlib::config::unknownconfigoptionerror: Reading unsupported config value grafana.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The solution to this is to edit &lt;code&gt;/etc/gitlab/gitlab.rb&lt;/code&gt; and comment out (or remove entirely) all lines that start with &lt;code&gt;grafana&lt;/code&gt;. Once this is done, save the file and attempt the upgrade again. Like when it was originally deprecated, this step will end with &lt;code&gt;gitlab Reconfigured&lt;/code&gt;.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="gitlab"/></entry><entry><title>Review of GitLab's 'TeamOps Certification' course</title><link href="https://andrewwegner.com/gitlab-teamops-certification.html" rel="alternate"/><published>2023-02-02T23:00:00-06:00</published><updated>2023-02-02T23:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-02-02:/gitlab-teamops-certification.html</id><summary type="html">&lt;p&gt;I've passed GitLab's TeamOps certification course. This is a review of the course.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A little over two years ago, I took &lt;a href="https://andrewwegner.com/gitlab-manage-remote-team.html"&gt;GitLab's course on how to manage a remote team&lt;/a&gt;. That was a very useful course
+and I was able to apply several best practices from that course to my role at the time, plus roles I've held since then.
+I continue to manage global and remote teams, so I was excited to hear about GitLab's newest course covering their
+&lt;a href="https://about.gitlab.com/teamops/"&gt;"TeamOps"&lt;/a&gt; model of improving teams.&lt;/p&gt;
+&lt;p&gt;This course is hosted on &lt;a href="https://levelup.gitlab.com/catalog"&gt;LevelUp&lt;/a&gt;, and is one of 9 public course they have available right now. &lt;/p&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The TeamOps Certification course is split into 5 sections and covers about 2-3 hours of material. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The first section covers the foundations of TeamOps&lt;/li&gt;
+&lt;li&gt;The remaining four sections cover the 4 guiding principles of TeamOps&lt;ul&gt;
+&lt;li&gt;Shared Reality&lt;/li&gt;
+&lt;li&gt;Everyone Contributes&lt;/li&gt;
+&lt;li&gt;Decision Velocity&lt;/li&gt;
+&lt;li&gt;Measurement Clarity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Except for the welcome message in the first lesson, this course is entirely text based. I was surprised by this because of the 
+previous course from GitLab and the extensive use of video on how to manage a remote team. This course does have a 6-7 question 
+knowledge check at the end of each section and will not let you proceed if you score below an 80%. &lt;/p&gt;
+&lt;p&gt;Fortunately, the questions are easy - assuming you comprehend what you are reading and not just clicking through to the next page. 
+The course also provides access to the updated &lt;a href="https://learn.gitlab.com/allremote#page=1"&gt;The Remote Playbook&lt;/a&gt;, which is a great starting point for checking your company's
+remote processes.&lt;/p&gt;
+&lt;p&gt;TeamOps felt like a good extension and refresher from the &lt;a href="https://andrewwegner.com/gitlab-manage-remote-team.html"&gt;"How to Manage a Remote Team" course&lt;/a&gt;. Unfortunately, that's all it felt 
+like - a refresher. &lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The change from video to text based courses was surprising, and slightly unwelcome. The content of the course is good, and will definately 
+help teams improve how they operate. However, many of the same ideas were covered in the previous course. I suppose that if this continues
+to work for GitLab, it makes sense that they aren't trying to make sweeping changes, but I was hoping for...more, I suppose. &lt;/p&gt;
+&lt;p&gt;I recommend this course to anyone who manages a team remotely and needs a refresher from the previous course GitLab provided or doesn't have
+the recommended 11 hours for that course. This should take about an hour and a half to read through. If, however, you have more time I think the 
+&lt;a href="https://andrewwegner.com/gitlab-manage-remote-team.html"&gt;"How to Manage a Remote Team" course&lt;/a&gt; course has even more information that will be helpful.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ti-user-certificates.s3.amazonaws.com/72109ec1-52dd-4663-9df4-754a8a1d0bff/fdba849b-2387-4376-befa-526f6414790e-andrew-wegner-af934dab-5a67-4fc4-8f51-680a1304eea4-certificate.pdf"&gt;&lt;img alt="How to Manage a Remote Team Certificate" src="https://andrewwegner.com/images/gitlab-teamops-certificate.png"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="technical"/><category term="learning"/><category term="leadership"/><category term="gitlab"/></entry><entry><title>Review of GitLab's 'How to Manage a Remote Team' Coursera course</title><link href="https://andrewwegner.com/gitlab-manage-remote-team.html" rel="alternate"/><published>2020-10-26T09:30:00-05:00</published><updated>2020-10-26T09:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2020-10-26:/gitlab-manage-remote-team.html</id><summary type="html">&lt;p&gt;My review of Gitlab's Coursera course on managing a remote team and workforce&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I am a huge fan of &lt;a href="https://about.gitlab.com/blog/"&gt;GitLab&lt;/a&gt; - both the product and the company. As the largest all remote workforce,
+they are in an enviable position of being an expert on how to manage a team of over 1000 global employees without
+having an office. My current position puts me in charge of managing a global, remote, workforce as well but on a
+smaller scale.&lt;/p&gt;
+&lt;p&gt;When GitLab announced they were releasing a course on &lt;a href="https://www.coursera.org/learn/remote-team-management"&gt;How to Manage a Remote Team&lt;/a&gt; on Coursera, I jumped at the
+opportunity to take it. I want to expand my skill set as a manager of remote employees and the chance to learn some
+best practices from GitLab in this area was a good place to start.&lt;/p&gt;
+&lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The course is split up in to a four week set of lessons and covers about 11-12 hours of material.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Week 1 covers Remote Best Practices.&lt;/li&gt;
+&lt;li&gt;Week 2 covers Managing Remote Teams.&lt;/li&gt;
+&lt;li&gt;Week 3 covers Remote Adaption Processes for Organizations&lt;/li&gt;
+&lt;li&gt;Week 4 covers Culture and Values for Distributed Teams&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The final task then is building a remote transition plan for an organization.&lt;/p&gt;
+&lt;p&gt;Overall, these were well done. The videos are presented by various GitLab employees and cover a variety
+of different aspects in each section. There are various readings assigned too. These provide a ton of information,
+especially &lt;a href="https://learn.gitlab.com/coursera-remote-work"&gt;The Remote Playbook&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There is some GitLab centric information provided and back patting, but it is done in a way that helps to
+show &lt;em&gt;why&lt;/em&gt; certain things are needed - like open and transparent documentation. By the end of the course, you will
+know that GitLab has an open handbook for everyone to read and you will know why you should as well. This type
+of thing is expected and knowing that the instructors will do some back patting is important too.&lt;/p&gt;
+&lt;p&gt;The final project - building a remote transition plan - is peer reviewed. You are presented with a series of questions,
+which you answer with a short essay for each and using information presented during the course. When you are done, the last
+task you have is to peer review three of your cohort's projects.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This course was information dense and useful. The time estimate is off as the videos take only about an hour each week. Either
+I am a faster reader than I thought or they have overestimated the time it would take to read the weekly material. In either
+case, I estimate that I spent about 6 hours. It was also nice that, although the course is split into weeks, everything is
+available immediately upon completing the previous tasks.&lt;/p&gt;
+&lt;p&gt;I recommend this course to anyone who manages a team remotely or who is in the process of transitioning to remote work. COVID
+has given the entire world a crash course in remote work, but this course is a good way to handle and manage those newly remote
+workers effectively. It is also a good course to take if your company is planning on extending the work remote environment that
+2020 has thrust upon you to last beyond this current pandemic.&lt;/p&gt;
+&lt;p&gt;GitLab has done a good job with this course.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://coursera.org/verify/23C6VDATPJMN"&gt;&lt;img alt="How to Manage a Remote Team Certificate" src="https://andrewwegner.com/images/coursera-remote-manage.png"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="technical"/><category term="learning"/><category term="leadership"/><category term="gitlab"/></entry><entry><title>Setting up GitLab runners</title><link href="https://andrewwegner.com/setting-up-gitlab-runners.html" rel="alternate"/><published>2019-10-22T11:00:00-05:00</published><updated>2019-10-22T11:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-10-22:/setting-up-gitlab-runners.html</id><summary type="html">&lt;p&gt;How I set up a GitLab runner&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's been a year and a half since I set up GitLab. In that time I've used to it
+store my personal code, keep track of features I want to add to my own projects,
+and generally loved it. One thing I haven't done though, is play with the CI/CD
+features. I've been wanting to, but never got around to it.&lt;/p&gt;
+&lt;p&gt;To utilize the CI/CD features, you need to set up a &lt;a href="https://docs.gitlab.com/runner/"&gt;GitLab runner&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="set-up"&gt;Set up&lt;a class="headerlink" href="#set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="docker"&gt;Docker&lt;a class="headerlink" href="#docker" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I'll be running my runners in &lt;a href="https://www.docker.com/"&gt;Docker&lt;/a&gt; containers. There are other options,
+but for my home environment, this is easiest to set up and maintain.&lt;/p&gt;
+&lt;p&gt;Let's start by installing Docker:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;transport&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ca&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;certificates&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;curl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;software&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;properties&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;
+&lt;span class="n"&gt;curl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fsSL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gpg&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;repository&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ce&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is going to add the Docker repository and install the community edition.&lt;/p&gt;
+&lt;h3 id="gitlab-runner"&gt;GitLab Runner&lt;a class="headerlink" href="#gitlab-runner" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once Docker is installed and working, we can install the GitLab runner.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;wget&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;O&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;downloads&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;amazonaws&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;latest&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;binaries&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;amd64&lt;/span&gt;
+&lt;span class="n"&gt;chmod&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;
+&lt;span class="n"&gt;useradd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'GitLab Runner'&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bash&lt;/span&gt;
+&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;
+&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is downloading the install package. Then it adds a new user, that the runner will run as. This is a nice security precaution to limit what the runner has access to on the system. It's not full security, but it does all me to restrict what that particular user has access to on the server.&lt;/p&gt;
+&lt;p&gt;Then the run is started.&lt;/p&gt;
+&lt;p&gt;Next the runner needs to be registered. Log into GitLab, and navigate to
+the project that will be using this runner. It should be available at this link:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://url.to.your.gitlab.install/&amp;lt;account&amp;gt;/&amp;lt;repo&amp;gt;/settings/ci_cd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Grab the GitLab CI token. That is needed in the next step. Run the &lt;code&gt;gitlab-runner register&lt;/code&gt; command, and fill in your values as required.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;register&lt;/span&gt;
+&lt;span class="n"&gt;Please&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;enter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;coordinator&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;URL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+
+&lt;span class="n"&gt;Please&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;enter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;runner&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;redacted&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;Please&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;enter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;runner&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;my-runner&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;
+
+&lt;span class="n"&gt;Please&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;enter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;comma&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;separated&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="n"&gt;Registering&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;succeeded&lt;/span&gt;&lt;span class="w"&gt;                     &lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="n"&gt;m_339h&lt;/span&gt;
+
+&lt;span class="n"&gt;Please&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;enter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;executor&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;parallels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;virtualbox&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;kubernetes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;docker&lt;/span&gt;
+
+&lt;span class="n"&gt;Please&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;enter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Docker&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;image&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;ruby&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mf"&gt;2.1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="nl"&gt;alpine&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;latest&lt;/span&gt;
+
+&lt;span class="n"&gt;Runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;registered&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;successfully&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Feel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;free&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;start&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;but&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;running&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;already&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;should&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;be&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;automatically&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;reloaded&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;My experience with Docker is limited, so I am using the latest alpine version. I'm sure there are better ones to use for a simple Python application, but this works for me and I'm not concerned about the absolute fastest CI/CD pipeline on my server.&lt;/p&gt;
+&lt;h2 id="using-the-cicd-pipeline"&gt;Using the CI/CD pipeline&lt;a class="headerlink" href="#using-the-cicd-pipeline" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At this point, the GitLab runner is registered to a single project and is ready to use. You can enable your project to use this pipeline by adding a &lt;code&gt;.gitlab-ci.yml&lt;/code&gt; file to the root of your repository.&lt;/p&gt;
+&lt;p&gt;I used it to set up the following pipeline.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Python - GitLab Pipeline" src="https://andrewwegner.com/images/gitlab-python-pipeline.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This pipeline has 4 stages.&lt;/p&gt;
+&lt;h3 id="static-analysis"&gt;Static Analysis&lt;a class="headerlink" href="#static-analysis" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In the Static Analysis phase, I run various analysis tools over my code. The goal here is to ensure that my code, YAML documents, and documentation are easy to read and use.&lt;/p&gt;
+&lt;p&gt;You'll notice the the xenon task has a warning in the image. I have the settings pretty strict in this pipeline, where I allow a very low &lt;a href="https://radon.readthedocs.io/en/latest/intro.html#cyclomatic-complexity"&gt;Cyclomatic Complexity&lt;/a&gt;. In this project, I have one function that is just barely failing my strict settings. I have allowed the pipeline to continue if this one particular task fails.&lt;/p&gt;
+&lt;p&gt;I could either increase the allowed complexity in the code base to ignore the warning. Alternatively, I could not allow the pipeline to proceed until I fix this function. This was one of those instances where it hasn't been worth it to refactor the code, but I want to be reminded I &lt;em&gt;should&lt;/em&gt; fix it, so I allow the pipeline to proceed and show me the error.&lt;/p&gt;
+&lt;h3 id="test"&gt;Test&lt;a class="headerlink" href="#test" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Test phase should be fairly self explanatory. It's the stage where I run my test suite. It will only run if the Static Analysis phase completes successfully (or I allow a specific job to fail, in the case of the xenon task).&lt;/p&gt;
+&lt;h3 id="deploy-testing"&gt;Deploy Testing&lt;a class="headerlink" href="#deploy-testing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once the test suite has completed successfully, I deploy the package to the test instance of PyPI. This ensures that I have a successful build and deploy.&lt;/p&gt;
+&lt;h3 id="deploy-production"&gt;Deploy Production&lt;a class="headerlink" href="#deploy-production" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Deployment to production is a manual step. I did this because I don't always want to push changes to production PyPI. This is especially true if I'm only making small fixes - such as white space changes. I don't want to skip the entire CI process, but I also don't want to push out to production for something so minor.&lt;/p&gt;
+&lt;h2 id="environment-set-up"&gt;Environment set up&lt;a class="headerlink" href="#environment-set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One of my biggest complaints about the Travis CI integration with GitHub is how you &lt;a href="https://andrewwegner.com/travisci-insecure-environment-variables.html"&gt;can't trust environment variables in Travis CI&lt;/a&gt;. Since I control the server that this runner is connected to, I have no problem adding environment variables into GitLab.&lt;/p&gt;
+&lt;p&gt;In the project, I was able to add these by going to Settings-&amp;gt;CI/CD and expanding the Variables section. I needed to store credentials for both the test and production instances of PyPI.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="GitLab Environment Variables" src="https://andrewwegner.com/images/gitlab-env-variables.png"/&gt;&lt;/p&gt;
+&lt;p&gt;With these added, they are now accessible by my &lt;code&gt;.gitlab-ci.yml&lt;/code&gt; file.&lt;/p&gt;
+&lt;h3 id="gitlab-ciyml"&gt;.gitlab-ci.yml&lt;a class="headerlink" href="#gitlab-ciyml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The script I use to build the pipeline is as follows:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"python:3.7"&lt;/span&gt;
+
+&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
+
+&lt;span class="n"&gt;before_script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;stages&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Testing&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Production&lt;/span&gt;
+
+&lt;span class="n"&gt;flake8&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flake8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;120&lt;/span&gt;
+
+&lt;span class="n"&gt;doc8&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="bp"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;doc8&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;ignore&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;_build&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+
+&lt;span class="n"&gt;yamllint&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="bp"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;yamllint&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;bandit&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="bp"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bandit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B101&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;
+
+&lt;span class="n"&gt;radon&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;radon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nb&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;radon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;mi&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nb&lt;/span&gt;
+
+&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;allow_failure&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="bp"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;absolute&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+
+&lt;span class="n"&gt;pytest&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pytest&lt;/span&gt;
+
+&lt;span class="n"&gt;deploy_testing&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Testing&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;TWINE_USERNAME&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_TEST_USERNAME&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;TWINE_PASSWORD&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_TEST_PASSWORD&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sdist&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;twine&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;repository&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_TEST_URL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dist&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;
+
+&lt;span class="n"&gt;deploy_production&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Production&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;when&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;manual&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;TWINE_USERNAME&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_PROD_USERNAME&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;TWINE_PASSWORD&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_PROD_PASSWORD&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sdist&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;twine&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dist&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="gitlab-ciyml-explanation"&gt;.gitlab-ci.yml explanation&lt;a class="headerlink" href="#gitlab-ciyml-explanation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There are a few areas that I feel need to be explained in the script above.&lt;/p&gt;
+&lt;h3 id="tags"&gt;Tags&lt;a class="headerlink" href="#tags" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nl"&gt;.python-tag:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nl"&gt;tags:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;python&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This section is a template that is used to add the &lt;code&gt;python&lt;/code&gt; tag to a job step. The Runner will only run tasks that have a tag you assigned to it. This is useful if you are building across multiple operating systems or across multiple languages. You don't want a runner set up to test against a Windows environment picking up tasks for a Linux environment. In my case, everything is being run for a single runner.&lt;/p&gt;
+&lt;p&gt;In each step, I need to add this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;extends:
+  - .python-tag
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With this, the &lt;code&gt;python&lt;/code&gt; tag will be automatically applied to the task. For a simple pipeline like mine, it may seem like overkill, but it's useful if I want to force other tags or steps.&lt;/p&gt;
+&lt;h3 id="allow-failures"&gt;Allow failures&lt;a class="headerlink" href="#allow-failures" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Static&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Analysis&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="kd"&gt;extends&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;allow_failure&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;absolute&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I previously mentioned that I allowed the xenon step to fail. This is accomplished with the &lt;code&gt;allow_failue: true&lt;/code&gt; setting you see here. Since this setting is in place, the pipeline will proceed even if this single task fails.&lt;/p&gt;
+&lt;h3 id="manual-deployment"&gt;Manual deployment&lt;a class="headerlink" href="#manual-deployment" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;deploy_production&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Production&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;extends&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;when&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;manual&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;TWINE_USERNAME&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_PROD_USERNAME&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;TWINE_PASSWORD&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PYPI_PROD_PASSWORD&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sdist&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;twine&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dist&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The deploy to production is a manual step. I use &lt;code&gt;when: manual&lt;/code&gt; to ensure this step doesn't occur automatically. At some point in the future, this project will be stable and won't have minor fixes any longer and I'll want to automatically deploy to production without interaction. When I reach that point, I'll just need to remove this line. As long as the preceding steps succeed, this one will be performed as well.&lt;/p&gt;
+&lt;h2 id="next-steps"&gt;Next Steps&lt;a class="headerlink" href="#next-steps" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now that I've set this up and come to rely on it, I think my next steps will be converting my home Minecraft Server to use the GitLab pipelines to automatically deploy updates. Look for that post in the future.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="gitlab"/></entry><entry><title>Setting up GitLab on the new server</title><link href="https://andrewwegner.com/installing-gitlab.html" rel="alternate"/><published>2018-04-13T08:30:00-05:00</published><updated>2018-04-13T08:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2018-04-13:/installing-gitlab.html</id><summary type="html">&lt;p&gt;Let's set up some private repositories on GitLab&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Back when I ran Vipers, my fellow admins and I hosted a small set of code repositories -
+SVN, Mercurial and Git - to host some of our custom code. We ran &lt;a href="https://rhodecode.com/"&gt;RhodeCode&lt;/a&gt; and
+the fork, &lt;a href="https://kallithea-scm.org/"&gt;Kallithea&lt;/a&gt;, when RhodeCode close sourced some of it's code and
+couldn't figure out if the license it used actually allowed themselves to do that. A private
+repository was awesome for plugins, server configurations and personal projects.&lt;/p&gt;
+&lt;p&gt;When the community was shuttered, some of the &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;plugin code was migrated to GitHub&lt;/a&gt; and it's
+sat there untouched since. My personal projects were either migrated to GitHub or
+simply stored outside of version control if it couldn't go in a public repository. That was
+less than ideal, but it worked. With the new home server set up, I wanted to get source control set
+back up for my non-public personal projects.&lt;/p&gt;
+&lt;p&gt;I rejected RhodeCode right away due to the experiences I had when they changed licenses. Turns out,
+they had done it again in the meantime. I didn't want to deal with that. I attempted to install
+Kallithea using their &lt;a href="http://kallithea.readthedocs.io/en/stable/installation.html"&gt;instructions&lt;/a&gt;, but I kept running into Python syntax errors. It wasn't
+worth the time and effort to figure out the problem.&lt;/p&gt;
+&lt;p&gt;So, I turned to &lt;a href="https://about.gitlab.com/"&gt;GitLab&lt;/a&gt;. It'd definitely overkill for what I really need, but it works and
+if I ever truly decide to get fancy, I have a lot of other tools I can use. The &lt;a href="https://about.gitlab.com/pricing/self-hosted/feature-comparison/"&gt;core&lt;/a&gt; functionality
+is what I'll be using and is free. The three other versions cost some money and contain features that
+would be useful for large team, not a single developer or very small team.&lt;/p&gt;
+&lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="dependencies"&gt;Dependencies&lt;a class="headerlink" href="#dependencies" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Installing GitLab is pretty simple. There are a couple dependencies needed, but I already had both OpenSSH 
+and Postfix installed, so I was able to skip the first step in the &lt;a href="https://about.gitlab.com/installation/#ubuntu"&gt;official installation guide&lt;/a&gt;. I installed
+the Ubuntu Omnibus package.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt-get install -y curl openssh-server ca-certificates postfix
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="getting-the-package"&gt;Getting the package&lt;a class="headerlink" href="#getting-the-package" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The GitLab repository needs to added and then installed. To add the repository, issue this command:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;curl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To install the GitLab package, you need to provide an environment variable when you issue your
+&lt;code&gt;apt-get install&lt;/code&gt; command. This will be the URL where you want to access your GitLab installation.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo EXTERNAL_URL="http://gitlab.example.com" apt-get install gitlab-ee
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="complete-the-installation"&gt;Complete the installation&lt;a class="headerlink" href="#complete-the-installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once the install, above is complete, you need to log in to complete the process. In your browser,
+navigate to the URL you provided above. Set/reset the password as prompted and then login. &lt;/p&gt;
+&lt;h2 id="post-install-tweaks"&gt;Post-install Tweaks&lt;a class="headerlink" href="#post-install-tweaks" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="using-apache-instead-of-nginx"&gt;Using Apache instead of Nginx&lt;a class="headerlink" href="#using-apache-instead-of-nginx" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The omnibus package comes with Nginx bundled. Unfortunately, I don't have any experience managing
+an Nginx instance but do have experience with Apache. I want to use something that I know to make
+my life easier. Fortunately, GitLab can handle this with a few &lt;a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server/apache"&gt;minor changes to the configuration&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;In the &lt;code&gt;/etc/gitlab/gitlab.rb&lt;/code&gt; file you'll need to make several settings changes. You also need Apache 
+already installed and the &lt;code&gt;www-data&lt;/code&gt; user (on Ubuntu) added to the &lt;code&gt;gitlab-www&lt;/code&gt; group.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Find &lt;code&gt;nginx['enable']&lt;/code&gt; and set it to &lt;code&gt;false&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;In &lt;code&gt;web_server['external_users']&lt;/code&gt;, add &lt;code&gt;www-data&lt;/code&gt; to the array. Note that this is an array and not a single string.&lt;/li&gt;
+&lt;li&gt;In &lt;code&gt;gitlab_rails['trusted_proxies']&lt;/code&gt;, add the IP address of the Apache web server. &lt;/li&gt;
+&lt;li&gt;Change the gitlab workhorse settings to the following (default) values. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These may already be in the configuration file. If so, you probably don't need to modify them.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;gitlab_workhorse&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="nx"&gt;listen_network&lt;/span&gt;&lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"tcp"&lt;/span&gt;
+&lt;span class="nx"&gt;gitlab_workhorse&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="nx"&gt;listen_addr&lt;/span&gt;&lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"127.0.0.1:8181"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, run &lt;code&gt;sudo gitlab-ctl reconfigure&lt;/code&gt; for the settings to take effect.&lt;/p&gt;
+&lt;p&gt;Now, you need to configure Apache's virtual host. GitLab provides &lt;a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/web-server/apache"&gt;example virtual hosts&lt;/a&gt;. Since I installed
+the omnibus package and am using Apache 2.4, I selected the &lt;a href="https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/web-server/apache/gitlab-omnibus-apache24.conf"&gt;&lt;code&gt;gitlab-omnibus-apache24.conf&lt;/code&gt;&lt;/a&gt; file. Adjust all
+instances of &lt;code&gt;YOUR_SERVER_FQDN&lt;/code&gt; to the fully qualified domain name of your server.&lt;/p&gt;
+&lt;p&gt;This will go in &lt;code&gt;/etc/apache2/sites-available/&lt;/code&gt; and a symlink in &lt;code&gt;/etc/apache2/sites-enabled/&lt;/code&gt; will point to this file.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo touch /etc/apache2/sites-available/gitlab.conf
+sudo ln -s /etc/apache2/sites-available/gitlab.conf /etc/apache2/sites-enabled/gitlab.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="use-ssl-to-access-gitlab"&gt;Use SSL to access GitLab&lt;a class="headerlink" href="#use-ssl-to-access-gitlab" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The example virtual host provided by GitLab uses HTTP only. I want to set up my instance to use HTTPS. I'll be 
+doing this with &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;, like I did when I set up NextCloud in the previous post. I cover the exact 
+&lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;steps for Let's Encrypt&lt;/a&gt; in another post. The keys referenced in the virtual host configuration file below created 
+by that process. &lt;/p&gt;
+&lt;p&gt;The first change to make is to redirect the HTTP version of your domain to HTTPS. The goal is that all traffic to
+GitLab will go over SSL. Adjust the &lt;code&gt;ServerName&lt;/code&gt; variable as appropriate.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;lt;VirtualHost&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;*:80&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;ServerName&lt;span class="w"&gt; &lt;/span&gt;gitlab.example.com
+&lt;span class="w"&gt;  &lt;/span&gt;ServerSignature&lt;span class="w"&gt; &lt;/span&gt;Off
+
+&lt;span class="w"&gt;  &lt;/span&gt;RewriteEngine&lt;span class="w"&gt; &lt;/span&gt;on
+&lt;span class="w"&gt;  &lt;/span&gt;RewriteCond&lt;span class="w"&gt; &lt;/span&gt;%{HTTPS}&lt;span class="w"&gt; &lt;/span&gt;!=on
+&lt;span class="w"&gt;  &lt;/span&gt;RewriteRule&lt;span class="w"&gt; &lt;/span&gt;.*&lt;span class="w"&gt; &lt;/span&gt;https://%{SERVER_NAME}%{REQUEST_URI}&lt;span class="w"&gt; &lt;/span&gt;[NE,R,L]
+&lt;span class="nt"&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, everything in the &lt;a href="https://gitlab.com/gitlab-org/gitlab-recipes/blob/master/web-server/apache/gitlab-omnibus-apache24.conf"&gt;sample&lt;/a&gt; virtual host file can be put in the &lt;code&gt;&amp;lt;VirtualHost *:443&amp;gt;&lt;/code&gt; block.&lt;/p&gt;
+&lt;p&gt;At the top of this block, we need to reference the Let's Encrypt keys:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;SSLProtocol&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;all&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;-SSLv2&lt;/span&gt;
+&lt;span class="nt"&gt;SSLHonorCipherOrder&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;on&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCipherSuite&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS"&lt;/span&gt;
+&lt;span class="nt"&gt;Header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;add&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Strict-Transport-Security&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"max-age=15768000;includeSubdomains"&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCompression&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Off&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCertificateFile&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;cert&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCertificateKeyFile&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;privkey&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
+&lt;span class="nt"&gt;SSLCertificateChainFile&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dehydrated&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;certs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;gitlab&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;example&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;chain&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;pem&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Save and restart Apache. You should be automatically redirected over HTTPS when you visit your GitLab URL.&lt;/p&gt;
+&lt;h3 id="allow-spaces-in-repository-names"&gt;Allow spaces in repository names&lt;a class="headerlink" href="#allow-spaces-in-repository-names" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One of the only problems I ran into with GitLab is that, by default, repositories with spaces in them can't be viewed
+in the web browser. It throws a &lt;code&gt;400 Bad Request&lt;/code&gt; when trying to view the directory. There is a &lt;a href="https://gitlab.com/gitlab-org/gitlab/-/issues/18213"&gt;bug report&lt;/a&gt; 
+regarding this problem. The developers are working on updating the samples in a way that is guaranteed to work through
+the whole system. &lt;/p&gt;
+&lt;p&gt;For me, though, the first comment which suggests a minor &lt;code&gt;RewireRule&lt;/code&gt; change works great. In the virtual host, fine the line&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;RewriteRule .* http://127.0.0.1:8181%{REQUEST_URI} [P,QSA,NE]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and remove the &lt;code&gt;NE&lt;/code&gt; so that it reads&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;RewriteRule .* http://127.0.0.1:8181%{REQUEST_URI} [P,QSA]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Restart Apache and you can navigate to the directory with a space.&lt;/p&gt;
+&lt;h3 id="setting-up-smtp"&gt;Setting up SMTP&lt;a class="headerlink" href="#setting-up-smtp" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;GitLab can send out emails and requires the ability to do so when resetting a password, at minimum. I don't want this
+email to be marked as spam, so I used one of the free providers from &lt;a href="https://docs.gitlab.com/omnibus/settings/smtp.html#smtp-settings"&gt;here&lt;/a&gt; and set up an account. After editing the 
+&lt;code&gt;/etc/gitlab/gitlab.rb&lt;/code&gt; file to match the provider I selected, I ran &lt;code&gt;gitlab-ctl reconfigure&lt;/code&gt;. Now any emails GitLab
+sends out goes through the trusted email provider instead of coming directly from my residential IP address. This means 
+my mail provider trusts it. I also send out less than 5 emails a month currently, so I am &lt;em&gt;well&lt;/em&gt; below the tier where I
+lose my "free" status.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At this point, GitLab is set up over SSL on my server. I can log in and start setting up repositories. Migrating and importing 
+the code bases I didn't want to put on a public GitHub account was very satisfying. Maybe I'll look into some of the 
+more advanced features GitLab offers in the near future, but for the time being I'm happy with what I have and the 
+knowledge that I can expand what I do with GitLab.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="gitlab"/></entry></feed>

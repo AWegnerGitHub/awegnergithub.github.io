@@ -1,386 +1,58 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/backup-your-data.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="Learn from my mistake and test your backups" />
-<meta name="keywords" content="technical">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="Well, there goes my data..."/>
-  <meta property="og:description" content="Learn from my mistake and test your backups"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/backup-your-data.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2018-01-27 00:04:00-06:00"/>
-  <meta property="article:modified_time" content="2023-03-10 00:00:00-06:00"/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Side Activities"/>
-  <meta property="article:tag" content="technical"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>Well, there goes my data...  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#a-data-disaster">A Data Disaster</a></li>
-<li><a href="#the-problem-appears">The Problem Appears</a></li>
-<li><a href="#data-recovery-attempt">Data Recovery Attempt</a></li>
-<li><a href="#sert-data-recovery">SERT Data Recovery</a></li>
-<li><a href="#whats-next">What's next?</a></li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/backup-your-data.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Well, there goes my data...</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/side-activities.html",
-      "name": "Side Activities"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/backup-your-data.html",
-      "name": "https://andrewwegner.com/backup-your-data.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="backup-your-data">Well, there goes my data...</h1>
-    <p>
-      Posted on Sat 27 January 2018 in <a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a>
-
-      <br />Updated on Fri 10 Mar 2023
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>October 2017 started nicely. The weather was still good. Fall hadn't really arrived yet, though I was still raking some leaves. Halloween was approaching and
-soccer season had just ended so I had time of weekends to do a few more projects. Then in mid-October one of my hard drives died. It was sudden. There were
-no SMART warnings. There wasn't any weird sounds.</p>
-<p>In fact, the only indication that there was a problem initially was that one of my running applications couldn't access a log file. I didn't think any of it.
-I took a few minutes to install a Windows update that had been nagging me for a day or so and rebooted the machine. A reboot on my desktop normally takes twenty-ish
-seconds.</p>
-<p>As the reboot stretched into the fifth minute, I realized there was a problem. However, I was initially getting ready to blame that Windows update.</p>
-<h2 id="a-data-disaster">A Data Disaster<a class="headerlink" href="#a-data-disaster" title="Permanent link">¶</a></h2>
-<p>Finally, the reboot finished and I logged into the machine. Immediately, I received alerts that files couldn't be accessed and programs couldn't start. I tried to launch
-Firefox and was told it couldn't be found. "Well, this is bad," I thought. Turns out that was an understatement. After a short investigation, I found that one of my hard drives wasn't being detected by Windows.</p>
-<p>On my desktop, I have three hard drives. The first is, a decently sided solid state machine that hosts the operating system. The second is a large solid state drive that
-holds my game installs. The third is a large spinning hard drive (Seagate), which is where I install software and hold my data. The missing drive was the large one that holds
-my data.</p>
-<p>Panic set in. However, I had just backed stuff up to my trusty external hard drive. "At most I'll lose a week's worth of stuff. And, I still have the pictures on phones and
-camera SD cards," I said, trying to comfort myself. I also new I had at least two brand new and unused drives identical to the one that had just had a problem. Those were the
-result of cheap hard drives when I build my desktop and the promise that one day I'd build a true backup solution for the house. Yeah, hadn't done that yet.</p>
-<p>After messing with the missing drive by unplugging it and rebooting (bringing back normal boot times), swapping it to another SATA port ("hey, maybe it's the motherboard"),
-trying to access it in a Linux LiveCD and plugging it into an external drive, I concluded that it was dead. I pulled it from the desktop, resisted smashing it to pieces in
-frustration and plugged one of it's unused siblings in.</p>
-<p>Windows booted right up. I had an empty hard drive. I'd be spending a day reinstalling software, but I could handle that. I plugged in my backup external drive and started
-copying data back into place. I breathed a sign of relief when all the family pictures were restored. I lost a weekend, but everything looked good. I went to bed Sunday night
-happy and planning on finally building that backup solution. "That was almost a disaster!"</p>
-<h2 id="the-problem-appears">The Problem Appears<a class="headerlink" href="#the-problem-appears" title="Permanent link">¶</a></h2>
-<p>On Monday morning, I saw the family off to school and work and then settled in for my day. I went to pull up a personal project that I'd work on for an hour or so before the
-work day began. Well, it turns out that one of the things I stored on that drive that hosts all my data was my personal projects. It also turns out that I never actually
-backed up my personal projects.</p>
-<p>More than decade worth of personal programming projects, horrible attempts at graphic work (seriously...graphics aren't my thing), notes for games that I'd love to design if
-I ever get the time were gone. I dug through my most immediate backup. I found old drives - because "you never know when you'll need it" - and dug through those. Nothing. I
-have no idea how I missed this rather important directory in all my various manual and semi-automated backup routines over the years.</p>
-<p>I'd either have to suck it up and lose that history or get serious about data recovery.</p>
-<h2 id="data-recovery-attempt">Data Recovery Attempt<a class="headerlink" href="#data-recovery-attempt" title="Permanent link">¶</a></h2>
-<p>Back in college, I was manager of the university's help desk. One of the tasks we performed was data recovery for students. Usually this was on flash drives that had "suddenly
-deleted a paper", but occasionally we'd have to work on a hard drive too. Our recovery efforts were limited to a quick run of a handful of applications that attempted to
-recovery deleted files. In the world of stressed students, this was all that was usually needed. If you could recover that term paper, thesis paper or dissertation, you were
-a hero.</p>
-<p>That's what I tried. I hoped it'd work. Windows still couldn't see the back drive. A Linux LiveCD could see that a drive existed, but couldn't find any data. That was still
-progress. I ran software for almost two days as it tried to find anything for me to recovery.</p>
-<p>Nothing. Nothing at all. It looked like some how erased everything from the drive. I was back to my choices - lose the history or find a professional.</p>
-<p>I went with a professional. I couldn't lose that much of my history. I still those projects for both personal and professional work.</p>
-<h2 id="sert-data-recovery">SERT Data Recovery<a class="headerlink" href="#sert-data-recovery" title="Permanent link">¶</a></h2>
-<p>I went with SERT Data Recovery. The technician over the phone explained their process. They asked questions that made me confident in their
-ability to at least diagnose the problem, and most importantly were thousands of dollars cheaper than a competitor I spoke with. They explained their pricing structure (they
-provide a quote and it won't be a giant range), and pricing for replacement parts and allowed me to either send in an empty drive or pay for one that my data would be returned
-to me on. They answered my questions.</p>
-<p>They also didn't scold me for doing the single most damaging thing to a drive. I had done it repeatedly. I had turned the bad drive back on. I had turned it on and let it spin
-for days as I attempted to recover data.</p>
-<p>I shipped them the drive. After the initial diagnosis came back - one of the platter heads had stopped working - I paid for the replacement part and waited. Eventually the
-data was recovered with a 100% recovery rate. I was ecstatic. My data was shipped back to me and I quickly transferred my projects to the new drive.</p>
-<p>My only complaint in the entire process was that the recovery process took almost seven weeks. I shipped the drive at the end of October and received the data back the week
-before Christmas. However, all of my data was recovered, so it's a pretty minor complaint.</p>
-<p><em>Note</em>: The link to SERT Data Recovery was removed in March of 2023 because it failed multiple link checks with multiple errors. While I am still very happy with the work they performed in 2018, as of 2023 I don't feel comfortable linking to a site that continues to fail basic SSL certificate checks and forces browsers to warn users against visiting the site.</p>
-<h2 id="whats-next">What's next?<a class="headerlink" href="#whats-next" title="Permanent link">¶</a></h2>
-<p>It's been a little over a month since I've transferred my data to a the new drive in my desktop. I've manually run my back up process two or three times. I'm pretty much where
-I was at the beginning of October. Crossing my fingers that when I get on the computer in the morning, all my data will be there. That's not acceptable any more.</p>
-<p>I'm finally building the backup solution. It'll be a huge (for a family) NAS. The goal is to be able to back up from Windows, Ubuntu and a couple Android phones automatically.</p>
-<p>The next entry will cover the device itself and my choices for certain hardware. I'll follow that up with an article on the software set up to get the entire thing working.</p>
-  </div>
-<div class="neighbors">
-  <a class="btn float-right" href="https://andrewwegner.com/new-house-server.html"
-    title="...and then there was a backup server">
-    Next Post <i class="fa fa-angle-right"></i>
-  </a>
-</div>
-
-
-
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-  <div class="related-posts">
-    <h4>Part 1 of the Recovering from data loss series</h4>
-    <h5>Next articles</h5>
-    <ul>
-      <li><a href="https://andrewwegner.com/new-house-server.html">...and then there was a backup server</a></li>
-      <li><a href="https://andrewwegner.com/zfs-pool-on-ubuntu.html">Setting up a ZFS pool on Ubuntu 16.04</a></li>
-      <li><a href="https://andrewwegner.com/installing-nextcloud.html">Installing NextCloud</a></li>
-      <li><a href="https://andrewwegner.com/installing-gitlab.html">Setting up GitLab on the new server</a></li>
-      <li><a href="https://andrewwegner.com/setup-lets-encrypt.html">Set up Dynamic CloudFlare IP with Let's Encrypt</a></li>
-    </ul>
-  </div>
-</article>
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Well, there goes my data... — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="Learn from my mistake and test your backups"><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/backup-your-data.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Side Activities (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/backup-your-data.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="Well, there goes my data..."><meta property="og:url" content="https://andrewwegner.com/backup-your-data.html"><meta property="og:description" content="Learn from my mistake and test your backups"><meta property="article:published_time" content="2018-01-27T00:04:00-06:00"><meta property="article:modified_time" content="2023-03-10T00:00:00-06:00"><meta property="article:section" content="Side Activities"><meta property="article:tag" content="technical"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
   "@context": "http://schema.org",
   "@type": "BlogPosting",
   "name": "Well, there goes my data...",
   "headline": "Well, there goes my data...",
-  "dateCreated": "2018-01-27 00:04:00-06:00",
-  "datePublished": "2018-01-27 00:04:00-06:00",
-  "dateModified": "2023-03-10 00:00:00-06:00",
-  "copyrightYear": "2018",
+  "dateCreated": "2018-01-27T00:04:00-06:00",
+  "datePublished": "2018-01-27T00:04:00-06:00",  "dateModified": "2023-03-10T00:00:00-06:00",  "copyrightYear": "2018",
   "copyrightHolder": {
     "@type": "Person",
-    "name": "Andy Wegner",
+    "name": "Andrew Wegner",
     "url": "https://andrewwegner.com"
   },
   "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
   },
   "publisher": {
     "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/backup-your-data.html",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/backup-your-data.html",
   "description": "Learn from my mistake and test your backups",
   "mainEntityOfPage": "True",
   "articleSection": "Side Activities"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+}</script></head><body data-page-type="article" data-page-slug="backup-your-data" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/side-activities.html">Side Activities</a></nav><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/side-activities.html",
+        "name": "Side Activities"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Side Activities</span> <span class="article-eyebrow-dot">·</span> <span>Part 1 of 6 · Recovering from data loss</span></div><h1 class="article-title">Well, there goes my data...</h1><p class="article-summary">Learn from my mistake and test your backups</p><div class="article-meta"><time datetime="2018-01-27T00:04:00-06:00" class="article-meta-date">Sat 27 January 2018</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/technical.html" class="tag">#technical</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#a-data-disaster">A Data Disaster</a></li><li><a href="#the-problem-appears">The Problem Appears</a></li><li><a href="#data-recovery-attempt">Data Recovery Attempt</a></li><li><a href="#sert-data-recovery">SERT Data Recovery</a></li><li><a href="#whats-next">What's next?</a></li></ul></div></div><div class="prose"><h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2><p>October 2017 started nicely. The weather was still good. Fall hadn't really arrived yet, though I was still raking some leaves. Halloween was approaching and soccer season had just ended so I had time of weekends to do a few more projects. Then in mid-October one of my hard drives died. It was sudden. There were no SMART warnings. There wasn't any weird sounds.</p><p>In fact, the only indication that there was a problem initially was that one of my running applications couldn't access a log file. I didn't think any of it. I took a few minutes to install a Windows update that had been nagging me for a day or so and rebooted the machine. A reboot on my desktop normally takes twenty-ish seconds.</p><p>As the reboot stretched into the fifth minute, I realized there was a problem. However, I was initially getting ready to blame that Windows update.</p><h2 id="a-data-disaster">A Data Disaster<a class="headerlink" href="#a-data-disaster" title="Permanent link">¶</a></h2><p>Finally, the reboot finished and I logged into the machine. Immediately, I received alerts that files couldn't be accessed and programs couldn't start. I tried to launch Firefox and was told it couldn't be found. "Well, this is bad," I thought. Turns out that was an understatement. After a short investigation, I found that one of my hard drives wasn't being detected by Windows.</p><p>On my desktop, I have three hard drives. The first is, a decently sided solid state machine that hosts the operating system. The second is a large solid state drive that holds my game installs. The third is a large spinning hard drive (Seagate), which is where I install software and hold my data. The missing drive was the large one that holds my data.</p><p>Panic set in. However, I had just backed stuff up to my trusty external hard drive. "At most I'll lose a week's worth of stuff. And, I still have the pictures on phones and camera SD cards," I said, trying to comfort myself. I also new I had at least two brand new and unused drives identical to the one that had just had a problem. Those were the result of cheap hard drives when I build my desktop and the promise that one day I'd build a true backup solution for the house. Yeah, hadn't done that yet.</p><p>After messing with the missing drive by unplugging it and rebooting (bringing back normal boot times), swapping it to another SATA port ("hey, maybe it's the motherboard"), trying to access it in a Linux LiveCD and plugging it into an external drive, I concluded that it was dead. I pulled it from the desktop, resisted smashing it to pieces in frustration and plugged one of it's unused siblings in.</p><p>Windows booted right up. I had an empty hard drive. I'd be spending a day reinstalling software, but I could handle that. I plugged in my backup external drive and started copying data back into place. I breathed a sign of relief when all the family pictures were restored. I lost a weekend, but everything looked good. I went to bed Sunday night happy and planning on finally building that backup solution. "That was almost a disaster!"</p><h2 id="the-problem-appears">The Problem Appears<a class="headerlink" href="#the-problem-appears" title="Permanent link">¶</a></h2><p>On Monday morning, I saw the family off to school and work and then settled in for my day. I went to pull up a personal project that I'd work on for an hour or so before the work day began. Well, it turns out that one of the things I stored on that drive that hosts all my data was my personal projects. It also turns out that I never actually backed up my personal projects.</p><p>More than decade worth of personal programming projects, horrible attempts at graphic work (seriously...graphics aren't my thing), notes for games that I'd love to design if I ever get the time were gone. I dug through my most immediate backup. I found old drives - because "you never know when you'll need it" - and dug through those. Nothing. I have no idea how I missed this rather important directory in all my various manual and semi-automated backup routines over the years.</p><p>I'd either have to suck it up and lose that history or get serious about data recovery.</p><h2 id="data-recovery-attempt">Data Recovery Attempt<a class="headerlink" href="#data-recovery-attempt" title="Permanent link">¶</a></h2><p>Back in college, I was manager of the university's help desk. One of the tasks we performed was data recovery for students. Usually this was on flash drives that had "suddenly deleted a paper", but occasionally we'd have to work on a hard drive too. Our recovery efforts were limited to a quick run of a handful of applications that attempted to recovery deleted files. In the world of stressed students, this was all that was usually needed. If you could recover that term paper, thesis paper or dissertation, you were a hero.</p><p>That's what I tried. I hoped it'd work. Windows still couldn't see the back drive. A Linux LiveCD could see that a drive existed, but couldn't find any data. That was still progress. I ran software for almost two days as it tried to find anything for me to recovery.</p><p>Nothing. Nothing at all. It looked like some how erased everything from the drive. I was back to my choices - lose the history or find a professional.</p><p>I went with a professional. I couldn't lose that much of my history. I still those projects for both personal and professional work.</p><h2 id="sert-data-recovery">SERT Data Recovery<a class="headerlink" href="#sert-data-recovery" title="Permanent link">¶</a></h2><p>I went with SERT Data Recovery. The technician over the phone explained their process. They asked questions that made me confident in their ability to at least diagnose the problem, and most importantly were thousands of dollars cheaper than a competitor I spoke with. They explained their pricing structure (they provide a quote and it won't be a giant range), and pricing for replacement parts and allowed me to either send in an empty drive or pay for one that my data would be returned to me on. They answered my questions.</p><p>They also didn't scold me for doing the single most damaging thing to a drive. I had done it repeatedly. I had turned the bad drive back on. I had turned it on and let it spin for days as I attempted to recover data.</p><p>I shipped them the drive. After the initial diagnosis came back - one of the platter heads had stopped working - I paid for the replacement part and waited. Eventually the data was recovered with a 100% recovery rate. I was ecstatic. My data was shipped back to me and I quickly transferred my projects to the new drive.</p><p>My only complaint in the entire process was that the recovery process took almost seven weeks. I shipped the drive at the end of October and received the data back the week before Christmas. However, all of my data was recovered, so it's a pretty minor complaint.</p><p><em>Note</em>: The link to SERT Data Recovery was removed in March of 2023 because it failed multiple link checks with multiple errors. While I am still very happy with the work they performed in 2018, as of 2023 I don't feel comfortable linking to a site that continues to fail basic SSL certificate checks and forces browsers to warn users against visiting the site.</p><h2 id="whats-next">What's next?<a class="headerlink" href="#whats-next" title="Permanent link">¶</a></h2><p>It's been a little over a month since I've transferred my data to a the new drive in my desktop. I've manually run my back up process two or three times. I'm pretty much where I was at the beginning of October. Crossing my fingers that when I get on the computer in the morning, all my data will be there. That's not acceptable any more.</p><p>I'm finally building the backup solution. It'll be a huge (for a family) NAS. The goal is to be able to back up from Windows, Ubuntu and a couple Android phones automatically.</p><p>The next entry will cover the device itself and my choices for certain hardware. I'll follow that up with an article on the software set up to get the entire thing working.</p></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#a-data-disaster">A Data Disaster</a></li><li><a href="#the-problem-appears">The Problem Appears</a></li><li><a href="#data-recovery-attempt">Data Recovery Attempt</a></li><li><a href="#sert-data-recovery">SERT Data Recovery</a></li><li><a href="#whats-next">What's next?</a></li></ul></div></aside></div><section class="series-block" aria-label="Series"><div class="series-block-head"><div class="series-block-kicker">Series · Recovering from data loss</div><div class="series-block-progress">Part 1 of 6</div></div><div class="series-block-nav"><span></span> <a href="https://andrewwegner.com/new-house-server.html" class="series-block-link series-block-link-next"><span class="series-block-dir">Next in series →</span> <span class="series-block-title">...and then there was a backup server</span></a></div></section><nav class="post-nav" aria-label="Post navigation"><a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html" class="post-nav-link post-nav-link-prev"><span class="post-nav-dir">← Previous post</span> <span class="post-nav-title">How I found an awesome remote only job</span> </a><a href="https://andrewwegner.com/new-house-server.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">...and then there was a backup server</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

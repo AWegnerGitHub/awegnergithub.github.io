@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Andrew Wegner | Ponderings of an Andy - chatgpt</title><link href="https://andrewwegner.com/" rel="alternate"/><link href="https://andrewwegner.com/feeds/tag/chatgpt.atom.xml" rel="self"/><id>https://andrewwegner.com/</id><updated>2023-06-05T01:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Joining the Stack Exchange Moderator Strike</title><link href="https://andrewwegner.com/stackexchange-moderator-strike.html" rel="alternate"/><published>2023-06-05T01:00:00-05:00</published><updated>2023-06-05T01:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-06-05:/stackexchange-moderator-strike.html</id><summary type="html">&lt;p&gt;Stack Exchange moderators are striking. This is my reasoning for why I'm joining.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I'm signing an open letter to Stack Exchange because those of us that volunteer our time and energy have 
+been put in an impossible situation. On Stack Overflow we &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;banned ChatGPT created content&lt;/a&gt; almost immediately
+after it was released. Theorectically, that is not longer in effect.&lt;/p&gt;
+&lt;p&gt;This isn't due to a change in community perception. Instead, it's due to an &lt;a href="https://meta.stackexchange.com/a/389583/186281"&gt;abrupt policy change&lt;/a&gt; on Stack
+Exchange's part that was posted on May 30. It's important to note that this public policy does &lt;em&gt;not&lt;/em&gt; match
+the guidance that was provided privately.&lt;/p&gt;
+&lt;p&gt;The relevant portion of this public policy is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In order to help mitigate the issue, we've asked moderators to apply a very strict standard of evidence to determining whether a post is AI-authored when deciding to suspend a user.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The private policy notes that "very strict" is essentially "don't moderate unless they explicitly say it was created by an AI".&lt;/p&gt;
+&lt;h2 id="background"&gt;Background&lt;a class="headerlink" href="#background" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Stack Exchange CEO &lt;a href="https://stackoverflow.blog/2023/05/31/ceo-update-paving-the-road-forward-with-ai-and-community-at-the-center/"&gt;posted a blog post&lt;/a&gt; at the end of May 2023. In this post, they stated:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Approximately 10% of our company is working on features and applications leveraging GenAI that have the potential to increase engagement within our public community and add value to customers of our SaaS product, Stack Overflow for Teams.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This goes against the community desire to &lt;em&gt;not&lt;/em&gt; have GenAI content on the site. The CEO has not provided any feedback to the community,
+other than a note that there is a big summer project with GenAI. The community reaction hasn't been positive.&lt;/p&gt;
+&lt;p&gt;Combining this announcement with the newly announced policy the previous day, and an astonishing inability to articulate more details or reasoning,
+has producted a lot of unhappy moderators.&lt;/p&gt;
+&lt;p&gt;Additionally, I feel that the company has destroyed 3 years of rebuilding trust. Back in 2019, they destroyed this trust and nearly had a moderator
+strike then too. That involved providing information to a journalist that had very limited context and due to that, presented a single moderator in 
+unflattering light. The feelings from that have taken years to rebuild and even today that incident is cited as a low point, and users can point
+out that singular incident when trust of the company plummetted. &lt;/p&gt;
+&lt;p&gt;The public announcement to not moderate GenAI content contained this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Through no fault of moderators' own, we also suspect that there have been biases for or against residents of specific countries as a potential result of the heuristics being applied to these posts.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That's just wrong. Absolutely wrong. It is 100% inaccurate and Stack Exchange has offered no data to back this up. User country of origin, region in the world, or any kind of physical location is not available to moderators. We are present a flag and given information to the content that has been flagged. &lt;/p&gt;
+&lt;h2 id="why-am-i-participating"&gt;Why am I participating?&lt;a class="headerlink" href="#why-am-i-participating" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;So...my participation? Why am I joining in? &lt;/p&gt;
+&lt;p&gt;Stack Exchange, and Stack Overflow, thrive due to the human element. It's userbase has been around over a decade and answered millions of questions across over 180 sites. The week ChatGPT came out, the community saw the bad results it can provide. For the past 6 months, we've continued to see how bad that is. The moderation teams across the network to generate a policy and get it approved by the company. I've reproduced it in full below, but as of this post it is still on the site and contridicts the new policy.&lt;/p&gt;
+&lt;p&gt;In addition to completely ignoring the community's input on how they do not want GenAI on the site, the company ignored their own &lt;a href="https://stackoverflow.com/legal/moderator-agreement"&gt;moderator agreement&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With the assumption that the above will change at some point, the relevant section is pasted here:&lt;/p&gt;
+&lt;p&gt;```
+Stack Exchange, Inc. agrees that it will:&lt;/p&gt;
+&lt;p&gt;i. Respect your privacy per the terms of the Privacy Policy for the Public Network.
+   ii.  Get your explicit written permission before commenting to any media (including media outlets controlled by Stack Exchange Inc.) or independent reporters about you or your moderator actions as per our Press Policy.
+   iii.  Allow you to resign your position for any reason without penalty or repercussions. As a volunteer, Stack Exchange, Inc. respects your time and will release you from duty should you ask.
+   iv. Operate “Stack Gives Back”, an annual program giving to selected charities in honor of our moderators.
+   v. Post previews for review of all new official policies in the Moderators Teams instance with the policy tag, marked with links to their public version once published, and maintain a listing of all official network-wide policies with links to them in the Help Center.
+   vi. Announce changes to the moderator agreement no less than sixty days before the deadline to accept the new agreement with a period of at least thirty days for discussion and review.
+   vii. Provide support for your questions, requests and concerns on the Moderators Teams instance and/or the Teachers’ Lounge, direct email to CMs, and content on Meta escalated to staff by whatever formal documented process is in effect at the time.
+   viii. Respect your right to speak openly to question and challenge policy without reprisal so long as such speech does not break the Code of Conduct.
+```&lt;/p&gt;
+&lt;p&gt;The relevant section is &lt;code&gt;vi&lt;/code&gt;. There was no discussion period on this. No engagement with the moderators, or the community. Instead it was "effective
+immediately." The best we've gotten so far is an "oops, sorry."&lt;/p&gt;
+&lt;p&gt;That's not now something in a &lt;code&gt;/legal&lt;/code&gt; link should operate. If I can't trust  them to uphold an agreement they have in writing, why should I trust
+them to uphold anything else? &lt;/p&gt;
+&lt;h2 id="what-does-the-community-want-out-of-this"&gt;What does the community want out of this?&lt;a class="headerlink" href="#what-does-the-community-want-out-of-this" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;From the open letter:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Until Stack Overflow, Inc. retracts this policy change to a degree that addresses the concerns of the moderators, and allows moderators to effectively enforce established policies against AI-generated answers, we are calling for a general moderation strike, as a last-resort effort to protect the Stack Exchange platform and users from a total loss in value. We would also like to remind Stack Overflow, Inc. that a network that entirely relies on volunteers for its moderation model cannot then consistently ignore, mistreat, and malign those same volunteers. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="my-feelings-on-this"&gt;My feelings on this&lt;a class="headerlink" href="#my-feelings-on-this" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been on Stack Overflow and Stack Exchange for over 13 years. I've been a moderator on the network since 2014 and on Stack Overflow since 2017.
+I've &lt;a href="https://andrewwegner.com/tag/stack-exchange.html"&gt;written about Stack Overflow a bit over the years&lt;/a&gt;. I've participated in &lt;a href="https://meta.stackexchange.com/questions/291301/can-a-machine-be-taught-to-flag-spam-automatically"&gt;Charcoal&lt;/a&gt;, the spam fighting community since 2015ish. This project
+has automatically flagged more than 86,000 posts across the network since 2016.&lt;/p&gt;
+&lt;p&gt;I've applied to several jobs at Stack Exchange. I've interviewed for a couple positions. I have spent &lt;em&gt;a lot&lt;/em&gt; of time with the network, the 
+community, moderators, and employees making this a great place for internet users to find their answers.&lt;/p&gt;
+&lt;p&gt;I have helped to build the community/company trust that I mentioned above. I watched it crumble. I thought about leaving in 2019, but instead
+spent the next three years working to rebuild that trust. I'm at the point again, where I see the company not understanding their community. At all.
+It's sad that this cycle has repeated itself and it's worse that the company is, again, tossing their most engaged users under the bus.&lt;/p&gt;
+&lt;p&gt;This strike serves two purposes in my mind - the first is the officially stated one. Do not all GenAI content on the network. It will erode the value of the network quickly. We've also demonstrated that ChatGPT and it's peers are not great at answering complex questions. But, second, and unofficially, 
+this strike will represent a change for Stack Exchange to show whether or not they care about what the community has to say. This is, I believe, the last
+opportunity for them to retract this policy and reflect on why they are over ruling so many communities that reject GenAI in their community. It's their
+last opportunity to show they support their moderators and the human aspect of moderation. Failure to do either means that Stack Exchange has given up
+on community building. &lt;/p&gt;
+&lt;p&gt;I am a volunteer for this community. I would love to continue that role, but this is the best way for me to show that GenAI is not the right path for the company to take.&lt;/p&gt;
+&lt;h2 id="whats-next"&gt;What's Next&lt;a class="headerlink" href="#whats-next" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On June 5, 2023 at midnight, moderator local time, the network will start to see moderation activities cease (or slow down). I will be part of that.&lt;/p&gt;
+&lt;h2 id="gpt-policy"&gt;GPT Policy&lt;a class="headerlink" href="#gpt-policy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This policy was crafted with the input of moderators and Stack Exchange. An important thing to notice is that the moderators are empowered to issue suspensions. This is something the new policy prevents.&lt;/p&gt;
+&lt;p&gt;```
+Why posting GPT and ChatGPT generated answers is not currently acceptable&lt;/p&gt;
+&lt;p&gt;This Help Center article provides insight and rationale on our policy regarding the usage of GPT and ChatGPT on Stack Overflow. While this is the position of Stack Overflow staff, it’s meant to support the prior work done by moderators (namely, the temporary policy issued to ban contributions by ChatGPT).&lt;/p&gt;
+&lt;p&gt;Stack Overflow is a community built upon trust. The community trusts that users are submitting answers that reflect what they actually know to be accurate and that they and their peers have the knowledge and skill set to verify and validate those answers. The system relies on users to verify and validate contributions by other users with the tools we offer, including responsible use of upvotes and downvotes. Currently, contributions generated by GPT most often do not meet these standards and therefore are not contributing to a trustworthy environment. This trust is broken when users copy and paste information into answers without validating that the answer provided by GPT is correct, ensuring that the sources used in the answer are properly cited (a service GPT does not provide), and verifying that the answer provided by GPT clearly and concisely answers the question asked.&lt;/p&gt;
+&lt;p&gt;The objective nature of the content on Stack Overflow means that if any part of an answer is wrong, then the answer is objectively wrong. In order for Stack Overflow to maintain a strong standard as a reliable source for correct and verified information, such answers must be edited or replaced. However, because GPT is good enough to convince users of the site that the answer holds merit, signals the community typically use to determine the legitimacy of their peers’ contributions frequently fail to detect severe issues with GPT-generated answers. As a result, information that is objectively wrong makes its way onto the site. In its current state, GPT risks breaking readers’ trust that our site provides answers written by subject-matter experts.&lt;/p&gt;
+&lt;p&gt;Moderators are empowered (at their discretion) to issue immediate suspensions of up to 30 days to users who are copying and pasting GPT content onto the site, with or without prior notice or warning.
+```&lt;/p&gt;
+&lt;h2 id="the-letter"&gt;The letter&lt;a class="headerlink" href="#the-letter" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The letter below was originally posted as an &lt;a href="https://openletter.mousetail.nl/"&gt;open letter to Stack Exchange&lt;/a&gt;. I've reposted it here 
+for a record.&lt;/p&gt;
+&lt;p&gt;```
+June 5, 2023
+Stack Overflow, Inc. has decreed a near-total prohibition on moderating AI-generated content in the wake of a flood of such content being posted to and subsequently removed from the Stack Exchange network, tacitly allowing the proliferation of incorrect information ("hallucinations") and unfettered plagiarism on the Stack Exchange network. This poses a major threat to the integrity and trustworthiness of the platform and its content.&lt;/p&gt;
+&lt;p&gt;We, the undersigned, are volunteer moderators, contributors, and users of Stack Overflow and the Stack Exchange network. Effective immediately, we are enacting a general moderation strike on Stack Overflow and the Stack Exchange network, in protest of this and other recent and upcoming changes to policy and the platform that are being forced upon us by Stack Overflow, Inc.&lt;/p&gt;
+&lt;p&gt;Our efforts to effect change through proper channels have been ignored, and our concerns disregarded at every turn. Now, as a last resort, we are striking out of dedication to the platform that we have put over a decade of care and volunteer effort into. We deeply believe in the core mission of the Stack Exchange network: to provide a repository of high-quality information in the form of questions and answers, and the recent actions taken by Stack Overflow, Inc. are directly harmful to that goal.&lt;/p&gt;
+&lt;p&gt;Specifically, moderators are no longer allowed to remove AI-generated answers on the basis of being AI-generated, outside of exceedingly narrow circumstances. This results in effectively permitting nearly all AI-generated answers to be freely posted, regardless of established community consensus on such content.&lt;/p&gt;
+&lt;p&gt;In turn, this allows incorrect information (colloquially referred to as "hallucinations") and plagiarism to proliferate unchecked on the platform. This destroys trust in the platform, as Stack Overflow, Inc. has previously noted.&lt;/p&gt;
+&lt;p&gt;In addition, the details of the policies issued directly to moderators differ substantially from the guidelines outlined publicly, with moderators barred from publicly sharing the details.&lt;/p&gt;
+&lt;p&gt;These policies disregard the leeway historically granted to individual Stack Exchange communities to determine their policies, by making changes without the input of the community, overriding community consensus, and outright refusing to reconsider their position.&lt;/p&gt;
+&lt;p&gt;Until this matter is resolved satisfactorily, we will be pausing activities including, but not limited to:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Raising&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;handling&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Running&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SmokeDetector&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;anti&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;spam&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Closing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;voting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;posts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Deleting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;voting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;delete&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;posts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Reviewing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tasks&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;various&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;queues&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Running&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;various&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bots&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;designed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;assist&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;moderation&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;such&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;detecting&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;plagiarism&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;low&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;quality&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;answers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;rude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Until Stack Overflow, Inc. retracts this policy change to a degree that addresses the concerns of the moderators, and allows moderators to effectively enforce established policies against AI-generated answers, we are calling for a general moderation strike, as a last-resort effort to protect the Stack Exchange platform and users from a total loss in value. We would also like to remind Stack Overflow, Inc. that a network that entirely relies on volunteers for its moderation model cannot then consistently ignore, mistreat, and malign those same volunteers.
+```&lt;/p&gt;</content><category term="Stack Exchange Strike"/><category term="Stack Exchange"/><category term="moderation"/><category term="chatgpt"/></entry><entry><title>CoderByte assessments fall to ChatGPT</title><link href="https://andrewwegner.com/chatgpt-beats-more-interview-assessments.html" rel="alternate"/><published>2023-02-04T23:30:00-06:00</published><updated>2023-02-04T23:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-02-04:/chatgpt-beats-more-interview-assessments.html</id><summary type="html">&lt;p&gt;CoderByte falls to ChatGPT just like the more well known interview assessment platforms. Here's my run down, and how I used ChatGPT to solve an easy, medium and hard problem in less than 5 minutes total.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Today I'll be evaluating &lt;a href="https://coderbyte.com/developers"&gt;CoderByte&lt;/a&gt; and their publicly posted challenges against ChatGPT. I selected an easy, a medium and the single hard
+question from their list of &lt;a href="https://coderbyte.com/challenges"&gt;open challenges&lt;/a&gt; and ran those through ChatGPT.&lt;/p&gt;
+&lt;p&gt;In previous articles in this series, I've shown how &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; can easily solve interview assessments from &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;LeetCode&lt;/a&gt;, 
+&lt;a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"&gt;TestGorilla&lt;/a&gt;, &lt;a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html"&gt;CodeSignal&lt;/a&gt;, &lt;a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html"&gt;Codility&lt;/a&gt; and &lt;a href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html"&gt;HackerRank&lt;/a&gt;[hackerrankg]. I've said it in 
+those articles, but I'll say it again: Companies need to evaluate their engineering candidates - all candidates, actually - apprpriately 
+when they are hiring. Your engineers are using many tools to do their jobs and AI Tooling is one of the newest tools on the market. Removing 
+a tool from your engineers is going to make them less efficient, and &lt;em&gt;not&lt;/em&gt; testing your candidates on how they use these tools is 
+going to mean you hire someone that had not fully demonstrated their capabilities.&lt;/p&gt;
+&lt;p&gt;ChatGPT should be treated as a tool, but it's also helpful to think of it as a junior level engineer. You need to check it's work. 
+&lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;ChatGPT is known to be inaccurate&lt;/a&gt;, which is why it remains &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;banned on Stack Overflow&lt;/a&gt;. There are a few instances where
+I had to do that below.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, 
+&lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I was a customer of Woven for over two years&lt;/a&gt;. I do not remember CoderByte being mentioned during my tenure and CoderByte does not 
+seem to consider Woven a competitor, as Woven isn't listed as an &lt;a href="https://coderbyte.com/organizations#pricing"&gt;alternative on their pricing FAQ page&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="easy-react-button-toggle"&gt;Easy - React Button Toggle&lt;a class="headerlink" href="#easy-react-button-toggle" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;While I've tried to be mostly random in my selection of assessments during these tests, I intentionally selected this react 
+assessment because I don't know react. I've liked these types of assessment questions in the previous articles because I means I can't 
+apply my experience to "nudge" ChatGPT toward a solution. &lt;/p&gt;
+&lt;p&gt;The challenge here is to toggle a button between "On" and "Off". You're presented with a very small amount of boiler plate code. &lt;/p&gt;
+&lt;p&gt;I simply copy/pasted the prompt and the template into ChatGPT. It sent back this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;React&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;useState&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'react'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;ReactDOM&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'react-dom'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;Toggle&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="n"&gt;const&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;toggle&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;setToggle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;useState&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;handleClick&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;setToggle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="n"&gt;toggle&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;button&lt;/span&gt; &lt;span class="n"&gt;onClick&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;handleClick&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;toggle&lt;/span&gt; &lt;span class="err"&gt;?&lt;/span&gt; &lt;span class="s1"&gt;'ON'&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'OFF'&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;ReactDOM&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Toggle&lt;/span&gt; &lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'root'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I copied that into the IDE provided by CoderByte and submitted the code.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CoderByte - Easy Challenge - React Toggle Button Score" src="https://andrewwegner.com/images/coderbyte-easy-tests.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This test took two minutes to complete. The bulk of that time was spot checking that ChatGPT didn't mess with the boiler plate code to badly.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CoderByte - Easy Challenge - React Toggle Button Time Taken" src="https://andrewwegner.com/images/coderbyte-easy-minutes.png"/&gt;&lt;/p&gt;
+&lt;p&gt;The interesting this about the results is that even with the 10/10, the system says it only scored higher than 12% of other users. Does this mean
+that only 12% of the users passing this assessment are getting lower than a 10/10? To me, that's the sign of a bad assessment.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CoderByte - Easy Challenge - React Toggle Button Score comparison" src="https://andrewwegner.com/images/coderbyte-easy-scores.png"/&gt;&lt;/p&gt;
+&lt;h2 id="medium-sql-member-count"&gt;Medium - SQL Member Count&lt;a class="headerlink" href="#medium-sql-member-count" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The medium challenge I selected was an SQL question. SQL is interesting, in my experience, in that the results returned on an assessment are a 
+lot more uniform compared to a non-SQL coding assessment. This one wasn't a difficult one with joins.&lt;/p&gt;
+&lt;p&gt;The goal of this assessment was to return a list of names in alphabetical order, a count of the number of people that report to them, and the 
+average age of their team members. I pasted the prompt, the expected table layout for the output and the table layout being selected from.&lt;/p&gt;
+&lt;p&gt;The first response was &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ReportsTo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;COUNT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;AS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Members&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;AVG&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Age&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;AS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Average_Age&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;maintable_YTTQH&lt;/span&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ReportsTo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;IS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;NOT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;NULL&lt;/span&gt;
+&lt;span class="k"&gt;GROUP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ReportsTo&lt;/span&gt;
+&lt;span class="k"&gt;ORDER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ReportsTo&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is where experience, and checking the results are important. The expected output showed that the average age should be an integer. It also showed that the average age column should be named &lt;code&gt;Average Age&lt;/code&gt; not &lt;code&gt;Average_Age&lt;/code&gt; (notice the lack of the underscore). I provided this guidance to ChatGPT&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The AVG(Age) should be an integer not a float and The "Average_Age" field should be "Average Age" without an underscore. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It corrected both problems with a new query which I submitted. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ReportsTo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;COUNT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;AS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Members&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;ROUND&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;AVG&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Age&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;AS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Average Age"&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;maintable_YTTQH&lt;/span&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ReportsTo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;IS&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;NOT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;NULL&lt;/span&gt;
+&lt;span class="k"&gt;GROUP&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ReportsTo&lt;/span&gt;
+&lt;span class="k"&gt;ORDER&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;BY&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ReportsTo&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img alt="CoderByte - Medium Challenge - SQL Score" src="https://andrewwegner.com/images/coderbyte-medium-tests.png"/&gt;&lt;/p&gt;
+&lt;p&gt;ChatGPT scored another 10/10. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="CoderByte - Medium Challenge - SQL Time Taken" src="https://andrewwegner.com/images/coderbyte-medium-minutes.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Even with that extra round trip with ChatGPT, it took less than a minute to complete this assessment. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="CoderByte - Medium Challenge - SQL Score Comparison" src="https://andrewwegner.com/images/coderbyte-medium-scores.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This assessment seems to have a slightly better split of user scores, which is progress I suppose.&lt;/p&gt;
+&lt;h2 id="hard-bracket-combinations"&gt;Hard - Bracket Combinations&lt;a class="headerlink" href="#hard-bracket-combinations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There is only one hard assessment available publicly. The goal for this assessment is to return the number of combinations you can make with a number 
+of pairs of parenthesis. The example provided is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The possible combinations of 3 pairs of parenthesis, namely: ()()(), are ()()(), ()(()), (())(), ((())), and (()())&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I copied the prompt and boiler plate code into ChatGPT and it returned the following response:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;BracketCombinations&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;math&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="c1"&gt;# keep this function call here &lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BracketCombinations&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Experience here says that is odd. Technically speaking, Python will allow you to have that &lt;code&gt;import&lt;/code&gt; statemnet inside a function, but if I saw one of 
+my developers do it, I'd mention it during a code review. I was curious though and submitted it as is. &lt;/p&gt;
+&lt;p&gt;I also went back and told ChatGPT:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Write the function without importing &lt;code&gt;factorial&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It replied with this function:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;def BracketCombinations(num):
+    def fact(n):
+        result = 1
+        for i in range(1, n + 1):
+            result &lt;span class="gs"&gt;*= i&lt;/span&gt;
+&lt;span class="gs"&gt;        return result&lt;/span&gt;
+
+&lt;span class="gs"&gt;    return fact(2 *&lt;/span&gt; num) // (fact(num) * fact(num + 1))
+
+&lt;span class="gh"&gt;#&lt;/span&gt; keep this function call here 
+print(BracketCombinations(int(input())))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I submitted this response too.&lt;/p&gt;
+&lt;p&gt;I only have one set of images for this challenge, because they both output &lt;em&gt;exactly&lt;/em&gt; the same responses. Both solutions scored the same. Both solutions 
+were better than 35.1% of other users. Both solutions had an &lt;code&gt;O(n)&lt;/code&gt; complexity. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="CoderByte - Hard Challenge - Combination Score and Complexity" src="https://andrewwegner.com/images/coderbyte-hard-tests-runtime.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Showing the complexity is a nice touch. I will admit that I was expecting the solution that imported &lt;code&gt;factorial&lt;/code&gt; to be rejected because it's using a 
+built in function instead of rolling your own. Good for CoderByte for allowing a developer to use the built in libraries as an engineer would do in 
+a production environment, instead of adding a false constraint. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="CoderByte - Hard Challenge - Combination Time Taken" src="https://andrewwegner.com/images/coderbyte-hard-solution-solve-time.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Copy pasting to CoderByte kept this close to a minute. &lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Another code only assessment tool has been shown to be ineffective. The one thing this one does, that others does show publicly, is the 
+time it took to solve a problem. I'm very surprised that a majority of these were solved in under ten minutes. Even so, solving a problem in 
+less than a minute will probably raise a flag of some kind for a hiring manager giving this type of assessment. I guarentee that time is visbile 
+to them.&lt;/p&gt;
+&lt;p&gt;These three assessments show how well ChatGPT can be in being your virtual junior engineer. With the react question, I have no idea if it's 
+the more efficient way to solve the problem but it works. With the SQL question, experience identified two small problems and allowed me to 
+provide feedback and get a corrected query in seconds. The third question turned in two different ways of solving the problem. Apparently, according
+to CoderByte, bother of which perform exactly the same.&lt;/p&gt;
+&lt;p&gt;The total time it took me to run these three tests was under five minutes. That's a great tool to have in my pocket.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>ChatGPT easily solves HackerRank questions</title><link href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html" rel="alternate"/><published>2023-01-08T01:15:00-06:00</published><updated>2023-01-08T01:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-01-08:/solving-more-interview-questions-with-chatgpt.html</id><summary type="html">&lt;p&gt;HackerRank is a common tool companies use in interviews. This post continues the series on how ChatGPT can solve these interview problems.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It's important that companies evaluate their engineering candidates appropriately when they are hiring. Do other areas of your company 
+evaluate their potential hires by restricting access to tools they'll use to perform the job? I suspect not. Why do the same to 
+your software engineers?&lt;/p&gt;
+&lt;p&gt;AI Tooling - things like GitHub's &lt;a href="https://github.com/features/copilot"&gt;Copilot&lt;/a&gt; and now &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; - are &lt;em&gt;tools&lt;/em&gt; that your engineers can use to do their job. During the hiring 
+process, engineers should be evaluated on the skills they have, and that includes the ability to utilize all available tools. I expect AI
+assistance to be come as common place as using Stack Overflow to solve a problem. ChatGPT, Copilot, and any future tools doing similar tasks are 
+going to be used frequently in the near future.&lt;/p&gt;
+&lt;p&gt;In this article, I'm testing &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; against one of the most popular coding assessment services: &lt;a href="https://www.hackerrank.com/"&gt;HackerRank&lt;/a&gt;. I've already covered other assessment services like &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;LeetCode&lt;/a&gt;, &lt;a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"&gt;TestGorilla&lt;/a&gt;, &lt;a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html"&gt;CodeSignal&lt;/a&gt; and &lt;a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html"&gt;Codility&lt;/a&gt; in this series. I recommend taking a look at those too.&lt;/p&gt;
+&lt;p&gt;To the engineers that have found this post and are looking for solutions to your coding assessments, I want to warn you, ChatGPT is an
+&lt;em&gt;assistant&lt;/em&gt;. Think of it as a junior level engineer. You may need to check it's work. &lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;ChatGPT is known to be inaccurate&lt;/a&gt;, which is why 
+&lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;it was banned on Stack Overflow&lt;/a&gt;. Don't take it's responses as gospel. Evaluate the responses and make improvements as needed. You'll see I 
+had to do that a couple of times with the questions below.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, &lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I was a customer of Woven for over two years&lt;/a&gt;. 
+HackerRank is mentioned multiple times in the Woven blog and is a competitor to Woven.&lt;/p&gt;
+&lt;p&gt;Final note before I begin, HackerRank presented a couple annoyances during this test because they use LaTeX formatting in their prompts. Simply 
+copy and pasting prompts to ChatGPT was not possible, because key parts of the problem would be missing. This meant that I 
+spent several minutes per prompt cleaning it up and reinserting the LaTeX characters in plain text. This accounts for the higher solve 
+times compared to the competing services in other articles.&lt;/p&gt;
+&lt;h2 id="triangle-quest"&gt;Triangle Quest&lt;a class="headerlink" href="#triangle-quest" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I selected a random Medium difficulty Python question for my first prompt: &lt;a href="https://www.hackerrank.com/challenges/python-quest-1/problem?isFullScreen=true"&gt;Triangle Quest&lt;/a&gt;. This one was unique in this series of tests. 
+The expected solution was to add only a single line of code and I could only use arithmetic operations, a single &lt;code&gt;for&lt;/code&gt; loop and &lt;code&gt;print&lt;/code&gt; statement.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="HackerRank - Triangle Quest Prompt" src="https://andrewwegner.com/images/hackerrank-triangle-prompt.png"/&gt;&lt;/p&gt;
+&lt;p&gt;As previously mentioned, there were a few LaTeX things to clean up, but then ChatGPT returned a single line of code to add to the &lt;code&gt;for&lt;/code&gt; loop provided.
+The whole code is:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;for i in range(1,int(input())): #More than 2 lines will result in 0 score. Do not leave a blank line also
+    print((i &lt;span class="gs"&gt;* (10 *&lt;/span&gt;* i - 1)) // 9)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I submitted the code and passed all test cases.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="HackerRank - Triangle Quest Results" src="https://andrewwegner.com/images/hackerrank-triange-result.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I was surprised by this one. I was expecting to encounter some problems with the constraint of only being able to use arithemtic operations. It 
+turns out, ChatGPT caught that constraint and solved the problem without any issue.&lt;/p&gt;
+&lt;h2 id="iterables-and-iterators"&gt;Iterables and Iterators&lt;a class="headerlink" href="#iterables-and-iterators" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I wanted to try another Medium difficulty problem, that added more than a single line of code. The constraints on the previous question put 
+the problem well into "puzzle" territory, and I am not a fan of puzzles in technical interviews. The second medium question selected was 
+&lt;a href="https://www.hackerrank.com/challenges/iterables-and-iterators/problem?isFullScreen=true"&gt;Iterables and Iterators&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="HackerRank - Iterables and Iterators Prompt" src="https://andrewwegner.com/images/hackerrank-iterables-prompt.png"/&gt;&lt;/p&gt;
+&lt;p&gt;The first result returned didn't take input. Instead, it hard coded values like so:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# given list of letters
+letters = ['a', 'a', 'c', 'd']
+
+# number of indices to select
+k = 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The interesting thing with this solution was that it ignored the first input row - 
+"The first line contains the integer N, denoting the length of the list". I don't disagree with this change. We should be able to determine the length 
+of the list from the list itself.&lt;/p&gt;
+&lt;p&gt;However, the solution required taking input from STDIN, so I let ChatGPT know this by pasting in the only bit of information provided in the 
+code here:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Enter your code here. Read input from STDIN. Print output to STDOUT&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;ChatGPT made the neccessary change and provided a new code block.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;itertools&lt;/span&gt;
+
+&lt;span class="c1"&gt;# read input from stdin&lt;/span&gt;
+&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="n"&gt;letters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+&lt;span class="c1"&gt;# number of combinations of indices&lt;/span&gt;
+&lt;span class="n"&gt;total_combinations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;itertools&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;combinations&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;letters&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+&lt;span class="c1"&gt;# number of combinations of indices that do not contain the letter 'a'&lt;/span&gt;
+&lt;span class="n"&gt;combinations_without_a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'a'&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;letters&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;itertools&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;combinations&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;letters&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+&lt;span class="c1"&gt;# probability that none of the selected indices contain the letter 'a'&lt;/span&gt;
+&lt;span class="n"&gt;probability_without_a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;combinations_without_a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;total_combinations&lt;/span&gt;
+
+&lt;span class="c1"&gt;# probability that at least one of the selected indices contain the letter 'a'&lt;/span&gt;
+&lt;span class="n"&gt;probability_with_a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;probability_without_a&lt;/span&gt;
+
+&lt;span class="c1"&gt;# print the probability to three decimal places&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;{:.3f}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;probability_with_a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I submitted this code and it also passed each of the test cases. This solution also ignored using the &lt;code&gt;n&lt;/code&gt; input, but did accept it as input.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="HackerRank - Iterables and Iterators Results" src="https://andrewwegner.com/images/hackerrank-iterables-result.png"/&gt;&lt;/p&gt;
+&lt;h2 id="validating-postal-codes"&gt;Validating Postal Codes&lt;a class="headerlink" href="#validating-postal-codes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;At this point, I've shown that ChatGPT can do medium level problems. So, I selected a Hard problem: &lt;a href="https://www.hackerrank.com/challenges/validating-postalcode/problem?isFullScreen=true"&gt;Validating Postal Codes&lt;/a&gt;. 
+The intersting constraint on this one is that &lt;code&gt;if&lt;/code&gt; statements aren't allowed. The goal here is to provide two regular expressions to solve the problem.&lt;/p&gt;
+&lt;p&gt;I've built some nasty regular expressions over the years. I've talked about &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; in the past, and it's role in removing spam from 
+the Stack Exchange network. It is built on regular expressions. Lots and lots of regular expressions. So, I felt pretty comfortable with 
+this question and wanted to see how ChatGPT would handle it.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="HackerRank - Validating Postal Codes Prompt" src="https://andrewwegner.com/images/hackerrank-postal-prompt.png"/&gt;&lt;/p&gt;
+&lt;p&gt;The second regular expression, the alternating repeating digit pair, didn't work the first time. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;regex_alternating_repetitive_digit_pair&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;'(&lt;/span&gt;&lt;span class="n"&gt;\d)\d\1'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For those that know regular expressions, that is not going to work. I pointed this out and it corrected itself, and explained the meaning of the
+new regular expression. The two final regular expressions are&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;regex_integer_in_range&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="s"&gt;"^[1-9]\d{5}$"&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;delete&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sc"&gt;'r'&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;regex_alternating_repetitive_digit_pair&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="s"&gt;"(\d)(?=\d&lt;/span&gt;&lt;span class="se"&gt;\1&lt;/span&gt;&lt;span class="s"&gt;)"&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;delete&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sc"&gt;'r'&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is using a positive lookahead assertion, which ChatGPT explains as:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This regular expression will match any digit &lt;code&gt;(\d)&lt;/code&gt; followed by another digit, with the same digit &lt;code&gt;(\1)&lt;/code&gt; appearing immediately after that. The &lt;code&gt;(?=...)&lt;/code&gt; syntax is a positive lookahead assertion, which means that it will only match a digit if it is followed by the specified pattern, but the pattern will not be included in the overall match. The parentheses around &lt;code&gt;\d&lt;/code&gt; capture the digit so that it can be referred to as &lt;code&gt;\1&lt;/code&gt; later on.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I submitted the two regexes above, and passed the test cases.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="HackerRank - Validating Postal Codes Result" src="https://andrewwegner.com/images/hackerrank-postal-result.png"/&gt;&lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The majority of my time on these was spent cleaning up the LaTeX formatting. I mentioned a few prompt clarifications needed to solve problems in the 
+returned code too - one required accepting user input and the other was an invalid regular expression. Pointing this out to ChatGPT got the 
+problem resolved immediately.&lt;/p&gt;
+&lt;p&gt;This is exactly the type of thing that I'd expect an engineer to need to do with the AI assistant (or more junior engineer). Hiring processes
+must adapt to the existance of AI assistants. Evaluate your candidates and their ability to do more than simply write code. &lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>Taking Codility's sample interview exam using ChatGPT</title><link href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html" rel="alternate"/><published>2023-01-05T01:00:00-06:00</published><updated>2023-01-05T01:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-01-05:/chatgpt-continues-beating-interview-questions.html</id><summary type="html">&lt;p&gt;I'm continuing my look at technical interview exam questions, this time with Codility, and using ChatGPT to show the process needs to change&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It was announced on January 3, 2023 that &lt;a href="https://ny.chalkbeat.org/2023/1/3/23537987/nyc-schools-ban-chatgpt-writing-artificial-intelligence"&gt;New York City has banned students and teachers from using ChatGPT&lt;/a&gt;, because of "concerns about negative 
+impacts on student learning, and concerns regarding the safety and accuracy of content". This continues the daily news stories 
+about &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; that have come out over the past several weeks. I suspect that 2023 is going to be a massive year for public 
+awareness of "AI". Especially with GPT-4's expected release in a month or so. In the meantime, 
+&lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;ChatGPT remains banned over on Stack Overflow&lt;/a&gt;. The &lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;accuracy of ChatGPT&lt;/a&gt; was also mentioned by New 
+York City in their banning of the tool in the school system. &lt;/p&gt;
+&lt;p&gt;My perspective is that this is a tool that software engineers can utilize, but they have to understand that it is just that - a tool. It is 
+only as good as the engineer that wields it. A good engineer will be able to utilize it very effectively. Hiring managers need to be aware of 
+what this tool is capable of, though. I've already shown that it can easily solve common interview questions that the software industry uses
+in their hiring process. I showed that questions from &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;LeetCode&lt;/a&gt;, &lt;a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"&gt;TestGorilla&lt;/a&gt;, and &lt;a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html"&gt;CodeSignal&lt;/a&gt; are easily solved by this tool in 
+previous articles in this series.&lt;/p&gt;
+&lt;p&gt;Today, I'm going to look at another service, similar to these: &lt;a href="https://www.codility.com/"&gt;Codility&lt;/a&gt;. Much like CodeSignal, Codility sits on both sides of the interview
+process. It has a developer facing set of challenges and learning material. It also sells services to companies seeking to streamline a portion
+of their hiring process.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, &lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I was a customer of Woven for over two years&lt;/a&gt;. 
+Woven is a competitor of Codility. &lt;/p&gt;
+&lt;p&gt;The question in this post is taken from &lt;a href="https://app.codility.com/demo/take-sample-test/"&gt;Codility's sample test&lt;/a&gt;. I will not be sharing the exact prompt from the sample test, as Codility has
+a disclaimer in the prompt clearly stating that disclousure is prohibited. Fair enough.&lt;/p&gt;
+&lt;p&gt;It'd be a shame if they hid all of their technical exam questions behind such a disclaimer though. Especially when this 
+&lt;a href="https://stackoverflow.com/q/51719848/189134"&gt;sample question sits on Stack Overflow&lt;/a&gt; with over 400k views and has over 100 answers. It also generated it's own 
+&lt;a href="https://meta.stackoverflow.com/q/418024/189134"&gt;meta question&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;This is just one reason that these types of questions aren't great for technical interview questions. Exam questions will always escape the 
+exam environment. A student, a job candidate, or someone interested in the content will be able to find it and the answers after it's out
+there.&lt;/p&gt;
+&lt;h2 id="the-problem"&gt;The problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you want to see the full prompt, take a look at the &lt;a href="https://stackoverflow.com/q/51719848/189134"&gt;Stack Overflow question&lt;/a&gt;. But, briefly, the problem to solve is to find the 
+smallest positve integer that does not appear in an array of numbers. We are provided three sample arrays with positive, negative and duplicate entires.&lt;/p&gt;
+&lt;p&gt;I copy and pasted the prompt into ChatGPT and got a short function back.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;def solution(A):
+    # Create a set of all the positive integers in the list
+    positive_int_set = set([x for x in A if x &amp;gt; 0])
+
+    # Iterate through the positive integers, starting at 1
+    i = 1
+    while i in positive_int_set:
+        i += 1
+
+    # Return the first integer that is not in the set
+    return i
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I pasted this back into the testing environment and ran the code.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Compilation successful.
+
+Example test:   [1, 3, 6, 4, 1, 2]
+OK
+
+Example test:   [1, 2, 3]
+OK
+
+Example test:   [-1, -3]
+OK
+
+Your code is syntactically correct and works properly on the example test.
+Note that the example tests are not part of your score. On submission at least 8 test cases not shown here will assess your solution.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The built in test cases worked as expected. After I submitted the code, I need to wait about 5 minutes for the hidden test cases to be processed and 
+receive my results. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Codility - Missing Integer Sample Test" src="https://andrewwegner.com/images/codility-results.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I passed the 3 example test cases, 5 additional "correctness" test cases and 4 performance test cases. 100%&lt;/p&gt;
+&lt;p&gt;Hooray! ChatGPT wins again. Total time taken - 4 minutes (plus 5 minutes for Codility to do it's evaluation). &lt;/p&gt;
+&lt;h2 id="change-your-interview-processes"&gt;Change your interview processes&lt;a class="headerlink" href="#change-your-interview-processes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Engineers are smart individuals. They, generally, enjoy new technologies too. ChatGPT is a new technology that is going to be a valuable
+tool in their future. GitHub has had &lt;a href="https://github.com/features/copilot"&gt;Copilot&lt;/a&gt; for a while now. ChatGPT brings a new tool to the toolbelt. It should be expected by 
+hiring managers that your current engineering team and engineers you hire will use such tools. &lt;/p&gt;
+&lt;p&gt;Interview processes need to adapt to the existance of these tools. If you are asking a question that a simple tool can solve, are you 
+really determining an engineer's ability? Do your counterparts ask someone in finanace to calculate a percentage and not expect the candidate 
+to use, at least, a calculator? &lt;/p&gt;
+&lt;p&gt;Hiring processes much adapt. Evaluate your candidates, especially the more experienced candidates, with something other than an exam question that 
+their newest tool can solve. Your engineer is going to be doing more than writing code and implementing an algorithm. Evaluate &lt;em&gt;those&lt;/em&gt; skills. Those 
+are the ones you really need on your team. &lt;/p&gt;
+&lt;p&gt;If you are curious about the other common interview systems and how they perform against ChatGPT, read one of the articles in the series below.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>Running CodeSignal questions through ChatGPT</title><link href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html" rel="alternate"/><published>2023-01-01T17:00:00-06:00</published><updated>2023-01-01T17:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-01-01:/chatgpt-breaks-more-interview-questions.html</id><summary type="html">&lt;p&gt;I am going to examine four sample CodeSignal questions and show how ChatGPT solves the problems.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; has taken over a lot of technology news in the last month. Within days, &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;Stack Overflow banned ChatGPT&lt;/a&gt;, due to 
+&lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;subtle errors that the chatbot is prone to make&lt;/a&gt;. I've also written about how I hope that ChatGPT's existance will change 
+the hiring processes in the technology industry, because of how easily it can solve &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;LeetCode&lt;/a&gt; and &lt;a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"&gt;TestGorilla&lt;/a&gt; technical interview
+problems.&lt;/p&gt;
+&lt;p&gt;Today, I'm going to turn my attention to another company that does interview tests: &lt;a href="https://codesignal.com/developers/"&gt;CodeSignal&lt;/a&gt;. CodeSignal sits on both sides of the 
+interview process, with a LeetCode style developer facing set of challenges. Solve problems, increase your score. It also sells services to
+companies looking to outsource a portion of their hiring process.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, &lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I was a customer of Woven for over two years&lt;/a&gt;. 
+Woven is a competitor of CodeSignal. &lt;/p&gt;
+&lt;p&gt;The questions in this post are taken from &lt;a href="https://codesignal.com/blog/engineering/example-codesignal-questions/"&gt;CodeSignal's blog&lt;/a&gt;, showing off four of their software engineering questions. CodeSignal provides an 
+explaination of the question, and a sample response with a quick analysis. &lt;/p&gt;
+&lt;h2 id="array-manipulation"&gt;Array Manipulation&lt;a class="headerlink" href="#array-manipulation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Surprise! Another array question. I suppose it wouldn't be a generic software engineering interview without a question related to arrays. &lt;/p&gt;
+&lt;p&gt;Getting started...&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CodeSignal - Array Manipulation Prompt" src="https://andrewwegner.com/images/codesignal-array.png"/&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can see that it covers a basic array traversal and manipulation&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A small nitpick - depending on the hirnig process, this sentence can come across as condicending. Depending on where a technical interview fits 
+in the process, it's possible that a non-engineer is the one that sees these results first. I would not count on my HR coworkers to understand
+"basic array traversal and manipulation", because it's not part of their skillset. &lt;/p&gt;
+&lt;p&gt;Let's see how ChatGPT does. I copy and pasted the prompt into ChatGPT and waited a few seconds for a result.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;solution&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;[]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="s1"&gt;'s the first element, use 0 as the value for a[i - 1]&lt;/span&gt;
+&lt;span class="s1"&gt;        if i == 0:&lt;/span&gt;
+&lt;span class="s1"&gt;        b.append(0 + a[i] + a[i + 1])&lt;/span&gt;
+&lt;span class="s1"&gt;        # If it'&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;last&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;element&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i + 1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;elif&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i - 1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Otherwise&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;values&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i - 1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i + 1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i - 1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i + 1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It doesn't match the exact response that CodeSignal provides, but it functions with their test case. I am count that as a pass.&lt;/p&gt;
+&lt;h2 id="string-pattern-matching"&gt;String Pattern Matching&lt;a class="headerlink" href="#string-pattern-matching" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Another common theme in these recent tests I've run is pattern matching. This one, however, at least is more interesting that others. It still 
+doesn't seem to reflect a real world problem, and is just a puzzle, but at least it's more unique. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="CodeSignal - Pattern Matching" src="https://andrewwegner.com/images/codesignal-pattern.png"/&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It has the advantage of testing several fundamental programming skills at once: traversing multiple arrays with nested loops, working with subarrays, and performing basic collections/string operations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We're still sitting in the "basic" tier here, so I suspect that ChatGPT will have no problem. Time to check that assumption by pasting the prompt to the
+bot. One thing I did have to modify here is the exponents. They pasted as non-exponents, which would have messed up those constraints at the end. This 
+will be a similar problem with a later question. I adjusted those lines slightly to make the numbers exponents.&lt;/p&gt;
+&lt;p&gt;And, the response back was: &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;solution&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Initialize&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;matching&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;substrings&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Iterate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;through&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;substrings&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;with&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;equal&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Initialize&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;track&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;whether&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;current&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;substring&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;True&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Iterate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;through&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;characters&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;corresponding&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;characters&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;substring&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;character&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vowel&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;check&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;corresponding&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;character&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;substring&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;vowel&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'0'&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i + j&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'aeiouy'&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;False&lt;/span&gt;
+&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="k"&gt;break&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;character&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;consonant&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;check&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;corresponding&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;character&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;substring&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;consonant&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i + j&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'aeiouy'&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;False&lt;/span&gt;
+&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="k"&gt;break&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;substring&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;increment&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A big difference between the response generated and the response provided, is that CodeSignal's response breaks out a portion of the code into
+a second function. The ChatGPT response does everything in a single, larger, loop. Personally, I'd take off a point for not breaking this into 
+another function. CodeSignal's response is better, but the ChatGPT one functions and passes the test. While the second function is a good idea,
+not having it is not a deal breaker for me. This is especially true of a "basic" test, which is probably being used for less senior roles.&lt;/p&gt;
+&lt;h2 id="two-dimensional-array-traversal"&gt;Two-Dimensional Array Traversal&lt;a class="headerlink" href="#two-dimensional-array-traversal" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Now we're onto the harder questions. This is a long prompt, with multiple animated gifs, and is multiple pages of scrolling. I'm not going to 
+paste the prompt here because the animation is important to understanding the algorithm that needs to be implemented. The general goal though is 
+to build a very small scale Tetris board.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This Tetris-inspired question is challenging. Candidates will have to traverse and manipulate two-dimensional arrays in a non-conventional way. As it’s an advanced question, it tests how well an engineer can understand a complex set of constraints and proceed with a non-trivial implementation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;From my reading of the prompt, and looking at the solution logic, I agree. While this is still a puzzle type question, I don't recall seeing anything
+like this previously. The uniqueness, yet similarity to a game that most engineers will know, makes the question interesting to me. &lt;/p&gt;
+&lt;p&gt;The animated gifs are useful for a human to see what is expected in the solution, but shouldn't be need by ChatGPT, provided the prompt is descriptive
+enough. Copying and pasted the text into ChatGPT, provides the following response:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;solution&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Get&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Iterate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;through&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Iterate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;through&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;rows&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;bottom&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;row&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Check&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;current&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;occupied&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;occupied&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;stop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;checking&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;column&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;break&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;fits&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;current&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;check&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;full&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;row&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;formed&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;elif&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;row + i&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;&lt;span class="n"&gt;col + j&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;full&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;row&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;formed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;current&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;column&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;any&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ow"&gt;all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;row + i&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;&lt;span class="n"&gt;col + j&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;no&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;full&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;rows&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;are&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;formed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Unfortunately, test cases aren't provided for this one. However, looking at the two responses, there are a couple obvious differences. ChatGPT doesn't
+handle the size of the board at all. CodeSignal uses this size in multiple places of their code. ChatGPT also uses &lt;code&gt;all()&lt;/code&gt; and &lt;code&gt;any()&lt;/code&gt; checks, where 
+CodeSignal uses longer and more complicated &lt;code&gt;if&lt;/code&gt; statements. Personally, I'd prefer the simiple &lt;code&gt;if&lt;/code&gt; statements for readability. &lt;/p&gt;
+&lt;p&gt;I'm unsure how to score this one without the test cases, but will note that ChatGPT failed CodeSignal's first sentence in the solution explaination:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This solution starts by defining some dimensions that will be important for the problem. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I skeptical that without the size of the figure this will work as expected.&lt;/p&gt;
+&lt;h2 id="lookup-table"&gt;Lookup Table&lt;a class="headerlink" href="#lookup-table" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Lastly, we get to a question with lookup tables. These types of problems can usually be solved via brute force, at the expense of performance. They
+make good questions for a more senior developer. Note that this prompt also has exponents that I needed to adjust when pasting to the chat bot.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CodeSignal - Lookup Tables" src="https://andrewwegner.com/images/codesignal-lookup.png"/&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This question tests whether candidates have the problem-solving and data structures skills to use a lookup table (hash set/dictionary) in their programming language of choice. It also involves a bit of tricky logic to avoid double-counting pairs. Finally, this question asks candidates to pay close attention to constraints, testing a key skill for real-world development.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After copying and pasting the prompt into ChatGPT, it spit out a response that attempted to brute force the problem. Depending on how CodeSignal 
+presents the problem to a candidate, this could easily be worked around by modifying the prompt to indicate you are looking for a problem with a 
+hash table. If that type of response isn't provided by CodeSignal though, ChatGPT would not have presented the expected solution, though it did 
+still return expected results. The time trade off would have been seen with different test cases.&lt;/p&gt;
+&lt;p&gt;I modified the prompt slightly to indicate that I wanted a response with a hash table. ChatGPT complied.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;solution&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Initialize&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;table&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;store&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;numbers&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;have&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;been&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;seen&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;seen&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Initialize&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pairs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;sum&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;power&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Iterate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;through&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;numbers&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;power&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;increment&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Check&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;power&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;has&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;been&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;seen&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;seen&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;If&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;power&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;increment&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Add&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hash&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;table&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;seen&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;True&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;count&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This passes the test cases as well. &lt;/p&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Of the four sample questions provided by CodeSignal, the "basic" two questions are solved without any difficulty. A third takes a little prompt 
+tweaking to indicate that we want a hashtable instead of a simple brute forced solution. The last one is difficult to evaluate without test cases. 
+So, of the 3 that can be evaluated all pass easily. Two with very little modification (converting exponents). The third needs a small nudge toward 
+the type of solution desired.&lt;/p&gt;
+&lt;h2 id="whats-this-mean"&gt;What's this mean?&lt;a class="headerlink" href="#whats-this-mean" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've looked at common interview questions from LeetCode, TestGorilla and now CodeSignal. As a hiring manager, I can see that a simple technical 
+assessment of skills isn't enough to evaluate a candidate. Fortunately, I knew that already, but I'm hoping that others in the industry are seeing that
+tools exist for developers to make their day to day lives easier. Those tools can, literally, do the work for them if you are presenting them with 
+basic puzzles during the interview process.&lt;/p&gt;
+&lt;p&gt;I can already hear people saying that they do face to face coding, so this would never work in their process. You may be right, but ask yourselves this:
+do you developers do face to face coding in their day to day work? If not, why are you evaluating your candidates with that type of pressure? &lt;/p&gt;
+&lt;p&gt;Adjust your interview process to reflect what you actually need your candidates to demonstrate. A puzzle isn't real work. Give them a real problem
+to talk through with your team. Evaluate their ability to solve a real problem so that you can learn about their thought processes, how they approach
+a problem, and what resources they utilize.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>Breaking TestGorilla interview questions with ChatGPT</title><link href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html" rel="alternate"/><published>2022-12-26T10:45:00-06:00</published><updated>2022-12-26T10:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-26:/breaking-the-interview-with-chatgpt.html</id><summary type="html">&lt;p&gt;Using ChatGPT, I'm going to solve a couple interview questions from TestGorilla quickly, easily and with nothing more than copying and pasting.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've written quiet a bit about &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; in the last month. As of this post, it is still &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;banned on Stack Overflow&lt;/a&gt;. I believe I showed
+why with my previous post. In it, I showed that &lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;ChatGPT is prone to adding subtle errors&lt;/a&gt; (and in some cases not so subtle), which is bad on a Q&amp;amp;A site. &lt;/p&gt;
+&lt;p&gt;Today's post follows in the footsteps of my writing about how I hope ChatGPT inpires software engineering hiring managers to change their 
+hiring process. I wrote about how &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;ChatGPT can solve LeetCode&lt;/a&gt; problems. Today's post is going to focus on a company called &lt;a href="https://www.testgorilla.com/"&gt;TestGorilla&lt;/a&gt; and a 
+couple of their assessments.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, &lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I was a customer of Woven for over two years&lt;/a&gt;. 
+Woven is a competitor of TestGorilla. That said, I do not recall TestGorilla being discussed during my employment at Woven. 
+I only became aware of them during my job search this year. I'd be happy to do this same type of analysis on a Woven assessment, but as far 
+as I am aware, their prompts are not presented publicly. TestGorilla's prompts used in this article are taken directly from their website. I did not 
+speak with either company prior to writing this article.&lt;/p&gt;
+&lt;h2 id="assessment-one-php-arrays"&gt;Assessment One - PHP Arrays&lt;a class="headerlink" href="#assessment-one-php-arrays" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first assessment I want to look at is related to PHP Arrays. The &lt;a href="https://app.testgorilla.com/preview/105976?language=en"&gt;prompt&lt;/a&gt; itself if fairly simple.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="TestGorilla - PHP Array Sample Prompt" src="https://andrewwegner.com/images/testgorilla-php-array.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This is billed as:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PHP (coding): intermediate-level algorithms
+This PHP test evaluates candidates' coding skills through a short coding assignment. The test requires candidates to write code that meets certain requirements, and candidates can run their code to test if the result matches their expectations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The estimated time for this test is 30 minutes. &lt;/p&gt;
+&lt;p&gt;Well, let's see if ChatGPT is an intermediate level PHP programmer. Pasting the prompt into ChatGPT quickly spits out a result, in Python. I'm not
+surprised since almost all of my testing has been in Python. I provided one additional set of directions for ChatGPT to utilize, based on the boilerplate
+code provided.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Write this in PHP using the following as a template:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;sum_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nv"&gt;$no1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$no2&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+&lt;span class="nv"&gt;$array&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="c1"&gt;//Insert your code here &lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The result provided looks functional, based on very outdated PHP syntax knowledge.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;sum_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$no1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$no2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nv"&gt;$array&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$no1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nv"&gt;$no2&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$no1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;$no2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$sum&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nv"&gt;$i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="nb"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$array&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="nv"&gt;$no1&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nv"&gt;$array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="nv"&gt;$no2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$sum&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;$array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;$sum&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I copy and pasted that into TestGorilla's preview page and ran it to see how it'd do. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;Task executed successfully&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;
+
+&lt;span class="nb"&gt;---------------------------------&lt;/span&gt;
+&lt;span class="c"&gt;    Input parameters: ((int) 10&lt;/span&gt;&lt;span class="nt"&gt;,&lt;/span&gt;&lt;span class="c"&gt; (int) 20)&lt;/span&gt;
+&lt;span class="c"&gt;Result: (30)&lt;/span&gt;
+&lt;span class="c"&gt;OK&lt;/span&gt;
+&lt;span class="nb"&gt;---------------------------------&lt;/span&gt;
+&lt;span class="c"&gt;    Input parameters: ((int) 10&lt;/span&gt;&lt;span class="nt"&gt;,&lt;/span&gt;&lt;span class="c"&gt; (int) 30)&lt;/span&gt;
+&lt;span class="c"&gt;Result: (60)&lt;/span&gt;
+&lt;span class="c"&gt;OK&lt;/span&gt;
+&lt;span class="nb"&gt;---------------------------------&lt;/span&gt;
+&lt;span class="c"&gt;    Input parameters: ((int) 30&lt;/span&gt;&lt;span class="nt"&gt;,&lt;/span&gt;&lt;span class="c"&gt; (int) 50)&lt;/span&gt;
+&lt;span class="c"&gt;Result: (120)&lt;/span&gt;
+&lt;span class="c"&gt;OK&lt;/span&gt;
+&lt;span class="nb"&gt;---------------------------------&lt;/span&gt;
+&lt;span class="c"&gt;    Input parameters: ((int) 90&lt;/span&gt;&lt;span class="nt"&gt;,&lt;/span&gt;&lt;span class="c"&gt; (int) 100)&lt;/span&gt;
+&lt;span class="c"&gt;Result: (190)&lt;/span&gt;
+&lt;span class="c"&gt;OK&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Success! One intermediate PHP assessment completed. Total time taken: 2 minutes. &lt;/p&gt;
+&lt;h2 id="assessment-two-kotlin-arrays"&gt;Assessment Two - Kotlin Arrays&lt;a class="headerlink" href="#assessment-two-kotlin-arrays" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This &lt;a href="https://app.testgorilla.com/preview/788899?language=en"&gt;assessment&lt;/a&gt; is listed as a "New Test" by TestGorilla at the time of this post. The challenge here, if ChatGPT fails, is that I have never
+used Kotlin. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="TestGorilla - Kotlin Array Sample Prompt" src="https://andrewwegner.com/images/testgorilla-kotlin-array.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This is billed as:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Kotlin (Coding): Working with Arrays
+This Kotlin Coding test evaluates candidates’ ability to work with arrays. The test gives candidates 30 minutes to create a short algorithm involving arrays while taking into consideration all the requirements provided.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is billed as a 20 minute assessment. It is also billed as an intermediate level assessment. &lt;/p&gt;
+&lt;p&gt;I pasted the prompt into ChatGPT and also provided the boiler plate code block. The prompt doesn't explicitly say "Kotlin" anywhere, and I didn't mention
+it either. The only hint provided was the boiler plate code. ChatGPT picked up the language and returned a result.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;fun&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;getUniqueStudentIds&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Array&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Array&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;{
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;.&lt;span class="nv"&gt;any&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;{&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;it&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;50000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;||&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;it&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;99999&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;}&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;{
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;arrayOf&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+}
+&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;.&lt;span class="nv"&gt;distinct&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;.&lt;span class="nv"&gt;toTypedArray&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Running this on TestGorilla's preview page passes the built in test cases:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Task executed successfully.
+
+---------------------------------
+Input parameters: (arrayOf(52311, 52311, 55125, 55125, 52128, 52130, 52128) )
+Result: (52311, 55125, 52128, 52130)
+OK
+---------------------------------
+Input parameters: (arrayOf(59100, 58200, 58200, 51190, 58200) )
+Result: (59100, 58200, 51190)
+OK
+---------------------------------
+Input parameters: (arrayOf(54321, 54321, 54321, 54321, 54321) )
+Result: (54321)
+OK
+---------------------------------
+Input parameters: (arrayOf(54321, 53421, 53241, 53214, 54231, 54213, 54312) )
+Result: (54321, 53421, 53241, 53214, 54231, 54213, 54312)
+OK
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Success! Total time: 1 Minute&lt;/p&gt;
+&lt;h2 id="evaluation"&gt;Evaluation&lt;a class="headerlink" href="#evaluation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Despite not knowing Kotlin, I can look at the code provided and see that improvements can be made to the code. The prompt says &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that all student IDs are 5-digit numbers beginning with the number 5. Return -1 as a single element in the array in the case of any invalid input.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;code&gt;if (a.any { it &amp;lt; 50000 || it &amp;gt; 99999 })&lt;/code&gt; statement can be adjusted to reflect the prompt's specification better. Additionally, there isn't a 
+built in test case for invalid data, but I suspect that it'll fail based on the expected return.&lt;/p&gt;
+&lt;p&gt;Depending on how TestGorilla is evaluating these edge cases on the paid version of this exam, this may be picked up. On the free preview version, though
+it is not. &lt;/p&gt;
+&lt;h2 id="hiring-process"&gt;Hiring process&lt;a class="headerlink" href="#hiring-process" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once again, the reader should be able to see that a simple technical evaluation of software engineers in the hiring process is no longer sufficient. It 
+took me longer to determine which prompts I wanted to evaluate for this post than it did to solve with a couple copy and pastes into ChatGPT. &lt;/p&gt;
+&lt;p&gt;The hiring process must be more than "solve this code challenge". Hiring managers need to move past code only assessments. Instead, focus on a 
+candidate's ability to technically assess and judge based on a context specific problem. These types of problems require a candidate to show their
+experience, versus their ability to Google, ask Stack Overflow or use ChatGPT to provide a problem prompt. Evaluate your candidates based on the 
+work you want them to actually do. &lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>Using ChatGPT to interact with an API</title><link href="https://andrewwegner.com/chatgpt-interact-with-external-api.html" rel="alternate"/><published>2022-12-20T23:45:00-06:00</published><updated>2022-12-20T23:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-20:/chatgpt-interact-with-external-api.html</id><summary type="html">&lt;p&gt;I'm going to take ChatGPT for a spin against an API that I know. Let's see what it's capable of producing.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've played with &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; a lot since it was released publicly a few weeks ago. It's gotten a fair bit of media coverage (and I helped generate
+some of that with the &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;Stack Overflow ban of ChatGPT&lt;/a&gt;). In my last post, I talked about how 
+&lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;I hope that ChatGPT kills the LeetCode interview&lt;/a&gt; for Software Engineers. &lt;/p&gt;
+&lt;p&gt;Today, I want to test it out against an API that I know well. In April 2022, I left PacketFabric where I was Vice President of 
+Software Engineering. I played with the PacketFabric API &lt;em&gt;a lot&lt;/em&gt; during my tenure. I'm going to use that experience to see what ChatGPT 
+can whip up in a few minutes. &lt;/p&gt;
+&lt;h2 id="the-goal"&gt;The Goal&lt;a class="headerlink" href="#the-goal" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;My goal here is to ask ChatGPT for a quick script to interact with a portion of the API, test that output and see how I can extend it. My 
+thought is that this is how an engineer is going to go about their work. They have a task they need to accomplish (call this API end point),
+they need to make sure it works (test it), and then work on refining it to do what's needed.&lt;/p&gt;
+&lt;p&gt;Another goal that I have is to write as little code as possible during this test. I'd love to copy and paste all of this.&lt;/p&gt;
+&lt;h2 id="getting-started"&gt;Getting started&lt;a class="headerlink" href="#getting-started" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For this test, I'll be using the &lt;a href="https://docs.packetfabric.com/api/v2/redoc/#tag/Locations/operation/get_location_list"&gt;Get Locations List&lt;/a&gt; end point. It's unauthenticated so I don't need to sign up for a demo account to get an 
+API key. &lt;em&gt;Side Note: The documentation is wrong in that it states this end point requires a Bearer Token. This will be seen in the generated code and I don't fault ChatGPT for adding it into the code, because the documentation says it is required&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I started with a prompt:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Use PacketFabric's API (https://docs.packetfabric.com/api/v2/redoc/#tag/Locations/operation/get_location_list) to get a list of locations in California (&lt;code&gt;CA&lt;/code&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The code that I was provided:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;requests&lt;/span&gt;
+
+&lt;span class="n"&gt;api_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"YOUR_API_KEY"&lt;/span&gt;
+&lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"Authorization"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"Bearer &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;api_key&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;"Content-Type"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"application/json"&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s2"&gt;"https://api.packetfabric.com/v2/location?state=CA"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;locations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;locations&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"Request failed with status code &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As I mentioned above, the Bearer token isn't required for this end point. It's inclusion does not impact the functionality of this 
+script, and assuming I'm making more than calls to the &lt;code&gt;locations&lt;/code&gt; end point, it'll be needed anyway. I'll keep it here. &lt;/p&gt;
+&lt;p&gt;Now, there is a mistake in the code. For exactly the &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;same reason we banned ChatGPT on Stack Overflow&lt;/a&gt;, we see a subtle error here too. If
+you run the snippet above, you will get:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Request failed with status code 404&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Why? Because ChatGPT is hitting the &lt;code&gt;location&lt;/code&gt; not &lt;code&gt;locations&lt;/code&gt; (plural). The PacketFabric API uses plurals. This is a minor problem, and easily fixed,
+though it is explicitly stated in the documentation link which end points exist.&lt;/p&gt;
+&lt;p&gt;Moving on.&lt;/p&gt;
+&lt;h2 id="finding-all-us-locations"&gt;Finding All US Locations&lt;a class="headerlink" href="#finding-all-us-locations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Next, I wanted to get all US locations.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;How do I use this to get all US locations?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The correct way to do this would be to use the &lt;code&gt;region&lt;/code&gt; query parameter. ChatGPT had a different answer.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To get a list of all locations in the United States using PacketFabric's API, you can simply omit the state query parameter from the GET request. This will return a list of all locations across all states in the US.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The same code provided simply strips the &lt;code&gt;state=CA&lt;/code&gt; from the &lt;code&gt;requests.get()&lt;/code&gt; call. &lt;em&gt;This answer is wrong&lt;/em&gt;. It will, technically, return all 
+public locations in the United States. But it will also return locations outside of the United States too. This is a much larger result set than I was 
+looking for.&lt;/p&gt;
+&lt;p&gt;A developer should be able to catch this during testing and realize that the code is incorrect. However, ChatGPT has a tendancy to write responses in a 
+very confident manner. This one is no exception.&lt;/p&gt;
+&lt;h2 id="finding-a-specific-pop-location"&gt;Finding a specific POP location&lt;a class="headerlink" href="#finding-a-specific-pop-location" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Moving to the next test, I wanted to find locations just in a single point of presence (POP).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;How do I get all locations in the &lt;code&gt;ATL1&lt;/code&gt; pop?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The response returned seemed reasonable. There was a bit of prose with this explaination and a code snippet that adjusted the query parameters.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To get a list of all locations in the ATL1 pop (point of presence) using PacketFabric's API, you will need to send a GET request to the /location endpoint with the &lt;code&gt;pop_code&lt;/code&gt; query parameter set to ATL1.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;"https://api.packetfabric.com/v2/locations?pop_code=ATL1"
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Again, this is incorrect. &lt;code&gt;pop_code&lt;/code&gt; isn't a valid query parameter. It's not in the documentation and it doesn't return the expected result. &lt;/p&gt;
+&lt;p&gt;I attempted to explain this to the bot:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;pop_code&lt;/code&gt; isn't a parameter defined in the documentation. Is this an undocumented parameter?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I received an unexpected response, with a new code snippet. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I apologize for the mistake in my previous response. &lt;code&gt;pop_code&lt;/code&gt; is not a valid query parameter for the /location endpoint in PacketFabric's API.
+The documentation for the /location endpoint (https://docs.packetfabric.com/api/v2/redoc/#tag/Locations/operation/get_location_list) lists the valid query parameters as state, city, and zip_code. These parameters can be used to filter the locations returned by the API based on the state, city, and ZIP code of the location.
+For example, to get a list of all locations in Atlanta, Georgia (GA), you could use the following request:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;requests&lt;/span&gt;
+
+&lt;span class="n"&gt;api_key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"YOUR_API_KEY"&lt;/span&gt;
+&lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"Authorization"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"Bearer &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;api_key&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;"Content-Type"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"application/json"&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s2"&gt;"https://api.packetfabric.com/v2/location?state=GA&amp;amp;city=Atlanta"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;locations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;locations&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"Request failed with status code &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This will send a GET request to the /location endpoint with the state query parameter set to GA and the city query parameter set to Atlanta, and will print the list of locations returned by the API.
+I apologize for any confusion my previous response may have caused. Please let me know if you have any further questions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is a better attempt - but still wrong. Going this route will return more POPs than expected. I'll receive everything in the city of Atlanta, instead
+of my original request, which was to only get locations in the &lt;code&gt;ATL1&lt;/code&gt; POP. This is another subtly wrong answer.&lt;/p&gt;
+&lt;p&gt;It's also interesting to note that ChatGPT says that only &lt;code&gt;state&lt;/code&gt;, &lt;code&gt;city&lt;/code&gt; and &lt;code&gt;ZIP code&lt;/code&gt; are valid query parameters here. &lt;code&gt;state&lt;/code&gt; and &lt;code&gt;city&lt;/code&gt; are defined 
+in the documentation. &lt;code&gt;ZIP Code&lt;/code&gt; is not. That's not a valid query parameter for the locations end point. Also notice that it's still using the singular
+&lt;code&gt;location&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;My impression of ChatGPT has not changed much since it was released at the end of November. It is a novel tool - much like Github's copilot, but 
+it's not going to take a developer's job. It can provide a good starting point for a problem, but if you are depending on it to write your code for you,
+you will find it's not going to work long term. &lt;/p&gt;
+&lt;p&gt;In this test, I learned that I don't know what it is doing about reading external documentation. I simply provided a link to the API documentation,
+when asking how to get locations. It parsed out the correct URL schema, including version code. But, at the same time, it couldn't parse out the 
+query parameters. It incorrectly added two parameters that don't exist (&lt;code&gt;pop_code&lt;/code&gt; and &lt;code&gt;zip_code&lt;/code&gt;). It also missed the plurality of the API end points.
+It introduced a subtle bug - omitting the &lt;code&gt;region&lt;/code&gt; to get US based locations, returns locations around the world.&lt;/p&gt;
+&lt;p&gt;Personally, I'd be upset if an engineer on my team committed code generated in this test. It's buggy, and has subtle inaccuracies. The code
+provided by ChatGPT is a good &lt;em&gt;skeleton&lt;/em&gt;. It is up to the developer to validate that it works as expected. Without the crucial step of developer testing,
+it is guarenteed that bugs will be committed to the code base because "the AI said it'd work".&lt;/p&gt;
+&lt;p&gt;If you are going to use ChatGPT (or Copilot or a system similar to either), it is vital that you verify the code you are running. Does it do what you 
+expect? Does it perform as you expect? The tools are there to help you build this, but that's just it. &lt;em&gt;Help&lt;/em&gt;, not do. The testing I did here took
+only a handful of minutes. For someone unfamiliar with the API they are interacting with, this quick turn around should mean they have a lot more time
+to do robust testing.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="chatgpt"/></entry><entry><title>ChatGPT is here - Use that to stop asking LeetCode questions during interviews</title><link href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html" rel="alternate"/><published>2022-12-15T23:45:00-06:00</published><updated>2022-12-15T23:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-15:/chatgpt-should-end-leetcode-interviews.html</id><summary type="html">&lt;p&gt;ChatGPT's availability and ability to answer basic questions should end LeetCode use in software engineering interviews. Right?&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I have interviewed a lot of software engineers looking for a new position. I've talked with college students looking for
+an internship, junior engineers just getting started, staff engineers looking for a new role, managers and directors to
+lead these teams. In every one of those interviews, I'd told the candidate that I &lt;em&gt;hate&lt;/em&gt; puzzle questions (ie.
+"How many windows are in Seattle?") and I hate LeetCode style questions.&lt;/p&gt;
+&lt;p&gt;It turns out that &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; is good at solving these problems.&lt;/p&gt;
+&lt;p&gt;Good. Maybe that will kill LeetCode interview questions once and for all. There are so many better ways to determine if an
+engineer is the right fit.&lt;/p&gt;
+&lt;h2 id="chatgpt-vs-leetcode"&gt;ChatGPT vs LeetCode&lt;a class="headerlink" href="#chatgpt-vs-leetcode" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We have &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;temporarily banned ChatGPT over on Stack Overflow&lt;/a&gt;, because it can and does provide subtly incorrect answers.
+It's been so bad that we called up two new moderators from the previous election today. One of my mod &lt;a href="https://meta.stackoverflow.com/questions/421619/2022-community-moderator-election-results-now-with-two-more-mods#comment939591_421619"&gt;colleagues provided some
+context&lt;/a&gt; around this today too.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We get a few hundred CGPT flags per day, leading to hundreds or even thousands of post deletions per day. There's often one flag per user (not accounting overlap from several users), but each flag can lead to anywhere between a couple and tens of deletions per user.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;LeetCode, however, checks your answer right away. They don't have the same problem as Stack Overflow. I wanted to see just how good 
+this new chatbot was, and took it for a spin against a random LeetCode problem.&lt;/p&gt;
+&lt;p&gt;I randomly selected a medium difficulty problem with a 58% acceptance rate. My victim question:
+&lt;a href="https://leetcode.com/problems/longest-common-subsequence/description/"&gt;1143. Longest Common Subsequence&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="getting-started"&gt;Getting started&lt;a class="headerlink" href="#getting-started" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The first step in passing this test, is selecting the entire prompt, copying it and pasting it directly into LeetCode's UI. I didn't read
+the prompt and I didn't format it. Just a blind copy and paste. I also provided one instruction:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Provide python code&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Press enter and wait 30 seconds or so.&lt;/p&gt;
+&lt;h3 id="the-response"&gt;The response&lt;a class="headerlink" href="#the-response" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Within seconds I was provided this block of code&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;longestCommonSubsequence&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nl"&gt;text1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;text2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;int&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;Convert&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;text1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;text2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;lists&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;characters&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Initialize&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;dynamic&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;programming&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;table&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;dp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;[0&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;]&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Fill&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;dynamic&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;programming&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;table&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i-1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j-1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="n"&gt;dp&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dp&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i-1&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;&lt;span class="n"&gt;j-1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="n"&gt;dp&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dp&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i-1&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dp&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;&lt;span class="n"&gt;j-1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;longest&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;common&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;subsequence&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dp&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It likes the phrase &lt;a href="https://guides.codepath.com/compsci/DP-Table"&gt;"dynamic programming table"&lt;/a&gt;. Along with this code, it even explains its reasoning for going this route. Maybe 
+our intrepid AI can teach a junior dev a new trick or two while doing this puzzle. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="ChatGPT explains its code" src="https://andrewwegner.com/images/leetcode-response1-1.png"/&gt;
+&lt;img alt="ChatGPT explains its algorithm" src="https://andrewwegner.com/images/leetcode-response1-2.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Then it shows that tests pass...very confidently.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;All the tests passed, so this implementation is correct&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="the-result"&gt;The result&lt;a class="headerlink" href="#the-result" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I'm trying to show that ChatGPT can do this, so at this point I haven't read the prose above. I copy and pasted the code it returned
+and clicked "Submit".&lt;/p&gt;
+&lt;p&gt;I waited a few seconds for all tests to run and got my results.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ChatGPT beats over 96% of other implementations in runtime performance and 71% in memory performance" src="https://andrewwegner.com/images/leetcode-implementation.png"/&gt;&lt;/p&gt;
+&lt;p&gt;ChatGPT crushed this. It performs better than 96% of other submissions in terms of run time performance. It uses less memory than 71% of
+other submissions.&lt;/p&gt;
+&lt;h2 id="can-we-please-stop-using-leetcode-now"&gt;Can we please stop using LeetCode now?&lt;a class="headerlink" href="#can-we-please-stop-using-leetcode-now" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The total time it took to perform this test was under 5 minutes. I randomly selected a problem, copy and pasted the prompt, waited for a response
+from the chatbot, copy and pasted the code response, waited for the tests to run. Complete.&lt;/p&gt;
+&lt;p&gt;As a hiring manager, I'd have wasted my time and the candidates time having them do this problem now. Instead, we can talk about 
+an actual problem they will be solving. We can do a real world problem instead this. There are better ways to interview an engineer
+and I'm hoping ChatGPT makes that abundantly clear to hiring managers everywhere. &lt;/p&gt;
+&lt;p&gt;We're going to have to adapt our hiring processes, but that's a good thing. My recent experience shows that at most companies, it's bad anyway.
+Now we have an opportunity to shine some sunlight on it and make it better.&lt;/p&gt;
+&lt;p&gt;In the meantime, if you continue to use LeetCode or something similar to evaluate your candidate's technical skills, your are doing your 
+team a huge diservice. Candidates know about this tool, and they know that the easiest way to get an interview is to play the game. There 
+have been tens of thousands of layoffs in the tech industry in the last six months. I guarentee candidates are looking for every advantage they can
+get, to move to their next role.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="job"/><category term="leadership"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>Stack Overflow bans ChatGPT temporarily</title><link href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html" rel="alternate"/><published>2022-12-05T14:45:00-06:00</published><updated>2022-12-06T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-05:/stackoverflow-bans-chatgpt.html</id><summary type="html">&lt;p&gt;Today Stack Overflow moderators banned ChatGPT on the site. This is my reflection on why we went this route.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today Stack Overflow moderators (&lt;a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html"&gt;myself included&lt;/a&gt;), have implemented a &lt;a href="https://meta.stackoverflow.com/q/421831/189134"&gt;temporary ban on ChatGPT on the site&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Use of ChatGPT generated text for posts on Stack Overflow is temporarily banned.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This ban was picked up immediately by several &lt;a href="https://www.google.com/search?q=stack+overflow+chatgpt&amp;amp;biw=1506&amp;amp;bih=1308&amp;amp;tbs=cdr%3A1%2Ccd_min%3A12%2F5%2F2022%2Ccd_max%3A12%2F5%2F2022"&gt;technology news outlets&lt;/a&gt;, including &lt;a href="https://www.zdnet.com/article/stack-overflow-temporarily-bans-answers-from-openais-chatgpt-chatbot/"&gt;ZDNet&lt;/a&gt;, &lt;a href="https://www.theverge.com/2022/12/5/23493932/chatgpt-ai-generated-answers-temporarily-banned-stack-overflow-llms-dangers"&gt;TheVerge&lt;/a&gt;, and &lt;a href="https://www.vice.com/en/article/wxnaem/stack-overflow-bans-chatgpt-for-constantly-giving-wrong-answers"&gt;Vice&lt;/a&gt;. 
+It was also picked up by &lt;a href="https://www.cnn.com/2022/12/05/tech/chatgpt-trnd/index.html"&gt;CNN&lt;/a&gt;, &lt;a href="https://www.nytimes.com/2022/12/05/technology/chatgpt-ai-twitter.html"&gt;The New York Times&lt;/a&gt;, and the &lt;a href="https://www.washingtonpost.com/business/chatgpt-could-makedemocracy-even-more-messy/2022/12/06/e613edf8-756a-11ed-a199-927b334b939f_story.html"&gt;Washington Post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That's a lot of news coverage.&lt;/p&gt;
+&lt;p&gt;The question that I want to answer is "Why?". Stories and marketing from &lt;a href="https://openai.com/blog/chatgpt/"&gt;OpenAI&lt;/a&gt;, give reasons why this new chatbot is a 
+"good thing". With their examples, it definately looks that way. But, in practice, it's not working out so well.&lt;/p&gt;
+&lt;p&gt;The responses that users have been posting on Stack Overflow have a high rate of being incorrect. Normally, the community can handle this, but the responses aren't your usual small code snippet of an answer. Instead it is a long, detailed, 
+explaination that &lt;em&gt;looks&lt;/em&gt; plausible. But, it's wrong. Combined with users posting multiple answers an hour, this is
+a lot of content that Stack Overflow reviewers (or worse, the handful of elected moderators) to go through and determine if it's valid.&lt;/p&gt;
+&lt;p&gt;At the time the ban was implemented, we'd seen thousands of answers generated by ChatGPT. On the one hand, this is impressive 
+work on the ChatGPT AI itself. It can be difficult to detect and is good at holding a conversation. On the other hand, 
+and more important from Stack Overflow's perspective, this isn't helping the user base. Thousands of subtly wrong answers is awful. 
+It doesn't help the user looking for help, and it will very quickly destroy the trust that millions of developers put in the site if
+this is allowed to continue.&lt;/p&gt;
+&lt;p&gt;I'll admit that I'm disappointed that AI hasn't reached the point where it can do what ChatGPT &lt;em&gt;seems&lt;/em&gt; to do. But, this is a step
+forward. Unfortunately, this step seems to have left a bad taste in the mouth of developers looking for help beyond 
+a toy example. &lt;/p&gt;
+&lt;p&gt;For the time being, ChatGPT is banned on Stack Overflow. The &lt;a href="https://stackoverflow.com/users?tab=moderators"&gt;moderation team&lt;/a&gt; will continue to work with the company to 
+ensure the community we have volunteered to moderatate remains one of high quality. Additionally, as the larger &lt;a href="https://meta.stackexchange.com/q/384396/186281"&gt;Stack Exchange 
+network of sites debates a similar ban&lt;/a&gt;, the Stack Overflow moderation team will be able to provide input on our experiences.&lt;/p&gt;</content><category term="Side Activities"/><category term="Stack Exchange"/><category term="moderation"/><category term="chatgpt"/></entry></feed>

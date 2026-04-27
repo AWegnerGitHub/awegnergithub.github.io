@@ -1,327 +1,72 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04" />
-<meta name="keywords" content="technical">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="Installing InvoiceNinja on Ubuntu 18.04"/>
-  <meta property="og:description" content="A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/invoiceninja-ubuntu-1804.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2019-07-30 13:00:00-05:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Technical Solutions"/>
-  <meta property="article:tag" content="technical"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>Installing InvoiceNinja on Ubuntu 18.04  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#getting-started">Getting Started</a></li>
-<li><a href="#database-setup">Database setup</a></li>
-<li><a href="#configure-apache">Configure Apache</a></li>
-<li><a href="#completing-the-install">Completing the install</a></li>
-<li><a href="#updating">Updating</a></li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Installing InvoiceNinja on Ubuntu 18.04</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Installing InvoiceNinja on Ubuntu 18.04 — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04"><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Technical Solutions (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/invoiceninja-ubuntu-1804.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="Installing InvoiceNinja on Ubuntu 18.04"><meta property="og:url" content="https://andrewwegner.com/invoiceninja-ubuntu-1804.html"><meta property="og:description" content="A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04"><meta property="article:published_time" content="2019-07-30T13:00:00-05:00"><meta property="article:section" content="Technical Solutions"><meta property="article:tag" content="technical"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Installing InvoiceNinja on Ubuntu 18.04",
+  "headline": "Installing InvoiceNinja on Ubuntu 18.04",
+  "dateCreated": "2019-07-30T13:00:00-05:00",
+  "datePublished": "2019-07-30T13:00:00-05:00",  "dateModified": "2019-07-30T13:00:00-05:00",  "copyrightYear": "2019",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/invoiceninja-ubuntu-1804.html",
+  "description": "A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}</script></head><body data-page-type="article" data-page-slug="invoiceninja-ubuntu-1804" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a></nav><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/technical-solutions.html",
-      "name": "Technical Solutions"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/invoiceninja-ubuntu-1804.html",
-      "name": "https://andrewwegner.com/invoiceninja-ubuntu-1804.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="invoiceninja-ubuntu-1804">Installing InvoiceNinja on Ubuntu 18.04</h1>
-    <p>
-      Posted on Tue 30 July 2019 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
-
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>It's been a several years since I really did a lot of freelance work. Mostly, I did it in the evening hours
-a few nights a week for some extra money. Over the last few years, that kind of work has
-slowed down for me. Mostly because I enjoy relaxing in the evenings and spending time off
-of my computer now. It's weird to type that, but "hobby coding" really hasn't had as much
-appeal to me since I started my <a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html">current job</a> a few years ago.</p>
-<p>I love my job. I love working from home 100% of the time and I love being home
-when the kids get off the bus, during summer breaks, and when the weather sucks. The
-one thing this job has done though, is remove my desire to sit in my office after
-everyone else has gone to bed and just code.</p>
-<p>But, that's ok. I've found other hobbies and am really excited about some up coming
-things I'm trying out. If they work out, I'll be able to combine my coding skills
-with other hobbies. I'm sure I'll write about it at some point.</p>
-<p>I say all of that, because, even though I don't actively take on freelance work any
-longer, I still have clients that I did work for that will reach out once and a while
-for help, consultations or a small project. When that happens, I need a way to bill them
-for my time.</p>
-<p>Previously, my invoices would have been whipped up in Word and converted to a PDF and sent
-off to the client. It worked for years. I was able to keep track of everything,
-properly report it (don't want to mess with the tax man) and I kept chugging along. The
-problem now, is that if I'm doing work for a client, I want to do the work and be done. I don't
-want to spent time making a presentable invoice in Word.</p>
-<p>So, I went hunting for some software. I found <a href="https://www.invoiceninja.com/">InvoiceNinja</a>. It's amazing.</p>
-<ul>
-<li>Hosted or self hosted version</li>
-<li>Create simple invoices</li>
-<li>Create full quotes</li>
-<li>API (which I will probably never use, but...it's there)</li>
-<li>Recurring billing</li>
-<li>Zapier integration</li>
-</ul>
-<p>I have this habit of self hosting my own software. See my posts on <a href="https://andrewwegner.com/installing-nextcloud.html">NextCloud</a>
-and <a href="https://andrewwegner.com/installing-gitlab.html">GitLab</a> for other examples.</p>
-<p>This rest of this post is going to walk through how I installed InvoiceNinja.</p>
-<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">¶</a></h2>
-<p>I'll be self hosting <a href="https://www.invoiceninja.org/">InvoiceNinja</a>. You can find that on their <code>.org</code> site
-or on <a href="https://github.com/invoiceninja/invoiceninja">GitHub</a>.</p>
-<p>In this, I'll be installing InvoiceNinja, setting up Apache to host it, and showing how
-to update it in the future.</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span>
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/technical-solutions.html",
+        "name": "Technical Solutions"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Technical Solutions</span></div><h1 class="article-title">Installing InvoiceNinja on Ubuntu 18.04</h1><p class="article-summary">A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04</p><div class="article-meta"><time datetime="2019-07-30T13:00:00-05:00" class="article-meta-date">Tue 30 July 2019</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/technical.html" class="tag">#technical</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#getting-started">Getting Started</a></li><li><a href="#database-setup">Database setup</a></li><li><a href="#configure-apache">Configure Apache</a></li><li><a href="#completing-the-install">Completing the install</a></li><li><a href="#updating">Updating</a></li></ul></div></div><div class="prose"><h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2><p>It's been a several years since I really did a lot of freelance work. Mostly, I did it in the evening hours a few nights a week for some extra money. Over the last few years, that kind of work has slowed down for me. Mostly because I enjoy relaxing in the evenings and spending time off of my computer now. It's weird to type that, but "hobby coding" really hasn't had as much appeal to me since I started my <a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html">current job</a> a few years ago.</p><p>I love my job. I love working from home 100% of the time and I love being home when the kids get off the bus, during summer breaks, and when the weather sucks. The one thing this job has done though, is remove my desire to sit in my office after everyone else has gone to bed and just code.</p><p>But, that's ok. I've found other hobbies and am really excited about some up coming things I'm trying out. If they work out, I'll be able to combine my coding skills with other hobbies. I'm sure I'll write about it at some point.</p><p>I say all of that, because, even though I don't actively take on freelance work any longer, I still have clients that I did work for that will reach out once and a while for help, consultations or a small project. When that happens, I need a way to bill them for my time.</p><p>Previously, my invoices would have been whipped up in Word and converted to a PDF and sent off to the client. It worked for years. I was able to keep track of everything, properly report it (don't want to mess with the tax man) and I kept chugging along. The problem now, is that if I'm doing work for a client, I want to do the work and be done. I don't want to spent time making a presentable invoice in Word.</p><p>So, I went hunting for some software. I found <a href="https://www.invoiceninja.com/">InvoiceNinja</a>. It's amazing.</p><ul><li>Hosted or self hosted version</li><li>Create simple invoices</li><li>Create full quotes</li><li>API (which I will probably never use, but...it's there)</li><li>Recurring billing</li><li>Zapier integration</li></ul><p>I have this habit of self hosting my own software. See my posts on <a href="https://andrewwegner.com/installing-nextcloud.html">NextCloud</a> and <a href="https://andrewwegner.com/installing-gitlab.html">GitLab</a> for other examples.</p><p>This rest of this post is going to walk through how I installed InvoiceNinja.</p><h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">¶</a></h2><p>I'll be self hosting <a href="https://www.invoiceninja.org/">InvoiceNinja</a>. You can find that on their <code>.org</code> site or on <a href="https://github.com/invoiceninja/invoiceninja">GitHub</a>.</p><p>In this, I'll be installing InvoiceNinja, setting up Apache to host it, and showing how to update it in the future.</p><div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span>
 <span class="o">$</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.13</span><span class="o">.</span><span class="n">zip</span>
-</code></pre></div>
-<p>This downloads and unzips InvoiceNinja 4.5.14 to the current directory. Next,
-let's move it to it's final install location and set up appropriate owner and
-permissions.</p>
-<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>mv<span class="w"> </span>ninja<span class="w"> </span>/var/www/html
+</code></pre></div><p>This downloads and unzips InvoiceNinja 4.5.14 to the current directory. Next, let's move it to it's final install location and set up appropriate owner and permissions.</p><div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>mv<span class="w"> </span>ninja<span class="w"> </span>/var/www/html
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/www/html
 $<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>www-data:www-data<span class="w"> </span>ninja/
 $<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">755</span><span class="w"> </span>ninja/storage
-</code></pre></div>
-<h2 id="database-setup">Database setup<a class="headerlink" href="#database-setup" title="Permanent link">¶</a></h2>
-<p>InvoiceNinja runs on MySQL (or MariaDB). We need to create the database, but
-the installer will do the rest of the work for us. Log into MySQL with a user
-that can create new databases, users and permissions.</p>
-<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
-</code></pre></div>
-<p>Now we'll run three commands. The first is to create the new database, the second
-is to create the user. The third is to set appropriate permissions for the
-new user and new password.</p>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>Change the default password from <code>ninja</code> to something secure</p>
-</div>
-<p>Our three commands:</p>
-<div class="codehilight code"><pre><span></span><code>CREATE DATABASE ninja;
+</code></pre></div><h2 id="database-setup">Database setup<a class="headerlink" href="#database-setup" title="Permanent link">¶</a></h2><p>InvoiceNinja runs on MySQL (or MariaDB). We need to create the database, but the installer will do the rest of the work for us. Log into MySQL with a user that can create new databases, users and permissions.</p><div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
+</code></pre></div><p>Now we'll run three commands. The first is to create the new database, the second is to create the user. The third is to set appropriate permissions for the new user and new password.</p><div class="admonition attention"><p class="admonition-title">Attention</p><p>Change the default password from <code>ninja</code> to something secure</p></div><p>Our three commands:</p><div class="codehilight code"><pre><span></span><code>CREATE DATABASE ninja;
 CREATE USER 'ninja'@'localhost' IDENTIFIED BY 'ninja';
 GRANT ALL PRIVILEGES ON ninja.* TO 'ninja'@'localhost';
-</code></pre></div>
-<p>Exit MySQL.</p>
-<h2 id="configure-apache">Configure Apache<a class="headerlink" href="#configure-apache" title="Permanent link">¶</a></h2>
-<p>Now we're going to set up a new virtualhost in Apache to serve InvoiceNinja.</p>
-<p>Create an entry in sites-available.</p>
-<div class="codehilight code"><pre><span></span><code>nano /etc/apache2/sites-available/invoiceninja.conf
-</code></pre></div>
-<p>My entry looks like this:</p>
-<div class="codehilight code"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*:80</span><span class="nt">&gt;</span>
+</code></pre></div><p>Exit MySQL.</p><h2 id="configure-apache">Configure Apache<a class="headerlink" href="#configure-apache" title="Permanent link">¶</a></h2><p>Now we're going to set up a new virtualhost in Apache to serve InvoiceNinja.</p><p>Create an entry in sites-available.</p><div class="codehilight code"><pre><span></span><code>nano /etc/apache2/sites-available/invoiceninja.conf
+</code></pre></div><p>My entry looks like this:</p><div class="codehilight code"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*:80</span><span class="nt">&gt;</span>
 <span class="w">     </span>DocumentRoot<span class="w"> </span>/var/www/html/ninja/public
 <span class="w">     </span>ServerName<span class="w"> </span>invoice.example.com
 <span class="w">     </span>Redirect<span class="w"> </span>permanent<span class="w"> </span>/<span class="w"> </span>https://invoice.example.com/
@@ -351,102 +96,13 @@ GRANT ALL PRIVILEGES ON ninja.* TO 'ninja'@'localhost';
 <span class="w">        </span>allow<span class="w"> </span>from<span class="w"> </span>all
 <span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
 <span class="nt">&lt;/VirtualHost&gt;</span>
-</code></pre></div>
-<p>This sets up a direct from HTTP to HTTPS. Then it points to the SSL certificates I've
-created for this subdomain. I previously wrote about <a href="https://andrewwegner.com/setup-lets-encrypt.html">how I set up SSL</a>. I followed the
-same steps, using the new subdomain.</p>
-<p>With SSL and the subdomain set up in CloudFlare, it's time to enable the site:</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">a2ensite</span><span class="w"> </span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">conf</span>
+</code></pre></div><p>This sets up a direct from HTTP to HTTPS. Then it points to the SSL certificates I've created for this subdomain. I previously wrote about <a href="https://andrewwegner.com/setup-lets-encrypt.html">how I set up SSL</a>. I followed the same steps, using the new subdomain.</p><p>With SSL and the subdomain set up in CloudFlare, it's time to enable the site:</p><div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">a2ensite</span><span class="w"> </span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">conf</span>
 <span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">reload</span><span class="w"> </span><span class="n">apache2</span>
-</code></pre></div>
-<h2 id="completing-the-install">Completing the install<a class="headerlink" href="#completing-the-install" title="Permanent link">¶</a></h2>
-<p>Navigate to the new subdomain, and fill out the form. Installation will be
-completed in a minute or so.</p>
-<h2 id="updating">Updating<a class="headerlink" href="#updating" title="Permanent link">¶</a></h2>
-<p>At some point, InvoiceNinja will come out with an update, and I'll want to update
-to get the newest features and security patches.</p>
-<p>To start with, we want to download the newest version:</p>
-<div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span>
+</code></pre></div><h2 id="completing-the-install">Completing the install<a class="headerlink" href="#completing-the-install" title="Permanent link">¶</a></h2><p>Navigate to the new subdomain, and fill out the form. Installation will be completed in a minute or so.</p><h2 id="updating">Updating<a class="headerlink" href="#updating" title="Permanent link">¶</a></h2><p>At some point, InvoiceNinja will come out with an update, and I'll want to update to get the newest features and security patches.</p><p>To start with, we want to download the newest version:</p><div class="codehilight code"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">invoiceninja</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span>
 <span class="o">$</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">ninja</span><span class="o">-</span><span class="n">v4</span><span class="o">.</span><span class="mf">5.14</span><span class="o">.</span><span class="n">zip</span>
-</code></pre></div>
-<p>Next, <code>rsync</code> the files to the installed directory.</p>
-<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>rsync<span class="w"> </span>-tr<span class="w"> </span>ninja/<span class="w"> </span>/var/www/html/ninja/
-</code></pre></div>
-<p>This messes up permissions, so reset those.</p>
-<div class="codehilight code"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/www/html
+</code></pre></div><p>Next, <code>rsync</code> the files to the installed directory.</p><div class="codehilight code"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>rsync<span class="w"> </span>-tr<span class="w"> </span>ninja/<span class="w"> </span>/var/www/html/ninja/
+</code></pre></div><p>This messes up permissions, so reset those.</p><div class="codehilight code"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/www/html
 $<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>www-data:www-data<span class="w"> </span>ninja/
 $<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">755</span><span class="w"> </span>ninja/storage
-</code></pre></div>
-<p>Finally, hit the <code>/update</code> URL to complete the process</p>
-<div class="codehilight code"><pre><span></span><code>wget https://invoice.example.com/update
-</code></pre></div>
-  </div>
-<div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/updating-php-ubuntu-1804.html"
-    title="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04">
-    <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-  <a class="btn float-right" href="https://andrewwegner.com/setting-up-gitlab-runners.html"
-    title="Setting up GitLab runners">
-    Next Post <i class="fa fa-angle-right"></i>
-  </a>
-</div>
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-</article>
-
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BlogPosting",
-  "name": "Installing InvoiceNinja on Ubuntu 18.04",
-  "headline": "Installing InvoiceNinja on Ubuntu 18.04",
-  "dateCreated": "2019-07-30 13:00:00-05:00",
-  "datePublished": "2019-07-30 13:00:00-05:00",
-  "dateModified": "",
-  "copyrightYear": "2019",
-  "copyrightHolder": {
-    "@type": "Person",
-    "name": "Andy Wegner",
-    "url": "https://andrewwegner.com"
-  },
-  "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
-  },
-  "publisher": {
-    "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/invoiceninja-ubuntu-1804.html",
-  "description": "A brief walkthrough on how to install InvoiceNinja on Ubuntu 18.04",
-  "mainEntityOfPage": "True",
-  "articleSection": "Technical Solutions"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+</code></pre></div><p>Finally, hit the <code>/update</code> URL to complete the process</p><div class="codehilight code"><pre><span></span><code>wget https://invoice.example.com/update
+</code></pre></div></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#getting-started">Getting Started</a></li><li><a href="#database-setup">Database setup</a></li><li><a href="#configure-apache">Configure Apache</a></li><li><a href="#completing-the-install">Completing the install</a></li><li><a href="#updating">Updating</a></li></ul></div></aside></div><nav class="post-nav" aria-label="Post navigation"><a href="https://andrewwegner.com/updating-php-ubuntu-1804.html" class="post-nav-link post-nav-link-prev"><span class="post-nav-dir">← Previous post</span> <span class="post-nav-title">Updating PHP from 7.1 to 7.3 on Ubuntu 18.04</span> </a><a href="https://andrewwegner.com/setting-up-gitlab-runners.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">Setting up GitLab runners</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

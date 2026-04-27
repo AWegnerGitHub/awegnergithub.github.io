@@ -1,1386 +1,760 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/archives.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-  <meta name="author" content="Andy Wegner" />
-  <meta name="description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams." />
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:type" content="blog"/>
-  <meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."/>
-  <meta property="og:locale" content="en_US"/>
-  <meta name="twitter:card" content="summary" />
-
-  <meta property="og:url" content="https://andrewwegner.com/archives.html">
-  <meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png">
-
-  <title>Archives · Andrew Wegner | Ponderings of an Andy</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-</aside>
-  <main>
-
-<article class="single">
-    <header>
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/archives.html">Archives</a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Archives — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/archives.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/archives.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Archive — Andrew Wegner | Ponderings of an Andy",  "description": "Every article published on Andrew Wegner | Ponderings of an Andy, in reverse chronological order.",  "itemListOrder": "https://schema.org/ItemListOrderDescending",
+  "numberOfItems": 146,
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "https://andrewwegner.com/real-python-claude-code-live-course.html",
+      "name": "Review of Claude Code for Python Developers from Real Python"
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "url": "https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html",
+      "name": "I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them."
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "url": "https://andrewwegner.com/why-remote-work-is-good-for-your-team.html",
+      "name": "The Remote Engineering Leadership Playbook: Why Distance Doesn&#39;t Diminish Performance"
+    },    {
+      "@type": "ListItem",
+      "position": 4,
+      "url": "https://andrewwegner.com/junior-engineer-crisis-ai-code-generation.html",
+      "name": "Junior Engineer Crisis: How AI Code Generation is Reshaping Engineering Teams"
+    },    {
+      "@type": "ListItem",
+      "position": 5,
+      "url": "https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html",
+      "name": "Python Gotcha: Reusing Generators Returns Nothing"
+    },    {
+      "@type": "ListItem",
+      "position": 6,
+      "url": "https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html",
+      "name": "Python Gotcha: Logging an uncaught exception"
+    },    {
+      "@type": "ListItem",
+      "position": 7,
+      "url": "https://andrewwegner.com/gitlab_18_git_data_dirs_resolution.html",
+      "name": "How to fix GitLab 18 error regarding git_data_dirs"
+    },    {
+      "@type": "ListItem",
+      "position": 8,
+      "url": "https://andrewwegner.com/python-gotcha-identity-vs-equality.html",
+      "name": "Python Gotcha: Identity vs Equality - When &#39;is&#39; Fails Unexpectedly"
+    },    {
+      "@type": "ListItem",
+      "position": 9,
+      "url": "https://andrewwegner.com/leading-distributed-teams-lessons.html",
+      "name": "Leading Distributed Teams: Lessons from Managing Global Engineering Teams"
+    },    {
+      "@type": "ListItem",
+      "position": 10,
+      "url": "https://andrewwegner.com/tech-debt-management-strategic-approach.html",
+      "name": "Technical Debt Management: A Strategic Approach"
+    },    {
+      "@type": "ListItem",
+      "position": 11,
+      "url": "https://andrewwegner.com/scaling-teams-without-losing-culture.html",
+      "name": "Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture"
+    },    {
+      "@type": "ListItem",
+      "position": 12,
+      "url": "https://andrewwegner.com/first-laser-cutter-experiences.html",
+      "name": "My first experiences with a laser cutter"
+    },    {
+      "@type": "ListItem",
+      "position": 13,
+      "url": "https://andrewwegner.com/ms-authenticator-without-personal-account.html",
+      "name": "Moving MS Authenticator to a new phone without a personal account"
+    },    {
+      "@type": "ListItem",
+      "position": 14,
+      "url": "https://andrewwegner.com/format-efi-usb-windows.html",
+      "name": "Format USB drive with EFI partition in Windows"
+    },    {
+      "@type": "ListItem",
+      "position": 15,
+      "url": "https://andrewwegner.com/control-power-wled-relay.html",
+      "name": "Controlling power to LED lights with WLED Controller and a Relay switch"
+    },    {
+      "@type": "ListItem",
+      "position": 16,
+      "url": "https://andrewwegner.com/update-wled-ericsity-controller-0141.html",
+      "name": "Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1"
+    },    {
+      "@type": "ListItem",
+      "position": 17,
+      "url": "https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html",
+      "name": "Python Gotcha: strip, lstrip, rstrip can remove more than expected"
+    },    {
+      "@type": "ListItem",
+      "position": 18,
+      "url": "https://andrewwegner.com/install-mobsf-on-windows-docker.html",
+      "name": "Installing the Mobile Security Framework (MobSF) on Windows using Docker"
+    },    {
+      "@type": "ListItem",
+      "position": 19,
+      "url": "https://andrewwegner.com/data-analysis-with-polars-review.html",
+      "name": "Review of Data Analysis with Polars Udemy course"
+    },    {
+      "@type": "ListItem",
+      "position": 20,
+      "url": "https://andrewwegner.com/learn-analytics-with-polars-review.html",
+      "name": "Review of Learn Data Analytics with Polars (Python) Course"
+    },    {
+      "@type": "ListItem",
+      "position": 21,
+      "url": "https://andrewwegner.com/github-actions-cicd-pipelines-review.html",
+      "name": "Review of Learn Github Actions for CI/CD DevOps Pipelines Course"
+    },    {
+      "@type": "ListItem",
+      "position": 22,
+      "url": "https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html",
+      "name": "Python Gotcha: Modifying a list while iterating"
+    },    {
+      "@type": "ListItem",
+      "position": 23,
+      "url": "https://andrewwegner.com/python-gotcha-list-copy.html",
+      "name": "Python Gotcha: List Copy Problems"
+    },    {
+      "@type": "ListItem",
+      "position": 24,
+      "url": "https://andrewwegner.com/decade-fighting-spam-charcoal.html",
+      "name": "A Decade of Fighting Spam"
+    },    {
+      "@type": "ListItem",
+      "position": 25,
+      "url": "https://andrewwegner.com/python-gotcha-timezone-naive-functions.html",
+      "name": "Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()"
+    },    {
+      "@type": "ListItem",
+      "position": 26,
+      "url": "https://andrewwegner.com/ruby-gotcha-operator-precedence.html",
+      "name": "Ruby Gotcha: Operator Precedence"
+    },    {
+      "@type": "ListItem",
+      "position": 27,
+      "url": "https://andrewwegner.com/python-gotcha-comparisons.html",
+      "name": "Python Gotcha: Comparisons"
+    },    {
+      "@type": "ListItem",
+      "position": 28,
+      "url": "https://andrewwegner.com/python-gotcha-join-vs-concat.html",
+      "name": "Python Gotcha: Join vs Concat"
+    },    {
+      "@type": "ListItem",
+      "position": 29,
+      "url": "https://andrewwegner.com/python-gotcha-optional-default-arguments.html",
+      "name": "Python Gotcha: Mutable Default Optional Arguments"
+    },    {
+      "@type": "ListItem",
+      "position": 30,
+      "url": "https://andrewwegner.com/obsidian-gitlab-setup.html",
+      "name": "Syncing Obsidian Notes across devices using Git and GitLab"
+    },    {
+      "@type": "ListItem",
+      "position": 31,
+      "url": "https://andrewwegner.com/disable-grafana-in-gitlab-16.html",
+      "name": "How to disable Grafana in Gitlab 16.3 Omnibus"
+    },    {
+      "@type": "ListItem",
+      "position": 32,
+      "url": "https://andrewwegner.com/management-failure-unlimited-pto.html",
+      "name": "Failure of Management - Unlimited PTO"
+    },    {
+      "@type": "ListItem",
+      "position": 33,
+      "url": "https://andrewwegner.com/stackexchange-moderator-ends.html",
+      "name": "Stack Exchange Strike - The strike is over"
+    },    {
+      "@type": "ListItem",
+      "position": 34,
+      "url": "https://andrewwegner.com/stackexchange-moderator-strike-overflowai-reaction.html",
+      "name": "Stack Exchange Strike - Community and AI Talk Reaction"
+    },    {
+      "@type": "ListItem",
+      "position": 35,
+      "url": "https://andrewwegner.com/ideal-engineering-interviews.html",
+      "name": "What should a software engineering interview look like?"
+    },    {
+      "@type": "ListItem",
+      "position": 36,
+      "url": "https://andrewwegner.com/stackexchange-moderator-strike-what-are-they-doing.html",
+      "name": "Stack Exchange Strike - Now AI is bad? Does Stack Exchange know what it is doing?"
+    },    {
+      "@type": "ListItem",
+      "position": 37,
+      "url": "https://andrewwegner.com/stackexchange-moderator-strike-regaining-trust.html",
+      "name": "Stack Exchange Strike - How does the company regain my trust?"
+    },    {
+      "@type": "ListItem",
+      "position": 38,
+      "url": "https://andrewwegner.com/stackexchange-moderator-strike-personal-frustrations.html",
+      "name": "Stack Exchange Strike - Personal Frustrations"
+    },    {
+      "@type": "ListItem",
+      "position": 39,
+      "url": "https://andrewwegner.com/stackexchange-moderator-strike-does-stackexchange-care.html",
+      "name": "Stack Exchange Strike - Does Stack Exchange Care?"
+    },    {
+      "@type": "ListItem",
+      "position": 40,
+      "url": "https://andrewwegner.com/stackexchange-moderator-strike-update.html",
+      "name": "Stack Exchange Strike Update 2"
+    },    {
+      "@type": "ListItem",
+      "position": 41,
+      "url": "https://andrewwegner.com/stackexchange-moderator-strike-week-one.html",
+      "name": "Stack Exchange Strike - Week One"
+    },    {
+      "@type": "ListItem",
+      "position": 42,
+      "url": "https://andrewwegner.com/stackexchange-moderator-strike.html",
+      "name": "Joining the Stack Exchange Moderator Strike"
+    },    {
+      "@type": "ListItem",
+      "position": 43,
+      "url": "https://andrewwegner.com/remote-work-thoughts-about-offices.html",
+      "name": "My thoughts on what remote work will look like in the coming decade"
+    },    {
+      "@type": "ListItem",
+      "position": 44,
+      "url": "https://andrewwegner.com/launch-viva-printworks.html",
+      "name": "The Launch of Viva Printworks"
+    },    {
+      "@type": "ListItem",
+      "position": 45,
+      "url": "https://andrewwegner.com/generative-motion-graphics-review.html",
+      "name": "Review of Unreal Engine 5 Generative Motion Graphics VFX Course"
+    },    {
+      "@type": "ListItem",
+      "position": 46,
+      "url": "https://andrewwegner.com/make-unreal5-2d-platformer-review.html",
+      "name": "Review of Learn How To Make A 2D Platformer In Unreal Engine 5 Course"
+    },    {
+      "@type": "ListItem",
+      "position": 47,
+      "url": "https://andrewwegner.com/davinci-resolve-beginner-advanced-review.html",
+      "name": "Review of DaVinci Resolve 2022: Beginner to Advanced in DaVinci 18 Course"
+    },    {
+      "@type": "ListItem",
+      "position": 48,
+      "url": "https://andrewwegner.com/find-broken-links-with-github-actions.html",
+      "name": "Automatically checking for broken links using Github Actions"
+    },    {
+      "@type": "ListItem",
+      "position": 49,
+      "url": "https://andrewwegner.com/chatgpt-beats-more-interview-assessments.html",
+      "name": "CoderByte assessments fall to ChatGPT"
+    },    {
+      "@type": "ListItem",
+      "position": 50,
+      "url": "https://andrewwegner.com/gitlab-teamops-certification.html",
+      "name": "Review of GitLab&#39;s &#39;TeamOps Certification&#39; course"
+    },    {
+      "@type": "ListItem",
+      "position": 51,
+      "url": "https://andrewwegner.com/update-php-and-nextcloud.html",
+      "name": "Updating PHP and NextCloud"
+    },    {
+      "@type": "ListItem",
+      "position": 52,
+      "url": "https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html",
+      "name": "ChatGPT easily solves HackerRank questions"
+    },    {
+      "@type": "ListItem",
+      "position": 53,
+      "url": "https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html",
+      "name": "Taking Codility&#39;s sample interview exam using ChatGPT"
+    },    {
+      "@type": "ListItem",
+      "position": 54,
+      "url": "https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html",
+      "name": "Running CodeSignal questions through ChatGPT"
+    },    {
+      "@type": "ListItem",
+      "position": 55,
+      "url": "https://andrewwegner.com/breaking-the-interview-with-chatgpt.html",
+      "name": "Breaking TestGorilla interview questions with ChatGPT"
+    },    {
+      "@type": "ListItem",
+      "position": 56,
+      "url": "https://andrewwegner.com/chatgpt-interact-with-external-api.html",
+      "name": "Using ChatGPT to interact with an API"
+    },    {
+      "@type": "ListItem",
+      "position": 57,
+      "url": "https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html",
+      "name": "ChatGPT is here - Use that to stop asking LeetCode questions during interviews"
+    },    {
+      "@type": "ListItem",
+      "position": 58,
+      "url": "https://andrewwegner.com/rise-garden-two-year-review.html",
+      "name": "Rise Garden Two Year Follow Up"
+    },    {
+      "@type": "ListItem",
+      "position": 59,
+      "url": "https://andrewwegner.com/stackoverflow-bans-chatgpt.html",
+      "name": "Stack Overflow bans ChatGPT temporarily"
+    },    {
+      "@type": "ListItem",
+      "position": 60,
+      "url": "https://andrewwegner.com/relaunch-personal-site.html",
+      "name": "Updating the design of the site"
+    },    {
+      "@type": "ListItem",
+      "position": 61,
+      "url": "https://andrewwegner.com/job-search-rejections.html",
+      "name": "Talking about rejection in job searches"
+    },    {
+      "@type": "ListItem",
+      "position": 62,
+      "url": "https://andrewwegner.com/ue5-beginners-building-environment-review.html",
+      "name": "Review of Unreal Engine 5 Beginners Guide to Building an Environment"
+    },    {
+      "@type": "ListItem",
+      "position": 63,
+      "url": "https://andrewwegner.com/ue5-complete-beginners-course.html",
+      "name": "Review of Unreal Engine 5: The Complete Beginner&#39;s Course"
+    },    {
+      "@type": "ListItem",
+      "position": 64,
+      "url": "https://andrewwegner.com/ue5-realistic-environment-design-beginner.html",
+      "name": "Review of Unreal Engine 5 - Realistic Environment Design for Beginners course"
+    },    {
+      "@type": "ListItem",
+      "position": 65,
+      "url": "https://andrewwegner.com/upload-resume-reenter-resume.html",
+      "name": "Upload your resume, then re-enter it to apply for this job"
+    },    {
+      "@type": "ListItem",
+      "position": 66,
+      "url": "https://andrewwegner.com/what-job-source-uses-which-ats.html",
+      "name": "What Job Source is using which ATS?"
+    },    {
+      "@type": "ListItem",
+      "position": 67,
+      "url": "https://andrewwegner.com/golang-complete-developer-guide-review.html",
+      "name": "Review of Go: The Complete Developer&#39;s Guide (Golang) course"
+    },    {
+      "@type": "ListItem",
+      "position": 68,
+      "url": "https://andrewwegner.com/looking-for-new-role.html",
+      "name": "I am looking for an engineering leadership role"
+    },    {
+      "@type": "ListItem",
+      "position": 69,
+      "url": "https://andrewwegner.com/top-soft-skills-senior-developers-need.html",
+      "name": "10 Soft Skills to Look For in Senior Software Developers"
+    },    {
+      "@type": "ListItem",
+      "position": 70,
+      "url": "https://andrewwegner.com/time-gas-saved-with-remote-work.html",
+      "name": "Time and Gas saved by switching to remote work"
+    },    {
+      "@type": "ListItem",
+      "position": 71,
+      "url": "https://andrewwegner.com/woven-client-to-woven-employee.html",
+      "name": "The Other Side of the Mirror: How I Went from Woven Client to Woven Employee"
+    },    {
+      "@type": "ListItem",
+      "position": 72,
+      "url": "https://andrewwegner.com/run-sanic-on-heroku.html",
+      "name": "Run Sanic on Heroku"
+    },    {
+      "@type": "ListItem",
+      "position": 73,
+      "url": "https://andrewwegner.com/gitlab-manage-remote-team.html",
+      "name": "Review of GitLab&#39;s &#39;How to Manage a Remote Team&#39; Coursera course"
+    },    {
+      "@type": "ListItem",
+      "position": 74,
+      "url": "https://andrewwegner.com/rise-garden-final-review.html",
+      "name": "Rise Gardens Review"
+    },    {
+      "@type": "ListItem",
+      "position": 75,
+      "url": "https://andrewwegner.com/rise-garden-suggestions-software.html",
+      "name": "Rise Gardens App/Subscription Improvement suggestions"
+    },    {
+      "@type": "ListItem",
+      "position": 76,
+      "url": "https://andrewwegner.com/rise-garden-suggestions-physical.html",
+      "name": "Rise Gardens physical improvements suggestions"
+    },    {
+      "@type": "ListItem",
+      "position": 77,
+      "url": "https://andrewwegner.com/rise-garden-planting.html",
+      "name": "Planting the first crop in the Rise Garden"
+    },    {
+      "@type": "ListItem",
+      "position": 78,
+      "url": "https://andrewwegner.com/rise-garden-assembly.html",
+      "name": "Assembling the Rise Garden"
+    },    {
+      "@type": "ListItem",
+      "position": 79,
+      "url": "https://andrewwegner.com/nursery-unboxing.html",
+      "name": "Unboxing garden nurseries"
+    },    {
+      "@type": "ListItem",
+      "position": 80,
+      "url": "https://andrewwegner.com/rise-gardens-unboxing.html",
+      "name": "Unboxing and reviewing the new indoor Rise Gardens hydroponic garden"
+    },    {
+      "@type": "ListItem",
+      "position": 81,
+      "url": "https://andrewwegner.com/aws-certified-developer-review.html",
+      "name": "Review of Ultimate AWS Certified Developer Associate 2019 course"
+    },    {
+      "@type": "ListItem",
+      "position": 82,
+      "url": "https://andrewwegner.com/setting-up-gitlab-runners.html",
+      "name": "Setting up GitLab runners"
+    },    {
+      "@type": "ListItem",
+      "position": 83,
+      "url": "https://andrewwegner.com/invoiceninja-ubuntu-1804.html",
+      "name": "Installing InvoiceNinja on Ubuntu 18.04"
+    },    {
+      "@type": "ListItem",
+      "position": 84,
+      "url": "https://andrewwegner.com/updating-php-ubuntu-1804.html",
+      "name": "Updating PHP from 7.1 to 7.3 on Ubuntu 18.04"
+    },    {
+      "@type": "ListItem",
+      "position": 85,
+      "url": "https://andrewwegner.com/travis-ci-tutorial-review.html",
+      "name": "Review of Travis CI Tutorial Udemy course"
+    },    {
+      "@type": "ListItem",
+      "position": 86,
+      "url": "https://andrewwegner.com/software-testing-masterclass.html",
+      "name": "Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course"
+    },    {
+      "@type": "ListItem",
+      "position": 87,
+      "url": "https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html",
+      "name": "Stack Overflow still has issues and it&#39;s getting worse"
+    },    {
+      "@type": "ListItem",
+      "position": 88,
+      "url": "https://andrewwegner.com/ubiquiti-home-network.html",
+      "name": "Upgrading the home network to use Ubiquiti products"
+    },    {
+      "@type": "ListItem",
+      "position": 89,
+      "url": "https://andrewwegner.com/xps-tb16-bios-fix.html",
+      "name": "Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update"
+    },    {
+      "@type": "ListItem",
+      "position": 90,
+      "url": "https://andrewwegner.com/sanic-webframework-review.html",
+      "name": "Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course"
+    },    {
+      "@type": "ListItem",
+      "position": 91,
+      "url": "https://andrewwegner.com/autobuild-pelican-blog.html",
+      "name": "Autobuild and Deploy this Pelican Blog"
+    },    {
+      "@type": "ListItem",
+      "position": 92,
+      "url": "https://andrewwegner.com/docker-swarm-beginner-advanced.html",
+      "name": "Review of Udemy&#39;s Docker Swarm: Beginner + Advanced"
+    },    {
+      "@type": "ListItem",
+      "position": 93,
+      "url": "https://andrewwegner.com/docker-essentials-course.html",
+      "name": "Review of Udemy&#39;s Docker and Containers: The Essentials"
+    },    {
+      "@type": "ListItem",
+      "position": 94,
+      "url": "https://andrewwegner.com/git-45-minute-crash-course.html",
+      "name": "Review of Udemy&#39;s renamed The 2018 Git Complete: 45 minute crash course using Angular."
+    },    {
+      "@type": "ListItem",
+      "position": 95,
+      "url": "https://andrewwegner.com/ubuntu-backup-rsync.html",
+      "name": "Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync"
+    },    {
+      "@type": "ListItem",
+      "position": 96,
+      "url": "https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html",
+      "name": "Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch"
+    },    {
+      "@type": "ListItem",
+      "position": 97,
+      "url": "https://andrewwegner.com/slack-app-google-cloud.html",
+      "name": "Deploying a Flask Slack app on Google Cloud Platform"
+    },    {
+      "@type": "ListItem",
+      "position": 98,
+      "url": "https://andrewwegner.com/setup-lets-encrypt.html",
+      "name": "Set up Dynamic CloudFlare IP with Let&#39;s Encrypt"
+    },    {
+      "@type": "ListItem",
+      "position": 99,
+      "url": "https://andrewwegner.com/installing-gitlab.html",
+      "name": "Setting up GitLab on the new server"
+    },    {
+      "@type": "ListItem",
+      "position": 100,
+      "url": "https://andrewwegner.com/travisci-insecure-environment-variables.html",
+      "name": "Travis CI doesn&#39;t keep your environment variable secure"
+    },    {
+      "@type": "ListItem",
+      "position": 101,
+      "url": "https://andrewwegner.com/installing-nextcloud.html",
+      "name": "Installing NextCloud"
+    },    {
+      "@type": "ListItem",
+      "position": 102,
+      "url": "https://andrewwegner.com/django-course-basic-to-advance.html",
+      "name": "Review of Udemy&#39;s Django Course from Basics to Advance"
+    },    {
+      "@type": "ListItem",
+      "position": 103,
+      "url": "https://andrewwegner.com/zfs-pool-on-ubuntu.html",
+      "name": "Setting up a ZFS pool on Ubuntu 16.04"
+    },    {
+      "@type": "ListItem",
+      "position": 104,
+      "url": "https://andrewwegner.com/new-house-server.html",
+      "name": "...and then there was a backup server"
+    },    {
+      "@type": "ListItem",
+      "position": 105,
+      "url": "https://andrewwegner.com/backup-your-data.html",
+      "name": "Well, there goes my data..."
+    },    {
+      "@type": "ListItem",
+      "position": 106,
+      "url": "https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html",
+      "name": "How I found an awesome remote only job"
+    },    {
+      "@type": "ListItem",
+      "position": 107,
+      "url": "https://andrewwegner.com/aws-serverless-apis-apps-review.html",
+      "name": "Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course"
+    },    {
+      "@type": "ListItem",
+      "position": 108,
+      "url": "https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html",
+      "name": "Collecting Diamonds on Stack Exchange"
+    },    {
+      "@type": "ListItem",
+      "position": 109,
+      "url": "https://andrewwegner.com/a-decade-at-caterpillar.html",
+      "name": "A reflection on my decade at Caterpillar"
+    },    {
+      "@type": "ListItem",
+      "position": 110,
+      "url": "https://andrewwegner.com/django-fullstack-bootcamp-course-review.html",
+      "name": "Review of Udemy&#39;s Python and Django Full Stack Web Developer Bootcamp course"
+    },    {
+      "@type": "ListItem",
+      "position": 111,
+      "url": "https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html",
+      "name": "Stack Overflow&#39;s Problem - Feedback from an experienced user"
+    },    {
+      "@type": "ListItem",
+      "position": 112,
+      "url": "https://andrewwegner.com/deep-learning-prereq-linear-logistic-regression.html",
+      "name": "Review of Udemy&#39;s Deep Learning Prerequisites - Linear and Logistic Regression courses"
+    },    {
+      "@type": "ListItem",
+      "position": 113,
+      "url": "https://andrewwegner.com/choosing-orm-library.html",
+      "name": "Choosing an ORM library for a new project"
+    },    {
+      "@type": "ListItem",
+      "position": 114,
+      "url": "https://andrewwegner.com/deep-learning-prereq-numpy.html",
+      "name": "Review of Udemy&#39;s &#39;Deep Learning Prerequisites: The Numpy Stack in Python&#39; course"
+    },    {
+      "@type": "ListItem",
+      "position": 115,
+      "url": "https://andrewwegner.com/become-a-product-manager-review.html",
+      "name": "Review of Udemy&#39;s &#39;Become a Product Manager | Learn the Skills &amp; Get the job&#39; course"
+    },    {
+      "@type": "ListItem",
+      "position": 116,
+      "url": "https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html",
+      "name": "Can a machine be taught to flag spam automatically"
+    },    {
+      "@type": "ListItem",
+      "position": 117,
+      "url": "https://andrewwegner.com/loony-corn-machine-learning-review.html",
+      "name": "Review of Udemy&#39;s &#39;From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase&#39; course"
+    },    {
+      "@type": "ListItem",
+      "position": 118,
+      "url": "https://andrewwegner.com/data-analysis-with-pandas-review.html",
+      "name": "Review of Udemy&#39;s &#39;Data Analysis with Pandas&#39; course"
+    },    {
+      "@type": "ListItem",
+      "position": 119,
+      "url": "https://andrewwegner.com/third-times-the-charm.html",
+      "name": "Third time&#39;s the charm?"
+    },    {
+      "@type": "ListItem",
+      "position": 120,
+      "url": "https://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html",
+      "name": "My experiences releasing a package to PyPI"
+    },    {
+      "@type": "ListItem",
+      "position": 121,
+      "url": "https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html",
+      "name": "How I built a Flask application that integrates with Travis CI and OpenShift"
+    },    {
+      "@type": "ListItem",
+      "position": 122,
+      "url": "https://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html",
+      "name": "I&#39;m running for moderator on Stack Overflow again"
+    },    {
+      "@type": "ListItem",
+      "position": 123,
+      "url": "https://andrewwegner.com/how-not-to-recruit-me.html",
+      "name": "How not to recruit me"
+    },    {
+      "@type": "ListItem",
+      "position": 124,
+      "url": "https://andrewwegner.com/link-analysis---technical-explanation.html",
+      "name": "Link Analysis - Technical Explanation"
+    },    {
+      "@type": "ListItem",
+      "position": 125,
+      "url": "https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html",
+      "name": "A proposal to fix broken links on Stack Overflow"
+    },    {
+      "@type": "ListItem",
+      "position": 126,
+      "url": "https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html",
+      "name": "Analysis of links posted to Stack Overflow"
+    },    {
+      "@type": "ListItem",
+      "position": 127,
+      "url": "https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html",
+      "name": "How I set up this site with GitHub Pages and CloudFlare"
+    },    {
+      "@type": "ListItem",
+      "position": 128,
+      "url": "https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html",
+      "name": "Why I moved from Wordpress to Pelican"
+    },    {
+      "@type": "ListItem",
+      "position": 129,
+      "url": "https://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html",
+      "name": "I&#39;m running to be a moderator of Stack Overflow"
+    },    {
+      "@type": "ListItem",
+      "position": 130,
+      "url": "https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html",
+      "name": "Zephyr - The bot that watches for low quality vote requests"
+    },    {
+      "@type": "ListItem",
+      "position": 131,
+      "url": "https://andrewwegner.com/thanks-for-all-the-fish.html",
+      "name": "Thanks for all the fish"
+    },    {
+      "@type": "ListItem",
+      "position": 132,
+      "url": "https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html",
+      "name": "Can a machine be taught to flag comments automatically"
+    },    {
+      "@type": "ListItem",
+      "position": 133,
+      "url": "https://andrewwegner.com/moderation-postion-on-moderators.html",
+      "name": "Moderation postion on Moderators"
+    },    {
+      "@type": "ListItem",
+      "position": 134,
+      "url": "https://andrewwegner.com/how-to-appeal-a-ban-effectively.html",
+      "name": "How to appeal a ban effectively"
+    },    {
+      "@type": "ListItem",
+      "position": 135,
+      "url": "https://andrewwegner.com/how-not-to-appeal-a-ban.html",
+      "name": "How NOT to appeal a ban"
+    },    {
+      "@type": "ListItem",
+      "position": 136,
+      "url": "https://andrewwegner.com/mann-vs-vipers-beaten.html",
+      "name": "Mann Vs Vipers Beaten!"
+    },    {
+      "@type": "ListItem",
+      "position": 137,
+      "url": "https://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html",
+      "name": "I had a secret addiction to the TF2 idling economy but I&#39;m better now (honest)"
+    },    {
+      "@type": "ListItem",
+      "position": 138,
+      "url": "https://andrewwegner.com/give-some-refined-win-some-prizes.html",
+      "name": "Give some refined, Win some prizes"
+    },    {
+      "@type": "ListItem",
+      "position": 139,
+      "url": "https://andrewwegner.com/homing-projectiles-are-awesome!.html",
+      "name": "Homing projectiles are awesome!"
+    },    {
+      "@type": "ListItem",
+      "position": 140,
+      "url": "https://andrewwegner.com/monitoring-language-on-the-game-servers.html",
+      "name": "Monitoring Language on the game servers"
+    },    {
+      "@type": "ListItem",
+      "position": 141,
+      "url": "https://andrewwegner.com/connect-python-to-osi-soft-pi.html",
+      "name": "Connect Python to OSI Soft PI"
+    },    {
+      "@type": "ListItem",
+      "position": 142,
+      "url": "https://andrewwegner.com/a-new-more-fair-rtd.html",
+      "name": "A new, more fair, RTD"
+    },    {
+      "@type": "ListItem",
+      "position": 143,
+      "url": "https://andrewwegner.com/a-special-kind-of-troll.html",
+      "name": "A special kind of troll"
+    },    {
+      "@type": "ListItem",
+      "position": 144,
+      "url": "https://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html",
+      "name": "Multiple IP addresses on the same physical network card"
+    },    {
+      "@type": "ListItem",
+      "position": 145,
+      "url": "https://andrewwegner.com/fixing-myisam-crashed-tables.html",
+      "name": "Fixing MYISAM Crashed Tables"
+    },    {
+      "@type": "ListItem",
+      "position": 146,
+      "url": "https://andrewwegner.com/automated-template-for-membership-applications.html",
+      "name": "Automated template for membership applications"
+    }  ]
+}</script></head><body data-page-type="archives" data-page-slug=""><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><section class="archives"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><span>Archives</span></nav><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/archives.html",
-      "name": "Archives"
-    }
-  }
-  ]
-}
-</script>        <h1 id="archives">Archives</h1>
-    </header>
-    <div class="blog-archives">
-        <h2 id="2026"><a href="#2026">2026</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/real-python-claude-code-live-course.html">Review of Claude Code for Python Developers from Real Python  </a>
-                    <time datetime="2026-04-06T10:30:00-05:00">April 06, 2026</time>
-                    <meta content="Review of Claude Code for Python Developers from Real Python" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html">I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them.  </a>
-                    <time datetime="2026-03-25T15:00:00-05:00">March 25, 2026</time>
-                    <meta content="I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them." />
-                </article>
-        <h2 id="2025"><a href="#2025">2025</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/why-remote-work-is-good-for-your-team.html">The Remote Engineering Leadership Playbook: Why Distance Doesn't Diminish Performance  </a>
-                    <time datetime="2025-08-22T09:00:00-05:00">August 22, 2025</time>
-                    <meta content="The Remote Engineering Leadership Playbook: Why Distance Doesn&#39;t Diminish Performance" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/junior-engineer-crisis-ai-code-generation.html">Junior Engineer Crisis: How AI Code Generation is Reshaping Engineering Teams  </a>
-                    <time datetime="2025-08-18T09:00:00-05:00">August 18, 2025</time>
-                    <meta content="Junior Engineer Crisis: How AI Code Generation is Reshaping Engineering Teams" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html">Python Gotcha: Reusing Generators Returns Nothing  </a>
-                    <time datetime="2025-07-22T09:00:00-05:00">July 22, 2025</time>
-                    <meta content="Python Gotcha: Reusing Generators Returns Nothing" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html">Python Gotcha: Logging an uncaught exception  </a>
-                    <time datetime="2025-07-14T23:00:00-05:00">July 14, 2025</time>
-                    <meta content="Python Gotcha: Logging an uncaught exception" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/gitlab_18_git_data_dirs_resolution.html">How to fix GitLab 18 error regarding git_data_dirs  </a>
-                    <time datetime="2025-07-06T08:00:00-05:00">July 06, 2025</time>
-                    <meta content="How to fix GitLab 18 error regarding git_data_dirs" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/python-gotcha-identity-vs-equality.html">Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly  </a>
-                    <time datetime="2025-06-17T08:00:00-05:00">June 17, 2025</time>
-                    <meta content="Python Gotcha: Identity vs Equality - When &#39;is&#39; Fails Unexpectedly" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/leading-distributed-teams-lessons.html">Leading Distributed Teams: Lessons from Managing Global Engineering Teams  </a>
-                    <time datetime="2025-04-15T01:00:00-05:00">April 15, 2025</time>
-                    <meta content="Leading Distributed Teams: Lessons from Managing Global Engineering Teams" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/tech-debt-management-strategic-approach.html">Technical Debt Management: A Strategic Approach  </a>
-                    <time datetime="2025-04-08T09:00:00-05:00">April 08, 2025</time>
-                    <meta content="Technical Debt Management: A Strategic Approach" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/scaling-teams-without-losing-culture.html">Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture  </a>
-                    <time datetime="2025-04-01T10:00:00-05:00">April 01, 2025</time>
-                    <meta content="Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/first-laser-cutter-experiences.html">My first experiences with a laser cutter  </a>
-                    <time datetime="2025-01-02T10:15:00-06:00">January 02, 2025</time>
-                    <meta content="My first experiences with a laser cutter" />
-                </article>
-        <h2 id="2024"><a href="#2024">2024</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/ms-authenticator-without-personal-account.html">Moving MS Authenticator to a new phone without a personal account  </a>
-                    <time datetime="2024-11-27T12:15:00-06:00">November 27, 2024</time>
-                    <meta content="Moving MS Authenticator to a new phone without a personal account" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/format-efi-usb-windows.html">Format USB drive with EFI partition in Windows  </a>
-                    <time datetime="2024-11-13T13:00:00-06:00">November 13, 2024</time>
-                    <meta content="Format USB drive with EFI partition in Windows" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/control-power-wled-relay.html">Controlling power to LED lights with WLED Controller and a Relay switch  </a>
-                    <time datetime="2024-08-16T12:00:00-05:00">August 16, 2024</time>
-                    <meta content="Controlling power to LED lights with WLED Controller and a Relay switch" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html">Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1  </a>
-                    <time datetime="2024-06-20T15:45:00-05:00">June 20, 2024</time>
-                    <meta content="Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html">Python Gotcha: strip, lstrip, rstrip can remove more than expected  </a>
-                    <time datetime="2024-03-29T09:00:00-05:00">March 29, 2024</time>
-                    <meta content="Python Gotcha: strip, lstrip, rstrip can remove more than expected" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/install-mobsf-on-windows-docker.html">Installing the Mobile Security Framework (MobSF) on Windows using Docker  </a>
-                    <time datetime="2024-02-19T15:00:00-06:00">February 19, 2024</time>
-                    <meta content="Installing the Mobile Security Framework (MobSF) on Windows using Docker" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/data-analysis-with-polars-review.html">Review of Data Analysis with Polars Udemy course  </a>
-                    <time datetime="2024-01-29T11:30:00-06:00">January 29, 2024</time>
-                    <meta content="Review of Data Analysis with Polars Udemy course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/learn-analytics-with-polars-review.html">Review of Learn Data Analytics with Polars (Python) Course  </a>
-                    <time datetime="2024-01-25T08:30:00-06:00">January 25, 2024</time>
-                    <meta content="Review of Learn Data Analytics with Polars (Python) Course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/github-actions-cicd-pipelines-review.html">Review of Learn Github Actions for CI/CD DevOps Pipelines Course  </a>
-                    <time datetime="2024-01-22T10:30:00-06:00">January 22, 2024</time>
-                    <meta content="Review of Learn Github Actions for CI/CD DevOps Pipelines Course" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html">Python Gotcha: Modifying a list while iterating  </a>
-                    <time datetime="2024-01-03T15:00:00-06:00">January 03, 2024</time>
-                    <meta content="Python Gotcha: Modifying a list while iterating" />
-                </article>
-        <h2 id="2023"><a href="#2023">2023</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/python-gotcha-list-copy.html">Python Gotcha: List Copy Problems  </a>
-                    <time datetime="2023-12-20T15:30:00-06:00">December 20, 2023</time>
-                    <meta content="Python Gotcha: List Copy Problems" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/decade-fighting-spam-charcoal.html">A Decade of Fighting Spam  </a>
-                    <time datetime="2023-11-27T15:45:00-06:00">November 27, 2023</time>
-                    <meta content="A Decade of Fighting Spam" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/python-gotcha-timezone-naive-functions.html">Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()  </a>
-                    <time datetime="2023-11-23T10:15:00-06:00">November 23, 2023</time>
-                    <meta content="Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/ruby-gotcha-operator-precedence.html">Ruby Gotcha: Operator Precedence  </a>
-                    <time datetime="2023-10-23T10:45:00-05:00">October 23, 2023</time>
-                    <meta content="Ruby Gotcha: Operator Precedence" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/python-gotcha-comparisons.html">Python Gotcha: Comparisons  </a>
-                    <time datetime="2023-10-18T10:15:00-05:00">October 18, 2023</time>
-                    <meta content="Python Gotcha: Comparisons" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/python-gotcha-join-vs-concat.html">Python Gotcha: Join vs Concat  </a>
-                    <time datetime="2023-10-12T10:45:00-05:00">October 12, 2023</time>
-                    <meta content="Python Gotcha: Join vs Concat" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html">Python Gotcha: Mutable Default Optional Arguments  </a>
-                    <time datetime="2023-10-06T10:15:00-05:00">October 06, 2023</time>
-                    <meta content="Python Gotcha: Mutable Default Optional Arguments" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/obsidian-gitlab-setup.html">Syncing Obsidian Notes across devices using Git and GitLab  </a>
-                    <time datetime="2023-09-26T13:30:00-05:00">September 26, 2023</time>
-                    <meta content="Syncing Obsidian Notes across devices using Git and GitLab" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/disable-grafana-in-gitlab-16.html">How to disable Grafana in Gitlab 16.3 Omnibus  </a>
-                    <time datetime="2023-08-23T22:15:00-05:00">August 23, 2023</time>
-                    <meta content="How to disable Grafana in Gitlab 16.3 Omnibus" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/management-failure-unlimited-pto.html">Failure of Management - Unlimited PTO  </a>
-                    <time datetime="2023-08-14T15:00:00-05:00">August 14, 2023</time>
-                    <meta content="Failure of Management - Unlimited PTO" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stackexchange-moderator-ends.html">Stack Exchange Strike - The strike is over  </a>
-                    <time datetime="2023-08-07T12:00:00-05:00">August 07, 2023</time>
-                    <meta content="Stack Exchange Strike - The strike is over" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stackexchange-moderator-strike-overflowai-reaction.html">Stack Exchange Strike - Community and AI Talk Reaction  </a>
-                    <time datetime="2023-07-27T12:00:00-05:00">July 27, 2023</time>
-                    <meta content="Stack Exchange Strike - Community and AI Talk Reaction" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/ideal-engineering-interviews.html">What should a software engineering interview look like?  </a>
-                    <time datetime="2023-07-06T15:00:00-05:00">July 06, 2023</time>
-                    <meta content="What should a software engineering interview look like?" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stackexchange-moderator-strike-what-are-they-doing.html">Stack Exchange Strike - Now AI is bad? Does Stack Exchange know what it is doing?  </a>
-                    <time datetime="2023-07-04T23:30:00-05:00">July 04, 2023</time>
-                    <meta content="Stack Exchange Strike - Now AI is bad? Does Stack Exchange know what it is doing?" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stackexchange-moderator-strike-regaining-trust.html">Stack Exchange Strike - How does the company regain my trust?  </a>
-                    <time datetime="2023-06-23T23:00:00-05:00">June 23, 2023</time>
-                    <meta content="Stack Exchange Strike - How does the company regain my trust?" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stackexchange-moderator-strike-personal-frustrations.html">Stack Exchange Strike - Personal Frustrations  </a>
-                    <time datetime="2023-06-21T11:00:00-05:00">June 21, 2023</time>
-                    <meta content="Stack Exchange Strike - Personal Frustrations" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stackexchange-moderator-strike-does-stackexchange-care.html">Stack Exchange Strike - Does Stack Exchange Care?  </a>
-                    <time datetime="2023-06-19T14:00:00-05:00">June 19, 2023</time>
-                    <meta content="Stack Exchange Strike - Does Stack Exchange Care?" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stackexchange-moderator-strike-update.html">Stack Exchange Strike Update 2  </a>
-                    <time datetime="2023-06-13T23:00:00-05:00">June 13, 2023</time>
-                    <meta content="Stack Exchange Strike Update 2" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stackexchange-moderator-strike-week-one.html">Stack Exchange Strike - Week One  </a>
-                    <time datetime="2023-06-12T09:00:00-05:00">June 12, 2023</time>
-                    <meta content="Stack Exchange Strike - Week One" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stackexchange-moderator-strike.html">Joining the Stack Exchange Moderator Strike  </a>
-                    <time datetime="2023-06-05T01:00:00-05:00">June 05, 2023</time>
-                    <meta content="Joining the Stack Exchange Moderator Strike" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/remote-work-thoughts-about-offices.html">My thoughts on what remote work will look like in the coming decade  </a>
-                    <time datetime="2023-05-23T15:30:00-05:00">May 23, 2023</time>
-                    <meta content="My thoughts on what remote work will look like in the coming decade" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/launch-viva-printworks.html">The Launch of Viva Printworks  </a>
-                    <time datetime="2023-05-21T01:30:00-05:00">May 21, 2023</time>
-                    <meta content="The Launch of Viva Printworks" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/generative-motion-graphics-review.html">Review of Unreal Engine 5 Generative Motion Graphics VFX Course  </a>
-                    <time datetime="2023-04-14T09:15:00-05:00">April 14, 2023</time>
-                    <meta content="Review of Unreal Engine 5 Generative Motion Graphics VFX Course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/make-unreal5-2d-platformer-review.html">Review of Learn How To Make A 2D Platformer In Unreal Engine 5 Course  </a>
-                    <time datetime="2023-04-11T13:15:00-05:00">April 11, 2023</time>
-                    <meta content="Review of Learn How To Make A 2D Platformer In Unreal Engine 5 Course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/davinci-resolve-beginner-advanced-review.html">Review of DaVinci Resolve 2022: Beginner to Advanced in DaVinci 18 Course  </a>
-                    <time datetime="2023-03-03T23:45:00-06:00">March 03, 2023</time>
-                    <meta content="Review of DaVinci Resolve 2022: Beginner to Advanced in DaVinci 18 Course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/find-broken-links-with-github-actions.html">Automatically checking for broken links using Github Actions  </a>
-                    <time datetime="2023-02-13T16:30:00-06:00">February 13, 2023</time>
-                    <meta content="Automatically checking for broken links using Github Actions" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/chatgpt-beats-more-interview-assessments.html">CoderByte assessments fall to ChatGPT  </a>
-                    <time datetime="2023-02-04T23:30:00-06:00">February 04, 2023</time>
-                    <meta content="CoderByte assessments fall to ChatGPT" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/gitlab-teamops-certification.html">Review of GitLab's 'TeamOps Certification' course  </a>
-                    <time datetime="2023-02-02T23:00:00-06:00">February 02, 2023</time>
-                    <meta content="Review of GitLab&#39;s &#39;TeamOps Certification&#39; course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/update-php-and-nextcloud.html">Updating PHP and NextCloud  </a>
-                    <time datetime="2023-01-30T09:30:00-06:00">January 30, 2023</time>
-                    <meta content="Updating PHP and NextCloud" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html">ChatGPT easily solves HackerRank questions  </a>
-                    <time datetime="2023-01-08T01:15:00-06:00">January 08, 2023</time>
-                    <meta content="ChatGPT easily solves HackerRank questions" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html">Taking Codility's sample interview exam using ChatGPT  </a>
-                    <time datetime="2023-01-05T01:00:00-06:00">January 05, 2023</time>
-                    <meta content="Taking Codility&#39;s sample interview exam using ChatGPT" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html">Running CodeSignal questions through ChatGPT  </a>
-                    <time datetime="2023-01-01T17:00:00-06:00">January 01, 2023</time>
-                    <meta content="Running CodeSignal questions through ChatGPT" />
-                </article>
-        <h2 id="2022"><a href="#2022">2022</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html">Breaking TestGorilla interview questions with ChatGPT  </a>
-                    <time datetime="2022-12-26T10:45:00-06:00">December 26, 2022</time>
-                    <meta content="Breaking TestGorilla interview questions with ChatGPT" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html">Using ChatGPT to interact with an API  </a>
-                    <time datetime="2022-12-20T23:45:00-06:00">December 20, 2022</time>
-                    <meta content="Using ChatGPT to interact with an API" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">ChatGPT is here - Use that to stop asking LeetCode questions during interviews  </a>
-                    <time datetime="2022-12-15T23:45:00-06:00">December 15, 2022</time>
-                    <meta content="ChatGPT is here - Use that to stop asking LeetCode questions during interviews" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/rise-garden-two-year-review.html">Rise Garden Two Year Follow Up  </a>
-                    <time datetime="2022-12-07T08:45:00-06:00">December 07, 2022</time>
-                    <meta content="Rise Garden Two Year Follow Up" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html">Stack Overflow bans ChatGPT temporarily  </a>
-                    <time datetime="2022-12-05T14:45:00-06:00">December 05, 2022</time>
-                    <meta content="Stack Overflow bans ChatGPT temporarily" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/relaunch-personal-site.html">Updating the design of the site  </a>
-                    <time datetime="2022-11-17T10:00:00-06:00">November 17, 2022</time>
-                    <meta content="Updating the design of the site" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/job-search-rejections.html">Talking about rejection in job searches  </a>
-                    <time datetime="2022-10-24T12:45:00-05:00">October 24, 2022</time>
-                    <meta content="Talking about rejection in job searches" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html">Review of Unreal Engine 5 Beginners Guide to Building an Environment  </a>
-                    <time datetime="2022-10-18T23:00:00-05:00">October 18, 2022</time>
-                    <meta content="Review of Unreal Engine 5 Beginners Guide to Building an Environment" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/ue5-complete-beginners-course.html">Review of Unreal Engine 5: The Complete Beginner's Course  </a>
-                    <time datetime="2022-10-03T10:00:00-05:00">October 03, 2022</time>
-                    <meta content="Review of Unreal Engine 5: The Complete Beginner&#39;s Course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html">Review of Unreal Engine 5 - Realistic Environment Design for Beginners course  </a>
-                    <time datetime="2022-09-20T11:45:00-05:00">September 20, 2022</time>
-                    <meta content="Review of Unreal Engine 5 - Realistic Environment Design for Beginners course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/upload-resume-reenter-resume.html">Upload your resume, then re-enter it to apply for this job  </a>
-                    <time datetime="2022-09-13T08:45:00-05:00">September 13, 2022</time>
-                    <meta content="Upload your resume, then re-enter it to apply for this job" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/what-job-source-uses-which-ats.html">What Job Source is using which ATS?  </a>
-                    <time datetime="2022-09-06T08:00:00-05:00">September 06, 2022</time>
-                    <meta content="What Job Source is using which ATS?" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/golang-complete-developer-guide-review.html">Review of Go: The Complete Developer's Guide (Golang) course  </a>
-                    <time datetime="2022-08-28T12:00:00-05:00">August 28, 2022</time>
-                    <meta content="Review of Go: The Complete Developer&#39;s Guide (Golang) course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/looking-for-new-role.html">I am looking for an engineering leadership role  </a>
-                    <time datetime="2022-08-18T08:00:00-05:00">August 18, 2022</time>
-                    <meta content="I am looking for an engineering leadership role" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/top-soft-skills-senior-developers-need.html">10 Soft Skills to Look For in Senior Software Developers  </a>
-                    <time datetime="2022-06-26T09:00:00-05:00">June 26, 2022</time>
-                    <meta content="10 Soft Skills to Look For in Senior Software Developers" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/time-gas-saved-with-remote-work.html">Time and Gas saved by switching to remote work  </a>
-                    <time datetime="2022-06-12T01:00:00-05:00">June 12, 2022</time>
-                    <meta content="Time and Gas saved by switching to remote work" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/woven-client-to-woven-employee.html">The Other Side of the Mirror: How I Went from Woven Client to Woven Employee  </a>
-                    <time datetime="2022-06-04T08:00:00-05:00">June 04, 2022</time>
-                    <meta content="The Other Side of the Mirror: How I Went from Woven Client to Woven Employee" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/run-sanic-on-heroku.html">Run Sanic on Heroku  </a>
-                    <time datetime="2022-05-19T08:00:00-05:00">May 19, 2022</time>
-                    <meta content="Run Sanic on Heroku" />
-                </article>
-        <h2 id="2020"><a href="#2020">2020</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/gitlab-manage-remote-team.html">Review of GitLab's 'How to Manage a Remote Team' Coursera course  </a>
-                    <time datetime="2020-10-26T09:30:00-05:00">October 26, 2020</time>
-                    <meta content="Review of GitLab&#39;s &#39;How to Manage a Remote Team&#39; Coursera course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/rise-garden-final-review.html">Rise Gardens Review  </a>
-                    <time datetime="2020-05-29T10:00:00-05:00">May 29, 2020</time>
-                    <meta content="Rise Gardens Review" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/rise-garden-suggestions-software.html">Rise Gardens App/Subscription Improvement suggestions  </a>
-                    <time datetime="2020-05-24T23:45:00-05:00">May 24, 2020</time>
-                    <meta content="Rise Gardens App/Subscription Improvement suggestions" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/rise-garden-suggestions-physical.html">Rise Gardens physical improvements suggestions  </a>
-                    <time datetime="2020-05-05T10:00:00-05:00">May 05, 2020</time>
-                    <meta content="Rise Gardens physical improvements suggestions" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/rise-garden-planting.html">Planting the first crop in the Rise Garden  </a>
-                    <time datetime="2020-05-01T10:00:00-05:00">May 01, 2020</time>
-                    <meta content="Planting the first crop in the Rise Garden" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/rise-garden-assembly.html">Assembling the Rise Garden  </a>
-                    <time datetime="2020-04-26T01:10:00-05:00">April 26, 2020</time>
-                    <meta content="Assembling the Rise Garden" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/nursery-unboxing.html">Unboxing garden nurseries  </a>
-                    <time datetime="2020-04-24T10:00:00-05:00">April 24, 2020</time>
-                    <meta content="Unboxing garden nurseries" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/rise-gardens-unboxing.html">Unboxing and reviewing the new indoor Rise Gardens hydroponic garden  </a>
-                    <time datetime="2020-04-22T10:00:00-05:00">April 22, 2020</time>
-                    <meta content="Unboxing and reviewing the new indoor Rise Gardens hydroponic garden" />
-                </article>
-        <h2 id="2019"><a href="#2019">2019</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/aws-certified-developer-review.html">Review of Ultimate AWS Certified Developer Associate 2019 course  </a>
-                    <time datetime="2019-12-23T10:00:00-06:00">December 23, 2019</time>
-                    <meta content="Review of Ultimate AWS Certified Developer Associate 2019 course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/setting-up-gitlab-runners.html">Setting up GitLab runners  </a>
-                    <time datetime="2019-10-22T11:00:00-05:00">October 22, 2019</time>
-                    <meta content="Setting up GitLab runners" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html">Installing InvoiceNinja on Ubuntu 18.04  </a>
-                    <time datetime="2019-07-30T13:00:00-05:00">July 30, 2019</time>
-                    <meta content="Installing InvoiceNinja on Ubuntu 18.04" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/updating-php-ubuntu-1804.html">Updating PHP from 7.1 to 7.3 on Ubuntu 18.04  </a>
-                    <time datetime="2019-07-26T10:00:00-05:00">July 26, 2019</time>
-                    <meta content="Updating PHP from 7.1 to 7.3 on Ubuntu 18.04" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/travis-ci-tutorial-review.html">Review of Travis CI Tutorial Udemy course  </a>
-                    <time datetime="2019-07-09T14:30:00-05:00">July 09, 2019</time>
-                    <meta content="Review of Travis CI Tutorial Udemy course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/software-testing-masterclass.html">Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course  </a>
-                    <time datetime="2019-05-14T15:00:00-05:00">May 14, 2019</time>
-                    <meta content="Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html">Stack Overflow still has issues and it's getting worse  </a>
-                    <time datetime="2019-03-29T10:34:00-05:00">March 29, 2019</time>
-                    <meta content="Stack Overflow still has issues and it&#39;s getting worse" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/ubiquiti-home-network.html">Upgrading the home network to use Ubiquiti products  </a>
-                    <time datetime="2019-03-13T11:30:00-05:00">March 13, 2019</time>
-                    <meta content="Upgrading the home network to use Ubiquiti products" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/xps-tb16-bios-fix.html">Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update  </a>
-                    <time datetime="2019-01-31T10:30:00-06:00">January 31, 2019</time>
-                    <meta content="Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/sanic-webframework-review.html">Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course  </a>
-                    <time datetime="2019-01-23T10:00:00-06:00">January 23, 2019</time>
-                    <meta content="Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course" />
-                </article>
-        <h2 id="2018"><a href="#2018">2018</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/autobuild-pelican-blog.html">Autobuild and Deploy this Pelican Blog  </a>
-                    <time datetime="2018-11-15T08:30:00-06:00">November 15, 2018</time>
-                    <meta content="Autobuild and Deploy this Pelican Blog" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html">Review of Udemy's Docker Swarm: Beginner + Advanced  </a>
-                    <time datetime="2018-10-31T15:00:00-05:00">October 31, 2018</time>
-                    <meta content="Review of Udemy&#39;s Docker Swarm: Beginner + Advanced" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/docker-essentials-course.html">Review of Udemy's Docker and Containers: The Essentials  </a>
-                    <time datetime="2018-10-29T09:45:00-05:00">October 29, 2018</time>
-                    <meta content="Review of Udemy&#39;s Docker and Containers: The Essentials" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/git-45-minute-crash-course.html">Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.  </a>
-                    <time datetime="2018-10-01T09:45:00-05:00">October 01, 2018</time>
-                    <meta content="Review of Udemy&#39;s renamed The 2018 Git Complete: 45 minute crash course using Angular." />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/ubuntu-backup-rsync.html">Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync  </a>
-                    <time datetime="2018-09-26T12:30:00-05:00">September 26, 2018</time>
-                    <meta content="Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html">Review of Udemy's Learn DaVinci Resolve 15 from scratch  </a>
-                    <time datetime="2018-09-21T09:45:00-05:00">September 21, 2018</time>
-                    <meta content="Review of Udemy&#39;s Learn DaVinci Resolve 15 from scratch" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/slack-app-google-cloud.html">Deploying a Flask Slack app on Google Cloud Platform  </a>
-                    <time datetime="2018-07-13T10:00:00-05:00">July 13, 2018</time>
-                    <meta content="Deploying a Flask Slack app on Google Cloud Platform" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/setup-lets-encrypt.html">Set up Dynamic CloudFlare IP with Let's Encrypt  </a>
-                    <time datetime="2018-04-25T09:30:00-05:00">April 25, 2018</time>
-                    <meta content="Set up Dynamic CloudFlare IP with Let&#39;s Encrypt" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/installing-gitlab.html">Setting up GitLab on the new server  </a>
-                    <time datetime="2018-04-13T08:30:00-05:00">April 13, 2018</time>
-                    <meta content="Setting up GitLab on the new server" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/travisci-insecure-environment-variables.html">Travis CI doesn't keep your environment variable secure  </a>
-                    <time datetime="2018-04-02T12:30:00-05:00">April 02, 2018</time>
-                    <meta content="Travis CI doesn&#39;t keep your environment variable secure" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/installing-nextcloud.html">Installing NextCloud  </a>
-                    <time datetime="2018-03-27T23:30:00-05:00">March 27, 2018</time>
-                    <meta content="Installing NextCloud" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/django-course-basic-to-advance.html">Review of Udemy's Django Course from Basics to Advance  </a>
-                    <time datetime="2018-02-20T22:45:00-06:00">February 20, 2018</time>
-                    <meta content="Review of Udemy&#39;s Django Course from Basics to Advance" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/zfs-pool-on-ubuntu.html">Setting up a ZFS pool on Ubuntu 16.04  </a>
-                    <time datetime="2018-02-15T22:30:00-06:00">February 15, 2018</time>
-                    <meta content="Setting up a ZFS pool on Ubuntu 16.04" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/new-house-server.html">...and then there was a backup server  </a>
-                    <time datetime="2018-02-12T15:15:00-06:00">February 12, 2018</time>
-                    <meta content="...and then there was a backup server" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/backup-your-data.html">Well, there goes my data...  </a>
-                    <time datetime="2018-01-27T00:04:00-06:00">January 27, 2018</time>
-                    <meta content="Well, there goes my data..." />
-                </article>
-        <h2 id="2017"><a href="#2017">2017</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html">How I found an awesome remote only job  </a>
-                    <time datetime="2017-11-28T09:01:00-06:00">November 28, 2017</time>
-                    <meta content="How I found an awesome remote only job" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/aws-serverless-apis-apps-review.html">Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course  </a>
-                    <time datetime="2017-10-20T11:17:00-05:00">October 20, 2017</time>
-                    <meta content="Review of Udemy&#39;s AWS Serverless APIs &amp; Apps - A Complete Introduction course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html">Collecting Diamonds on Stack Exchange  </a>
-                    <time datetime="2017-08-18T10:06:00-05:00">August 18, 2017</time>
-                    <meta content="Collecting Diamonds on Stack Exchange" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/a-decade-at-caterpillar.html">A reflection on my decade at Caterpillar  </a>
-                    <time datetime="2017-07-31T12:00:00-05:00">July 31, 2017</time>
-                    <meta content="A reflection on my decade at Caterpillar" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/django-fullstack-bootcamp-course-review.html">Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course  </a>
-                    <time datetime="2017-06-28T06:16:00-05:00">June 28, 2017</time>
-                    <meta content="Review of Udemy&#39;s Python and Django Full Stack Web Developer Bootcamp course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html">Stack Overflow's Problem - Feedback from an experienced user  </a>
-                    <time datetime="2017-05-22T23:45:00-05:00">May 22, 2017</time>
-                    <meta content="Stack Overflow&#39;s Problem - Feedback from an experienced user" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/deep-learning-prereq-linear-logistic-regression.html">Review of Udemy's Deep Learning Prerequisites - Linear and Logistic Regression courses  </a>
-                    <time datetime="2017-05-03T10:00:00-05:00">May 03, 2017</time>
-                    <meta content="Review of Udemy&#39;s Deep Learning Prerequisites - Linear and Logistic Regression courses" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/choosing-orm-library.html">Choosing an ORM library for a new project  </a>
-                    <time datetime="2017-04-26T14:30:00-05:00">April 26, 2017</time>
-                    <meta content="Choosing an ORM library for a new project" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/deep-learning-prereq-numpy.html">Review of Udemy's 'Deep Learning Prerequisites: The Numpy Stack in Python' course  </a>
-                    <time datetime="2017-04-20T22:30:00-05:00">April 20, 2017</time>
-                    <meta content="Review of Udemy&#39;s &#39;Deep Learning Prerequisites: The Numpy Stack in Python&#39; course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/become-a-product-manager-review.html">Review of Udemy's 'Become a Product Manager  | Learn the Skills & Get the job' course  </a>
-                    <time datetime="2017-04-20T07:40:00-05:00">April 20, 2017</time>
-                    <meta content="Review of Udemy&#39;s &#39;Become a Product Manager  | Learn the Skills &amp; Get the job&#39; course" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html">Can a machine be taught to flag spam automatically  </a>
-                    <time datetime="2017-02-19T22:51:00-06:00">February 19, 2017</time>
-                    <meta content="Can a machine be taught to flag spam automatically" />
-                </article>
-        <h2 id="2016"><a href="#2016">2016</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/loony-corn-machine-learning-review.html">Review of Udemy's 'From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase' course  </a>
-                    <time datetime="2016-12-28T20:10:00-06:00">December 28, 2016</time>
-                    <meta content="Review of Udemy&#39;s &#39;From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase&#39; course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/data-analysis-with-pandas-review.html">Review of Udemy's 'Data Analysis with Pandas' course  </a>
-                    <time datetime="2016-12-09T22:54:00-06:00">December 09, 2016</time>
-                    <meta content="Review of Udemy&#39;s &#39;Data Analysis with Pandas&#39; course" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/third-times-the-charm.html">Third time's the charm?  </a>
-                    <time datetime="2016-11-06T22:54:00-06:00">November 06, 2016</time>
-                    <meta content="Third time&#39;s the charm?" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html">My experiences releasing a package to PyPI  </a>
-                    <time datetime="2016-03-15T12:26:00-05:00">March 15, 2016</time>
-                    <meta content="My experiences releasing a package to PyPI" />
-                </article>
-        <h2 id="2015"><a href="#2015">2015</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html">How I built a Flask application that integrates with Travis CI and OpenShift  </a>
-                    <time datetime="2015-12-11T09:15:00-06:00">December 11, 2015</time>
-                    <meta content="How I built a Flask application that integrates with Travis CI and OpenShift" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html">I'm running for moderator on Stack Overflow again  </a>
-                    <time datetime="2015-11-18T09:38:00-06:00">November 18, 2015</time>
-                    <meta content="I&#39;m running for moderator on Stack Overflow again" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/how-not-to-recruit-me.html">How not to recruit me  </a>
-                    <time datetime="2015-10-10T14:20:00-05:00">October 10, 2015</time>
-                    <meta content="How not to recruit me" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/link-analysis---technical-explanation.html">Link Analysis - Technical Explanation  </a>
-                    <time datetime="2015-08-10T23:41:00-05:00">August 10, 2015</time>
-                    <meta content="Link Analysis - Technical Explanation" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html">A proposal to fix broken links on Stack Overflow  </a>
-                    <time datetime="2015-08-07T07:34:00-05:00">August 07, 2015</time>
-                    <meta content="A proposal to fix broken links on Stack Overflow" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html">Analysis of links posted to Stack Overflow  </a>
-                    <time datetime="2015-08-06T07:35:00-05:00">August 06, 2015</time>
-                    <meta content="Analysis of links posted to Stack Overflow" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html">How I set up this site with GitHub Pages and CloudFlare  </a>
-                    <time datetime="2015-07-09T11:26:00-05:00">July 09, 2015</time>
-                    <meta content="How I set up this site with GitHub Pages and CloudFlare" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html">Why I moved from Wordpress to Pelican  </a>
-                    <time datetime="2015-05-03T22:41:00-05:00">May 03, 2015</time>
-                    <meta content="Why I moved from Wordpress to Pelican" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html">I'm running to be a moderator of Stack Overflow  </a>
-                    <time datetime="2015-04-06T22:00:00-05:00">April 06, 2015</time>
-                    <meta content="I&#39;m running to be a moderator of Stack Overflow" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html">Zephyr - The bot that watches for low quality vote requests  </a>
-                    <time datetime="2015-03-12T23:34:00-05:00">March 12, 2015</time>
-                    <meta content="Zephyr - The bot that watches for low quality vote requests" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/thanks-for-all-the-fish.html">Thanks for all the fish  </a>
-                    <time datetime="2015-01-08T15:38:00-06:00">January 08, 2015</time>
-                    <meta content="Thanks for all the fish" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html">Can a machine be taught to flag comments automatically  </a>
-                    <time datetime="2015-01-02T08:47:00-06:00">January 02, 2015</time>
-                    <meta content="Can a machine be taught to flag comments automatically" />
-                </article>
-        <h2 id="2014"><a href="#2014">2014</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/moderation-postion-on-moderators.html">Moderation postion on Moderators  </a>
-                    <time datetime="2014-07-02T10:51:00-05:00">July 02, 2014</time>
-                    <meta content="Moderation postion on Moderators" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/how-to-appeal-a-ban-effectively.html">How to appeal a ban effectively  </a>
-                    <time datetime="2014-04-22T22:26:00-05:00">April 22, 2014</time>
-                    <meta content="How to appeal a ban effectively" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/how-not-to-appeal-a-ban.html">How NOT to appeal a ban  </a>
-                    <time datetime="2014-04-14T22:26:00-05:00">April 14, 2014</time>
-                    <meta content="How NOT to appeal a ban" />
-                </article>
-        <h2 id="2013"><a href="#2013">2013</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/mann-vs-vipers-beaten.html">Mann Vs Vipers Beaten!  </a>
-                    <time datetime="2013-12-05T09:00:00-06:00">December 05, 2013</time>
-                    <meta content="Mann Vs Vipers Beaten!" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html">I had a secret addiction to the TF2 idling economy but I'm better now (honest)  </a>
-                    <time datetime="2013-08-13T00:01:00-05:00">August 13, 2013</time>
-                    <meta content="I had a secret addiction to the TF2 idling economy but I&#39;m better now (honest)" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/give-some-refined-win-some-prizes.html">Give some refined, Win some prizes  </a>
-                    <time datetime="2013-02-25T09:00:00-06:00">February 25, 2013</time>
-                    <meta content="Give some refined, Win some prizes" />
-                </article>
-        <h2 id="2012"><a href="#2012">2012</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/homing-projectiles-are-awesome!.html">Homing projectiles are awesome!  </a>
-                    <time datetime="2012-06-30T08:02:00-05:00">June 30, 2012</time>
-                    <meta content="Homing projectiles are awesome!" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/monitoring-language-on-the-game-servers.html">Monitoring Language on the game servers  </a>
-                    <time datetime="2012-04-22T12:13:00-05:00">April 22, 2012</time>
-                    <meta content="Monitoring Language on the game servers" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/connect-python-to-osi-soft-pi.html">Connect Python to OSI Soft PI  </a>
-                    <time datetime="2012-02-07T12:45:00-06:00">February 07, 2012</time>
-                    <meta content="Connect Python to OSI Soft PI" />
-                </article>
-        <h2 id="2011"><a href="#2011">2011</a></h2>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/a-new-more-fair-rtd.html">A new, more fair, RTD  </a>
-                    <time datetime="2011-02-04T20:01:00-06:00">February 04, 2011</time>
-                    <meta content="A new, more fair, RTD" />
-                </article>
-        <h2 id="2010"><a href="#2010">2010</a></h2>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/a-special-kind-of-troll.html">A special kind of troll  </a>
-                    <time datetime="2010-12-28T16:04:00-06:00">December 28, 2010</time>
-                    <meta content="A special kind of troll" />
-                </article>
-
-
-                <article>
-
-                    <a href="https://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html">Multiple IP addresses on the same physical network card  </a>
-                    <time datetime="2010-11-17T12:54:00-06:00">November 17, 2010</time>
-                    <meta content="Multiple IP addresses on the same physical network card" />
-                </article>
-
-
-            <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/fixing-myisam-crashed-tables.html">Fixing MYISAM Crashed Tables  </a>
-                    <time datetime="2010-05-14T10:08:00-05:00">May 14, 2010</time>
-                    <meta content="Fixing MYISAM Crashed Tables" />
-                </article>
-        <h2 id="2009"><a href="#2009">2009</a></h2>
-
-        <article class="last-entry-of-year">
-
-                    <a href="https://andrewwegner.com/automated-template-for-membership-applications.html">Automated template for membership applications  </a>
-                    <time datetime="2009-10-30T22:30:00-05:00">October 30, 2009</time>
-                    <meta content="Automated template for membership applications" />
-                </article>
-    </div>
-</article>
-
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/archives.html",
+        "name": "Archives"
+      }
+    }  ]
+}</script><header class="listing-header"><div class="eyebrow"><span class="eyebrow-dot"></span> <span>Archive</span></div><h1 class="listing-heading">Archives</h1><p class="listing-description">Every post, grouped by year.</p></header><section class="archives-year archives-year-a"><div class="archives-year-head"><h2 class="archives-year-heading">2026</h2><span class="archives-year-count">2 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/real-python-claude-code-live-course.html" class="archive-link"><span class="archive-date">06 Apr 2026</span> <span class="archive-title">Review of Claude Code for Python Developers from Real Python</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html" class="archive-link"><span class="archive-date">25 Mar 2026</span> <span class="archive-title">I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them.</span> <span class="archive-category">Leadership</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-b"><div class="archives-year-head"><h2 class="archives-year-heading">2025</h2><span class="archives-year-count">10 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/why-remote-work-is-good-for-your-team.html" class="archive-link"><span class="archive-date">22 Aug 2025</span> <span class="archive-title">The Remote Engineering Leadership Playbook: Why Distance Doesn't Diminish Performance</span> <span class="archive-category">Leadership</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/junior-engineer-crisis-ai-code-generation.html" class="archive-link"><span class="archive-date">18 Aug 2025</span> <span class="archive-title">Junior Engineer Crisis: How AI Code Generation is Reshaping Engineering Teams</span> <span class="archive-category">Leadership</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html" class="archive-link"><span class="archive-date">22 Jul 2025</span> <span class="archive-title">Python Gotcha: Reusing Generators Returns Nothing</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html" class="archive-link"><span class="archive-date">14 Jul 2025</span> <span class="archive-title">Python Gotcha: Logging an uncaught exception</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/gitlab_18_git_data_dirs_resolution.html" class="archive-link"><span class="archive-date">06 Jul 2025</span> <span class="archive-title">How to fix GitLab 18 error regarding git_data_dirs</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/python-gotcha-identity-vs-equality.html" class="archive-link"><span class="archive-date">17 Jun 2025</span> <span class="archive-title">Python Gotcha: Identity vs Equality - When 'is' Fails Unexpectedly</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/leading-distributed-teams-lessons.html" class="archive-link"><span class="archive-date">15 Apr 2025</span> <span class="archive-title">Leading Distributed Teams: Lessons from Managing Global Engineering Teams</span> <span class="archive-category">Leadership</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/tech-debt-management-strategic-approach.html" class="archive-link"><span class="archive-date">08 Apr 2025</span> <span class="archive-title">Technical Debt Management: A Strategic Approach</span> <span class="archive-category">Leadership</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/scaling-teams-without-losing-culture.html" class="archive-link"><span class="archive-date">01 Apr 2025</span> <span class="archive-title">Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture</span> <span class="archive-category">Leadership</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/first-laser-cutter-experiences.html" class="archive-link"><span class="archive-date">02 Jan 2025</span> <span class="archive-title">My first experiences with a laser cutter</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-a"><div class="archives-year-head"><h2 class="archives-year-heading">2024</h2><span class="archives-year-count">10 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/ms-authenticator-without-personal-account.html" class="archive-link"><span class="archive-date">27 Nov 2024</span> <span class="archive-title">Moving MS Authenticator to a new phone without a personal account</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/format-efi-usb-windows.html" class="archive-link"><span class="archive-date">13 Nov 2024</span> <span class="archive-title">Format USB drive with EFI partition in Windows</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/control-power-wled-relay.html" class="archive-link"><span class="archive-date">16 Aug 2024</span> <span class="archive-title">Controlling power to LED lights with WLED Controller and a Relay switch</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html" class="archive-link"><span class="archive-date">20 Jun 2024</span> <span class="archive-title">Setting up and updating the Ericsity WLED Controller from 0.13.3 to 0.14.1</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/python-gotcha-strip-functions-unexpected-behavior.html" class="archive-link"><span class="archive-date">29 Mar 2024</span> <span class="archive-title">Python Gotcha: strip, lstrip, rstrip can remove more than expected</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/install-mobsf-on-windows-docker.html" class="archive-link"><span class="archive-date">19 Feb 2024</span> <span class="archive-title">Installing the Mobile Security Framework (MobSF) on Windows using Docker</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/data-analysis-with-polars-review.html" class="archive-link"><span class="archive-date">29 Jan 2024</span> <span class="archive-title">Review of Data Analysis with Polars Udemy course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/learn-analytics-with-polars-review.html" class="archive-link"><span class="archive-date">25 Jan 2024</span> <span class="archive-title">Review of Learn Data Analytics with Polars (Python) Course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/github-actions-cicd-pipelines-review.html" class="archive-link"><span class="archive-date">22 Jan 2024</span> <span class="archive-title">Review of Learn Github Actions for CI/CD DevOps Pipelines Course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html" class="archive-link"><span class="archive-date">03 Jan 2024</span> <span class="archive-title">Python Gotcha: Modifying a list while iterating</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-b"><div class="archives-year-head"><h2 class="archives-year-heading">2023</h2><span class="archives-year-count">32 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/python-gotcha-list-copy.html" class="archive-link"><span class="archive-date">20 Dec 2023</span> <span class="archive-title">Python Gotcha: List Copy Problems</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/decade-fighting-spam-charcoal.html" class="archive-link"><span class="archive-date">27 Nov 2023</span> <span class="archive-title">A Decade of Fighting Spam</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/python-gotcha-timezone-naive-functions.html" class="archive-link"><span class="archive-date">23 Nov 2023</span> <span class="archive-title">Python Gotcha: Timezone Naive Functions like utcnow() and utcfromtimestamp()</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/ruby-gotcha-operator-precedence.html" class="archive-link"><span class="archive-date">23 Oct 2023</span> <span class="archive-title">Ruby Gotcha: Operator Precedence</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/python-gotcha-comparisons.html" class="archive-link"><span class="archive-date">18 Oct 2023</span> <span class="archive-title">Python Gotcha: Comparisons</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/python-gotcha-join-vs-concat.html" class="archive-link"><span class="archive-date">12 Oct 2023</span> <span class="archive-title">Python Gotcha: Join vs Concat</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/python-gotcha-optional-default-arguments.html" class="archive-link"><span class="archive-date">06 Oct 2023</span> <span class="archive-title">Python Gotcha: Mutable Default Optional Arguments</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/obsidian-gitlab-setup.html" class="archive-link"><span class="archive-date">26 Sep 2023</span> <span class="archive-title">Syncing Obsidian Notes across devices using Git and GitLab</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/disable-grafana-in-gitlab-16.html" class="archive-link"><span class="archive-date">23 Aug 2023</span> <span class="archive-title">How to disable Grafana in Gitlab 16.3 Omnibus</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/management-failure-unlimited-pto.html" class="archive-link"><span class="archive-date">14 Aug 2023</span> <span class="archive-title">Failure of Management - Unlimited PTO</span> <span class="archive-category">Leadership</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stackexchange-moderator-ends.html" class="archive-link"><span class="archive-date">07 Aug 2023</span> <span class="archive-title">Stack Exchange Strike - The strike is over</span> <span class="archive-category">Stack Exchange Strike</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stackexchange-moderator-strike-overflowai-reaction.html" class="archive-link"><span class="archive-date">27 Jul 2023</span> <span class="archive-title">Stack Exchange Strike - Community and AI Talk Reaction</span> <span class="archive-category">Stack Exchange Strike</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/ideal-engineering-interviews.html" class="archive-link"><span class="archive-date">06 Jul 2023</span> <span class="archive-title">What should a software engineering interview look like?</span> <span class="archive-category">Leadership</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stackexchange-moderator-strike-what-are-they-doing.html" class="archive-link"><span class="archive-date">04 Jul 2023</span> <span class="archive-title">Stack Exchange Strike - Now AI is bad? Does Stack Exchange know what it is doing?</span> <span class="archive-category">Stack Exchange Strike</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stackexchange-moderator-strike-regaining-trust.html" class="archive-link"><span class="archive-date">23 Jun 2023</span> <span class="archive-title">Stack Exchange Strike - How does the company regain my trust?</span> <span class="archive-category">Stack Exchange Strike</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stackexchange-moderator-strike-personal-frustrations.html" class="archive-link"><span class="archive-date">21 Jun 2023</span> <span class="archive-title">Stack Exchange Strike - Personal Frustrations</span> <span class="archive-category">Stack Exchange Strike</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stackexchange-moderator-strike-does-stackexchange-care.html" class="archive-link"><span class="archive-date">19 Jun 2023</span> <span class="archive-title">Stack Exchange Strike - Does Stack Exchange Care?</span> <span class="archive-category">Stack Exchange Strike</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stackexchange-moderator-strike-update.html" class="archive-link"><span class="archive-date">13 Jun 2023</span> <span class="archive-title">Stack Exchange Strike Update 2</span> <span class="archive-category">Stack Exchange Strike</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stackexchange-moderator-strike-week-one.html" class="archive-link"><span class="archive-date">12 Jun 2023</span> <span class="archive-title">Stack Exchange Strike - Week One</span> <span class="archive-category">Stack Exchange Strike</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stackexchange-moderator-strike.html" class="archive-link"><span class="archive-date">05 Jun 2023</span> <span class="archive-title">Joining the Stack Exchange Moderator Strike</span> <span class="archive-category">Stack Exchange Strike</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/remote-work-thoughts-about-offices.html" class="archive-link"><span class="archive-date">23 May 2023</span> <span class="archive-title">My thoughts on what remote work will look like in the coming decade</span> <span class="archive-category">Leadership</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/launch-viva-printworks.html" class="archive-link"><span class="archive-date">21 May 2023</span> <span class="archive-title">The Launch of Viva Printworks</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/generative-motion-graphics-review.html" class="archive-link"><span class="archive-date">14 Apr 2023</span> <span class="archive-title">Review of Unreal Engine 5 Generative Motion Graphics VFX Course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/make-unreal5-2d-platformer-review.html" class="archive-link"><span class="archive-date">11 Apr 2023</span> <span class="archive-title">Review of Learn How To Make A 2D Platformer In Unreal Engine 5 Course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/davinci-resolve-beginner-advanced-review.html" class="archive-link"><span class="archive-date">03 Mar 2023</span> <span class="archive-title">Review of DaVinci Resolve 2022: Beginner to Advanced in DaVinci 18 Course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/find-broken-links-with-github-actions.html" class="archive-link"><span class="archive-date">13 Feb 2023</span> <span class="archive-title">Automatically checking for broken links using Github Actions</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/chatgpt-beats-more-interview-assessments.html" class="archive-link"><span class="archive-date">04 Feb 2023</span> <span class="archive-title">CoderByte assessments fall to ChatGPT</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/gitlab-teamops-certification.html" class="archive-link"><span class="archive-date">02 Feb 2023</span> <span class="archive-title">Review of GitLab's 'TeamOps Certification' course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/update-php-and-nextcloud.html" class="archive-link"><span class="archive-date">30 Jan 2023</span> <span class="archive-title">Updating PHP and NextCloud</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html" class="archive-link"><span class="archive-date">08 Jan 2023</span> <span class="archive-title">ChatGPT easily solves HackerRank questions</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html" class="archive-link"><span class="archive-date">05 Jan 2023</span> <span class="archive-title">Taking Codility's sample interview exam using ChatGPT</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html" class="archive-link"><span class="archive-date">01 Jan 2023</span> <span class="archive-title">Running CodeSignal questions through ChatGPT</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-a"><div class="archives-year-head"><h2 class="archives-year-heading">2022</h2><span class="archives-year-count">18 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html" class="archive-link"><span class="archive-date">26 Dec 2022</span> <span class="archive-title">Breaking TestGorilla interview questions with ChatGPT</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html" class="archive-link"><span class="archive-date">20 Dec 2022</span> <span class="archive-title">Using ChatGPT to interact with an API</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html" class="archive-link"><span class="archive-date">15 Dec 2022</span> <span class="archive-title">ChatGPT is here - Use that to stop asking LeetCode questions during interviews</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/rise-garden-two-year-review.html" class="archive-link"><span class="archive-date">07 Dec 2022</span> <span class="archive-title">Rise Garden Two Year Follow Up</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html" class="archive-link"><span class="archive-date">05 Dec 2022</span> <span class="archive-title">Stack Overflow bans ChatGPT temporarily</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/relaunch-personal-site.html" class="archive-link"><span class="archive-date">17 Nov 2022</span> <span class="archive-title">Updating the design of the site</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/job-search-rejections.html" class="archive-link"><span class="archive-date">24 Oct 2022</span> <span class="archive-title">Talking about rejection in job searches</span> <span class="archive-category">Jobs</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/ue5-beginners-building-environment-review.html" class="archive-link"><span class="archive-date">18 Oct 2022</span> <span class="archive-title">Review of Unreal Engine 5 Beginners Guide to Building an Environment</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/ue5-complete-beginners-course.html" class="archive-link"><span class="archive-date">03 Oct 2022</span> <span class="archive-title">Review of Unreal Engine 5: The Complete Beginner's Course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/ue5-realistic-environment-design-beginner.html" class="archive-link"><span class="archive-date">20 Sep 2022</span> <span class="archive-title">Review of Unreal Engine 5 - Realistic Environment Design for Beginners course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/upload-resume-reenter-resume.html" class="archive-link"><span class="archive-date">13 Sep 2022</span> <span class="archive-title">Upload your resume, then re-enter it to apply for this job</span> <span class="archive-category">Jobs</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/what-job-source-uses-which-ats.html" class="archive-link"><span class="archive-date">06 Sep 2022</span> <span class="archive-title">What Job Source is using which ATS?</span> <span class="archive-category">Jobs</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/golang-complete-developer-guide-review.html" class="archive-link"><span class="archive-date">28 Aug 2022</span> <span class="archive-title">Review of Go: The Complete Developer's Guide (Golang) course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/looking-for-new-role.html" class="archive-link"><span class="archive-date">18 Aug 2022</span> <span class="archive-title">I am looking for an engineering leadership role</span> <span class="archive-category">Jobs</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/top-soft-skills-senior-developers-need.html" class="archive-link"><span class="archive-date">26 Jun 2022</span> <span class="archive-title">10 Soft Skills to Look For in Senior Software Developers</span> <span class="archive-category">Leadership</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/time-gas-saved-with-remote-work.html" class="archive-link"><span class="archive-date">12 Jun 2022</span> <span class="archive-title">Time and Gas saved by switching to remote work</span> <span class="archive-category">Jobs</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/woven-client-to-woven-employee.html" class="archive-link"><span class="archive-date">04 Jun 2022</span> <span class="archive-title">The Other Side of the Mirror: How I Went from Woven Client to Woven Employee</span> <span class="archive-category">Jobs</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/run-sanic-on-heroku.html" class="archive-link"><span class="archive-date">19 May 2022</span> <span class="archive-title">Run Sanic on Heroku</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-b"><div class="archives-year-head"><h2 class="archives-year-heading">2020</h2><span class="archives-year-count">8 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/gitlab-manage-remote-team.html" class="archive-link"><span class="archive-date">26 Oct 2020</span> <span class="archive-title">Review of GitLab's 'How to Manage a Remote Team' Coursera course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/rise-garden-final-review.html" class="archive-link"><span class="archive-date">29 May 2020</span> <span class="archive-title">Rise Gardens Review</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/rise-garden-suggestions-software.html" class="archive-link"><span class="archive-date">24 May 2020</span> <span class="archive-title">Rise Gardens App/Subscription Improvement suggestions</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/rise-garden-suggestions-physical.html" class="archive-link"><span class="archive-date">05 May 2020</span> <span class="archive-title">Rise Gardens physical improvements suggestions</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/rise-garden-planting.html" class="archive-link"><span class="archive-date">01 May 2020</span> <span class="archive-title">Planting the first crop in the Rise Garden</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/rise-garden-assembly.html" class="archive-link"><span class="archive-date">26 Apr 2020</span> <span class="archive-title">Assembling the Rise Garden</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/nursery-unboxing.html" class="archive-link"><span class="archive-date">24 Apr 2020</span> <span class="archive-title">Unboxing garden nurseries</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/rise-gardens-unboxing.html" class="archive-link"><span class="archive-date">22 Apr 2020</span> <span class="archive-title">Unboxing and reviewing the new indoor Rise Gardens hydroponic garden</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-a"><div class="archives-year-head"><h2 class="archives-year-heading">2019</h2><span class="archives-year-count">10 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/aws-certified-developer-review.html" class="archive-link"><span class="archive-date">23 Dec 2019</span> <span class="archive-title">Review of Ultimate AWS Certified Developer Associate 2019 course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/setting-up-gitlab-runners.html" class="archive-link"><span class="archive-date">22 Oct 2019</span> <span class="archive-title">Setting up GitLab runners</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/invoiceninja-ubuntu-1804.html" class="archive-link"><span class="archive-date">30 Jul 2019</span> <span class="archive-title">Installing InvoiceNinja on Ubuntu 18.04</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/updating-php-ubuntu-1804.html" class="archive-link"><span class="archive-date">26 Jul 2019</span> <span class="archive-title">Updating PHP from 7.1 to 7.3 on Ubuntu 18.04</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/travis-ci-tutorial-review.html" class="archive-link"><span class="archive-date">09 Jul 2019</span> <span class="archive-title">Review of Travis CI Tutorial Udemy course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/software-testing-masterclass.html" class="archive-link"><span class="archive-date">14 May 2019</span> <span class="archive-title">Review of Software Testing Masterclass (2019) - From Notice to Expert Udemy course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stack-overflows-still-has-issues-and-its-getting-worse.html" class="archive-link"><span class="archive-date">29 Mar 2019</span> <span class="archive-title">Stack Overflow still has issues and it's getting worse</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/ubiquiti-home-network.html" class="archive-link"><span class="archive-date">13 Mar 2019</span> <span class="archive-title">Upgrading the home network to use Ubiquiti products</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/xps-tb16-bios-fix.html" class="archive-link"><span class="archive-date">31 Jan 2019</span> <span class="archive-title">Fixing XPS 13 (Ubuntu) and Thunder Bolt 16 issue after BIOS update</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/sanic-webframework-review.html" class="archive-link"><span class="archive-date">23 Jan 2019</span> <span class="archive-title">Review of Sanic - An Asynchronous Web Framework for Pythonistas Udemy course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-b"><div class="archives-year-head"><h2 class="archives-year-heading">2018</h2><span class="archives-year-count">15 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/autobuild-pelican-blog.html" class="archive-link"><span class="archive-date">15 Nov 2018</span> <span class="archive-title">Autobuild and Deploy this Pelican Blog</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/docker-swarm-beginner-advanced.html" class="archive-link"><span class="archive-date">31 Oct 2018</span> <span class="archive-title">Review of Udemy's Docker Swarm: Beginner + Advanced</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/docker-essentials-course.html" class="archive-link"><span class="archive-date">29 Oct 2018</span> <span class="archive-title">Review of Udemy's Docker and Containers: The Essentials</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/git-45-minute-crash-course.html" class="archive-link"><span class="archive-date">01 Oct 2018</span> <span class="archive-title">Review of Udemy's renamed The 2018 Git Complete: 45 minute crash course using Angular.</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/ubuntu-backup-rsync.html" class="archive-link"><span class="archive-date">26 Sep 2018</span> <span class="archive-title">Backing up Ubuntu laptop to Ubuntu Server with passwordless rsync</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html" class="archive-link"><span class="archive-date">21 Sep 2018</span> <span class="archive-title">Review of Udemy's Learn DaVinci Resolve 15 from scratch</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/slack-app-google-cloud.html" class="archive-link"><span class="archive-date">13 Jul 2018</span> <span class="archive-title">Deploying a Flask Slack app on Google Cloud Platform</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/setup-lets-encrypt.html" class="archive-link"><span class="archive-date">25 Apr 2018</span> <span class="archive-title">Set up Dynamic CloudFlare IP with Let's Encrypt</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/installing-gitlab.html" class="archive-link"><span class="archive-date">13 Apr 2018</span> <span class="archive-title">Setting up GitLab on the new server</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/travisci-insecure-environment-variables.html" class="archive-link"><span class="archive-date">02 Apr 2018</span> <span class="archive-title">Travis CI doesn't keep your environment variable secure</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/installing-nextcloud.html" class="archive-link"><span class="archive-date">27 Mar 2018</span> <span class="archive-title">Installing NextCloud</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/django-course-basic-to-advance.html" class="archive-link"><span class="archive-date">20 Feb 2018</span> <span class="archive-title">Review of Udemy's Django Course from Basics to Advance</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/zfs-pool-on-ubuntu.html" class="archive-link"><span class="archive-date">15 Feb 2018</span> <span class="archive-title">Setting up a ZFS pool on Ubuntu 16.04</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/new-house-server.html" class="archive-link"><span class="archive-date">12 Feb 2018</span> <span class="archive-title">...and then there was a backup server</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/backup-your-data.html" class="archive-link"><span class="archive-date">27 Jan 2018</span> <span class="archive-title">Well, there goes my data...</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-a"><div class="archives-year-head"><h2 class="archives-year-heading">2017</h2><span class="archives-year-count">11 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html" class="archive-link"><span class="archive-date">28 Nov 2017</span> <span class="archive-title">How I found an awesome remote only job</span> <span class="archive-category">Jobs</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/aws-serverless-apis-apps-review.html" class="archive-link"><span class="archive-date">20 Oct 2017</span> <span class="archive-title">Review of Udemy's AWS Serverless APIs & Apps - A Complete Introduction course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/collecting-diamonds-on-stack-exchange.html" class="archive-link"><span class="archive-date">18 Aug 2017</span> <span class="archive-title">Collecting Diamonds on Stack Exchange</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/a-decade-at-caterpillar.html" class="archive-link"><span class="archive-date">31 Jul 2017</span> <span class="archive-title">A reflection on my decade at Caterpillar</span> <span class="archive-category">Jobs</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/django-fullstack-bootcamp-course-review.html" class="archive-link"><span class="archive-date">28 Jun 2017</span> <span class="archive-title">Review of Udemy's Python and Django Full Stack Web Developer Bootcamp course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/stack-overflows-problem-feedback-from-an-experienced-user.html" class="archive-link"><span class="archive-date">22 May 2017</span> <span class="archive-title">Stack Overflow's Problem - Feedback from an experienced user</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/deep-learning-prereq-linear-logistic-regression.html" class="archive-link"><span class="archive-date">03 May 2017</span> <span class="archive-title">Review of Udemy's Deep Learning Prerequisites - Linear and Logistic Regression courses</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/choosing-orm-library.html" class="archive-link"><span class="archive-date">26 Apr 2017</span> <span class="archive-title">Choosing an ORM library for a new project</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/deep-learning-prereq-numpy.html" class="archive-link"><span class="archive-date">20 Apr 2017</span> <span class="archive-title">Review of Udemy's 'Deep Learning Prerequisites: The Numpy Stack in Python' course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/become-a-product-manager-review.html" class="archive-link"><span class="archive-date">20 Apr 2017</span> <span class="archive-title">Review of Udemy's 'Become a Product Manager | Learn the Skills & Get the job' course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html" class="archive-link"><span class="archive-date">19 Feb 2017</span> <span class="archive-title">Can a machine be taught to flag spam automatically</span> <span class="archive-category">Programming Projects</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-b"><div class="archives-year-head"><h2 class="archives-year-heading">2016</h2><span class="archives-year-count">4 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/loony-corn-machine-learning-review.html" class="archive-link"><span class="archive-date">28 Dec 2016</span> <span class="archive-title">Review of Udemy's 'From 0 to 1: Machine Learning, NLP and Python - Cut to the Chase' course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/data-analysis-with-pandas-review.html" class="archive-link"><span class="archive-date">09 Dec 2016</span> <span class="archive-title">Review of Udemy's 'Data Analysis with Pandas' course</span> <span class="archive-category">Review</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/third-times-the-charm.html" class="archive-link"><span class="archive-date">06 Nov 2016</span> <span class="archive-title">Third time's the charm?</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/my-experiences-releasing-a-package-to-pypi.html" class="archive-link"><span class="archive-date">15 Mar 2016</span> <span class="archive-title">My experiences releasing a package to PyPI</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-a"><div class="archives-year-head"><h2 class="archives-year-heading">2015</h2><span class="archives-year-count">12 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/how-i-set-up-openshift-travisci-and-flask.html" class="archive-link"><span class="archive-date">11 Dec 2015</span> <span class="archive-title">How I built a Flask application that integrates with Travis CI and OpenShift</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/i'm-running-for-moderator-on-stack-overflow-again.html" class="archive-link"><span class="archive-date">18 Nov 2015</span> <span class="archive-title">I'm running for moderator on Stack Overflow again</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/how-not-to-recruit-me.html" class="archive-link"><span class="archive-date">10 Oct 2015</span> <span class="archive-title">How not to recruit me</span> <span class="archive-category">Jobs</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/link-analysis---technical-explanation.html" class="archive-link"><span class="archive-date">10 Aug 2015</span> <span class="archive-title">Link Analysis - Technical Explanation</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html" class="archive-link"><span class="archive-date">07 Aug 2015</span> <span class="archive-title">A proposal to fix broken links on Stack Overflow</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html" class="archive-link"><span class="archive-date">06 Aug 2015</span> <span class="archive-title">Analysis of links posted to Stack Overflow</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html" class="archive-link"><span class="archive-date">09 Jul 2015</span> <span class="archive-title">How I set up this site with GitHub Pages and CloudFlare</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html" class="archive-link"><span class="archive-date">03 May 2015</span> <span class="archive-title">Why I moved from Wordpress to Pelican</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/i'm-running-to-be-a-moderator-of-stack-overflow.html" class="archive-link"><span class="archive-date">06 Apr 2015</span> <span class="archive-title">I'm running to be a moderator of Stack Overflow</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" class="archive-link"><span class="archive-date">12 Mar 2015</span> <span class="archive-title">Zephyr - The bot that watches for low quality vote requests</span> <span class="archive-category">Programming Projects</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/thanks-for-all-the-fish.html" class="archive-link"><span class="archive-date">08 Jan 2015</span> <span class="archive-title">Thanks for all the fish</span> <span class="archive-category">Vipers</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" class="archive-link"><span class="archive-date">02 Jan 2015</span> <span class="archive-title">Can a machine be taught to flag comments automatically</span> <span class="archive-category">Programming Projects</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-b"><div class="archives-year-head"><h2 class="archives-year-heading">2014</h2><span class="archives-year-count">3 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/moderation-postion-on-moderators.html" class="archive-link"><span class="archive-date">02 Jul 2014</span> <span class="archive-title">Moderation postion on Moderators</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/how-to-appeal-a-ban-effectively.html" class="archive-link"><span class="archive-date">22 Apr 2014</span> <span class="archive-title">How to appeal a ban effectively</span> <span class="archive-category">Vipers</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/how-not-to-appeal-a-ban.html" class="archive-link"><span class="archive-date">14 Apr 2014</span> <span class="archive-title">How NOT to appeal a ban</span> <span class="archive-category">Vipers</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-a"><div class="archives-year-head"><h2 class="archives-year-heading">2013</h2><span class="archives-year-count">3 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/mann-vs-vipers-beaten.html" class="archive-link"><span class="archive-date">05 Dec 2013</span> <span class="archive-title">Mann Vs Vipers Beaten!</span> <span class="archive-category">Vipers</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html" class="archive-link"><span class="archive-date">13 Aug 2013</span> <span class="archive-title">I had a secret addiction to the TF2 idling economy but I'm better now (honest)</span> <span class="archive-category">Side Activities</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/give-some-refined-win-some-prizes.html" class="archive-link"><span class="archive-date">25 Feb 2013</span> <span class="archive-title">Give some refined, Win some prizes</span> <span class="archive-category">Vipers</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-b"><div class="archives-year-head"><h2 class="archives-year-heading">2012</h2><span class="archives-year-count">3 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/homing-projectiles-are-awesome!.html" class="archive-link"><span class="archive-date">30 Jun 2012</span> <span class="archive-title">Homing projectiles are awesome!</span> <span class="archive-category">Vipers</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/monitoring-language-on-the-game-servers.html" class="archive-link"><span class="archive-date">22 Apr 2012</span> <span class="archive-title">Monitoring Language on the game servers</span> <span class="archive-category">Vipers</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/connect-python-to-osi-soft-pi.html" class="archive-link"><span class="archive-date">07 Feb 2012</span> <span class="archive-title">Connect Python to OSI Soft PI</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-a"><div class="archives-year-head"><h2 class="archives-year-heading">2011</h2><span class="archives-year-count">1 post</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/a-new-more-fair-rtd.html" class="archive-link"><span class="archive-date">04 Feb 2011</span> <span class="archive-title">A new, more fair, RTD</span> <span class="archive-category">Vipers</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-b"><div class="archives-year-head"><h2 class="archives-year-heading">2010</h2><span class="archives-year-count">3 posts</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/a-special-kind-of-troll.html" class="archive-link"><span class="archive-date">28 Dec 2010</span> <span class="archive-title">A special kind of troll</span> <span class="archive-category">Vipers</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/multiple-ip-addresses-on-the-same-physical-network-card.html" class="archive-link"><span class="archive-date">17 Nov 2010</span> <span class="archive-title">Multiple IP addresses on the same physical network card</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li><li class="archive-row"><a href="https://andrewwegner.com/fixing-myisam-crashed-tables.html" class="archive-link"><span class="archive-date">14 May 2010</span> <span class="archive-title">Fixing MYISAM Crashed Tables</span> <span class="archive-category">Technical Solutions</span> <span class="archive-arrow">→</span></a></li></ul></section><section class="archives-year archives-year-a"><div class="archives-year-head"><h2 class="archives-year-heading">2009</h2><span class="archives-year-count">1 post</span></div><ul class="archive-list"><li class="archive-row"><a href="https://andrewwegner.com/automated-template-for-membership-applications.html" class="archive-link"><span class="archive-date">30 Oct 2009</span> <span class="archive-title">Automated template for membership applications</span> <span class="archive-category">Vipers</span> <span class="archive-arrow">→</span></a></li></ul></section></div></section><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

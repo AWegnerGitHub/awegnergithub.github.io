@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Andrew Wegner | Ponderings of an Andy - programming</title><link href="https://andrewwegner.com/" rel="alternate"/><link href="https://andrewwegner.com/feeds/tag/programming.atom.xml" rel="self"/><id>https://andrewwegner.com/</id><updated>2017-04-26T14:30:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>Choosing an ORM library for a new project</title><link href="https://andrewwegner.com/choosing-orm-library.html" rel="alternate"/><published>2017-04-26T14:30:00-05:00</published><updated>2017-04-26T14:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-04-26:/choosing-orm-library.html</id><summary type="html">&lt;p&gt;A discussion about how a team picked an ORM library for a new project.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="project-history"&gt;Project History&lt;a class="headerlink" href="#project-history" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; project is over three years old at this point. It's grown from a small python script to a
+decently sized application that integrates with another project. In that time, it's expanded what types of spam and
+patterns it looks for, what chat rooms it posts to, what external services it integrates with and how permissions to
+use the system are determined.&lt;/p&gt;
+&lt;p&gt;A lot has changed under the hood. I was hoping to put a cool chart here showing code change over time, but some early
+decisions with the project really throw off the chart. Using a &lt;a href="https://erikbern.com/2016/12/05/the-half-life-of-code.html"&gt;Ship of Theseus&lt;/a&gt; analogy for code, you can see how
+much has changed. The basic idea is, if a ship leaves port and replaces every plank along it's journey, is it still the
+same ship when it returns? With code, the idea is to apply this to lines of code in an application.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/smokey-git-theseus-all.png"&gt;&lt;img alt="SmokeDetector - Git of Theseus" src="https://andrewwegner.com/images/smokey-git-theseus-all.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="what-happened-in-2014"&gt;What happened in 2014?!&lt;a class="headerlink" href="#what-happened-in-2014" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In late 2014, the project attempted their first machine learning method of detecting spam. In this time period, a
+&lt;a href="https://github.com/Charcoal-SE/SmokeDetector/commit/102aa9c64edafb7f5fef5ba16414f4cefad03d64"&gt;commit&lt;/a&gt; was added that added about 200,000 lines of code to the project. This was almost all training data for a
+Bayesian algorithm. It wasn't needed and probably shouldn't have been added to the main repository. Unfortunately, it
+stayed in the repository for over a year and was finally &lt;a href="https://github.com/Charcoal-SE/SmokeDetector/commit/68d49ccc0b4981a4ebe91d993f42643542e44d80"&gt;removed&lt;/a&gt; in late 2015. This is the cause of the weird graph
+above, and why almost everything added in 2014 looks like it's missing in later years.&lt;/p&gt;
+&lt;h3 id="what-has-really-changed"&gt;What has really changed?&lt;a class="headerlink" href="#what-has-really-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After eliminating that Bayesian directory from git history, you can get a much better idea of how much has changed.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/smokey-git-theseus-filtered.png"&gt;&lt;img alt="SmokeDetector - Git of Theseus - Filtered" src="https://andrewwegner.com/images/smokey-git-theseus-filtered.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Very little of the original code, written in 2014, remains untouched. The explosion in code after that is due to
+new detection patterns, chat commands (and a rewrite), integration with MetaSmoke and the introduction of blacklists.&lt;/p&gt;
+&lt;p&gt;Even more dramatically, you can see how long a line of code is expected to survive in the code base.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/smokey-git-theseus-survival.png"&gt;&lt;img alt="SmokeDetector - Line Survival Rate" src="https://andrewwegner.com/images/smokey-git-theseus-survival.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Within one year, the team is removing over 40% what's been committed to the repository. Looking at these commits,
+it was determined that a vast majority aren't even &lt;em&gt;code&lt;/em&gt;. They are new items to blacklist or new patterns to detect.&lt;/p&gt;
+&lt;h2 id="enter-the-database"&gt;Enter the database&lt;a class="headerlink" href="#enter-the-database" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;All of this type of data can be stored in a database and managed outside of code. In early 2017, those discussions
+started taking place. Several team members come from a Ruby background and were familiar with it's &lt;a href="https://en.wikipedia.org/wiki/Object-relational_mapping"&gt;ORM&lt;/a&gt; method of
+accessing databases. They wanted something similar when a database was brought into SmokeDetector.&lt;/p&gt;
+&lt;p&gt;A bit of research was done and it was narrowed down to &lt;a href="http://docs.peewee-orm.com/en/latest/"&gt;peewee&lt;/a&gt; and &lt;a href="https://www.sqlalchemy.org/"&gt;SQLAlchemy&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="how-to-choose"&gt;How to choose?&lt;a class="headerlink" href="#how-to-choose" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Fortunately for the SmokeDetector team, there weren't any strong opinions either way. The biggest reason for choosing
+one over the other came down to a &lt;a href="https://www.reddit.com/r/Python/comments/4tnqai/choosing_a_python_ormpeewee_vs_sqlalchemy/d5jyuug/"&gt;comment made by the peewee author&lt;/a&gt; on reddit. They state:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[...] SQLAlchemy is the gold standard for ORM in the Python world. It has a very active community and a maintainer
+who is committed to excellence. If you're a glass-half-empty guy, to put it another way, you can't go wrong if you
+choose SQLAlchemy.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The weaknesses they list for using their own package is the smaller ecosystem, support and number of developers.&lt;/p&gt;
+&lt;h3 id="technical-differences"&gt;Technical differences&lt;a class="headerlink" href="#technical-differences" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;That's a boring story though. Not to be deterred from such a glowing review from a competitor, I wanted to see what the
+technical differences were between the two solutions.&lt;/p&gt;
+&lt;p&gt;To that end, I put together a small Python notebook showing the &lt;a href="https://gist.github.com/AWegnerGitHub/201dbaf09740f9ecd797c32ebfc15872"&gt;differences between peewee and SQLAlchemy&lt;/a&gt; in a
+handful of tests. These tests included inserting two settings in an SQLite database, retrieving one, inserting a large
+list of users and then retrieving a subset of those users.&lt;/p&gt;
+&lt;p&gt;The results were...unremarkable.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/peewee-vs-sqlalcheme-results.png"&gt;&lt;img alt="peewee vs SQLAlchemy results" src="https://andrewwegner.com/images/peewee-vs-sqlalcheme-results.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The two libraries each took two tests (out of four) for being faster than the other. In both cases where SQLAlchemy was
+faster, it was between two and six times faster. Where peewee was faster it was between a fraction faster and twice as
+fast.&lt;/p&gt;
+&lt;p&gt;The time scales are so small though, and SmokeDetector doesn't need to have thousands, hundreds or even tens of hits to
+the database a second. A hundred extra milliseconds isn't going to cripple anything it handles.&lt;/p&gt;
+&lt;p&gt;Thus, the choice was made based on the recommendation of the author of the peewee library. SQLAlchemy has a larger
+community and better support.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="programming"/></entry><entry><title>Can a machine be taught to flag spam automatically</title><link href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html" rel="alternate"/><published>2017-02-19T22:51:00-06:00</published><updated>2017-02-20T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2017-02-19:/can-a-machine-be-taught-to-flag-spam-automatically.html</id><summary type="html">&lt;p&gt;Description of how a group of people helped completely eliminate spam on the Stack Exchange network&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post was originally &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;published&lt;/a&gt; on Meta Stack Exchange on February 20, 2017. I've republished it here
+so that I can easily update information related to recent developments. If you have questions or comments, I highly
+encourage you to visit the &lt;a href="http://meta.stackexchange.com/q/291301/186281"&gt;question&lt;/a&gt; on Meta Stack Exchange and post there.&lt;/p&gt;
+&lt;p&gt;The post was featured across the entire Stack Exchange network for a week, too. This drove a huge amount of traffic
+to the question and resulted in some valuable feedback:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-featured-announcement.png"&gt;&lt;img alt="Featured Announcement" src="https://andrewwegner.com/images/spam-featured-announcement.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;TL;DR: &lt;a href="http://charcoal-se.org/people.html"&gt;We&lt;/a&gt; did it, so... yes.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="what-is-this"&gt;What is this?&lt;a class="headerlink" href="#what-is-this" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Charcoal is the &lt;a href="http://charcoal-se.org/people.html"&gt;organization&lt;/a&gt; behind the &lt;a href="https://github.com/Charcoal-SE/SmokeDetector"&gt;SmokeDetector&lt;/a&gt; bot and other &lt;a href="https://github.com/Charcoal-SE"&gt;nice things&lt;/a&gt;. This bot scans new 
+posts across the entire network for spam posts and reports them to &lt;a href="https://github.com/Charcoal-SE/SmokeDetector/wiki/Chat-Rooms"&gt;various chatrooms&lt;/a&gt; where people can act on them. 
+If a post has been created or edited, anywhere on the network, we've probably seen it. The bot utilizes our knowledge 
+of how spammers work and what they have previously posted to come up with common patterns and rules to detect spam in
+the new and updated posts. You've likely seen the SmokeDetector bot if you visit chatrooms such as
+&lt;a href="http://chat.meta.stackexchange.com/rooms/89/tavern-on-the-meta"&gt;Tavern on the Meta&lt;/a&gt;, &lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt;, &lt;a href="http://chat.stackoverflow.com/rooms/41570/so-close-vote-reviewers"&gt;SO Close Vote Reviewers&lt;/a&gt; and others across the network. Over time, the 
+bot has become very accurate. &lt;/p&gt;
+&lt;p&gt;Now we are leveraging the years of data and accuracy to automatically cast spam flags. With approximately 58,000 posts 
+to draw from and over 46,000 true positives, we have a vast trove of data to utilize.&lt;/p&gt;
+&lt;h2 id="what-problem-does-this-address"&gt;What problem does this address?&lt;a class="headerlink" href="#what-problem-does-this-address" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To put it simply, &lt;strong&gt;spam&lt;/strong&gt;. Stack Exchange is one of the most popular networks of websites on the Internet, and &lt;em&gt;all&lt;/em&gt; 
+of it gets spammed at some point. Our statistics show that we see about 100 spam posts per day, on average over the 
+last three months. &lt;/p&gt;
+&lt;p&gt;A decent chunk of this isn't the type you'd want to see at work (or at all). The faster we can get this off the home 
+page, the better for all involved. Unfortunately, it's not unheard of for spam to last several hours, even on the 
+larger sites such as Graphic Design.&lt;/p&gt;
+&lt;p&gt;Over the past three years, efforts with Smokey have significantly cut the time it takes for spam to be deleted. This 
+project is an extension of that, and it's now well within reach to delete spam within seconds of it being posted.&lt;/p&gt;
+&lt;h2 id="what-are-we-doing"&gt;What are we doing?&lt;a class="headerlink" href="#what-are-we-doing" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For over 3 years, SmokeDetector has reported potential spam across the Stack Exchange network so that users can flag 
+the posts as appropriate. Users have provided feedback to inform the bot on whether the detection was correct or not 
+(referred to as "feedback"). This feedback is stored in our web dashboard, &lt;a href="https://metasmoke.erwaysoftware.com/"&gt;metasmoke&lt;/a&gt; (&lt;a href="https://github.com/Charcoal-SE/metasmoke"&gt;code&lt;/a&gt;). Over time, we've 
+used this feedback to evaluate our patterns ("reasons") and improve our accuracy. &lt;a href="https://metasmoke.erwaysoftware.com/reason/106"&gt;Several&lt;/a&gt; of our &lt;a href="https://metasmoke.erwaysoftware.com/reason/21"&gt;reasons&lt;/a&gt; 
+are over 99.9% &lt;a href="https://metasmoke.erwaysoftware.com/reason/61"&gt;accurate&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Early last year, and after getting a baseline accuracy from &lt;a href="http://stackoverflow.com/users/1933347/jmac"&gt;jmac&lt;/a&gt; (thank you!), we realized we could use the 
+system to automatically cast spam flags. On Stack Overflow the current accuracy of users flagging spam posts is 85.7%. 
+Across the rest of the network users are 95.4% accurate. We determined we can beat those numbers and eliminate spam 
+from Stack Overflow and the rest of the network even faster. &lt;/p&gt;
+&lt;p&gt;Without going into too much detail (if you really want it, it's available on our &lt;a href="https://charcoal-se.org/flagging"&gt;website&lt;/a&gt;), we leverage the 
+accuracy of each existing reason to come up with a weight indicating how certain the system is that a post is spam. If 
+this value exceeds a specific threshold, the system will cast up to three spam flags on the post. We cast multiple 
+flags utilizing a number of different users' accounts and the Stack Exchange API. Via metasmoke, users are given the 
+opportunity to &lt;a href="https://metasmoke.erwaysoftware.com/flagging/ocs"&gt;enable their accounts to be used to flag spam&lt;/a&gt; (You can too, if you've made it this far). When a 
+post is eligible for flagging because it exceeded the threshold set by each individual user, accounts are randomly 
+selected from the pool of enabled users to cast a single flag each, up to a maximum of three per post so that we never 
+unilaterally nuke something.&lt;/p&gt;
+&lt;h2 id="what-are-our-safety-checks"&gt;What are our safety checks?&lt;a class="headerlink" href="#what-are-our-safety-checks" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We designed the entire system with accuracy and sanity checks in mind. Our design collaborations are available for 
+your browsing pleasure (&lt;a href="https://docs.google.com/document/d/1Bg0u4oY9W_skp79wSnyQWttUIBH8WV46JELDGJ7Bixo/edit"&gt;RFC 1&lt;/a&gt;, &lt;a href="https://docs.google.com/document/d/1voGyl3BUA1JHJ0pR2Mf9E5-wmIDUFC1G8HcThiS7B1k/edit"&gt;RFC 2&lt;/a&gt;, RFC 3 (no longer available)). The major things that make this system safe and sane 
+are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We give users a choice as to how accurate they want to be with their automatic flags. Before casting any flags, we 
+ check that the preferences the user has set result in a spam detection accuracy of over 99.5% over a sample of at 
+ least 1000 posts. Remember, the current accuracy of humans is 85.7% on SO and network wide it is 95.4%. &lt;/li&gt;
+&lt;li&gt;We do not unilaterally spam nuke a post, regardless of how sure we are it is spam. This means that a human &lt;em&gt;must&lt;/em&gt; 
+ be involved to finish off a post, even on the few sites with lower spam thresholds.&lt;/li&gt;
+&lt;li&gt;We’ve designed the system to be tolerant of faults - if there’s a malfunction anywhere in the system, any user with 
+ access to SmokeDetector can immediately halt all automatic flagging - this includes all network moderators. If this 
+ happens, it needs a system administrator to step in to re-enable flags.&lt;/li&gt;
+&lt;li&gt;We've discussed this with a community manager and have their &lt;a href="http://chat.stackexchange.com/transcript/message/35437121#35437121"&gt;blessing&lt;/a&gt; on the project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We have been casting an average of 60-70 automatic flags per day for over two months, for a total of just over 4000 
+flags network wide. These flags were cast by 22 different users. In that time, we've had &lt;a href="https://metasmoke.erwaysoftware.com/flagging/logs?filter=fps"&gt;four&lt;/a&gt; false positives. 
+We would like to be able to automatically cancel these particular cases. This isn't possible though, so we've created 
+a feature request to &lt;a href="http://meta.stackexchange.com/questions/288120/allow-retracting-flags-from-the-api"&gt;retract flags via the API&lt;/a&gt;. In the mean time, the flags are either manually retracted by the 
+user or declined by a moderator.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-weights-and-accuracies.png"&gt;&lt;img alt="Weights and Accuracy" src="https://andrewwegner.com/images/spam-weights-and-accuracies.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The above graph plots the weight of the reasons against its overall volume of reports and accuracy. As minimum weight 
+increases, accuracy (yellow line and rightmost Y-axis) and total reports (blue line) on the left-hand scale increase. 
+The green line represents the number of true positives, which are verified by SmokeDetector user feedback.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-autoflags-per-day.png"&gt;&lt;img alt="Automatic Flags per day" src="https://andrewwegner.com/images/spam-autoflags-per-day.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This shows the number of posts we've automatically flagged per day over the last month. The jump on February 15th, is 
+due to increasing the number of automatic flags from 1 per post to 3 per post. You can see a live version of this graph 
+on &lt;a href="https://metasmoke.erwaysoftware.com/flagging"&gt;metasmoke's autoflagging page&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-spam-hours.png"&gt;&lt;img alt="Spam Hours" src="https://andrewwegner.com/images/spam-spam-hours.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Spam arrives on Stack Exchange in waves. It is easy to see the time of day that many spam reports come in. The hours, 
+above, are UTC time. The busiest spam times of day are the 8 hour block between 4am and Noon. We have affectionately 
+named this "spam hour" in the chat room. &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/spam-average-time-to-delete.png"&gt;&lt;img alt="Average Time to Deletion" src="https://andrewwegner.com/images/spam-average-time-to-delete.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Our goal is to delete spam quickly and accurately. The graph shows the time it takes for a reported spam post to be 
+removed from the network. This section has three trend lines that show these averages. The first, red section is when 
+we were simply reporting the posts to chatrooms and all flags had to come from users. You can see we are pretty constant 
+in the time it takes to remove spam during this period. It took, on average, just over five minutes to get a post 
+removed.&lt;/p&gt;
+&lt;p&gt;The green trend line is when we were issuing a single automatic flag. At implementation, we eliminated a full minute 
+from time to deletion and after a month we'd eliminated two full minutes compared to no automatic flags.&lt;/p&gt;
+&lt;p&gt;The last section, the orange, is when we implemented three automatic flags to most sites. This was rolled out last 
+week, but it's already had a dramatic improvement on the time to deletion. We are seeing between 1 and 2 minutes to 
+time to deletion.&lt;/p&gt;
+&lt;p&gt;As mentioned above, spam arrives in waves. The dashed and dotted lines on the graph show the average deletion time 
+during these two different time periods. The dashed lines show deletion time during 4am and Noon UTC, the dotted lines 
+show the rest of the 24 hour period. An interesting thing this graph shows is that time to deletion during spam hour 
+was higher when we didn't cast any automatic flags. It was removed faster outside of spam hour. That reversed when we 
+started issuing a single auto-flag. The spam hour time to deletion is slightly lower than the average. Comparing the 
+two time periods though, time to deletion during non-spam hour at the end of the non-flagging time period and the end 
+of the single flag period are roughly the same. &lt;/p&gt;
+&lt;p&gt;We'll update these in a few weeks too, to better show the trend we are seeing with three automatic flags.  &lt;/p&gt;
+&lt;h2 id="discussion"&gt;Discussion&lt;a class="headerlink" href="#discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We are confident in SmokeDetector and the three years of history it has. We've had many talented developers assist us 
+over the years and many more users have provided feedback to improve our detection rules. Let us know what you want us 
+to elaborate on, features you're wondering about or would like to see added, or things we might have missed in the 
+process or the tooling. Take a look at the &lt;a href="http://meta.stackexchange.com/questions/288120/allow-retracting-flags-from-the-api"&gt;feature&lt;/a&gt; we'd really like Stack Exchange to consider so that we can 
+further improve this system (and some of the other community built systems). We'll have &lt;a href="http://charcoal-se.org/people.html"&gt;Charcoal members&lt;/a&gt; hanging 
+around and answering your questions. Alternatively, feel free to drop into &lt;a href="http://chat.stackexchange.com/rooms/11540/charcoal-hq"&gt;Charcoal HQ&lt;/a&gt; and have a chat. &lt;/p&gt;</content><category term="Programming Projects"/><category term="Stack Exchange"/><category term="machine learning"/><category term="automation"/><category term="programming"/></entry><entry><title>Link Analysis - Technical Explanation</title><link href="https://andrewwegner.com/link-analysis---technical-explanation.html" rel="alternate"/><published>2015-08-10T23:41:00-05:00</published><updated>2015-08-10T23:41:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-08-10:/link-analysis---technical-explanation.html</id><summary type="html">&lt;p&gt;Approximately 10% of links on the Stack Overflow are unavailable. This is an analysis of how I determined thiat and a discussion on how to improve it&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In my last two posts, I've discussed the number of &lt;a href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html"&gt;rotten links&lt;/a&gt; on Stack Overflow and a &lt;a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html"&gt;proposal to fix said links&lt;/a&gt;. In this post, I'm going to discuss how I performed this analysis. &lt;/p&gt;
+&lt;h2 id="set-up"&gt;Set up&lt;a class="headerlink" href="#set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="the-database"&gt;The database&lt;a class="headerlink" href="#the-database" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The process began by downloading the March 2013 &lt;a href="https://archive.org/details/stackexchange"&gt;data dump&lt;/a&gt;. I loaded the &lt;code&gt;posts&lt;/code&gt; into a &lt;a href="https://mariadb.org/"&gt;MariaDB&lt;/a&gt; instance on my local machine. This was accomplished with a very simple script and patience, as the script took a while to run.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;load&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xml&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;infile&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'/path/to/posts.xml'&lt;/span&gt;
+&lt;span class="n"&gt;into&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;posts&lt;/span&gt;
+&lt;span class="n"&gt;rows&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;identified&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;'&amp;lt;row&amp;gt;'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="the-data"&gt;The data&lt;a class="headerlink" href="#the-data" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once this was done, the next step was selecting my random sample of data. I did this by randomly selecting 25% of the days in a year and then pulling all posts for those days across all years of Stack Overflow's existence. The Python script I used to do this was fairly simple:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;datetime&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;timedelta&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;random&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;randint&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;math&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ceil&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;random_date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;timedelta&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;seconds&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;total_seconds&lt;/span&gt;&lt;span class="p"&gt;())))&lt;/span&gt;
+
+&lt;span class="n"&gt;percentage&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.25&lt;/span&gt;
+&lt;span class="n"&gt;days&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;366&lt;/span&gt;
+
+&lt;span class="n"&gt;dayslist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ceil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;days&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;percentage&lt;/span&gt;&lt;span class="p"&gt;))):&lt;/span&gt;
+    &lt;span class="n"&gt;dayslist&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;random_date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2008&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2008&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;31&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;At the end of this run, the days that I cared about are in the &lt;code&gt;dayslist&lt;/code&gt; variable. I used that to pull questions and answers from the database that were created on that month/day combination. In the end, this resulted in just over 25% of the total posts being selected. To ensure that I could replicate the results, I also saved the dates that were selected.&lt;/p&gt;
+&lt;h2 id="parsing-the-data"&gt;Parsing the data&lt;a class="headerlink" href="#parsing-the-data" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The next step was to parse out links from the data. I used the following script to extract anchor text and links from a post. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;def&lt;span class="w"&gt; &lt;/span&gt;links_in_post(post):
+&lt;span class="w"&gt;    &lt;/span&gt;"""
+&lt;span class="w"&gt;    &lt;/span&gt;Returns&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;list&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;all&lt;span class="w"&gt; &lt;/span&gt;links&lt;span class="w"&gt; &lt;/span&gt;found
+&lt;span class="w"&gt;    &lt;/span&gt;:param&lt;span class="w"&gt; &lt;/span&gt;posts:&lt;span class="w"&gt; &lt;/span&gt;A&lt;span class="w"&gt; &lt;/span&gt;list&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;dictionaries&lt;span class="w"&gt; &lt;/span&gt;with&lt;span class="w"&gt; &lt;/span&gt;a&lt;span class="w"&gt; &lt;/span&gt;'body'&lt;span class="w"&gt; &lt;/span&gt;key&lt;span class="w"&gt; &lt;/span&gt;containing&lt;span class="w"&gt; &lt;/span&gt;HTML&lt;span class="w"&gt; &lt;/span&gt;strings
+&lt;span class="w"&gt;     &lt;/span&gt;[
+&lt;span class="w"&gt;        &lt;/span&gt;{
+&lt;span class="w"&gt;            &lt;/span&gt;'body':&lt;span class="w"&gt; &lt;/span&gt;"&lt;span class="nt"&gt;&amp;lt;b&amp;gt;&lt;/span&gt;This&lt;span class="w"&gt; &lt;/span&gt;is&lt;span class="w"&gt; &lt;/span&gt;HTML&lt;span class="nt"&gt;&amp;lt;/b&amp;gt;&lt;/span&gt;"
+&lt;span class="w"&gt;        &lt;/span&gt;},
+&lt;span class="w"&gt;    &lt;/span&gt;]
+&lt;span class="w"&gt;    &lt;/span&gt;:return:&lt;span class="w"&gt; &lt;/span&gt;A&lt;span class="w"&gt; &lt;/span&gt;list&lt;span class="w"&gt; &lt;/span&gt;of&lt;span class="w"&gt; &lt;/span&gt;tuples&lt;span class="w"&gt; &lt;/span&gt;containing&lt;span class="w"&gt; &lt;/span&gt;anchor&lt;span class="w"&gt; &lt;/span&gt;text&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;URL
+&lt;span class="w"&gt;        &lt;/span&gt;[
+&lt;span class="w"&gt;            &lt;/span&gt;('Display&lt;span class="w"&gt; &lt;/span&gt;Text',&lt;span class="w"&gt; &lt;/span&gt;'http://example.com')
+&lt;span class="w"&gt;        &lt;/span&gt;]
+&lt;span class="w"&gt;    &lt;/span&gt;"""
+&lt;span class="w"&gt;    &lt;/span&gt;logging.debug("Extracting&lt;span class="w"&gt; &lt;/span&gt;links...")
+&lt;span class="w"&gt;    &lt;/span&gt;links&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;[]
+&lt;span class="w"&gt;    &lt;/span&gt;images&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;[]
+&lt;span class="w"&gt;    &lt;/span&gt;regexp&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;"&lt;span class="ni"&gt;&amp;amp;.+?;&lt;/span&gt;"
+&lt;span class="w"&gt;    &lt;/span&gt;list_of_html&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;re.findall(regexp,&lt;span class="w"&gt; &lt;/span&gt;post)
+&lt;span class="w"&gt;    &lt;/span&gt;for&lt;span class="w"&gt; &lt;/span&gt;e&lt;span class="w"&gt; &lt;/span&gt;in&lt;span class="w"&gt; &lt;/span&gt;list_of_html:
+&lt;span class="w"&gt;        &lt;/span&gt;if&lt;span class="w"&gt; &lt;/span&gt;e&lt;span class="w"&gt; &lt;/span&gt;in&lt;span class="w"&gt; &lt;/span&gt;invalid_entities:
+&lt;span class="w"&gt;            &lt;/span&gt;h&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;HTMLParser.HTMLParser()
+&lt;span class="w"&gt;            &lt;/span&gt;unescaped&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;h.unescape(e)&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;post&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;post.replace(e,&lt;span class="w"&gt; &lt;/span&gt;unescaped)
+
+&lt;span class="w"&gt;    &lt;/span&gt;doc&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;html.fromstring(post)
+&lt;span class="w"&gt;    &lt;/span&gt;for&lt;span class="w"&gt; &lt;/span&gt;link&lt;span class="w"&gt; &lt;/span&gt;in&lt;span class="w"&gt; &lt;/span&gt;doc.xpath('//a'):
+&lt;span class="w"&gt;        &lt;/span&gt;links.append(Link(text=link.text_content(),&lt;span class="w"&gt; &lt;/span&gt;link=link.get('href')))
+&lt;span class="w"&gt;    &lt;/span&gt;for&lt;span class="w"&gt; &lt;/span&gt;image&lt;span class="w"&gt; &lt;/span&gt;in&lt;span class="w"&gt; &lt;/span&gt;doc.xpath('//img'):
+&lt;span class="w"&gt;        &lt;/span&gt;images.append(Link(text=image.get('alt'),&lt;span class="w"&gt; &lt;/span&gt;link=image.get('src')))
+&lt;span class="w"&gt;    &lt;/span&gt;all_items&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;links&lt;span class="w"&gt; &lt;/span&gt;+&lt;span class="w"&gt; &lt;/span&gt;images
+&lt;span class="w"&gt;    &lt;/span&gt;seen&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;set()
+&lt;span class="w"&gt;    &lt;/span&gt;unique_items&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;[item&lt;span class="w"&gt; &lt;/span&gt;for&lt;span class="w"&gt; &lt;/span&gt;item&lt;span class="w"&gt; &lt;/span&gt;in&lt;span class="w"&gt; &lt;/span&gt;all_items&lt;span class="w"&gt; &lt;/span&gt;if&lt;span class="w"&gt; &lt;/span&gt;item[1]&lt;span class="w"&gt; &lt;/span&gt;not&lt;span class="w"&gt; &lt;/span&gt;in&lt;span class="w"&gt; &lt;/span&gt;seen&lt;span class="w"&gt; &lt;/span&gt;and&lt;span class="w"&gt; &lt;/span&gt;not&lt;span class="w"&gt; &lt;/span&gt;seen.add(item[1])]
+&lt;span class="w"&gt;    &lt;/span&gt;return&lt;span class="w"&gt; &lt;/span&gt;unique_items
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The regular expression being utilized, is to strip out HTML entities. This was needed due to weird parsing issues with non-ASCII characters. Fortunately, I wasn't the &lt;a href="http://stackoverflow.com/a/13939198/189134"&gt;first to encounter oddities like this&lt;/a&gt;. The list comprehension at the end of the function is returning only unique tuples of anchor text/link. I was surprised how often I'd end up with tuples such as &lt;code&gt;('this', 'http://google.com')&lt;/code&gt; in the same post. This uniqueness saved a lot of processing time later.&lt;/p&gt;
+&lt;p&gt;After all links in a post had been extracted, this information and information about the post itself, was saved to the database. If a post had no links, it was not saved. The database consisted of three tables. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Links - This table contains the base URLs seen in all posts. URLs are distinct. It also contains an ID that will be utilized for linking to the other tables.&lt;/li&gt;
+&lt;li&gt;Post Links - This table contains information about links in a post. This includes the specific anchor text/link combinations&lt;/li&gt;
+&lt;li&gt;Link Results - This table contains the results of link status checks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Processing the posts was fairly time consuming, but was able to be parallelized easily. That significantly cut down on processing time.&lt;/p&gt;
+&lt;h2 id="checking-the-links"&gt;Checking the links&lt;a class="headerlink" href="#checking-the-links" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The most time consuming portion of this entire project was actually checking link status. Each link that appeared in the &lt;code&gt;Links&lt;/code&gt; table was checked. As I mentioned in my first post, the original idea was to simply send a &lt;code&gt;HEAD&lt;/code&gt; request to each URL. The idea was to save myself and the end point a tiny amount of bandwidth. I had over a million links to process. I figured a little saved bandwidth wouldn't hurt.&lt;/p&gt;
+&lt;p&gt;I turns out this isn't a good idea. When I started seeing larger sites as not being accessible, I go suspicious that something was wrong. These sites were returning status 405 errors. This indicates that the method is not allowed. So, I switched to &lt;code&gt;GET&lt;/code&gt; for every link. The next problem I ran into was that many sites didn't like the default user agent of the spider. They rejected requests with 404 and 401 errors. In the end, I got around this by mimicking Firefox on every request. &lt;/p&gt;
+&lt;p&gt;With those kinks worked out, every link was sent a &lt;code&gt;GET&lt;/code&gt; request that looked to be from a Firefox browser. The process would allow 20 seconds per link. If the link didn't respond in that time limit, it was declared inaccessible. &lt;/p&gt;
+&lt;p&gt;A week later, I repeated the process with anything that hadn't returned a status code less than 400. Once more, on the third week, I repeated this with the failed links. At the end of three weeks, I had a list of sites that were inaccessible to me - on a residential connection - three times over a period of three weeks.&lt;/p&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://andrewwegner.com/images/status_codes.svg"&gt;SVG image&lt;/a&gt; that I created for the write up was generated with Pygal. The tables were the result of various break downs of the data via queries to the status results. &lt;/p&gt;
+&lt;h2 id="wrap-up"&gt;Wrap up&lt;a class="headerlink" href="#wrap-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I am rather proud of how the results turned out for this project. I went into it expecting about 15% of links to be broken, but I didn't really realize what the meant. Fifteen percent of 21 million total posts is over 3 million. That's a large number. BUT, it also ignored that a large percentage of posts don't contain links. I failed to consider that in my original hypothesis. &lt;/p&gt;
+&lt;p&gt;Less than half of my sample had links (2.3M out of 5.6M). Of the 2.3M with links, only 1.5M were unique links. The final result of 10% failed links makes much more sense in this context. Ten percent of 1.5M links means that there are 150K links that are bad. &lt;/p&gt;</content><category term="Side Activities"/><category term="Stack Exchange"/><category term="programming"/></entry><entry><title>A proposal to fix broken links on Stack Overflow</title><link href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html" rel="alternate"/><published>2015-08-07T07:34:00-05:00</published><updated>2015-08-07T07:34:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-08-07:/a-proposal-to-fix-broken-links-on-stack-overflow.html</id><summary type="html">&lt;p&gt;My proposal to decrease the number of broken links on Stack Overflow&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;This post was &lt;a href="http://meta.stackoverflow.com/q/300916/189134"&gt;published&lt;/a&gt; by &lt;a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile"&gt;me&lt;/a&gt; on Meta Stack Overflow on August 7th, 2015. I've republished it here
+so that I can easily update information related to recent developments. If you have questions or comments, I highly
+encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/300916/189134"&gt;question&lt;/a&gt; on Meta Stack Overflow and post there.&lt;/p&gt;
+&lt;p&gt;This is a follow up to &lt;a href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html"&gt;yesterday's post&lt;/a&gt; about how many links on Stack Overflow are starting to rot.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="the-proposal"&gt;The proposal&lt;a class="headerlink" href="#the-proposal" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I propose &lt;a href="http://meta.stackoverflow.com/a/301002/189134"&gt;another hybrid&lt;/a&gt; of the previous &lt;a href="http://meta.stackexchange.com/questions/224895/what-happened-to-the-broken-link-review-queue"&gt;broken link&lt;/a&gt; queue (as was mentioned &lt;a href="http://meta.stackoverflow.com/questions/300916/i-estimate-10-of-the-links-posted-here-are-dead-how-do-we-deal-with-them#comment229798_300916"&gt;above&lt;/a&gt; in &lt;a href="http://meta.stackoverflow.com/questions/300916/i-estimate-10-of-the-links-posted-here-are-dead-how-do-we-deal-with-them#comment229795_300916"&gt;comments&lt;/a&gt; and &lt;a href="http://meta.stackoverflow.com/a/300998/189134"&gt;other&lt;/a&gt; &lt;a href="http://meta.stackoverflow.com/a/300996/189134"&gt;answers&lt;/a&gt;) and an automated process to fix broken links with an archived version (which has also been &lt;a href="http://meta.stackoverflow.com/a/301001/189134"&gt;suggested&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;The broken link queue should focus on editing and fixing the links in a post (as opposed to closing it). It'd be similar to the suggested edits queue, but with the focus intended to correct &lt;em&gt;links&lt;/em&gt; not spelling and grammar. This could be done by only allowing a user to edit the links.&lt;/p&gt;
+&lt;p&gt;One possibility, I envision is presenting the user with the links in the post and a status on whether or not the link is available. If it's not available, give the user a way to change that specific link. Utilizing &lt;a href="http://stackoverflow.com/a/2054063/189134"&gt;this&lt;/a&gt; post, I have a quick mock up of what I propose such a review task looks like:&lt;/p&gt;
+&lt;h2 id="the-queue"&gt;The Queue&lt;a class="headerlink" href="#the-queue" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/brokenlinkqueue.png"&gt;&lt;img alt="Broken Link Mock up" src="https://andrewwegner.com/images/brokenlinkqueue.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;All the links that appear in the post are on the right hand side of the screen. The links that are accessible have a green check mark. The ones that are broken (and the reason for being in this queue) have a red X. When a user elects to fix a post, they are presented with a modal showing only the broken URLs.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="the-automation"&gt;The Automation&lt;a class="headerlink" href="#the-automation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With this queue, though, I think an automated process would be helpful as well. The idea is that this would operate similarly to the Low Quality queue, where the system can automatically add a post to the queue if certain criteria are met &lt;em&gt;or&lt;/em&gt; a user can flag a post as having broken links. I've based my idea on what Tim Post outlined in the &lt;a href="http://meta.stackexchange.com/questions/130398/does-stack-exchange-crawl-websites/198357#comment741544_198357"&gt;comments to a previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automated process performs a "Today in History" type check. This keeps the fixes limited to a small subset of posts per day. It also focuses on older posts, which were more likely to have a broken link than something posted recently. Example: On July 31, 2015, the only posts being checked for bad links would be anything posted on July 31 in any year 2008 through current year - 1.&lt;/li&gt;
+&lt;li&gt;Utilizing the &lt;a href="http://archive.org/about/wayback_api.php"&gt;Wayback Machine API&lt;/a&gt;, or similar service, the system attempts to change broken links into an archived version of the URL. This archived version should probably be from "close" to the time the post was originally made. If the automated process isn't able to find an archived version of the link, the post should be tossed into the Broken Link queue&lt;/li&gt;
+&lt;li&gt;When the Community edits a post to fix a link, a new Post History event is utilized to show that a link was changed. This would allow anyone looking at revision history to easily see that a specific change was only to fix links.&lt;/li&gt;
+&lt;li&gt;Actions performed in the previous bullets are exposed to 10K users in the moderator tools. Much like recent close/delete posts show up, these do as well. This allows higher rep users to spot check (if they so desire). I think this portion is important when the automated process fixes a link. For community edits in the queue, the history tab in &lt;code&gt;/review&lt;/code&gt; seems sufficient.&lt;/li&gt;
+&lt;li&gt;If a post consists of a large percentage of a link (or links) and these links were changed by Community, the post should have further action taken on it in some queue.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example:
+     - A post where X+% of the text is hyperlinks is very dependent on the links being active. If one or more of the links are broken, the post may no longer be relevant (or may be a link only post). One example I found while doing this was &lt;a href="http://stackoverflow.com/posts/4906230/revisions"&gt;this&lt;/a&gt; answer.&lt;/p&gt;
+&lt;p&gt;I don't think that this type of edit from the Community user should bump a post to the front page. Edits done in the broken link queue, though, &lt;em&gt;should&lt;/em&gt; bump the post just like a suggested edit does today. By preventing the automated Community posts from being bumped, we prevent the the front page from being flooded, daily, with old posts and these edits. I think that the exposure in the 10K tools and the broken link queue will provide the visibility needed to check the process is working correctly.&lt;/p&gt;
+&lt;h2 id="process-flows"&gt;Process flows&lt;a class="headerlink" href="#process-flows" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Queue Flow:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/brokenqueueflow.png"&gt;&lt;img alt="Queue Flow" src="https://andrewwegner.com/images/brokenqueueflow.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Automated process flow:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/automatedlinkflow.png"&gt;&lt;img alt="Automated Link check flow" src="https://andrewwegner.com/images/automatedlinkflow.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="potential-pitfalls"&gt;Potential pitfalls&lt;a class="headerlink" href="#potential-pitfalls" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The automated link checking will likely run into several of the problems I did. Mainly:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sites modify the &lt;code&gt;HEAD&lt;/code&gt; request to send a 404 instead of a 405. My solution to this was to issue &lt;code&gt;GET&lt;/code&gt; requests for everything.&lt;/li&gt;
+&lt;li&gt;Sites don't like certain user agents. My solution to this was to mimic the Firefox user agent. To be a good internet citizen, Stack Exchange probably shouldn't go that far, but providing a unique user agent that is easily identifiable as "StackExchangeBot" (think "GoogleBot"), should be helpful in identifying where traffic is coming from.&lt;/li&gt;
+&lt;li&gt;Sites that are down one week and up another. I solved this by spreading my tests over a period of 3 weeks. With the queue and automatic linking to an archived version of the site, this may not be necessary. However, immediately converting a link to an archived copy should be discussed by the community. Do we convert the broken link immediately? Or do we try again in X days. If it's still down then convert it? It was suggested in &lt;a href="http://meta.stackoverflow.com/a/301002/189134"&gt;another answer&lt;/a&gt; that we first offer the poster the chance to make changes before an automatic process takes place.&lt;/li&gt;
+&lt;li&gt;The need to throttle requests so that you don't flood a site with requests. I solved this by only querying unique URLs. This still issues a lot of requests to certain, popular, domains. This could be solved by staggering the checks over a period of minutes/hours versus spewing 100s - 1000s of &lt;code&gt;GET&lt;/code&gt; requests at midnight daily.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With the broken link queue, I feel the first two would be acceptable. Much like posts in the Low Quality queue appear because of a heuristic, despite not being low quality, links will be the same way. The system will flag them as broken and the queue will determine if that is true (if an archived version of the site can't be found by the automated process). The bullet about throttling requests is an implementation detail that I'm sure the developers would be able to figure out.&lt;/p&gt;</content><category term="Side Activities"/><category term="Stack Exchange"/><category term="programming"/></entry><entry><title>Analysis of links posted to Stack Overflow</title><link href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html" rel="alternate"/><published>2015-08-06T07:35:00-05:00</published><updated>2015-08-07T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-08-06:/analysis-of-links-posted-to-stack-overflow.html</id><summary type="html">&lt;p&gt;Approximately 10% of on Stack Overflow are unavailable. This is an analysis of how I determined that and a discussion on how to improve it.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;This post was &lt;a href="http://meta.stackoverflow.com/q/300916/189134"&gt;published&lt;/a&gt; by &lt;a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile"&gt;me&lt;/a&gt; on Meta Stack Overflow on August 6th, 2015. I've republished it here
+so that I can easily update information related to recent developments. If you have questions or comments, I highly
+encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/300916/189134"&gt;question&lt;/a&gt; on Meta Stack Overflow and post there. &lt;/p&gt;
+&lt;p&gt;TL;DR: Approximately 10% of 1.5M randomly selected unique links in the March 2015 &lt;a href="https://archive.org/details/stackexchange"&gt;data dump&lt;/a&gt; are unavailable. To be more precise, that is approximately 150K dead links.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="motivation"&gt;Motivation&lt;a class="headerlink" href="#motivation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've been running into more and more links that are dead on Stack Overflow and it's bothering me. In some cases, I've spent the time hunting down a replacement, in others I've notified the owner of the post that a link is dead, and (more shamefully), in others I've simply ignored it and left just a &lt;a href="http://meta.stackoverflow.com/a/262040/189134"&gt;down vote&lt;/a&gt;. Obviously that's not good.&lt;/p&gt;
+&lt;p&gt;Before making sweeping generalizations that there are dead links everywhere, though, I wanted to make sure I wasn't just finding bad posts because I was wandering through the review queues. Utilizing the March 2015 data dump, I randomly selected about 25% of the posts (both questions and answers) and then parsed out the links. This works out to 5.6M posts out of 21.7M total.&lt;/p&gt;
+&lt;p&gt;Of these 5.6M posts, 2.3M contained links and 1.5M of these were unique links. I sent each unique URL a &lt;a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods"&gt;&lt;code&gt;HEAD&lt;/code&gt;&lt;/a&gt; request, with a user agent mimicking Firefox&lt;sup&gt;1&lt;/sup&gt;. I then retested everything that didn't return a successful response a week later. Finally, anything that failed from &lt;em&gt;that&lt;/em&gt; batch, I resent a final test a week later. If a site was down in all three tests, I considered it down for this test.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="results2"&gt;Results&lt;sup&gt;2&lt;/sup&gt;&lt;a class="headerlink" href="#results2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="by-status-code"&gt;By status code&lt;a class="headerlink" href="#by-status-code" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Good news/Bad News: A majority of the links returned a valid response, but there are still roughly 10% that failed.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/images/status_codes.svg"&gt;&lt;img alt="PIE CHART IMAGE" src="https://andrewwegner.com/images/status_codes.svg"/&gt;&lt;/a&gt;
+&lt;em&gt;(This image is showing the top status codes returned)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The three largest slices of the pie are the status 200s (site working!), status 404 (page not found, but server responded saying the page isn't found) and Connection Errors. Connection errors are sites that had no proper server response. The request to access the page timed out. I was generous in the time out and allowed a request to live for 20 seconds before failing a link with this status. The &lt;code&gt;4xx&lt;/code&gt; and &lt;code&gt;5xx&lt;/code&gt; errors are status codes that fall in the 400 and 500 range of HTTP responses. These are client and server error ranges, thus counted as a failure. &lt;code&gt;2xx&lt;/code&gt; errors (of which was are in the low triple) are pages that responded with a success message in the 200 range, but it wasn't a &lt;code&gt;200&lt;/code&gt; code. Finally, there were just over a hundred sites that hit a redirect loop that didn't seem to end. These are the &lt;code&gt;3xx&lt;/code&gt; errors. I failed a site with this range if it redirected more than 30 times. There are a negligible number of sites that returned status codes in the 600 and &lt;a href="https://github.com/joho/7XX-rfc"&gt;700&lt;/a&gt; range&lt;sup&gt;4&lt;/sup&gt;&lt;/p&gt;
+&lt;h3 id="by-most-common"&gt;By most common&lt;a class="headerlink" href="#by-most-common" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;There are, expectedly, many URLs that failed that appeared frequently in the sample set. Below is a list of the top 50&lt;sup&gt;3&lt;/sup&gt; URLs that are in posts most often, but failed three times over the course of three weeks.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jquery&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Plugins&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;validation&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;eclipse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;eclipselink&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;moxy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;jackson&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;codehaus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;xstream&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;codehaus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;opencv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;willowgarage&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;wiki&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;developer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;android&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;articles&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;painless&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;threading&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;valums&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ajax&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;upload&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;sqlite&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;phxsoftware&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;qt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nokia&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;oracle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;technetwork&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;codeconv&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;138413.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jdk8&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;oracle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;javase&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;1.4&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;SimpleDateFormat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;watin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sourceforge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;leandrovieira&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;projects&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jquery&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lightbox&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;graph&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;facebook&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;ccrma&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stanford&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;edu&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;courses&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;422&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;projects&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;WaveFormat&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;postsharp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;erichynds&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jquery&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jquery&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ui&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;multiselect&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;widget&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;ha&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ckers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;xss&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;jetty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;codehaus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jetty&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;cpp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;archive&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2009&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;want&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;speed&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;pass&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;codespeak&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lxml&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;personal&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Hans_Boehm&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;jquery&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;demo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;thickbox&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;book&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;scm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="n"&gt;_submodules&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;monotouch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;developer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;android&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;resources&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;articles&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;timed&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ui&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;updates&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;jquery&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bassistance&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;de&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;validate&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;demo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;codeigniter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;user_guide&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;database&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;active_record&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;phantomjs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;watin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;db4o&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;qt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nokia&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;products&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;referencesource&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;microsoft&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;netframework&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;aspx&lt;/span&gt;
+&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;facebook&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sdk&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decompiler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;free&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;pivotal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jasmine&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jquery&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;category&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;templates&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;closure&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;library&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;w3schools&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ref_entities&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;asp&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;xstream&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;codehaus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tutorial&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;facebook&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sdk&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;java&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;maven&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jstl&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jars&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jstl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jar&lt;/span&gt;
+&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;developers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;facebook&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;offline&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;access&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;deprecation&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parashift&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;++-&lt;/span&gt;&lt;span class="n"&gt;faq&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;lite&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pointers&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;members&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;developers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;facebook&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mobile&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ios&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;downloads&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pierre&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;fluentnhibernate&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tutsplus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tutorials&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;javascript&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ajax&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ways&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ajax&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;calls&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;with&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;jquery&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iceburg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jquery&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;jqModal&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="by-post-score"&gt;By post score&lt;a class="headerlink" href="#by-post-score" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Count of posts by score (top 10)  (Covers 94% of all broken links):&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;| Score | Percentage of Total Broken |
+|-------|----------------------------|
+| 0     | 36.4087%                   |
+| 1     | 25.1674%                   |
+| 2     | 13.4089%                   |
+| 3     | 7.2806%                    |
+| 4     | 4.2971%                    |
+| 5     | 2.7065%                    |
+| 6     | 1.8068%                    |
+| 7     | 1.2854%                    |
+| -1    | 1.1935%                    |
+| 8     | 0.9415%                    |
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="by-number-of-views"&gt;By number of views&lt;a class="headerlink" href="#by-number-of-views" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Note, this is number of views at the time the data dump was created, not as of today&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Count of posts by number of views (top 10):&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;| Views        | Total Views |
+|--------------|-------------|
+| (0, 200]     | 24.4709%    |
+| (200, 400]   | 14.2186%    |
+| (400, 600]   | 9.5045%     |
+| (600, 800]   | 6.9793%     | 
+| (800, 1000]  | 5.2574%     |
+| (1000, 1200] | 4.1864%     |
+| (1200, 1400] | 3.3699%     |
+| (1400, 1600] | 2.7766%     |
+| (1600, 1800] | 2.3477%     |
+| (1800, 2000] | 1.9550%     |
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="by-days-since-post-created"&gt;By days since post created&lt;a class="headerlink" href="#by-days-since-post-created" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Note: This is number of days since creation at the time the data dump was created, not from today&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Count of posts by days since creation (top 10) (Covers 64% of broken links):&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;| Days since Creation | Percentage of Total Broken |
+|---------------------|----------------------------|
+| (1110, 1140]        | 7.2938%                    |
+| (1140, 1170]        | 6.7648%                    |
+| (1470, 1500]        | 6.6579%                    |
+| (1080, 1110]        | 6.6535%                    | 
+| (750, 780]          | 6.5535%                    |
+| (720, 750]          | 6.5516%                    |
+| (1500, 1530]        | 6.3978%                    |
+| (390, 420]          | 5.8508%                    |
+| (360, 390]          | 5.8258%                    |
+| (780, 810]          | 5.5175%                    |
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="by-ratio-of-viewsdays"&gt;By Ratio of Views:Days&lt;a class="headerlink" href="#by-ratio-of-viewsdays" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ratio Views:Days (top 20) (Covers 90% of broken links):&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;| Views:Days Ratio | Percentage of Total Broken |
+|------------------|-------------|
+| (0, 0.25]        | 27.2369%    |
+| (0.25, 0.5]      | 18.8496%    |
+| (0.5, 0.75]      | 11.4321%    |
+| (0.75, 1]        | 7.2481%     | 
+| (1, 1.25]        | 5.1668%     |
+| (1.25, 1.5]      | 3.7907%     |
+| (1.5, 1.75]      | 2.9310%     |
+| (1.75, 2]        | 2.4033%     |
+| (2, 2.25]        | 1.9788%     |
+| (2.25, 2.5]      | 1.6850%     |
+| (2.5, 2.75]      | 1.4080%     |
+| (2.75, 3]        | 1.1879%     |
+| (3, 3.25]        | 1.0654%     |
+| (3.25, 3.5]      | 0.9391%     |
+| (3.5, 3.75]      | 0.8334%     |
+| (3.75, 4]        | 0.7165%     |
+| (4, 4.25]        | 0.6634%     |
+| (4.25, 4.5]      | 0.5789%     |
+| (4.5, 4.75]      | 0.5508%     |
+| (4.75, 5]        | 0.4833%     |
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr/&gt;
+&lt;h2 id="discussion"&gt;Discussion&lt;a class="headerlink" href="#discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;What can we do with all of this? How do we, as a community, solve the issue of 10% of our outbound links pointing to places on the internet that no longer exist? Assuming that my sample was indicative of the entire data dump, there are close to 600K (150K broken unique links x 4, because I took 1/4 of the data dump as a sample) broken links posted in questions and answers on Stack Overflow. I assume a large number of links posted in comments would be broken as well, but that's an activity for another month.&lt;/p&gt;
+&lt;p&gt;We encourage posters to provide snippets from their links just in case a link dies. That definitely helps, but the resources behind the links and the (presumably) expanded explanation behind the links are still gone. How can we properly deal with this? &lt;/p&gt;
+&lt;p&gt;It looks like there have been a few previous discussions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://meta.stackexchange.com/a/198357/186281"&gt;Utilize the Wayback API to automatically fix broken links.&lt;/a&gt; Development appeared to stall on this due to the large number of edits the Community user would be making. This would also hide posts that depended on said link from being surfaced for the community to fix it.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://meta.stackexchange.com/questions/224895/what-happened-to-the-broken-link-review-queue"&gt;Link review queue&lt;/a&gt;. It was in &lt;a href="http://meta.stackexchange.com/questions/212023/where-can-i-access-the-link-validation-review-queue"&gt;alpha&lt;/a&gt;, but disappeared in early 2014. &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://meta.stackexchange.com/questions/174347/badge-request-for-fixing-dead-links-pipefitter"&gt;Badge proposal for fixing broken links&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h2 id="footnotes"&gt;Footnotes&lt;a class="headerlink" href="#footnotes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;This is how it ultimately played out. Originally I sent &lt;code&gt;HEAD&lt;/code&gt; requests, in an effort to save bandwidth. This turned out to waste a whole bunch of time because there are a whole bunch of sites around the internet that return a &lt;a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error"&gt;&lt;code&gt;405 Method Not Allowed&lt;/code&gt;&lt;/a&gt; when sending a &lt;code&gt;HEAD&lt;/code&gt; request. The next step was to sent &lt;code&gt;GET&lt;/code&gt; requests, but utilize the default Python &lt;a href="http://docs.python-requests.org/en/latest/"&gt;requests&lt;/a&gt; user-agent. A lot of sites were returning &lt;code&gt;401&lt;/code&gt; or &lt;code&gt;404&lt;/code&gt; responses to this user agent.&lt;/li&gt;
+&lt;li&gt;Links to Stack Exchange sites were not counted in the above results. The failures seen are almost 100% due to a question/answer/comment being deleted. The process ran as an anonymous user, thus didn't have any reputation and was served a 404. A user with appropriate permissions &lt;em&gt;can&lt;/em&gt; still visit the link. I verified a number of 404'd links to Stack Overflow posts and this was the case.&lt;/li&gt;
+&lt;li&gt;The 4th most common failure was to &lt;code&gt;localhost&lt;/code&gt;. The 16th and 17th most common were &lt;code&gt;localhost&lt;/code&gt; on ports other than 80. I removed these from the result table with the knowledge that these shouldn't be accessible from the internet.&lt;/li&gt;
+&lt;li&gt;There where 7 total URLs that returned status codes in the &lt;code&gt;600&lt;/code&gt; and &lt;a href="https://github.com/joho/7XX-rfc"&gt;&lt;code&gt;700&lt;/code&gt;&lt;/a&gt; range. One such site was &lt;a href="http://learn.code.org/hoc/1"&gt;code.org&lt;/a&gt; with a status code of 752. Sadly, this is not even defined the joke RFC.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="follow-up"&gt;Follow up&lt;a class="headerlink" href="#follow-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I &lt;a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html"&gt;posted&lt;/a&gt; a proposal on how I think this could be fixed.&lt;/p&gt;</content><category term="Side Activities"/><category term="Stack Exchange"/><category term="programming"/></entry><entry><title>Zephyr - The bot that watches for low quality vote requests</title><link href="https://andrewwegner.com/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html" rel="alternate"/><published>2015-03-12T23:34:00-05:00</published><updated>2015-05-08T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-03-12:/zephyr-the-bot-that-watches-for-low-quality-vote-requests.html</id><summary type="html">&lt;p&gt;Find out about the bot that watches Stack Exchange chat rooms for requests to close low quality content&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Stack Exchange receives thousands of questions per day across all of their sites. Not all of these are high quality
+posts. Fortunately, users of the Stack Exchange network are given &lt;a href="http://blog.stackoverflow.com/2009/05/a-theory-of-moderation/"&gt;tools&lt;/a&gt; to help keep that low quality stuff to a 
+minimum. One of these tools is the chat network that spans the Stack Exchange sites. &lt;/p&gt;
+&lt;p&gt;In the chat rooms, a convention has arisen to tag a message as &lt;kbd class="light"&gt;cv-pls&lt;/kbd&gt; for questions that need to be closed for one reason 
+or another. Over time, this evolved to include other tags such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;kbd class="light"&gt;del-pls&lt;/kbd&gt; for a deletion request&lt;/li&gt;
+&lt;li&gt;&lt;kbd class="light"&gt;spam&lt;/kbd&gt; for notification that spam made it through the already &lt;a href="http://meta.stackexchange.com/questions/228043/"&gt;impressive&lt;/a&gt; spam &lt;a href="http://meta.stackexchange.com/a/237882/186281"&gt;filters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;kbd class="light"&gt;reopen&lt;/kbd&gt; for a reopen request&lt;/li&gt;
+&lt;li&gt;a few others to cover specific flag types (eg. Not an answer, Very Low Quality or Offensive)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="introducing-zephyr"&gt;Introducing Zephyr&lt;a class="headerlink" href="#introducing-zephyr" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The problem with these is that the requests are only seen by users active in the specific room where it was posted. 
+Other users across the network miss the request. &lt;strong&gt;&lt;a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot"&gt;Zephyr&lt;/a&gt;&lt;/strong&gt; was built to resolve this problem. Zephyr monitors
+several rooms where these types of requests are frequent. These requests all all posted into a single &lt;a href="http://chat.meta.stackexchange.com/rooms/773/low-quality-posts-hq"&gt;chat room&lt;/a&gt;. 
+This provides users with a single room to monitor to see requests for multiple questions and sites across the network.&lt;/p&gt;
+&lt;p&gt;Here is an example of what Zephyr's chat activity looks like during a spam wave:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zephyr's chat activity during a spam wave" src="https://andrewwegner.com/images/zephyr-spam-wave.png"/&gt;&lt;/p&gt;
+&lt;h3 id="how-it-works"&gt;How it works&lt;a class="headerlink" href="#how-it-works" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Zephyr utilizes the &lt;a href="https://github.com/Manishearth/ChatExchange"&gt;ChatExchange&lt;/a&gt; package to join and read the chat rooms. To do this, Zephyr required a dedicated
+account. I decided to run Zephyr with a dedicated account to completely separate the bot that would sit and watch multiple chat
+rooms 24/7 from my account. Zephyr maintains a small SQLite database of all the posts that it records. The idea behind this, 
+is that eventually this data will be utilized to train other systems on unwanted content. This information is pulled via
+the &lt;a href="http://api.stackexchange.com/"&gt;API&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Zephyr watches the chat rooms for specific string &lt;a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot/blob/master/create_config_files.py"&gt;patterns&lt;/a&gt;. If these patterns are matched, a message is posted if &lt;code&gt;should_post&lt;/code&gt; 
+is &lt;code&gt;True&lt;/code&gt; for the matched pattern. &lt;/p&gt;
+&lt;p&gt;Overall, a nice simple application. It performs some pattern matching and a couple API calls. &lt;/p&gt;
+&lt;h3 id="other-bots"&gt;Other bots&lt;a class="headerlink" href="#other-bots" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In addition to watching user activity, Zephyr also watches two other quality bots that patrol Stack Exchange for low
+quality content: &lt;a href="https://github.com/Charcoal-SE/SmokeDetector"&gt;SmokeDetector&lt;/a&gt; and &lt;a href="https://github.com/ArcticEcho/Phamhilator/wiki"&gt;Phamhilator&lt;/a&gt;. If either of these bots detect spam, Zephyr takes note of the information by
+recording it to the database, but not reposting. Since both of those bots post their reports, it didn't make sense for Zephyr
+to add a second (or third, if both of the others detected spam) message to the chat room. The information is recorded, though,
+to help future training for other systems.&lt;/p&gt;
+&lt;h2 id="updates"&gt;Updates&lt;a class="headerlink" href="#updates" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated May 8, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Over time Zephyr has been updated to include new rooms to monitor or new patterns to match. Those changes are small (and simple).
+There are, however, a few larger changes that I'd like to note below.&lt;/p&gt;
+&lt;h3 id="commands"&gt;Commands&lt;a class="headerlink" href="#commands" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The other bots that Zephyr monitors respond to user input. Zephyr has very little that requires user interaction since all of it's
+posts are generated &lt;em&gt;by&lt;/em&gt; user input. However, there have been times where I, as the bot owner, would like to be able to issue
+certain commands to it. My most common desire is to see a report of how many spam posts Zephyr has seen. Thus, Zephyr now responds
+to the command &lt;code&gt;spamreport&lt;/code&gt; from me. It then prints out a nice summary of information. This information has been utilized in 
+SmokeDetector to watch for commonly spammed domains.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zephyr spam report for April 2015" src="https://andrewwegner.com/images/zephyr-spam-report.png"/&gt;&lt;/p&gt;
+&lt;h3 id="upgrade-from-sqlite-to-mariadb"&gt;Upgrade from SQLite to MariaDB&lt;a class="headerlink" href="#upgrade-from-sqlite-to-mariadb" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Zephyr was originally built against an SQLite database. This worked, but was getting slower as more data was being added. This slow down
+was beginning to affect performance. I started seeing this error more and more frequently:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;Traceback&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;most&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;recent&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;last&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;File&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\pool.py"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;_close_connection&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_dialect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;do_close&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;File&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;"H:\python-virtualenvs\zephyr-se-voterequests\lib\site-packages\sqlalchemy\engine\default.py"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;418&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;do_close&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;dbapi_connection&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nx"&gt;ProgrammingError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;SQLite&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;objects&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;created&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;thread&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;can&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;only&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;be&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;used&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;that&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;same&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;thread&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;object&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;was&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;created&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;thread&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4824&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;thread&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;4660&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After spending a lot of time troubleshooting and not resolving it to my satisfaction, I decided to upgrade to a more robust database. I'd used
+MySQL/MariaDB before and I happened to have another application utilizing MariaDB at the moment so that is the solution I picked. &lt;/p&gt;
+&lt;p&gt;The first step was transferring data. I learned that there isn't a decent utility to do a straight migration. So, I took these steps to transfer the data:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Export table structures and data from SQLite&lt;/li&gt;
+&lt;li&gt;Convert the SQLite dump to MySQL format. Though both systems use SQL, there are slight differences in dialect. I utilized
+ &lt;a href="http://stackoverflow.com/a/1067365/189134"&gt;this Python script&lt;/a&gt; as a starting point. It got me most of the way there, but not completely.&lt;/li&gt;
+&lt;li&gt;Data clean up. Ugh. The dreaded part of the job for anyone who handles data. Fortunately, the script above did most of the work.
+ I ended up fixing a couple stray back ticks that didn't convert properly, escaping a very extra quotation marks, and replacing
+ a few "smart quotes" (of both the &lt;a href="http://www.fileformat.info/info/unicode/char/201c/index.htm"&gt;left&lt;/a&gt; and &lt;a href="http://www.fileformat.info/info/unicode/char/201d/index.htm"&gt;right&lt;/a&gt; variety). I wish data at the office job was this easy to clean...&lt;/li&gt;
+&lt;li&gt;Import into MariaDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since the transfer to MariaDB, I've noticed no performance degradation. The error about threads has been eliminated as well.&lt;/p&gt;
+&lt;h3 id="upgrade-to-utilize-web-sockets"&gt;Upgrade to utilize web sockets&lt;a class="headerlink" href="#upgrade-to-utilize-web-sockets" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Originally, Zephyr used the &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L68"&gt;&lt;code&gt;watch&lt;/code&gt;&lt;/a&gt; method when monitoring a room. This method would long poll the room. It turns out that this is 
+pretty unreliable. I'd get multiple errors through out the week, ranging from &lt;code&gt;Connection Aborted&lt;/code&gt; errors to random &lt;code&gt;404&lt;/code&gt; messages. The 
+solution has been to switch to &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"&gt;&lt;code&gt;watch_socket&lt;/code&gt;&lt;/a&gt;. The only time I've had problems since this switch is when the Stack Exchange 
+web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</content><category term="Programming Projects"/><category term="Stack Exchange"/><category term="automation"/><category term="programming"/></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"/><published>2015-01-02T08:47:00-06:00</published><updated>2016-01-09T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:/can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">&lt;p&gt;Description of how I automatically flag comments on Stack Overflow&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post was originally &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;published&lt;/a&gt; by &lt;a href="http://meta.stackoverflow.com/users/189134/andy?tab=profile"&gt;me&lt;/a&gt; on Meta Stack Overflow on December 14, 2014. I've republished it here
+so that I can easily update information related to recent developments. If you have questions or comments, I highly
+encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/280546/189134"&gt;question&lt;/a&gt; on Meta Stack Overflow and post there.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;TL;DR: Yes it can.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="background"&gt;Background&lt;a class="headerlink" href="#background" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On June 27, 2014 Skynet awoke. It looked at Stack Overflow and thought "Why are all these people being so chatty and talking about obsolete things? I should nuke them all!" Fortunately, Skynet was a baby and only had access to my 100 comment flags a day.&lt;/p&gt;
+&lt;p&gt;Prior to this activation date, the system was fed with 10,000 "Good Comments", "Obsolete" comments and "Too Chatty" comments. These comments were taken from the &lt;a href="http://data.stackexchange.com/"&gt;Stack Exchange Data Explorer&lt;/a&gt;. The "Obsolete" and "Too Chatty" comment types had to meet the following criteria:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Total comment length of less than 100 characters&lt;/li&gt;
+&lt;li&gt;Comment has a 0 score&lt;/li&gt;
+&lt;li&gt;Had variations of the following phrases:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Phrases&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;'%mark%answer%'
+'%mark%accept%'
+'%accept%answer%'
+'%lease%accept%'
+'%mark%answer%'
+'%thank%you%'
+'%thx%you%'
+'%.....'
+'+1%'
+'-1%'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;"Good Comments" were assumed, initially, to be anything that didn't fall into the above criteria&lt;/p&gt;
+&lt;p&gt;This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.&lt;/p&gt;
+&lt;p&gt;My next step was to train a classifier. I had initially assumed that I'd start with a Naive Bayes to get a baseline and then work to something more complicated from there. Perhaps, extract text features, user information, etc. and build a fancy classifier. My initial tests showed that the Naive Bayes was accurate 80-90% of the time with test data.&lt;/p&gt;
+&lt;p&gt;I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these threshold took a few weeks but eventually I determined the following thresholds were appropriate for my use:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;Type            | Threshold     | Flagging Enabled&lt;/span&gt;
+&lt;span class="gh"&gt;--------------------------------------------------&lt;/span&gt;
+too chatty      | 0.9997        | True
+obsolete        | 0.99          | True
+good comment    | 0.9999        | False
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When a comment is classified, if it exceeds the threshold for one of the above, it is recorded into my database for future retraining. If flagging is enabled, the API is &lt;a href="http://api.stackexchange.com/docs/comment-flag-options"&gt;utilized&lt;/a&gt; to issue an &lt;a href="http://api.stackexchange.com/docs/create-comment-flag"&gt;appropriate&lt;/a&gt; flag. Obviously, I don't want to flag good comments, but I do want to record them so that I can reuse the data in a later training step.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;What have the results of this experiment been? From my point of view, I'd venture that it's been successful. I have automatically flagged over 17,000 comments. As of December 17, 2014, the process has been running for 173 days. My comment flagging stats are currently:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;26885&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;
+&lt;span class="mf"&gt;26714&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;
+&lt;span class="mf"&gt;171&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Started at (approximately):&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;9885&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;
+&lt;span class="mf"&gt;9847&lt;/span&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;
+&lt;span class="mf"&gt;38&lt;/span&gt;&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This gives me an overall accuracy of 99.36%. Down from 99.61% when no automated process was involved.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;There are pictures that help tell this story too. In this first one, we see that the rolling 10 day average for the number of declined flags has stayed below two flags a day. In October, there was a two week period where the rolling average was 0 and nearly a month long period where the system did not make any mistakes.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the &lt;a href="http://winterbash2014.stackexchange.com/resolution"&gt;Resolution hat&lt;/a&gt;. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to day light saving time. My process starts 10 minutes after UTC. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they &lt;a href="http://meta.stackexchange.com/a/215397/186281"&gt;lost their keys&lt;/a&gt; that day.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Total flagged vs Total Declined" src="https://andrewwegner.com/images/total_flags_vs_total_declined.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Except for 3 days, since June 27th, the process has flagged 100 comments a day. In this chart, you can see the number of declined comment flags along the bottom.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Number of comments saved per day" src="https://andrewwegner.com/images/comments_saved_per_day.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Finally, this chart shows the number of comments that the system wanted to act on (and a rolling 5 day average). When the system was brought online, it was acting on 700-800 comments a day (saving to my local database). Many of these were being classified as "Good Comments". You can see the day that I adjusted the threshold for "Good Comments" to be acted upon (saved). The drop in the number of comments the system saved is dramatic. Instead of saving 700-800 comments daily, the system now averages about 150 comments to save. Since I don't flag "Good Comments", I feel this is the appropriate action to take.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h3 id="flagged-but-declined"&gt;Flagged but declined&lt;a class="headerlink" href="#flagged-but-declined" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;As shown above, I've had comments flags declined. Some of these obviously should have been and required a retraining or threshold adjustment on my part. Others, in my opinion, should have been removed as noise. Below is a small sampling of both types of comments.&lt;/p&gt;
+&lt;p&gt;Recent comments that I feel are noise:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27420526/i-want-to-play-from-frame-2-and-then-stop-at-frame-3/27425983#comment43388489_27425983"&gt;yes thank you so much for you help it works sorry for the late reply&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27476522/how-to-call-a-function-by-a-pointer/27476639#comment43387801_27476639"&gt;Wow it works. Thank you very much!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27284958/why-thread-id-creates-not-in-order/27285031#comment43038003_27285031"&gt;wow that works!Thanks so much for your advice!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27375504/remove-legends-for-each-point-and-keep-only-those-which-are-outliers-for-ggplot/27380631#comment43387125_27380631"&gt;Ok, the works great, thank you so much!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/14907518/modal-view-controllers-how-to-display-and-dismiss/14910469#comment43386201_14910469"&gt;Thank you very much for your explanation, you rock dude !!!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are some comments that were incorrectly flagged:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/18545905/meteor-without-mongo#comment42850716_18545905"&gt;@Spina: yes. Check my answer. You can simply point MONGO_URL to an invalid URL.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27007685/how-can-i-position-divs-at-the-bottom-of-container-div-and-inline/27007772#comment42544238_27007772"&gt;Sorry, my error. I was: "position", not "display". Check it: jsfiddle.net/hvfku99c&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/26745185/multiple-spacebar-conditional-operators/26745790#comment42078870_26745790"&gt;I believe UI.registerHelper is, being deprecated. Please check my updated answer.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Other comments are flagged but then edited prior to a moderator seeing the comment. The edit adds information to the post, thus the declination is justified:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27406267/neo4j-very-slowly-using-shortestpath#comment43271781_27406267"&gt;Yes, I have indexes. Let me show my schema&lt;/a&gt; was edited to the much more useful: &lt;code&gt;Yes, I have indexes for UUID and Permission. In fact rlationship is a variable length here (e)-[rp:Has_Pocket|Has_Document*0..]-&amp;gt;d&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/26535662/how-to-read-files-in-sequence-from-a-directory-in-opencv/26536198#comment41709286_26536198"&gt;Here is the question i had posted first using FIleStorage issue&lt;/a&gt; was edited to include the link to the referenced post.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's also worth noting that despite getting flags declined, some comments do eventually disappear. This is due to either flags raised by other community members putting the comment back in front of a moderator or by simply accumulating enough community flags for the system to act automatically. In either case, the desired result of removing noise has been accomplished.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27006363/node-js-parse-filename-from-url/27006555#comment42544432_27006555"&gt;Oh, derr. good point. Edited.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/27073761/redefining-the-hitbox-of-objects/27073838#comment42659999_27073838"&gt;You're right! Hopefully you see my point anyways.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;h2 id="lessons-and-observations"&gt;Lessons and Observations&lt;a class="headerlink" href="#lessons-and-observations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Replication to other sites would depend on site culture&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As a (fairly) non-subjective site, Stack Overflow made a good test case for this. On a site like &lt;a href="http://communitybuilding.stackexchange.com/"&gt;Community Building&lt;/a&gt;, &lt;a href="http://pets.stackexchange.com/"&gt;Pets&lt;/a&gt;, &lt;a href="http://parenting.stackexchange.com/"&gt;Parenting&lt;/a&gt; or other site that accepts subjective answers, "too chatty" would be much harder to classify.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://meta.stackoverflow.com/q/277314/189134"&gt;+/-1 has been discouraged&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The observation I made on my own that comments with this type of content were distracting has been noticed by others as well. This was actually a very nice validation of my own process and some of the results posted on that thread show many such comments continue to be noise. Of course, this change did also force users to modify their content and may have added new patterns that can be utilized in future training.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ability to &lt;a href="http://meta.stackexchange.com/q/245416/186281"&gt;automatically check flags&lt;/a&gt; would be great so that automated runs could be paused if it goes crazy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The process of checking that my flagging history remains accurate is time consuming. The status of a flag can't be acquired via the API. I've submitted a feature request for this information to be added to the API. With this information, flagging can be paused or stopped if X number of flags are declined.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Stack Overflow's volume of comments is a crutch.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Due to the &lt;a href="http://data.stackexchange.com/stackoverflow/query/200435#graph"&gt;high volume of comments&lt;/a&gt; and limited number of comment flags my account has available, I can afford to be picky on which comments I want to act on. The classifier itself is about 85% accurate in determining the type of comment. However, I artificially increase my accuracy by only acting on comments that have a very high classifier certainty by forcing this certainty level to meet or surpass my threshold values from above. Smaller sites, with a lower volume, don't have the benefit of having enough comments to be this picky. It is on these sites that a more feature based classifier would be important.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The human element is still unpredictable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My classifier was trained utilizing my idea of how comments should be flagged. Prior to automating this, I was not 100% accurate. Additionally, moderators are not 100% accurate in their processing of flags. &lt;a href="http://meta.stackoverflow.com/q/278813/189134"&gt;Users&lt;/a&gt; &lt;a href="http://meta.stackoverflow.com/q/280426/189134"&gt;disagree&lt;/a&gt; on how these rules should be implemented, but are willing to &lt;a href="http://meta.stackoverflow.com/q/278927/189134"&gt;assist&lt;/a&gt; in keeping the site clean. With more than 175K comments a week, every little bit helps.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="discussion"&gt;Discussion&lt;a class="headerlink" href="#discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As my title states, my original question was whether or not I can teach a machine how to flag comments as I would. The answer to that is yes. The next question is whether this type of system would be helpful in cleaning up comments across Stack Overflow. My system works only on new comments created around each new UTC. Once my 100 flags are hit (or the API tells me to stop), it shuts down for the day. Having something automated go through historical comments or that can run all day would be beneficial.&lt;/p&gt;
+&lt;p&gt;Finally, now that I've admitted that I've been automatically flagging comments, can I continue to do so?&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="update"&gt;Update&lt;a class="headerlink" href="#update" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This section has been updated multiple times since the original post. Most recently, it was updated May 3, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As I mentioned in the introduction, this was originally published in December 2014. How is the system behaving now? It is performing very well.&lt;/p&gt;
+&lt;h3 id="process-changes"&gt;Process Changes&lt;a class="headerlink" href="#process-changes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In January 2015, &lt;a href="http://meta.stackoverflow.com/q/283030/189134"&gt;another user&lt;/a&gt; was using a basic query to look for invalid comments. This caused a high number of moderator flags, many of which were declined. My process was caught in this mass decline. This resulted in 49 declined flags for a single day.
+This is, by far, the largest number of declined flags the process has generated in a day. It did, however, prompt a process change after consultation with the Stack Overflow moderators.&lt;/p&gt;
+&lt;p&gt;The process will no longer flag comments newer than 48 hours old. This provides users with a two day window to see a comment before the system will flag it. This single change has provided a huge improvement in terms of flag acceptance.&lt;/p&gt;
+&lt;h3 id="may-2015-11-months"&gt;May 2015 (11 Months)&lt;a class="headerlink" href="#may-2015-11-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After nearly a year of running, these are my flagging statistics:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;39938&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;
+&lt;span class="mf"&gt;39659&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;
+&lt;span class="mf"&gt;279&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This provides a helpful rate of 99.3%. This is down &lt;em&gt;just&lt;/em&gt; slightly from 99.36% in December. I attribute a large part of the dip to the issue mentioned above.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
+&lt;p&gt;Here is an updated chart showing the rolling 10 day average for number of declined flags. I've had several stretches of multi-week time frames with no declined flags.&lt;/p&gt;
+&lt;p&gt;This is a busy chart, so I've narrowed it down to show just the last 90 days. From here you can see that in the past 90 days there have been only 10 declined flags.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 90 day window" src="https://andrewwegner.com/images/latest_flags_per_day_rolling_average_90day_window.png"/&gt;&lt;/p&gt;
+&lt;h3 id="sept-2015-15-months"&gt;Sept 2015 (15 Months)&lt;a class="headerlink" href="#sept-2015-15-months" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;It has been almost 15 months since the process started. In that time, the model has gotten more accurate. Since the last update in May, I've had only 3 declined comment flags:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;52351&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;comments&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;flagged&lt;/span&gt;
+&lt;span class="mf"&gt;52069&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="n"&gt;deemed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;helpful&lt;/span&gt;
+&lt;span class="mf"&gt;282&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;declined&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This provides a helpful rate of 99.46%. Here is an updated chart showing the rolling 10 day average for number of declined flags. The 90 day window is not even worth showing. It has three days where a single flag was declined.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average - 15 Months of data training" src="https://andrewwegner.com/images/declined_per_day_15_months.png"/&gt;&lt;/p&gt;
+&lt;h3 id="summary-of-2015"&gt;Summary of 2015&lt;a class="headerlink" href="#summary-of-2015" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I processed comments 359 days out of the year. I missed three in January due to stopping it after a mass decline of flags (more later), I can't account for a missed day in July and August. I don't recall stopping it, but I missed July 3rd and August 19. I also missed December 28th due to a power issue. I flagged 35,960 comments. Of that, 111 were declined.&lt;/p&gt;
+&lt;p&gt;By month, this is the break down of rejected flags.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2015 Flag Summary" src="https://andrewwegner.com/images/2015-flag-summary.png"/&gt;&lt;/p&gt;
+&lt;p&gt;The blip at the end of November is due to new moderators being elected and adjusting to what other moderators consider "good" versus "bad" comments. I didn't see the spike in the April election which is interesting, but after a couple days in November it's back to normal. The January spike I mentioned above.&lt;/p&gt;
+&lt;p&gt;Interesting note: The longest stretch in the year with no declined flags was from August 13th through November 24th.&lt;/p&gt;</content><category term="Programming Projects"/><category term="Stack Exchange"/><category term="machine learning"/><category term="automation"/><category term="programming"/></entry><entry><title>I had a secret addiction to the TF2 idling economy but I'm better now (honest)</title><link href="https://andrewwegner.com/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html" rel="alternate"/><published>2013-08-13T00:01:00-05:00</published><updated>2013-08-13T00:01:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-08-13:/i-had-a-secret-addiction-to-the-tf2-idling-economy-but-i'm-better-now-(honest).html</id><summary type="html">&lt;p&gt;Hi everyone, I'm Andy, and I used to idle.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On July 11, 2013, Valve released a &lt;a href="http://www.teamfortress.com/post.php?id=11105"&gt;patch&lt;/a&gt; to Team Fortress 2 to limit idling. Idling is the process of launching
+Team Fortress and then letting it run for a few hours and collecting item drops. It used to be simple to do by utilizing
+the &lt;code&gt;-textmode&lt;/code&gt; &lt;a href="https://developer.valvesoftware.com/wiki/Command_Line_Options#Command-line_parameters_2"&gt;game parameter&lt;/a&gt;. This would "launch" the game without graphics. From there, you just let it run and
+come back in a few hours with 8-10 new items (your weekly limit).&lt;/p&gt;
+&lt;p&gt;The idea behind this was to then trade or craft these into metal. The metal could be used to trade for keys, hats, etc. and
+all you to be "rich". The quotes are there because I do realize that being rich in a virtual game does not make one rich in
+the real world. But, since the &lt;a href="https://wiki.teamfortress.com/wiki/Mann-Conomy_Update"&gt;Mann-Conomy Update&lt;/a&gt; introduced this massive meta game to Team Fortress, I've tried to stay
+out of it.&lt;/p&gt;
+&lt;p&gt;I failed. I didn't just idle one account. I idled 17 accounts. That is between 136 and 170 items a week. That's between 68 to 85
+scrap metal a week. That's between 7.55 and 9.44 refined metal a week. That is between 3 and 4 keys a week (depending on
+who I trade with). Keys are the backbone of the economy. Get enough of those and you can trade for anything else.&lt;/p&gt;
+&lt;p&gt;I honestly don't know what my goal was. I wasn't interested in the fancy hats (ooooh...shiny pixels). I didn't open crates
+with the keys. I did utilize the keys to get &lt;a href="https://wiki.teamfortress.com/wiki/Tour_of_Duty_Ticket"&gt;Tour of Duty&lt;/a&gt; tickets for me and some friends. That's honorable, right?&lt;/p&gt;
+&lt;h2 id="how-did-this-happen"&gt;How did this happen?&lt;a class="headerlink" href="#how-did-this-happen" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This all started with &lt;a href="https://andrewwegner.com/give-some-refined-win-some-prizes.html"&gt;the bot I built for Vipers to handle the raffles&lt;/a&gt;. I realized that I could automate much more
+than trading with players. I could automate trading between bots. I could automate &lt;em&gt;crafting&lt;/em&gt; - which is relatively time
+consuming, especially when you have 136 items to go through. I could automate trading with established scrap bank bots. These
+bots will take any two weapon drops and give you one scrap, even if the two items can't be crafted together. The idea is
+that they get enough weapons that eventually they'll be able to craft it down to metal.&lt;/p&gt;
+&lt;h3 id="the-set-up"&gt;The set up&lt;a class="headerlink" href="#the-set-up" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To idle 17 accounts I needed to figure out what my computer could handle. I had to figure out how to run multiple instances
+of Steam and Team Fortress at a time. Enter an application I'd utilized before: &lt;a href="http://www.sandboxie.com/"&gt;Sandboxie&lt;/a&gt;. This application provides
+isolated sandboxes for applications to run in. Normally Steam won't run more than once on a machine. But, if you launch
+it via Sandboxie, the host OS (and other Sandboxie environments) can't see that Steam is running in another instance.&lt;/p&gt;
+&lt;p&gt;A bit of experimentation showed that I could handle 6 accounts idling at a time and have the computer remain just barely
+usable. I created new accounts and split them into which day of the week they'd be run. I had three days out of the week
+designated for idling.&lt;/p&gt;
+&lt;p&gt;A batch script was built to launch the Sandboxie environments of the day that was to idle. Then it'd launch Team Fortress
+in each of those environments. Then I'd go to bed. When I woke up the next morning, I'd shut down the environments. I'd
+repeat this for two more nights. At the end of the third night, I had all the items I could get for the week.&lt;/p&gt;
+&lt;p&gt;Accounts could not be free accounts. This meant that I needed to either buy an item for each account, or trade for an
+&lt;a href="https://wiki.teamfortress.com/wiki/Upgrade_to_Premium_Gift"&gt;"Upgrade to Premium Gift"&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="getting-items-to-a-single-account"&gt;Getting items to a single account&lt;a class="headerlink" href="#getting-items-to-a-single-account" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next step in the process was to convert all the items to metal. Normally, this would take place by either logging into
+each account and crafting there and then trading everything to a master account, or trading everything first then crafting.
+In either case, 17 accounts is a lot to handle and trading/crafting is rather boring.&lt;/p&gt;
+&lt;p&gt;My solution was to modify the raffle bot. I'd designate one account as a master account. This would be the account that
+received items. All others would dump items to it. I'd log into the account that was receiving items and initiate a trade
+with each other bot in turn. I'd issue a command &lt;code&gt;add all&lt;/code&gt; and that bot would dump it's inventory into trade. Making it
+through all the bots would take 5 minutes. Previously it would take me an hour or more to log into each account and
+manually add items to the trade windows and then confirm the trade on both sides. &lt;em&gt;yawn&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id="crafting"&gt;Crafting&lt;a class="headerlink" href="#crafting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next step was crafting items to metal. The rule was that any two weapons utilized by the same class could be
+crafted to scrap metal. That sounds simple enough.&lt;/p&gt;
+&lt;p&gt;After lots of trial and error, I'd built a set of commands that would select compatible weapons and craft them together. This
+particular aspect wasn't documented by Steam (or the reverse engineered SteamKit2 library I was utilizing). Crafting would
+take about 15 seconds to get all compatible items to scrap and then combining 9 scrap to get a refined metal. This saved
+inventory space.&lt;/p&gt;
+&lt;p&gt;With the simple command &lt;code&gt;craftall&lt;/code&gt;, all those new weapons would be crafted into metal and then combined into refined metal. This
+would be done in less than a minute. Previously, I'd have to initiate each crafting session, add all items per craft, wait for the
+craft to complete and then repeat. This was another 15-30 minutes saved.&lt;/p&gt;
+&lt;h3 id="left-overs"&gt;Left overs&lt;a class="headerlink" href="#left-overs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After crafting, there would still be left over weapons. There were weapons that had run out of same class items to craft
+with. The solution was to trade these away in groups of two to &lt;a href="http://scrapbank.me/"&gt;ScrapBank.me&lt;/a&gt; and get scrap metal back. This could be
+further combined to refined metal again wasting space.&lt;/p&gt;
+&lt;h3 id="metal-to-keys"&gt;Metal to Keys&lt;a class="headerlink" href="#metal-to-keys" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;At this point, human intervention was required again. I had to convert my metal to keys. I did this via trading. The easy
+way to do this was to find someone running a keybot, that would take metal for a key. Many exist, but all of them overcharge.
+The other option was to look for a trader that was getting rid of a bulk set of keys and then trade them. In either case,
+I'd end the week with 3-4 keys. I'd trade these for Tour of Duty tickets and go play a game with friends.&lt;/p&gt;
+&lt;p&gt;The actual work required on my part was starting the idling for the night, shutting down idling in the morning, starting
+the automated trade, crafting and trade left overs processes and finally trading metal for keys. What used to take me hours
+to do each week, I could not do in less than an hour (the bulk of which ended up being trading metal for keys).&lt;/p&gt;
+&lt;h2 id="what-changed"&gt;What changed?&lt;a class="headerlink" href="#what-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Valve released a patch to limit how effective idling was. Their "Mann-Conomy" was seeing rapid inflation. The price of
+keys (which they sold for physical money) in metal was rapidly increasing. From the time I started this to the time I ended
+it, it jumped from 2-3 refined per key to 9-10 per key, with no sign of stopping. Casual players were complaining they couldn't
+get enough items to trade for this stuff. The patch also required that you click to confirm each new received item.&lt;/p&gt;
+&lt;h2 id="im-ok-honest"&gt;I'm ok. Honest.&lt;a class="headerlink" href="#im-ok-honest" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I tried for a few days to find an effective work around. I didn't. When I wasn't able to find one, I transferred all items
+to the master account and went through the process of converting to keys. With that, I purchased the final set of
+Tour of Duty tickets. The idle bots were shut down.&lt;/p&gt;
+&lt;p&gt;It's been a month now. The bots are still down. I'm still around. Looking back on this, I'm happy Valve broke this. It wasn't
+doing anything for me other than providing me with something to do: "Need to idle tonight", "Need to craft and trade today", etc.
+Now I have that time back.&lt;/p&gt;
+&lt;p&gt;I am pleased with the technical challenges I over came to get this done though. Crafting was the biggest, but I think I'm
+most proud of the automated transfer of items to the master. Since the bots had to communicate via Steam and not via
+a local application, working out how I was going to do that took some time.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;That, my friends, was my addiction to the meta game of a hat simulator in a first person shooter. I'm over it now and
+looking forward to some other project.&lt;/p&gt;</content><category term="Side Activities"/><category term="automation"/><category term="programming"/><category term="gaming"/></entry><entry><title>Give some refined, Win some prizes</title><link href="https://andrewwegner.com/give-some-refined-win-some-prizes.html" rel="alternate"/><published>2013-02-25T09:00:00-06:00</published><updated>2013-04-03T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2013-02-25:/give-some-refined-win-some-prizes.html</id><summary type="html">&lt;p&gt;The new raffle bot is introduced to the community&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Financially, Vipers is supported by donations from the community. When the community doesn't cover the cost, I end up
+covering the difference. This isn't my favorite thing to do in the world, but we've been pretty successful in the past. 
+In recent months, though, we've been coming up short more frequently. This has motivated me (and the rest of the admin
+team to find ways to cover costs). Now we have one.&lt;/p&gt;
+&lt;h2 id="welcome-to-the-new-raffle-bot"&gt;Welcome to the new raffle bot&lt;a class="headerlink" href="#welcome-to-the-new-raffle-bot" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've built a Raffle bot based on &lt;a href="https://github.com/Jessecar96/SteamBot"&gt;SteamBot&lt;/a&gt;, which is the base of &lt;a href="https://scrap.tf/"&gt;scrap.tf&lt;/a&gt;. Entries to raffles will be one entry 
+per refined metal. You can have an unlimited number of entries. I will convert the refined metal to various prizes 
+(with the goal being keys most of the time).&lt;/p&gt;
+&lt;p&gt;Then we'll have the system select a set of winners from the entries. A user can only win once per raffle, so even if you you
+have a gigantic number of entries, your odds of winning more than one position are zero. Only one win per steam id.&lt;/p&gt;
+&lt;p&gt;Using the prices from &lt;a href="http://backpack.tf/"&gt;backpack.tf&lt;/a&gt;, the bot will determine the "value" of the items within the trade.&lt;/p&gt;
+&lt;h2 id="how-does-this-off-set-costs"&gt;How does this off set costs?&lt;a class="headerlink" href="#how-does-this-off-set-costs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Items that are received that are of high value or any additional keys we can get based on raffle entries will be sold on 
+various TF2 trading markets. The profits from these trades will be used to cover some community costs.&lt;/p&gt;
+&lt;h2 id="keep-high-value-items-for-future-raffles"&gt;Keep high value items for future raffles?&lt;a class="headerlink" href="#keep-high-value-items-for-future-raffles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This question was added based on feed back from the community. It was added on March 20, 2013&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The original plan was to sell any such items. However, due to community feedback, I've changed my mind. We will utilize 
+"high value" items as prizes for future raffles. These future raffles will not be announced until any running raffles are 
+complete. It is also possible that such a raffle will run separately from the planned monthly ones.&lt;/p&gt;
+&lt;h2 id="our-first-winners"&gt;Our first winners&lt;a class="headerlink" href="#our-first-winners" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated on April 3, 2013&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Our first raffle completed at Midnight on April 1st. I was surprised by the number of entries we received. I'm even more 
+surprised that the second one has begun and is already three quarters of the way to the number of entries it took a month
+to receive. People want those keys, and I saw mention of those Bill's Hats too.&lt;/p&gt;
+&lt;p&gt;The number of entries we received allowed us to completely cover the community costs that donations didn't cover. Thank
+you to all our players that entered!&lt;/p&gt;
+&lt;p&gt;Our first winners are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cashprizes: Winner of 10 keys&lt;/li&gt;
+&lt;li&gt;Popinfresh: Winner of 7 keys&lt;/li&gt;
+&lt;li&gt;Iamthebaron: Winner of 4 refined metal&lt;/li&gt;
+&lt;li&gt;That Guy From That Thing: Winner of 1 refined metal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="First Raffle Bot Entries and Winners" src="https://andrewwegner.com/images/rafflebot-entries.png"/&gt;&lt;/p&gt;</content><category term="Vipers"/><category term="team vipers"/><category term="automation"/><category term="community"/><category term="programming"/></entry><entry><title>Homing projectiles are awesome!</title><link href="https://andrewwegner.com/homing-projectiles-are-awesome!.html" rel="alternate"/><published>2012-06-30T08:02:00-05:00</published><updated>2015-05-20T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-06-30:/homing-projectiles-are-awesome!.html</id><summary type="html">&lt;p&gt;Pyro is an under utilized class on the Crit server. This post explains how I've fixed that.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="stupid-soldier-spam"&gt;Stupid soldier spam&lt;a class="headerlink" href="#stupid-soldier-spam" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The appeal of the crit server is fast game play, overpowered shots, and nearly instant death if you aren't paying attention.
+The down side is the soldier spam. Lots of it. It's not unusual to have a team of soldiers spamming rockets. This is part
+of the reason we stuck a class limit on Soldiers. &lt;/p&gt;
+&lt;p&gt;Pyro is a common way to counter a soldier firing at long range. The problem with pyro is that it has limited long range weapons 
+in return. Unless you can sneak up on an enemy (not easy with spam and some of the maps), the pyro is stuck taking pot shots
+with either the Flare gun or the shotgun. &lt;/p&gt;
+&lt;p&gt;Two weeks ago, I added a plugin to the server that made Pyro much more effective at helping the team without needing to advance 
+to the front line constantly.&lt;/p&gt;
+&lt;h2 id="reflectiles"&gt;Reflectiles&lt;a class="headerlink" href="#reflectiles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Reflected Projectiles - Reflectiles, if you will - becoming homing projectiles when a Pyro air blasts them away. These
+newly tracking projectiles will track an opposing team member and hunt them down. If the player being tracked dies before
+the projectile hits them, the projectile will select a new target. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Well, that seems unfair. How do you defend against a homing projectile as a soldier?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It is called &lt;strong&gt;Team&lt;/strong&gt; Fortress 2. You have team mates. Utilize them. That homing projectile can be reflected again by a Pyro
+on your team. Each time a projectile is reflected it gets just a bit faster. &lt;/p&gt;
+&lt;h2 id="source-code"&gt;Source Code&lt;a class="headerlink" href="#source-code" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated May 20, 2015 with link to GitHub instead of the old SVN, my apologies for missing that link when migrating to this blog
+It is important to note that this version hasn't been updated in a LONG time but was still functioning when Vipers shut
+down. If it doesn't work, the first thing to try is updating SourceMod's gamedata. This was the fix every other time
+it didn't work&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The source code is released on Github. &lt;/p&gt;
+&lt;p&gt;The repository is: &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;https://github.com/AWegnerGitHub/Vipers-Server-Plugins&lt;/a&gt;&lt;/p&gt;</content><category term="Vipers"/><category term="team vipers"/><category term="programming"/></entry><entry><title>Monitoring Language on the game servers</title><link href="https://andrewwegner.com/monitoring-language-on-the-game-servers.html" rel="alternate"/><published>2012-04-22T12:13:00-05:00</published><updated>2015-01-08T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-04-22:/monitoring-language-on-the-game-servers.html</id><summary type="html">&lt;p&gt;Team Vipers is proud of it's friendly atmosphere. This post describes how I automated a large part of the process&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;My admin tool of choice for the TF2 servers is &lt;a href="http://www.hlsw.org/"&gt;HLSW&lt;/a&gt;. It's decent at allowing me to manage a server without ever
+needing to log to the server. My biggest complaint about it is that I can only watch the game chat of one server at a time.
+Sometimes, it's helpful to see an ongoing conversation to resolve minor problems before they become big ones. For example,
+claims of "hacking" usually turn out to be completely baseless. But, if multiple users (and more importantly, multiple
+&lt;em&gt;trusted&lt;/em&gt; users) suddenly start mentioning a hacker, I can step in and resolve the problem without entering the server.
+HLSW is good for this. A hacker is confined to one server.&lt;/p&gt;
+&lt;p&gt;The biggest problem is when there are reports of lag across all of the game servers. Vipers has a dedicated machine that
+runs 5 game servers. If all five suddenly report lag, there is a problem somewhere. With HLSW, though, I can't see all of
+the servers at once. Thus, I've built a tool...&lt;/p&gt;
+&lt;h2 id="chat-monitor"&gt;Chat Monitor&lt;a class="headerlink" href="#chat-monitor" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;All chat that occurs on the servers is logged. I've used this to resolve complaints of unfair bans and reports of hackers.
+I built in a hook to these logs from the application template to quickly pull known aliases of users. It's been invaluable
+in solving problems of "what happened" on the servers.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Multiserver Chat monitor" src="https://andrewwegner.com/images/vipers-chat-monitor.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I've expanded it's usefulness. Now I can load a single page and see all chat activity occurring on all active game servers
+on a single screen. It provides, at a glance, a quick way to see if there are problems on the servers. It also allows me
+to step back from picking which server I think will be "bad" and monitor that. Now I can monitor all of them at once.&lt;/p&gt;
+&lt;h2 id="inappropriate-words"&gt;Inappropriate words&lt;a class="headerlink" href="#inappropriate-words" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As a community, we've chosen to set a higher standard for our players. As such, we have a restriction on a total of 3
+words and a few derivatives of those words. This system is in place because the community stepped forward and wanted to
+clean up the experience on the servers a bit. The problem with these higher standards is that we don't have admins on the
+game servers (or watch chat logs) 24 hours a day. Thus, while admins sleep, a troll can wander through and spew garbage.
+Unless a user reports this behavior, we will never be aware of it.&lt;/p&gt;
+&lt;p&gt;I've built a system to handle this automatically. The system will monitor chat logs across all servers. If a user hits the
+threshold for banning, they will be removed from the server and banned for a day. The logic to the system is this:&lt;/p&gt;
+&lt;h3 id="automated-removal-logic"&gt;Automated removal logic&lt;a class="headerlink" href="#automated-removal-logic" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Inappropriate terms are configured with a "weight". This "weight" will be used to calculate whether or not a user
+ surpasses a threshold set for being banned.&lt;/li&gt;
+&lt;li&gt;System monitors chat logs for configured terms.&lt;/li&gt;
+&lt;li&gt;If a term is found, the offending message is saved. The term weight is added to the user's current threshold value.
+ If this is the user's first time saying one of these terms, they start at 0 and this weight is added.&lt;/li&gt;
+&lt;li&gt;If user exceeds the threshold, the system issues a ban to Sourcebans. The user is then kicked from the game server.
+ The ban length will be 1 day.&lt;/li&gt;
+&lt;li&gt;The system keeps messages for a total of 5 minutes. If a message is older than that, the system forgets it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Currently, the three inappropriate terms all have a threshold of &lt;code&gt;1&lt;/code&gt;. This means they saying the words results in a ban.
+Homophobic, racist remarks aren't welcome on the Viper servers. We can't prevent it, but we can deal with offenses swiftly.
+The 5 minute window is added because the community requested that excessive swearing also be limited. We don't want to
+outright ban it, but they don't want a swear filled rant to occur after every match.&lt;/p&gt;
+&lt;p&gt;Thus, I built in the 5 minute window and the thresholds. The system is configured to catch common swear words, but the words
+have a low weight. It'd take repeated spamming of the words in a 5 minute window to reach the threshold and be removed from
+the server.&lt;/p&gt;
+&lt;h3 id="updated-removal-logic"&gt;Updated removal logic&lt;a class="headerlink" href="#updated-removal-logic" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Updated May 17, 2012&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The automated system has been active for almost a month. I'm finding that the system has been removing the same set of
+players every other day. They aren't learning. This is despite the message they are shown when removed from the server.
+I've made a change to the logic in how long a ban will last. It provides a 4 strike system:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First offence: Weight of term(s) said times 1. This means, for most cases, they are issued a single day ban.&lt;/li&gt;
+&lt;li&gt;Second offence: Weight of term(s) said times 3. This means, for most cases, they are issued a three day ban.&lt;/li&gt;
+&lt;li&gt;Third offence: Weight of terms said times 21. This means, for most cases, they are issued a three week ban.&lt;/li&gt;
+&lt;li&gt;Forth offence: Permanent removal from the game servers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The community has been very enthusiastic about how quickly users of inappropriate terms are removed. I've seen a few minor
+complaints about the permanent removal of users on the forth offense. I've told the community that &lt;em&gt;if&lt;/em&gt; a user protests the
+ban and &lt;em&gt;if&lt;/em&gt; they can show they've learned our rules, I will provide one additional chance after the user has waited a minimum
+of a month from from last time they were banned. If they return to their previous activities, they will be re-banned and
+they will not be able to return in the future.&lt;/p&gt;
+&lt;h2 id="update-at-shutdown"&gt;Update at shutdown&lt;a class="headerlink" href="#update-at-shutdown" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated January 20, 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In January 2015, Team Vipers &lt;a href="https://andrewwegner.com/thanks-for-all-the-fish.html"&gt;shut down&lt;/a&gt;. With that shutdown, all chat monitoring also shut down. The system was active
+from April 23, 2012 to January 4, 2015, for a total of 987 days. In that time, 4457 bans were issued for inappropriate
+language. That is over 4 users a day being removed from our player base because they couldn't maintain a respectful
+attitude. I consider that a success. I believe Viper community members did too.&lt;/p&gt;</content><category term="Vipers"/><category term="team vipers"/><category term="automation"/><category term="programming"/></entry><entry><title>A new, more fair, RTD</title><link href="https://andrewwegner.com/a-new-more-fair-rtd.html" rel="alternate"/><published>2011-02-04T20:01:00-06:00</published><updated>2015-05-20T00:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2011-02-04:/a-new-more-fair-rtd.html</id><summary type="html">&lt;p&gt;A description of how the Roll The Dice plugin has been updated&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="the-old-rtd"&gt;The old RTD&lt;a class="headerlink" href="#the-old-rtd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Viper's own LinuxLover, aka &lt;a href="https://forums.alliedmods.net/member.php?u=38829"&gt;pheadxdll&lt;/a&gt; on the &lt;a href="https://forums.alliedmods.net/index.php"&gt;SourceMod forums&lt;/a&gt;, wrote the &lt;a href="https://forums.alliedmods.net/showthread.php?p=666222"&gt;original version&lt;/a&gt; of the Roll the Dice
+plugin. It has provided countless hours of fun for players. After all, who doesn't love getting Toxic while standing near an enemy 
+spawn and hearing the rage as they die immediately. It's usually worth the instant death that follows when the effect
+wears off ten seconds later.&lt;/p&gt;
+&lt;p&gt;There were problems though. The biggest was that the chances of getting a Good vs Bad roll were not equal. Instead, you 
+had a roughly equal chance of getting any roll. There were 14 possible rolls. You had a 1 out of 14 chance of getting a specific
+effect. However, 9 of those effects were negative. Thus, you had a much higher chance of getting a negative effect vs a 
+positive one. The other major problem was that it was very difficult to add new effects. Finally, with the released mod
+not being updated, and LinuxLover departing Vipers to handle his own community on the Randomizer server, it was next to
+impossible to get changes made.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;NOTE&lt;/em&gt;: LinuxLover released a new version of RTD (the 0.4 branch) sometime after we had forked the version we had. The new
+version on SourceMod contains many of the same features we have. It does not, however, contain all of them.&lt;/p&gt;
+&lt;h2 id="the-new-rtd"&gt;The new RTD&lt;a class="headerlink" href="#the-new-rtd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The logic for how rolls are determined has been changed. There is now a list of Good Effects and a list of Bad Effects. When
+someone rolls, the first thing that is done is determine whether or not we are going to have a Good or Bad effect. That is a 
+50/50 chance. Then it randomly selects one of the effects that are active and appropriate for the player's current class
+that falls under the winning category. This should even out the Good vs Bad complaints.&lt;/p&gt;
+&lt;p&gt;Another change that I've added is that we can now more easily add effects. Some new effects have been added:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Powerplay: When Uber isn't enough...you need Kritz and Uber. &lt;/li&gt;
+&lt;li&gt;Freeze Bullets: You've been shot! You should run away, but you can't. You're frozen in place for the next ten seconds, if 
+ you're lucky.&lt;/li&gt;
+&lt;li&gt;Fire Bullets: A bullet wound isn't enough. You need to be on fire too.&lt;/li&gt;
+&lt;li&gt;No crits: Haha! You are on an all crits server and you just lost your crits. Go sit at the little kid table.&lt;/li&gt;
+&lt;li&gt;Valve Rockets: We've included something that may be slightly overkill. You tell me:&lt;/li&gt;
+&lt;li&gt;+9900% damage&lt;/li&gt;
+&lt;li&gt;+9000% clip size&lt;/li&gt;
+&lt;li&gt;+75% firing speed&lt;/li&gt;
+&lt;li&gt;+500 health on kill&lt;/li&gt;
+&lt;li&gt;10 seconds of crits on kill&lt;/li&gt;
+&lt;li&gt;+200% speed&lt;/li&gt;
+&lt;li&gt;+60% reload time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Because sometimes overkill is needed. &lt;/p&gt;
+&lt;p&gt;We've been testing performance of this over the last few months. Today is the day that everyone can get it without
+   an admin being around.&lt;/p&gt;
+&lt;p&gt;For those that haven't seen it, here is one of our first tests back in November&lt;/p&gt;
+&lt;div class="videowrapper youtube"&gt;
+&lt;iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/OzHNr1Bz5QQ"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;The Headless Horseless Headmann: That's right, you can be the Halloween nightmare.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Update:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Homing Projectiles: Is that soldier aimbotting?! Nope. His rockets are just following you where ever you go. Boom! Oh, 
+ sniper arrows and pyro flares are probably something to avoid too.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Finally, I added in the ability to log rolls to a database so that we can find fancy stats and ensure it's rolling fairly. I'll
+update this post in a few months with some of our gathered stats.&lt;/p&gt;
+&lt;h2 id="source-code"&gt;Source Code&lt;a class="headerlink" href="#source-code" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Updated May 20, 2015 with link to GitHub instead of the old SVN, my apologies for missing that link when migrating to this blog
+It is important to note that this version hasn't been updated in a LONG time and all effects may not work any more. Specifically,
+homing probably doesn't work because the Sidewinder extension had been broken by a Valve update in mid-2014. Other effects
+should continue to work&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The source code is released on Github. It requires several common modules which are all available on the SourceMod forums.&lt;/p&gt;
+&lt;p&gt;The repository is: &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;https://github.com/AWegnerGitHub/Vipers-Server-Plugins&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="statistics"&gt;Statistics&lt;a class="headerlink" href="#statistics" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;This section was updated in January 2015 after the shutdown&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id="good-vs-bad"&gt;Good vs Bad&lt;a class="headerlink" href="#good-vs-bad" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I don't have exact stats on Good vs Bad rolls before the rewrite, but we started logging all rolls with the rewrite. This is the 
+split of Good vs Bad. I am very happy with an almost exactly 50/50 split over nearly a million RTDs.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="RTD Split" src="https://andrewwegner.com/images/rtd-split.png"/&gt;&lt;/p&gt;
+&lt;h3 id="class-with-the-most-rtds"&gt;Class with the most RTDs&lt;a class="headerlink" href="#class-with-the-most-rtds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Solider was the most popular class on the crit server. The images below show number of times our soldiers got certain rolls. Note that God Mode is 
+low because the community decided having both God Mode and Powerplay was redundant. They decided to keep Power play. God Mode was
+disabled about a year after this version was released. Homing is low because it wasn't implemented until about 18 months after
+the initial release.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="RTD Soldier" src="https://andrewwegner.com/images/rtd-soldier.png"/&gt;&lt;/p&gt;
+&lt;h3 id="class-with-the-least-rtds"&gt;Class with the least RTDs&lt;a class="headerlink" href="#class-with-the-least-rtds" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Medics rolled RTD the least number of times. This means sense for two reasons. First, they were not a common class on the crit server. When 
+nearly everything is one hit, one kill, it's very hard to build uber. Second, when you &lt;em&gt;do&lt;/em&gt; try to build Uber, ruining it with a 50/50
+shot at getting a bad roll isn't good for the team. The low God Mode and Homing results are the same here as they were for the soldier.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="RTD Medic" src="https://andrewwegner.com/images/rtd-medic.png"/&gt; &lt;/p&gt;</content><category term="Vipers"/><category term="team vipers"/><category term="programming"/></entry><entry><title>Automated template for membership applications</title><link href="https://andrewwegner.com/automated-template-for-membership-applications.html" rel="alternate"/><published>2009-10-30T22:30:00-05:00</published><updated>2009-10-30T22:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2009-10-30:/automated-template-for-membership-applications.html</id><summary type="html">&lt;p&gt;How Team Vipers improved user applications and admin participation in the process&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Not to long ago, applications for new membership in Team Vipers consisted of someone wandering onto the site, posting a
+few words and an administrator saying they were accepted as a member. This worked when we were a small community. We
+aren't small any more. We have 5 servers and hundreds of players a day. Each server has their own sub-community. There
+are players joining the forums than entire groups of people have never met because they play exclusively on one game server.&lt;/p&gt;
+&lt;p&gt;Admins were also inconsistent in how (or if) they voted. Some admins didn't realize they could have a say, thinking it
+was a privilege granted to only the senior administrators. We've built a system to resolve many of these problems and to
+make the administration side easier.&lt;/p&gt;
+&lt;h2 id="whats-new"&gt;What's new?&lt;a class="headerlink" href="#whats-new" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The new system presents all users with an application template. They fill out the form and the system handles the rest.
+The New Users and Applications subforum has been modified so that no one, except the bot, can create topics. They
+topics will only be created when the form is submitted. When a user applies to join Vipers, we will automatically
+include relevant information about the user as we know them:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HLStats information: This helps us get a sense of where they play and how often they play. It will help admins identify
+ users they &lt;em&gt;should&lt;/em&gt; recognize based on the servers they frequent (because we all know certain servers are better than
+ others ;) &lt;em&gt;cough&lt;/em&gt; Vanilla Nest vs Crits &lt;em&gt;cough&lt;/em&gt; )&lt;/li&gt;
+&lt;li&gt;Ban information: This will check if the user has any recorded bans in &lt;a href="http://www.sourcebans.net/"&gt;Sourcebans&lt;/a&gt;. It's important to know if the
+ user has been banned previously.&lt;/li&gt;
+&lt;li&gt;Known aliases: Pulling information from our chat logs and Valve's profile page, we can build a list of known aliases.
+ This helps identify users that frequently change names but have been around a while.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There may be other features we add in the future as well.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Updated January 2012&lt;/em&gt; I've removed HLStats from the servers and removed it from new application information. We have
+added a check of a user's &lt;a href="http://steamrep.com/api.php"&gt;Steam Reputation&lt;/a&gt; instead.&lt;/p&gt;
+&lt;p&gt;After a user applies, they are put into a two week hold. During this week it is expected they will stick around the forums
+and learn about the community they just applied to. Even better would be that they had done this before applying. While
+this two week hold is in place, the administration team will be able to cast they votes in a separate sub-forum. They can
+hold administration specific discussions - usually details that are important for admins to know, but don't &lt;em&gt;need&lt;/em&gt; to be
+public. Once voting is complete, if they become a member, the system automatically grants appropriate forum and server
+related permissions.&lt;/p&gt;
+&lt;h3 id="voting-rules"&gt;Voting rules&lt;a class="headerlink" href="#voting-rules" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Three admin "Yes" votes and zero "No" votes grants the user membership immediately after the two week window has expired&lt;/li&gt;
+&lt;li&gt;One or two "No" votes places a message on the user's application that the administrators are still considering the application&lt;/li&gt;
+&lt;li&gt;Three or more "No" votes rejects the application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="possible-responses"&gt;Possible Responses&lt;a class="headerlink" href="#possible-responses" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="accepted-by-admin-team"&gt;Accepted by admin team&lt;a class="headerlink" href="#accepted-by-admin-team" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you reach a total of three or more admin "Yes" votes, and do not get three or more admin "No" votes, you will be accepted
+as a member of Vipers and automatically have your forum access modified. You will receive a message similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Accepted" src="https://andrewwegner.com/images/application-accepted.png"/&gt;&lt;/p&gt;
+&lt;h3 id="denied-by-admin-team"&gt;Denied by admin team&lt;a class="headerlink" href="#denied-by-admin-team" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you reach three or more "No" votes your application will be denied. This will occur even if you receive more "Yes" votes
+than "No" votes. Vipers is not a majority rule community. The decision has been made that if three admins do not feel comfortable
+accepting your application, you will not be granted membership. You will receive a message similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Denied by Admins" src="https://andrewwegner.com/images/application-denied.png"/&gt;&lt;/p&gt;
+&lt;h3 id="denied-due-to-lack-of-votes"&gt;Denied due to lack of votes&lt;a class="headerlink" href="#denied-due-to-lack-of-votes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To be accepted, your application requires a minimum of three "Yes" votes. If this can not be reached (and you also can't reach
+ three "No" votes), your application will be rejected due to lack of votes from the admin team. This means that the admin team
+ does not feel strongly either way about your application. Post on the forums. Play in the servers. Get to know our players
+ and the community at large and then try again in a month. You will receive a message similar to this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Denied with not enough votes" src="https://andrewwegner.com/images/application-denied-not-enough-votes.png"/&gt;&lt;/p&gt;
+&lt;h3 id="denied-because-of-age"&gt;Denied because of age&lt;a class="headerlink" href="#denied-because-of-age" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Repeat after me: "Age does not equal maturity." However, it has a very strong correlation. Over time we have learned that younger
+ players tend to bring a lower maturity level that most of the community does not care for. As such, we've decided to set a minimum
+ age requirement of 16. If a user indicates they are less than that, the system will reject their application with a message similar to
+ this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Application Denied because of age" src="https://andrewwegner.com/images/application-denied-underage.png"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Updated January 2010&lt;/em&gt; This process has been in place for a few months now. It has gone very well. We've reduced the clutter
+in the applications forum. We've also seen the number of "forgotten" applications drop dramatically.&lt;/p&gt;
+&lt;h2 id="original-announcement"&gt;Original Announcement&lt;a class="headerlink" href="#original-announcement" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The original announcement is posted here for future reference.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Zephyr is an automated robot designed to improve our new member application process. The current process, which involves copying a template to a new thread and the potential for applications to become misplaced, is cumbersome and inefficient. The goal of Zephyr is to remove as much of the manual process as possible.&lt;/p&gt;
+&lt;p&gt;Now, our new applicants will fill out an actual application online. The same information will be requested, but it will be in a more reliable format and will not require an applicant copy and paste anything between threads. This new application will be posted in the same forum as you're used to, and members will be freely able to comment and discuss the applicant via that thread. It will also display which date admin voting will be open, which is two full weeks after the original application post. This will hopefully cut down on any confusion related to the delay between application and voting.&lt;/p&gt;
+&lt;p&gt;As another note, from now on Zephyr will be the only user capable of creating new threads in the New Member Application forum. As previously stated, members will be able to post comments on existing threads, but the only new threads will come from the application process. This will keep the forum cleaner and help prevent applications from becoming lost or forgotten about.&lt;/p&gt;
+&lt;p&gt;Once again, Zephyr is an automated robot. It is not programmed to respond to comments or questions. Doing so will not get your question answered. As always, if you have questions or comments about the application process, Zephyr, or anything else, you're welcome to send them to any admin. We'll be more than happy to help.&lt;/p&gt;
+&lt;p&gt;You may all bow to your Robotic Overlord now.&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="Vipers"/><category term="team vipers"/><category term="automation"/><category term="community"/><category term="programming"/></entry></feed>

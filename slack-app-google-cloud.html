@@ -1,277 +1,61 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/slack-app-google-cloud.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="Setup a Slack app using Flask and deploy it to Google&#39;s Cloud" />
-<meta name="keywords" content="technical">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="Deploying a Flask Slack app on Google Cloud Platform"/>
-  <meta property="og:description" content="Setup a Slack app using Flask and deploy it to Google&#39;s Cloud"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/slack-app-google-cloud.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2018-07-13 10:00:00-05:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Technical Solutions"/>
-  <meta property="article:tag" content="technical"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>Deploying a Flask Slack app on Google Cloud Platform  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#background-and-goals">Background and goals</a></li>
-<li><a href="#writing-the-flask-app">Writing the Flask app</a><ul>
-<li><a href="#slash-pitfall-1-timeouts">Slash Pitfall 1: Timeouts</a></li>
-<li><a href="#sample-application">Sample Application</a></li>
-<li><a href="#sample-application-walkthrough">Sample Application Walkthrough</a></li>
-</ul>
-</li>
-<li><a href="#testing-the-application">Testing the application</a><ul>
-<li><a href="#slack-set-up-part-1">Slack set up - Part 1</a></li>
-<li><a href="#ngrok-set-up">ngrok set up</a></li>
-<li><a href="#slack-set-up-part-2">Slack set up - Part 2</a></li>
-</ul>
-</li>
-<li><a href="#deploy-application-to-app-engine">Deploy application to App Engine</a><ul>
-<li><a href="#set-up-gcloud-sdk">Set up gcloud SDK</a></li>
-<li><a href="#set-up-appyaml">Set up app.yaml</a></li>
-<li><a href="#deploy-to-google">Deploy to Google</a></li>
-</ul>
-</li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/slack-app-google-cloud.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">Deploying a Flask Slack app on Google Cloud Platform</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Deploying a Flask Slack app on Google Cloud Platform — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="Setup a Slack app using Flask and deploy it to Google&#39;s Cloud"><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/slack-app-google-cloud.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Technical Solutions (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/slack-app-google-cloud.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="Deploying a Flask Slack app on Google Cloud Platform"><meta property="og:url" content="https://andrewwegner.com/slack-app-google-cloud.html"><meta property="og:description" content="Setup a Slack app using Flask and deploy it to Google&#39;s Cloud"><meta property="article:published_time" content="2018-07-13T10:00:00-05:00"><meta property="article:section" content="Technical Solutions"><meta property="article:tag" content="technical"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Deploying a Flask Slack app on Google Cloud Platform",
+  "headline": "Deploying a Flask Slack app on Google Cloud Platform",
+  "dateCreated": "2018-07-13T10:00:00-05:00",
+  "datePublished": "2018-07-13T10:00:00-05:00",  "dateModified": "2018-07-13T10:00:00-05:00",  "copyrightYear": "2018",
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/slack-app-google-cloud.html",
+  "description": "Setup a Slack app using Flask and deploy it to Google&#39;s Cloud",
+  "mainEntityOfPage": "True",
+  "articleSection": "Technical Solutions"
+}</script></head><body data-page-type="article" data-page-slug="slack-app-google-cloud" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a></nav><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/technical-solutions.html",
-      "name": "Technical Solutions"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/slack-app-google-cloud.html",
-      "name": "https://andrewwegner.com/slack-app-google-cloud.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="slack-app-google-cloud">Deploying a Flask Slack app on Google Cloud Platform</h1>
-    <p>
-      Posted on Fri 13 July 2018 in <a href="https://andrewwegner.com/category/technical-solutions.html">Technical Solutions</a>
-
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/technical.html">technical</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="background-and-goals">Background and goals<a class="headerlink" href="#background-and-goals" title="Permanent link">¶</a></h2>
-<p>At work I am the software QA team lead (I haven't given myself a fancy title, but I should). As such, I spend a lot of time in JIRA tracking our bug and feature requests and in Slack working with every aspect of the company to ensure the new features work as expected and bugs as appropriately squashed. As new releases approach their release date, I start running more queries to ensure everything will be done on time.</p>
-<p>Mini-rant: I hate JIRA's UI. It's slow, clunky and makes rolling things up as I need them unnecessarily complicated.</p>
-<p>Despite that complaint, JIRA is good because it has so much flexibility on the web UI and, even better, it has an API I can use to automate the queries I use. So, that's what I did. Our last release was larger and more complex than the ones we've done in the last year (since I started). The reason for this complexity was that we needed to coordinate our updates with those of our third party billing platform. Messing up how we bill customers is a great way to get into a "discussion" with the higher ups at any company.</p>
-<p>In this release, I started poking around <a href="https://developer.atlassian.com/server/jira/platform/rest-apis/">JIRA's API</a>. With very little work, I'd managed to automatically run the queries that were taking a significant amount of time in the UI. I formatted these nicely and started posting the results in Slack during our update calls so that all of the developers were on the same page. From my point of view, these calls were more efficient. After the release was pushed out, I decided to see what it'd take to make these queries available to everyone via a Slack slash command.</p>
-<p>This article will talk about the process I went through, give a small tutorial for a basic command, explain how I tested locally, provide a few tips that deal with pitfalls I encountered and explain how I deployed this to Google's cloud platform.</p>
-<h2 id="writing-the-flask-app">Writing the Flask app<a class="headerlink" href="#writing-the-flask-app" title="Permanent link">¶</a></h2>
-<p><a href="https://api.slack.com/slash-commands">Slack's slash apps</a> do not run on Slack's platform. When a slash command is issued, it calls a predefined URL and awaits a response. My experience is with Python. I've used both Flask and Django web frameworks. These commands will be small and don't need any of the back end batteries that Django includes, so I chose to use Flask to handle the commands I wanted to create.</p>
-<h3 id="slash-pitfall-1-timeouts">Slash Pitfall 1: Timeouts<a class="headerlink" href="#slash-pitfall-1-timeouts" title="Permanent link">¶</a></h3>
-<p>The first pitfall that I encountered was before I even started writing code. Slack only allows a slash command 3000 milliseconds to respond, before it times out. Unfortunately, connecting to JIRA and running the series of queries I need takes a minimum of 5 seconds. Fortunately, the workaround for this was simple: Use <a href="https://api.slack.com/slash-commands#responding_response_url">delayed responses</a> by responding to the initial command with a confirmation message of some kind, then perform the work and respond again using the Slack passed <code>response_url</code>.</p>
-<h3 id="sample-application">Sample Application<a class="headerlink" href="#sample-application" title="Permanent link">¶</a></h3>
-<p>The application code below is a simple toy example. It will respond to the command "/hello-world" and then reply again after a few seconds, to simulate the delayed responses I needed.</p>
-<div class="codehilight code"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/technical-solutions.html",
+        "name": "Technical Solutions"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Technical Solutions</span></div><h1 class="article-title">Deploying a Flask Slack app on Google Cloud Platform</h1><p class="article-summary">Setup a Slack app using Flask and deploy it to Google's Cloud</p><div class="article-meta"><time datetime="2018-07-13T10:00:00-05:00" class="article-meta-date">Fri 13 July 2018</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/technical.html" class="tag">#technical</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#background-and-goals">Background and goals</a></li><li><a href="#writing-the-flask-app">Writing the Flask app</a><ul><li><a href="#slash-pitfall-1-timeouts">Slash Pitfall 1: Timeouts</a></li><li><a href="#sample-application">Sample Application</a></li><li><a href="#sample-application-walkthrough">Sample Application Walkthrough</a></li></ul></li><li><a href="#testing-the-application">Testing the application</a><ul><li><a href="#slack-set-up-part-1">Slack set up - Part 1</a></li><li><a href="#ngrok-set-up">ngrok set up</a></li><li><a href="#slack-set-up-part-2">Slack set up - Part 2</a></li></ul></li><li><a href="#deploy-application-to-app-engine">Deploy application to App Engine</a><ul><li><a href="#set-up-gcloud-sdk">Set up gcloud SDK</a></li><li><a href="#set-up-appyaml">Set up app.yaml</a></li><li><a href="#deploy-to-google">Deploy to Google</a></li></ul></li></ul></div></div><div class="prose"><h2 id="background-and-goals">Background and goals<a class="headerlink" href="#background-and-goals" title="Permanent link">¶</a></h2><p>At work I am the software QA team lead (I haven't given myself a fancy title, but I should). As such, I spend a lot of time in JIRA tracking our bug and feature requests and in Slack working with every aspect of the company to ensure the new features work as expected and bugs as appropriately squashed. As new releases approach their release date, I start running more queries to ensure everything will be done on time.</p><p>Mini-rant: I hate JIRA's UI. It's slow, clunky and makes rolling things up as I need them unnecessarily complicated.</p><p>Despite that complaint, JIRA is good because it has so much flexibility on the web UI and, even better, it has an API I can use to automate the queries I use. So, that's what I did. Our last release was larger and more complex than the ones we've done in the last year (since I started). The reason for this complexity was that we needed to coordinate our updates with those of our third party billing platform. Messing up how we bill customers is a great way to get into a "discussion" with the higher ups at any company.</p><p>In this release, I started poking around <a href="https://developer.atlassian.com/server/jira/platform/rest-apis/">JIRA's API</a>. With very little work, I'd managed to automatically run the queries that were taking a significant amount of time in the UI. I formatted these nicely and started posting the results in Slack during our update calls so that all of the developers were on the same page. From my point of view, these calls were more efficient. After the release was pushed out, I decided to see what it'd take to make these queries available to everyone via a Slack slash command.</p><p>This article will talk about the process I went through, give a small tutorial for a basic command, explain how I tested locally, provide a few tips that deal with pitfalls I encountered and explain how I deployed this to Google's cloud platform.</p><h2 id="writing-the-flask-app">Writing the Flask app<a class="headerlink" href="#writing-the-flask-app" title="Permanent link">¶</a></h2><p><a href="https://api.slack.com/slash-commands">Slack's slash apps</a> do not run on Slack's platform. When a slash command is issued, it calls a predefined URL and awaits a response. My experience is with Python. I've used both Flask and Django web frameworks. These commands will be small and don't need any of the back end batteries that Django includes, so I chose to use Flask to handle the commands I wanted to create.</p><h3 id="slash-pitfall-1-timeouts">Slash Pitfall 1: Timeouts<a class="headerlink" href="#slash-pitfall-1-timeouts" title="Permanent link">¶</a></h3><p>The first pitfall that I encountered was before I even started writing code. Slack only allows a slash command 3000 milliseconds to respond, before it times out. Unfortunately, connecting to JIRA and running the series of queries I need takes a minimum of 5 seconds. Fortunately, the workaround for this was simple: Use <a href="https://api.slack.com/slash-commands#responding_response_url">delayed responses</a> by responding to the initial command with a confirmation message of some kind, then perform the work and respond again using the Slack passed <code>response_url</code>.</p><h3 id="sample-application">Sample Application<a class="headerlink" href="#sample-application" title="Permanent link">¶</a></h3><p>The application code below is a simple toy example. It will respond to the command "/hello-world" and then reply again after a few seconds, to simulate the delayed responses I needed.</p><div class="codehilight code"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">Thread</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
@@ -344,159 +128,19 @@
     <span class="c1"># This is used when running locally. Gunicorn is used to run the</span>
     <span class="c1"># application on Google App Engine. See entrypoint in app.yaml.</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="sample-application-walkthrough">Sample Application Walkthrough<a class="headerlink" href="#sample-application-walkthrough" title="Permanent link">¶</a></h3>
-<p>The only interesting thing in the imports here is the inclusion of <code>asyncio</code>. Since I need to fire off an immediate response and then do the "real work", I'll funnel that work into worker threads. I'm also including <code>functools.wraps</code> because I'm making a decorator for validating a request is coming from Slack. For a single command, this type of decorator isn't needed, but I have multiple Slack slash commands in the real application. I figured it'd be helpful to show here too. This application will also need the <a href="http://docs.python-requests.org/en/master/">requests</a> library.</p>
-<p>Speaking of that decorator, the first function encountered in the code is <code>validate_request</code>. This will be the decorator that ensures a request came from Slack. It calls <code>is_request_valid</code>, which compares the passed <code>token</code> and <code>team_id</code> to the values we've previously saved. If they match, the request is valid. If they don't match, the request is invalid. This application is only for my team and won't be distributed elsewhere.</p>
-<p>Next up is <code>slack_command_response</code>, which is used to send text back to Slack. It will respond to the <code>response_url</code> parameter. This is passed by Slack and is part of the <code>request.form</code> object Flask receives. This can be found at <code>request.form['response_url']</code>. It will reply either <code>ephemeral</code> (default) or <code>in_channel</code>. The first will reply only to the user and will hide the slash command that was used. The second will reply to the entire channel and will leave the slash command visible to all.</p>
-<p>Starting the worker thread is done in <code>start_command_worker</code> and the next three lines. This will fire up a thread that listens forever. It will not take place on the main thread, which allows Flask to respond immediately and then perform work in the background. Remember, this is a small application and will work for the scale me and my team will be using this on. This is most certainly not designed for a huge number of users constantly using it.</p>
-<p>Now it's time to get to the real work. <code>hello_world</code> and <code>command_hello_world</code>. If you've used Flask before, you can see that <code>command_hello_world</code> will be the function associated with a user hitting <code>http:\\server.tld\hello-world</code> with a <code>POST</code> request. Slack only sends <code>POST</code> requests, so I care about <code>GET</code> methods. In <code>command_hello_world</code>, we send a call to the command worker thread, telling it to call <code>hello_world</code> and then pass the <code>response_url</code> as a parameter. The function immediately returns a response to Slack telling the user to wait.</p>
-<p>In <code>hello_world</code>, the function sleeps for a few seconds before sending a response back to the passed <code>response_url</code>. This <code>sleep</code> is to emulate "real work" being done. In my case, it's five seconds of queries to JIRA to gather and format all of the data I want to return.</p>
-<p>Finally, this can run locally by firing up Flask. I tested with this command:</p>
-<div class="codehilight code"><pre><span></span><code>FLASK_APP=jira-slack-integration.py flask run
-</code></pre></div>
-<p>When deploying to Google App Engine, the <code>main</code> function won't be utilized. I cover that below.</p>
-<h2 id="testing-the-application">Testing the application<a class="headerlink" href="#testing-the-application" title="Permanent link">¶</a></h2>
-<p>Now it's time for everyone's favorite part of development: TESTING!</p>
-<h3 id="slack-set-up-part-1">Slack set up - Part 1<a class="headerlink" href="#slack-set-up-part-1" title="Permanent link">¶</a></h3>
-<p>To test a Slack application, though, some set up within Slack is needed: create a Slack Application, set up and gather tokens, and set up slash command end points.</p>
-<ol>
-<li>First, create a <a href="https://api.slack.com/apps?new_app=1">new Slack App</a>. Fill out the name and select the appropriate workspace.</li>
-<li>After submission, it redirects to a basic information section about the new application. Scroll down to "App Credentials". Copy the <code>Verification Token</code> and put it in the <code>SLACK_VERIFICATION_TOKEN</code> variable in the Flask application.</li>
-<li>Open Slack in the browser, sign in, and then open the web console. In Chrome, do this with <kbd class="light">CTRL</kbd>+<kbd class="light">SHIFT</kbd>+<kbd class="light">I</kbd> or with <kbd class="light">F12</kbd> in FireFox. View the page source and search for <code>team_id</code>. It will look something like this: <code>"T083XXXX"</code>. Copy this value to <code>SLACK_TEAM_ID</code> in the Flask application.</li>
-</ol>
-<h3 id="ngrok-set-up">ngrok set up<a class="headerlink" href="#ngrok-set-up" title="Permanent link">¶</a></h3>
-<p>Before slash commands can be set up in Slack, you need a development environment and an easy way to access our development server. One option is to punch holes in the router's firewall to point to your development machine. This works if you are on a home network and you'll be the only machine running the development server. It's no so easy if your set up is more complicated or infrastructure is outside of your control.</p>
-<p>I choose to use <a href="https://ngrok.com/">ngrok</a> instead. This application provides you with a free, secure and public URL to your local development environment without worrying about your NAT or firewall settings.</p>
-<ol>
-<li>Sign up. After that the four steps to complete setup are shown</li>
-<li>Download ngrok. There are downloads for a variety of operating systems. This includes Ubuntu, which I use for my work related development work.</li>
-<li>Unzip ngrok to any location: <code>unzip /path/to/ngrok.zip</code> This places an <code>ngrok</code> binary in the selected location.</li>
-<li>Set up the authentication token. This is a one time step. This will create a <code>~/.ngrok2/ngrok.yml</code> file.</li>
-<li>Start <code>ngrok</code>. If you're using the script from above, Flask should run on the local machine on port 5000. The command to start <code>ngrok</code> to point to the Flask server is: <code>./ngrok http 5000</code>. In another command prompt start the Flask application.</li>
-</ol>
-<h3 id="slack-set-up-part-2">Slack set up - Part 2<a class="headerlink" href="#slack-set-up-part-2" title="Permanent link">¶</a></h3>
-<p><code>ngrok</code> provides a public URL. In the screenshot below, my URL is <code>https://1eed8eae.ngrok.io</code>.</p>
-<p><img alt="ngrok dashboard" src="https://andrewwegner.com/images/ngrok.png"/></p>
-<p><strong>Important Note:</strong> This changes every time <code>ngrok</code> is stated.</p>
-<p>At this point, I can visit <code>https://1eed8eae.ngrok.io/hello-world</code> in my browser and get an error message because I didn't configure it to support <code>GET</code> requests.</p>
-<ol>
-<li>Go back to Slack and the management area where the new application was set up.</li>
-<li>Select "Slash Commands"</li>
-<li>Select "Create New Command"</li>
-<li>Put in the command users will use within Slack. This can be anything.</li>
-<li>Enter the request URL. This will be <code>https://1eed8eae.ngrok.io/hello-world</code> with this example</li>
-<li>Provide a description of the command</li>
-<li>Add a usage hint. This is useful if you are passing parameters to the command.</li>
-<li>Press save</li>
-</ol>
-<p><img alt="Slash Command Example" src="https://andrewwegner.com/images/slash-command-example.png"/></p>
-<p>The slash command is now set up. The last step is installing the application. Go back to "Basic Information" and expand "Install your app to your workspace" then press the green "Install App to Workspace" button. You'll be presented with an oAuth Access Token. For this example application, it's not needed.</p>
-<p>Now go into any channel in Slack and use the new <code>/hello-world</code> command.</p>
-<p><strong>Important Note:</strong> If/when you shut down and restart <code>ngrok</code>, you'll get a new end point. The slash command will need to be modified to point to this new request URL to continue to function. These changes will not be required once the application is deployed to Google's App Engine.</p>
-<h2 id="deploy-application-to-app-engine">Deploy application to App Engine<a class="headerlink" href="#deploy-application-to-app-engine" title="Permanent link">¶</a></h2>
-<p>This project requires the use of the <a href="https://cloud.google.com/appengine/docs/the-appengine-environments">flexible app engine environment</a> (vs. standard environment). The biggest reason for this is due to the network requirements. It seems that anything other than Node.js has networking restrictions, and the sample application needs to connect to Slack and my application also needed to connect to JIRA. Another downside of the standard environment is that it only supports Python 2.7. I don't believe there is anything in the example application that would break on Python 2, but there are a few Python 3 specific things I used in my real application (f strings, are one).</p>
-<p>The flexible environment isn't free though. It's always on. The sample application and my real application are so small and used by so few people that it costs less than fifty cents a day. This isn't a huge deal when the rest of our Google cloud bill exceeds that by a couple orders of magnitude, but it is something to consider if you are just running this as a small side thing. It's not free.</p>
-<h3 id="set-up-gcloud-sdk">Set up gcloud SDK<a class="headerlink" href="#set-up-gcloud-sdk" title="Permanent link">¶</a></h3>
-<p>Due to the size of this application, the <a href="https://cloud.google.com/appengine/docs/flexible/python/">quick start tutorial</a> that Google provides is perfect.</p>
-<ol>
-<li>Using the Google Cloud Platform console, create a new App Engine project and enable billing (billing must be enabled). This can be done from <a href="https://console.cloud.google.com/projectselector/appengine/create?lang=flex_python&amp;st=true">here</a></li>
-<li>Download the <a href="https://cloud.google.com/sdk/docs/">Google Cloud SDK</a></li>
-<li>Extract this to any location. To add it to the path, run <code>./google-cloud-sdk/install.sh</code>. If this isn't done, the full path needs to be in all <code>gcloud</code> commands.</li>
-<li>Initialize the SDK by running <code>gcloud init</code> and follow the prompts on screen. You'll need access to a browser for this step as you'll be authorizing your account using oAuth.</li>
-</ol>
-<h3 id="set-up-appyaml">Set up app.yaml<a class="headerlink" href="#set-up-appyaml" title="Permanent link">¶</a></h3>
-<p>With <code>gcloud</code> set up on your development machine, there is one last step to do: Configuring the <code>app.yaml</code> file.</p>
-<p>This file contains information on the type of environment you'll be deploying to. Create and save an <code>app.yaml</code> file in the same directory as the Flask application. For this example, the Flask application is in a file saved as <code>example-script.py</code></p>
-<div class="codehilight code"><pre><span></span><code>runtime: python
-env: flex
-entrypoint: gunicorn -b :$PORT example-script:app
+</code></pre></div><h3 id="sample-application-walkthrough">Sample Application Walkthrough<a class="headerlink" href="#sample-application-walkthrough" title="Permanent link">¶</a></h3><p>The only interesting thing in the imports here is the inclusion of <code>asyncio</code>. Since I need to fire off an immediate response and then do the "real work", I'll funnel that work into worker threads. I'm also including <code>functools.wraps</code> because I'm making a decorator for validating a request is coming from Slack. For a single command, this type of decorator isn't needed, but I have multiple Slack slash commands in the real application. I figured it'd be helpful to show here too. This application will also need the <a href="http://docs.python-requests.org/en/master/">requests</a> library.</p><p>Speaking of that decorator, the first function encountered in the code is <code>validate_request</code>. This will be the decorator that ensures a request came from Slack. It calls <code>is_request_valid</code>, which compares the passed <code>token</code> and <code>team_id</code> to the values we've previously saved. If they match, the request is valid. If they don't match, the request is invalid. This application is only for my team and won't be distributed elsewhere.</p><p>Next up is <code>slack_command_response</code>, which is used to send text back to Slack. It will respond to the <code>response_url</code> parameter. This is passed by Slack and is part of the <code>request.form</code> object Flask receives. This can be found at <code>request.form['response_url']</code>. It will reply either <code>ephemeral</code> (default) or <code>in_channel</code>. The first will reply only to the user and will hide the slash command that was used. The second will reply to the entire channel and will leave the slash command visible to all.</p><p>Starting the worker thread is done in <code>start_command_worker</code> and the next three lines. This will fire up a thread that listens forever. It will not take place on the main thread, which allows Flask to respond immediately and then perform work in the background. Remember, this is a small application and will work for the scale me and my team will be using this on. This is most certainly not designed for a huge number of users constantly using it.</p><p>Now it's time to get to the real work. <code>hello_world</code> and <code>command_hello_world</code>. If you've used Flask before, you can see that <code>command_hello_world</code> will be the function associated with a user hitting <code>http:\\server.tld\hello-world</code> with a <code>POST</code> request. Slack only sends <code>POST</code> requests, so I care about <code>GET</code> methods. In <code>command_hello_world</code>, we send a call to the command worker thread, telling it to call <code>hello_world</code> and then pass the <code>response_url</code> as a parameter. The function immediately returns a response to Slack telling the user to wait.</p><p>In <code>hello_world</code>, the function sleeps for a few seconds before sending a response back to the passed <code>response_url</code>. This <code>sleep</code> is to emulate "real work" being done. In my case, it's five seconds of queries to JIRA to gather and format all of the data I want to return.</p><p>Finally, this can run locally by firing up Flask. I tested with this command:</p><div class="codehilight code"><pre><span></span><code>FLASK_APP=jira-slack-integration.py flask run
+</code></pre></div><p>When deploying to Google App Engine, the <code>main</code> function won't be utilized. I cover that below.</p><h2 id="testing-the-application">Testing the application<a class="headerlink" href="#testing-the-application" title="Permanent link">¶</a></h2><p>Now it's time for everyone's favorite part of development: TESTING!</p><h3 id="slack-set-up-part-1">Slack set up - Part 1<a class="headerlink" href="#slack-set-up-part-1" title="Permanent link">¶</a></h3><p>To test a Slack application, though, some set up within Slack is needed: create a Slack Application, set up and gather tokens, and set up slash command end points.</p><ol><li>First, create a <a href="https://api.slack.com/apps?new_app=1">new Slack App</a>. Fill out the name and select the appropriate workspace.</li><li>After submission, it redirects to a basic information section about the new application. Scroll down to "App Credentials". Copy the <code>Verification Token</code> and put it in the <code>SLACK_VERIFICATION_TOKEN</code> variable in the Flask application.</li><li>Open Slack in the browser, sign in, and then open the web console. In Chrome, do this with <kbd class="light">CTRL</kbd>+<kbd class="light">SHIFT</kbd>+<kbd class="light">I</kbd> or with <kbd class="light">F12</kbd> in FireFox. View the page source and search for <code>team_id</code>. It will look something like this: <code>"T083XXXX"</code>. Copy this value to <code>SLACK_TEAM_ID</code> in the Flask application.</li></ol><h3 id="ngrok-set-up">ngrok set up<a class="headerlink" href="#ngrok-set-up" title="Permanent link">¶</a></h3><p>Before slash commands can be set up in Slack, you need a development environment and an easy way to access our development server. One option is to punch holes in the router's firewall to point to your development machine. This works if you are on a home network and you'll be the only machine running the development server. It's no so easy if your set up is more complicated or infrastructure is outside of your control.</p><p>I choose to use <a href="https://ngrok.com/">ngrok</a> instead. This application provides you with a free, secure and public URL to your local development environment without worrying about your NAT or firewall settings.</p><ol><li>Sign up. After that the four steps to complete setup are shown</li><li>Download ngrok. There are downloads for a variety of operating systems. This includes Ubuntu, which I use for my work related development work.</li><li>Unzip ngrok to any location: <code>unzip /path/to/ngrok.zip</code> This places an <code>ngrok</code> binary in the selected location.</li><li>Set up the authentication token. This is a one time step. This will create a <code>~/.ngrok2/ngrok.yml</code> file.</li><li>Start <code>ngrok</code>. If you're using the script from above, Flask should run on the local machine on port 5000. The command to start <code>ngrok</code> to point to the Flask server is: <code>./ngrok http 5000</code>. In another command prompt start the Flask application.</li></ol><h3 id="slack-set-up-part-2">Slack set up - Part 2<a class="headerlink" href="#slack-set-up-part-2" title="Permanent link">¶</a></h3><p><code>ngrok</code> provides a public URL. In the screenshot below, my URL is <code>https://1eed8eae.ngrok.io</code>.</p><p><img alt="ngrok dashboard" src="https://andrewwegner.com/images/ngrok.png"></p><p><strong>Important Note:</strong> This changes every time <code>ngrok</code> is stated.</p><p>At this point, I can visit <code>https://1eed8eae.ngrok.io/hello-world</code> in my browser and get an error message because I didn't configure it to support <code>GET</code> requests.</p><ol><li>Go back to Slack and the management area where the new application was set up.</li><li>Select "Slash Commands"</li><li>Select "Create New Command"</li><li>Put in the command users will use within Slack. This can be anything.</li><li>Enter the request URL. This will be <code>https://1eed8eae.ngrok.io/hello-world</code> with this example</li><li>Provide a description of the command</li><li>Add a usage hint. This is useful if you are passing parameters to the command.</li><li>Press save</li></ol><p><img alt="Slash Command Example" src="https://andrewwegner.com/images/slash-command-example.png"></p><p>The slash command is now set up. The last step is installing the application. Go back to "Basic Information" and expand "Install your app to your workspace" then press the green "Install App to Workspace" button. You'll be presented with an oAuth Access Token. For this example application, it's not needed.</p><p>Now go into any channel in Slack and use the new <code>/hello-world</code> command.</p><p><strong>Important Note:</strong> If/when you shut down and restart <code>ngrok</code>, you'll get a new end point. The slash command will need to be modified to point to this new request URL to continue to function. These changes will not be required once the application is deployed to Google's App Engine.</p><h2 id="deploy-application-to-app-engine">Deploy application to App Engine<a class="headerlink" href="#deploy-application-to-app-engine" title="Permanent link">¶</a></h2><p>This project requires the use of the <a href="https://cloud.google.com/appengine/docs/the-appengine-environments">flexible app engine environment</a> (vs. standard environment). The biggest reason for this is due to the network requirements. It seems that anything other than Node.js has networking restrictions, and the sample application needs to connect to Slack and my application also needed to connect to JIRA. Another downside of the standard environment is that it only supports Python 2.7. I don't believe there is anything in the example application that would break on Python 2, but there are a few Python 3 specific things I used in my real application (f strings, are one).</p><p>The flexible environment isn't free though. It's always on. The sample application and my real application are so small and used by so few people that it costs less than fifty cents a day. This isn't a huge deal when the rest of our Google cloud bill exceeds that by a couple orders of magnitude, but it is something to consider if you are just running this as a small side thing. It's not free.</p><h3 id="set-up-gcloud-sdk">Set up gcloud SDK<a class="headerlink" href="#set-up-gcloud-sdk" title="Permanent link">¶</a></h3><p>Due to the size of this application, the <a href="https://cloud.google.com/appengine/docs/flexible/python/">quick start tutorial</a> that Google provides is perfect.</p><ol><li>Using the Google Cloud Platform console, create a new App Engine project and enable billing (billing must be enabled). This can be done from <a href="https://console.cloud.google.com/projectselector/appengine/create?lang=flex_python&amp;st=true">here</a></li><li>Download the <a href="https://cloud.google.com/sdk/docs/">Google Cloud SDK</a></li><li>Extract this to any location. To add it to the path, run <code>./google-cloud-sdk/install.sh</code>. If this isn't done, the full path needs to be in all <code>gcloud</code> commands.</li><li>Initialize the SDK by running <code>gcloud init</code> and follow the prompts on screen. You'll need access to a browser for this step as you'll be authorizing your account using oAuth.</li></ol><h3 id="set-up-appyaml">Set up app.yaml<a class="headerlink" href="#set-up-appyaml" title="Permanent link">¶</a></h3><p>With <code>gcloud</code> set up on your development machine, there is one last step to do: Configuring the <code>app.yaml</code> file.</p><p>This file contains information on the type of environment you'll be deploying to. Create and save an <code>app.yaml</code> file in the same directory as the Flask application. For this example, the Flask application is in a file saved as <code>example-script.py</code></p><div class="codehilight code"><pre><span></span><code><span class="n">runtime</span><span class="o">:</span><span class="w"> </span><span class="n">python</span>
+<span class="n">env</span><span class="o">:</span><span class="w"> </span><span class="n">flex</span>
+<span class="n">entrypoint</span><span class="o">:</span><span class="w"> </span><span class="n">gunicorn</span><span class="w"> </span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">:</span><span class="n">$PORT</span><span class="w"> </span><span class="n">example</span><span class="o">-</span><span class="n">script</span><span class="o">:</span><span class="n">app</span>
 
-runtime_config:
-  python_version: 3
+<span class="n">runtime_config</span><span class="o">:</span>
+<span class="w">  </span><span class="n">python_version</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span>
 
-manual_scaling:
-  instances: 1
-resources:
-  cpu: 1
-  memory_gb: 0.5
-  disk_size_gb: 10
-</code></pre></div>
-<p>Other than the <code>entrypoint</code> line, this is the example <code>app.yaml</code> provided by Google. <code>example-script</code> is the name of the file that contains the Flask application.</p>
-<h3 id="deploy-to-google">Deploy to Google<a class="headerlink" href="#deploy-to-google" title="Permanent link">¶</a></h3>
-<p>Finally, it's time to deploy this application to Google. From within the same directory where <code>example-script.py</code> resides, run:</p>
-<div class="codehilight code"><pre><span></span><code>gcloud app deploy
-</code></pre></div>
-<p>Wait a few minutes for the deployment to occur. When it's complete, the command prompt will say so and provide a URL where the application is accessible.</p>
-<p>The last thing that needs to be done, is repointing the slash commands to this new location. With it deployed to Google's Cloud Platform, the <code>ngrok</code> provided URLs need to be changed. The endpoints remain the same though.</p>
-<p>Once the slash commands are changed and saved, test them out and enjoy the new slash commands hosted on Google's App Engine.</p>
-  </div>
-<div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/setup-lets-encrypt.html"
-    title="Set up Dynamic CloudFlare IP with Let's Encrypt">
-    <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-  <a class="btn float-right" href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html"
-    title="Review of Udemy's Learn DaVinci Resolve 15 from scratch">
-    Next Post <i class="fa fa-angle-right"></i>
-  </a>
-</div>
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-</article>
-
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BlogPosting",
-  "name": "Deploying a Flask Slack app on Google Cloud Platform",
-  "headline": "Deploying a Flask Slack app on Google Cloud Platform",
-  "dateCreated": "2018-07-13 10:00:00-05:00",
-  "datePublished": "2018-07-13 10:00:00-05:00",
-  "dateModified": "",
-  "copyrightYear": "2018",
-  "copyrightHolder": {
-    "@type": "Person",
-    "name": "Andy Wegner",
-    "url": "https://andrewwegner.com"
-  },
-  "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
-  },
-  "publisher": {
-    "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/slack-app-google-cloud.html",
-  "description": "Setup a Slack app using Flask and deploy it to Google's Cloud",
-  "mainEntityOfPage": "True",
-  "articleSection": "Technical Solutions"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+<span class="n">manual_scaling</span><span class="o">:</span>
+<span class="w">  </span><span class="n">instances</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">resources</span><span class="o">:</span>
+<span class="w">  </span><span class="n">cpu</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="n">memory_gb</span><span class="o">:</span><span class="w"> </span><span class="mf">0.5</span>
+<span class="w">  </span><span class="n">disk_size_gb</span><span class="o">:</span><span class="w"> </span><span class="mi">10</span>
+</code></pre></div><p>Other than the <code>entrypoint</code> line, this is the example <code>app.yaml</code> provided by Google. <code>example-script</code> is the name of the file that contains the Flask application.</p><h3 id="deploy-to-google">Deploy to Google<a class="headerlink" href="#deploy-to-google" title="Permanent link">¶</a></h3><p>Finally, it's time to deploy this application to Google. From within the same directory where <code>example-script.py</code> resides, run:</p><div class="codehilight code"><pre><span></span><code>gcloud app deploy
+</code></pre></div><p>Wait a few minutes for the deployment to occur. When it's complete, the command prompt will say so and provide a URL where the application is accessible.</p><p>The last thing that needs to be done, is repointing the slash commands to this new location. With it deployed to Google's Cloud Platform, the <code>ngrok</code> provided URLs need to be changed. The endpoints remain the same though.</p><p>Once the slash commands are changed and saved, test them out and enjoy the new slash commands hosted on Google's App Engine.</p></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#background-and-goals">Background and goals</a></li><li><a href="#writing-the-flask-app">Writing the Flask app</a><ul><li><a href="#slash-pitfall-1-timeouts">Slash Pitfall 1: Timeouts</a></li><li><a href="#sample-application">Sample Application</a></li><li><a href="#sample-application-walkthrough">Sample Application Walkthrough</a></li></ul></li><li><a href="#testing-the-application">Testing the application</a><ul><li><a href="#slack-set-up-part-1">Slack set up - Part 1</a></li><li><a href="#ngrok-set-up">ngrok set up</a></li><li><a href="#slack-set-up-part-2">Slack set up - Part 2</a></li></ul></li><li><a href="#deploy-application-to-app-engine">Deploy application to App Engine</a><ul><li><a href="#set-up-gcloud-sdk">Set up gcloud SDK</a></li><li><a href="#set-up-appyaml">Set up app.yaml</a></li><li><a href="#deploy-to-google">Deploy to Google</a></li></ul></li></ul></div></aside></div><nav class="post-nav" aria-label="Post navigation"><a href="https://andrewwegner.com/setup-lets-encrypt.html" class="post-nav-link post-nav-link-prev"><span class="post-nav-dir">← Previous post</span> <span class="post-nav-title">Set up Dynamic CloudFlare IP with Let's Encrypt</span> </a><a href="https://andrewwegner.com/learn-davinci-resolve-15-from-scratch.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">Review of Udemy's Learn DaVinci Resolve 15 from scratch</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>

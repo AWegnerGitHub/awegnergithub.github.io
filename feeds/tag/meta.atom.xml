@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Andrew Wegner | Ponderings of an Andy - meta</title><link href="https://andrewwegner.com/" rel="alternate"/><link href="https://andrewwegner.com/feeds/tag/meta.atom.xml" rel="self"/><id>https://andrewwegner.com/</id><updated>2025-01-02T10:15:00-06:00</updated><subtitle>Can that be automated?</subtitle><entry><title>My first experiences with a laser cutter</title><link href="https://andrewwegner.com/first-laser-cutter-experiences.html" rel="alternate"/><published>2025-01-02T10:15:00-06:00</published><updated>2025-01-02T10:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-01-02:/first-laser-cutter-experiences.html</id><summary type="html">&lt;p&gt;My local library recently received a Glowforge for their patrons to utilize. This article is about my experiences using the machine&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;My local library spent a lot of time and money remodeling the last few years. Part of this remodel was adding an Innovation Lab with different tools that the public can utilize. These include a Cricut cutter, a Glowforge, a couple 3D printers, sewing machines, a T-shirt screen printer, and a few others I can't recall off hand. I am excited to try out several of these, but started with the laser cutter, because I have a home project that needs a few small things cut and engraved that I wasn't sure how I was going to do.&lt;/p&gt;
+&lt;p&gt;The end goal is to get a set of two inch by one inch rectangles with various years engraved, scored or cut so that I can use these as labels. &lt;/p&gt;
+&lt;h2 id="a-simple-start"&gt;A simple start&lt;a class="headerlink" href="#a-simple-start" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After a bit of research, I found that what I wanted was relatively simple - at least compared to what the machine is able to do. To do more advanced things, I'd have to learn a lot more about how some software tools operate. For my project though, I used &lt;a href="https://inkscape.org/"&gt;Inkscape&lt;/a&gt;. I started by setting up the rectangle I wanted to use, rounding the corners, and adding a year to engrave. This became my basic template, to ensure that everything was the same size.&lt;/p&gt;
+&lt;p&gt;&lt;img alt='A basic rounded rectangle with "2009" engraved' src="https://andrewwegner.com/images/laser_cutter/2009_cut_engrave.png"/&gt;&lt;/p&gt;
+&lt;p&gt;In all of my SVG files, I only used three colors: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Red for cuts&lt;/li&gt;
+&lt;li&gt;Black for engrave&lt;/li&gt;
+&lt;li&gt;Blue for scoring&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While I read the Glowforge can handle different colors, I noticed that other tooling and software could not and used these three colors. If I ever get access to another laser cutter - or buy one of my own - I don't want to have to redo all of my work.&lt;/p&gt;
+&lt;p&gt;The important thing at this step was to select the text, then Text-&amp;gt;Object to path. Without this step, the Glowforge application didn't see the text, just the rectangle. &lt;/p&gt;
+&lt;h2 id="getting-fancy"&gt;Getting Fancy&lt;a class="headerlink" href="#getting-fancy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once I had a basic cut done on basswood proof grade material from Glowforge, I wanted to try a few other designs. All of my examples below are using 2009, because that's the set I grabbed when taking pictures.&lt;/p&gt;
+&lt;p&gt;&lt;img alt='A basic rounded rectangle with background engraved so "2009" pops out' src="https://andrewwegner.com/images/laser_cutter/2009_background_engraved.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;With this, I engraved the background, instead of the text, so that the year would pop out. I didn't end up liking this one very much, because it makes the material so much thinner. This is obvious when I had multiple tiles of years that had not all been engraved this way. The thinness made these specific tiles feel flimsy. Since I didn't want to use this pattern for all years for the project, it wasn't going to work for only a couple.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Black acrylic with an outer border" src="https://andrewwegner.com/images/laser_cutter/2009_black_unmasked.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;I tried a couple acrylic colors - Black and Blue - to see how it'd look. In this test, I wanted to deal with the thinness I mentioned above too. I did this by adding a small border around the outside, so that when the tiles were side by side, the outer edges were all the same thickness. I liked how this looked and would end up using a portion of this in some final designs. The black acrylic turned out well. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Blue acrylic with an outer border, still with masking tape" src="https://andrewwegner.com/images/laser_cutter/2009_blue_masked.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Unfortunately, I didn't like the blue acrylic. This is how blue looks with the masking tape still in place. This tape is is to prevent scorching marks. It looks ok with the tape in place, but once removed, the blue text just kind of got lost.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Blue acrylic without an outer border, with no masking tape" src="https://andrewwegner.com/images/laser_cutter/2009_blue_unmasked.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;This test didn't have the outer border, but I don't think that would have helped me like it any better. The blue text just gets lost from any angle other than straight on. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Individual numeral cut outs" src="https://andrewwegner.com/images/laser_cutter/2009_individual.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;I cut out individual numbers as well. These look really good. Unfortunately, I didn't plan beyond the cut out, and dealing with four individual numerals on each item I wanted to label very quickly became a ton of work to ensure they were unmasked, aligned, and glued into place. They also didn't end up looking as good as the tiled items once I had them in place. &lt;/p&gt;
+&lt;p&gt;Something I should have learned from this experiment that I was vaguely aware of, but didn't pay attention to because I was focused on the numbers themselves, was that the inner part of the numbers would come out. This was more important in the next two experiments.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Stacking acrylic on top of a wooden background" src="https://andrewwegner.com/images/laser_cutter/2009_stacked.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;At this point I had decided that I liked how the black acrylic looked, but wanted to highlight a few years. I attempted one last test to see if I could utilize the narrower engraved look and stack it on top of another. The original goal had been to end up with the same thickness as the other tiles, but that didn't work as planned. &lt;/p&gt;
+&lt;p&gt;That said, for the few years that I needed to highlight, this worked very well. To build this, I kept the lower layer - the wood - the same size as other tiles. I engraved like I had done for the acrylic tests above. Then on the acrylic itself, I made it the size of the inner border and reversed the numerals. I did this because I originally tested by engraving the acrylic down to size too, but it didn't look good. Instead, I kept the acrylic the original width and just cut out the numbers.&lt;/p&gt;
+&lt;p&gt;Once stacked and glued together, I realized that I hadn't kept the inner pieces of the zeros. It is easy enough to go cut out a couple more numbers at the library, but at the same time, not bothering me enough to do so. &lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Over the holidays, I completed the project and got everything labeled. I'm pleased with how it turned out. I was not surprised at how easy the Glowforge itself is to use. Learning how to design the SVG cut files took longer than I expected. There are likely other software tools that could do the job better, but for this small project and for some experiments, Inkscape worked just fine.&lt;/p&gt;
+&lt;p&gt;For my next project, I'd like to finish off the &lt;a href="https://andrewwegner.com/control-power-wled-relay.html"&gt;WLED&lt;/a&gt; work I did last summer. The original project didn't work as expected, but the WLED portion worked wonderfully. I could build a couple stand lights and laser cut out the base. I'd have to figure out how to model the aluminium rail to cut it correctly, but that sound like a fun task.&lt;/p&gt;</content><category term="Side Activities"/><category term="technical"/><category term="meta"/></entry><entry><title>Failure of Management - Unlimited PTO</title><link href="https://andrewwegner.com/management-failure-unlimited-pto.html" rel="alternate"/><published>2023-08-14T15:00:00-05:00</published><updated>2023-08-14T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-08-14:/management-failure-unlimited-pto.html</id><summary type="html">&lt;p&gt;Unlimited PTO is a perk more and more organization are offering their employees. Unfortunately, many managers and organization are managing this poorly and failing their employees. What does this management failure look like?&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="the-pitch"&gt;The pitch&lt;a class="headerlink" href="#the-pitch" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Unlimited PTO - more vacation time! - is a great recruiting pitch. Who wouldn't want to take more time off through out the year? Recruiters like
+unlimited PTO because it reduces benefit package negotiations over vacation time. Theorectically, it should help fight employee burn out too because 
+employees can take time off to recharge any time. &lt;/p&gt;
+&lt;p&gt;From an employer perspective it also has benefits. A defined vacation package requires employers to payout unused time if an employee leaves the 
+company. The Wall Street Journal, in March 2015, reported that &lt;a href="https://www.wsj.com/articles/BL-ATWORKB-2313"&gt;this cost employers of less than 500 workers approximately $1,900 per employee&lt;/a&gt;. 
+For employers of over 500 workers, this jumped to over $2,600 per employee. Unlimited PTO isn't accrued, so the company doesn't owe this payout if 
+the employee leaves.&lt;/p&gt;
+&lt;h2 id="the-downsides"&gt;The downsides&lt;a class="headerlink" href="#the-downsides" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;"Unlimited" doesn't truely mean "unlimited". An employee isn't going to get 6 months of vacation approved by management. A 
+&lt;a href="https://blog.namely.com/does-your-pto-plan-type-even-really-matter/"&gt;survey conducted by Namely&lt;/a&gt; in 2022 showed that employees that were offered unlimited PTO took as many &lt;em&gt;or fewer&lt;/em&gt; days of vacation time
+compared to peers at companies with a defined number of PTO days. On average, this survey showed that US employees are taking about 12 days a year off. &lt;/p&gt;
+&lt;p&gt;Another downside, is management failure to implement unlimited PTO fairly. I recently read a story of a worker that had been denied a two week vacation 
+this summer that they requested in May to take place in August. Other than a day off for an illness earlier in the year, they hadn't taken time off in 2023. However, a team mate had just come back from a two week vacation and had taken another two week vacation over the winter.&lt;/p&gt;
+&lt;p&gt;This company is exposing themselves to a potential &lt;a href="https://www.schaeferhalleen.com/leave-discrimination-workplace/"&gt;leave discrimination&lt;/a&gt; claim. According to what I've been told, it sounds like one employee 
+is allowed to take a leave but others are not. &lt;/p&gt;
+&lt;p&gt;One of the jobs of a manager of teams is to prevent to many overlapping vacations. With an unlimited policy, how do you justify allowing one person
+time off and not another? Worse, how do you justify a month of time off for one employee and only one day for another?&lt;/p&gt;
+&lt;p&gt;The flip side of this is how a manager determines when abuse occurs. Is a month of PTO in a year abuse? Two months? Two weeks? Where is that line and
+once defined how do you continue to present this as "unlimited"?&lt;/p&gt;
+&lt;h2 id="alternatives"&gt;Alternatives&lt;a class="headerlink" href="#alternatives" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I've worked at companies that have "unlimited PTO", a set number of days of PTO and "minimium number of days of PTO". Personally, I prefer the last two.
+Unlimited PTO - as an employee - very quickly becomes a game of determining how much is to much, and stressing out about having time off denied over a 
+vague policy. &lt;/p&gt;
+&lt;p&gt;A set number of days is nice because you know exactly how much time to take. Management, in my experience, has been way less picky about time off in 
+these environments because once you hit that number of days, you are done taking time off. The trade off here is that unused time either has to be 
+rolled over to the following year (company policy may prevent this) or extended vacations start cropping up at the end of the year. As an employee, I had
+several month long end of the year vacations, which worked out nicely for me. From a project planning perspective though, this means that those time 
+periods mean that work slows to a crawl. Company culture has to allow for this and fortunately, it did in my case.&lt;/p&gt;
+&lt;p&gt;The last option is, essentially setting a minimium and maximium number of days to take off. This isn't &lt;em&gt;quiet&lt;/em&gt; "unlimited", but in my experience was 
+labeled that with an asterisk. The important part though is that the company required you to take a minimium amount of time off and it had to be in
+blocks of time, not one off days. This encourages downtime and better work/life balance.&lt;/p&gt;
+&lt;h2 id="my-thoughts-on-unlimited-pto"&gt;My thoughts on unlimited PTO&lt;a class="headerlink" href="#my-thoughts-on-unlimited-pto" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I left a company with a well defined PTO policy that granted more time with more seniority. I left this company to join one with unlimited PTO. At the
+time I thought that I'd be using more time off and enjoying the benefits of this unlimited PTO policy. Unfortunately, like many others, didn't do that.
+Instead I took fewer days than my defined policy had allowed and even lost some company holidays that the previous employeer had that the new one did 
+not. In short, I worked more. It took a long time and a lot of push back within the company to get people to take the time they needed to recharge. 
+Sadly, by the time I left that role, it was still uncommon for people to take extended vacations. &lt;/p&gt;
+&lt;p&gt;Unlimited PTO is as much a benefit as it is a company culture thing. During interviews, applicants should be asking questions about how much time their
+potential coworkers are taking off. Are these truly times off or are they expected to be able to take a phone call? These answers will help them 
+determining if "unlimited PTO" is a benefit the company offers or recruiting buzzwords put in place to lure in new employees and it's 
+actually &lt;a href="https://www.facet.net/posts/why-we-ditched-our-unlimited-vacation-plan"&gt;a scam&lt;/a&gt;.&lt;/p&gt;</content><category term="Leadership"/><category term="job"/><category term="meta"/><category term="leadership"/></entry><entry><title>What should a software engineering interview look like?</title><link href="https://andrewwegner.com/ideal-engineering-interviews.html" rel="alternate"/><published>2023-07-06T15:00:00-05:00</published><updated>2023-07-06T15:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-07-06:/ideal-engineering-interviews.html</id><summary type="html">&lt;p&gt;I've interviewed a lot of engineers at various stages in their careers. I've utilized existing interview processes, built new ones and improved upon all of those. What do I think an ideal interview process would look like? Read on for details.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="some-context"&gt;Some context&lt;a class="headerlink" href="#some-context" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I spent nearly five years at PacketFabric. In my role as Vice President of Software Engineering at the company, I rebuilt the hiring pipeline for
+the software engineering organization. As the company closed it's Series B round of funding we needed to bring on world class talent quickly.  I moved
+on to Woven Teams for a short stint as Director of Engineering where I not only built a tool used by thousands of engineers to get a new job, I hired
+for members of my team as well. In my current role at FleetOps, I've been working to ensure this previous experience is utilized to build a 
+candidate focused hiring process.&lt;/p&gt;
+&lt;p&gt;I wrote about my &lt;a href="https://andrewwegner.com/looking-for-new-role.html"&gt;hunt for a new role in the summer of 2022&lt;/a&gt;. This covered my &lt;a href="https://andrewwegner.com/what-job-source-uses-which-ats.html"&gt;experiences with various application tracking systems (ATS)&lt;/a&gt;, 
+which &lt;a href="https://andrewwegner.com/upload-resume-reenter-resume.html"&gt;application systems require you to duplicate work&lt;/a&gt; and &lt;a href="https://andrewwegner.com/job-search-rejections.html"&gt;what job search rejection looks like&lt;/a&gt;. In the end I got a job at FleetOps as 
+Director of Engineering.&lt;/p&gt;
+&lt;p&gt;Let's go through what I think an ideal candidate experience should be. Reality means that all of this isn't possible in all environments, but I strive
+to ensure as much of this is in place in areas and companies I have a say in. A good candidate experience provides a good feeling about the company
+and in any environment - candidate favoring or employer favoring - a happy candidate and new hire will be more effective joining a new company.&lt;/p&gt;
+&lt;h2 id="job-description"&gt;Job Description&lt;a class="headerlink" href="#job-description" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Candidates are applying to a role at your company and should know what that role does. Regardless of whether the candidate is a referral from an 
+executive or someone who is applying from a job board, the job description sets initial expectations for the role. Many engineers can smell 
+marketing hype in a job description. Things like "ninja coder", very vague descriptions or numerous requirements. These are all negatives. A job 
+description should be tailored to the role. It can also be reflective of the company's culture without being off putting. &lt;/p&gt;
+&lt;p&gt;Job descriptions should include salary ranges. In my experience, the listings with ranges get more applicants. Additionally, it's becoming a legal
+requirement in many localities, especially in the United States. This should be a legitimate range. If the range is a hundred thousand dollar spread 
+or higher, the believability is pretty low. It signals that the company either doesn't know what they want for this role, that they vastly under pay 
+some of their team, vastly over pay some of their team or a combination of all of these. &lt;/p&gt;
+&lt;p&gt;Finally, the job description should spell out the application process and expected and realistic timelines. &lt;/p&gt;
+&lt;h2 id="application"&gt;Application&lt;a class="headerlink" href="#application" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The next step describes a software engineering hiring process. It requires up front work on the part of the company to ensure it goes smoothly. 
+The application should be relatively simple. I'm a fan of not weeding out candidates at this stage and immediately sending them to a technical scenario. 
+This only works if the process can be automated because a job can get hundreds or thousands of applicants. This should be made clear in the application
+and process description that the next step is a technical scenario.&lt;/p&gt;
+&lt;h2 id="technical-assessment"&gt;Technical Assessment&lt;a class="headerlink" href="#technical-assessment" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A technical assessment should be real work. Do not do leetcode or code quizzes. If you use either of these, expect them to be easily answered by 
+utilizing &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;ChatGPT&lt;/a&gt;. Build a rubric so that every person being evaluated is judged the same way. You should be able to automate some of this
+to build in responses that can easily weed out the candidates that are completely inexperienced. &lt;/p&gt;
+&lt;p&gt;Scenarios should reflect the type of work they will perform on the job. Build the prompt to fit around a recent problem your team solved. Create a 
+problem that is unique to your industry. Utilize the experiences of your existing team to create these scenarios. When building the rubric, do not 
+build it so that the only possible solution is the one that your team came up with. There are many possible solutions to a problem. Ensure you get those
+to truly see the experiences and expertise your candidates have to offer. &lt;/p&gt;
+&lt;p&gt;Build scenarios that have experience levels built in. A junior engineer is going to think about a problem in a different way than a staff engineer. 
+The rubric should be reflective of that. &lt;/p&gt;
+&lt;p&gt;The technical assessment should be short and timed. At Woven, I told the companies I worked with the entire assessment (usually 2-4 scenarios) should not
+last longer than two hours. Candidates are unwilling to take assessments that long. Additionally, untimed scenarios favor candidates that do not have 
+other commitments - perhaps another job, family, or hobbies to name a few. Keep candidates on a level field as much as possible.&lt;/p&gt;
+&lt;h3 id="honorium"&gt;Honorium&lt;a class="headerlink" href="#honorium" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When I've looked for specialized skillsets or executive roles, I've extended the time frame of scenarios and attached an &lt;a href="https://en.wikipedia.org/wiki/Honorarium"&gt;honorarium&lt;/a&gt;. This will
+compensate the candidate for the longer time taken on the application. Unfortunately, free labor is common in the technology industry interview process.
+This is to show the company isn't seeking free labor on a problem. It may need to be explained to candidates due to the experiences they have had with
+other interview processes.&lt;/p&gt;
+&lt;h2 id="remote-work"&gt;Remote work&lt;a class="headerlink" href="#remote-work" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://andrewwegner.com/remote-work-thoughts-about-offices.html"&gt;I am a huge fan of remote work.&lt;/a&gt; With the proper company structure, I can hire from a global candidate pool. It's important that the team is 
+able to support their new coworkers regardless of their location in the world. I've seen teams and companies expand their developer ranks by slowly 
+expanding the timezones they hire from instead of immediately jumping to global. The trade off here is that you are missing candidates that would be 
+good for you team immediately and in turn you are slowly training your team to operate on a broader set of timezones and be more asyncronous. &lt;/p&gt;
+&lt;p&gt;How the team expands requires careful consideration of team dynamics and executive support. It should also be a discussion the hiring manager is 
+prepared to have with candidates. "Remote" does not always mean someone sitting a handful of timezones away. For some it may mean that they like to 
+travel and could be in the same timezone as you this month and over the winter they are half a world away. How will you, as a team and as a manager,
+respond to this type of situation.&lt;/p&gt;
+&lt;h2 id="onboarding"&gt;Onboarding&lt;a class="headerlink" href="#onboarding" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once you've made a decision to hire someone, the hiring manager should remain in contact with the candidate. Don't just hand things over to Human 
+Resources and assume everything is perfect. Changing jobs and starting a new job is a big deal. Talk with the candidate on next steps. Ensure they are
+getting the right equipment to perform their job. Start setting up the first tasks they will be doing when they join the team.&lt;/p&gt;
+&lt;p&gt;Day one is going to consist of HR work. There is paperwork to fill out, there are things to sign, there are policies to go over, and insurance to sign 
+up for (in the US at least). Everyone with a job has done this stuff. Build this time into their first days on the job. Day one also consists of getting
+the new employee access to systems and introductions. &lt;/p&gt;
+&lt;p&gt;Work with the employee and provide a checklist of things they should be doing and who they should be working with to complete these first items. They 
+don't know who in HR to work with because they are new. They don't know their team lead because they are new. The hiring manager should make these 
+introductions easy.&lt;/p&gt;
+&lt;p&gt;Set up expectations for the first week or two, the first month and first three months. They will need to learn the environment, get access to the 
+ticketing system and code repositories, and start making their first commits to the code base. But, that's not a day one thing. They will need to 
+learn how system A talks to system B. Again, this is not a day one thing. A new user is going to get a firehose of information. Make it somewhat easier
+for them by not expecting them to be an expert by the end of week two.&lt;/p&gt;
+&lt;h2 id="intangables"&gt;Intangables&lt;a class="headerlink" href="#intangables" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A hiring process has a lot of intangables that can make your candidates feel better or worse about your company. A few examples are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;How many interviews does the candidate have to go through? To many quickly burns out a candidate and makes the entire process feel like a waste of time. To few, or only technical interviews, doesn't give the candidate a sense of the company and the team.&lt;/li&gt;
+&lt;li&gt;Can the interviewers answer a candidate's questions? Candidates are interviewing you too. Does your interview team have the ability to answer a candidate's questions about the company, role expectations, day to day work, job perks, and more? Is the interview committee excited about a new teammate or are they stressed out/uninterested.&lt;/li&gt;
+&lt;li&gt;Does the candidate receive updates on their application through out the process? Feedback is important and ghosting a candidate will quickly turn an excited candidate to one that doesn't want to join the team. &lt;/li&gt;
+&lt;li&gt;Communication with rejected candidates is important too. Coming back to ghosting a candidate and applicant tracking systems, these can be set up to send candidates emails based on what's happening with their application. If they are rejected, have the system send them a message. Please, PLEASE, don't use a default template for this though. There is a person receiving this email. They deserve more than "we're not moving forward at this time." If the hiring manager has talked to a candidate then this email should be more than the basic template sent to candidates rejected earlier in the process. A rejected candidate may reapply to a future role. How you inform them that you aren't hiring them right now determines if that candidate considers reapplying in the future.&lt;/li&gt;
+&lt;li&gt;How is the company perceived to the outside world? A candidate wants to join your team, which means their name will be linked with your company for friends and family at least. Future jobs will associate your company with their name. The candidate may ask about this perception - recent news articles, CEO announcements, blog posts - and the interview team should be able to answer these types of questions.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Interviewing is different at each company, but candidates don't know what the process looks like at each until they are into the process. The earlier
+this process is communicated to them, the smoother the candidate's experience will be. This requires that the company and hiring manager have spent time
+building the job description, technical assessments, and interview cycles ahead of time. Organization is important.&lt;/p&gt;
+&lt;p&gt;Communication is more important. The candidate is applying to join your team. How you communicate with them is their first indication on how they will
+be communicated with as an employee. &lt;/p&gt;</content><category term="Leadership"/><category term="job"/><category term="meta"/><category term="leadership"/></entry><entry><title>The Launch of Viva Printworks</title><link href="https://andrewwegner.com/launch-viva-printworks.html" rel="alternate"/><published>2023-05-21T01:30:00-05:00</published><updated>2023-05-21T01:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-05-21:/launch-viva-printworks.html</id><summary type="html">&lt;p&gt;The start of a new project is always exciting. This project is a brand new business: Viva Printworks!&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://vivaprintworks.etsy.com/"&gt;&lt;img alt="Viva Printworks Banner | Link to Etsy shop" src="https://andrewwegner.com/images/vivaprintworksbanner.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://vivaprintworks.etsy.com/"&gt;Viva Printworks&lt;/a&gt; has launched! It's a small - for now - business producing unique designs
+for various products. We are launching with 30 designs on t-shirt and hope to expand to other product types in 
+the coming months.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.linkedin.com/in/dana-wegner-4a3a1a8/"&gt;Dana&lt;/a&gt; and I have talked about building a side business off and on for years. During my &lt;a href="https://andrewwegner.com/looking-for-new-role.html"&gt;job search&lt;/a&gt;
+last year (and &lt;a href="https://andrewwegner.com/what-job-source-uses-which-ats.html"&gt;all&lt;/a&gt; the &lt;a href="https://andrewwegner.com/upload-resume-reenter-resume.html"&gt;fun&lt;/a&gt; that &lt;a href="https://andrewwegner.com/job-search-rejections.html"&gt;entailed&lt;/a&gt;), these discussions became most ernest. After determining what 
+we wanted to do, figuring out the technicalities of starting a business, and figuring out how we were going to accomplish
+this - we did it!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://vivaprintworks.etsy.com/"&gt;Viva Printworks&lt;/a&gt; launched our first wave of designs on May 18, 2023 on Etsy. As we go through 
+launch, growth, expansion and general business lifecycles, we hope to expand beyond a single platform. &lt;/p&gt;
+&lt;p&gt;This is exciting for us! Check us out at &lt;a href="https://vivaprintworks.etsy.com/"&gt;Viva Printworks on Etsy&lt;/a&gt;. I suspect that I'll have posts
+in the future here, as well, discussing some of the technical aspects of the business. &lt;/p&gt;</content><category term="Side Activities"/><category term="meta"/><category term="viva printworks"/></entry><entry><title>Automatically checking for broken links using Github Actions</title><link href="https://andrewwegner.com/find-broken-links-with-github-actions.html" rel="alternate"/><published>2023-02-13T16:30:00-06:00</published><updated>2023-02-13T16:30:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-02-13:/find-broken-links-with-github-actions.html</id><summary type="html">&lt;p&gt;This blog is over a decade old with over 100 posts. This post covers my recent work to find links that have broken so that I can fix them quickly.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Over the past six months or so, I've been making changes to the site. This culminated in November with a theme update
+and &lt;a href="https://andrewwegner.com/relaunch-personal-site.html"&gt;site relaunch&lt;/a&gt;. I have a couple more articles planned about things I've learned from that relaunch, started with today's
+article. The site is &lt;a href="https://andrewwegner.com/archives.html"&gt;over a decade old&lt;/a&gt;, with the initial article in 2009, with over 100 posts since then.&lt;/p&gt;
+&lt;p&gt;A decade plus is a long time to assume that links will remain operational. I wrote a short series of articles about how 
+&lt;a href="https://andrewwegner.com/analysis-of-links-posted-to-stack-overflow.html"&gt;broken links impacted Stack Overflow&lt;/a&gt; over 7 years ago, including a &lt;a href="https://andrewwegner.com/a-proposal-to-fix-broken-links-on-stack-overflow.html"&gt;proposal to fix it&lt;/a&gt; and how I performed the 
+&lt;a href="https://andrewwegner.com/link-analysis---technical-explanation.html"&gt;link checking from a technical perspective&lt;/a&gt;. Now, I want to make sure that I don't have dead links all over &lt;em&gt;my&lt;/em&gt; site,
+especially because this is the site I give out in a professional context.&lt;/p&gt;
+&lt;h2 id="github-action"&gt;GitHub Action&lt;a class="headerlink" href="#github-action" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Github Action script, is &lt;a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-content/e701da303592695bc6300f155be56d79ca35957d/.github/workflows/check-broken-links.yml"&gt;available in the repository&lt;/a&gt; where the content of this blog is kept. It's in the &lt;code&gt;.github/workflow/&lt;/code&gt; directory.&lt;/p&gt;
+&lt;h3 id="scheduling"&gt;Scheduling&lt;a class="headerlink" href="#scheduling" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;My goal for this project was to check links for the entire site on a regular basis. I was hoping roughly once a week. Fortunately,
+GitHub Actions allow you to &lt;a href="https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule"&gt;schedule your actions&lt;/a&gt;, using syntax like this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cron&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s1"&gt;'12 1 * * 5'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The important thing to note, which is called out in the docs, is that &lt;code&gt;*&lt;/code&gt; is a special character in YAML, so the string 
+has to be quoted. Using this schedule, my link checks will run every Friday at 1:12am. For me, timezone doesn't matter, but the
+documentation says this is going to be UTC time.&lt;/p&gt;
+&lt;h3 id="checking-links"&gt;Checking links&lt;a class="headerlink" href="#checking-links" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next thing that has to happen is the actual checking of the links. I use &lt;a href="https://www.npmjs.com/package/broken-link-checker"&gt;broken-link-checker&lt;/a&gt; for now. I picked this because 
+I'm familiar with it. It hasn't been updated since 2018, though, so in the future I may spend some time either looking for an 
+alternative or building an alternative. For the time being though, it works just fine.&lt;/p&gt;
+&lt;p&gt;I put this snippet into my actions file.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;steps&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Broken&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Links&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;Checker&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;run&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;npx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;broken-link-checker&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;--ordered&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;--recursive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--user-agent&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;linkedin&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"udemy"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"ude.my"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"eia.gov"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"backpack.tf"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;hlsw&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;dell&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;supermicro&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;--exclude&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;mysql&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The quick break down:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$WEBSITE_URL&lt;/code&gt; is an &lt;code&gt;env&lt;/code&gt; variable that I define as &lt;code&gt;https://andrewwegner.com/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;I set up a &lt;code&gt;user-agent&lt;/code&gt; because several sites block the default one. I did something similar in my &lt;a href="https://andrewwegner.com/link-analysis---technical-explanation.html"&gt;Stack Overflow analysis 7 years ago&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;All of those &lt;code&gt;excludes&lt;/code&gt; are due to those specific domains still not allowing automatic scraping. It's a little disappointing that I need these, but excluding these few to ensure the rest are functional is more important to me than trying to figure out a work around.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="create-an-issue"&gt;Create an issue&lt;a class="headerlink" href="#create-an-issue" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If broken links are found, it doesn't do me any good to have that buried in a log somewhere without alerts. Perhaps unsurprisingly,
+I don't check Github every day. My goal was to create an issue on the repository if broken links were found. I did that using the following, and the &lt;a href="https://github.com/marketplace/actions/create-an-issue"&gt;Create an issue action&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;-&lt;span class="w"&gt; &lt;/span&gt;uses:&lt;span class="w"&gt; &lt;/span&gt;actions/checkout@v3
+&lt;span class="w"&gt;  &lt;/span&gt;if:&lt;span class="w"&gt; &lt;/span&gt;failure()
+
+-&lt;span class="w"&gt; &lt;/span&gt;uses:&lt;span class="w"&gt; &lt;/span&gt;JasonEtco/create-an-issue@v2
+&lt;span class="w"&gt;  &lt;/span&gt;env:
+&lt;span class="w"&gt;    &lt;/span&gt;GITHUB_TOKEN:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;secrets&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GITHUB_TOKEN&lt;/span&gt; &lt;span class="cp"&gt;}&lt;/span&gt;}
+&lt;span class="w"&gt;  &lt;/span&gt;with:
+&lt;span class="w"&gt;    &lt;/span&gt;filename:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="cp"&gt;${&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt; &lt;span class="cp"&gt;}&lt;/span&gt;}
+&lt;span class="w"&gt;  &lt;/span&gt;if:&lt;span class="w"&gt; &lt;/span&gt;failure()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The important line here is the &lt;code&gt;filename:&lt;/code&gt; line. Using another environment variable, I defined a file with my issue template. 
+Everytime an issue is created by the action, it will have the same format.&lt;/p&gt;
+&lt;h3 id="issue-template"&gt;Issue Template&lt;a class="headerlink" href="#issue-template" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;My &lt;a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-content/master/.github/workflows/check-broken-links.md"&gt;template&lt;/a&gt; is defined in the same directory as my workflow and currently looks like this:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;---&lt;/span&gt;
+&lt;span class="nl"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Website&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Contains&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Broken&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Links&lt;/span&gt;
+&lt;span class="nl"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;''&lt;/span&gt;
+&lt;span class="nl"&gt;assignees&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;''&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt;
+
+&lt;span class="cp"&gt;## Broken Links Detected&lt;/span&gt;
+
+&lt;span class="n"&gt;Broken&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Link&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Checker&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;found&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;broken&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;links&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//andrewwegner.com&lt;/span&gt;
+
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;View&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Results&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/AWegnerGitHub/awegnergithub.github.io-content/actions/workflows/check-broken-links.yml)&lt;/span&gt;
+
+&lt;span class="n"&gt;_Use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;`─&lt;/span&gt;&lt;span class="n"&gt;BROKEN&lt;/span&gt;&lt;span class="err"&gt;─`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;highlight&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;failures_&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The top metadata defines the issue title, and any labels or assignees I want to set up. I'll probably add myself as an assignee
+once I'm happy with the stability and reliablity of the checks.&lt;/p&gt;
+&lt;p&gt;You can see what an &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/issues/5"&gt;issue created with this template looks like in the repository&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="environment-variables"&gt;Environment Variables&lt;a class="headerlink" href="#environment-variables" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The last section, I've alluded to already - the environment variables. I have two currently defined. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://andrewwegner.com/"&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;".github/workflows/check-broken-links.md"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The first is to set the domain I'm scanning. Mine, obviously. The second is a link to the issue template that is utilized if broken links
+are discovered.&lt;/p&gt;
+&lt;h2 id="things-i-learned"&gt;Things I learned&lt;a class="headerlink" href="#things-i-learned" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;While setting this up there where a few things that I learned or desired that were not immediately obvious while reading documentation. The first
+was that GitHub actions aren't triggerable without setting up the appropriate &lt;code&gt;on&lt;/code&gt; event type. In this case, I want to occassionally
+run the link checker on command, instead of once a week. That means I need the &lt;code&gt;workflow_dispatch&lt;/code&gt; event and it needs to be empty. &lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cron&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s1"&gt;'12 1 * * 5'&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;workflow_dispatch&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;WEBSITE_URL&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://andrewwegner.com/"&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;ISSUE_TEMPLATE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;".github/workflows/check-broken-links.md"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Notice that the empty &lt;code&gt;workflow_dispatch&lt;/code&gt; has no other parameters. It can accept some, if I wanted to provide input to the script at run time,
+but I have no need for that right now. So, mine remains empty.&lt;/p&gt;
+&lt;p&gt;A couple nice to haves, that I wasn't able to immediately figure out were how to retry a failed link "later" in the script. While testing
+the functionality, I had a run that failed because one image, in one article failed. Checking that article showed that it worked. Checking the 
+log showed that the link being checked worked. It was just the internet being the internet with a temporary blip. I'd love to be able to retry failed
+linked a little later in the run or X seconds later, etc. If it fails both times, assume it's broken and report it as normal. Without that retry,
+I'm a little worried this is going to be fragile, which is part of why I haven't populated the &lt;code&gt;assignee&lt;/code&gt; metadata in the template yet.&lt;/p&gt;
+&lt;p&gt;Another nice to have would be a way to embed the broken links (and page they appear on) in the issue itself. I couldn't find a way to accomplish
+that with the current tooling, so the template links to the log and you have to search for the appropriate string. &lt;/p&gt;
+&lt;p&gt;Like I mentioned earlier, I will likely look for a more up to date tool. Or build one my own. I'm interested in learning more about how GitHub actions 
+work and this may be a good usecase for myself.&lt;/p&gt;</content><category term="Side Activities"/><category term="technical"/><category term="Pelican"/><category term="meta"/></entry><entry><title>Updating the design of the site</title><link href="https://andrewwegner.com/relaunch-personal-site.html" rel="alternate"/><published>2022-11-17T10:00:00-06:00</published><updated>2022-11-17T10:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-11-17:/relaunch-personal-site.html</id><summary type="html">&lt;p&gt;I've updated this site with a new theme and some under the hood improvements. This article covers those updates and what I hope to accomplish.&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="welcome-to-the-update"&gt;Welcome to the update!&lt;a class="headerlink" href="#welcome-to-the-update" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I have a new theme for the site, and I think it looks great! This is a heavily modified 
+&lt;a href="https://github.com/alexandrevicenzi/Flex"&gt;Flex&lt;/a&gt; theme. I talk about the changes I made to the theme below, as well as my goals 
+for the site going forward. A new theme isn't going be responsible for hitting all of those goals, but I think it will help. The
+site was pretty bland before. It did what it needed to do, but it didn't look the best doing it. My skillset is &lt;em&gt;not&lt;/em&gt; front end
+development, but I am rather proud of the new theme and the changes I put in place.&lt;/p&gt;
+&lt;p&gt;If you're curious about what the site used to look like, jump down to the &lt;a href="#where-the-site-was"&gt;Where the site was&lt;/a&gt; section.&lt;/p&gt;
+&lt;p&gt;The default version of the Flex theme can be seen on it's &lt;a href="https://flex.alxd.me/"&gt;demo site&lt;/a&gt;, to give you an idea of the changes I've
+made to my instance.&lt;/p&gt;
+&lt;h3 id="look-feel"&gt;Look &amp;amp; Feel&lt;a class="headerlink" href="#look-feel" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The logo is perhaps the most subtle change. It's designed, intentionally, to not be a circle (to common on other sites )or a square (to boring).
+It's an off shape blob. Take a look at it. It very slowly shifts too. You can see it along the bottom of the shirt most clearly. It's designed
+to move only a little and pretty slowly, so that it's not distracting. It's just active enough to catch your eye if you are looking but not 
+designed to pull focus from the article you are reading.&lt;/p&gt;
+&lt;p&gt;The default flex theme is very...neat. There are nice crisp lines. It's very clinical. I changed this just a little with splash of a curved
+red border between the side bar and the main article. It's not a major change, but it adds a little personality. Combined with the 
+blob/animated head shot, it makes it feel unique among the flex theme'd blogs I looked at to evaluate if I liked the theme.&lt;/p&gt;
+&lt;p&gt;A favicon is such a little thing, but I didn't have one with the old theme. Having one now adds just a little bit more of a 
+professional touch and it was so easy to do. The color of the favicon, the side bar, and the responsive bars from the tag and 
+category pages all match.&lt;/p&gt;
+&lt;h3 id="toc"&gt;ToC&lt;a class="headerlink" href="#toc" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The table on contents on the side bar is an addition I made, because I dislike when the table of contents scrolls off the screen. It's the same 
+reason I froze the table of contents to the side bar on the previous iteration of the site. When I'm reading, I like to know how far I am in 
+and article and be able to easily jump to another section. Since I am also a reader of my site (especially on the technical posts), I try
+to make it easy for myself too.&lt;/p&gt;
+&lt;h3 id="tagscategories"&gt;Tags/Categories&lt;a class="headerlink" href="#tagscategories" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The tags and category pages on my old site where bad. They were a giant list of meta-data and a link to a post. It was messy. I didn't like
+it, but I also didn't use it so I spent very little time trying to make it work better. With a new theme, I wanted to make the pages more 
+useful, at least to me. I found an excellent post by &lt;a href="https://johnpaton.net/posts/responsive-bar-chart/"&gt;John Paton&lt;/a&gt; on how to make a responsive bar chart for these pages.&lt;/p&gt;
+&lt;p&gt;Take look at my &lt;a href="/tags.html"&gt;tags&lt;/a&gt; or &lt;a href="/categories.html"&gt;categories&lt;/a&gt; pages. To me, that looks wonderful. I can get a quick look at how many articles 
+are in each section and clicking on one brings me to a page specifically for articles in that slice of meta-data. &lt;/p&gt;
+&lt;h3 id="seo"&gt;SEO&lt;a class="headerlink" href="#seo" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Before you run away...this is a good thing, and I've been doing it for a while. All of my &lt;a href="https://andrewwegner.com/tag/review.html"&gt;reviews&lt;/a&gt;, have been sporting Schema.org
+Review microdata for years. My blog posts have been sporting Article microdata. This was all hard coded into my template. It was beyond time to
+update to utilize JSON+LD and provide even more context to the topics I write about. &lt;/p&gt;
+&lt;p&gt;Initially, I selected Flex because it claims to support Rich Snippets. My results on that are fuzzy, at best. The snippets provided are not full
+rich snippets. However, they provided a great base. I've updated my instance to support JSON+LD for Person (click view source on my 
+&lt;a href="about/"&gt;About Me&lt;/a&gt; to see it), Article, Review and Breadcrumbs (see the navigation bar at the top of this page). Search engines use all 
+of that to get a better idea of what's on the site. I have a few more I want to implement too, but this gets me beyond parity with my old theme. &lt;/p&gt;
+&lt;p&gt;I've also made sure that canonical links are included in my articles. I have a couple that Google sees as duplicates due to UTM tags I stuck on
+links a while ago. Having cononical links in place should resolve some annoying errors and warnings I see in my search console.&lt;/p&gt;
+&lt;h2 id="goals-of-the-update"&gt;Goals of the update&lt;a class="headerlink" href="#goals-of-the-update" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I have a few goals with this newly updated site. A couple relate directly to the theme, and a few are general site goals. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated Tool set - I was running an old version of Pelican and missed out on some new features. By updating, I'm hoping that I 
+can remain closer to the current release. I like to get the newest features, and that alone feels better.&lt;/li&gt;
+&lt;li&gt;A useful tags and categories page. Like I mentioned above, they used to be useless. Now, there is more than just a list of 1-2 
+work phrases sitting on my site across two pages. If I start another series - I believe I have two right now total, I may add a 
+similar series page.&lt;/li&gt;
+&lt;li&gt;Site face lift. As you can see below, the old version was pretty bland. This update adds some color, makes a few things more accessible,
+and generally feels less like reading a sheet of paper on a screen. It's not the flashiest thing on the internet, but you can see 
+by my social media links to the left, that I'm not that type of person anyway.&lt;/li&gt;
+&lt;li&gt;Better SEO. Obviously a template doesn't immediately solve this problem, but it will help. Plus some other plans to add more content (gasp!)
+and it should help. Right now, though, "Andrew Wegner" returns this page 9th on Google. It's behind someone with a different last name spelling,
+someone with a different first name, and a few other "Andrew Wegners". While search for a job, I couldn't depend on my site being the one that 
+was clicked. &lt;/li&gt;
+&lt;li&gt;Lastly, a vanity goal, is to get a Knowledge Graph when searching for my name. It'll take a while before I can get there, but some of the 
+SEO work I'm putting in now will, hopefully, pay off. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="where-the-site-was"&gt;Where the site was&lt;a class="headerlink" href="#where-the-site-was" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One last trip down memory lane, as the template that has served as the base of the site since the intial &lt;a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html"&gt;migration from Wordpress in 2015&lt;/a&gt; is retired. The old template was using &lt;a href="https://elegant.oncrashreboot.com/"&gt;Elegant&lt;/a&gt;. I am the &lt;a href="https://github.com/Pelican-Elegant/elegant/graphs/contributors"&gt;#7 contributor to the theme&lt;/a&gt; at the time of publishing 
+this. That's not saying a whole lot, with my brief spurt of activity in 2019, but it was a contribution that I hope others using the theme 
+are able to utilize. &lt;/p&gt;
+&lt;p&gt;I was stuck on the Pelican 3.0 branch. I really don't remember why. I remember attempting to upgrade to Pelican 4.0 and everything broke. At the 
+time I was unable to spend a significant time to fix it, so I rolled back and stuck with the latest version that ran. &lt;/p&gt;
+&lt;p&gt;Going through this revamp, I upgraded to the latest Pelican, the newest Markdown and go all the new fancy things. We'll see if they actually 
+improve my experience. From a user stand point, not much should change other than a visual overhual. It's a static site and is designed to be
+pretty non-interactive. On my side though, I'm hoping things are a little less brittle. &lt;/p&gt;
+&lt;p&gt;On to the last pictures of the old template. &lt;/p&gt;
+&lt;p&gt;The Old Home Page:&lt;/p&gt;
+&lt;p&gt;&lt;img alt='AndrewWegner.com Old "Elegant Theme" homepage design' src="https://andrewwegner.com/images/andrewwegner-elegant-homepage.png"/&gt;&lt;/p&gt;
+&lt;p&gt;A few other screenshots of the old site sit here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://andrewwegner.com/images/andrewwegner-elegant-archives.png"&gt;The Archives&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://andrewwegner.com/images/andrewwegner-elegant-review.png"&gt;Review article&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://andrewwegner.com/images/andrewwegner-elegant-article.png"&gt;Standard article&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://andrewwegner.com/images/andrewwegner-elegant-tags.png"&gt;Tags page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://andrewwegner.com/images/andrewwegner-elegant-categories.png"&gt;Category page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Side Activities"/><category term="technical"/><category term="Pelican"/><category term="meta"/></entry><entry><title>Talking about rejection in job searches</title><link href="https://andrewwegner.com/job-search-rejections.html" rel="alternate"/><published>2022-10-24T12:45:00-05:00</published><updated>2022-10-24T12:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-10-24:/job-search-rejections.html</id><summary type="html">&lt;p&gt;Rejection is part of the job search. But, it's done so poorly that candidates have awful experiences. What does a current job search look like?&lt;/p&gt;</summary><content type="html">&lt;h2 id="the-problem"&gt;The problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Searching for a new role, especially when you don't have one at the time, is stressful. In my industry, it's common for a 
+candidate to attend multiple interview rounds and participate in a technical evaluation. Depending on the company and role, you may have to defend your technical work as well. This is stressful and takes &lt;em&gt;at least&lt;/em&gt; 4 hours of time, not counting the technical evaluation. That can range anywhere from an hour to a full week of time, again depending on the company.&lt;/p&gt;
+&lt;p&gt;This is for a single role. When a candidate is applying to multiple roles, it literally becomes a full time job to find a full time job.&lt;/p&gt;
+&lt;h2 id="the-rejection"&gt;The rejection&lt;a class="headerlink" href="#the-rejection" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Rejection during a job search is part of the process. Companies only have so many openings to fill. As a candidate, you put hours of time into your goal of getting a role and then, unfortunately, the dreaded rejection shows up. It happenes, but it'd be nice if it was useful so that you can move on to the next role and make improvements.&lt;/p&gt;
+&lt;h3 id="the-reality-of-rejection"&gt;The reality of rejection&lt;a class="headerlink" href="#the-reality-of-rejection" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Unfortunately, recent experience has shown me that very few companies want to provide useful feedback. There are a few key things that tell me immediately that the rejection isn't going to be useful:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;no-reply&lt;/strong&gt; - This means that the company hasn't set up thier applicant tracking system to use a real person's name for the email template you are about to read. Why? Because they don't want to answer your questions. Thus, it's not an offer to continue with the process. This is a "here's the door" email. This one especially hurts after you've talked with a portion of the interview team already.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Internal Promotions&lt;/strong&gt; - During my search this summer, I received a surprising number of rejections that told me I was rejected due to an internal promotion. Every single one of these came as a surprise, because the interviewer never mentioned this as a potiential outcome. This one hurts because you've spent the time and effort to get through multiple rounds of interviews to find out you have been rejected due to someone having the inside track. Congratulations to those individuals receiving a promotion, but letting your external candidates know this is a possibility would go a long way to improving candidate experience. In fact, the companies that &lt;em&gt;did&lt;/em&gt; mention this was a possibility, were the ones that provided meaningful feedback when a rejection was received.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;"We are fortunate to receive many qualified candidates..."&lt;/strong&gt; - This phrase or the countless variations tell me I'm about to read a templated rejection with no substance. I don't think any company is going say that their candidates are horrible, or that they receive only one or two candidates. I read this as a "participation award" sentence, but it doesn't tell me &lt;em&gt;why&lt;/em&gt; I've been rejected.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ghosting&lt;/strong&gt; - This isn't to be confused with never hearing from a company in the first place. That happens plenty too, but it's less annoying if you've never talked to anyone at the company. Technically, you never get an email with this reason, because ghosting is when you've taken the time to talk with someone at the company or participated in the technical evaluation, and then hear nothing back. The further into the interview process you get, when ghosting occurs, the more annoying it is. During my hunt, I had three companies ghost me after the fourth interview. I had two companies ghost me after sitting down and talking with the CEO of the company. Despite follow ups on my part, it is simply radio silence.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="the-good-rejection"&gt;The good rejection&lt;a class="headerlink" href="#the-good-rejection" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In this world of horrible candidate experience, there are a few shining stars. One of the biggest ways to improve candidate experience, is to provide meaningful feedback on why they were rejected. A candidate is a professional and should be able to accept that feedback and use it to improve themselves for other applications.&lt;/p&gt;
+&lt;p&gt;One of the key things, in my opinion, about these companies is that despite receiving a rejection I still would love to work for the company in the future. They are on my short list of companies to watch out for when looking for a role either for myself or as a referral. &lt;/p&gt;
+&lt;p&gt;So what does this type of rejection look like?&lt;/p&gt;
+&lt;p&gt;The rejection comes in the form of an email you can respond to or a person you can speak with directly. The communication isn't copied for a template, but a real attempt to communicate the reasons you weren't the right person for the role. These reasons aren't a vague reference to skills or feelings, but are a real attempt to point out an area where you are missing a skill that the company needs for the person in this role to be successful.&lt;/p&gt;
+&lt;p&gt;If a candidate puts in the time and effort to speak with your team multiple times, I believe the company should be able to compose an email offering a brief reasoning why they were not hired. This is especially true the further a candidate gets into the hiring process and the companies that understand this, will have a list of high quality candidates waiting in the wings next time they have roles to fill.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.linkedin.com/posts/andrew-wegner_hiring-recruiting-interviews-activity-6990661727767990272-qL3W"&gt;Join me over on LinkedIn to discuss this some more&lt;/a&gt;&lt;/p&gt;</content><category term="Jobs"/><category term="job"/><category term="meta"/><category term="job search"/></entry><entry><title>Upload your resume, then re-enter it to apply for this job</title><link href="https://andrewwegner.com/upload-resume-reenter-resume.html" rel="alternate"/><published>2022-09-13T08:45:00-05:00</published><updated>2022-09-13T08:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-09-13:/upload-resume-reenter-resume.html</id><summary type="html">&lt;p&gt;Talking through my current role search - How often do I need to re-enter my resume information after uploading?&lt;/p&gt;</summary><content type="html">&lt;h2 id="upload-your-resume-and-then-re-enter-everything"&gt;Upload your resume and then re-enter everything&lt;a class="headerlink" href="#upload-your-resume-and-then-re-enter-everything" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;How accurate is that?&lt;/p&gt;
+&lt;p&gt;The joke is that applying to a job is an exercise in copy and pasting your resume into the application over
+and over and over. I've submitted a ton of applications in the past month on my journey for an engineering
+leadership role (reach out if you are looking for someone). Let's take a look at what I've seen.&lt;/p&gt;
+&lt;p&gt;I broke this down into 4 major categories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No duplication: This type of application either took my resume or LinkedIn profile and didn't require me to fix any fields, re-entry anything, and generally "just worked". From a candidate's perspective, this is the ideal. A little over 10% of my applications fall into this category. A majority of these are using LinkedIn's Easy Apply. The downside I'm seeing, and will report on in a future post, is that the response rate for these types of applications has been very low.&lt;/li&gt;
+&lt;li&gt;Minor Re-entry: I classified this is cleaning up or filling in up to three missing fields (but NOT job overviews). The most common thing I had to clean up was dates related to either a job or my degree. Some applicant systems want down to the day granularity, others are month granularity. My resume is to the month. The second most common fields to clean up are my degree and my address. For my degree, I see this on systems that have a predefined set of degrees to choose from. My Masters of Engineering is in Information Assurance from Iowa State University. This isn't a common degree title. My address is listed as city and state on my resume. Several ATSes want a full street address.&lt;/li&gt;
+&lt;li&gt;Single Section Duplication: This is a category that either requires me to reenter an entire job or entire educational history. This includes dates of employment, title, and description. There isn't a pattern on what goes missing when the resume is imported. I've had to re-enter jobs and degrees. It's not a single job that goes missing or a single degree. If I start seeing a clear pattern here, I'll dig a little deeper and see how I can clean up my resume.&lt;/li&gt;
+&lt;li&gt;Complete re-entry: Here is the trope. One out of five of my applications have required re-entry of more than a single section to the point where I am just reentering everything.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="Resume Re-entry results, a few weeks into my search" src="https://andrewwegner.com/images/resume_reentry.jpg" /&gt;&lt;/p&gt;
+&lt;h3 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Which ATS is responsible for most of those re-entries? MyWorkDay. Every single application I've put in that utilized this ATS required a full reentry. I've tried multiple resume formats.&lt;/p&gt;
+&lt;p&gt;Greenhouse seems to be the easiest the use, especially when a company has taken time to embed it into their site with their branding, style sheets, etc.&lt;/p&gt;
+&lt;p&gt;If a company hasn't embedded the application into their site though, Lever has been better. When LinkedIn integration is set up, applying via LinkedIn and providing a resume has resulted in a very minor edits. The application updates after both steps - approving the Linkedin application and uploading the resume. Between those two, it's been only dates that I've had to change on those applications.&lt;/p&gt;
+&lt;p&gt;While completely re-entering your resume may not be the majority, fixing things up happens on 9 out of 10 of my applications.&lt;/p&gt;
+&lt;p&gt;What has your experience been as a candidate? Are you re-entering your resume details this frequently?&lt;/p&gt;
+&lt;p&gt;I cross posted this over on LinkedIn. &lt;a href="https://www.linkedin.com/posts/andrew-wegner_opentowork-candidateexperience-activity-6973272881879293952-eL8_/"&gt;Join me over there for the discussion&lt;/a&gt;&lt;/p&gt;</content><category term="Jobs"/><category term="job"/><category term="meta"/><category term="job search"/></entry><entry><title>What Job Source is using which ATS?</title><link href="https://andrewwegner.com/what-job-source-uses-which-ats.html" rel="alternate"/><published>2022-09-06T08:00:00-05:00</published><updated>2022-09-06T08:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-09-06:/what-job-source-uses-which-ats.html</id><summary type="html">&lt;p&gt;Talking through my current role search - Which Job Source is using which ATS?&lt;/p&gt;</summary><content type="html">&lt;h2 id="what-job-source-is-using-which-ats"&gt;What Job Source is using which ATS?&lt;a class="headerlink" href="#what-job-source-is-using-which-ats" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;That's a question that no one has asked me in my current search for a role, but it is information I have! It's been a few weeks since I started my hunt for a new engineering leadership role. It's time to start sharing some statistics that I'm seeing in this hunt. Today's information was originally to see if a specific job board favored a specific ATS.&lt;/p&gt;
+&lt;p&gt;Spoiler: Greenhouse and Lever are the most popular. I'm sure no one is surprised with that. I was surprised that so few roles posted on LinkedIn that are appearing my job alerts are using the Easy Apply feature though.&lt;/p&gt;
+&lt;p&gt;Maybe my next question should be: How many jobs have you applied to where you uploaded your resume and then had to type it in manually? Without looking at my data, I theorize it's over 50%.&lt;/p&gt;
+&lt;p&gt;I'm still looking for an engineering leadership role, but in the meantime, I'll share some occasional numbers from my search. Reach out to me if you are looking for a leader to join your engineering team!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Job Source to ATS Sankey Diagram - A few weeks into the search" src="https://andrewwegner.com/images/job-source-ats.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I cross posted this over on LinkedIn. &lt;a href="https://www.linkedin.com/posts/andrew-wegner_opentowork-engineeringleadership-activity-6971517928865157120--eJx"&gt;Join me over there&lt;/a&gt;&lt;/p&gt;</content><category term="Jobs"/><category term="job"/><category term="meta"/><category term="job search"/></entry><entry><title>I am looking for an engineering leadership role</title><link href="https://andrewwegner.com/looking-for-new-role.html" rel="alternate"/><published>2022-08-18T08:00:00-05:00</published><updated>2022-08-18T08:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-08-18:/looking-for-new-role.html</id><summary type="html">&lt;p&gt;After a recent layoff, I'm looking for a new role&lt;/p&gt;</summary><content type="html">&lt;p&gt;It's been a busy couple of days. On August 16, I was part of the &lt;a href="https://airtable.com/shrqYt5kSqMzHV9R5/tbl8c8kanuNB6bPYr/viwA14Z1pM69YIsaW/recUd3VZvRxVhMf9X?backgroundColor=green&amp;amp;viewControls=on"&gt;15% workforce reduction&lt;/a&gt; efforts that Woven implemented. This was not entirely unexpected, as our customers started scaling back their hiring efforts it was imperative that Woven didn't outgrow what it was able to sell.&lt;/p&gt;
+&lt;p&gt;I took the last few days to orient myself, and prepare for another job hunt. I'm looking for an Engineering Leadership role and would love an introduction if you could make one. I'm over on &lt;a href="https://www.linkedin.com/in/andrew-wegner/"&gt;LinkedIn&lt;/a&gt;, where I think it's going to be easiest to interact with my professional network.&lt;/p&gt;
+&lt;p&gt;In the meantime, this one is going to be a short post. Depending on how this goes and what twists and turns I go through to get to my next role, this may turn into a series of posts in the future. Time will tell.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.linkedin.com/pulse/i-am-looking-engineering-leadership-role-andrew-wegner/"&gt;Hop over to LinkedIn to join the conversation and provide those introductions!&lt;/a&gt; I'd really appreciate it.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Andy Wegner - Engineering Leader with experience recruiting, mentoring, training global development teams" src="https://andrewwegner.com/images/layoff-skill-set.png" /&gt;&lt;/p&gt;</content><category term="Jobs"/><category term="job"/><category term="meta"/><category term="leadership"/><category term="job search"/></entry><entry><title>10 Soft Skills to Look For in Senior Software Developers</title><link href="https://andrewwegner.com/top-soft-skills-senior-developers-need.html" rel="alternate"/><published>2022-06-26T09:00:00-05:00</published><updated>2022-06-26T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-06-26:/top-soft-skills-senior-developers-need.html</id><summary type="html">&lt;p&gt;My thoughts on the top soft skills senior software developers need to be successful, republished from Woven&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="before-we-begin"&gt;Before we begin...&lt;a class="headerlink" href="#before-we-begin" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post is republished from &lt;a href="https://www.woventeams.com/soft-skills-for-senior-software-developers/"&gt;Woven's blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I was recently asked about what I thought the top soft skills - those hard to define traits - a senior engineer should possess to be successful. Below are my thoughts.&lt;/p&gt;
+&lt;h2 id="the-list"&gt;The list&lt;a class="headerlink" href="#the-list" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="excellent-communication"&gt;Excellent communication&lt;a class="headerlink" href="#excellent-communication" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;No one lives in a vacuum. While portions of an engineer’s role may involve working alone, a senior engineer does not work in isolation. They interact with teammates, other teams, managers, end-users, and more.&lt;/p&gt;
+&lt;p&gt;Experienced developers have top-notch communication skills. They’re able to communicate effectively with individuals and teams to accomplish a common goal. Building relationships with these areas improves interactions in the future.&lt;/p&gt;
+&lt;h3 id="ownership-mentality"&gt;Ownership mentality&lt;a class="headerlink" href="#ownership-mentality" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A senior software developer sees the dirty underbelly of the system. They embrace it. They work to clean it up.&lt;/p&gt;
+&lt;p&gt;Your ideal candidate is taking ownership, tackling one task at a time to make the system slightly better. Not every change has to be big, flashy, and headline-grabbing; a change to improve stability is rarely commented on, but users notice if the system is unstable.&lt;/p&gt;
+&lt;p&gt;Additionally, helping a customer through an issue doesn’t always have to fall to “Level 1 Support”. A senior engineer can and should spend time on support — learn the pain points users are having and use that knowledge to improve the system.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;They’re not too big for the small things.&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id="ethics"&gt;Ethics&lt;a class="headerlink" href="#ethics" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Software engineers know that what they’re building will not only be used by them; it will impact others in some way, shape, or form. They consider that impact. They consider the unintentional impact, too.&lt;/p&gt;
+&lt;p&gt;It can be easy to fall into the trap of thinking, “It’s just a system. Someone else is making the decision.” However, even the most simple systems have a ripple effect. Look for this type of critical thinking and awareness in your candidates and employees.&lt;/p&gt;
+&lt;h3 id="willingness-to-fail"&gt;Willingness to fail&lt;a class="headerlink" href="#willingness-to-fail" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Not everyone has amazing new ideas. And not all ideas are going to be successful. (If they were, we’d all have several more commas in our bank accounts.)&lt;/p&gt;
+&lt;p&gt;Failure is an option and an opportunity to learn something new. Senior engineers chase ideas, explore hypotheses, and do unique things. If they fail, they learn something from it. They’re open to admitting mistakes and take constructive feedback easily.&lt;/p&gt;
+&lt;p&gt;They use this knowledge to help their team learn something, too.&lt;/p&gt;
+&lt;h3 id="openness-to-discussion"&gt;Openness to discussion&lt;a class="headerlink" href="#openness-to-discussion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Are your senior engineers willing to have their ideas challenged? They should be.&lt;/p&gt;
+&lt;p&gt;Discussion around how something works now versus how it can work in the future helps everyone improve and helps the system get better over time. This should not be an antagonistic discussion but instead reflect the different options other developers can bring forward.&lt;/p&gt;
+&lt;p&gt;Commonly, these discussions result in a broader perspective and even better ideas.&lt;/p&gt;
+&lt;h3 id="mentorship"&gt;Mentorship&lt;a class="headerlink" href="#mentorship" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A senior engineer has a position of trust on the team. They should use this position to guide more junior team members, inviting them to larger discussions and helping them grow professionally. Patience is key as junior devs ask questions and turn those questions into learning opportunities.&lt;/p&gt;
+&lt;p&gt;Zoom calls don’t have to be scheduled and they don’t have to be an hour long. If a senior engineer hops on a call when they’re troubleshooting and invites team members to join, observe, and ask questions, they’re the right person for the role.&lt;/p&gt;
+&lt;h3 id="time-management"&gt;Time management&lt;a class="headerlink" href="#time-management" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Deadlines are a part of life. A software engineer with good time management skills helps set those deadlines through effective communication with the team.&lt;/p&gt;
+&lt;p&gt;They also know how to make decisions on prioritization; if (and when) they miss a deadline, it shouldn’t be a surprise to management. Software engineering leaders are time conscious and make sure everyone is aware of timelines and processes.&lt;/p&gt;
+&lt;h3 id="empathy"&gt;Empathy&lt;a class="headerlink" href="#empathy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This one’s a hot topic.&lt;/p&gt;
+&lt;p&gt;Employees aren’t machines. They have feelings, ups and downs, and life events outside of their job.&lt;/p&gt;
+&lt;p&gt;Emotional intelligence is important —  especially in a remote work environment —  to building a great professional relationship. Experienced engineers take time to get to know their coworkers and their customers as people, not just as a means to an end.&lt;/p&gt;
+&lt;h3 id="leadership"&gt;Leadership&lt;a class="headerlink" href="#leadership" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A person doesn’t need to have “Engineering Manager” in their title to be a leader. Leaders can take many different forms, and the most important part is being able to inspire those around them. This could be by driving technical discussions, being a great mentor, or simply having an idea and knowing how to get buy-in and execute on it.&lt;/p&gt;
+&lt;p&gt;Leaders make things happen, and they don’t wait for permission.&lt;/p&gt;
+&lt;h3 id="creativity"&gt;Creativity&lt;a class="headerlink" href="#creativity" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In the fast-paced tech world, engineers must be able to take a step back, see the big picture, and think outside the box. They can’t be afraid to try new things or challenge the status quo.&lt;/p&gt;
+&lt;p&gt;Often it’s unorthodox approaches that lead to breakthroughs and a final product that’s worthy of users’ time and attention.&lt;/p&gt;
+&lt;h2 id="final-thoughts"&gt;Final thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Software development is a team sport. The best players are the ones who make those around them better.&lt;/p&gt;
+&lt;p&gt;To be truly successful, your senior engineers should have a mix of both hard skills (like coding) and soft skills (like problem-solving). These are the people who will take your company to the next level.&lt;/p&gt;</content><category term="Leadership"/><category term="job"/><category term="meta"/><category term="leadership"/></entry><entry><title>Time and Gas saved by switching to remote work</title><link href="https://andrewwegner.com/time-gas-saved-with-remote-work.html" rel="alternate"/><published>2022-06-12T01:00:00-05:00</published><updated>2022-06-12T01:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-06-12:/time-gas-saved-with-remote-work.html</id><summary type="html">&lt;p&gt;Nearing 5 years of full time remote, a look back on what this has saved me in terms of time commuting and gas&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="a-brief-history"&gt;A brief history&lt;a class="headerlink" href="#a-brief-history" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In August of 2017, I left a decade long career that consisted of driving at least 90 minutes every day. During construction, poor weather or winter weather it was closer to two hours daily. I discussed this as &lt;a href="https://andrewwegner.com/a-decade-at-caterpillar.html#the-long-drive"&gt;one of the factors&lt;/a&gt; in my initial search for a new role at the time. I also briefly covered it in &lt;a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html#full-time-work-from-home"&gt;my reflection&lt;/a&gt; on how I found that role. An hour and a half to two hours daily adds up quickly.&lt;/p&gt;
+&lt;p&gt;I'm quickly approaching half a decade of full time remote work. I spent a majority of that at &lt;a href="https://packetfabric.com"&gt;PacketFabric&lt;/a&gt; and recently started at &lt;a href="https://www.woventeams.com/"&gt;Woven&lt;/a&gt; (still need to post about the new role). I wanted to see what I've saved in terms of time commuting, gallons of gasoline and maybe a few other interesting stats.&lt;/p&gt;
+&lt;h2 id="starting-numbers"&gt;Starting Numbers&lt;a class="headerlink" href="#starting-numbers" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Before I can do some of these calculations, I needed to get some starting numbers. I'm not trying to calculate to the penny or to the minute, so these are rough averages. However, over the course of 5 years, a couple extra minutes every day add up quickly. These numbers assume I would have stayed at that same office, same house, and accumulated vacation time the same way I was while still employed there.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;Miles&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;per&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;day&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;miles&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;one&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;way&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;Commute&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;time&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;per&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;day&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;minutes&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;106&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;minutes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;minutes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;one&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;way&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;this&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;roughly&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;middle&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;my&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;hour&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;commute&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;depending&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;traffic&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;First&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;day&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;remote&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;
+&lt;span class="nv"&gt;Calculate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;until&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2022&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;06&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;span class="nv"&gt;Total&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;number&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;days&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1774&lt;/span&gt;
+&lt;span class="nv"&gt;Total&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;number&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;week&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;days&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;remove&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;weekends&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1269&lt;/span&gt;
+&lt;span class="nv"&gt;Total&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;vacation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;days&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;180&lt;/span&gt;
+&lt;span class="nv"&gt;Total&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;number&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;work&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;days&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1089&lt;/span&gt;
+&lt;span class="nv"&gt;Average&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;MPG&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;.&lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I also needed to find an average gas price. While starting to write this post I thought I'd pull official numbers from the &lt;a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=pet&amp;amp;s=emm_epm0_pte_nus_dpg&amp;amp;f=w"&gt;US Energy Information Administration&lt;/a&gt;. They have numbers going back to 1993 broken down by week. This would be amazing, but I was spending to much time trying to figure out when I was on vacation and how to handle weeks with a holiday in it. I don't need exact numbers. I'm looking for ball park, so instead I went with the &lt;a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=pet&amp;amp;s=emm_epm0_pte_nus_dpg&amp;amp;f=a"&gt;yearly gas price average for 2017 through 2021&lt;/a&gt; then I used the &lt;a href="https://www.bls.gov/data/inflation_calculator.htm"&gt;inflation calculator from the Bureau of Labor Statistics&lt;/a&gt; to adjust for inflation using May of that year to May of 2022.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;2.52&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;3.01&lt;/span&gt;
+&lt;span class="mf"&gt;2018&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;2.81&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;3.26&lt;/span&gt;
+&lt;span class="mf"&gt;2019&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;2.69&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;3.07&lt;/span&gt;
+&lt;span class="mf"&gt;2020&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;2.25&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;2.57&lt;/span&gt;
+&lt;span class="mf"&gt;2021&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;3.10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;3.37&lt;/span&gt;
+&lt;span class="mf"&gt;2022&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mf"&gt;4.00&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;based&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;on&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;price&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;January&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;through&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;May&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2022&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This gets an average gas price of &lt;code&gt;$3.21&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It's probably important to note that if I run this again in August at the full 5 year mark that gas cost is going to be much higher. &lt;a href="https://www.cnbc.com/2022/06/10/consumer-price-index-may-2022.html"&gt;Inflation was 8.6% in May 2022&lt;/a&gt;, with &lt;a href="https://www.cnn.com/2022/06/11/business/gas-prices-five-dollars-national-june/index.html"&gt;average gas prices hitting $5.00 nationwide&lt;/a&gt;. In my area, it's been above $5 for over a month. This is also part of the reason I wanted to run these numbers.&lt;/p&gt;
+&lt;p&gt;Lastly, I wanted to see if I could figure out how much CO2 I had not produced based on how much gasoline I hadn't used. I was expecting a complicated formula. Turns out that &lt;a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle#burning"&gt;1 Gallon of Gas = 19.59 pounds of CO2&lt;/a&gt; (8,887 grams of CO2 per gallon).&lt;/p&gt;
+&lt;h2 id="the-calculations"&gt;The calculations&lt;a class="headerlink" href="#the-calculations" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With my initial numbers determined, the calculations are pretty easy.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Total Miles Not Driven = Miles per day &lt;span class="gs"&gt;* Total number of work days&lt;/span&gt;
+&lt;span class="gs"&gt;                       = 90 *&lt;/span&gt; 1089
+                       = 98,010 miles
+
+Total Time Not Commuting = Commute time per day (minutes) &lt;span class="gs"&gt;* Total number of days&lt;/span&gt;
+&lt;span class="gs"&gt;                         = 106 *&lt;/span&gt; 1089
+                         = 115,434 minutes
+                         = 1923.9 hours
+                         = 80.1 days
+
+Gallons of Gas Not used = Total Miles Not Driven / Average MPG
+                        = 98,010 / 22.5
+                        = 4,356 gallons of gasoline
+
+Dollars not spent on gas = Gallons of Gas Not used &lt;span class="gs"&gt;* Average gas price&lt;/span&gt;
+&lt;span class="gs"&gt;                         = 4,356 *&lt;/span&gt; 3.21
+                         = $13,997.28
+
+CO2 Not produced = Gallons of Gas Not Used &lt;span class="gs"&gt;* 19.59&lt;/span&gt;
+&lt;span class="gs"&gt;                 = 4,356 *&lt;/span&gt; 19.59
+                 = 85,334.04 pounds of CO2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="analysis"&gt;Analysis&lt;a class="headerlink" href="#analysis" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Those are some impressive numbers. I saved almost 100,000 miles of commute time just going to and from work over five years. Put another way - I was NOT in my car for 80 full days over the course of five years. Literally a full time job's worth of travel time at nearly 2,000 hours saved over 5 years.&lt;/p&gt;
+&lt;p&gt;I didn't put over 4,300 gallons of gas in the vehicle and I didn't spend almost $14,000 on gasoline. That also prevented the production of 85,000 pounds of CO2. Sounds like a big number, but it's a passenger vehicle. It doesn't compare to the output of a large truck, an airplane, a tanker, or a factory. But, it's something.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;These are just the easily calculable numbers on what shifting to remote work has saved me. Things that I can't put a number on: time with family, flexible scheduling, ability to take the dogs for a walk when the sun is out, and more. I'm not spending hours in a car. I'm at home when the family gets home from school and work.&lt;/p&gt;
+&lt;p&gt;I hadn't tried to put hard numbers on this before, but now that I have, I am even more satisfied with my decision five years ago to start looking for a company that was 100% remote.&lt;/p&gt;</content><category term="Jobs"/><category term="job"/><category term="meta"/></entry><entry><title>The Other Side of the Mirror: How I Went from Woven Client to Woven Employee</title><link href="https://andrewwegner.com/woven-client-to-woven-employee.html" rel="alternate"/><published>2022-06-04T08:00:00-05:00</published><updated>2022-06-04T08:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-06-04:/woven-client-to-woven-employee.html</id><summary type="html">&lt;p&gt;My conversation with Woven on how I went from one of their customers to their Director of Engineering&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="before-we-begin"&gt;Before we begin...&lt;a class="headerlink" href="#before-we-begin" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post is republished from &lt;a href="https://www.woventeams.com/the-other-side-of-the-mirror-how-andy-wegner-went-from-woven-client-to-woven-employee/"&gt;Woven's blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Back in April 2022, I left my position at PacketFabric, which I've talked about a &lt;a href="https://andrewwegner.com/a-decade-at-caterpillar.html#the-new-job"&gt;handful of times&lt;/a&gt;, &lt;a href="https://andrewwegner.com/how-i-found-an-awesome-remote-only-job.html"&gt;previously&lt;/a&gt;. At some point I'll do a post-mortem on the job and why it was time to move on, but that's not for today. This post is about how I went from a customer of &lt;a href="https://www.woventeams.com/"&gt;Woven&lt;/a&gt; to Woven's Director of Engineering.&lt;/p&gt;
+&lt;p&gt;As I spin up in this role, I'm looking forward to growing with the team and helping other engineering leaders find amazing new members for their team.&lt;/p&gt;
+&lt;p&gt;Read on!&lt;/p&gt;
+&lt;h2 id="the-conversation"&gt;The conversation&lt;a class="headerlink" href="#the-conversation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="background"&gt;Background&lt;a class="headerlink" href="#background" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Interviewer: Thanks for sitting down with me, Andy. Could you tell me a little bit about your background?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sure. I started at Cat Logistics doing inbound transportation, which went from a single division to five or six divisions by the time I was done. In 2017 I transitioned into building the QA team at PacketFabric, and that expanded into building the software engineering team itself.&lt;/p&gt;
+&lt;p&gt;I joined when there were six or seven engineers, and I was the first one on the QA side. When the company went through their next round of funding I was the one that led the software engineering growth. So we worked with Woven to hire roughly 20 engineers in about 10 months.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="tooling-before-woven"&gt;Tooling before Woven&lt;a class="headerlink" href="#tooling-before-woven" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Interviewer: Had you used a technical assessment tool before Woven?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Before Woven we were using just a standard take-home test. We built a rubric, we built the scenario, and we handed it out to the people we wanted to move forward in the interview process.&lt;/p&gt;
+&lt;p&gt;The problem with that is it’s very, very time-consuming. It means that me or another engineer is constantly following up. “Hey, are you going to take this today? Are you going to get this done? We sent this a week ago.” And we had to spend time writing it, too. I also had to make sure they were all evaluated uniformly because if not, you’re not getting any value out of it.&lt;/p&gt;
+&lt;p&gt;This is not something that a small team can do when they need to grow quickly, which is where Woven came in. Woven was very helpful in getting us a set of scenarios that matched what we needed. One of them matched exactly what we were hiring for; the calculating and billing invoices was exactly what we needed a couple of engineers to build. So it was very, very fortuitous in that case. Woven made evaluating those candidates very easy.&lt;/p&gt;
+&lt;p&gt;Other things like debugging and systems architecture were very helpful in identifying the senior engineers we were looking for at the time, because we were growing quickly. And Woven was able to identify a senior engineer versus somebody that had some experience but hadn’t done the full gambit of work that a senior engineer would have done in the past.&lt;/p&gt;
+&lt;p&gt;So Woven really grew to cover most of engineering because it was so successful in bringing in high-quality engineers with very low turnover.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="candidate-experience"&gt;Candidate experience&lt;a class="headerlink" href="#candidate-experience" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Interviewer: Did you hear any feedback from candidates about their experience using the platform?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Oh, constantly. Especially from engineers in the calculating and billing invoices area. You know, they thought this was just a scenario that was built up, but it was actually focused on what they would be doing. There was a lot of feedback like, “This is not just a code challenge. This feels like real work.” Those types of things were said constantly throughout the interview process, and we didn’t solicit them.&lt;/p&gt;
+&lt;p&gt;The most I usually said was, “You should have received feedback, was there anything you wanted to discuss?” And their response was kinda like, “No, it was very good and very thorough.” They were appreciative of feedback because most candidates have gone through more than one interview at this point, especially the senior engineers, and often they’re just ghosted.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="puzzles"&gt;Puzzles&lt;a class="headerlink" href="#puzzles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Interviewer: I’m sure as the candidate it doesn’t feel good to get ghosted or to spend time doing something that doesn’t matter. Especially when you’re really experienced.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Yes. As a hiring manager, I have zero interest in puzzle questions. They’re not helpful to me. It feels like I’m wasting their time and my time. When candidates are able to see and do projects that feel real, it’s important.&lt;/p&gt;
+&lt;p&gt;If they’re just doing a puzzle, they don’t get a sense of what we want to do. And with Woven, they’re getting well-defined scenarios that are picked by a hiring committee and focus on what the role is supposed to cover. You know a senior engineer is going to be doing debugging and is going to be looking at architecture. It may not be our exact system, but it’s pretty close and you’re going to be doing this type of work.&lt;/p&gt;
+&lt;p&gt;I’ve done puzzles when I’ve interviewed, and I hate giving puzzles.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Interviewer: I imagine a lot of people in your position would say that. Why would you give a candidate something that you wouldn’t want to take?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Exactly. If I was interviewing for this role, I would not want to do a puzzle. I had to go through the Woven test as I was applying here. And I was like “Okay, I’ve seen the other side. I’ve gone through this. This is exactly what other candidates have said.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="moving-to-woven"&gt;Moving to Woven&lt;a class="headerlink" href="#moving-to-woven" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Interviewer: Tell me about that — transitioning from using Woven as a service to going through the interview process and becoming an employee.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The big thing that I learned is that Woven’s engineering team is a lot smaller than I thought. Because when I would have a question or an issue, it would get solved really quickly. So I thought there was a much larger team. But it points to how good the engineering team is here.&lt;/p&gt;
+&lt;p&gt;And going through the interview process was fun. Obviously I knew very high-level what it looks like, how it operates. I knew what was going on behind the scenes. But I was nervous because even though I knew what the test was going to look like, I don’t know exactly how I did.&lt;/p&gt;
+&lt;p&gt;Then I got the feedback and it was really good. There were a few areas that I definitely could have done better and Woven caught all of it. So I was very happy with that.&lt;/p&gt;
+&lt;p&gt;Moving over here is really like looking through the other side of the mirror. It’s interesting to see how things actually work.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="other-side-of-the-mirror"&gt;Other side of the mirror&lt;a class="headerlink" href="#other-side-of-the-mirror" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Interviewer: As someone who’s been on both sides of the mirror, what would you say to other VPs is the main benefit of using Woven?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;From a hiring manager perspective, I’d talk about how much time is saved from when my team was doing their own evaluations to when Woven was involved.&lt;/p&gt;
+&lt;p&gt;It was very easy to see the teams that were hiring using Woven versus the teams that were building their own scenario take-home tests. The efficiency was so much higher with the Woven teams. They could get through more candidates and they could get higher-quality candidates to the later stages versus the teams that would be doing their own take-homes.&lt;/p&gt;
+&lt;p&gt;I also like to tell people I hired non-engineers that were among the top performing engineers on the team. People that I would have missed just looking at the resume. Somebody that you wouldn’t think could do a good job as a senior engineer, but they received some of the best scores on the Woven assessments and turned around and produced some of the highest-quality work. Just looking at a resume though, they would have been passed over pretty quickly.&lt;/p&gt;
+&lt;p&gt;Oftentimes this kind of candidate has done and learned just a little bit more than somebody with a traditional CS degree that probably hasn’t used data structures in their day to day job. Instead they’ve focused on building a product that works and functions. And this candidate that’s from another career had to jump in and solve the problem, and that problem was very complex. They taught themselves and found that it was something they really enjoyed.&lt;/p&gt;
+&lt;p&gt;So the hidden gems aspect of Woven is very surprising.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="thats-a-wrap"&gt;That's a wrap&lt;a class="headerlink" href="#thats-a-wrap" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;With that, the conversation is over. I'm enjoying my role at Woven. There are a lot of ways to make the hiring process better in the tech industry and I'm going to be right there helping.&lt;/p&gt;</content><category term="Jobs"/><category term="job"/><category term="meta"/><category term="leadership"/></entry><entry><title>How not to recruit me</title><link href="https://andrewwegner.com/how-not-to-recruit-me.html" rel="alternate"/><published>2015-10-10T14:20:00-05:00</published><updated>2015-10-10T14:20:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-10-10:/how-not-to-recruit-me.html</id><summary type="html">&lt;p&gt;In which I discuss ways not to send me a recruitment message if you are interested in me working for you&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A few days ago, on Meta.StackOverflow, a product manager &lt;a href="http://meta.stackoverflow.com/q/307674/189134"&gt;asked&lt;/a&gt; for feedback on how they could make first contact between employers and potential employees more valuable to the potential employee. I provided my &lt;a href="http://meta.stackoverflow.com/a/307687/189134"&gt;feedback&lt;/a&gt;. I've reposted it below, with some minor changes to further explain my ideals. &lt;/p&gt;
+&lt;p&gt;The summary of this entire post is: If I have to spend time to make my resume jump out and catch &lt;em&gt;your&lt;/em&gt; attention, I expect you to spend just a little bit of time telling me about your company and the position you are recruiting for. I don't think a few sentences with these details is that much ask.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="what-i-want-to-see"&gt;What I want to see&lt;a class="headerlink" href="#what-i-want-to-see" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I want to know what the company does and I want to know who you are. I also want to know what positions you are looking to fill and a few details about the position are also important.&lt;/p&gt;
+&lt;h2 id="messages-ive-recieved"&gt;Messages I've recieved&lt;a class="headerlink" href="#messages-ive-recieved" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="message-1"&gt;Message 1&lt;a class="headerlink" href="#message-1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This is the start of a good message:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Message 1" src="https://andrewwegner.com/images/message1.png"/&gt;&lt;/p&gt;
+&lt;p&gt;It has the following good elements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Who the recruiter is&lt;/li&gt;
+&lt;li&gt;Position they are recruiting for &lt;/li&gt;
+&lt;li&gt;A company name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It does not offer the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What the company does (other than "build great software").&lt;/li&gt;
+&lt;li&gt;Explanation which of my skills or experiences they are interested in. Are you interested in my Python answers on Stack Overflow? My projects on Github? My PHP experience from years ago? This is &lt;em&gt;important&lt;/em&gt; to know. If the company is looking to recruit me for knowledge I shared years ago (ie. PHP in my case), I'd probably be less useful right now because I haven't used PHP in years. I have not kept up with recent changes to the language or various frameworks.&lt;/li&gt;
+&lt;li&gt;Explanation of what the position will do, projects I'll be involved in, or challenges they are facing now that I'll help solve.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I did not respond to this position.&lt;/p&gt;
+&lt;h3 id="message-2"&gt;Message 2&lt;a class="headerlink" href="#message-2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Message 2" src="https://andrewwegner.com/images/message2.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This has the following useful elements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I know your name, position and company. &lt;/li&gt;
+&lt;li&gt;Due to who the company was in this particular message, I am even vaguely aware of what the company does. Name recognition helps, but is not very high on my list of &lt;em&gt;"important things"&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What this does not have:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A description of the position. "Looking for top talent...to make a significant impact on our systems". Ok. How? What will I be doing?&lt;/li&gt;
+&lt;li&gt;How did you find me?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I actually talked to this recruiter and I have to say that I'm both disappointed in the company and myself for not noticing some red flags in this message. This wasn't an interview for a specific position. This was a general recruiting email and I suspect it was sent to multiple users. Flags that I missed in the message:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lack of any details at all and use of buzzwords ("top technical talent", "fast paced", "start-up like", "eCommerce industry").&lt;/li&gt;
+&lt;li&gt;Discussion about personal career goals and technical background. Some of my back ground should be obvious from my Careers profile, SO profile and links on both. More importantly, I missed the "personal career goals" flag. The details they wanted were to see if my goals aligned with any open positions they had at the time. &lt;/li&gt;
+&lt;li&gt;When the discussion took place, the recruiter knew little more than my name. There were no questions about my careers profile (at the very least) or other projects I mentioned on my profile. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Shame on me.&lt;/p&gt;
+&lt;h3 id="message-3"&gt;Message 3&lt;a class="headerlink" href="#message-3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Message 3" src="https://andrewwegner.com/images/message3.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This message isn't useful to me at all.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Who is this company and what do they do? &lt;/li&gt;
+&lt;li&gt;I have no experience in mobile apps. How did they find me?&lt;/li&gt;
+&lt;li&gt;What is Chad's relationship to the company?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I suspect this message showed up because I work for one of their largest clients, live 10 miles from their office and work, literally, right across the street from them. I didn't know that at the time though. I had to ask a co-worker if they'd ever heard of the company. They pointed out their office at lunch.&lt;/p&gt;
+&lt;p&gt;I did not respond this this message.&lt;/p&gt;
+&lt;h3 id="message-4"&gt;Message 4&lt;a class="headerlink" href="#message-4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Message 4" src="https://andrewwegner.com/images/message4.png"/&gt;&lt;/p&gt;
+&lt;p&gt;This message is worthless. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You are seeking employees who are willing to relocate. Great. Good for you. Are you interested in my skills or just a warm body to keep your chairs warm?&lt;/li&gt;
+&lt;li&gt;No details about the company, other than a link to a web site&lt;/li&gt;
+&lt;li&gt;No name at all. Who am I talking to? &lt;/li&gt;
+&lt;li&gt;No details about the job. I hope they found someone to hold their seats to the floor 8 hours a day. If not, I recommend large rocks. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="summary-of-the-messages"&gt;Summary of the messages&lt;a class="headerlink" href="#summary-of-the-messages" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I need &lt;em&gt;details&lt;/em&gt; and I need details more than what the salary is going to be. Obviously, I need to do some research about your company, if I've never heard of you. But, throw me a bone. Tell me a bit about your self. I had to make a fancy resume to get you to reach out to me. I did something that caught your eye. Now, do something that will catch mine. &lt;/p&gt;
+&lt;p&gt;I don't need to work at a company that is the next Google or Apple or start up flush with cash. But, I do want to know about the company before I talk to you. If you can't spend a few seconds explaining a bit about the company, I don't want to talk with you. I don't think a few sentences is that much to offer:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Here at COMPANY NAME, we are looking for a POSITION with skills in LANGUAGE or experience in INDUSTRY. I see you have both and think you'd be able to help TEAM NAME with their on going project of MAKING THE WORLD BETTER. Your PROJECT ON GITHUB looks like you've dealt with aspects of this problem before. We've gotten some press recently about our innovations in this area (check them out HERE)."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr/&gt;
+&lt;h2 id="how-to-get-my-attention"&gt;How to get my attention&lt;a class="headerlink" href="#how-to-get-my-attention" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I think the post above makes it clear what &lt;em&gt;doesn't&lt;/em&gt; work. The companies that I've responded to (other than message 2, above) have all done the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Indicate they've at least looked at my resume by commenting on some aspect of it. I've had recruiters mention projects I've done, jobs I've held, or individual bullet points that caught their attention. This is great. It means you aren't reaching out to me because I happened to hit all of your keywords when the resume passed through your Human Resources department.&lt;/li&gt;
+&lt;li&gt;Provide a short description of the job they want to fill. I don't need a full job posting. A link to such a posting is sufficient. However, if you could summarize it in a sentence or two, that'd make both of our lives easier. Reading full job descriptions isn't the most fun thing in the world and often have industry (or even company) specific acronyms. That isn't helpful to either of us, because I may not know them. Just tell me what your team does within the company. That's good enough to get my attention.&lt;/li&gt;
+&lt;li&gt;Talk to me like a person, not some number that a database search returned. As a hint, if you can figure out that I like to go by "Andy", instead of "Andrew", you've already done a far better job than most recruiters I've spoken with. &lt;/li&gt;
+&lt;/ul&gt;</content><category term="Jobs"/><category term="meta"/><category term="job"/></entry><entry><title>How I set up this site with GitHub Pages and CloudFlare</title><link href="https://andrewwegner.com/how-i-set-up-this-site-with-github-pages-and-cloudflare.html" rel="alternate"/><published>2015-07-09T11:26:00-05:00</published><updated>2015-07-09T11:26:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-07-09:/how-i-set-up-this-site-with-github-pages-and-cloudflare.html</id><summary type="html">&lt;p&gt;This post provides a brief description of how I set up the web site to utilize GitHub Pages and CloudFlare and eliminated my self hosting&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In a &lt;a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html"&gt;previous post&lt;/a&gt;, I described why I moved from Wordpress to Pelican for my blog. This one goes a step further and describes how I eliminated the
+need for the dedicated server I'd been utilizing as a part of &lt;a href="https://andrewwegner.com/thanks-for-all-the-fish.html"&gt;Team Vipers&lt;/a&gt;. By eliminating that server, I reduced my costs to zero but kept control
+over the DNS of my domain (thanks to &lt;a href="https://www.cloudflare.com/"&gt;CloudFlare&lt;/a&gt;) and had an easier method of updating the site using &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="github-pages-setup"&gt;GitHub Pages Setup&lt;a class="headerlink" href="#github-pages-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To utilize GitHub Pages, I needed to create a new &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io"&gt;repository&lt;/a&gt; that followed the format &lt;code&gt;GitHubUsername.github.io&lt;/code&gt;. This repository would house the
+content that is this site. I also set up a second &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source"&gt;repository&lt;/a&gt; which contains the source for the blog. This repository includes the templates, plugins
+and markdown version of the pages. The first repository was set up as submodule.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git submodule add https://github.com/AWegnerGitHub/awegnergithub.github.io.git output
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I ignored the &lt;code&gt;output&lt;/code&gt; directory in &lt;code&gt;.gitignore&lt;/code&gt; on the source repository. Finally, I had to adjust &lt;code&gt;publishconf.py&lt;/code&gt; slightly to&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;DELETE_OUTPUT_DIRECTORY = False
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Without this, I was constantly destroying the output repository and had to reinitialize it. This prevents that from occuring.&lt;/p&gt;
+&lt;p&gt;Now, a new post consists of writing up the &lt;a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-content/master/2015_07_09_how-i-set-up-this-site-with-github-pages-and-cloudflare.md"&gt;Markdown page&lt;/a&gt;, generating the page with the command below (or the &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/82625417e3a14db3cbeafcaa68728fd5fe9834b2/generate_content_production.bat"&gt;batch script&lt;/a&gt;) and then committing and
+pushing the changes to the submodule to GitHub.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# Generates HTML files without debugging information
+pelican content --output output --settings publishconf.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The new content is available immediately.&lt;/p&gt;
+&lt;h3 id="custom-domain"&gt;Custom Domain&lt;a class="headerlink" href="#custom-domain" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You may notice that the URL for this site isn't &lt;code&gt;awegnergithub.github.io&lt;/code&gt;, but instead &lt;code&gt;andrewwegner.com&lt;/code&gt;. To accomplish this, I added a directory to the &lt;code&gt;content&lt;/code&gt;
+named &lt;code&gt;extra&lt;/code&gt;. In this directory is a single file named &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/82625417e3a14db3cbeafcaa68728fd5fe9834b2/content/extra/CNAME"&gt;&lt;code&gt;CNAME&lt;/code&gt;&lt;/a&gt; (no extension). In the file is my domain name.&lt;/p&gt;
+&lt;p&gt;Next, I had to modify &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/master/pelicanconf.py"&gt;&lt;code&gt;pelicanconf.py&lt;/code&gt;&lt;/a&gt; to add the &lt;code&gt;extra/CNAME&lt;/code&gt; to the static path and then on generation move the &lt;code&gt;CNAME&lt;/code&gt; file from this subdirectory to the root.
+I could have put it in the root of &lt;code&gt;content&lt;/code&gt; by default, but Pelican provides a way to do this and it keeps &lt;code&gt;content&lt;/code&gt; clean. &lt;strong&gt;One very important note&lt;/strong&gt;, the &lt;code&gt;EXTRA_PATH_METADATA&lt;/code&gt; is
+operating system sensitive. Since I am generating the content on a Windows machine, I had to use a backslash instead of the forward slash the documentation shows. I found this
+after posing a &lt;a href="http://stackoverflow.com/a/30512242/189134"&gt;question&lt;/a&gt; on Stack Overflow on why it wasn't working as the documentation suggested.&lt;/p&gt;
+&lt;p&gt;The two important fields to add or edit are:&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;...
+STATIC_PATHS = ['images', 'extra/CNAME']
+...
+EXTRA_PATH_METADATA = {'extra\CNAME': {'path': 'CNAME'},}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="cloudflare-setup"&gt;Cloudflare Setup&lt;a class="headerlink" href="#cloudflare-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The final thing I needed in order to get rid of my server was control over DNS. I could revert back to GoDaddy, but after a little research found that CloudFlare's additional CDN and
+security was a "good thing" (because, you know, I'm such a highly traffic'd blog these days). Step one was signing up to CloudFlare. This was a 3-5 minute thing.&lt;/p&gt;
+&lt;p&gt;Once signed up and signed in, I went to set up DNS. This was as simple as adding my domain name and waiting for CloudFlare to import my existing DNS records. With this, I kept by Google Apps
+email intact (which is what I was most concerned with). Next, I went and removed the &lt;code&gt;A&lt;/code&gt; records. I replaced these with &lt;code&gt;CNAME&lt;/code&gt; records pointing to my GitHub Pages URL. I also added a &lt;code&gt;www&lt;/code&gt; CNAME
+pointing to the same location. Since I have Pelican configured to strip it with the setting below, it doesn't matter other than people expect to enter &lt;code&gt;www dot domain dot com&lt;/code&gt; in their URL bar.&lt;/p&gt;
+&lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;SITEURL = 'http://andrewwegner.com'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Last, I had to point by name servers to CloudFlare instead of my dedicated server. They provide a list of registrars to choose from. Select your registrar and follow the instructions. My biggest
+issue here was remembering my GoDaddy password. After I made it into my account, the steps to change name servers were very simple. Once those are saved, you wait for the changes to propagate and
+enjoy your new GitHub Pages / CloudFlare web page for free.&lt;/p&gt;</content><category term="Side Activities"/><category term="Meta"/><category term="technical"/><category term="Pelican"/></entry><entry><title>Why I moved from Wordpress to Pelican</title><link href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html" rel="alternate"/><published>2015-05-03T22:41:00-05:00</published><updated>2015-05-03T22:41:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-05-03:/why-i-moved-from-wordpress-to-pelican.html</id><summary type="html">&lt;p&gt;A brief summary of why I dropped Wordpress and moved to Pelican&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For years, I maintained a Wordpress blog covering various things I've done or created. Most of these revolved around
+things I created to make administering Team Vipers easier for me and for the rest of the admin team. It was my way
+of documenting what I'd done (in case I ever needed to do it again) and providing a way to update the Team Vipers community
+about new plugins or applications that would be deployed to the community.&lt;/p&gt;
+&lt;h2 id="my-issues-with-wordpress"&gt;My Issues with Wordpress&lt;a class="headerlink" href="#my-issues-with-wordpress" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The problem I had with Wordpress was that it was just to bulky for the simple posts I was making. I needed a database, a full web
+server (or a hosting provider), and either time to hunt for the "perfect" plugin(s) or PHP knowledge to do it myself. Early in my
+development career, I used PHP a lot. That was part of the reason I chose Wordpress. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Oh! I know that language. If I ever need something, I can just whip it up myself. &lt;/p&gt;
+&lt;p&gt;&lt;em&gt;-Me, before the real world ambushed me and beat me with a stick&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="spam"&gt;Spam&lt;a class="headerlink" href="#spam" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I spent time setting up Wordpress. I picked out a theme, plugins, and started saving future me with documentation. Then life happened. For whatever
+reason, I stopped updating Wordpress. My blog sat out there for weeks or months unvisited by anyone. Then, one morning, my phone vibrated
+and told me that I had a new comment on my site. Woo! &lt;/p&gt;
+&lt;p&gt;Except it was spam. Boo!&lt;/p&gt;
+&lt;p&gt;I marked it spam and moved on with my day. Later that morning, I glanced at my phone again. 32 emails. I am just not that popular. Something
+was wrong. Turns out, a spam bot found me. I sighed and then removed all the comments and checked the box indicating that users had to
+be registered to post. That solved my problem for a few months.&lt;/p&gt;
+&lt;p&gt;Then the bots got smarter. They started registering. They started posting legitimate looking messages, except for that associated URL their name
+would link to in the comments. They pulled keywords out of the post and formulated a somewhat passable English question using those words. The spam
+prevention plugins I installed would slow the tide for a few weeks. The bots would adapt and then I'd be awash with spam posts again. Eventually,
+the solution was to completely disable comments. I'd spent way to much time dealing with spam on a blog that received very little legitimate traffic.&lt;/p&gt;
+&lt;p&gt;Since I don't utilize the comments, Pelican provides a nice simple page that I can post my thoughts and not worry about getting hit by a spam bot. It also
+provides plugins so that I &lt;em&gt;can&lt;/em&gt; include comments should I ever choose to do so in the future. For the time being, though, I have a nice simple page 
+with no comments. That's exactly what I was looking for.&lt;/p&gt;
+&lt;h3 id="security"&gt;Security&lt;a class="headerlink" href="#security" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If you watch any technology web sites, you'll notice that there are vulnerabilities found in Wordpress frequently. These require patches,
+which requires me to do something. It may be as simple as logging in and clicking a button to update, but it is still something I need to 
+remember to do for a relatively minor site. When I'd log in to clear the spam backlog, I'd frequently also install updates for 10-20 plugins, themes or
+Wordpress itself. It was mostly painless, but I didn't like the idea of the site sitting there vulnerable for weeks at a time because I didn't
+visit and login.&lt;/p&gt;
+&lt;p&gt;The dynamic nature of Wordpress and the underlying database exposed a fairly sizable target for a web page so small. Pelican generates static
+HTML pages. I don't have to worry about SQL injections, unauthorized logins, or anything else. I host a basic set of HTML, CSS and JavaScript files. 
+That's it.&lt;/p&gt;
+&lt;h2 id="php-vs-python"&gt;PHP vs Python&lt;a class="headerlink" href="#php-vs-python" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As I mentioned before, I used to use PHP frequently. It was my go to language. I picked Wordpress with the idea that I'd be able to hack together features I needed.
+The reality, it turns out, was that I wasn't actually interested in doing that. Instead, I picked out plugins that were close enough to the
+exact functionality I wanted. &lt;/p&gt;
+&lt;p&gt;I transferred to a job where I used Python. Instead of having a language I used on the side (PHP) and a job where I was a glorified project manager, without the 
+actual title of "Project Manager", I now had a job where I used a language (Python) for 8 hours a day. My usage of PHP plummeted. I found I could get what I wanted
+done in my side projects faster and easier with Python. At work I used Python to build tools for engineering problems. At home, I started using it for every day
+tasks. &lt;/p&gt;
+&lt;p&gt;Soon, I realized I hadn't used PHP for several versions of the language. My knowledge of the language was outdated. The biggest reason I'd chosen Wordpress was no longer
+relevant, because I couldn't write anything complicated in PHP without glancing at documentation to do even simple things. It's sad that I lost the intimate knowledge of
+a language, but I feel that I've been more productive with Python anyway.&lt;/p&gt;
+&lt;p&gt;Pelican is written in Python. Even more importantly though, it generates HTML files which are hosted. I don't need to run a Python environment on a server. I just
+need to host HTML files. &lt;/p&gt;
+&lt;h2 id="markdown"&gt;Markdown&lt;a class="headerlink" href="#markdown" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Finally, I've fought with Wordpress's text editor countless times. This happened most often when attempting to add code blocks. It was a pain to do. It was a pain
+to fix when the blocks broke. Pelican supports Markdown. Markdown is supported by large organizations like GitHub, reddit and Stack Exchange. I use all three of those.
+I know how to utilize Markdown to create code blocks, headers, insert images, create bulleted lists. All without needing to fight how the text editor is going to actually
+save the data.&lt;/p&gt;</content><category term="Side Activities"/><category term="Meta"/><category term="Pelican"/></entry></feed>

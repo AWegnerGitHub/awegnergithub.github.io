@@ -1,393 +1,58 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-  <link rel="canonical" href="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html">
-
-  <meta name="robots" content="index, follow" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=block"
-    rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/stylesheet/style.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://andrewwegner.com/theme/font-awesome/css/font-awesome-v4.css">
-
-
-  <link id="pygments-light-theme" rel="stylesheet" type="text/css"     href="https://andrewwegner.com/theme/pygments/github.min.css">
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://andrewwegner.com/theme/font-awesome/css/solid.css">
-
-
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href=" /apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#080019">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#080019">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Microsoft EDGE -->
-  <meta name="msapplication-TileColor" content="#080019">
-
-  <link href="https://andrewwegner.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Andrew Wegner | Ponderings of an Andy Atom">
-
-
-<script type="text/javascript">
-    window.heap = window.heap || [], heap.load = function (e, t) { window.heap.appid = e, window.heap.config = t = t || {}; var r = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script"); a.type = "text/javascript", a.async = !0, a.src = (r ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(a, n); for (var o = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }, p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c]) };
-    heap.load("653100411");
-</script>
-
-<meta name="author" content="Andy Wegner" />
-<meta name="description" content="After proving AI could beat most technical assessments, I had to rebuild how I hire engineers. Here&#39;s the process I&#39;ve developed; focused on what actually predicts success on the job." />
-<meta name="keywords" content="job, leadership, ai-interviews">
-
-
-  <meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"/>
-  <meta property="og:title" content="I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them."/>
-  <meta property="og:description" content="After proving AI could beat most technical assessments, I had to rebuild how I hire engineers. Here&#39;s the process I&#39;ve developed; focused on what actually predicts success on the job."/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html"/>
-  <meta property="og:type" content="article"/>
-  <meta property="article:published_time" content="2026-03-25 15:00:00-05:00"/>
-  <meta property="article:modified_time" content=""/>
-  <meta property="article:author" content="https://andrewwegner.com/">
-  <meta property="article:section" content="Leadership"/>
-  <meta property="article:tag" content="job"/>
-  <meta property="article:tag" content="leadership"/>
-  <meta property="article:tag" content="ai-interviews"/>
-  <meta property="og:image" content="/images/wegner_headshot.png">
-
-  <title>I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them.  · Andrew Wegner | Ponderings of an Andy
-</title>
-
-</head>
-
-<body class="light-theme" >
-
-<aside class="aside-border">
-  <div class="aside-cont">
-<a href="https://andrewwegner.com/">
-    <img class="hex-logo" src="/images/wegner_headshot.png" alt="Andrew Wegner | Ponderings of an Andy" title="Andrew Wegner | Ponderings of an Andy">
-</a>
-
-    <nav id="nav-links">
-      <ul class="list">
-
-
-
-        <li>
-          <a target="_self" href="/">Home</a>
-        </li>
-        <li>
-          <a target="_self" href="/about/">About Me</a>
-        </li>
-        <li>
-          <a target="_self" href="/archives.html">Archives</a>
-        </li>
-        <li>
-          <a target="_self" href="/categories.html">Categories</a>
-        </li>
-        <li>
-          <a target="_self" href="/tags.html">Tags</a>
-        </li>
-      </ul>
-    </nav>
-
-    <h3>Article Contents</h3>
-    <hr />
-    <nav class="toc">
-      <div class="toc">
-<ul>
-<li><a href="#the-interview-process-i-used-to-run">The interview process I used to run</a></li>
-<li><a href="#what-timed-assessments-and-take-homes-actually-measure">What timed assessments and take-homes actually measure</a></li>
-<li><a href="#what-i-look-for-instead">What I look for instead</a><ul>
-<li><a href="#mid-level-and-senior-engineers">Mid-level and senior engineers</a></li>
-<li><a href="#junior-engineers">Junior engineers</a></li>
-<li><a href="#leads-and-directors">Leads and directors</a></li>
-<li><a href="#technical-product-managers">Technical product managers</a></li>
-</ul>
-</li>
-<li><a href="#the-soft-skills-that-predict-long-term-success">The soft skills that predict long-term success</a></li>
-<li><a href="#designing-interviews-that-ai-cant-shortcut">Designing interviews that AI can't shortcut</a></li>
-<li><a href="#what-i-havent-solved-yet">What I haven't solved yet</a></li>
-<li><a href="#what-actually-matters">What actually matters</a></li>
-</ul>
-</div>
-    </nav>
-
-<ul class="social">
-  <div class="itsmefooter">Andy Wegner</div>
-  <li>
-    <a id="andy-linkedin" class="sc-linkedin" rel="me"  href="https://www.linkedin.com/in/andrew-wegner/"
-      target="_blank">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-stackoverflow" class="sc-stack-overflow" rel="me"  href="https://stackoverflow.com/users/189134/andy"
-      target="_blank">
-      <i class="fa-brands fa-stack-overflow"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-github" class="sc-github" rel="me"  href="https://github.com/AWegnerGitHub/"
-      target="_blank">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-resume" class="sc-file-pdf"  href="/resume.pdf"
-      target="_blank">
-      <i class="fa-solid fa-file-pdf"></i>
-    </a>
-  </li>
-  <li>
-    <a id="andy-blogemail" class="sc-envelope" rel="me"  href="mailto:blog.feedback@andrewwegner.com"
-      target="_blank">
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-  </li>
-</ul>
-  </div>
-
-  <script type="text/javascript">
-
-    let acont = document.getElementsByClassName("toc content-cont")[0];
-    function back(){
-      acont.style.left = "-24vw";
-    }
-    function openCont(){
-      acont.style.left = "-1vw";
-    }
-  </script>
-</aside>
-  <main>
-
-<article class="single">
-  <header>
-    
-<nav>
-    <ul class="article-breadcrumbs">
-        <li><a href="/"><i class="fa-sharp fa-solid fa-house"></i>&nbsp;Home</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/categories.html">Categories</a></li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/category/leadership.html">Leadership</a>
-        </li>
-        <li><i class="fa-solid fa-greater-than"></i>&nbsp;<a href="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html"><i
-                    class="fa-solid fa-book"></i>&nbsp;<span class="breadcrumb-article">I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them.</span></li></a></li>
-    </ul>
-</nav>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-  {
-    "@type": "ListItem",
-    "position": 1,
-    "item": 
-    {
-      "@id": "/",
-      "name": "Andrew Wegner | Ponderings of an Andy"
-    }
-  },
-  {
-    "@type": "ListItem",
-    "position": 2,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/categories.html",
-      "name": "Categories"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 3,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/category/leadership.html",
-      "name": "Leadership"
-    }
-  }
-  ,{
-    "@type": "ListItem",
-    "position": 4,
-    "item": 
-    {
-      "@id": "https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html",
-      "name": "https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html"
-    }
-  }
-  ]
-}
-</script>    <h1 id="ai-broke-our-interview-process-i-had-to-fix-it">I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them.</h1>
-    <p>
-      Posted on Wed 25 March 2026 in <a href="https://andrewwegner.com/category/leadership.html">Leadership</a>
-
-
-    <div class="tag-cloud">
-      <p>
-        <a href="https://andrewwegner.com/tag/job.html">job</a>
-        <a href="https://andrewwegner.com/tag/leadership.html">leadership</a>
-        <a href="https://andrewwegner.com/tag/ai-interviews.html">ai-interviews</a>
-      </p>
-    </div>
-    </p>
-  </header>
-
-  <div>
-    
-<h2 id="the-interview-process-i-used-to-run">The interview process I used to run<a class="headerlink" href="#the-interview-process-i-used-to-run" title="Permanent link">¶</a></h2>
-<p>For years, I used timed online assessments as part of my hiring process. At PacketFabric, when we needed to scale the engineering team rapidly during our Series B, I helped evaluate several assessment platforms to find one that balanced candidate experience with the quality of signal we received as hiring managers. We landed on <a href="https://www.woventeams.com/">Woven</a>, and it worked. The assessments helped us move quickly through a high volume of candidates and gave us comparable data points across applicants.</p>
-<p>I had doubts, though. I've been opposed to LeetCode style interviews forever. Woven wasn't LeetCode as it provided amazing feedback to the candidate on what did and did not work. I liked the company so much that <a href="https://andrewwegner.com/woven-client-to-woven-employee.html">I joined Woven</a> for a while. But even with the best assessment platform I'd found, I saw cracks. The candidates who passed the assessments and joined the team didn't always succeed in the ways I expected. Some produced clean code under time pressure but struggled to collaborate with the team. Others passed technical screens convincingly but couldn't translate that skill into shipping features in a real codebase with real constraints. The assessment told me they could solve a problem in isolation. It told me very little about whether they could do the actual job.</p>
-<p>Then ChatGPT arrived, and my doubts became certainties.</p>
-<p>In late 2022 and early 2023, I ran ChatGPT through technical assessments on <a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">LeetCode</a>, <a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html">TestGorilla</a>, <a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html">CodeSignal</a>, <a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html">Codility</a>, <a href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html">HackerRank</a>, and <a href="https://andrewwegner.com/chatgpt-beats-more-interview-assessments.html">CoderByte</a>. It passed most of them. Not marginally; it produced solutions that would have advanced through our pipeline. That wasn't a theoretical concern anymore. If a freely available tool could pass our technical assessment, we weren't evaluating engineering skill. We were evaluating test-taking ability, and we now had a machine that was better at test-taking than many humans. </p>
-<p>That was 2022 and 2023. We are now several AI model generations beyond that early ChatGPT. Tools like Claude Code, Codex, Cursor, and GitHub Copilot are used by millions of developers daily. These aren't novelty chatbots any longer. They're integrated development environments that write, debug, and refactor production code. The gap between what AI could do when I ran those tests and what it can do today is enormous. Any assessment that was vulnerable to early ChatGPT is trivially solvable now.</p>
-<p>I had to rebuild how I hire.</p>
-<h2 id="what-timed-assessments-and-take-homes-actually-measure">What timed assessments and take-homes actually measure<a class="headerlink" href="#what-timed-assessments-and-take-homes-actually-measure" title="Permanent link">¶</a></h2>
-<p>Timed assessments reward speed and pattern recognition under artificial pressure. That correlates poorly with the actual work. Nobody ships production code in 45 minutes with a countdown timer and no access to documentation. The skills that make someone fast on a Codility problem like memorized algorithms, familiarity with specific puzzle patterns, comfort performing under observation, are not the same skills that make someone effective on a team building real products.</p>
-<p>Take-home projects have the opposite problem. Without time constraints or observation, there's no way to verify who actually did the work, how long it took, or what tools they used. Even before AI, take-homes had issues: they disproportionately disadvantage candidates with families or other time commitments, and they're difficult to evaluate consistently across candidates.</p>
-<p>Both formats share a deeper flaw though. They optimize for a narrow technical signal while telling you almost nothing about how a person thinks, communicates, or works with others. I've seen candidates pass assessments convincingly and then struggle on the job because they couldn't explain their decisions to a colleague, couldn't adapt when requirements changed, or couldn't take ownership of a system beyond the specific code they wrote. The assessment didn't predict any of that. It just told me they could solve a contrived problem under contrived conditions.</p>
-<p>I want to be fair to these tools, though. They feel rigorous and objective on the surface. That's why they're popular. The scores are comparable, the process is standardized, and it feels like you're making data-driven decisions. But the data is measuring the wrong thing.</p>
-<h2 id="what-i-look-for-instead">What I look for instead<a class="headerlink" href="#what-i-look-for-instead" title="Permanent link">¶</a></h2>
-<p>My core philosophy has stayed the same across companies even though the specific steps change based on the team, the roles, and the company's needs. The philosophy is this: I want to understand how someone thinks, how they communicate, and whether they take genuine ownership of their work. The specific technology matters, but it matters less than those three things.</p>
-<p>How I evaluate depends on the level of the role.</p>
-<h3 id="mid-level-and-senior-engineers">Mid-level and senior engineers<a class="headerlink" href="#mid-level-and-senior-engineers" title="Permanent link">¶</a></h3>
-<p>For experienced candidates, I focus on past project deep-dives. I ask the candidate to describe something they built - not a rehearsed elevator pitch, but a real system they worked on. Then I poke at it.</p>
-<p>The questions I ask depend on what the candidate brings up, and I rotate through several lines of inquiry based on what I'm hearing. If someone describes a system they architected, I'll ask about the tradeoffs they made and why. If they describe a project that clearly had rough patches, I'll ask what went wrong and dig into how they handled it. This isn't because "tell me about a failure" is a novel question, but because the follow-up conversation reveals depth. The most telling question, though, is usually some form of "what would you do differently if you built this again?" Candidates who were deeply involved in a project have learned something from it. They have opinions about what they'd change. Candidates who are exaggerating their involvement tend to stumble here because they haven't actually wrestled with the consequences of the original decisions.</p>
-<p>About half of the candidates I interview can genuinely defend their decisions in this format. The other half can describe what they built but can't articulate why they made the choices they did, or what they learned from the experience. That's the signal. I'm not looking for perfect decisions. I'm looking for evidence that they understand systems deeply enough to reason about them, not just implement them.</p>
-<p>For more senior and architecturally-focused roles, I lean harder on design tradeoff discussions. For mid-level engineers, I focus more on the "what went wrong" and "what would you change" angles, which are more accessible and still reveal a lot.</p>
-<h3 id="junior-engineers">Junior engineers<a class="headerlink" href="#junior-engineers" title="Permanent link">¶</a></h3>
-<p>Past project deep-dives work less well for junior candidates. They don't have enough experience to defend decisions they haven't had the opportunity to make yet. Asking a recent graduate to explain the architectural tradeoffs of their senior capstone project isn't a fair evaluation.</p>
-<p>Instead, I use a small live coding exercise. Something that can be written in 5-10 lines of code, with multiple valid approaches. For example, a problem that can be solved iteratively and recursively. I ask them to write it one way and we talk through it for a minute or two. Then I ask them to write it the other way. I don't tell them in advance that I'll ask for the alternative approach. I want to see what they do naturally when the problem shifts.</p>
-<p>The code itself is almost secondary. What I'm evaluating is the conversation. Can they reason about the difference between the two approaches? Can they articulate why one might be preferable in a given context? Do they get flustered when asked to think differently, or do they engage with the challenge? A junior engineer who writes imperfect code but can reason clearly about alternatives and ask good questions is far more promising than one who produces a clean solution but can't explain their thinking.</p>
-<h3 id="leads-and-directors">Leads and directors<a class="headerlink" href="#leads-and-directors" title="Permanent link">¶</a></h3>
-<p>For leadership roles, I shift to scenario and system design conversations. Less about code, more about organizational and architectural judgment. How would you structure a team to build a particular kind of system? How would you evaluate and prioritize a backlog of technical debt? How do you handle a situation where product and engineering disagree on timeline or scope? The signal here is similar to the engineering deep-dives. I'm listening for whether a candidate can reason through ambiguity, make a decision with incomplete information, and explain their thinking clearly. A strong candidate will ask clarifying questions, acknowledge tradeoffs, and arrive at a defensible position. A weak candidate will give a textbook answer that doesn't account for the messy reality of the scenario.</p>
-<h3 id="technical-product-managers">Technical product managers<a class="headerlink" href="#technical-product-managers" title="Permanent link">¶</a></h3>
-<p>I also interview Technical Product Managers (TPM), and the approach shares the same philosophy as the engineering deep-dives. I'll present a feature or problem that has already been solved so that I have detailed knowledge of what has worked. I ask them to walk through how they'd approach it. I'm watching how they think through the problem, what questions they ask, what tradeoffs they identify, and how they communicate their reasoning. Then during the conversation, I poke at their decisions the same way I would if I were working through the problem with a TPM on my team. Can they explain why they prioritized one approach over another? Can they articulate the user impact? Can they adjust their thinking when I introduce a constraint they hadn't considered? This fits directly into the communication signal I look for across every role which is the ability to reason through a problem, defend your position, and adapt when new information arrives.</p>
-<h2 id="the-soft-skills-that-predict-long-term-success">The soft skills that predict long-term success<a class="headerlink" href="#the-soft-skills-that-predict-long-term-success" title="Permanent link">¶</a></h2>
-<p>Technical skill gets someone through the interview. Soft skills determine whether they succeed on the team. I assess these through a combination of specific questions, observing behavior throughout the interview, and paying close attention to how candidates describe the systems and processes they've worked in.</p>
-<p>Three signals have been the strongest predictors across my career:</p>
-<p><strong>Ownership without ego.</strong> I want someone who takes responsibility for the system, not just the lines of code they wrote. But ownership can become toxic when it turns into "this is my baby and it's always right and the user is wrong." The best engineers own the outcome for the user, not just the implementation. When something breaks, they don't deflect. But they also don't get defensive when someone suggests a different approach or when a user reports that the system isn't working the way they intended. You can often hear the difference in how candidates describe past work: do they talk about what "I built" in isolation, or do they talk about how the system served its users and how the team improved it over time?</p>
-<p><strong>Communication.</strong> Can they explain a technical decision to someone who isn't an engineer? Can they disagree with a colleague constructively? The interview itself is a communication exercise and I'm paying attention to how clearly they explain their past projects, how they handle follow-up questions, and whether they can adjust their level of detail based on the conversation. An engineer who can only communicate with other engineers who share their context will hit a ceiling quickly, regardless of their technical ability.</p>
-<p><strong>Curiosity and willingness to learn.</strong> The technology stack will change. The industry is already changing and AI has introduced so much disruption in such a short time that it is vital candidates are willing to learn and adapt. I've worked across many industries in my career, and the engineers who thrived through transitions were the ones who were genuinely energized by learning something new rather than threatened by it. In interviews, I listen for whether candidates describe their learning in terms of genuine interest or obligation. "I had to learn Kubernetes for the role" sounds very different from "I got interested in how our deployment pipeline could be more reliable, which led me to Kubernetes."</p>
-<h2 id="designing-interviews-that-ai-cant-shortcut">Designing interviews that AI can't shortcut<a class="headerlink" href="#designing-interviews-that-ai-cant-shortcut" title="Permanent link">¶</a></h2>
-<p>The ChatGPT experiment wasn't just a blog series - it fundamentally changed how I approach hiring. My current process is designed so that AI assistance is either irrelevant or immediately visible.</p>
-<p>You can't have ChatGPT defend your past project decisions in a live conversation. When I ask a candidate what they'd do differently about a system they built two years ago, there's no prompt that generates an authentic answer. The deep-dive format is inherently AI-resistant because it's evaluating lived experience, not producible knowledge.</p>
-<p>For the junior coding exercises, the code portion could theoretically be AI-assisted. But the follow-up conversation, "now write it the other way, and explain why you'd choose one approach over the other", reveals immediately whether the candidate understands what they wrote. I've caught candidates who clearly used AI for their solution and then could not explain their own code when I asked follow-up questions. The conversation is the evaluation, not the code.</p>
-<p>My position on AI use in interviews is nuanced. I don't ban AI tools, but I do expect candidates to disclose if they're using them. If a candidate uses AI and tells me about it, we can have a productive conversation about how they used it and what their own contribution was. If we've asked, and they haven't disclosed, that's a failure of integrity that outweighs technical competence. When you're hiring someone to join a team, trust matters as much as skill.</p>
-<p>This isn't a hypothetical concern. I've encountered candidates who were clearly using AI during interviews and couldn't explain their own answers. I'm not alone. <a href="https://www.cnbc.com/2025/03/09/google-ai-interview-coder-cheat.html">CNBC reported in 2025</a> that tools like Interview Coder and Cluely now use invisible screen overlays that are undetectable by standard screen sharing, and hiring managers describe the telltale pattern of a pause, an "Hmm," and then a suspiciously perfect answer. An <a href="https://www.fabrichq.ai/blogs/state-of-ai-interview-cheating-in-2026-insights-from-19-368-interviews">analysis of over 19,000 interviews by Fabric</a> found that cheating adoption more than doubled from 15% to 35% between June and December 2025, with technical roles showing a 48% cheating rate.</p>
-<p>I've also encountered the broader trend of candidates working at multiple companies simultaneously. This is a <a href="https://fortune.com/2025/08/03/workers-holding-multiple-full-time-jobs-secretly-remote-work-40-hour-week-overemployment-high-income/">real and growing problem in remote engineering</a>. A <a href="https://www.resumebuilder.com/7-in-10-remote-workers-have-multiple-jobs/">ResumeBuilder.com survey</a> found that 37% of remote workers hold two full-time jobs, with AI tools making it increasingly feasible to juggle multiple roles within a standard workweek. Both of these trends make it even more critical that your interview process evaluates the actual human sitting across from you, not just the output they produce.</p>
-<h2 id="what-i-havent-solved-yet">What I haven't solved yet<a class="headerlink" href="#what-i-havent-solved-yet" title="Permanent link">¶</a></h2>
-<p>No hiring process is perfect, and I don't want to pretend mine is. There are areas I'm still actively working to improve.</p>
-<p>Evaluating candidates from very different technology stacks remains a challenge. When someone's entire career has been in a language or ecosystem that's different from what we use, the past project deep-dive still works for assessing how they think, but it's harder to gauge how quickly they'll become productive in a new environment. I haven't found a clean solution for this that doesn't fall back on the kind of generalized assessments I've moved away from.</p>
-<p>Scaling the process is another challenge. Deep-dive conversations take time and they're significantly more time-intensive per candidate than a timed assessment that can be administered asynchronously. When you're hiring for many roles simultaneously, the time cost is real. I've mitigated this by involving more of the team in interviews, but that creates its own overhead.</p>
-<p>And the overall hiring pipeline is still slower than I'd like. The industry-wide process of sourcing, screening, interviewing, and closing candidates has friction at every stage. Improving my interview process doesn't fix the weeks lost to scheduling coordination, offer negotiations, and notice periods.</p>
-<h2 id="what-actually-matters">What actually matters<a class="headerlink" href="#what-actually-matters" title="Permanent link">¶</a></h2>
-<p>I've been hiring engineers across industries for nearly two decades and for companies ranging from pre-seed startups to Fortune 500 corporations. I've been wrong about candidates in both directions; people I was confident about who didn't work out, and people I had reservations about who became some of the strongest members of the team.</p>
-<p>What I've learned is that the interview process should evaluate what actually matters on the job: Can this person reason about complex systems? Can they communicate clearly and work constructively with others? Do they take ownership of outcomes, not just code? Are they honest about what they know and what they don't?</p>
-<p>No timed assessment answers those questions. A conversation does.</p>
-  </div>
-<div class="neighbors">
-  <a class="btn float-left" href="https://andrewwegner.com/why-remote-work-is-good-for-your-team.html"
-    title="The Remote Engineering Leadership Playbook: Why Distance Doesn't Diminish Performance">
-    <i class="fa fa-angle-left"></i> Previous Post
-  </a>
-</div>
-
-
-
-  <hr />
-  <div>
-            <span class="author_blurb"><a href="https://andrewwegner.com/about/" rel="author"><span class="author_name">Andy Wegner</span></a> -
-             is a father, an engineer and a computer scientist. He is interested in online
-            community building, tinkering with new code and building new applications.
-            He writes about his experiences with each of these.</span>
-
-  </div>
-
-
-  <div class="related-posts">
-    <h4>Part 10 of the Leadership Thoughts series</h4>
-    <h5>Previous articles</h5>
-    <ul>
-      <li><a href="https://andrewwegner.com/top-soft-skills-senior-developers-need.html">10 Soft Skills to Look For in Senior Software Developers</a></li>
-      <li><a href="https://andrewwegner.com/remote-work-thoughts-about-offices.html">My thoughts on what remote work will look like in the coming decade</a></li>
-      <li><a href="https://andrewwegner.com/ideal-engineering-interviews.html">What should a software engineering interview look like?</a></li>
-      <li><a href="https://andrewwegner.com/management-failure-unlimited-pto.html">Failure of Management - Unlimited PTO</a></li>
-      <li><a href="https://andrewwegner.com/scaling-teams-without-losing-culture.html">Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture</a></li>
-      <li><a href="https://andrewwegner.com/tech-debt-management-strategic-approach.html">Technical Debt Management: A Strategic Approach</a></li>
-      <li><a href="https://andrewwegner.com/leading-distributed-teams-lessons.html">Leading Distributed Teams: Lessons from Managing Global Engineering Teams</a></li>
-      <li><a href="https://andrewwegner.com/junior-engineer-crisis-ai-code-generation.html">Junior Engineer Crisis: How AI Code Generation is Reshaping Engineering Teams</a></li>
-      <li><a href="https://andrewwegner.com/why-remote-work-is-good-for-your-team.html">The Remote Engineering Leadership Playbook: Why Distance Doesn't Diminish Performance</a></li>
-    </ul>
-  </div>
-</article>
-
-<script type="application/ld+json">
-{
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them. — Andrew Wegner | Ponderings of an Andy</title><meta name="description" content="After proving AI could beat most technical assessments, I had to rebuild how I hire engineers. Here&#39;s the process I&#39;ve developed; focused on what actually predicts success on the job."><meta name="author" content="Andy Wegner"><link rel="canonical" href="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://andrewwegner.com/sitemap.xml"><link rel="icon" href="https://andrewwegner.com/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="https://andrewwegner.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://andrewwegner.com/favicon-16x16.png"><link rel="apple-touch-icon" href="https://andrewwegner.com/apple-touch-icon.png"><link rel="manifest" href="https://andrewwegner.com/site.webmanifest"><meta name="theme-color" content="#080019"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy (Atom)" href="https://andrewwegner.com/feeds/all.atom.xml"><link rel="alternate" type="application/atom+xml" title="Andrew Wegner | Ponderings of an Andy — Leadership (Atom)" href="https://andrewwegner.com/feeds/{slug}.atom.xml"><meta property="og:site_name" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:type" content="website"><meta property="og:title" content="Andrew Wegner | Ponderings of an Andy"><meta property="og:url" content="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html"><meta property="og:description" content="Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."><meta property="og:image" content="https://andrewwegner.com/images/wegner_headshot.png"><meta name="twitter:card" content="summary"><meta property="og:type" content="article"><meta property="og:title" content="I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them."><meta property="og:url" content="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html"><meta property="og:description" content="After proving AI could beat most technical assessments, I had to rebuild how I hire engineers. Here&#39;s the process I&#39;ve developed; focused on what actually predicts success on the job."><meta property="article:published_time" content="2026-03-25T15:00:00-05:00"><meta property="article:section" content="Leadership"><meta property="article:tag" content="job"><meta property="article:tag" content="leadership"><meta property="article:tag" content="ai-interviews"><link rel="stylesheet" href="https://andrewwegner.com/theme/css/site.css"><script src="https://andrewwegner.com/theme/js/site.js" defer="defer"></script><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Andrew Wegner | Ponderings of an Andy",
+  "url": "https://andrewwegner.com",  "image": "https://andrewwegner.com/images/wegner_headshot.png",  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
+}</script><script type="application/ld+json">{
   "@context": "http://schema.org",
   "@type": "BlogPosting",
   "name": "I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them.",
   "headline": "I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them.",
-  "dateCreated": "2026-03-25 15:00:00-05:00",
-  "datePublished": "2026-03-25 15:00:00-05:00",
-  "dateModified": "",
-  "copyrightYear": "2026",
+  "dateCreated": "2026-03-25T15:00:00-05:00",
+  "datePublished": "2026-03-25T15:00:00-05:00",  "dateModified": "2026-03-25T15:00:00-05:00",  "copyrightYear": "2026",
   "copyrightHolder": {
     "@type": "Person",
-    "name": "Andy Wegner",
+    "name": "Andrew Wegner",
     "url": "https://andrewwegner.com"
   },
   "author": {
-      "@type": "Person",
-      "@id": "https://andrewwegner.com/#andrew"
+    "@type": "Person",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
   },
   "publisher": {
     "@type": "Person",
-    "@id": "https://andrewwegner.com/#andrew"
-  },
-  "image": "/images/wegner_headshot.png",
-  "url": "https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html",
-  "description": "After proving AI could beat most technical assessments, I had to rebuild how I hire engineers. Here's the process I've developed; focused on what actually predicts success on the job.",
+    "@id": "https://andrewwegner.com/#andrew",
+    "name": "Andrew Wegner",
+    "url": "https://andrewwegner.com"
+  },  "url": "https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html",
+  "description": "After proving AI could beat most technical assessments, I had to rebuild how I hire engineers. Here&#39;s the process I&#39;ve developed; focused on what actually predicts success on the job.",
   "mainEntityOfPage": "True",
   "articleSection": "Leadership"
-}
-</script>
-<footer>
-<p>&copy; 2026 Andrew Wegner</p>
-</footer>  </main>
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Andrew Wegner | Ponderings of an Andy ",
-  "url" : "https://andrewwegner.com",
-  "image": "/images/wegner_headshot.png",
-  "description": "Andrew Wegner (Andy Wegner) - VP Strategic Software at Zayo, Stack Overflow moderator. Engineering leadership insights, Python tutorials, and technical articles from 15+ years building global software teams."
-}
-</script>
-</body>
-
-</html>
+}</script></head><body data-page-type="article" data-page-slug="ai-broke-our-interview-process-i-had-to-fix-it" data-track-scroll="1"><a href="#main-content" class="skip-link">Skip to main content</a><div class="site light compact"><header class="nav"><div class="nav-inner"><div class="nav-brand-col"><a href="https://andrewwegner.com/index.html" class="wordmark wordmark-hidden"><span class="hex-logo" aria-hidden="true"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""> </span><span class="wordmark-caption"><span class="wordmark-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="wordmark-role"><span>VP,</span> <span>Strategic Software</span></span></span></a></div><div class="nav-main-col"><nav class="nav-links"><a href="https://andrewwegner.com/about/">About</a> <a href="https://andrewwegner.com/archives.html">Archives</a> <a href="https://andrewwegner.com/categories.html">Categories</a> <a href="https://andrewwegner.com/tags.html">Tags</a></nav></div></div></header><div class="page"><aside class="sidebar"><div class="sidebar-inner"><div class="sidebar-brand sidebar-brand-visible" aria-hidden="true"><span class="hex-logo hex-logo-lg"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt=""></span><div class="sidebar-caption"><span class="sidebar-name"><span>Andrew</span> <span><b>Wegner</b></span> </span><span class="sidebar-role"><span>VP,</span> <span>Strategic Software</span></span></div></div><nav class="sidebar-social" aria-label="Contact Andrew"><a href="https://www.linkedin.com/in/andrew-wegner/" class="sidebar-social-link" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.83v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.7c0-1.36-.03-3.1-1.89-3.1-1.89 0-2.18 1.48-2.18 3V21h-4V9z"/></svg> </a><a href="https://github.com/AWegnerGitHub/" class="sidebar-social-link" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-1.92c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1v3.11c0 .3.21.67.8.55 4.57-1.52 7.85-5.83 7.85-10.9C23.5 5.65 18.35.5 12 .5z"/></svg> </a><a href="https://stackoverflow.com/users/189134/andy" class="sidebar-social-link" aria-label="Stack Overflow profile" target="_blank" rel="noopener noreferrer"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19 22H5v-8H3v10h18V14h-2v8z"/><path d="M7 20h10v-2H7v2zm.52-4.48l9.76 2.03.4-1.92-9.76-2.03-.4 1.92zm1.03-5.05l9 4.18.81-1.74-9-4.18-.81 1.74zM10.78 5.61l7.47 6.21 1.2-1.46-7.47-6.21-1.2 1.46zM15.39 1.04l-1.62 1.14 5.64 7.75 1.62-1.15-5.64-7.74z"/></svg> </a><a href="https://andrewwegner.com/resume.pdf" class="sidebar-social-link" aria-label="Download résumé (PDF)"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><polyline points="14 3 14 9 20 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> </a><a href="mailto:blog.feedback@andrewwegner.com" class="sidebar-social-link" aria-label="Email Andrew Wegner"><svg class="sidebar-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></nav></div></aside><main class="main" id="main-content" tabindex="-1"><article class="article"><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://andrewwegner.com/index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/categories.html">Categories</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="https://andrewwegner.com/category/leadership.html">Leadership</a></nav><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://andrewwegner.com/index.html",
+        "name": "Home"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://andrewwegner.com/categories.html",
+        "name": "Categories"
+      }
+    },    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://andrewwegner.com/category/leadership.html",
+        "name": "Leadership"
+      }
+    }  ]
+}</script><header class="article-header"><div class="article-eyebrow"><span class="eyebrow-dot"></span> <span>Leadership</span> <span class="article-eyebrow-dot">·</span> <span>Part 10 of 10 · Leadership Thoughts</span></div><h1 class="article-title">I Proved AI Could Beat Our Technical Interviews. Then I Had to Fix Them.</h1><p class="article-summary">After proving AI could beat most technical assessments, I had to rebuild how I hire engineers. Here's the process I've developed; focused on what actually predicts success on the job.</p><div class="article-meta"><time datetime="2026-03-25T15:00:00-05:00" class="article-meta-date">Wed 25 March 2026</time><div class="article-meta-tags"><a href="https://andrewwegner.com/tag/job.html" class="tag">#job</a> <a href="https://andrewwegner.com/tag/leadership.html" class="tag">#leadership</a> <a href="https://andrewwegner.com/tag/ai-interviews.html" class="tag">#ai-interviews</a></div></div></header><div class="article-layout"><div class="article-body" id="article-body"><div class="article-toc-inline"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#the-interview-process-i-used-to-run">The interview process I used to run</a></li><li><a href="#what-timed-assessments-and-take-homes-actually-measure">What timed assessments and take-homes actually measure</a></li><li><a href="#what-i-look-for-instead">What I look for instead</a><ul><li><a href="#mid-level-and-senior-engineers">Mid-level and senior engineers</a></li><li><a href="#junior-engineers">Junior engineers</a></li><li><a href="#leads-and-directors">Leads and directors</a></li><li><a href="#technical-product-managers">Technical product managers</a></li></ul></li><li><a href="#the-soft-skills-that-predict-long-term-success">The soft skills that predict long-term success</a></li><li><a href="#designing-interviews-that-ai-cant-shortcut">Designing interviews that AI can't shortcut</a></li><li><a href="#what-i-havent-solved-yet">What I haven't solved yet</a></li><li><a href="#what-actually-matters">What actually matters</a></li></ul></div></div><div class="prose"><h2 id="the-interview-process-i-used-to-run">The interview process I used to run<a class="headerlink" href="#the-interview-process-i-used-to-run" title="Permanent link">¶</a></h2><p>For years, I used timed online assessments as part of my hiring process. At PacketFabric, when we needed to scale the engineering team rapidly during our Series B, I helped evaluate several assessment platforms to find one that balanced candidate experience with the quality of signal we received as hiring managers. We landed on <a href="https://www.woventeams.com/">Woven</a>, and it worked. The assessments helped us move quickly through a high volume of candidates and gave us comparable data points across applicants.</p><p>I had doubts, though. I've been opposed to LeetCode style interviews forever. Woven wasn't LeetCode as it provided amazing feedback to the candidate on what did and did not work. I liked the company so much that <a href="https://andrewwegner.com/woven-client-to-woven-employee.html">I joined Woven</a> for a while. But even with the best assessment platform I'd found, I saw cracks. The candidates who passed the assessments and joined the team didn't always succeed in the ways I expected. Some produced clean code under time pressure but struggled to collaborate with the team. Others passed technical screens convincingly but couldn't translate that skill into shipping features in a real codebase with real constraints. The assessment told me they could solve a problem in isolation. It told me very little about whether they could do the actual job.</p><p>Then ChatGPT arrived, and my doubts became certainties.</p><p>In late 2022 and early 2023, I ran ChatGPT through technical assessments on <a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html">LeetCode</a>, <a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html">TestGorilla</a>, <a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html">CodeSignal</a>, <a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html">Codility</a>, <a href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html">HackerRank</a>, and <a href="https://andrewwegner.com/chatgpt-beats-more-interview-assessments.html">CoderByte</a>. It passed most of them. Not marginally; it produced solutions that would have advanced through our pipeline. That wasn't a theoretical concern anymore. If a freely available tool could pass our technical assessment, we weren't evaluating engineering skill. We were evaluating test-taking ability, and we now had a machine that was better at test-taking than many humans.</p><p>That was 2022 and 2023. We are now several AI model generations beyond that early ChatGPT. Tools like Claude Code, Codex, Cursor, and GitHub Copilot are used by millions of developers daily. These aren't novelty chatbots any longer. They're integrated development environments that write, debug, and refactor production code. The gap between what AI could do when I ran those tests and what it can do today is enormous. Any assessment that was vulnerable to early ChatGPT is trivially solvable now.</p><p>I had to rebuild how I hire.</p><h2 id="what-timed-assessments-and-take-homes-actually-measure">What timed assessments and take-homes actually measure<a class="headerlink" href="#what-timed-assessments-and-take-homes-actually-measure" title="Permanent link">¶</a></h2><p>Timed assessments reward speed and pattern recognition under artificial pressure. That correlates poorly with the actual work. Nobody ships production code in 45 minutes with a countdown timer and no access to documentation. The skills that make someone fast on a Codility problem like memorized algorithms, familiarity with specific puzzle patterns, comfort performing under observation, are not the same skills that make someone effective on a team building real products.</p><p>Take-home projects have the opposite problem. Without time constraints or observation, there's no way to verify who actually did the work, how long it took, or what tools they used. Even before AI, take-homes had issues: they disproportionately disadvantage candidates with families or other time commitments, and they're difficult to evaluate consistently across candidates.</p><p>Both formats share a deeper flaw though. They optimize for a narrow technical signal while telling you almost nothing about how a person thinks, communicates, or works with others. I've seen candidates pass assessments convincingly and then struggle on the job because they couldn't explain their decisions to a colleague, couldn't adapt when requirements changed, or couldn't take ownership of a system beyond the specific code they wrote. The assessment didn't predict any of that. It just told me they could solve a contrived problem under contrived conditions.</p><p>I want to be fair to these tools, though. They feel rigorous and objective on the surface. That's why they're popular. The scores are comparable, the process is standardized, and it feels like you're making data-driven decisions. But the data is measuring the wrong thing.</p><h2 id="what-i-look-for-instead">What I look for instead<a class="headerlink" href="#what-i-look-for-instead" title="Permanent link">¶</a></h2><p>My core philosophy has stayed the same across companies even though the specific steps change based on the team, the roles, and the company's needs. The philosophy is this: I want to understand how someone thinks, how they communicate, and whether they take genuine ownership of their work. The specific technology matters, but it matters less than those three things.</p><p>How I evaluate depends on the level of the role.</p><h3 id="mid-level-and-senior-engineers">Mid-level and senior engineers<a class="headerlink" href="#mid-level-and-senior-engineers" title="Permanent link">¶</a></h3><p>For experienced candidates, I focus on past project deep-dives. I ask the candidate to describe something they built - not a rehearsed elevator pitch, but a real system they worked on. Then I poke at it.</p><p>The questions I ask depend on what the candidate brings up, and I rotate through several lines of inquiry based on what I'm hearing. If someone describes a system they architected, I'll ask about the tradeoffs they made and why. If they describe a project that clearly had rough patches, I'll ask what went wrong and dig into how they handled it. This isn't because "tell me about a failure" is a novel question, but because the follow-up conversation reveals depth. The most telling question, though, is usually some form of "what would you do differently if you built this again?" Candidates who were deeply involved in a project have learned something from it. They have opinions about what they'd change. Candidates who are exaggerating their involvement tend to stumble here because they haven't actually wrestled with the consequences of the original decisions.</p><p>About half of the candidates I interview can genuinely defend their decisions in this format. The other half can describe what they built but can't articulate why they made the choices they did, or what they learned from the experience. That's the signal. I'm not looking for perfect decisions. I'm looking for evidence that they understand systems deeply enough to reason about them, not just implement them.</p><p>For more senior and architecturally-focused roles, I lean harder on design tradeoff discussions. For mid-level engineers, I focus more on the "what went wrong" and "what would you change" angles, which are more accessible and still reveal a lot.</p><h3 id="junior-engineers">Junior engineers<a class="headerlink" href="#junior-engineers" title="Permanent link">¶</a></h3><p>Past project deep-dives work less well for junior candidates. They don't have enough experience to defend decisions they haven't had the opportunity to make yet. Asking a recent graduate to explain the architectural tradeoffs of their senior capstone project isn't a fair evaluation.</p><p>Instead, I use a small live coding exercise. Something that can be written in 5-10 lines of code, with multiple valid approaches. For example, a problem that can be solved iteratively and recursively. I ask them to write it one way and we talk through it for a minute or two. Then I ask them to write it the other way. I don't tell them in advance that I'll ask for the alternative approach. I want to see what they do naturally when the problem shifts.</p><p>The code itself is almost secondary. What I'm evaluating is the conversation. Can they reason about the difference between the two approaches? Can they articulate why one might be preferable in a given context? Do they get flustered when asked to think differently, or do they engage with the challenge? A junior engineer who writes imperfect code but can reason clearly about alternatives and ask good questions is far more promising than one who produces a clean solution but can't explain their thinking.</p><h3 id="leads-and-directors">Leads and directors<a class="headerlink" href="#leads-and-directors" title="Permanent link">¶</a></h3><p>For leadership roles, I shift to scenario and system design conversations. Less about code, more about organizational and architectural judgment. How would you structure a team to build a particular kind of system? How would you evaluate and prioritize a backlog of technical debt? How do you handle a situation where product and engineering disagree on timeline or scope? The signal here is similar to the engineering deep-dives. I'm listening for whether a candidate can reason through ambiguity, make a decision with incomplete information, and explain their thinking clearly. A strong candidate will ask clarifying questions, acknowledge tradeoffs, and arrive at a defensible position. A weak candidate will give a textbook answer that doesn't account for the messy reality of the scenario.</p><h3 id="technical-product-managers">Technical product managers<a class="headerlink" href="#technical-product-managers" title="Permanent link">¶</a></h3><p>I also interview Technical Product Managers (TPM), and the approach shares the same philosophy as the engineering deep-dives. I'll present a feature or problem that has already been solved so that I have detailed knowledge of what has worked. I ask them to walk through how they'd approach it. I'm watching how they think through the problem, what questions they ask, what tradeoffs they identify, and how they communicate their reasoning. Then during the conversation, I poke at their decisions the same way I would if I were working through the problem with a TPM on my team. Can they explain why they prioritized one approach over another? Can they articulate the user impact? Can they adjust their thinking when I introduce a constraint they hadn't considered? This fits directly into the communication signal I look for across every role which is the ability to reason through a problem, defend your position, and adapt when new information arrives.</p><h2 id="the-soft-skills-that-predict-long-term-success">The soft skills that predict long-term success<a class="headerlink" href="#the-soft-skills-that-predict-long-term-success" title="Permanent link">¶</a></h2><p>Technical skill gets someone through the interview. Soft skills determine whether they succeed on the team. I assess these through a combination of specific questions, observing behavior throughout the interview, and paying close attention to how candidates describe the systems and processes they've worked in.</p><p>Three signals have been the strongest predictors across my career:</p><p><strong>Ownership without ego.</strong> I want someone who takes responsibility for the system, not just the lines of code they wrote. But ownership can become toxic when it turns into "this is my baby and it's always right and the user is wrong." The best engineers own the outcome for the user, not just the implementation. When something breaks, they don't deflect. But they also don't get defensive when someone suggests a different approach or when a user reports that the system isn't working the way they intended. You can often hear the difference in how candidates describe past work: do they talk about what "I built" in isolation, or do they talk about how the system served its users and how the team improved it over time?</p><p><strong>Communication.</strong> Can they explain a technical decision to someone who isn't an engineer? Can they disagree with a colleague constructively? The interview itself is a communication exercise and I'm paying attention to how clearly they explain their past projects, how they handle follow-up questions, and whether they can adjust their level of detail based on the conversation. An engineer who can only communicate with other engineers who share their context will hit a ceiling quickly, regardless of their technical ability.</p><p><strong>Curiosity and willingness to learn.</strong> The technology stack will change. The industry is already changing and AI has introduced so much disruption in such a short time that it is vital candidates are willing to learn and adapt. I've worked across many industries in my career, and the engineers who thrived through transitions were the ones who were genuinely energized by learning something new rather than threatened by it. In interviews, I listen for whether candidates describe their learning in terms of genuine interest or obligation. "I had to learn Kubernetes for the role" sounds very different from "I got interested in how our deployment pipeline could be more reliable, which led me to Kubernetes."</p><h2 id="designing-interviews-that-ai-cant-shortcut">Designing interviews that AI can't shortcut<a class="headerlink" href="#designing-interviews-that-ai-cant-shortcut" title="Permanent link">¶</a></h2><p>The ChatGPT experiment wasn't just a blog series - it fundamentally changed how I approach hiring. My current process is designed so that AI assistance is either irrelevant or immediately visible.</p><p>You can't have ChatGPT defend your past project decisions in a live conversation. When I ask a candidate what they'd do differently about a system they built two years ago, there's no prompt that generates an authentic answer. The deep-dive format is inherently AI-resistant because it's evaluating lived experience, not producible knowledge.</p><p>For the junior coding exercises, the code portion could theoretically be AI-assisted. But the follow-up conversation, "now write it the other way, and explain why you'd choose one approach over the other", reveals immediately whether the candidate understands what they wrote. I've caught candidates who clearly used AI for their solution and then could not explain their own code when I asked follow-up questions. The conversation is the evaluation, not the code.</p><p>My position on AI use in interviews is nuanced. I don't ban AI tools, but I do expect candidates to disclose if they're using them. If a candidate uses AI and tells me about it, we can have a productive conversation about how they used it and what their own contribution was. If we've asked, and they haven't disclosed, that's a failure of integrity that outweighs technical competence. When you're hiring someone to join a team, trust matters as much as skill.</p><p>This isn't a hypothetical concern. I've encountered candidates who were clearly using AI during interviews and couldn't explain their own answers. I'm not alone. <a href="https://www.cnbc.com/2025/03/09/google-ai-interview-coder-cheat.html">CNBC reported in 2025</a> that tools like Interview Coder and Cluely now use invisible screen overlays that are undetectable by standard screen sharing, and hiring managers describe the telltale pattern of a pause, an "Hmm," and then a suspiciously perfect answer. An <a href="https://www.fabrichq.ai/blogs/state-of-ai-interview-cheating-in-2026-insights-from-19-368-interviews">analysis of over 19,000 interviews by Fabric</a> found that cheating adoption more than doubled from 15% to 35% between June and December 2025, with technical roles showing a 48% cheating rate.</p><p>I've also encountered the broader trend of candidates working at multiple companies simultaneously. This is a <a href="https://fortune.com/2025/08/03/workers-holding-multiple-full-time-jobs-secretly-remote-work-40-hour-week-overemployment-high-income/">real and growing problem in remote engineering</a>. A <a href="https://www.resumebuilder.com/7-in-10-remote-workers-have-multiple-jobs/">ResumeBuilder.com survey</a> found that 37% of remote workers hold two full-time jobs, with AI tools making it increasingly feasible to juggle multiple roles within a standard workweek. Both of these trends make it even more critical that your interview process evaluates the actual human sitting across from you, not just the output they produce.</p><h2 id="what-i-havent-solved-yet">What I haven't solved yet<a class="headerlink" href="#what-i-havent-solved-yet" title="Permanent link">¶</a></h2><p>No hiring process is perfect, and I don't want to pretend mine is. There are areas I'm still actively working to improve.</p><p>Evaluating candidates from very different technology stacks remains a challenge. When someone's entire career has been in a language or ecosystem that's different from what we use, the past project deep-dive still works for assessing how they think, but it's harder to gauge how quickly they'll become productive in a new environment. I haven't found a clean solution for this that doesn't fall back on the kind of generalized assessments I've moved away from.</p><p>Scaling the process is another challenge. Deep-dive conversations take time and they're significantly more time-intensive per candidate than a timed assessment that can be administered asynchronously. When you're hiring for many roles simultaneously, the time cost is real. I've mitigated this by involving more of the team in interviews, but that creates its own overhead.</p><p>And the overall hiring pipeline is still slower than I'd like. The industry-wide process of sourcing, screening, interviewing, and closing candidates has friction at every stage. Improving my interview process doesn't fix the weeks lost to scheduling coordination, offer negotiations, and notice periods.</p><h2 id="what-actually-matters">What actually matters<a class="headerlink" href="#what-actually-matters" title="Permanent link">¶</a></h2><p>I've been hiring engineers across industries for nearly two decades and for companies ranging from pre-seed startups to Fortune 500 corporations. I've been wrong about candidates in both directions; people I was confident about who didn't work out, and people I had reservations about who became some of the strongest members of the team.</p><p>What I've learned is that the interview process should evaluate what actually matters on the job: Can this person reason about complex systems? Can they communicate clearly and work constructively with others? Do they take ownership of outcomes, not just code? Are they honest about what they know and what they don't?</p><p>No timed assessment answers those questions. A conversation does.</p></div></div><aside class="article-toc" aria-label="Article contents"><div class="article-toc-heading">Article Contents</div><div class="toc"><ul><li><a href="#the-interview-process-i-used-to-run">The interview process I used to run</a></li><li><a href="#what-timed-assessments-and-take-homes-actually-measure">What timed assessments and take-homes actually measure</a></li><li><a href="#what-i-look-for-instead">What I look for instead</a><ul><li><a href="#mid-level-and-senior-engineers">Mid-level and senior engineers</a></li><li><a href="#junior-engineers">Junior engineers</a></li><li><a href="#leads-and-directors">Leads and directors</a></li><li><a href="#technical-product-managers">Technical product managers</a></li></ul></li><li><a href="#the-soft-skills-that-predict-long-term-success">The soft skills that predict long-term success</a></li><li><a href="#designing-interviews-that-ai-cant-shortcut">Designing interviews that AI can't shortcut</a></li><li><a href="#what-i-havent-solved-yet">What I haven't solved yet</a></li><li><a href="#what-actually-matters">What actually matters</a></li></ul></div></aside></div><section class="series-block" aria-label="Series"><div class="series-block-head"><div class="series-block-kicker">Series · Leadership Thoughts</div><div class="series-block-progress">Part 10 of 10</div></div><div class="series-block-nav"><a href="https://andrewwegner.com/why-remote-work-is-good-for-your-team.html" class="series-block-link series-block-link-prev"><span class="series-block-dir">← Previous in series</span> <span class="series-block-title">The Remote Engineering Leadership Playbook: Why Distance Doesn't Diminish Performance</span> </a><span></span></div></section><nav class="post-nav" aria-label="Post navigation"><a href="https://andrewwegner.com/why-remote-work-is-good-for-your-team.html" class="post-nav-link post-nav-link-prev"><span class="post-nav-dir">← Previous post</span> <span class="post-nav-title">The Remote Engineering Leadership Playbook: Why Distance Doesn't Diminish Performance</span> </a><a href="https://andrewwegner.com/real-python-claude-code-live-course.html" class="post-nav-link post-nav-link-next"><span class="post-nav-dir">Next post →</span> <span class="post-nav-title">Review of Claude Code for Python Developers from Real Python</span></a></nav><aside class="author-bio" aria-label="About the author"><span class="hex-logo hex-logo-md"><img src="https://andrewwegner.com/theme/img/wegner_headshot.png" alt="Andy Wegner"></span><div class="author-bio-text"><p class="author-bio-blurb"><a href="https://andrewwegner.com/about/" class="author-bio-name" rel="author">Andy Wegner</a> - is a father, an engineer and a computer scientist. He is interested in online community building, tinkering with new code and building new applications. He writes about his experiences with each of these.</p><div class="author-bio-links"><a href="https://andrewwegner.com/about/">About me →</a></div></div></aside></div></article><footer class="footer" id="contact"><div class="container footer-inner"><div class="footer-primary"><div class="footer-kicker">GET IN TOUCH</div><h2 class="footer-headline">Let me bring my experience to your business. Together we can solve the problem.</h2><p class="footer-sub">I'm selective about what I take on, but always happy to talk about engineering leadership, distributed teams, and hiring.</p><div class="footer-ctas"><a href="mailto:blog.feedback@andrewwegner.com" class="btn btn-primary" data-heap-id="footer-email">blog.feedback@andrewwegner.com</a> <a href="https://andrewwegner.com/resume.pdf" class="btn btn-ghost" data-heap-id="footer-resume">Download résumé (PDF)</a></div></div><div class="footer-secondary"><dl class="footer-meta"><div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/andrew-wegner/">in/andrew-wegner</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/AWegnerGitHub/">@AWegnerGitHub</a></dd></div><div><dt>Stack Overflow</dt><dd><a href="https://stackoverflow.com/users/189134/andy">Elected moderator</a></dd></div><div><dt>RSS</dt><dd><a href="https://andrewwegner.com/feeds/all.atom.xml">RSS feed</a></dd></div></dl></div><div class="footer-bottom"><span>© 2026 Andrew Wegner</span></div></div></footer></main></div></div><script type="text/javascript">window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},o=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],p=0;p<o.length;p++)heap[o[p]]=r(o[p])},heap.load("653100411"),function(){var e=document.body;if(heap.addEventProperties({page_type:e.dataset.pageType||"unknown",page_slug:e.dataset.pageSlug||""}),"1"===e.dataset.trackScroll){var t=[25,50,75,100],a={};function n(){var e=document.documentElement.scrollHeight-window.innerHeight;if(e<=0)t.forEach(function(e){a[e]||(a[e]=!0,heap.track("scroll_depth",{depth:e}))});else{var n=window.scrollY/e*100;t.forEach(function(e){!a[e]&&n>=e&&(a[e]=!0,heap.track("scroll_depth",{depth:e}))})}}n(),window.addEventListener("scroll",n,{passive:!0})}}()</script></body></html>
