@@ -121,7 +121,7 @@ or another. Over time, this evolved to include other tags such as:&lt;/p&gt;
 &lt;h2 id="introducing-zephyr"&gt;Introducing Zephyr&lt;a class="headerlink" href="#introducing-zephyr" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The problem with these is that the requests are only seen by users active in the specific room where it was posted. 
 Other users across the network miss the request. &lt;strong&gt;&lt;a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot"&gt;Zephyr&lt;/a&gt;&lt;/strong&gt; was built to resolve this problem. Zephyr monitors
-several rooms where these types of requests are frequent. These requests all all posted into a single &lt;a href="http://chat.meta.stackexchange.com/rooms/773/low-quality-posts-hq"&gt;chat room&lt;/a&gt;. 
+several rooms where these types of requests are frequent. These requests are all posted into a single &lt;a href="http://chat.meta.stackexchange.com/rooms/773/low-quality-posts-hq"&gt;chat room&lt;/a&gt;. 
 This provides users with a single room to monitor to see requests for multiple questions and sites across the network.&lt;/p&gt;
 &lt;p&gt;Here is an example of what Zephyr's chat activity looks like during a spam wave:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Zephyr's chat activity during a spam wave" src="https://andrewwegner.com/images/zephyr-spam-wave.png"/&gt;&lt;/p&gt;
@@ -145,7 +145,7 @@ to help future training for other systems.&lt;/p&gt;
 &lt;p&gt;Over time Zephyr has been updated to include new rooms to monitor or new patterns to match. Those changes are small (and simple).
 There are, however, a few larger changes that I'd like to note below.&lt;/p&gt;
 &lt;h3 id="commands"&gt;Commands&lt;a class="headerlink" href="#commands" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The other bots that Zephyr monitors respond to user input. Zephyr has very little that requires user interaction since all of it's
+&lt;p&gt;The other bots that Zephyr monitors respond to user input. Zephyr has very little that requires user interaction since all of its
 posts are generated &lt;em&gt;by&lt;/em&gt; user input. However, there have been times where I, as the bot owner, would like to be able to issue
 certain commands to it. My most common desire is to see a report of how many spam posts Zephyr has seen. Thus, Zephyr now responds
 to the command &lt;code&gt;spamreport&lt;/code&gt; from me. It then prints out a nice summary of information. This information has been utilized in 
@@ -169,14 +169,14 @@ MySQL/MariaDB before and I happened to have another application utilizing MariaD
 &lt;li&gt;Convert the SQLite dump to MySQL format. Though both systems use SQL, there are slight differences in dialect. I utilized
  &lt;a href="http://stackoverflow.com/a/1067365/189134"&gt;this Python script&lt;/a&gt; as a starting point. It got me most of the way there, but not completely.&lt;/li&gt;
 &lt;li&gt;Data clean up. Ugh. The dreaded part of the job for anyone who handles data. Fortunately, the script above did most of the work.
- I ended up fixing a couple stray back ticks that didn't convert properly, escaping a very extra quotation marks, and replacing
+ I ended up fixing a couple stray back ticks that didn't convert properly, escaping a few extra quotation marks, and replacing
  a few "smart quotes" (of both the &lt;a href="http://www.fileformat.info/info/unicode/char/201c/index.htm"&gt;left&lt;/a&gt; and &lt;a href="http://www.fileformat.info/info/unicode/char/201d/index.htm"&gt;right&lt;/a&gt; variety). I wish data at the office job was this easy to clean...&lt;/li&gt;
 &lt;li&gt;Import into MariaDB&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Since the transfer to MariaDB, I've noticed no performance degradation. The error about threads has been eliminated as well.&lt;/p&gt;
 &lt;h3 id="upgrade-to-utilize-web-sockets"&gt;Upgrade to utilize web sockets&lt;a class="headerlink" href="#upgrade-to-utilize-web-sockets" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Originally, Zephyr used the &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L68"&gt;&lt;code&gt;watch&lt;/code&gt;&lt;/a&gt; method when monitoring a room. This method would long poll the room. It turns out that this is 
-pretty unreliable. I'd get multiple errors through out the week, ranging from &lt;code&gt;Connection Aborted&lt;/code&gt; errors to random &lt;code&gt;404&lt;/code&gt; messages. The 
+pretty unreliable. I'd get multiple errors throughout the week, ranging from &lt;code&gt;Connection Aborted&lt;/code&gt; errors to random &lt;code&gt;404&lt;/code&gt; messages. The 
 solution has been to switch to &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"&gt;&lt;code&gt;watch_socket&lt;/code&gt;&lt;/a&gt;. The only time I've had problems since this switch is when the Stack Exchange 
 web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</content><category term="Programming Projects"/><category term="Stack Exchange"/><category term="automation"/><category term="programming"/></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"/><published>2015-01-02T08:47:00-06:00</published><updated>2016-01-09T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:/can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">&lt;p&gt;Description of how I automatically flag comments on Stack Overflow&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -209,7 +209,7 @@ encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/280546/18
 &lt;p&gt;"Good Comments" were assumed, initially, to be anything that didn't fall into the above criteria&lt;/p&gt;
 &lt;p&gt;This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.&lt;/p&gt;
 &lt;p&gt;My next step was to train a classifier. I had initially assumed that I'd start with a Naive Bayes to get a baseline and then work to something more complicated from there. Perhaps, extract text features, user information, etc. and build a fancy classifier. My initial tests showed that the Naive Bayes was accurate 80-90% of the time with test data.&lt;/p&gt;
-&lt;p&gt;I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these threshold took a few weeks but eventually I determined the following thresholds were appropriate for my use:&lt;/p&gt;
+&lt;p&gt;I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these thresholds took a few weeks but eventually I determined the following thresholds were appropriate for my use:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;Type            | Threshold     | Flagging Enabled&lt;/span&gt;
 &lt;span class="gh"&gt;--------------------------------------------------&lt;/span&gt;
 too chatty      | 0.9997        | True
@@ -233,7 +233,7 @@ good comment    | 0.9999        | False
 &lt;hr/&gt;
 &lt;p&gt;There are pictures that help tell this story too. In this first one, we see that the rolling 10 day average for the number of declined flags has stayed below two flags a day. In October, there was a two week period where the rolling average was 0 and nearly a month long period where the system did not make any mistakes.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
-&lt;p&gt;Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the &lt;a href="http://winterbash2014.stackexchange.com/resolution"&gt;Resolution hat&lt;/a&gt;. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to day light saving time. My process starts 10 minutes after UTC. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they &lt;a href="http://meta.stackexchange.com/a/215397/186281"&gt;lost their keys&lt;/a&gt; that day.&lt;/p&gt;
+&lt;p&gt;Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the &lt;a href="http://winterbash2014.stackexchange.com/resolution"&gt;Resolution hat&lt;/a&gt;. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to daylight saving time. My process starts 10 minutes after UTC midnight. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they &lt;a href="http://meta.stackexchange.com/a/215397/186281"&gt;lost their keys&lt;/a&gt; that day.&lt;/p&gt;
 &lt;hr/&gt;
 &lt;p&gt;&lt;img alt="Total flagged vs Total Declined" src="https://andrewwegner.com/images/total_flags_vs_total_declined.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Except for 3 days, since June 27th, the process has flagged 100 comments a day. In this chart, you can see the number of declined comment flags along the bottom.&lt;/p&gt;

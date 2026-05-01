@@ -121,7 +121,7 @@ or another. Over time, this evolved to include other tags such as:&lt;/p&gt;
 &lt;h2 id="introducing-zephyr"&gt;Introducing Zephyr&lt;a class="headerlink" href="#introducing-zephyr" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The problem with these is that the requests are only seen by users active in the specific room where it was posted. 
 Other users across the network miss the request. &lt;strong&gt;&lt;a href="https://github.com/AWegnerGitHub/SE_Zephyr_VoteRequest_bot"&gt;Zephyr&lt;/a&gt;&lt;/strong&gt; was built to resolve this problem. Zephyr monitors
-several rooms where these types of requests are frequent. These requests all all posted into a single &lt;a href="http://chat.meta.stackexchange.com/rooms/773/low-quality-posts-hq"&gt;chat room&lt;/a&gt;. 
+several rooms where these types of requests are frequent. These requests are all posted into a single &lt;a href="http://chat.meta.stackexchange.com/rooms/773/low-quality-posts-hq"&gt;chat room&lt;/a&gt;. 
 This provides users with a single room to monitor to see requests for multiple questions and sites across the network.&lt;/p&gt;
 &lt;p&gt;Here is an example of what Zephyr's chat activity looks like during a spam wave:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Zephyr's chat activity during a spam wave" src="https://andrewwegner.com/images/zephyr-spam-wave.png"/&gt;&lt;/p&gt;
@@ -145,7 +145,7 @@ to help future training for other systems.&lt;/p&gt;
 &lt;p&gt;Over time Zephyr has been updated to include new rooms to monitor or new patterns to match. Those changes are small (and simple).
 There are, however, a few larger changes that I'd like to note below.&lt;/p&gt;
 &lt;h3 id="commands"&gt;Commands&lt;a class="headerlink" href="#commands" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The other bots that Zephyr monitors respond to user input. Zephyr has very little that requires user interaction since all of it's
+&lt;p&gt;The other bots that Zephyr monitors respond to user input. Zephyr has very little that requires user interaction since all of its
 posts are generated &lt;em&gt;by&lt;/em&gt; user input. However, there have been times where I, as the bot owner, would like to be able to issue
 certain commands to it. My most common desire is to see a report of how many spam posts Zephyr has seen. Thus, Zephyr now responds
 to the command &lt;code&gt;spamreport&lt;/code&gt; from me. It then prints out a nice summary of information. This information has been utilized in 
@@ -169,14 +169,14 @@ MySQL/MariaDB before and I happened to have another application utilizing MariaD
 &lt;li&gt;Convert the SQLite dump to MySQL format. Though both systems use SQL, there are slight differences in dialect. I utilized
  &lt;a href="http://stackoverflow.com/a/1067365/189134"&gt;this Python script&lt;/a&gt; as a starting point. It got me most of the way there, but not completely.&lt;/li&gt;
 &lt;li&gt;Data clean up. Ugh. The dreaded part of the job for anyone who handles data. Fortunately, the script above did most of the work.
- I ended up fixing a couple stray back ticks that didn't convert properly, escaping a very extra quotation marks, and replacing
+ I ended up fixing a couple stray back ticks that didn't convert properly, escaping a few extra quotation marks, and replacing
  a few "smart quotes" (of both the &lt;a href="http://www.fileformat.info/info/unicode/char/201c/index.htm"&gt;left&lt;/a&gt; and &lt;a href="http://www.fileformat.info/info/unicode/char/201d/index.htm"&gt;right&lt;/a&gt; variety). I wish data at the office job was this easy to clean...&lt;/li&gt;
 &lt;li&gt;Import into MariaDB&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Since the transfer to MariaDB, I've noticed no performance degradation. The error about threads has been eliminated as well.&lt;/p&gt;
 &lt;h3 id="upgrade-to-utilize-web-sockets"&gt;Upgrade to utilize web sockets&lt;a class="headerlink" href="#upgrade-to-utilize-web-sockets" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Originally, Zephyr used the &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L68"&gt;&lt;code&gt;watch&lt;/code&gt;&lt;/a&gt; method when monitoring a room. This method would long poll the room. It turns out that this is 
-pretty unreliable. I'd get multiple errors through out the week, ranging from &lt;code&gt;Connection Aborted&lt;/code&gt; errors to random &lt;code&gt;404&lt;/code&gt; messages. The 
+pretty unreliable. I'd get multiple errors throughout the week, ranging from &lt;code&gt;Connection Aborted&lt;/code&gt; errors to random &lt;code&gt;404&lt;/code&gt; messages. The 
 solution has been to switch to &lt;a href="https://github.com/Manishearth/ChatExchange/blob/master/chatexchange/rooms.py#L78"&gt;&lt;code&gt;watch_socket&lt;/code&gt;&lt;/a&gt;. The only time I've had problems since this switch is when the Stack Exchange 
 web sockets go down. This saves a lot of restarts to get everything up and running again.&lt;/p&gt;</content><category term="Programming Projects"/><category term="Stack Exchange"/><category term="automation"/><category term="programming"/></entry><entry><title>Can a machine be taught to flag comments automatically</title><link href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-comments-automatically.html" rel="alternate"/><published>2015-01-02T08:47:00-06:00</published><updated>2016-01-09T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-01-02:/can-a-machine-be-taught-to-flag-comments-automatically.html</id><summary type="html">&lt;p&gt;Description of how I automatically flag comments on Stack Overflow&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -209,7 +209,7 @@ encourage you to visit the &lt;a href="http://meta.stackoverflow.com/q/280546/18
 &lt;p&gt;"Good Comments" were assumed, initially, to be anything that didn't fall into the above criteria&lt;/p&gt;
 &lt;p&gt;This provided a base of 30,000 comments that were roughly categorized into 3 distinct groups. Manually scanning the classifications took several weeks, and through this some of the groupings were changed to reflect a more appropriate classification. Not all comments less than 100 characters starting with "Thank you" are "too chatty", just as not all comments over 100 characters are good comments. I reclassified these comments as if I had encountered them on Stack Overflow.&lt;/p&gt;
 &lt;p&gt;My next step was to train a classifier. I had initially assumed that I'd start with a Naive Bayes to get a baseline and then work to something more complicated from there. Perhaps, extract text features, user information, etc. and build a fancy classifier. My initial tests showed that the Naive Bayes was accurate 80-90% of the time with test data.&lt;/p&gt;
-&lt;p&gt;I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these threshold took a few weeks but eventually I determined the following thresholds were appropriate for my use:&lt;/p&gt;
+&lt;p&gt;I combined the classifier's certainty of classification with an acceptable threshold of when I'd allow a flag to be issued in my name. Tuning these thresholds took a few weeks but eventually I determined the following thresholds were appropriate for my use:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;Type            | Threshold     | Flagging Enabled&lt;/span&gt;
 &lt;span class="gh"&gt;--------------------------------------------------&lt;/span&gt;
 too chatty      | 0.9997        | True
@@ -233,7 +233,7 @@ good comment    | 0.9999        | False
 &lt;hr/&gt;
 &lt;p&gt;There are pictures that help tell this story too. In this first one, we see that the rolling 10 day average for the number of declined flags has stayed below two flags a day. In October, there was a two week period where the rolling average was 0 and nearly a month long period where the system did not make any mistakes.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Flags per day with rolling 10 day average" src="https://andrewwegner.com/images/flags_per_day_rolling_average.png"/&gt;&lt;/p&gt;
-&lt;p&gt;Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the &lt;a href="http://winterbash2014.stackexchange.com/resolution"&gt;Resolution hat&lt;/a&gt;. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to day light saving time. My process starts 10 minutes after UTC. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they &lt;a href="http://meta.stackexchange.com/a/215397/186281"&gt;lost their keys&lt;/a&gt; that day.&lt;/p&gt;
+&lt;p&gt;Since November, the number of mistakes has climbed slightly. The biggest number of mistakes it has made was the opening day of Winter Bash 2014. Purely speculation, but I believe this was the moderators being protective of content and not wanting people to farm the &lt;a href="http://winterbash2014.stackexchange.com/resolution"&gt;Resolution hat&lt;/a&gt;. Of course, I don't know this. Another theory I have about this uptick since November is the adjustment to daylight saving time. My process starts 10 minutes after UTC midnight. It is possible that this earlier hour has caused my flags to be processed by a different moderator, or a moderator that is more awake/less hungry/in a different mood than previously at this point in the daily rotation cycle or because they &lt;a href="http://meta.stackexchange.com/a/215397/186281"&gt;lost their keys&lt;/a&gt; that day.&lt;/p&gt;
 &lt;hr/&gt;
 &lt;p&gt;&lt;img alt="Total flagged vs Total Declined" src="https://andrewwegner.com/images/total_flags_vs_total_declined.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Except for 3 days, since June 27th, the process has flagged 100 comments a day. In this chart, you can see the number of declined comment flags along the bottom.&lt;/p&gt;
@@ -333,7 +333,7 @@ Team Fortress and then letting it run for a few hours and collecting item drops.
 the &lt;code&gt;-textmode&lt;/code&gt; &lt;a href="https://developer.valvesoftware.com/wiki/Command_Line_Options#Command-line_parameters_2"&gt;game parameter&lt;/a&gt;. This would "launch" the game without graphics. From there, you just let it run and
 come back in a few hours with 8-10 new items (your weekly limit).&lt;/p&gt;
 &lt;p&gt;The idea behind this was to then trade or craft these into metal. The metal could be used to trade for keys, hats, etc. and
-all you to be "rich". The quotes are there because I do realize that being rich in a virtual game does not make one rich in
+allow you to be "rich". The quotes are there because I do realize that being rich in a virtual game does not make one rich in
 the real world. But, since the &lt;a href="https://wiki.teamfortress.com/wiki/Mann-Conomy_Update"&gt;Mann-Conomy Update&lt;/a&gt; introduced this massive meta game to Team Fortress, I've tried to stay
 out of it.&lt;/p&gt;
 &lt;p&gt;I failed. I didn't just idle one account. I idled 17 accounts. That is between 136 and 170 items a week. That's between 68 to 85
@@ -366,7 +366,7 @@ each account and crafting there and then trading everything to a master account,
 In either case, 17 accounts is a lot to handle and trading/crafting is rather boring.&lt;/p&gt;
 &lt;p&gt;My solution was to modify the raffle bot. I'd designate one account as a master account. This would be the account that
 received items. All others would dump items to it. I'd log into the account that was receiving items and initiate a trade
-with each other bot in turn. I'd issue a command &lt;code&gt;add all&lt;/code&gt; and that bot would dump it's inventory into trade. Making it
+with each other bot in turn. I'd issue a command &lt;code&gt;add all&lt;/code&gt; and that bot would dump its inventory into trade. Making it
 through all the bots would take 5 minutes. Previously it would take me an hour or more to log into each account and
 manually add items to the trade windows and then confirm the trade on both sides. &lt;em&gt;yawn&lt;/em&gt;&lt;/p&gt;
 &lt;h3 id="crafting"&gt;Crafting&lt;a class="headerlink" href="#crafting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -390,7 +390,7 @@ The other option was to look for a trader that was getting rid of a bulk set of 
 I'd end the week with 3-4 keys. I'd trade these for Tour of Duty tickets and go play a game with friends.&lt;/p&gt;
 &lt;p&gt;The actual work required on my part was starting the idling for the night, shutting down idling in the morning, starting
 the automated trade, crafting and trade left overs processes and finally trading metal for keys. What used to take me hours
-to do each week, I could not do in less than an hour (the bulk of which ended up being trading metal for keys).&lt;/p&gt;
+to do each week, I could now do in less than an hour (the bulk of which ended up being trading metal for keys).&lt;/p&gt;
 &lt;h2 id="what-changed"&gt;What changed?&lt;a class="headerlink" href="#what-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Valve released a patch to limit how effective idling was. Their "Mann-Conomy" was seeing rapid inflation. The price of
 keys (which they sold for physical money) in metal was rapidly increasing. From the time I started this to the time I ended
@@ -403,7 +403,7 @@ Tour of Duty tickets. The idle bots were shut down.&lt;/p&gt;
 &lt;p&gt;It's been a month now. The bots are still down. I'm still around. Looking back on this, I'm happy Valve broke this. It wasn't
 doing anything for me other than providing me with something to do: "Need to idle tonight", "Need to craft and trade today", etc.
 Now I have that time back.&lt;/p&gt;
-&lt;p&gt;I am pleased with the technical challenges I over came to get this done though. Crafting was the biggest, but I think I'm
+&lt;p&gt;I am pleased with the technical challenges I overcame to get this done though. Crafting was the biggest, but I think I'm
 most proud of the automated transfer of items to the master. Since the bots had to communicate via Steam and not via
 a local application, working out how I was going to do that took some time.&lt;/p&gt;
 &lt;hr/&gt;
@@ -418,14 +418,14 @@ team to find ways to cover costs). Now we have one.&lt;/p&gt;
 &lt;p&gt;I've built a Raffle bot based on &lt;a href="https://github.com/Jessecar96/SteamBot"&gt;SteamBot&lt;/a&gt;, which is the base of &lt;a href="https://scrap.tf/"&gt;scrap.tf&lt;/a&gt;. Entries to raffles will be one entry 
 per refined metal. You can have an unlimited number of entries. I will convert the refined metal to various prizes 
 (with the goal being keys most of the time).&lt;/p&gt;
-&lt;p&gt;Then we'll have the system select a set of winners from the entries. A user can only win once per raffle, so even if you you
+&lt;p&gt;Then we'll have the system select a set of winners from the entries. A user can only win once per raffle, so even if you 
 have a gigantic number of entries, your odds of winning more than one position are zero. Only one win per steam id.&lt;/p&gt;
 &lt;p&gt;Using the prices from &lt;a href="http://backpack.tf/"&gt;backpack.tf&lt;/a&gt;, the bot will determine the "value" of the items within the trade.&lt;/p&gt;
 &lt;h2 id="how-does-this-off-set-costs"&gt;How does this off set costs?&lt;a class="headerlink" href="#how-does-this-off-set-costs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Items that are received that are of high value or any additional keys we can get based on raffle entries will be sold on 
 various TF2 trading markets. The profits from these trades will be used to cover some community costs.&lt;/p&gt;
 &lt;h2 id="keep-high-value-items-for-future-raffles"&gt;Keep high value items for future raffles?&lt;a class="headerlink" href="#keep-high-value-items-for-future-raffles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;This question was added based on feed back from the community. It was added on March 20, 2013&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This question was added based on feedback from the community. It was added on March 20, 2013&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The original plan was to sell any such items. However, due to community feedback, I've changed my mind. We will utilize 
 "high value" items as prizes for future raffles. These future raffles will not be announced until any running raffles are 
 complete. It is also possible that such a raffle will run separately from the planned monthly ones.&lt;/p&gt;
@@ -443,7 +443,7 @@ you to all our players that entered!&lt;/p&gt;
 &lt;li&gt;Iamthebaron: Winner of 4 refined metal&lt;/li&gt;
 &lt;li&gt;That Guy From That Thing: Winner of 1 refined metal&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="First Raffle Bot Entries and Winners" src="https://andrewwegner.com/images/rafflebot-entries.png"/&gt;&lt;/p&gt;</content><category term="Vipers"/><category term="team vipers"/><category term="automation"/><category term="community"/><category term="programming"/></entry><entry><title>Monitoring Language on the game servers</title><link href="https://andrewwegner.com/monitoring-language-on-the-game-servers.html" rel="alternate"/><published>2012-04-22T12:13:00-05:00</published><updated>2015-01-08T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-04-22:/monitoring-language-on-the-game-servers.html</id><summary type="html">&lt;p&gt;Team Vipers is proud of it's friendly atmosphere. This post describes how I automated a large part of the process&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;&lt;img alt="First Raffle Bot Entries and Winners" src="https://andrewwegner.com/images/rafflebot-entries.png"/&gt;&lt;/p&gt;</content><category term="Vipers"/><category term="team vipers"/><category term="automation"/><category term="community"/><category term="programming"/></entry><entry><title>Monitoring Language on the game servers</title><link href="https://andrewwegner.com/monitoring-language-on-the-game-servers.html" rel="alternate"/><published>2012-04-22T12:13:00-05:00</published><updated>2015-01-08T00:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2012-04-22:/monitoring-language-on-the-game-servers.html</id><summary type="html">&lt;p&gt;Team Vipers is proud of its friendly atmosphere. This post describes how I automated a large part of the process&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;My admin tool of choice for the TF2 servers is &lt;a href="http://www.hlsw.org/"&gt;HLSW&lt;/a&gt;. It's decent at allowing me to manage a server without ever
 needing to log to the server. My biggest complaint about it is that I can only watch the game chat of one server at a time.
@@ -459,7 +459,7 @@ the servers at once. Thus, I've built a tool...&lt;/p&gt;
 I built in a hook to these logs from the application template to quickly pull known aliases of users. It's been invaluable
 in solving problems of "what happened" on the servers.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Multiserver Chat monitor" src="https://andrewwegner.com/images/vipers-chat-monitor.png"/&gt;&lt;/p&gt;
-&lt;p&gt;I've expanded it's usefulness. Now I can load a single page and see all chat activity occurring on all active game servers
+&lt;p&gt;I've expanded its usefulness. Now I can load a single page and see all chat activity occurring on all active game servers
 on a single screen. It provides, at a glance, a quick way to see if there are problems on the servers. It also allows me
 to step back from picking which server I think will be "bad" and monitor that. Now I can monitor all of them at once.&lt;/p&gt;
 &lt;h2 id="inappropriate-words"&gt;Inappropriate words&lt;a class="headerlink" href="#inappropriate-words" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -481,7 +481,7 @@ threshold for banning, they will be removed from the server and banned for a day
  The ban length will be 1 day.&lt;/li&gt;
 &lt;li&gt;The system keeps messages for a total of 5 minutes. If a message is older than that, the system forgets it.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Currently, the three inappropriate terms all have a threshold of &lt;code&gt;1&lt;/code&gt;. This means they saying the words results in a ban.
+&lt;p&gt;Currently, the three inappropriate terms all have a threshold of &lt;code&gt;1&lt;/code&gt;. This means saying the words results in a ban.
 Homophobic, racist remarks aren't welcome on the Viper servers. We can't prevent it, but we can deal with offenses swiftly.
 The 5 minute window is added because the community requested that excessive swearing also be limited. We don't want to
 outright ban it, but they don't want a swear filled rant to occur after every match.&lt;/p&gt;
@@ -497,12 +497,12 @@ I've made a change to the logic in how long a ban will last. It provides a 4 str
 &lt;li&gt;First offence: Weight of term(s) said times 1. This means, for most cases, they are issued a single day ban.&lt;/li&gt;
 &lt;li&gt;Second offence: Weight of term(s) said times 3. This means, for most cases, they are issued a three day ban.&lt;/li&gt;
 &lt;li&gt;Third offence: Weight of terms said times 21. This means, for most cases, they are issued a three week ban.&lt;/li&gt;
-&lt;li&gt;Forth offence: Permanent removal from the game servers.&lt;/li&gt;
+&lt;li&gt;Fourth offence: Permanent removal from the game servers.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The community has been very enthusiastic about how quickly users of inappropriate terms are removed. I've seen a few minor
-complaints about the permanent removal of users on the forth offense. I've told the community that &lt;em&gt;if&lt;/em&gt; a user protests the
+complaints about the permanent removal of users on the fourth offense. I've told the community that &lt;em&gt;if&lt;/em&gt; a user protests the
 ban and &lt;em&gt;if&lt;/em&gt; they can show they've learned our rules, I will provide one additional chance after the user has waited a minimum
-of a month from from last time they were banned. If they return to their previous activities, they will be re-banned and
+of a month from the last time they were banned. If they return to their previous activities, they will be re-banned and
 they will not be able to return in the future.&lt;/p&gt;
 &lt;h2 id="update-at-shutdown"&gt;Update at shutdown&lt;a class="headerlink" href="#update-at-shutdown" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;Updated January 20, 2015&lt;/em&gt;&lt;/p&gt;
@@ -511,16 +511,16 @@ from April 23, 2012 to January 4, 2015, for a total of 987 days. In that time, 4
 language. That is over 4 users a day being removed from our player base because they couldn't maintain a respectful
 attitude. I consider that a success. I believe Viper community members did too.&lt;/p&gt;</content><category term="Vipers"/><category term="team vipers"/><category term="automation"/><category term="programming"/></entry><entry><title>Automated template for membership applications</title><link href="https://andrewwegner.com/automated-template-for-membership-applications.html" rel="alternate"/><published>2009-10-30T22:30:00-05:00</published><updated>2009-10-30T22:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2009-10-30:/automated-template-for-membership-applications.html</id><summary type="html">&lt;p&gt;How Team Vipers improved user applications and admin participation in the process&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Not to long ago, applications for new membership in Team Vipers consisted of someone wandering onto the site, posting a
+&lt;p&gt;Not too long ago, applications for new membership in Team Vipers consisted of someone wandering onto the site, posting a
 few words and an administrator saying they were accepted as a member. This worked when we were a small community. We
 aren't small any more. We have 5 servers and hundreds of players a day. Each server has their own sub-community. There
-are players joining the forums than entire groups of people have never met because they play exclusively on one game server.&lt;/p&gt;
+are players joining the forums that entire groups of people have never met because they play exclusively on one game server.&lt;/p&gt;
 &lt;p&gt;Admins were also inconsistent in how (or if) they voted. Some admins didn't realize they could have a say, thinking it
 was a privilege granted to only the senior administrators. We've built a system to resolve many of these problems and to
 make the administration side easier.&lt;/p&gt;
 &lt;h2 id="whats-new"&gt;What's new?&lt;a class="headerlink" href="#whats-new" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The new system presents all users with an application template. They fill out the form and the system handles the rest.
-The New Users and Applications subforum has been modified so that no one, except the bot, can create topics. They
+The New Users and Applications subforum has been modified so that no one, except the bot, can create topics. The
 topics will only be created when the form is submitted. When a user applies to join Vipers, we will automatically
 include relevant information about the user as we know them:&lt;/p&gt;
 &lt;ul&gt;
@@ -537,7 +537,7 @@ include relevant information about the user as we know them:&lt;/p&gt;
 added a check of a user's &lt;a href="http://steamrep.com/api.php"&gt;Steam Reputation&lt;/a&gt; instead.&lt;/p&gt;
 &lt;p&gt;After a user applies, they are put into a two week hold. During this week it is expected they will stick around the forums
 and learn about the community they just applied to. Even better would be that they had done this before applying. While
-this two week hold is in place, the administration team will be able to cast they votes in a separate sub-forum. They can
+this two week hold is in place, the administration team will be able to cast their votes in a separate sub-forum. They can
 hold administration specific discussions - usually details that are important for admins to know, but don't &lt;em&gt;need&lt;/em&gt; to be
 public. Once voting is complete, if they become a member, the system automatically grants appropriate forum and server
 related permissions.&lt;/p&gt;

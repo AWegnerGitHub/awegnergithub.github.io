@@ -70,7 +70,7 @@ Disk 2 is now the selected disk.
 Partition ###  Type              Size     Offset
 -------------  ----------------  -------  -------
 Partition 1    System            4000 KB   850 KB
-</code></pre></div><p>There is a single partition - the EFI partition. The rest of the drive is unallocated, as the screenshot above shows. Select this partition. IF you have multiple partitions listed, you'll need to determine which is the EFI partition. In my case, since I'm going to be formatting the entire drive anyway, if there were multiple listed I'd select and delete each individual partition.</p><div class="codehilight code"><pre><span></span><code>DISKPART&gt; sel partition 1
+</code></pre></div><p>There is a single partition - the EFI partition. The rest of the drive is unallocated, as the screenshot above shows. Select this partition. If you have multiple partitions listed, you'll need to determine which is the EFI partition. In my case, since I'm going to be formatting the entire drive anyway, if there were multiple listed I'd select and delete each individual partition.</p><div class="codehilight code"><pre><span></span><code>DISKPART&gt; sel partition 1
 
 Partition 1 is now the selected partition.
 </code></pre></div><div class="admonition attention"><p class="admonition-title">Attention</p><p>These commands will delete a partition. If you haven't selected the right drive or partition things will break.</p></div><p>Finally, delete the EFI partition</p><div class="codehilight code"><pre><span></span><code>DISKPART&gt; delete partition override

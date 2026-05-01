@@ -77,7 +77,7 @@ Everytime an issue is created by the action, it will have the same format.&lt;/p
 &lt;span class="n"&gt;_Use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;`─&lt;/span&gt;&lt;span class="n"&gt;BROKEN&lt;/span&gt;&lt;span class="err"&gt;─`&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;highlight&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;failures_&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The top metadata defines the issue title, and any labels or assignees I want to set up. I'll probably add myself as an assignee
-once I'm happy with the stability and reliablity of the checks.&lt;/p&gt;
+once I'm happy with the stability and reliability of the checks.&lt;/p&gt;
 &lt;p&gt;You can see what an &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/issues/5"&gt;issue created with this template looks like in the repository&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id="environment-variables"&gt;Environment Variables&lt;a class="headerlink" href="#environment-variables" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The last section, I've alluded to already - the environment variables. I have two currently defined. &lt;/p&gt;
@@ -88,8 +88,8 @@ once I'm happy with the stability and reliablity of the checks.&lt;/p&gt;
 &lt;p&gt;The first is to set the domain I'm scanning. Mine, obviously. The second is a link to the issue template that is utilized if broken links
 are discovered.&lt;/p&gt;
 &lt;h2 id="things-i-learned"&gt;Things I learned&lt;a class="headerlink" href="#things-i-learned" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;While setting this up there where a few things that I learned or desired that were not immediately obvious while reading documentation. The first
-was that GitHub actions aren't triggerable without setting up the appropriate &lt;code&gt;on&lt;/code&gt; event type. In this case, I want to occassionally
+&lt;p&gt;While setting this up there were a few things that I learned or desired that were not immediately obvious while reading documentation. The first
+was that GitHub actions aren't triggerable without setting up the appropriate &lt;code&gt;on&lt;/code&gt; event type. In this case, I want to occasionally
 run the link checker on command, instead of once a week. That means I need the &lt;code&gt;workflow_dispatch&lt;/code&gt; event and it needs to be empty. &lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
@@ -104,11 +104,11 @@ but I have no need for that right now. So, mine remains empty.&lt;/p&gt;
 &lt;p&gt;A couple nice to haves, that I wasn't able to immediately figure out were how to retry a failed link "later" in the script. While testing
 the functionality, I had a run that failed because one image, in one article failed. Checking that article showed that it worked. Checking the 
 log showed that the link being checked worked. It was just the internet being the internet with a temporary blip. I'd love to be able to retry failed
-linked a little later in the run or X seconds later, etc. If it fails both times, assume it's broken and report it as normal. Without that retry,
+links a little later in the run or X seconds later, etc. If it fails both times, assume it's broken and report it as normal. Without that retry,
 I'm a little worried this is going to be fragile, which is part of why I haven't populated the &lt;code&gt;assignee&lt;/code&gt; metadata in the template yet.&lt;/p&gt;
 &lt;p&gt;Another nice to have would be a way to embed the broken links (and page they appear on) in the issue itself. I couldn't find a way to accomplish
 that with the current tooling, so the template links to the log and you have to search for the appropriate string. &lt;/p&gt;
-&lt;p&gt;Like I mentioned earlier, I will likely look for a more up to date tool. Or build one my own. I'm interested in learning more about how GitHub actions 
+&lt;p&gt;Like I mentioned earlier, I will likely look for a more up to date tool. Or build my own. I'm interested in learning more about how GitHub actions 
 work and this may be a good usecase for myself.&lt;/p&gt;</content><category term="Side Activities"/><category term="technical"/><category term="Pelican"/><category term="meta"/></entry><entry><title>Updating the design of the site</title><link href="https://andrewwegner.com/relaunch-personal-site.html" rel="alternate"/><published>2022-11-17T10:00:00-06:00</published><updated>2022-11-17T10:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-11-17:/relaunch-personal-site.html</id><summary type="html">&lt;p&gt;I've updated this site with a new theme and some under the hood improvements. This article covers those updates and what I hope to accomplish.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="welcome-to-the-update"&gt;Welcome to the update!&lt;a class="headerlink" href="#welcome-to-the-update" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I have a new theme for the site, and I think it looks great! This is a heavily modified 
@@ -120,11 +120,11 @@ development, but I am rather proud of the new theme and the changes I put in pla
 &lt;p&gt;The default version of the Flex theme can be seen on it's &lt;a href="https://flex.alxd.me/"&gt;demo site&lt;/a&gt;, to give you an idea of the changes I've
 made to my instance.&lt;/p&gt;
 &lt;h3 id="look-feel"&gt;Look &amp;amp; Feel&lt;a class="headerlink" href="#look-feel" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The logo is perhaps the most subtle change. It's designed, intentionally, to not be a circle (to common on other sites )or a square (to boring).
+&lt;p&gt;The logo is perhaps the most subtle change. It's designed, intentionally, to not be a circle (too common on other sites) or a square (too boring).
 It's an off shape blob. Take a look at it. It very slowly shifts too. You can see it along the bottom of the shirt most clearly. It's designed
 to move only a little and pretty slowly, so that it's not distracting. It's just active enough to catch your eye if you are looking but not 
 designed to pull focus from the article you are reading.&lt;/p&gt;
-&lt;p&gt;The default flex theme is very...neat. There are nice crisp lines. It's very clinical. I changed this just a little with splash of a curved
+&lt;p&gt;The default flex theme is very...neat. There are nice crisp lines. It's very clinical. I changed this just a little with a splash of a curved
 red border between the side bar and the main article. It's not a major change, but it adds a little personality. Combined with the 
 blob/animated head shot, it makes it feel unique among the flex theme'd blogs I looked at to evaluate if I liked the theme.&lt;/p&gt;
 &lt;p&gt;A favicon is such a little thing, but I didn't have one with the old theme. Having one now adds just a little bit more of a 
@@ -133,13 +133,13 @@ category pages all match.&lt;/p&gt;
 &lt;h3 id="toc"&gt;ToC&lt;a class="headerlink" href="#toc" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The table on contents on the side bar is an addition I made, because I dislike when the table of contents scrolls off the screen. It's the same 
 reason I froze the table of contents to the side bar on the previous iteration of the site. When I'm reading, I like to know how far I am in 
-and article and be able to easily jump to another section. Since I am also a reader of my site (especially on the technical posts), I try
+an article and be able to easily jump to another section. Since I am also a reader of my site (especially on the technical posts), I try
 to make it easy for myself too.&lt;/p&gt;
 &lt;h3 id="tagscategories"&gt;Tags/Categories&lt;a class="headerlink" href="#tagscategories" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The tags and category pages on my old site where bad. They were a giant list of meta-data and a link to a post. It was messy. I didn't like
+&lt;p&gt;The tags and category pages on my old site were bad. They were a giant list of meta-data and a link to a post. It was messy. I didn't like
 it, but I also didn't use it so I spent very little time trying to make it work better. With a new theme, I wanted to make the pages more 
 useful, at least to me. I found an excellent post by &lt;a href="https://johnpaton.net/posts/responsive-bar-chart/"&gt;John Paton&lt;/a&gt; on how to make a responsive bar chart for these pages.&lt;/p&gt;
-&lt;p&gt;Take look at my &lt;a href="/tags.html"&gt;tags&lt;/a&gt; or &lt;a href="/categories.html"&gt;categories&lt;/a&gt; pages. To me, that looks wonderful. I can get a quick look at how many articles 
+&lt;p&gt;Take a look at my &lt;a href="/tags.html"&gt;tags&lt;/a&gt; or &lt;a href="/categories.html"&gt;categories&lt;/a&gt; pages. To me, that looks wonderful. I can get a quick look at how many articles 
 are in each section and clicking on one brings me to a page specifically for articles in that slice of meta-data. &lt;/p&gt;
 &lt;h3 id="seo"&gt;SEO&lt;a class="headerlink" href="#seo" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Before you run away...this is a good thing, and I've been doing it for a while. All of my &lt;a href="https://andrewwegner.com/tag/review.html"&gt;reviews&lt;/a&gt;, have been sporting Schema.org
@@ -150,14 +150,14 @@ rich snippets. However, they provided a great base. I've updated my instance to 
 &lt;a href="about/"&gt;About Me&lt;/a&gt; to see it), Article, Review and Breadcrumbs (see the navigation bar at the top of this page). Search engines use all 
 of that to get a better idea of what's on the site. I have a few more I want to implement too, but this gets me beyond parity with my old theme. &lt;/p&gt;
 &lt;p&gt;I've also made sure that canonical links are included in my articles. I have a couple that Google sees as duplicates due to UTM tags I stuck on
-links a while ago. Having cononical links in place should resolve some annoying errors and warnings I see in my search console.&lt;/p&gt;
+links a while ago. Having canonical links in place should resolve some annoying errors and warnings I see in my search console.&lt;/p&gt;
 &lt;h2 id="goals-of-the-update"&gt;Goals of the update&lt;a class="headerlink" href="#goals-of-the-update" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I have a few goals with this newly updated site. A couple relate directly to the theme, and a few are general site goals. &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Updated Tool set - I was running an old version of Pelican and missed out on some new features. By updating, I'm hoping that I 
 can remain closer to the current release. I like to get the newest features, and that alone feels better.&lt;/li&gt;
 &lt;li&gt;A useful tags and categories page. Like I mentioned above, they used to be useless. Now, there is more than just a list of 1-2 
-work phrases sitting on my site across two pages. If I start another series - I believe I have two right now total, I may add a 
+word phrases sitting on my site across two pages. If I start another series - I believe I have two right now total, I may add a 
 similar series page.&lt;/li&gt;
 &lt;li&gt;Site face lift. As you can see below, the old version was pretty bland. This update adds some color, makes a few things more accessible,
 and generally feels less like reading a sheet of paper on a screen. It's not the flashiest thing on the internet, but you can see 
@@ -170,13 +170,13 @@ was clicked. &lt;/li&gt;
 SEO work I'm putting in now will, hopefully, pay off. &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="where-the-site-was"&gt;Where the site was&lt;a class="headerlink" href="#where-the-site-was" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;One last trip down memory lane, as the template that has served as the base of the site since the intial &lt;a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html"&gt;migration from Wordpress in 2015&lt;/a&gt; is retired. The old template was using &lt;a href="https://elegant.oncrashreboot.com/"&gt;Elegant&lt;/a&gt;. I am the &lt;a href="https://github.com/Pelican-Elegant/elegant/graphs/contributors"&gt;#7 contributor to the theme&lt;/a&gt; at the time of publishing 
+&lt;p&gt;One last trip down memory lane, as the template that has served as the base of the site since the initial &lt;a href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html"&gt;migration from Wordpress in 2015&lt;/a&gt; is retired. The old template was using &lt;a href="https://elegant.oncrashreboot.com/"&gt;Elegant&lt;/a&gt;. I am the &lt;a href="https://github.com/Pelican-Elegant/elegant/graphs/contributors"&gt;#7 contributor to the theme&lt;/a&gt; at the time of publishing 
 this. That's not saying a whole lot, with my brief spurt of activity in 2019, but it was a contribution that I hope others using the theme 
 are able to utilize. &lt;/p&gt;
 &lt;p&gt;I was stuck on the Pelican 3.0 branch. I really don't remember why. I remember attempting to upgrade to Pelican 4.0 and everything broke. At the 
 time I was unable to spend a significant time to fix it, so I rolled back and stuck with the latest version that ran. &lt;/p&gt;
-&lt;p&gt;Going through this revamp, I upgraded to the latest Pelican, the newest Markdown and go all the new fancy things. We'll see if they actually 
-improve my experience. From a user stand point, not much should change other than a visual overhual. It's a static site and is designed to be
+&lt;p&gt;Going through this revamp, I upgraded to the latest Pelican, the newest Markdown and got all the new fancy things. We'll see if they actually 
+improve my experience. From a user stand point, not much should change other than a visual overhaul. It's a static site and is designed to be
 pretty non-interactive. On my side though, I'm hoping things are a little less brittle. &lt;/p&gt;
 &lt;p&gt;On to the last pictures of the old template. &lt;/p&gt;
 &lt;p&gt;The Old Home Page:&lt;/p&gt;
@@ -206,7 +206,7 @@ directory. I used the following command to generate HTML each time I created a n
 &lt;p&gt;Using my settings, this would generate my HTML in the output directory. After this was generated, I'd push the content repository
 which had a &lt;code&gt;.gitignore&lt;/code&gt; rule to ignore the &lt;code&gt;output&lt;/code&gt; directory, and then I'd push the output directory.&lt;/p&gt;
 &lt;p&gt;With all of this, I had a &lt;code&gt;requirements.txt&lt;/code&gt; document so that I could theoretically generate a post from anywhere, but I failed to keep
-that updated an in sync with my development environment. On more than one occasion, I tried to write a post on my laptop (not my usual
+that updated and in sync with my development environment. On more than one occasion, I tried to write a post on my laptop (not my usual
 development machine) and failed due to the mismatched dependencies, missing theme and missing plugins.&lt;/p&gt;
 &lt;p&gt;My development environment was fragile and couldn't be replicated with what I'd posted on GitHub. I'd also forgotten to push the &lt;code&gt;output&lt;/code&gt;
 directory on more than one occasion, which was annoying.&lt;/p&gt;
@@ -220,10 +220,10 @@ directory on more than one occasion, which was annoying.&lt;/p&gt;
 &lt;p&gt;Earlier this year, I made a &lt;a href="https://andrewwegner.com/travisci-insecure-environment-variables.html"&gt;public post about how poorly Travis CI handles secure environment variables&lt;/a&gt;. The public
 &lt;a href="https://github.com/travis-ci/travis-ci/issues/9430"&gt;GitHub issue&lt;/a&gt; hasn't been worked on yet. The two issues identified still persist:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Secure variables can be show via simple string manipulation from a malicious commit&lt;/li&gt;
+&lt;li&gt;Secure variables can be shown via simple string manipulation from a malicious commit&lt;/li&gt;
 &lt;li&gt;Secure variables are transferred to a third party if the repository is transferred&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I feel that the still need to be addressed. They are security issues.&lt;/p&gt;
+&lt;p&gt;I feel that they still need to be addressed. They are security issues.&lt;/p&gt;
 &lt;p&gt;That said, I am using a Travis CI secure environment variable in my deployment script. It is the GitHub token used to push
 to the repository that contains generated HTML. I have chosen to do this because I am the only one that will be committing
 to the repository and will not be transferring it to a 3rd party. This is a personal site.&lt;/p&gt;
@@ -248,7 +248,7 @@ pull out the &lt;code&gt;content&lt;/code&gt; and &lt;code&gt;output&lt;/code&gt
 to contain all of the dependencies I needed to generate the site correctly. I am pretty embarrassed to admit that I hadn't updated this file in almost
 three years, except to fix a plugin that had broken.&lt;/p&gt;
 &lt;p&gt;I had Pelican pinned to an old version that I hadn't used in over a year and I was missing dependencies that the Pelican plugins required. This took
-a lot more time to hunt down than I expected, and it's entire my fault for not keeping this updated over the years. Fortunately, with the setup, I have
+a lot more time to hunt down than I expected, and it's entirely my fault for not keeping this updated over the years. Fortunately, with the setup, I have
 to keep this updated or the site won't generate correctly.&lt;/p&gt;
 &lt;h3 id="generated-content"&gt;Generated Content&lt;a class="headerlink" href="#generated-content" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The last &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io"&gt;repository&lt;/a&gt; is the one that holds the generated HTML for this blog. This already existed and continues to serve exactly the same
@@ -286,7 +286,7 @@ Travis CI about. It also sends all output of this command to &lt;code&gt;/dev/nu
 this isn't done, Travis CI will print out the command and may or may not properly obscure it (see my previous warning, above).&lt;/p&gt;
 &lt;p&gt;The deployment ends by pinging Google and Bing with my &lt;code&gt;sitemap.xml&lt;/code&gt;. This is an automated way of telling the two search engines
 that the site has been updated and they should recheck the sitemap and reindex as appropriate. It doesn't guarantee they will
-crawl the site immediately, but it does let them know their is an update before their next scheduled crawl.&lt;/p&gt;
+crawl the site immediately, but it does let them know there is an update before their next scheduled crawl.&lt;/p&gt;
 &lt;h3 id="travisyml"&gt;.travis.yml&lt;a class="headerlink" href="#travisyml" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Lastly, we need to tell Travis CI what to do when there is a commit made to the &lt;code&gt;content&lt;/code&gt; repository. The only non-content file
 in this repository is &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-content/blob/4cafca4c768a9eb291e84760ebeb0df576ab82c4/.travis.yml"&gt;&lt;code&gt;.travis.yml&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
@@ -321,7 +321,7 @@ previously used and add on the &lt;code&gt;verbose&lt;/code&gt; flag, just in ca
 &lt;p&gt;&lt;code&gt;skip_cleanup&lt;/code&gt; is important to leave as &lt;code&gt;true&lt;/code&gt; so that the output from the &lt;code&gt;script&lt;/code&gt; block isn't cleaned up before we deploy.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This post should be the first one that is automatically deployed. I'm sure there are improvements I can and will make to my
-&lt;code&gt;deploy.sh&lt;/code&gt; script or &lt;code&gt;.travis.yml&lt;/code&gt; over time, but right now I'm happy with how it works. In testings, a deployment is taking
+&lt;code&gt;deploy.sh&lt;/code&gt; script or &lt;code&gt;.travis.yml&lt;/code&gt; over time, but right now I'm happy with how it works. In testing, a deployment is taking
 about a minute or two from the time I push a new article. This is about how long it took previously, but now I only need to
 perform a single push.&lt;/p&gt;
 &lt;p&gt;I'm also happy with the split of my repositories. I was never a huge fan of having content and source code mashed together, but
@@ -346,7 +346,7 @@ and markdown version of the pages. The first repository was set up as submodule.
 &lt;p&gt;I ignored the &lt;code&gt;output&lt;/code&gt; directory in &lt;code&gt;.gitignore&lt;/code&gt; on the source repository. Finally, I had to adjust &lt;code&gt;publishconf.py&lt;/code&gt; slightly to&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;DELETE_OUTPUT_DIRECTORY = False
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Without this, I was constantly destroying the output repository and had to reinitialize it. This prevents that from occuring.&lt;/p&gt;
+&lt;p&gt;Without this, I was constantly destroying the output repository and had to reinitialize it. This prevents that from occurring.&lt;/p&gt;
 &lt;p&gt;Now, a new post consists of writing up the &lt;a href="https://raw.githubusercontent.com/AWegnerGitHub/awegnergithub.github.io-content/master/2015_07_09_how-i-set-up-this-site-with-github-pages-and-cloudflare.md"&gt;Markdown page&lt;/a&gt;, generating the page with the command below (or the &lt;a href="https://github.com/AWegnerGitHub/awegnergithub.github.io-source/blob/82625417e3a14db3cbeafcaa68728fd5fe9834b2/generate_content_production.bat"&gt;batch script&lt;/a&gt;) and then committing and
 pushing the changes to the submodule to GitHub.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# Generates HTML files without debugging information
@@ -369,12 +369,12 @@ EXTRA_PATH_METADATA = {'extra\CNAME': {'path': 'CNAME'},}
 &lt;h2 id="cloudflare-setup"&gt;Cloudflare Setup&lt;a class="headerlink" href="#cloudflare-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The final thing I needed in order to get rid of my server was control over DNS. I could revert back to GoDaddy, but after a little research found that CloudFlare's additional CDN and
 security was a "good thing" (because, you know, I'm such a highly traffic'd blog these days). Step one was signing up to CloudFlare. This was a 3-5 minute thing.&lt;/p&gt;
-&lt;p&gt;Once signed up and signed in, I went to set up DNS. This was as simple as adding my domain name and waiting for CloudFlare to import my existing DNS records. With this, I kept by Google Apps
+&lt;p&gt;Once signed up and signed in, I went to set up DNS. This was as simple as adding my domain name and waiting for CloudFlare to import my existing DNS records. With this, I kept my Google Apps
 email intact (which is what I was most concerned with). Next, I went and removed the &lt;code&gt;A&lt;/code&gt; records. I replaced these with &lt;code&gt;CNAME&lt;/code&gt; records pointing to my GitHub Pages URL. I also added a &lt;code&gt;www&lt;/code&gt; CNAME
 pointing to the same location. Since I have Pelican configured to strip it with the setting below, it doesn't matter other than people expect to enter &lt;code&gt;www dot domain dot com&lt;/code&gt; in their URL bar.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;SITEURL = 'http://andrewwegner.com'
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Last, I had to point by name servers to CloudFlare instead of my dedicated server. They provide a list of registrars to choose from. Select your registrar and follow the instructions. My biggest
+&lt;p&gt;Last, I had to point my name servers to CloudFlare instead of my dedicated server. They provide a list of registrars to choose from. Select your registrar and follow the instructions. My biggest
 issue here was remembering my GoDaddy password. After I made it into my account, the steps to change name servers were very simple. Once those are saved, you wait for the changes to propagate and
 enjoy your new GitHub Pages / CloudFlare web page for free.&lt;/p&gt;</content><category term="Side Activities"/><category term="Meta"/><category term="technical"/><category term="Pelican"/></entry><entry><title>Why I moved from Wordpress to Pelican</title><link href="https://andrewwegner.com/why-i-moved-from-wordpress-to-pelican.html" rel="alternate"/><published>2015-05-03T22:41:00-05:00</published><updated>2015-05-03T22:41:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2015-05-03:/why-i-moved-from-wordpress-to-pelican.html</id><summary type="html">&lt;p&gt;A brief summary of why I dropped Wordpress and moved to Pelican&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -383,7 +383,7 @@ things I created to make administering Team Vipers easier for me and for the res
 of documenting what I'd done (in case I ever needed to do it again) and providing a way to update the Team Vipers community
 about new plugins or applications that would be deployed to the community.&lt;/p&gt;
 &lt;h2 id="my-issues-with-wordpress"&gt;My Issues with Wordpress&lt;a class="headerlink" href="#my-issues-with-wordpress" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The problem I had with Wordpress was that it was just to bulky for the simple posts I was making. I needed a database, a full web
+&lt;p&gt;The problem I had with Wordpress was that it was just too bulky for the simple posts I was making. I needed a database, a full web
 server (or a hosting provider), and either time to hunt for the "perfect" plugin(s) or PHP knowledge to do it myself. Early in my
 development career, I used PHP a lot. That was part of the reason I chose Wordpress. &lt;/p&gt;
 &lt;blockquote&gt;
@@ -401,7 +401,7 @@ be registered to post. That solved my problem for a few months.&lt;/p&gt;
 &lt;p&gt;Then the bots got smarter. They started registering. They started posting legitimate looking messages, except for that associated URL their name
 would link to in the comments. They pulled keywords out of the post and formulated a somewhat passable English question using those words. The spam
 prevention plugins I installed would slow the tide for a few weeks. The bots would adapt and then I'd be awash with spam posts again. Eventually,
-the solution was to completely disable comments. I'd spent way to much time dealing with spam on a blog that received very little legitimate traffic.&lt;/p&gt;
+the solution was to completely disable comments. I'd spent way too much time dealing with spam on a blog that received very little legitimate traffic.&lt;/p&gt;
 &lt;p&gt;Since I don't utilize the comments, Pelican provides a nice simple page that I can post my thoughts and not worry about getting hit by a spam bot. It also
 provides plugins so that I &lt;em&gt;can&lt;/em&gt; include comments should I ever choose to do so in the future. For the time being, though, I have a nice simple page 
 with no comments. That's exactly what I was looking for.&lt;/p&gt;

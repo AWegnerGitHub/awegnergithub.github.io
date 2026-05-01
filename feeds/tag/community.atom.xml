@@ -26,14 +26,14 @@ team to find ways to cover costs). Now we have one.&lt;/p&gt;
 &lt;p&gt;I've built a Raffle bot based on &lt;a href="https://github.com/Jessecar96/SteamBot"&gt;SteamBot&lt;/a&gt;, which is the base of &lt;a href="https://scrap.tf/"&gt;scrap.tf&lt;/a&gt;. Entries to raffles will be one entry 
 per refined metal. You can have an unlimited number of entries. I will convert the refined metal to various prizes 
 (with the goal being keys most of the time).&lt;/p&gt;
-&lt;p&gt;Then we'll have the system select a set of winners from the entries. A user can only win once per raffle, so even if you you
+&lt;p&gt;Then we'll have the system select a set of winners from the entries. A user can only win once per raffle, so even if you 
 have a gigantic number of entries, your odds of winning more than one position are zero. Only one win per steam id.&lt;/p&gt;
 &lt;p&gt;Using the prices from &lt;a href="http://backpack.tf/"&gt;backpack.tf&lt;/a&gt;, the bot will determine the "value" of the items within the trade.&lt;/p&gt;
 &lt;h2 id="how-does-this-off-set-costs"&gt;How does this off set costs?&lt;a class="headerlink" href="#how-does-this-off-set-costs" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Items that are received that are of high value or any additional keys we can get based on raffle entries will be sold on 
 various TF2 trading markets. The profits from these trades will be used to cover some community costs.&lt;/p&gt;
 &lt;h2 id="keep-high-value-items-for-future-raffles"&gt;Keep high value items for future raffles?&lt;a class="headerlink" href="#keep-high-value-items-for-future-raffles" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;This question was added based on feed back from the community. It was added on March 20, 2013&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This question was added based on feedback from the community. It was added on March 20, 2013&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The original plan was to sell any such items. However, due to community feedback, I've changed my mind. We will utilize 
 "high value" items as prizes for future raffles. These future raffles will not be announced until any running raffles are 
 complete. It is also possible that such a raffle will run separately from the planned monthly ones.&lt;/p&gt;
@@ -53,16 +53,16 @@ you to all our players that entered!&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img alt="First Raffle Bot Entries and Winners" src="https://andrewwegner.com/images/rafflebot-entries.png"/&gt;&lt;/p&gt;</content><category term="Vipers"/><category term="team vipers"/><category term="automation"/><category term="community"/><category term="programming"/></entry><entry><title>Automated template for membership applications</title><link href="https://andrewwegner.com/automated-template-for-membership-applications.html" rel="alternate"/><published>2009-10-30T22:30:00-05:00</published><updated>2009-10-30T22:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2009-10-30:/automated-template-for-membership-applications.html</id><summary type="html">&lt;p&gt;How Team Vipers improved user applications and admin participation in the process&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Not to long ago, applications for new membership in Team Vipers consisted of someone wandering onto the site, posting a
+&lt;p&gt;Not too long ago, applications for new membership in Team Vipers consisted of someone wandering onto the site, posting a
 few words and an administrator saying they were accepted as a member. This worked when we were a small community. We
 aren't small any more. We have 5 servers and hundreds of players a day. Each server has their own sub-community. There
-are players joining the forums than entire groups of people have never met because they play exclusively on one game server.&lt;/p&gt;
+are players joining the forums that entire groups of people have never met because they play exclusively on one game server.&lt;/p&gt;
 &lt;p&gt;Admins were also inconsistent in how (or if) they voted. Some admins didn't realize they could have a say, thinking it
 was a privilege granted to only the senior administrators. We've built a system to resolve many of these problems and to
 make the administration side easier.&lt;/p&gt;
 &lt;h2 id="whats-new"&gt;What's new?&lt;a class="headerlink" href="#whats-new" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The new system presents all users with an application template. They fill out the form and the system handles the rest.
-The New Users and Applications subforum has been modified so that no one, except the bot, can create topics. They
+The New Users and Applications subforum has been modified so that no one, except the bot, can create topics. The
 topics will only be created when the form is submitted. When a user applies to join Vipers, we will automatically
 include relevant information about the user as we know them:&lt;/p&gt;
 &lt;ul&gt;
@@ -79,7 +79,7 @@ include relevant information about the user as we know them:&lt;/p&gt;
 added a check of a user's &lt;a href="http://steamrep.com/api.php"&gt;Steam Reputation&lt;/a&gt; instead.&lt;/p&gt;
 &lt;p&gt;After a user applies, they are put into a two week hold. During this week it is expected they will stick around the forums
 and learn about the community they just applied to. Even better would be that they had done this before applying. While
-this two week hold is in place, the administration team will be able to cast they votes in a separate sub-forum. They can
+this two week hold is in place, the administration team will be able to cast their votes in a separate sub-forum. They can
 hold administration specific discussions - usually details that are important for admins to know, but don't &lt;em&gt;need&lt;/em&gt; to be
 public. Once voting is complete, if they become a member, the system automatically grants appropriate forum and server
 related permissions.&lt;/p&gt;

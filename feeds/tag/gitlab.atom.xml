@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Andrew Wegner | Ponderings of an Andy - gitlab</title><link href="https://andrewwegner.com/" rel="alternate"/><link href="https://andrewwegner.com/feeds/tag/gitlab.atom.xml" rel="self"/><id>https://andrewwegner.com/</id><updated>2025-07-06T08:00:00-05:00</updated><subtitle>Can that be automated?</subtitle><entry><title>How to fix GitLab 18 error regarding git_data_dirs</title><link href="https://andrewwegner.com/gitlab_18_git_data_dirs_resolution.html" rel="alternate"/><published>2025-07-06T08:00:00-05:00</published><updated>2025-07-06T08:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-07-06:/gitlab_18_git_data_dirs_resolution.html</id><summary type="html">&lt;p&gt;GitLab 18 removes &lt;code&gt;git_data_dirs&lt;/code&gt; and if you have been using it and didn't notice the deprecation warnings, an update to GitLab 18 will fail. This is a simple fix.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Several years ago I &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;set up GitLab in my home environment&lt;/a&gt;. I apprecate past me documenting the basic steps I took to do this, because I'll need them again at some point when I make upgrades to my home lab. I've documented somethings I've done (like &lt;a href="https://andrewwegner.com/setting-up-gitlab-runners.html"&gt;setting up GitLab runners&lt;/a&gt;, or dealing with &lt;a href="https://andrewwegner.com/disable-grafana-in-gitlab-16.html"&gt;Grafana being deprecated within GitLab&lt;/a&gt; or utilzing &lt;a href="https://andrewwegner.com/obsidian-gitlab-setup.html"&gt;GitLab to automatically backup my Obsidian notes&lt;/a&gt;) Unfortunately, I didn't document everything. One of those things that I didn't document was changing where my repositories are stored on disk by default.&lt;/p&gt;
+&lt;p&gt;Several years ago I &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;set up GitLab in my home environment&lt;/a&gt;. I appreciate past me documenting the basic steps I took to do this, because I'll need them again at some point when I make upgrades to my home lab. I've documented some things I've done (like &lt;a href="https://andrewwegner.com/setting-up-gitlab-runners.html"&gt;setting up GitLab runners&lt;/a&gt;, or dealing with &lt;a href="https://andrewwegner.com/disable-grafana-in-gitlab-16.html"&gt;Grafana being deprecated within GitLab&lt;/a&gt; or utilizing &lt;a href="https://andrewwegner.com/obsidian-gitlab-setup.html"&gt;GitLab to automatically backup my Obsidian notes&lt;/a&gt;) Unfortunately, I didn't document everything. One of those things that I didn't document was changing where my repositories are stored on disk by default.&lt;/p&gt;
 &lt;p&gt;In GitLab 17.8 (January 2025), a new deprecation warning started appearing.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;git_data_dirs has been deprecated since 17.8 and will be removed in 18.0. See https://docs.gitlab.com/omnibus/settings/configuration.html#migrating-from-git_data_dirs for migration instructions.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I'm a little annoyed that there were only 5 months of notice on this because major versions are released in May. In any case, if you attempt to update to version 18 or beyond and are utilizing &lt;code&gt;git_data_dirs&lt;/code&gt;, the upgrade will fail.&lt;/p&gt;
 &lt;h2 id="solution"&gt;Solution&lt;a class="headerlink" href="#solution" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;As usual, GitLab is good at providing &lt;a href="https://docs.gitlab.com/omnibus/settings/configuration/#migrating-from-git_data_dirs"&gt;documentation on resoluting and migrating&lt;/a&gt; through the deprecations. However, on my first attempt I encountered an error. I believe it's because I missed a note buried in the text - not the code blocks - the first time.&lt;/p&gt;
+&lt;p&gt;As usual, GitLab is good at providing &lt;a href="https://docs.gitlab.com/omnibus/settings/configuration/#migrating-from-git_data_dirs"&gt;documentation on resolving and migrating&lt;/a&gt; through the deprecations. However, on my first attempt I encountered an error. I believe it's because I missed a note buried in the text - not the code blocks - the first time.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note that the &lt;code&gt;/repositories&lt;/code&gt; suffix must be appended to the path because it was previously appended internally.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -38,7 +38,7 @@ storage: [
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;With this quick change, I can continue to hold the repositories at a location of my choosing. The biggest thing is to add &lt;code&gt;/repositories&lt;/code&gt; to the &lt;code&gt;path&lt;/code&gt; in the new Gitly configuration. With this change, I can continue to utilizing the current version of GitLab - a tool that I still find invaluable.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="gitlab"/></entry><entry><title>Syncing Obsidian Notes across devices using Git and GitLab</title><link href="https://andrewwegner.com/obsidian-gitlab-setup.html" rel="alternate"/><published>2023-09-26T13:30:00-05:00</published><updated>2023-09-26T13:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-09-26:/obsidian-gitlab-setup.html</id><summary type="html">&lt;p&gt;Setting up Obsidian to sync notes across devices utilizing git and a GitLab backend&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;With this quick change, I can continue to hold the repositories at a location of my choosing. The biggest thing is to add &lt;code&gt;/repositories&lt;/code&gt; to the &lt;code&gt;path&lt;/code&gt; in the new Gitaly configuration. With this change, I can continue to utilize the current version of GitLab - a tool that I still find invaluable.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="gitlab"/></entry><entry><title>Syncing Obsidian Notes across devices using Git and GitLab</title><link href="https://andrewwegner.com/obsidian-gitlab-setup.html" rel="alternate"/><published>2023-09-26T13:30:00-05:00</published><updated>2023-09-26T13:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-09-26:/obsidian-gitlab-setup.html</id><summary type="html">&lt;p&gt;Setting up Obsidian to sync notes across devices utilizing git and a GitLab backend&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I take a lot of notes. About five years ago I switched from utilizing notebooks, because I was going through them so quickly, to a 
 &lt;a href="https://getrocketbook.com/"&gt;Rocket Book&lt;/a&gt;. This feels very similar to a notebook, with the benefit that it is reusable. It also has an application that allows me to quickly 
@@ -46,7 +46,7 @@ scan a page and save it to one of several locations. It's very handy. The downsi
 annoyance of cleaning the pages every week or so. I've found that if I don't let the pages dry completely, then the next time I go to use that page it 
 has a fine film over it that makes writing a little more difficult. Think writing with a pen that is low on ink.&lt;/p&gt;
 &lt;p&gt;I discovered &lt;a href="https://getrocketbook.com/"&gt;Obsidian&lt;/a&gt; a while ago. I've put a little bit of effort into utilizing it, but more recently I've committed to utilizing it more.
-The idea of all digial notes is enticing. Over time I'll see if it's helpful.&lt;/p&gt;
+The idea of all digital notes is enticing. Over time I'll see if it's helpful.&lt;/p&gt;
 &lt;p&gt;But, like anyone with multiple devices, I want my Obsidian vault on all devices. What if I have a thought while I'm away from my main computer? One option is to utilize the &lt;a href="https://obsidian.md/sync"&gt;Obsidian Sync&lt;/a&gt; feature. It's got end to end encryption, version history and a monthly subscription fee. I can build something using my &lt;a href="https://andrewwegner.com/installing-gitlab.html"&gt;existing GitLab installation&lt;/a&gt; without that monthly subscription fee. Plus, since I'm the only user of this, I'm ok with a little trade off that a full service provides. &lt;/p&gt;
 &lt;h2 id="repository-setup"&gt;Repository Setup&lt;a class="headerlink" href="#repository-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="gitlab"&gt;GitLab&lt;a class="headerlink" href="#gitlab" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -81,7 +81,7 @@ git push --set-upstream origin main
 &lt;h2 id="obsidian-setup"&gt;Obsidian Setup&lt;a class="headerlink" href="#obsidian-setup" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="first-open"&gt;First Open&lt;a class="headerlink" href="#first-open" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Now that the backend repository is set up and it's been initially configured, all instances of Obsidian can utilize these sets of steps to start working. &lt;/p&gt;
-&lt;p&gt;If this is not the device you initilized the repository on, you need to perform an initial &lt;code&gt;pull&lt;/code&gt; of the repository to this device so that it is a local folder.&lt;/p&gt;
+&lt;p&gt;If this is not the device you initialized the repository on, you need to perform an initial &lt;code&gt;pull&lt;/code&gt; of the repository to this device so that it is a local folder.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;git clone git@&amp;lt;my.server.url&amp;gt;:andy/andy-notes.git
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Open Obsidian. Since this is the first time you are opening it, you'll be asked to select where your vault is stored. You want to select the "Open folder as vault" option.&lt;/p&gt;
@@ -121,7 +121,7 @@ git push --set-upstream origin main
 &lt;p&gt;&lt;img alt="Obsidian successfully updated the vault after opening" src="https://andrewwegner.com/images/obsidian/open_success.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Then on a scheduled basis - 5 minutes in my case - it will commit and push changes to GitLab.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Successful autocommit" src="https://andrewwegner.com/images/obsidian/autocommit.png"/&gt;&lt;/p&gt;
-&lt;p&gt;In GitLab, this commit will should show up immediately. &lt;/p&gt;
+&lt;p&gt;In GitLab, this commit should show up immediately. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="GitLab commit" src="https://andrewwegner.com/images/obsidian/commit.png"/&gt;&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I now have Obsidian set up on my main devices. I've enjoyed the ability to have my notes available as soon as I open the application. Overall, this was pretty easy to set up. It seems like a lot of steps, but the one time setup makes it much longer than installing and configuring a plugin for each new instance actually takes.&lt;/p&gt;
@@ -131,7 +131,7 @@ git push --set-upstream origin main
 newest dot update and enjoy the new features. As with any piece of software, things get deprecated and eventually disabled over
 time. &lt;/p&gt;
 &lt;p&gt;In 16.3 - released in August 2023 - the version of &lt;a href="https://grafana.com/"&gt;Grafana&lt;/a&gt; bundled with the self hosted version of GitLab reached the 
-end of it's depreciation window and was disabled. GitLab added a check to prevent an update if it was still enabled. &lt;/p&gt;
+end of its deprecation window and was disabled. GitLab added a check to prevent an update if it was still enabled. &lt;/p&gt;
 &lt;h2 id="symptom"&gt;Symptom&lt;a class="headerlink" href="#symptom" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When performing an &lt;code&gt;apt&lt;/code&gt; update, GitLab 16.3 will error out if Grafana is still enabled on your instance. The error looks like this:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Preparing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ee_16&lt;/span&gt;&lt;span class="mf"&gt;.3.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ee&lt;/span&gt;&lt;span class="mf"&gt;.0&lt;/span&gt;&lt;span class="n"&gt;_amd64&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;
@@ -151,7 +151,7 @@ end of it's depreciation window and was disabled. GitLab added a check to preven
 &lt;/ol&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I've removed the links in steps 2 and 3, because they really don't matter for this write up. Step 1 does not have a link, so it's left as 
-and excercise to the user to install Grafana in their environment. Step 4, links to another article that provides a few more steps to follow.&lt;/p&gt;
+an exercise to the user to install Grafana in their environment. Step 4, links to another article that provides a few more steps to follow.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;On the left sidebar, expand the top-most chevron.&lt;/li&gt;
@@ -191,7 +191,7 @@ and excercise to the user to install Grafana in their environment. Step 4, links
 and I was able to apply several best practices from that course to my role at the time, plus roles I've held since then.
 I continue to manage global and remote teams, so I was excited to hear about GitLab's newest course covering their
 &lt;a href="https://about.gitlab.com/teamops/"&gt;"TeamOps"&lt;/a&gt; model of improving teams.&lt;/p&gt;
-&lt;p&gt;This course is hosted on &lt;a href="https://levelup.gitlab.com/catalog"&gt;LevelUp&lt;/a&gt;, and is one of 9 public course they have available right now. &lt;/p&gt;
+&lt;p&gt;This course is hosted on &lt;a href="https://levelup.gitlab.com/catalog"&gt;LevelUp&lt;/a&gt;, and is one of 9 public courses they have available right now. &lt;/p&gt;
 &lt;h2 id="course-overview"&gt;Course Overview&lt;a class="headerlink" href="#course-overview" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The TeamOps Certification course is split into 5 sections and covers about 2-3 hours of material. &lt;/p&gt;
 &lt;ul&gt;
@@ -213,7 +213,7 @@ remote processes.&lt;/p&gt;
 &lt;p&gt;TeamOps felt like a good extension and refresher from the &lt;a href="https://andrewwegner.com/gitlab-manage-remote-team.html"&gt;"How to Manage a Remote Team" course&lt;/a&gt;. Unfortunately, that's all it felt 
 like - a refresher. &lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The change from video to text based courses was surprising, and slightly unwelcome. The content of the course is good, and will definately 
+&lt;p&gt;The change from video to text based courses was surprising, and slightly unwelcome. The content of the course is good, and will definitely 
 help teams improve how they operate. However, many of the same ideas were covered in the previous course. I suppose that if this continues
 to work for GitLab, it makes sense that they aren't trying to make sweeping changes, but I was hoping for...more, I suppose. &lt;/p&gt;
 &lt;p&gt;I recommend this course to anyone who manages a team remotely and needs a refresher from the previous course GitLab provided or doesn't have
@@ -259,7 +259,7 @@ workers effectively. It is also a good course to take if your company is plannin
 &lt;p&gt;GitLab has done a good job with this course.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://coursera.org/verify/23C6VDATPJMN"&gt;&lt;img alt="How to Manage a Remote Team Certificate" src="https://andrewwegner.com/images/coursera-remote-manage.png"/&gt;&lt;/a&gt;&lt;/p&gt;</content><category term="Review"/><category term="review"/><category term="technical"/><category term="learning"/><category term="leadership"/><category term="gitlab"/></entry><entry><title>Setting up GitLab runners</title><link href="https://andrewwegner.com/setting-up-gitlab-runners.html" rel="alternate"/><published>2019-10-22T11:00:00-05:00</published><updated>2019-10-22T11:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2019-10-22:/setting-up-gitlab-runners.html</id><summary type="html">&lt;p&gt;How I set up a GitLab runner&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;It's been a year and a half since I set up GitLab. In that time I've used to it
+&lt;p&gt;It's been a year and a half since I set up GitLab. In that time I've used it to
 store my personal code, keep track of features I want to add to my own projects,
 and generally loved it. One thing I haven't done though, is play with the CI/CD
 features. I've been wanting to, but never got around to it.&lt;/p&gt;
@@ -284,8 +284,8 @@ but for my home environment, this is easiest to set up and maintain.&lt;/p&gt;
 &lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;
 &lt;span class="n"&gt;gitlab&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;runner&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This is downloading the install package. Then it adds a new user, that the runner will run as. This is a nice security precaution to limit what the runner has access to on the system. It's not full security, but it does all me to restrict what that particular user has access to on the server.&lt;/p&gt;
-&lt;p&gt;Then the run is started.&lt;/p&gt;
+&lt;p&gt;This is downloading the install package. Then it adds a new user, that the runner will run as. This is a nice security precaution to limit what the runner has access to on the system. It's not full security, but it does allow me to restrict what that particular user has access to on the server.&lt;/p&gt;
+&lt;p&gt;Then the runner is started.&lt;/p&gt;
 &lt;p&gt;Next the runner needs to be registered. Log into GitLab, and navigate to
 the project that will be using this runner. It should be available at this link:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;https://url.to.your.gitlab.install/&amp;lt;account&amp;gt;/&amp;lt;repo&amp;gt;/settings/ci_cd
@@ -321,7 +321,7 @@ the project that will be using this runner. It should be available at this link:
 &lt;p&gt;This pipeline has 4 stages.&lt;/p&gt;
 &lt;h3 id="static-analysis"&gt;Static Analysis&lt;a class="headerlink" href="#static-analysis" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;In the Static Analysis phase, I run various analysis tools over my code. The goal here is to ensure that my code, YAML documents, and documentation are easy to read and use.&lt;/p&gt;
-&lt;p&gt;You'll notice the the xenon task has a warning in the image. I have the settings pretty strict in this pipeline, where I allow a very low &lt;a href="https://radon.readthedocs.io/en/latest/intro.html#cyclomatic-complexity"&gt;Cyclomatic Complexity&lt;/a&gt;. In this project, I have one function that is just barely failing my strict settings. I have allowed the pipeline to continue if this one particular task fails.&lt;/p&gt;
+&lt;p&gt;You'll notice the xenon task has a warning in the image. I have the settings pretty strict in this pipeline, where I allow a very low &lt;a href="https://radon.readthedocs.io/en/latest/intro.html#cyclomatic-complexity"&gt;Cyclomatic Complexity&lt;/a&gt;. In this project, I have one function that is just barely failing my strict settings. I have allowed the pipeline to continue if this one particular task fails.&lt;/p&gt;
 &lt;p&gt;I could either increase the allowed complexity in the code base to ignore the warning. Alternatively, I could not allow the pipeline to proceed until I fix this function. This was one of those instances where it hasn't been worth it to refactor the code, but I want to be reminded I &lt;em&gt;should&lt;/em&gt; fix it, so I allow the pipeline to proceed and show me the error.&lt;/p&gt;
 &lt;h3 id="test"&gt;Test&lt;a class="headerlink" href="#test" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The Test phase should be fairly self explanatory. It's the stage where I run my test suite. It will only run if the Static Analysis phase completes successfully (or I allow a specific job to fail, in the case of the xenon task).&lt;/p&gt;
@@ -451,7 +451,7 @@ the project that will be using this runner. It should be available at this link:
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;script&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;xenon&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;absolute&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;average&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_package&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I previously mentioned that I allowed the xenon step to fail. This is accomplished with the &lt;code&gt;allow_failue: true&lt;/code&gt; setting you see here. Since this setting is in place, the pipeline will proceed even if this single task fails.&lt;/p&gt;
+&lt;p&gt;I previously mentioned that I allowed the xenon step to fail. This is accomplished with the &lt;code&gt;allow_failure: true&lt;/code&gt; setting you see here. Since this setting is in place, the pipeline will proceed even if this single task fails.&lt;/p&gt;
 &lt;h3 id="manual-deployment"&gt;Manual deployment&lt;a class="headerlink" href="#manual-deployment" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;deploy_production&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Deploy&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Production&lt;/span&gt;
@@ -471,7 +471,7 @@ the project that will be using this runner. It should be available at this link:
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Back when I ran Vipers, my fellow admins and I hosted a small set of code repositories -
 SVN, Mercurial and Git - to host some of our custom code. We ran &lt;a href="https://rhodecode.com/"&gt;RhodeCode&lt;/a&gt; and
-the fork, &lt;a href="https://kallithea-scm.org/"&gt;Kallithea&lt;/a&gt;, when RhodeCode close sourced some of it's code and
+the fork, &lt;a href="https://kallithea-scm.org/"&gt;Kallithea&lt;/a&gt;, when RhodeCode closed sourced some of its code and
 couldn't figure out if the license it used actually allowed themselves to do that. A private
 repository was awesome for plugins, server configurations and personal projects.&lt;/p&gt;
 &lt;p&gt;When the community was shuttered, some of the &lt;a href="https://github.com/AWegnerGitHub/Vipers-Server-Plugins"&gt;plugin code was migrated to GitHub&lt;/a&gt; and it's
@@ -483,10 +483,10 @@ back up for my non-public personal projects.&lt;/p&gt;
 they had done it again in the meantime. I didn't want to deal with that. I attempted to install
 Kallithea using their &lt;a href="http://kallithea.readthedocs.io/en/stable/installation.html"&gt;instructions&lt;/a&gt;, but I kept running into Python syntax errors. It wasn't
 worth the time and effort to figure out the problem.&lt;/p&gt;
-&lt;p&gt;So, I turned to &lt;a href="https://about.gitlab.com/"&gt;GitLab&lt;/a&gt;. It'd definitely overkill for what I really need, but it works and
+&lt;p&gt;So, I turned to &lt;a href="https://about.gitlab.com/"&gt;GitLab&lt;/a&gt;. It's definitely overkill for what I really need, but it works and
 if I ever truly decide to get fancy, I have a lot of other tools I can use. The &lt;a href="https://about.gitlab.com/pricing/self-hosted/feature-comparison/"&gt;core&lt;/a&gt; functionality
 is what I'll be using and is free. The three other versions cost some money and contain features that
-would be useful for large team, not a single developer or very small team.&lt;/p&gt;
+would be useful for large teams, not a single developer or very small team.&lt;/p&gt;
 &lt;h2 id="installation"&gt;Installation&lt;a class="headerlink" href="#installation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="dependencies"&gt;Dependencies&lt;a class="headerlink" href="#dependencies" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Installing GitLab is pretty simple. There are a couple dependencies needed, but I already had both OpenSSH 
@@ -495,7 +495,7 @@ the Ubuntu Omnibus package.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt-get install -y curl openssh-server ca-certificates postfix
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="getting-the-package"&gt;Getting the package&lt;a class="headerlink" href="#getting-the-package" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The GitLab repository needs to added and then installed. To add the repository, issue this command:&lt;/p&gt;
+&lt;p&gt;The GitLab repository needs to be added and then installed. To add the repository, issue this command:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;curl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;To install the GitLab package, you need to provide an environment variable when you issue your
@@ -533,7 +533,7 @@ sudo ln -s /etc/apache2/sites-available/gitlab.conf /etc/apache2/sites-enabled/g
 &lt;h3 id="use-ssl-to-access-gitlab"&gt;Use SSL to access GitLab&lt;a class="headerlink" href="#use-ssl-to-access-gitlab" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The example virtual host provided by GitLab uses HTTP only. I want to set up my instance to use HTTPS. I'll be 
 doing this with &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;, like I did when I set up NextCloud in the previous post. I cover the exact 
-&lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;steps for Let's Encrypt&lt;/a&gt; in another post. The keys referenced in the virtual host configuration file below created 
+&lt;a href="https://andrewwegner.com/setup-lets-encrypt.html"&gt;steps for Let's Encrypt&lt;/a&gt; in another post. The keys referenced in the virtual host configuration file below were created 
 by that process. &lt;/p&gt;
 &lt;p&gt;The first change to make is to redirect the HTTP version of your domain to HTTPS. The goal is that all traffic to
 GitLab will go over SSL. Adjust the &lt;code&gt;ServerName&lt;/code&gt; variable as appropriate.&lt;/p&gt;
@@ -563,7 +563,7 @@ GitLab will go over SSL. Adjust the &lt;code&gt;ServerName&lt;/code&gt; variable
 in the web browser. It throws a &lt;code&gt;400 Bad Request&lt;/code&gt; when trying to view the directory. There is a &lt;a href="https://gitlab.com/gitlab-org/gitlab/-/issues/18213"&gt;bug report&lt;/a&gt; 
 regarding this problem. The developers are working on updating the samples in a way that is guaranteed to work through
 the whole system. &lt;/p&gt;
-&lt;p&gt;For me, though, the first comment which suggests a minor &lt;code&gt;RewireRule&lt;/code&gt; change works great. In the virtual host, fine the line&lt;/p&gt;
+&lt;p&gt;For me, though, the first comment which suggests a minor &lt;code&gt;RewireRule&lt;/code&gt; change works great. In the virtual host, find the line&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;RewriteRule .* http://127.0.0.1:8181%{REQUEST_URI} [P,QSA,NE]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;and remove the &lt;code&gt;NE&lt;/code&gt; so that it reads&lt;/p&gt;

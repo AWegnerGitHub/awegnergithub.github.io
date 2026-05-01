@@ -16,7 +16,7 @@ isn't designed to pick on this author specifically, it's just the latest in a lo
 &lt;h2 id="counter-point"&gt;Counter point&lt;a class="headerlink" href="#counter-point" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I have a lot of problems with this article. The short version is that it sounds like this company implemented remote work poorly, 
 possibly during covid (I'm not sure how long they've been around). I think remote work is the best, especially for companies 
-that does not need a local presence.&lt;/p&gt;
+that do not need a local presence.&lt;/p&gt;
 &lt;p&gt;The article raises four coordination cost bullet points:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
@@ -76,7 +76,7 @@ professional level of trust.&lt;/p&gt;
 &lt;p&gt;The last one, absolutely. In this environment, I as a manager, can hire the best person for the job regardless of where they sit in 
 the world. It doesn't matter if we could car pool to an office or if you are 18 hours ahead of me. This is the massive advantage of a 
 fully remote workforce and is commonly brushed under the rug in these types of articles. A team that is aligned and has the best 
-people in the world or industry working for them is going to crush a team of that is colocated and is limited by who lives in 
+people in the world or industry working for them is going to crush a team that is colocated and is limited by who lives in 
 commuting distance or is willing to relocate to commuting distance of the office.&lt;/p&gt;
 &lt;p&gt;Lastly, this quote&lt;/p&gt;
 &lt;blockquote&gt;
@@ -89,8 +89,8 @@ that engineer in Miami or London or Ankara or Sao Paulo or anywhere else why the
 their coworker doing the exact same thing and see how quickly engineering morale crumbles. Or, are you one of the minority of 
 companies that pay the same regardless of location? If not, you should be. &lt;/p&gt;
 &lt;p&gt;The best engineers I've worked with, except one, have been located well outside of the Bay Area. An engineer in Miami can do the exact
-same work that an engineer in San Fransisco can at the same quality.&lt;/p&gt;
-&lt;p&gt;Remote works can and is incredibly successful for many companies. It does require deliberate, intentional, company decisions to make 
+same work that an engineer in San Francisco can at the same quality.&lt;/p&gt;
+&lt;p&gt;Remote work can and is incredibly successful for many companies. It does require deliberate, intentional, company decisions to make 
 it work though. I shared the &lt;a href="https://about.gitlab.com/teamops/"&gt;TeamOps&lt;/a&gt; information above (and completed &lt;a href="https://andrewwegner.com/gitlab-teamops-certification.html"&gt;TeamOps certification&lt;/a&gt; earlier this year). GitLab, one 
 of the largest successful all remote companies in the world, has intentionally built their remote policies around this. Without
 putting in the time or effort to ensure remote is successful, teams will (and are) defaulting back to in office. I think we are 
@@ -103,11 +103,11 @@ ground up) the company culture to handle remote work will have a huge advantage 
 question from their list of &lt;a href="https://coderbyte.com/challenges"&gt;open challenges&lt;/a&gt; and ran those through ChatGPT.&lt;/p&gt;
 &lt;p&gt;In previous articles in this series, I've shown how &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; can easily solve interview assessments from &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;LeetCode&lt;/a&gt;, 
 &lt;a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"&gt;TestGorilla&lt;/a&gt;, &lt;a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html"&gt;CodeSignal&lt;/a&gt;, &lt;a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html"&gt;Codility&lt;/a&gt; and &lt;a href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html"&gt;HackerRank&lt;/a&gt;[hackerrankg]. I've said it in 
-those articles, but I'll say it again: Companies need to evaluate their engineering candidates - all candidates, actually - apprpriately 
+those articles, but I'll say it again: Companies need to evaluate their engineering candidates - all candidates, actually - appropriately 
 when they are hiring. Your engineers are using many tools to do their jobs and AI Tooling is one of the newest tools on the market. Removing 
 a tool from your engineers is going to make them less efficient, and &lt;em&gt;not&lt;/em&gt; testing your candidates on how they use these tools is 
 going to mean you hire someone that had not fully demonstrated their capabilities.&lt;/p&gt;
-&lt;p&gt;ChatGPT should be treated as a tool, but it's also helpful to think of it as a junior level engineer. You need to check it's work. 
+&lt;p&gt;ChatGPT should be treated as a tool, but it's also helpful to think of it as a junior level engineer. You need to check its work. 
 &lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;ChatGPT is known to be inaccurate&lt;/a&gt;, which is why it remains &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;banned on Stack Overflow&lt;/a&gt;. There are a few instances where
 I had to do that below.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, 
@@ -115,7 +115,7 @@ I had to do that below.&lt;/p&gt;
 seem to consider Woven a competitor, as Woven isn't listed as an &lt;a href="https://coderbyte.com/organizations#pricing"&gt;alternative on their pricing FAQ page&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="easy-react-button-toggle"&gt;Easy - React Button Toggle&lt;a class="headerlink" href="#easy-react-button-toggle" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;While I've tried to be mostly random in my selection of assessments during these tests, I intentionally selected this react 
-assessment because I don't know react. I've liked these types of assessment questions in the previous articles because I means I can't 
+assessment because I don't know react. I've liked these types of assessment questions in the previous articles because it means I can't 
 apply my experience to "nudge" ChatGPT toward a solution. &lt;/p&gt;
 &lt;p&gt;The challenge here is to toggle a button between "On" and "Off". You're presented with a very small amount of boiler plate code. &lt;/p&gt;
 &lt;p&gt;I simply copy/pasted the prompt and the template into ChatGPT. It sent back this:&lt;/p&gt;
@@ -141,7 +141,7 @@ apply my experience to "nudge" ChatGPT toward a solution. &lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I copied that into the IDE provided by CoderByte and submitted the code.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="CoderByte - Easy Challenge - React Toggle Button Score" src="https://andrewwegner.com/images/coderbyte-easy-tests.png"/&gt;&lt;/p&gt;
-&lt;p&gt;This test took two minutes to complete. The bulk of that time was spot checking that ChatGPT didn't mess with the boiler plate code to badly.&lt;/p&gt;
+&lt;p&gt;This test took two minutes to complete. The bulk of that time was spot checking that ChatGPT didn't mess with the boiler plate code too badly.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="CoderByte - Easy Challenge - React Toggle Button Time Taken" src="https://andrewwegner.com/images/coderbyte-easy-minutes.png"/&gt;&lt;/p&gt;
 &lt;p&gt;The interesting this about the results is that even with the 10/10, the system says it only scored higher than 12% of other users. Does this mean
 that only 12% of the users passing this assessment are getting lower than a 10/10? To me, that's the sign of a bad assessment.&lt;/p&gt;
@@ -190,7 +190,7 @@ of pairs of parenthesis. The example provided is:&lt;/p&gt;
 &lt;span class="c1"&gt;# keep this function call here &lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BracketCombinations&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Experience here says that is odd. Technically speaking, Python will allow you to have that &lt;code&gt;import&lt;/code&gt; statemnet inside a function, but if I saw one of 
+&lt;p&gt;Experience here says that is odd. Technically speaking, Python will allow you to have that &lt;code&gt;import&lt;/code&gt; statement inside a function, but if I saw one of 
 my developers do it, I'd mention it during a code review. I was curious though and submitted it as is. &lt;/p&gt;
 &lt;p&gt;I also went back and told ChatGPT:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -219,14 +219,14 @@ a production environment, instead of adding a false constraint. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="CoderByte - Hard Challenge - Combination Time Taken" src="https://andrewwegner.com/images/coderbyte-hard-solution-solve-time.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Copy pasting to CoderByte kept this close to a minute. &lt;/p&gt;
 &lt;h2 id="final-thoughts"&gt;Final Thoughts&lt;a class="headerlink" href="#final-thoughts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Another code only assessment tool has been shown to be ineffective. The one thing this one does, that others does show publicly, is the 
+&lt;p&gt;Another code only assessment tool has been shown to be ineffective. The one thing this one does, that others don't show publicly, is the 
 time it took to solve a problem. I'm very surprised that a majority of these were solved in under ten minutes. Even so, solving a problem in 
-less than a minute will probably raise a flag of some kind for a hiring manager giving this type of assessment. I guarentee that time is visbile 
+less than a minute will probably raise a flag of some kind for a hiring manager giving this type of assessment. I guarantee that time is visible 
 to them.&lt;/p&gt;
 &lt;p&gt;These three assessments show how well ChatGPT can be in being your virtual junior engineer. With the react question, I have no idea if it's 
 the more efficient way to solve the problem but it works. With the SQL question, experience identified two small problems and allowed me to 
 provide feedback and get a corrected query in seconds. The third question turned in two different ways of solving the problem. Apparently, according
-to CoderByte, bother of which perform exactly the same.&lt;/p&gt;
+to CoderByte, both of which perform exactly the same.&lt;/p&gt;
 &lt;p&gt;The total time it took me to run these three tests was under five minutes. That's a great tool to have in my pocket.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>ChatGPT easily solves HackerRank questions</title><link href="https://andrewwegner.com/solving-more-interview-questions-with-chatgpt.html" rel="alternate"/><published>2023-01-08T01:15:00-06:00</published><updated>2023-01-08T01:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-01-08:/solving-more-interview-questions-with-chatgpt.html</id><summary type="html">&lt;p&gt;HackerRank is a common tool companies use in interviews. This post continues the series on how ChatGPT can solve these interview problems.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It's important that companies evaluate their engineering candidates appropriately when they are hiring. Do other areas of your company 
@@ -234,12 +234,12 @@ evaluate their potential hires by restricting access to tools they'll use to per
 your software engineers?&lt;/p&gt;
 &lt;p&gt;AI Tooling - things like GitHub's &lt;a href="https://github.com/features/copilot"&gt;Copilot&lt;/a&gt; and now &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; - are &lt;em&gt;tools&lt;/em&gt; that your engineers can use to do their job. During the hiring 
 process, engineers should be evaluated on the skills they have, and that includes the ability to utilize all available tools. I expect AI
-assistance to be come as common place as using Stack Overflow to solve a problem. ChatGPT, Copilot, and any future tools doing similar tasks are 
+assistance to become as common place as using Stack Overflow to solve a problem. ChatGPT, Copilot, and any future tools doing similar tasks are 
 going to be used frequently in the near future.&lt;/p&gt;
 &lt;p&gt;In this article, I'm testing &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; against one of the most popular coding assessment services: &lt;a href="https://www.hackerrank.com/"&gt;HackerRank&lt;/a&gt;. I've already covered other assessment services like &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;LeetCode&lt;/a&gt;, &lt;a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"&gt;TestGorilla&lt;/a&gt;, &lt;a href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html"&gt;CodeSignal&lt;/a&gt; and &lt;a href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html"&gt;Codility&lt;/a&gt; in this series. I recommend taking a look at those too.&lt;/p&gt;
 &lt;p&gt;To the engineers that have found this post and are looking for solutions to your coding assessments, I want to warn you, ChatGPT is an
-&lt;em&gt;assistant&lt;/em&gt;. Think of it as a junior level engineer. You may need to check it's work. &lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;ChatGPT is known to be inaccurate&lt;/a&gt;, which is why 
-&lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;it was banned on Stack Overflow&lt;/a&gt;. Don't take it's responses as gospel. Evaluate the responses and make improvements as needed. You'll see I 
+&lt;em&gt;assistant&lt;/em&gt;. Think of it as a junior level engineer. You may need to check its work. &lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;ChatGPT is known to be inaccurate&lt;/a&gt;, which is why 
+&lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;it was banned on Stack Overflow&lt;/a&gt;. Don't take its responses as gospel. Evaluate the responses and make improvements as needed. You'll see I 
 had to do that a couple of times with the questions below.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, &lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I was a customer of Woven for over two years&lt;/a&gt;. 
 HackerRank is mentioned multiple times in the Woven blog and is a competitor to Woven.&lt;/p&gt;
@@ -258,7 +258,7 @@ The whole code is:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I submitted the code and passed all test cases.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="HackerRank - Triangle Quest Results" src="https://andrewwegner.com/images/hackerrank-triange-result.png"/&gt;&lt;/p&gt;
-&lt;p&gt;I was surprised by this one. I was expecting to encounter some problems with the constraint of only being able to use arithemtic operations. It 
+&lt;p&gt;I was surprised by this one. I was expecting to encounter some problems with the constraint of only being able to use arithmetic operations. It 
 turns out, ChatGPT caught that constraint and solved the problem without any issue.&lt;/p&gt;
 &lt;h2 id="iterables-and-iterators"&gt;Iterables and Iterators&lt;a class="headerlink" href="#iterables-and-iterators" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I wanted to try another Medium difficulty problem, that added more than a single line of code. The constraints on the previous question put 
@@ -280,7 +280,7 @@ code here:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Enter your code here. Read input from STDIN. Print output to STDOUT&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;ChatGPT made the neccessary change and provided a new code block.&lt;/p&gt;
+&lt;p&gt;ChatGPT made the necessary change and provided a new code block.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;itertools&lt;/span&gt;
 
 &lt;span class="c1"&gt;# read input from stdin&lt;/span&gt;
@@ -307,7 +307,7 @@ code here:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="HackerRank - Iterables and Iterators Results" src="https://andrewwegner.com/images/hackerrank-iterables-result.png"/&gt;&lt;/p&gt;
 &lt;h2 id="validating-postal-codes"&gt;Validating Postal Codes&lt;a class="headerlink" href="#validating-postal-codes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;At this point, I've shown that ChatGPT can do medium level problems. So, I selected a Hard problem: &lt;a href="https://www.hackerrank.com/challenges/validating-postalcode/problem?isFullScreen=true"&gt;Validating Postal Codes&lt;/a&gt;. 
-The intersting constraint on this one is that &lt;code&gt;if&lt;/code&gt; statements aren't allowed. The goal here is to provide two regular expressions to solve the problem.&lt;/p&gt;
+The interesting constraint on this one is that &lt;code&gt;if&lt;/code&gt; statements aren't allowed. The goal here is to provide two regular expressions to solve the problem.&lt;/p&gt;
 &lt;p&gt;I've built some nasty regular expressions over the years. I've talked about &lt;a href="https://andrewwegner.com/can-a-machine-be-taught-to-flag-spam-automatically.html"&gt;SmokeDetector&lt;/a&gt; in the past, and it's role in removing spam from 
 the Stack Exchange network. It is built on regular expressions. Lots and lots of regular expressions. So, I felt pretty comfortable with 
 this question and wanted to see how ChatGPT would handle it.&lt;/p&gt;
@@ -331,7 +331,7 @@ new regular expression. The two final regular expressions are&lt;/p&gt;
 returned code too - one required accepting user input and the other was an invalid regular expression. Pointing this out to ChatGPT got the 
 problem resolved immediately.&lt;/p&gt;
 &lt;p&gt;This is exactly the type of thing that I'd expect an engineer to need to do with the AI assistant (or more junior engineer). Hiring processes
-must adapt to the existance of AI assistants. Evaluate your candidates and their ability to do more than simply write code. &lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>Taking Codility's sample interview exam using ChatGPT</title><link href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html" rel="alternate"/><published>2023-01-05T01:00:00-06:00</published><updated>2023-01-05T01:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-01-05:/chatgpt-continues-beating-interview-questions.html</id><summary type="html">&lt;p&gt;I'm continuing my look at technical interview exam questions, this time with Codility, and using ChatGPT to show the process needs to change&lt;/p&gt;</summary><content type="html">
+must adapt to the existence of AI assistants. Evaluate your candidates and their ability to do more than simply write code. &lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>Taking Codility's sample interview exam using ChatGPT</title><link href="https://andrewwegner.com/chatgpt-continues-beating-interview-questions.html" rel="alternate"/><published>2023-01-05T01:00:00-06:00</published><updated>2023-01-05T01:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-01-05:/chatgpt-continues-beating-interview-questions.html</id><summary type="html">&lt;p&gt;I'm continuing my look at technical interview exam questions, this time with Codility, and using ChatGPT to show the process needs to change&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It was announced on January 3, 2023 that &lt;a href="https://ny.chalkbeat.org/2023/1/3/23537987/nyc-schools-ban-chatgpt-writing-artificial-intelligence"&gt;New York City has banned students and teachers from using ChatGPT&lt;/a&gt;, because of "concerns about negative 
 impacts on student learning, and concerns regarding the safety and accuracy of content". This continues the daily news stories 
@@ -350,16 +350,16 @@ of their hiring process.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, &lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I was a customer of Woven for over two years&lt;/a&gt;. 
 Woven is a competitor of Codility. &lt;/p&gt;
 &lt;p&gt;The question in this post is taken from &lt;a href="https://app.codility.com/demo/take-sample-test/"&gt;Codility's sample test&lt;/a&gt;. I will not be sharing the exact prompt from the sample test, as Codility has
-a disclaimer in the prompt clearly stating that disclousure is prohibited. Fair enough.&lt;/p&gt;
+a disclaimer in the prompt clearly stating that disclosure is prohibited. Fair enough.&lt;/p&gt;
 &lt;p&gt;It'd be a shame if they hid all of their technical exam questions behind such a disclaimer though. Especially when this 
-&lt;a href="https://stackoverflow.com/q/51719848/189134"&gt;sample question sits on Stack Overflow&lt;/a&gt; with over 400k views and has over 100 answers. It also generated it's own 
+&lt;a href="https://stackoverflow.com/q/51719848/189134"&gt;sample question sits on Stack Overflow&lt;/a&gt; with over 400k views and has over 100 answers. It also generated its own 
 &lt;a href="https://meta.stackoverflow.com/q/418024/189134"&gt;meta question&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;This is just one reason that these types of questions aren't great for technical interview questions. Exam questions will always escape the 
 exam environment. A student, a job candidate, or someone interested in the content will be able to find it and the answers after it's out
 there.&lt;/p&gt;
 &lt;h2 id="the-problem"&gt;The problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you want to see the full prompt, take a look at the &lt;a href="https://stackoverflow.com/q/51719848/189134"&gt;Stack Overflow question&lt;/a&gt;. But, briefly, the problem to solve is to find the 
-smallest positve integer that does not appear in an array of numbers. We are provided three sample arrays with positive, negative and duplicate entires.&lt;/p&gt;
+smallest positive integer that does not appear in an array of numbers. We are provided three sample arrays with positive, negative and duplicate entries.&lt;/p&gt;
 &lt;p&gt;I copy and pasted the prompt into ChatGPT and got a short function back.&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;def solution(A):
     # Create a set of all the positive integers in the list
@@ -393,21 +393,21 @@ Note that the example tests are not part of your score. On submission at least 8
 receive my results. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="Codility - Missing Integer Sample Test" src="https://andrewwegner.com/images/codility-results.png"/&gt;&lt;/p&gt;
 &lt;p&gt;I passed the 3 example test cases, 5 additional "correctness" test cases and 4 performance test cases. 100%&lt;/p&gt;
-&lt;p&gt;Hooray! ChatGPT wins again. Total time taken - 4 minutes (plus 5 minutes for Codility to do it's evaluation). &lt;/p&gt;
+&lt;p&gt;Hooray! ChatGPT wins again. Total time taken - 4 minutes (plus 5 minutes for Codility to do its evaluation). &lt;/p&gt;
 &lt;h2 id="change-your-interview-processes"&gt;Change your interview processes&lt;a class="headerlink" href="#change-your-interview-processes" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Engineers are smart individuals. They, generally, enjoy new technologies too. ChatGPT is a new technology that is going to be a valuable
 tool in their future. GitHub has had &lt;a href="https://github.com/features/copilot"&gt;Copilot&lt;/a&gt; for a while now. ChatGPT brings a new tool to the toolbelt. It should be expected by 
 hiring managers that your current engineering team and engineers you hire will use such tools. &lt;/p&gt;
-&lt;p&gt;Interview processes need to adapt to the existance of these tools. If you are asking a question that a simple tool can solve, are you 
-really determining an engineer's ability? Do your counterparts ask someone in finanace to calculate a percentage and not expect the candidate 
+&lt;p&gt;Interview processes need to adapt to the existence of these tools. If you are asking a question that a simple tool can solve, are you 
+really determining an engineer's ability? Do your counterparts ask someone in finance to calculate a percentage and not expect the candidate 
 to use, at least, a calculator? &lt;/p&gt;
-&lt;p&gt;Hiring processes much adapt. Evaluate your candidates, especially the more experienced candidates, with something other than an exam question that 
+&lt;p&gt;Hiring processes must adapt. Evaluate your candidates, especially the more experienced candidates, with something other than an exam question that 
 their newest tool can solve. Your engineer is going to be doing more than writing code and implementing an algorithm. Evaluate &lt;em&gt;those&lt;/em&gt; skills. Those 
 are the ones you really need on your team. &lt;/p&gt;
 &lt;p&gt;If you are curious about the other common interview systems and how they perform against ChatGPT, read one of the articles in the series below.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>Running CodeSignal questions through ChatGPT</title><link href="https://andrewwegner.com/chatgpt-breaks-more-interview-questions.html" rel="alternate"/><published>2023-01-01T17:00:00-06:00</published><updated>2023-01-01T17:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2023-01-01:/chatgpt-breaks-more-interview-questions.html</id><summary type="html">&lt;p&gt;I am going to examine four sample CodeSignal questions and show how ChatGPT solves the problems.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; has taken over a lot of technology news in the last month. Within days, &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;Stack Overflow banned ChatGPT&lt;/a&gt;, due to 
-&lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;subtle errors that the chatbot is prone to make&lt;/a&gt;. I've also written about how I hope that ChatGPT's existance will change 
+&lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;subtle errors that the chatbot is prone to make&lt;/a&gt;. I've also written about how I hope that ChatGPT's existence will change 
 the hiring processes in the technology industry, because of how easily it can solve &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;LeetCode&lt;/a&gt; and &lt;a href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html"&gt;TestGorilla&lt;/a&gt; technical interview
 problems.&lt;/p&gt;
 &lt;p&gt;Today, I'm going to turn my attention to another company that does interview tests: &lt;a href="https://codesignal.com/developers/"&gt;CodeSignal&lt;/a&gt;. CodeSignal sits on both sides of the 
@@ -416,7 +416,7 @@ companies looking to outsource a portion of their hiring process.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, &lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I was a customer of Woven for over two years&lt;/a&gt;. 
 Woven is a competitor of CodeSignal. &lt;/p&gt;
 &lt;p&gt;The questions in this post are taken from &lt;a href="https://codesignal.com/blog/engineering/example-codesignal-questions/"&gt;CodeSignal's blog&lt;/a&gt;, showing off four of their software engineering questions. CodeSignal provides an 
-explaination of the question, and a sample response with a quick analysis. &lt;/p&gt;
+explanation of the question, and a sample response with a quick analysis. &lt;/p&gt;
 &lt;h2 id="array-manipulation"&gt;Array Manipulation&lt;a class="headerlink" href="#array-manipulation" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Surprise! Another array question. I suppose it wouldn't be a generic software engineering interview without a question related to arrays. &lt;/p&gt;
 &lt;p&gt;Getting started...&lt;/p&gt;
@@ -424,7 +424,7 @@ explaination of the question, and a sample response with a quick analysis. &lt;/
 &lt;blockquote&gt;
 &lt;p&gt;You can see that it covers a basic array traversal and manipulation&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;A small nitpick - depending on the hirnig process, this sentence can come across as condicending. Depending on where a technical interview fits 
+&lt;p&gt;A small nitpick - depending on the hiring process, this sentence can come across as condescending. Depending on where a technical interview fits 
 in the process, it's possible that a non-engineer is the one that sees these results first. I would not count on my HR coworkers to understand
 "basic array traversal and manipulation", because it's not part of their skillset. &lt;/p&gt;
 &lt;p&gt;Let's see how ChatGPT does. I copy and pasted the prompt into ChatGPT and waited a few seconds for a result.&lt;/p&gt;
@@ -442,9 +442,9 @@ in the process, it's possible that a non-engineer is the one that sees these res
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i - 1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i + 1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;It doesn't match the exact response that CodeSignal provides, but it functions with their test case. I am count that as a pass.&lt;/p&gt;
+&lt;p&gt;It doesn't match the exact response that CodeSignal provides, but it functions with their test case. I'd count that as a pass.&lt;/p&gt;
 &lt;h2 id="string-pattern-matching"&gt;String Pattern Matching&lt;a class="headerlink" href="#string-pattern-matching" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Another common theme in these recent tests I've run is pattern matching. This one, however, at least is more interesting that others. It still 
+&lt;p&gt;Another common theme in these recent tests I've run is pattern matching. This one, however, at least is more interesting than others. It still 
 doesn't seem to reflect a real world problem, and is just a puzzle, but at least it's more unique. &lt;/p&gt;
 &lt;p&gt;&lt;img alt="CodeSignal - Pattern Matching" src="https://andrewwegner.com/images/codesignal-pattern.png"/&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -491,8 +491,8 @@ to build a very small scale Tetris board.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;From my reading of the prompt, and looking at the solution logic, I agree. While this is still a puzzle type question, I don't recall seeing anything
 like this previously. The uniqueness, yet similarity to a game that most engineers will know, makes the question interesting to me. &lt;/p&gt;
-&lt;p&gt;The animated gifs are useful for a human to see what is expected in the solution, but shouldn't be need by ChatGPT, provided the prompt is descriptive
-enough. Copying and pasted the text into ChatGPT, provides the following response:&lt;/p&gt;
+&lt;p&gt;The animated gifs are useful for a human to see what is expected in the solution, but shouldn't be needed by ChatGPT, provided the prompt is descriptive
+enough. Copying and pasting the text into ChatGPT, provides the following response:&lt;/p&gt;
 &lt;div class="codehilight code"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;solution&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;Get&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;of&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -515,12 +515,12 @@ enough. Copying and pasted the text into ChatGPT, provides the following respons
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Unfortunately, test cases aren't provided for this one. However, looking at the two responses, there are a couple obvious differences. ChatGPT doesn't
 handle the size of the board at all. CodeSignal uses this size in multiple places of their code. ChatGPT also uses &lt;code&gt;all()&lt;/code&gt; and &lt;code&gt;any()&lt;/code&gt; checks, where 
-CodeSignal uses longer and more complicated &lt;code&gt;if&lt;/code&gt; statements. Personally, I'd prefer the simiple &lt;code&gt;if&lt;/code&gt; statements for readability. &lt;/p&gt;
-&lt;p&gt;I'm unsure how to score this one without the test cases, but will note that ChatGPT failed CodeSignal's first sentence in the solution explaination:&lt;/p&gt;
+CodeSignal uses longer and more complicated &lt;code&gt;if&lt;/code&gt; statements. Personally, I'd prefer the simple &lt;code&gt;if&lt;/code&gt; statements for readability. &lt;/p&gt;
+&lt;p&gt;I'm unsure how to score this one without the test cases, but will note that ChatGPT failed CodeSignal's first sentence in the solution explanation:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;This solution starts by defining some dimensions that will be important for the problem. &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I skeptical that without the size of the figure this will work as expected.&lt;/p&gt;
+&lt;p&gt;I'm skeptical that without the size of the figure this will work as expected.&lt;/p&gt;
 &lt;h2 id="lookup-table"&gt;Lookup Table&lt;a class="headerlink" href="#lookup-table" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Lastly, we get to a question with lookup tables. These types of problems can usually be solved via brute force, at the expense of performance. They
 make good questions for a more senior developer. Note that this prompt also has exponents that I needed to adjust when pasting to the chat bot.&lt;/p&gt;
@@ -564,14 +564,14 @@ assessment of skills isn't enough to evaluate a candidate. Fortunately, I knew t
 tools exist for developers to make their day to day lives easier. Those tools can, literally, do the work for them if you are presenting them with 
 basic puzzles during the interview process.&lt;/p&gt;
 &lt;p&gt;I can already hear people saying that they do face to face coding, so this would never work in their process. You may be right, but ask yourselves this:
-do you developers do face to face coding in their day to day work? If not, why are you evaluating your candidates with that type of pressure? &lt;/p&gt;
+do your developers do face to face coding in their day to day work? If not, why are you evaluating your candidates with that type of pressure? &lt;/p&gt;
 &lt;p&gt;Adjust your interview process to reflect what you actually need your candidates to demonstrate. A puzzle isn't real work. Give them a real problem
 to talk through with your team. Evaluate their ability to solve a real problem so that you can learn about their thought processes, how they approach
 a problem, and what resources they utilize.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>Breaking TestGorilla interview questions with ChatGPT</title><link href="https://andrewwegner.com/breaking-the-interview-with-chatgpt.html" rel="alternate"/><published>2022-12-26T10:45:00-06:00</published><updated>2022-12-26T10:45:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-12-26:/breaking-the-interview-with-chatgpt.html</id><summary type="html">&lt;p&gt;Using ChatGPT, I'm going to solve a couple interview questions from TestGorilla quickly, easily and with nothing more than copying and pasting.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;I've written quiet a bit about &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; in the last month. As of this post, it is still &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;banned on Stack Overflow&lt;/a&gt;. I believe I showed
+&lt;p&gt;I've written quite a bit about &lt;a href="https://openai.com/blog/chatgpt/"&gt;ChatGPT&lt;/a&gt; in the last month. As of this post, it is still &lt;a href="https://andrewwegner.com/stackoverflow-bans-chatgpt.html"&gt;banned on Stack Overflow&lt;/a&gt;. I believe I showed
 why with my previous post. In it, I showed that &lt;a href="https://andrewwegner.com/chatgpt-interact-with-external-api.html"&gt;ChatGPT is prone to adding subtle errors&lt;/a&gt; (and in some cases not so subtle), which is bad on a Q&amp;amp;A site. &lt;/p&gt;
-&lt;p&gt;Today's post follows in the footsteps of my writing about how I hope ChatGPT inpires software engineering hiring managers to change their 
+&lt;p&gt;Today's post follows in the footsteps of my writing about how I hope ChatGPT inspires software engineering hiring managers to change their 
 hiring process. I wrote about how &lt;a href="https://andrewwegner.com/chatgpt-should-end-leetcode-interviews.html"&gt;ChatGPT can solve LeetCode&lt;/a&gt; problems. Today's post is going to focus on a company called &lt;a href="https://www.testgorilla.com/"&gt;TestGorilla&lt;/a&gt; and a 
 couple of their assessments.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;First a disclaimer&lt;/em&gt;: I was Director of Engineering at &lt;a href="https://www.woventeams.com/"&gt;Woven Teams&lt;/a&gt; in 2022. Prior to that, &lt;a href="https://andrewwegner.com/woven-client-to-woven-employee.html"&gt;I was a customer of Woven for over two years&lt;/a&gt;. 
@@ -580,7 +580,7 @@ I only became aware of them during my job search this year. I'd be happy to do t
 as I am aware, their prompts are not presented publicly. TestGorilla's prompts used in this article are taken directly from their website. I did not 
 speak with either company prior to writing this article.&lt;/p&gt;
 &lt;h2 id="assessment-one-php-arrays"&gt;Assessment One - PHP Arrays&lt;a class="headerlink" href="#assessment-one-php-arrays" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The first assessment I want to look at is related to PHP Arrays. The &lt;a href="https://app.testgorilla.com/preview/105976?language=en"&gt;prompt&lt;/a&gt; itself if fairly simple.&lt;/p&gt;
+&lt;p&gt;The first assessment I want to look at is related to PHP Arrays. The &lt;a href="https://app.testgorilla.com/preview/105976?language=en"&gt;prompt&lt;/a&gt; itself is fairly simple.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="TestGorilla - PHP Array Sample Prompt" src="https://andrewwegner.com/images/testgorilla-php-array.png"/&gt;&lt;/p&gt;
 &lt;p&gt;This is billed as:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -769,25 +769,25 @@ other submissions.&lt;/p&gt;
 &lt;p&gt;The total time it took to perform this test was under 5 minutes. I randomly selected a problem, copy and pasted the prompt, waited for a response
 from the chatbot, copy and pasted the code response, waited for the tests to run. Complete.&lt;/p&gt;
 &lt;p&gt;As a hiring manager, I'd have wasted my time and the candidates time having them do this problem now. Instead, we can talk about 
-an actual problem they will be solving. We can do a real world problem instead this. There are better ways to interview an engineer
+an actual problem they will be solving. We can do a real world problem instead of this. There are better ways to interview an engineer
 and I'm hoping ChatGPT makes that abundantly clear to hiring managers everywhere. &lt;/p&gt;
 &lt;p&gt;We're going to have to adapt our hiring processes, but that's a good thing. My recent experience shows that at most companies, it's bad anyway.
 Now we have an opportunity to shine some sunlight on it and make it better.&lt;/p&gt;
-&lt;p&gt;In the meantime, if you continue to use LeetCode or something similar to evaluate your candidate's technical skills, your are doing your 
-team a huge diservice. Candidates know about this tool, and they know that the easiest way to get an interview is to play the game. There 
-have been tens of thousands of layoffs in the tech industry in the last six months. I guarentee candidates are looking for every advantage they can
+&lt;p&gt;In the meantime, if you continue to use LeetCode or something similar to evaluate your candidate's technical skills, you are doing your 
+team a huge disservice. Candidates know about this tool, and they know that the easiest way to get an interview is to play the game. There 
+have been tens of thousands of layoffs in the tech industry in the last six months. I guarantee candidates are looking for every advantage they can
 get, to move to their next role.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="job"/><category term="leadership"/><category term="job search"/><category term="chatgpt"/><category term="ai interviews"/></entry><entry><title>Talking about rejection in job searches</title><link href="https://andrewwegner.com/job-search-rejections.html" rel="alternate"/><published>2022-10-24T12:45:00-05:00</published><updated>2022-10-24T12:45:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-10-24:/job-search-rejections.html</id><summary type="html">&lt;p&gt;Rejection is part of the job search. But, it's done so poorly that candidates have awful experiences. What does a current job search look like?&lt;/p&gt;</summary><content type="html">&lt;h2 id="the-problem"&gt;The problem&lt;a class="headerlink" href="#the-problem" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Searching for a new role, especially when you don't have one at the time, is stressful. In my industry, it's common for a 
 candidate to attend multiple interview rounds and participate in a technical evaluation. Depending on the company and role, you may have to defend your technical work as well. This is stressful and takes &lt;em&gt;at least&lt;/em&gt; 4 hours of time, not counting the technical evaluation. That can range anywhere from an hour to a full week of time, again depending on the company.&lt;/p&gt;
 &lt;p&gt;This is for a single role. When a candidate is applying to multiple roles, it literally becomes a full time job to find a full time job.&lt;/p&gt;
 &lt;h2 id="the-rejection"&gt;The rejection&lt;a class="headerlink" href="#the-rejection" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Rejection during a job search is part of the process. Companies only have so many openings to fill. As a candidate, you put hours of time into your goal of getting a role and then, unfortunately, the dreaded rejection shows up. It happenes, but it'd be nice if it was useful so that you can move on to the next role and make improvements.&lt;/p&gt;
+&lt;p&gt;Rejection during a job search is part of the process. Companies only have so many openings to fill. As a candidate, you put hours of time into your goal of getting a role and then, unfortunately, the dreaded rejection shows up. It happens, but it'd be nice if it was useful so that you can move on to the next role and make improvements.&lt;/p&gt;
 &lt;h3 id="the-reality-of-rejection"&gt;The reality of rejection&lt;a class="headerlink" href="#the-reality-of-rejection" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Unfortunately, recent experience has shown me that very few companies want to provide useful feedback. There are a few key things that tell me immediately that the rejection isn't going to be useful:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;no-reply&lt;/strong&gt; - This means that the company hasn't set up thier applicant tracking system to use a real person's name for the email template you are about to read. Why? Because they don't want to answer your questions. Thus, it's not an offer to continue with the process. This is a "here's the door" email. This one especially hurts after you've talked with a portion of the interview team already.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Internal Promotions&lt;/strong&gt; - During my search this summer, I received a surprising number of rejections that told me I was rejected due to an internal promotion. Every single one of these came as a surprise, because the interviewer never mentioned this as a potiential outcome. This one hurts because you've spent the time and effort to get through multiple rounds of interviews to find out you have been rejected due to someone having the inside track. Congratulations to those individuals receiving a promotion, but letting your external candidates know this is a possibility would go a long way to improving candidate experience. In fact, the companies that &lt;em&gt;did&lt;/em&gt; mention this was a possibility, were the ones that provided meaningful feedback when a rejection was received.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;"We are fortunate to receive many qualified candidates..."&lt;/strong&gt; - This phrase or the countless variations tell me I'm about to read a templated rejection with no substance. I don't think any company is going say that their candidates are horrible, or that they receive only one or two candidates. I read this as a "participation award" sentence, but it doesn't tell me &lt;em&gt;why&lt;/em&gt; I've been rejected.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;no-reply&lt;/strong&gt; - This means that the company hasn't set up their applicant tracking system to use a real person's name for the email template you are about to read. Why? Because they don't want to answer your questions. Thus, it's not an offer to continue with the process. This is a "here's the door" email. This one especially hurts after you've talked with a portion of the interview team already.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Internal Promotions&lt;/strong&gt; - During my search this summer, I received a surprising number of rejections that told me I was rejected due to an internal promotion. Every single one of these came as a surprise, because the interviewer never mentioned this as a potential outcome. This one hurts because you've spent the time and effort to get through multiple rounds of interviews to find out you have been rejected due to someone having the inside track. Congratulations to those individuals receiving a promotion, but letting your external candidates know this is a possibility would go a long way to improving candidate experience. In fact, the companies that &lt;em&gt;did&lt;/em&gt; mention this was a possibility, were the ones that provided meaningful feedback when a rejection was received.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;"We are fortunate to receive many qualified candidates..."&lt;/strong&gt; - This phrase or the countless variations tell me I'm about to read a templated rejection with no substance. I don't think any company is going to say that their candidates are horrible, or that they receive only one or two candidates. I read this as a "participation award" sentence, but it doesn't tell me &lt;em&gt;why&lt;/em&gt; I've been rejected.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Ghosting&lt;/strong&gt; - This isn't to be confused with never hearing from a company in the first place. That happens plenty too, but it's less annoying if you've never talked to anyone at the company. Technically, you never get an email with this reason, because ghosting is when you've taken the time to talk with someone at the company or participated in the technical evaluation, and then hear nothing back. The further into the interview process you get, when ghosting occurs, the more annoying it is. During my hunt, I had three companies ghost me after the fourth interview. I had two companies ghost me after sitting down and talking with the CEO of the company. Despite follow ups on my part, it is simply radio silence.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="the-good-rejection"&gt;The good rejection&lt;a class="headerlink" href="#the-good-rejection" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
@@ -803,7 +803,7 @@ and over and over. I've submitted a ton of applications in the past month on my 
 leadership role (reach out if you are looking for someone). Let's take a look at what I've seen.&lt;/p&gt;
 &lt;p&gt;I broke this down into 4 major categories:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;No duplication: This type of application either took my resume or LinkedIn profile and didn't require me to fix any fields, re-entry anything, and generally "just worked". From a candidate's perspective, this is the ideal. A little over 10% of my applications fall into this category. A majority of these are using LinkedIn's Easy Apply. The downside I'm seeing, and will report on in a future post, is that the response rate for these types of applications has been very low.&lt;/li&gt;
+&lt;li&gt;No duplication: This type of application either took my resume or LinkedIn profile and didn't require me to fix any fields, re-enter anything, and generally "just worked". From a candidate's perspective, this is the ideal. A little over 10% of my applications fall into this category. A majority of these are using LinkedIn's Easy Apply. The downside I'm seeing, and will report on in a future post, is that the response rate for these types of applications has been very low.&lt;/li&gt;
 &lt;li&gt;Minor Re-entry: I classified this is cleaning up or filling in up to three missing fields (but NOT job overviews). The most common thing I had to clean up was dates related to either a job or my degree. Some applicant systems want down to the day granularity, others are month granularity. My resume is to the month. The second most common fields to clean up are my degree and my address. For my degree, I see this on systems that have a predefined set of degrees to choose from. My Masters of Engineering is in Information Assurance from Iowa State University. This isn't a common degree title. My address is listed as city and state on my resume. Several ATSes want a full street address.&lt;/li&gt;
 &lt;li&gt;Single Section Duplication: This is a category that either requires me to reenter an entire job or entire educational history. This includes dates of employment, title, and description. There isn't a pattern on what goes missing when the resume is imported. I've had to re-enter jobs and degrees. It's not a single job that goes missing or a single degree. If I start seeing a clear pattern here, I'll dig a little deeper and see how I can clean up my resume.&lt;/li&gt;
 &lt;li&gt;Complete re-entry: Here is the trope. One out of five of my applications have required re-entry of more than a single section to the point where I am just reentering everything.&lt;/li&gt;
@@ -811,13 +811,13 @@ leadership role (reach out if you are looking for someone). Let's take a look at
 &lt;p&gt;&lt;img alt="Resume Re-entry results, a few weeks into my search" src="https://andrewwegner.com/images/resume_reentry.jpg" /&gt;&lt;/p&gt;
 &lt;h3 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Which ATS is responsible for most of those re-entries? MyWorkDay. Every single application I've put in that utilized this ATS required a full reentry. I've tried multiple resume formats.&lt;/p&gt;
-&lt;p&gt;Greenhouse seems to be the easiest the use, especially when a company has taken time to embed it into their site with their branding, style sheets, etc.&lt;/p&gt;
+&lt;p&gt;Greenhouse seems to be the easiest to use, especially when a company has taken time to embed it into their site with their branding, style sheets, etc.&lt;/p&gt;
 &lt;p&gt;If a company hasn't embedded the application into their site though, Lever has been better. When LinkedIn integration is set up, applying via LinkedIn and providing a resume has resulted in a very minor edits. The application updates after both steps - approving the Linkedin application and uploading the resume. Between those two, it's been only dates that I've had to change on those applications.&lt;/p&gt;
 &lt;p&gt;While completely re-entering your resume may not be the majority, fixing things up happens on 9 out of 10 of my applications.&lt;/p&gt;
 &lt;p&gt;What has your experience been as a candidate? Are you re-entering your resume details this frequently?&lt;/p&gt;
 &lt;p&gt;I cross posted this over on LinkedIn. &lt;a href="https://www.linkedin.com/posts/andrew-wegner_opentowork-candidateexperience-activity-6973272881879293952-eL8_/"&gt;Join me over there for the discussion&lt;/a&gt;&lt;/p&gt;</content><category term="Jobs"/><category term="job"/><category term="meta"/><category term="job search"/></entry><entry><title>What Job Source is using which ATS?</title><link href="https://andrewwegner.com/what-job-source-uses-which-ats.html" rel="alternate"/><published>2022-09-06T08:00:00-05:00</published><updated>2022-09-06T08:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2022-09-06:/what-job-source-uses-which-ats.html</id><summary type="html">&lt;p&gt;Talking through my current role search - Which Job Source is using which ATS?&lt;/p&gt;</summary><content type="html">&lt;h2 id="what-job-source-is-using-which-ats"&gt;What Job Source is using which ATS?&lt;a class="headerlink" href="#what-job-source-is-using-which-ats" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;That's a question that no one has asked me in my current search for a role, but it is information I have! It's been a few weeks since I started my hunt for a new engineering leadership role. It's time to start sharing some statistics that I'm seeing in this hunt. Today's information was originally to see if a specific job board favored a specific ATS.&lt;/p&gt;
-&lt;p&gt;Spoiler: Greenhouse and Lever are the most popular. I'm sure no one is surprised with that. I was surprised that so few roles posted on LinkedIn that are appearing my job alerts are using the Easy Apply feature though.&lt;/p&gt;
+&lt;p&gt;Spoiler: Greenhouse and Lever are the most popular. I'm sure no one is surprised with that. I was surprised that so few roles posted on LinkedIn that are appearing in my job alerts are using the Easy Apply feature though.&lt;/p&gt;
 &lt;p&gt;Maybe my next question should be: How many jobs have you applied to where you uploaded your resume and then had to type it in manually? Without looking at my data, I theorize it's over 50%.&lt;/p&gt;
 &lt;p&gt;I'm still looking for an engineering leadership role, but in the meantime, I'll share some occasional numbers from my search. Reach out to me if you are looking for a leader to join your engineering team!&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Job Source to ATS Sankey Diagram - A few weeks into the search" src="https://andrewwegner.com/images/job-source-ats.jpg" /&gt;&lt;/p&gt;

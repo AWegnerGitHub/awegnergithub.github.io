@@ -65,7 +65,7 @@
 [6, 2, 3, 4, 5]
 </code></pre></div><p>But what about <code>list1</code>? It also has changed.</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; list1
 [6, 2, 3, 4, 5]
-</code></pre></div><p>This is occuring because, as mentioned, <code>list2</code> is assigned to the same object as <code>list1</code>. Any change to either, changes the object that both are assigned to.</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; print(f"list1 id: {id(list1)}")
+</code></pre></div><p>This is occurring because, as mentioned, <code>list2</code> is assigned to the same object as <code>list1</code>. Any change to either, changes the object that both are assigned to.</p><div class="codehilight code"><pre><span></span><code>&gt;&gt;&gt; print(f"list1 id: {id(list1)}")
 list1 id: 1497534800448
 &gt;&gt;&gt; print(f"list2 id: {id(list2)}")
 list2 id: 1497534800448

@@ -6,7 +6,7 @@ Team Fortress and then letting it run for a few hours and collecting item drops.
 the &lt;code&gt;-textmode&lt;/code&gt; &lt;a href="https://developer.valvesoftware.com/wiki/Command_Line_Options#Command-line_parameters_2"&gt;game parameter&lt;/a&gt;. This would "launch" the game without graphics. From there, you just let it run and
 come back in a few hours with 8-10 new items (your weekly limit).&lt;/p&gt;
 &lt;p&gt;The idea behind this was to then trade or craft these into metal. The metal could be used to trade for keys, hats, etc. and
-all you to be "rich". The quotes are there because I do realize that being rich in a virtual game does not make one rich in
+allow you to be "rich". The quotes are there because I do realize that being rich in a virtual game does not make one rich in
 the real world. But, since the &lt;a href="https://wiki.teamfortress.com/wiki/Mann-Conomy_Update"&gt;Mann-Conomy Update&lt;/a&gt; introduced this massive meta game to Team Fortress, I've tried to stay
 out of it.&lt;/p&gt;
 &lt;p&gt;I failed. I didn't just idle one account. I idled 17 accounts. That is between 136 and 170 items a week. That's between 68 to 85
@@ -39,7 +39,7 @@ each account and crafting there and then trading everything to a master account,
 In either case, 17 accounts is a lot to handle and trading/crafting is rather boring.&lt;/p&gt;
 &lt;p&gt;My solution was to modify the raffle bot. I'd designate one account as a master account. This would be the account that
 received items. All others would dump items to it. I'd log into the account that was receiving items and initiate a trade
-with each other bot in turn. I'd issue a command &lt;code&gt;add all&lt;/code&gt; and that bot would dump it's inventory into trade. Making it
+with each other bot in turn. I'd issue a command &lt;code&gt;add all&lt;/code&gt; and that bot would dump its inventory into trade. Making it
 through all the bots would take 5 minutes. Previously it would take me an hour or more to log into each account and
 manually add items to the trade windows and then confirm the trade on both sides. &lt;em&gt;yawn&lt;/em&gt;&lt;/p&gt;
 &lt;h3 id="crafting"&gt;Crafting&lt;a class="headerlink" href="#crafting" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -63,7 +63,7 @@ The other option was to look for a trader that was getting rid of a bulk set of 
 I'd end the week with 3-4 keys. I'd trade these for Tour of Duty tickets and go play a game with friends.&lt;/p&gt;
 &lt;p&gt;The actual work required on my part was starting the idling for the night, shutting down idling in the morning, starting
 the automated trade, crafting and trade left overs processes and finally trading metal for keys. What used to take me hours
-to do each week, I could not do in less than an hour (the bulk of which ended up being trading metal for keys).&lt;/p&gt;
+to do each week, I could now do in less than an hour (the bulk of which ended up being trading metal for keys).&lt;/p&gt;
 &lt;h2 id="what-changed"&gt;What changed?&lt;a class="headerlink" href="#what-changed" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Valve released a patch to limit how effective idling was. Their "Mann-Conomy" was seeing rapid inflation. The price of
 keys (which they sold for physical money) in metal was rapidly increasing. From the time I started this to the time I ended
@@ -76,7 +76,7 @@ Tour of Duty tickets. The idle bots were shut down.&lt;/p&gt;
 &lt;p&gt;It's been a month now. The bots are still down. I'm still around. Looking back on this, I'm happy Valve broke this. It wasn't
 doing anything for me other than providing me with something to do: "Need to idle tonight", "Need to craft and trade today", etc.
 Now I have that time back.&lt;/p&gt;
-&lt;p&gt;I am pleased with the technical challenges I over came to get this done though. Crafting was the biggest, but I think I'm
+&lt;p&gt;I am pleased with the technical challenges I overcame to get this done though. Crafting was the biggest, but I think I'm
 most proud of the automated transfer of items to the master. Since the bots had to communicate via Steam and not via
 a local application, working out how I was going to do that took some time.&lt;/p&gt;
 &lt;hr/&gt;
