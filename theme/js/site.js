@@ -18,7 +18,7 @@
   // scrolled-state classes, and the browser's hash scroll will fire a scroll
   // event that keeps things in sync. If we ran updateBrand() here we'd read
   // scrollY=0, flip to the "visible" state, then the hash scroll would flip
-  // back — a visible fade-in/fade-out flicker.
+  // back - a visible fade-in/fade-out flicker.
   if (!location.hash || location.hash === '#main-content') {
     updateBrand();
   }
