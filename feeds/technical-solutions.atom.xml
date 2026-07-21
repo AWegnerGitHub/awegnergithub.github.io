@@ -302,7 +302,18 @@ True
 &lt;p&gt;&lt;img alt="Device is approved after entering your verification code" src="https://andrewwegner.com/images/ms_authenticator/approved_device.png"/&gt;&lt;/p&gt;
 &lt;p&gt;I recommend you wrap this up by removing your old device from the Security Info section now that the new device is approved. &lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The Microsoft authenticator application doesn't make moving to a new device as easy as some of its competitors. The requirement for a personal Microsoft account to go through the most commonly recommended way is also a non-starter if you don't have such an account already. Fortunately, the alternative posted above ended up working just fine. I assume I'll need a new phone again, and this should help at least me, remember that there is an easy enough way to migrate.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/></entry><entry><title>Format USB drive with EFI partition in Windows</title><link href="https://andrewwegner.com/format-efi-usb-windows.html" rel="alternate"/><published>2024-11-13T13:00:00-06:00</published><updated>2024-11-13T13:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-11-13:/format-efi-usb-windows.html</id><summary type="html">&lt;p&gt;Windows protects EFI partitions from being deleted. This article is a quick walkthrough on how to format a USB drive with an EFI partition within Windows.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;The Microsoft authenticator application doesn't make moving to a new device as easy as some of its competitors. The requirement for a personal Microsoft account to go through the most commonly recommended way is also a non-starter if you don't have such an account already. Fortunately, the alternative posted above ended up working just fine. I assume I'll need a new phone again, and this should help at least me, remember that there is an easy enough way to migrate.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+</content><category term="Technical Solutions"/><category term="technical"/></entry><entry><title>Format USB drive with EFI partition in Windows</title><link href="https://andrewwegner.com/format-efi-usb-windows.html" rel="alternate"/><published>2024-11-13T13:00:00-06:00</published><updated>2024-11-13T13:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-11-13:/format-efi-usb-windows.html</id><summary type="html">&lt;p&gt;Windows protects EFI partitions from being deleted. This article is a quick walkthrough on how to format a USB drive with an EFI partition within Windows.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I seem to collect USB drives. They are handed out at conferences. They are used as recovery media for new machines. They just randomly appear on my desk. I use them to build live Linux CDs, transferring media from one device to another, building recovery media, and generally the things you'd expect a USB drive to be used for. Generally, when I use a USB drive the first thing I do is format it. My USB drives are not for long term storage and I consider anything on them used one time then the drive goes back to the bin for reuse another time. &lt;/p&gt;
 &lt;p&gt;An annoyance with this, though, is that when I use a drive to build a bootable backup media, often times an EFI partition will be created. As soon as this is created, Windows prevents that partition from being deleted in the future without taking additional steps. I have to go look those up every time because I do it infrequently enough to remember. This is a simple walkthrough of my process to solve this problem&lt;/p&gt;
@@ -351,7 +362,18 @@ Partition 1 is now the selected partition.
 DiskPart successfully deleted the selected partition.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;From the disk management tool, you can verify it's gone and format as normal.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="All EFI partitions removed" src="https://andrewwegner.com/images/efi-partition-removed.png"/&gt;&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/></entry><entry><title>Controlling power to LED lights with WLED Controller and a Relay switch</title><link href="https://andrewwegner.com/control-power-wled-relay.html" rel="alternate"/><published>2024-08-16T12:00:00-05:00</published><updated>2024-08-16T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-08-16:/control-power-wled-relay.html</id><summary type="html">&lt;p&gt;Wiring a lot of LEDs requires more power than the small WLED controller can handle, but leaving a large power supply running even when the lights are off is inefficient. This post talks about the progress on the project and how I wired in a relay to keep everything running efficiently.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;&lt;img alt="All EFI partitions removed" src="https://andrewwegner.com/images/efi-partition-removed.png"/&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+</content><category term="Technical Solutions"/><category term="technical"/></entry><entry><title>Controlling power to LED lights with WLED Controller and a Relay switch</title><link href="https://andrewwegner.com/control-power-wled-relay.html" rel="alternate"/><published>2024-08-16T12:00:00-05:00</published><updated>2024-08-16T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-08-16:/control-power-wled-relay.html</id><summary type="html">&lt;p&gt;Wiring a lot of LEDs requires more power than the small WLED controller can handle, but leaving a large power supply running even when the lights are off is inefficient. This post talks about the progress on the project and how I wired in a relay to keep everything running efficiently.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It's time to continue my summer project of setting up some outdoor LED lights. &lt;a href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html"&gt;Previously&lt;/a&gt;, I &lt;a href="https://www.amazon.com/Ericsity-Controller-Addressable-WS2812B-SK6812/dp/B0CNVXY8NX"&gt;set up and updated the Ericsity controller&lt;/a&gt; with &lt;a href="https://kno.wled.ge/"&gt;WLED&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I am putting up approximately 20 meters - 65 feet - of LEDs. Total this will be nearly 2,000 individual LEDs and approximately 665 individually controlled LED segments (3 LEDs per segment). This will take more power than the little controller can handle. To demonstrate the problem of powering all of these LEDs with only the controller, look at this image:&lt;/p&gt;
@@ -513,7 +535,18 @@ docker run -it --rm -p 8000:8000 opensecurity/mobile-security-framework-mobsf:la
 &lt;p&gt;The dashboard has a &lt;em&gt;lot&lt;/em&gt; of detail about the APK. Scroll through to see the permissions it's utilizing, certificates attached to it, potential security vulnerabilities, code analysis, detected URLs in the code, hard coded secrets, and strings. All of these would help a team build a better and more secure mobile application. &lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For my purpose, this 15 minute exercise not only answered the question I was seeking it also raised a few items that will need to be corrected before the next release. Introducing security practices with a tool like MobSF would be incredibly beneficial to a team tasked with building an Android application. Further, adding in the dynamic analysis capabilities can provide more details on areas to improve. &lt;/p&gt;
-&lt;p&gt;While I didn't need those to answer my question, I'd encourage someone looking to introduce this to a team, to look at the &lt;a href="https://mobsf.github.io/docs/#/dynamic_analyzer"&gt;capabilities of MobSF&lt;/a&gt;&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/></entry><entry><title>Python Gotcha: Modifying a list while iterating</title><link href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html" rel="alternate"/><published>2024-01-03T15:00:00-06:00</published><updated>2024-01-03T15:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-01-03:/python-gotcha-modify-list-while-iterating.html</id><summary type="html">&lt;p&gt;Python makes it easy to modify a list while you are iterating through it's elements. This will bite you. Read on to find out how and what can be done about it.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;While I didn't need those to answer my question, I'd encourage someone looking to introduce this to a team, to look at the &lt;a href="https://mobsf.github.io/docs/#/dynamic_analyzer"&gt;capabilities of MobSF&lt;/a&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+</content><category term="Technical Solutions"/><category term="technical"/></entry><entry><title>Python Gotcha: Modifying a list while iterating</title><link href="https://andrewwegner.com/python-gotcha-modify-list-while-iterating.html" rel="alternate"/><published>2024-01-03T15:00:00-06:00</published><updated>2024-01-03T15:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-01-03:/python-gotcha-modify-list-while-iterating.html</id><summary type="html">&lt;p&gt;Python makes it easy to modify a list while you are iterating through it's elements. This will bite you. Read on to find out how and what can be done about it.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A fairly common task an engineer may need to do is to remove all numbers from a list below a threshold. It's a simple enough task that anyone could accomplish - iterate over the list, check the value, if it's below the threshold remove it. With Python you can do this in a &lt;code&gt;for&lt;/code&gt; loop.&lt;/p&gt;
 &lt;h2 id="gotcha"&gt;Gotcha&lt;a class="headerlink" href="#gotcha" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;

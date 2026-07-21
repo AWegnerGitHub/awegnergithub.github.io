@@ -58,7 +58,18 @@
 &lt;p&gt;One uncomfortable footnote, because I've sat on the wrong side of it. Westrum's claim runs deeper than "the pipes weren't connected." How information moves is downstream of how leaders treat the person carrying it. The team watches what happens to the first person who brings you a bad number or a broken release, and they price their own honesty on what they see.&lt;/p&gt;
 &lt;p&gt;Before you go hunting these flags in the place you inherited, check the one you bring into the room with you. The first time someone hands you bad news, your reaction sets the how the team responds on every piece of news after it. &lt;/p&gt;
 &lt;p&gt;One last thing, because "your company is broken, run" would be the wrong takeaway. Most organizations have a few of these. Finding them just shows you where to spend your first real capital as a leader. If you want a place to start, start with how bad news travels during an incident. It's the flag with customers already in the blast radius while you figure things out, so a broken pipe there costs you the fastest. Fix the escalation path first. The releases and the metrics will still be waiting next week, and you'll have bought some credibility to spend on them. Every symptom here runs downstream of the same source, so if you fix how information moves before you start chasing symptoms one by one, a surprising number of them turn out to have never been separate problems.&lt;/p&gt;
-&lt;p&gt;They were just the silence, in different rooms, waiting for you to notice.&lt;/p&gt;</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Management Debt: When Leadership Patterns Rot</title><link href="https://andrewwegner.com/management-debt-leadership-patterns-rot.html" rel="alternate"/><published>2026-04-30T13:15:00-05:00</published><updated>2026-04-30T13:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2026-04-30:/management-debt-leadership-patterns-rot.html</id><summary type="html">&lt;p&gt;Technical debt has a sibling that gets less airtime and, in my experience, does at least as much damage. Decision rights that drift, skip-levels that quietly fall off the calendar, review meetings that turn into status updates. Let's talk about how I clean them up once I notice they've gone bad.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;They were just the silence, in different rooms, waiting for you to notice.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Management Debt: When Leadership Patterns Rot</title><link href="https://andrewwegner.com/management-debt-leadership-patterns-rot.html" rel="alternate"/><published>2026-04-30T13:15:00-05:00</published><updated>2026-04-30T13:15:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2026-04-30:/management-debt-leadership-patterns-rot.html</id><summary type="html">&lt;p&gt;Technical debt has a sibling that gets less airtime and, in my experience, does at least as much damage. Decision rights that drift, skip-levels that quietly fall off the calendar, review meetings that turn into status updates. Let's talk about how I clean them up once I notice they've gone bad.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Engineering leaders talk about &lt;a href="https://andrewwegner.com/tech-debt-management-strategic-approach.html"&gt;technical debt&lt;/a&gt; frequently. We track it, we visualize it, we plan around it, we explain it to executives. There's a related kind of debt that gets a fraction of that attention and, in my experience, does at least as much damage to engineering organizations. I've come to think of it as management debt - the engineering-leadership flavor of what &lt;a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0308183"&gt;recent research calls organizational debt&lt;/a&gt;: the accumulation of outdated structures, policies, and processes that quietly hinder how a company operates.&lt;/p&gt;
 &lt;p&gt;By management debt I mean the gap between how leadership is supposed to operate and how it actually operates. Decision rights that have quietly migrated to whoever speaks up first. Skip-levels that became calendar holds nobody runs. Quarterly planning sessions that turned into backwards-looking status reviews. Performance feedback that gets saved up for the yearly review cycle because nobody had the harder conversation when a problem occurred.&lt;/p&gt;
@@ -95,7 +106,20 @@
 &lt;p&gt;Engineering leaders are usually fluent in technical debt management. We track it, we explain its cost, we plan its repayment. We need the same discipline for the management practices themselves. Make it visible, talk about it explicitly, refactor it deliberately instead of waiting until the organization is genuinely broken.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Across the leadership roles I've held, the leaders I've seen succeed long-term aren't the ones with the most polished initial operating model. They're the ones who are willing to look at how they're actually leading, six or twelve months in, and fix what's drifted.&lt;/p&gt;
-&lt;p&gt;Management debt is real. It accumulates the same way technical debt does. It costs at least as much, and it doesn't show up in any dashboard you already track. The next time you catch yourself thinking "we should really restart that ritual" or "we should really write down who owns that decision," that's not a nice-to-have on a backlog. That's overdue maintenance, and the longer you defer it the more expensive it gets.&lt;/p&gt;</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Review of Claude Code for Python Developers from Real Python</title><link href="https://andrewwegner.com/real-python-claude-code-live-course.html" rel="alternate"/><published>2026-04-06T10:30:00-05:00</published><updated>2026-04-06T10:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2026-04-06:/real-python-claude-code-live-course.html</id><summary type="html">&lt;p&gt;A review of the Real Python live workshop - Claude Code for Python Developers: Hands-on agentic coding course&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;Management debt is real. It accumulates the same way technical debt does. It costs at least as much, and it doesn't show up in any dashboard you already track. The next time you catch yourself thinking "we should really restart that ritual" or "we should really write down who owns that decision," that's not a nice-to-have on a backlog. That's overdue maintenance, and the longer you defer it the more expensive it gets.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Review of Claude Code for Python Developers from Real Python</title><link href="https://andrewwegner.com/real-python-claude-code-live-course.html" rel="alternate"/><published>2026-04-06T10:30:00-05:00</published><updated>2026-04-06T10:30:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2026-04-06:/real-python-claude-code-live-course.html</id><summary type="html">&lt;p&gt;A review of the Real Python live workshop - Claude Code for Python Developers: Hands-on agentic coding course&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you are in the software industry and haven't started working with an AI assistant by this point in 2026, then you should start getting concerned about your role in the company you work at. &lt;a href="https://www.cfodive.com/news/ai-tied-a-quarter-us-layoffs-march/816519/"&gt;Throughout the first few months of 2026&lt;/a&gt;, there have been several large layoffs by major corporations. &lt;a href="https://programs.com/resources/ai-layoffs/"&gt;Companies like Block and Oracle cited AI as the driver&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;AI is here and as of today, it's the least capable it will ever be, because each day it gets better. I've been exploring it since ChatGPT came out and it's &lt;a href="https://andrewwegner.com/ai-broke-our-interview-process-i-had-to-fix-it.html"&gt;impact on interviews&lt;/a&gt;. I've written about it multiple times recently. &lt;a href="https://andrewwegner.com/junior-engineer-crisis-ai-code-generation.html"&gt;AI's impact on junior developers&lt;/a&gt; is particularly important because I'm already seeing this in my role. &lt;/p&gt;
@@ -179,7 +203,20 @@
 &lt;h2 id="what-actually-matters"&gt;What actually matters&lt;a class="headerlink" href="#what-actually-matters" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I've been hiring engineers across industries for nearly two decades and for companies ranging from pre-seed startups to Fortune 500 corporations. I've been wrong about candidates in both directions; people I was confident about who didn't work out, and people I had reservations about who became some of the strongest members of the team.&lt;/p&gt;
 &lt;p&gt;What I've learned is that the interview process should evaluate what actually matters on the job: Can this person reason about complex systems? Can they communicate clearly and work constructively with others? Do they take ownership of outcomes, not just code? Are they honest about what they know and what they don't?&lt;/p&gt;
-&lt;p&gt;No timed assessment answers those questions. A conversation does.&lt;/p&gt;</content><category term="Leadership"/><category term="job"/><category term="leadership"/><category term="ai-interviews"/></entry><entry><title>The Remote Engineering Leadership Playbook: Why Distance Doesn't Diminish Performance</title><link href="https://andrewwegner.com/why-remote-work-is-good-for-your-team.html" rel="alternate"/><published>2025-08-22T09:00:00-05:00</published><updated>2025-08-22T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-08-22:/why-remote-work-is-good-for-your-team.html</id><summary type="html">&lt;p&gt;Proven processes transform distributed teams from liability into competitive advantage. This talks about why I think that is and how to ensure your team is successful when they are remote.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;No timed assessment answers those questions. A conversation does.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+</content><category term="Leadership"/><category term="job"/><category term="leadership"/><category term="ai-interviews"/></entry><entry><title>The Remote Engineering Leadership Playbook: Why Distance Doesn't Diminish Performance</title><link href="https://andrewwegner.com/why-remote-work-is-good-for-your-team.html" rel="alternate"/><published>2025-08-22T09:00:00-05:00</published><updated>2025-08-22T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-08-22:/why-remote-work-is-good-for-your-team.html</id><summary type="html">&lt;p&gt;Proven processes transform distributed teams from liability into competitive advantage. This talks about why I think that is and how to ensure your team is successful when they are remote.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="remote-engineering-works-when-done-right"&gt;Remote Engineering Works When Done Right&lt;a class="headerlink" href="#remote-engineering-works-when-done-right" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When the &lt;a href="https://www.bls.gov/productivity/notices/2024/productivity-and-remote-work.htm"&gt;U.S. Bureau of Labor Statistics&lt;/a&gt; released its comprehensive analysis of remote work productivity in 2024, something stood out. A one percentage-point increase in the percentage of remote workers is associated with a 0.08 percentage-point increase in total factor productivity. This covered over 60 industries from 2019-2023 (pre and post pandemic).&lt;/p&gt;
 &lt;p&gt;Rephrasing that slightly, as the number of remote workers increase at a company, the total productivity increases at the company.&lt;/p&gt;
@@ -220,7 +257,20 @@
 &lt;p&gt;The &lt;a href="https://www.bls.gov/productivity/notices/2024/productivity-and-remote-work.htm"&gt;Bureau of Labor Statistics data&lt;/a&gt; reveals something else too. A 1 percentage-point increase in the percentage of remote workers is associated with a 0.4 percentage-point decrease in growth in unit office building costs. This extends beyond productivity to sustainable economics, and makes me raise an eyebrow at the number of return of office mandates we have been seeing.&lt;/p&gt;
 &lt;p&gt;Companies that master remote engineering practices can access talent from anywhere rather than just expensive tech hubs, reduce operational overhead without sacrificing performance, build more resilient teams that aren't dependent on physical proximity, and create competitive advantages through superior asynchronous collaboration.&lt;/p&gt;
 &lt;p&gt;The question has shifted from whether remote engineering teams can work to whether your organization will develop the processes and culture to unlock this advantage. Many companies continue treating remote work as a necessary accommodation rather than recognizing it as a strategic opportunity.&lt;/p&gt;
-&lt;p&gt;Remote engineering success requires intentional design rather than hoping things work out naturally. For leaders willing to invest in the right frameworks, the returns in productivity, talent access, and competitive positioning are substantial and measurable.&lt;/p&gt;</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Junior Engineer Crisis: How AI Code Generation is Reshaping Engineering Teams</title><link href="https://andrewwegner.com/junior-engineer-crisis-ai-code-generation.html" rel="alternate"/><published>2025-08-18T09:00:00-05:00</published><updated>2025-08-18T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-08-18:/junior-engineer-crisis-ai-code-generation.html</id><summary type="html">&lt;p&gt;An analysis of how artificial intelligence is transforming software development careers, team structures, and how engineers build expertise.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;Remote engineering success requires intentional design rather than hoping things work out naturally. For leaders willing to invest in the right frameworks, the returns in productivity, talent access, and competitive positioning are substantial and measurable.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Junior Engineer Crisis: How AI Code Generation is Reshaping Engineering Teams</title><link href="https://andrewwegner.com/junior-engineer-crisis-ai-code-generation.html" rel="alternate"/><published>2025-08-18T09:00:00-05:00</published><updated>2025-08-18T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-08-18:/junior-engineer-crisis-ai-code-generation.html</id><summary type="html">&lt;p&gt;An analysis of how artificial intelligence is transforming software development careers, team structures, and how engineers build expertise.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="the-data-that-changes-everything"&gt;The Data That Changes Everything&lt;a class="headerlink" href="#the-data-that-changes-everything" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The software development industry is experiencing a shift that's happening faster than most organizations realize. Three statistics captured my attention this year, and collectively, they paint a picture of an industry in transition:&lt;/p&gt;
 &lt;ul&gt;
@@ -326,7 +376,20 @@
 &lt;li&gt;&lt;a href="https://www.linkedin.com/posts/andrew-wegner_ai-tools-make-experienced-software-engineers-activity-7363573947457527808-3oRx"&gt;AI tools make experienced software engineers 19% slower&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.linkedin.com/posts/andrew-wegner_ai-is-changing-mentorship-dynamics-in-ways-activity-7363916654793142273-2SOg"&gt;Mentorship dynamics&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.linkedin.com/posts/andrew-wegner_todays-important-question-is-what-skills-activity-7364290146835316737-Chex"&gt;What skills do junior engineers need to be successful alongside AI?&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Python Gotcha: Reusing Generators Returns Nothing</title><link href="https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html" rel="alternate"/><published>2025-07-22T09:00:00-05:00</published><updated>2025-07-22T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-07-22:/python-gotcha-reusing-generator-returns-nothing.html</id><summary type="html">&lt;p&gt;Generators provide lazy evaluation for processing large datasets efficiently. However, once a generator is exhausted through iteration, it cannot be reused or reset. Let's cover this common gotcha that trips up developers new to this Python feature.&lt;/p&gt;</summary><content type="html">
+&lt;/ul&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Python Gotcha: Reusing Generators Returns Nothing</title><link href="https://andrewwegner.com/python-gotcha-reusing-generator-returns-nothing.html" rel="alternate"/><published>2025-07-22T09:00:00-05:00</published><updated>2025-07-22T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-07-22:/python-gotcha-reusing-generator-returns-nothing.html</id><summary type="html">&lt;p&gt;Generators provide lazy evaluation for processing large datasets efficiently. However, once a generator is exhausted through iteration, it cannot be reused or reset. Let's cover this common gotcha that trips up developers new to this Python feature.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the previous article, we looked at &lt;a href="https://andrewwegner.com/python-gotcha-logging-uncaught-exception.html"&gt;logging uncaught exceptions&lt;/a&gt;. Let's utilize the log output from that post for another common task: error log file processing. This example is going to be pretty simple, as the error log for the post is tiny, but in a production environment this could be hundreds of thousands of lines, or gigabytes in size. Potentially, that's a lot to shove into memory for processing. But that's where a generator can come in to help.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://docs.python.org/3/tutorial/classes.html#generators"&gt;Generators&lt;/a&gt; do not store their results, instead they maintain state and &lt;code&gt;yield&lt;/code&gt; the result back to the caller. This means each line in a log can be processed and returned, without loading the entire file. &lt;/p&gt;
@@ -650,7 +713,20 @@ True
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;As I've moved through increasingly senior leadership roles, the principles of effective team management have become even more important to my leadership approach. The future of engineering leadership demands comfort with distributed teams. Demands. Leading a team, whether it's fully remote or hybrid, is a skill that leaders need if they want to have access to talent.&lt;/p&gt;
 &lt;p&gt;The most successful technical leaders in this environment will be those who design systems and processes that work asynchronously by default, create cultures where documentation and knowledge sharing are valued and rewarded, and balance inclusive decision-making with the need to move  forward. They will build technical infrastructure that supports distributed development, implement support models that leverage global distribution, ensure performance evaluation focuses on outcomes rather than presence, and develop hiring practices that identify talent suited for distributed work.&lt;/p&gt;
-&lt;p&gt;These capabilities represent the future of engineering leadership at the highest levels. For aspiring technical leaders, developing comfort and competence in distributed team management isn't just a nice-to-have—it's increasingly essential preparation for senior technical leadership roles.&lt;/p&gt;</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Technical Debt Management: A Strategic Approach</title><link href="https://andrewwegner.com/tech-debt-management-strategic-approach.html" rel="alternate"/><published>2025-04-08T09:00:00-05:00</published><updated>2025-04-08T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-04-08:/tech-debt-management-strategic-approach.html</id><summary type="html">&lt;p&gt;After navigating technical leadership roles across startups and established corporations, I've come to view technical debt as both inevitable and manageable. It's the leadership approach to this debt that often determines whether a company can maintain momentum or finds itself grinding to a halt.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;These capabilities represent the future of engineering leadership at the highest levels. For aspiring technical leaders, developing comfort and competence in distributed team management isn't just a nice-to-have—it's increasingly essential preparation for senior technical leadership roles.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Technical Debt Management: A Strategic Approach</title><link href="https://andrewwegner.com/tech-debt-management-strategic-approach.html" rel="alternate"/><published>2025-04-08T09:00:00-05:00</published><updated>2025-04-08T09:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-04-08:/tech-debt-management-strategic-approach.html</id><summary type="html">&lt;p&gt;After navigating technical leadership roles across startups and established corporations, I've come to view technical debt as both inevitable and manageable. It's the leadership approach to this debt that often determines whether a company can maintain momentum or finds itself grinding to a halt.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The term "technical debt" has become a catch-all phrase, it's used to describe anything from poorly written code to outdated systems. But at its core, technical debt represents the very real trade-off of choosing immediate delivery over long-term maintainability. For companies caught between aggressive timelines and the need for sustainable systems, managing this debt becomes more than just a technical challenge. It's a strategic imperative.&lt;/p&gt;
 &lt;h2 id="understanding-technical-debt"&gt;Understanding Technical Debt&lt;a class="headerlink" href="#understanding-technical-debt" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -697,7 +773,20 @@ True
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In my experience in multiple leadership roles, when managed effectively, technical debt becomes not just a necessary evil but a strategic tool. By making conscious decisions about when to take on debt and when to pay it down, companies can maintain the velocity needed for market success while building sustainable technical foundations.&lt;/p&gt;
 &lt;p&gt;I've found that making debt visible through automation, metrics, and clear communication ensures technical debt is part of strategic conversations. Embedding debt management in culture builds technical excellence into everyday practices rather than occasional initiatives. Focusing on prevention by investing in tools and practices makes it easier to do things right than to create new debt. Being strategic about remediation means addressing debt that limits key business initiatives while deferring debt that doesn't impact current priorities. Measuring the impact by tracking before-and-after metrics demonstrates the value of technical debt reduction.&lt;/p&gt;
-&lt;p&gt;As engineering leaders, our role isn't to eliminate all technical debt. That would be neither possible nor desirable. Instead, our job is to manage technical debt as thoughtfully as we would manage financial debt. The goal is to take it on deliberately when the terms make sense, monitoring its impact, and paying it down strategically to maximize long-term value.&lt;/p&gt;</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture</title><link href="https://andrewwegner.com/scaling-teams-without-losing-culture.html" rel="alternate"/><published>2025-04-01T10:00:00-05:00</published><updated>2025-04-01T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-04-01:/scaling-teams-without-losing-culture.html</id><summary type="html">&lt;p&gt;Scaling engineering teams is about much more than just adding headcount. It's about creating sustainable growth that preserves the core elements of your culture while evolving systems to support a larger organization. Here are a few of my thoughts about the topic.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;As engineering leaders, our role isn't to eliminate all technical debt. That would be neither possible nor desirable. Instead, our job is to manage technical debt as thoughtfully as we would manage financial debt. The goal is to take it on deliberately when the terms make sense, monitoring its impact, and paying it down strategically to maximize long-term value.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>Scaling Engineering Teams: From 5 to 50+ Without Losing Your Culture</title><link href="https://andrewwegner.com/scaling-teams-without-losing-culture.html" rel="alternate"/><published>2025-04-01T10:00:00-05:00</published><updated>2025-04-01T10:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-04-01:/scaling-teams-without-losing-culture.html</id><summary type="html">&lt;p&gt;Scaling engineering teams is about much more than just adding headcount. It's about creating sustainable growth that preserves the core elements of your culture while evolving systems to support a larger organization. Here are a few of my thoughts about the topic.&lt;/p&gt;</summary><content type="html">
 &lt;p&gt;After nearly two decades in software development leadership and multiple VP-level roles, I've learned that scaling engineering teams is about much more than just adding headcount. It's about creating sustainable growth that preserves the core elements of your culture while evolving systems to support a larger organization.&lt;/p&gt;
 &lt;h2 id="the-challenges-of-rapid-growth"&gt;The Challenges of Rapid Growth&lt;a class="headerlink" href="#the-challenges-of-rapid-growth" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When scaling engineering teams, I faced two consistent challenges that required thoughtful solutions:&lt;/p&gt;
@@ -742,7 +831,20 @@ This cross-functional exposure provides vital context about why certain features
 For example, understanding upcoming business requirements helps engineers build flexibility into systems where it will actually be needed, rather than adding unnecessary complexity. Building with the right level of flexibility now is infinitely easier than redesigning systems later.&lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Scaling engineering teams successfully requires balancing technical excellence, cultural preservation, and business alignment. By implementing thoughtful onboarding processes, maintaining transparent communication, measuring meaningful metrics, and keeping engineers connected to the broader business context, you can grow your team without losing what made it special in the first place.
-The journey from 5 to 50+ engineers is challenging, but with intentional leadership, it can result in not just a larger team, but a more capable, cohesive and impactful organization.&lt;/p&gt;</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>My first experiences with a laser cutter</title><link href="https://andrewwegner.com/first-laser-cutter-experiences.html" rel="alternate"/><published>2025-01-02T10:15:00-06:00</published><updated>2025-01-02T10:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-01-02:/first-laser-cutter-experiences.html</id><summary type="html">&lt;p&gt;My local library recently received a Glowforge for their patrons to utilize. This article is about my experiences using the machine&lt;/p&gt;</summary><content type="html">
+The journey from 5 to 50+ engineers is challenging, but with intentional leadership, it can result in not just a larger team, but a more capable, cohesive and impactful organization.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+</content><category term="Leadership"/><category term="job"/><category term="leadership"/></entry><entry><title>My first experiences with a laser cutter</title><link href="https://andrewwegner.com/first-laser-cutter-experiences.html" rel="alternate"/><published>2025-01-02T10:15:00-06:00</published><updated>2025-01-02T10:15:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2025-01-02:/first-laser-cutter-experiences.html</id><summary type="html">&lt;p&gt;My local library recently received a Glowforge for their patrons to utilize. This article is about my experiences using the machine&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;My local library spent a lot of time and money remodeling the last few years. Part of this remodel was adding an Innovation Lab with different tools that the public can utilize. These include a Cricut cutter, a Glowforge, a couple 3D printers, sewing machines, a T-shirt screen printer, and a few others I can't recall off hand. I am excited to try out several of these, but started with the laser cutter, because I have a home project that needs a few small things cut and engraved that I wasn't sure how I was going to do.&lt;/p&gt;
 &lt;p&gt;The end goal is to get a set of two inch by one inch rectangles with various years engraved, scored or cut so that I can use these as labels. &lt;/p&gt;
@@ -795,7 +897,18 @@ The journey from 5 to 50+ engineers is challenging, but with intentional leaders
 &lt;p&gt;&lt;img alt="Device is approved after entering your verification code" src="https://andrewwegner.com/images/ms_authenticator/approved_device.png"/&gt;&lt;/p&gt;
 &lt;p&gt;I recommend you wrap this up by removing your old device from the Security Info section now that the new device is approved. &lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The Microsoft authenticator application doesn't make moving to a new device as easy as some of its competitors. The requirement for a personal Microsoft account to go through the most commonly recommended way is also a non-starter if you don't have such an account already. Fortunately, the alternative posted above ended up working just fine. I assume I'll need a new phone again, and this should help at least me, remember that there is an easy enough way to migrate.&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/></entry><entry><title>Format USB drive with EFI partition in Windows</title><link href="https://andrewwegner.com/format-efi-usb-windows.html" rel="alternate"/><published>2024-11-13T13:00:00-06:00</published><updated>2024-11-13T13:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-11-13:/format-efi-usb-windows.html</id><summary type="html">&lt;p&gt;Windows protects EFI partitions from being deleted. This article is a quick walkthrough on how to format a USB drive with an EFI partition within Windows.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;The Microsoft authenticator application doesn't make moving to a new device as easy as some of its competitors. The requirement for a personal Microsoft account to go through the most commonly recommended way is also a non-starter if you don't have such an account already. Fortunately, the alternative posted above ended up working just fine. I assume I'll need a new phone again, and this should help at least me, remember that there is an easy enough way to migrate.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+</content><category term="Technical Solutions"/><category term="technical"/></entry><entry><title>Format USB drive with EFI partition in Windows</title><link href="https://andrewwegner.com/format-efi-usb-windows.html" rel="alternate"/><published>2024-11-13T13:00:00-06:00</published><updated>2024-11-13T13:00:00-06:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-11-13:/format-efi-usb-windows.html</id><summary type="html">&lt;p&gt;Windows protects EFI partitions from being deleted. This article is a quick walkthrough on how to format a USB drive with an EFI partition within Windows.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;I seem to collect USB drives. They are handed out at conferences. They are used as recovery media for new machines. They just randomly appear on my desk. I use them to build live Linux CDs, transferring media from one device to another, building recovery media, and generally the things you'd expect a USB drive to be used for. Generally, when I use a USB drive the first thing I do is format it. My USB drives are not for long term storage and I consider anything on them used one time then the drive goes back to the bin for reuse another time. &lt;/p&gt;
 &lt;p&gt;An annoyance with this, though, is that when I use a drive to build a bootable backup media, often times an EFI partition will be created. As soon as this is created, Windows prevents that partition from being deleted in the future without taking additional steps. I have to go look those up every time because I do it infrequently enough to remember. This is a simple walkthrough of my process to solve this problem&lt;/p&gt;
@@ -844,7 +957,18 @@ Partition 1 is now the selected partition.
 DiskPart successfully deleted the selected partition.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;From the disk management tool, you can verify it's gone and format as normal.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="All EFI partitions removed" src="https://andrewwegner.com/images/efi-partition-removed.png"/&gt;&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/></entry><entry><title>Controlling power to LED lights with WLED Controller and a Relay switch</title><link href="https://andrewwegner.com/control-power-wled-relay.html" rel="alternate"/><published>2024-08-16T12:00:00-05:00</published><updated>2024-08-16T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-08-16:/control-power-wled-relay.html</id><summary type="html">&lt;p&gt;Wiring a lot of LEDs requires more power than the small WLED controller can handle, but leaving a large power supply running even when the lights are off is inefficient. This post talks about the progress on the project and how I wired in a relay to keep everything running efficiently.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;&lt;img alt="All EFI partitions removed" src="https://andrewwegner.com/images/efi-partition-removed.png"/&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+</content><category term="Technical Solutions"/><category term="technical"/></entry><entry><title>Controlling power to LED lights with WLED Controller and a Relay switch</title><link href="https://andrewwegner.com/control-power-wled-relay.html" rel="alternate"/><published>2024-08-16T12:00:00-05:00</published><updated>2024-08-16T12:00:00-05:00</updated><author><name>Andy Wegner</name></author><id>tag:andrewwegner.com,2024-08-16:/control-power-wled-relay.html</id><summary type="html">&lt;p&gt;Wiring a lot of LEDs requires more power than the small WLED controller can handle, but leaving a large power supply running even when the lights are off is inefficient. This post talks about the progress on the project and how I wired in a relay to keep everything running efficiently.&lt;/p&gt;</summary><content type="html">
 &lt;h2 id="introduction"&gt;Introduction&lt;a class="headerlink" href="#introduction" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;It's time to continue my summer project of setting up some outdoor LED lights. &lt;a href="https://andrewwegner.com/update-wled-ericsity-controller-0141.html"&gt;Previously&lt;/a&gt;, I &lt;a href="https://www.amazon.com/Ericsity-Controller-Addressable-WS2812B-SK6812/dp/B0CNVXY8NX"&gt;set up and updated the Ericsity controller&lt;/a&gt; with &lt;a href="https://kno.wled.ge/"&gt;WLED&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I am putting up approximately 20 meters - 65 feet - of LEDs. Total this will be nearly 2,000 individual LEDs and approximately 665 individually controlled LED segments (3 LEDs per segment). This will take more power than the little controller can handle. To demonstrate the problem of powering all of these LEDs with only the controller, look at this image:&lt;/p&gt;
@@ -1006,4 +1130,15 @@ docker run -it --rm -p 8000:8000 opensecurity/mobile-security-framework-mobsf:la
 &lt;p&gt;The dashboard has a &lt;em&gt;lot&lt;/em&gt; of detail about the APK. Scroll through to see the permissions it's utilizing, certificates attached to it, potential security vulnerabilities, code analysis, detected URLs in the code, hard coded secrets, and strings. All of these would help a team build a better and more secure mobile application. &lt;/p&gt;
 &lt;h2 id="conclusion"&gt;Conclusion&lt;a class="headerlink" href="#conclusion" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For my purpose, this 15 minute exercise not only answered the question I was seeking it also raised a few items that will need to be corrected before the next release. Introducing security practices with a tool like MobSF would be incredibly beneficial to a team tasked with building an Android application. Further, adding in the dynamic analysis capabilities can provide more details on areas to improve. &lt;/p&gt;
-&lt;p&gt;While I didn't need those to answer my question, I'd encourage someone looking to introduce this to a team, to look at the &lt;a href="https://mobsf.github.io/docs/#/dynamic_analyzer"&gt;capabilities of MobSF&lt;/a&gt;&lt;/p&gt;</content><category term="Technical Solutions"/><category term="technical"/></entry></feed>
+&lt;p&gt;While I didn't need those to answer my question, I'd encourage someone looking to introduce this to a team, to look at the &lt;a href="https://mobsf.github.io/docs/#/dynamic_analyzer"&gt;capabilities of MobSF&lt;/a&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+</content><category term="Technical Solutions"/><category term="technical"/></entry></feed>
