@@ -1,0 +1,265 @@
+/* ==========================================================================
+   Palette switcher, the control itself — TEMPORARY. thoughts.md #26.
+
+   Hand-written. Its companion, palette-tokens.css, is generated from
+   palettes/PALETTES.md and holds nothing but the seven ramps and the swatch
+   values; keeping them apart means regenerating the data never touches this.
+
+   Every colour here is a token from the live palette, so the control is
+   painted by whatever it has selected and re-reads as part of the page rather
+   than sitting on top of it. The one exception is --sw-*, which is the palette
+   a given swatch *offers* — that is the whole point of a swatch.
+
+   Removal list: partial/palette_switcher.html.
+   ========================================================================== */
+
+/* With scripting off the radios cannot do anything, so the control is not
+   offered. Same rule the theme toggle follows: an inert control is worse than
+   an absent one. `has-js` is written by base.html's inline script before the
+   first paint, so this never flashes. */
+html:not(.has-js) .palette-switch { display: none; }
+
+.palette-switch {
+  position: fixed;
+  left: 14px;
+  top: var(--rail-top);
+  z-index: 19;                 /* under the sticky header (20), over everything else */
+  width: 128px;
+  font-family: var(--font-text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px var(--lift);
+  color: var(--ink-body);
+}
+
+.palette-switch[open] { width: 208px; }
+
+/* --------------------------------------------------------------------------
+   The summary line, which is also the collapsed state
+   -------------------------------------------------------------------------- */
+
+.palette-switch__summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  list-style: none;            /* Firefox */
+  user-select: none;
+}
+
+/* Safari/Chrome put the disclosure triangle in a pseudo-element of its own. */
+.palette-switch__summary::-webkit-details-marker { display: none; }
+
+.palette-switch__summary:hover { background: var(--row-hover); }
+
+.palette-switch__summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.palette-switch__label {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.palette-switch__kicker {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  line-height: 1.5;
+}
+
+.palette-switch__now {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------------------------------------------------------------
+   Swatch — paper ground, an ink bar and an accent dot, which is the smallest
+   mark that still tells Bone from Graphite (identical grounds, one green
+   accent between them).
+   -------------------------------------------------------------------------- */
+
+.palette-switch__swatch {
+  flex: none;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  background: var(--sw-paper, var(--paper));
+  border: 1px solid var(--border);
+}
+
+.palette-switch__swatch::before,
+.palette-switch__swatch::after {
+  content: "";
+  position: absolute;
+}
+
+/* the ink bar: what body text looks like on this paper */
+.palette-switch__swatch::before {
+  left: 3px;
+  right: 3px;
+  top: 6px;
+  height: 2px;
+  background: var(--sw-ink, var(--ink-body));
+}
+
+/* the accent */
+.palette-switch__swatch::after {
+  left: 3px;
+  bottom: 4px;
+  width: 7px;
+  height: 5px;
+  background: var(--sw-accent, var(--accent));
+}
+
+/* --------------------------------------------------------------------------
+   The open panel
+   -------------------------------------------------------------------------- */
+
+.palette-switch__body { border-top: 1px solid var(--rule); }
+
+.palette-switch__list {
+  margin: 0;
+  padding: 4px 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  /* Twelve candidates in two waves is taller than a short window. Capped and
+     scrolled here rather than on the panel, so the summary stays put and the
+     footnote stays reachable.
+
+     620px is the measured height of all twelve rows, not an estimate — two
+     earlier guesses (400, then 520) both scrolled wave 2 below the fold on a
+     window with room for it, and wave 2 is the half that exists to be
+     compared. A control that hides the thing it was extended for is worse
+     than one that is tall. The panel is then 733px from a 82px top, so it
+     clears a 900px window; below that the vh term takes over and it scrolls. */
+  max-height: min(72vh, 620px);
+  overflow-y: auto;
+}
+
+/* Which wave a candidate belongs to is the first thing to know about it — the
+   two answer different questions — so the list says so rather than running
+   twelve rows together. Generated from the sentinels in PALETTES.md. */
+.palette-switch__wave {
+  margin: 6px 0 2px;
+  padding: 0 10px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+
+.palette-switch__wave:first-child { margin-top: 0; }
+
+/* The group needs a name for a screen reader and no room on screen. Clipped
+   rather than display:none, which would take it out of the accessibility tree
+   along with the layout. */
+.palette-switch__legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.palette-switch__opt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.palette-switch__opt:hover { background: var(--row-hover); }
+
+/* The radio itself is the control — kept in the tree and in the tab order,
+   sized down rather than hidden, so focus lands somewhere visible and the
+   native checked state is what says which palette is live. */
+.palette-switch__opt input {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.palette-switch__opt:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.palette-switch__name {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--ink-body);
+}
+
+.palette-switch__opt input:checked ~ .palette-switch__name {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.palette-switch__desc {
+  font-size: 10.5px;
+  line-height: 1.35;
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+.palette-switch__note {
+  margin: 0;
+  padding: 7px 10px 9px;
+  border-top: 1px solid var(--rule-soft);
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: var(--ink-faint);
+}
+
+.palette-switch__note code {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+}
+
+/* --------------------------------------------------------------------------
+   When there is no gutter to sit in
+
+   The collapsed chip needs 142px to the left of the shell. The shell is
+   centred and its margin is (100vw − --shell) / 2, which first reaches that
+   figure a little past 1600px; below there the chip would sit on top of the
+   first line of the page, which on the home page is the headline.
+
+   So under 1600px it goes to the bottom corner instead. It still overlaps —
+   there is nowhere on a 1280px window that does not — but it overlaps the end
+   of the page rather than the start of it, and the open panel grows upward
+   from a corner rather than downward across a heading.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1600px) {
+  .palette-switch {
+    top: auto;
+    bottom: 14px;
+  }
+}
+
+/* It is a dev control. It is not part of the artefact. */
+@media print {
+  .palette-switch { display: none; }
+}
